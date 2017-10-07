@@ -1,0 +1,12 @@
+C:\Users\bubri\Source\Repos\Project\Client\bin\Debug\Client.exe.config
+C:\Users\bubri\Source\Repos\Project\Client\bin\Debug\Client.exe
+C:\Users\bubri\Source\Repos\Project\Client\bin\Debug\Client.pdb
+C:\Users\bubri\Source\Repos\Project\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Source\Repos\Project\Client\obj\Debug\Client.exe
+C:\Users\bubri\Source\Repos\Project\Client\obj\Debug\Client.pdb
+C:\Users\bubri\Desktop\project\Code\Client\bin\Debug\Client.exe.config
+C:\Users\bubri\Desktop\project\Code\Client\bin\Debug\Client.exe
+C:\Users\bubri\Desktop\project\Code\Client\bin\Debug\Client.pdb
+C:\Users\bubri\Desktop\project\Code\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Desktop\project\Code\Client\obj\Debug\Client.exe
+C:\Users\bubri\Desktop\project\Code\Client\obj\Debug\Client.pdb

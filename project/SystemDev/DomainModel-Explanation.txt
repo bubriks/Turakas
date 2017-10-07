@@ -1,0 +1,28 @@
+User: private information about a real life person, no other user shall be capable of seeing it
+
+Login: holds information that allows the user to login. salt and hash, stand in place for the password, it's more secure like this, as it uses SHA encryption (stoycho did it in our previouse group, and i think it was pretty good)
+
+Profile: holds public information that the user writes himself. it is also the thing that allows the user to interact with the website's features.
+
+Activity: something that a user is capable of doing on the website. All activities have a timestamp so we and the user can know when he did what.
+
+Purchase: to allow the user achieve a higher account status, so they can get extra benefits
+
+PlayLists: self explanatory
+
+Messages: self explanatory
+
+
+HOW I THOUGHT IT WOULD WORK:
+each user has 1 profile. technicaly the user and the profile could be in 1 single table/class, but i separated them, because it would be a little bit easier to find what you need, also it eases the database when executing queries.
+
+the user can do many activities, all done through the profile (the other users will see only the profile info, when checking who did that, for example writing a message, or adding a friend)
+
+Activities can be split in 3 main categories: creating PlayLists, writing Messages, making Purchases.
+
+Messages can contain either text, links, images or files. A anonim user can send only text, a logged it user can also send links, a paid user can send pictures and a premium user can send files.
+There are 2 types of messages, PrivateMessages, which self-delete after a certain period of time (24hours); and PublicMessages, which last forever and can be rated by other users(to allow the community to self-control, in case someone is toxic in chat, or tries to spread propaganda, or other maliciouse intents, or if someone has a really good point in a argument)
+
+Purchases allow the users to elevate their accountStatus, which will give them extra privileges, such as posting images to their profile page, sending images or files on chats(both private and public).
+
+P.S. everyone that is logged in can see the images and download the files, but only the paid users can post them.

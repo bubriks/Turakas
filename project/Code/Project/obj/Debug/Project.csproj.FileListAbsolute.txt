@@ -1,0 +1,12 @@
+C:\Users\bubri\Source\Repos\Project\Project\bin\Debug\Project.pdb
+C:\Users\bubri\Source\Repos\Project\Project\obj\Debug\Project.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Source\Repos\Project\Project\obj\Debug\Project.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Source\Repos\Project\Project\obj\Debug\Project.pdb
+C:\Users\bubri\Source\Repos\Project\Project\bin\Debug\Project.dll
+C:\Users\bubri\Source\Repos\Project\Project\obj\Debug\Project.dll
+C:\Users\bubri\Desktop\project\Code\Project\bin\Debug\Project.dll
+C:\Users\bubri\Desktop\project\Code\Project\bin\Debug\Project.pdb
+C:\Users\bubri\Desktop\project\Code\Project\obj\Debug\Project.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Desktop\project\Code\Project\obj\Debug\Project.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Desktop\project\Code\Project\obj\Debug\Project.dll
+C:\Users\bubri\Desktop\project\Code\Project\obj\Debug\Project.pdb
