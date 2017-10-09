@@ -5,8 +5,7 @@ CREATE DATABASE ProjectDb
 CREATE TABLE Login(
 loginID int IDENTITY(1,1) PRIMARY KEY,
 username varchar(50),
-passwordHash binary(64),
-salt uniqueidentifier,
+password varchar(50),
 );
 
 CREATE TABLE Person(
@@ -52,7 +51,7 @@ CREATE TABLE Message(
 messageID int IDENTITY(1,1) PRIMARY KEY,
 chatID int FOREIGN KEY REFERENCES Chat(chatID) NOT NULL,
 activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
-message varbinary(MAX),
+message varchar(200),
 likes int,
 );
 
