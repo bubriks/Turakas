@@ -1,98 +1,109 @@
-DROP DATABASE ProjectDb;
-
 CREATE DATABASE ProjectDb
-
+go
+USE ProjectDb
 CREATE TABLE Login(
 loginID int IDENTITY(1,1) PRIMARY KEY,
 username varchar(50),
-password varchar(50),
+passwordHash binary(64),
+salt uniqueIdentifier,
 );
 
 CREATE TABLE Person(
-userID int IDENTITY(1,1) PRIMARY KEY,
+personID int IDENTITY(1,1) PRIMARY KEY,
 loginID int FOREIGN KEY REFERENCES Login(loginID) NOT NULL,
 email varchar(100),
 balance decimal(6,2),
-accountStatu bit,
+accountStatus int,
 );
 
 CREATE TABLE Profile(
 profileID int IDENTITY(1,1) PRIMARY KEY,
-userID int FOREIGN KEY REFERENCES Person(userID) NOT NULL,
-nickname varchar(10),
+personID int FOREIGN KEY REFERENCES Person(personID) NOT NULL,
+nickname varchar(20),
 onlineStatus bit,
-likes int,
-);
-
-CREATE TABLE Friends(
-friendID int FOREIGN KEY REFERENCES Profile(profileID) NOT NULL,
-profileID int FOREIGN KEY REFERENCES Profile(profileID) NOT NULL,
-PRIMARY KEY (friendID, profileID),
 );
 
 CREATE TABLE Activity(
 activityID int IDENTITY(1,1) PRIMARY KEY,
 profileID int FOREIGN KEY REFERENCES Profile(profileID) NOT NULL,
-timeStamp date,
+timeStamp datetime2,
+);
+
+CREATE TABLE Notification(
+profileID int FOREIGN KEY REFERENCES Profile(profileID) NOT NULL,
+activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
+PRIMARY KEY (profileID, activityID),
+);
+
+CREATE TABLE Relationship(
+activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
+partnerID int FOREIGN KEY REFERENCES Profile(profileID) NOT NULL,
+type int NOT NULL,
+PRIMARY KEY (partnerID, activityID),
 );
 
 CREATE TABLE Chat(
 chatID int IDENTITY(1,1) PRIMARY KEY,
 name varchar(20),
+type bit,
 );
 
 CREATE TABLE PersonsChats(
-personsChatsID int IDENTITY(1,1) PRIMARY KEY,
 chatID int FOREIGN KEY REFERENCES Chat(chatID) NOT NULL,
 profileID int FOREIGN KEY REFERENCES Profile(profileID) NOT NULL,
+PRIMARY KEY(chatID, profileID),
+);
+
+CREATE TABLE Text(
+textID int IDENTITY(1,1) PRIMARY KEY,
+activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
+message varbinary(MAX),
 );
 
 CREATE TABLE Message(
-messageID int IDENTITY(1,1) PRIMARY KEY,
+textID int FOREIGN KEY REFERENCES Text(textID) NOT NULL,
 chatID int FOREIGN KEY REFERENCES Chat(chatID) NOT NULL,
-activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
-message varchar(200),
-likes int,
+PRIMARY KEY(textID),
 );
 
-CREATE TABLE Purchases(
-purchaseID int IDENTITY(1,1) PRIMARY KEY,
+CREATE TABLE Song(
+songID int IDENTITY(1,1) PRIMARY KEY,
 activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
-amount decimal(6,2),
-);
-
-CREATE TABLE Liked(
-likedID int IDENTITY(1,1) PRIMARY KEY,
-activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
+name varchar(50),
+artist varchar (50),
+duration decimal(4,2),
+url varchar(200),
+genre varchar(50),
 );
 
 CREATE TABLE PlayLists(
 playListID int IDENTITY(1,1) PRIMARY KEY,
 activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
 image image,
-mood varchar(20),
-likes int,
-);
-
-CREATE TABLE Comment(
-commentID int IDENTITY(1,1) PRIMARY KEY,
-activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
-playListID int FOREIGN KEY REFERENCES PlayLists(playListID) NOT NULL,
-message varchar(200),
-likes int,
-);
-
-CREATE TABLE Song(
-songID int IDENTITY(1,1) PRIMARY KEY,
-name varchar(30),
-artist varchar (30),
-duration decimal(4,2),
-url varchar(200),
-genre varchar(30),
+mood varchar(50),
 );
 
 CREATE TABLE TrackList(
-trackListID int IDENTITY(1,1) PRIMARY KEY,
 songID int FOREIGN KEY REFERENCES Song(songID) NOT NULL,
 playListID int FOREIGN KEY REFERENCES PlayLists(playListID) NOT NULL,
+PRIMARY KEY(songID, playListID),
+);
+
+CREATE TABLE Comment(
+textID int FOREIGN KEY REFERENCES Text(textID) NOT NULL,
+playListID int FOREIGN KEY REFERENCES PlayLists(playListID) NOT NULL,
+PRIMARY KEY(textID),
+);
+
+CREATE TABLE Purchases(
+purchaseID int IDENTITY(1,1) PRIMARY KEY,
+activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
+amount decimal(6,2),
+IBAN varchar(50),
+);
+
+CREATE TABLE Liked(
+likedActivityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
+activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
+PRIMARY KEY(likedActivityID, activityID),
 );
