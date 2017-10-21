@@ -1,0 +1,3 @@
+SQL Server wants to go safe and will not allow a table to have multiple FK's with ON DELETE CASCADE, in order to avoid race between them.
+
+So in order to achieve the desired effect (make sure there are no orphan entries in any table), we used INSTEAD OF triggers that specify what has to be done when a parent entry is deleted.
