@@ -1,0 +1,7 @@
+C:\Users\bubri\Desktop\project\Project\WcfService\bin\Debug\WcfService.dll.config
+C:\Users\bubri\Desktop\project\Project\WcfService\bin\Debug\WcfService.dll
+C:\Users\bubri\Desktop\project\Project\WcfService\bin\Debug\WcfService.pdb
+C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.dll
+C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.pdb

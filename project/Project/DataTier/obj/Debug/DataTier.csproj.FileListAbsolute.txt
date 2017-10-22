@@ -1,0 +1,12 @@
+C:\Users\bubri\Source\Repos\Project\DataTier\bin\Debug\DataTier.pdb
+C:\Users\bubri\Source\Repos\Project\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Source\Repos\Project\DataTier\obj\Debug\DataTier.pdb
+C:\Users\bubri\Source\Repos\Project\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Source\Repos\Project\DataTier\bin\Debug\DataTier.dll
+C:\Users\bubri\Source\Repos\Project\DataTier\obj\Debug\DataTier.dll
+C:\Users\bubri\Desktop\project\Project\DataTier\bin\Debug\DataTier.dll
+C:\Users\bubri\Desktop\project\Project\DataTier\bin\Debug\DataTier.pdb
+C:\Users\bubri\Desktop\project\Project\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Desktop\project\Project\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Desktop\project\Project\DataTier\obj\Debug\DataTier.dll
+C:\Users\bubri\Desktop\project\Project\DataTier\obj\Debug\DataTier.pdb

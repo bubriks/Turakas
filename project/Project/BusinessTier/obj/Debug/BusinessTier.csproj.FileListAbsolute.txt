@@ -1,0 +1,16 @@
+C:\Users\bubri\Source\Repos\Project\BusinessTier\bin\Debug\BusinessTier.exe
+C:\Users\bubri\Source\Repos\Project\BusinessTier\bin\Debug\BusinessTier.pdb
+C:\Users\bubri\Source\Repos\Project\BusinessTier\bin\Debug\DataTier.dll
+C:\Users\bubri\Source\Repos\Project\BusinessTier\bin\Debug\DataTier.pdb
+C:\Users\bubri\Source\Repos\Project\BusinessTier\obj\Debug\BusinessTier.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Source\Repos\Project\BusinessTier\obj\Debug\BusinessTier.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Source\Repos\Project\BusinessTier\obj\Debug\BusinessTier.exe
+C:\Users\bubri\Source\Repos\Project\BusinessTier\obj\Debug\BusinessTier.pdb
+C:\Users\bubri\Desktop\project\Project\BusinessTier\bin\Debug\BusinessTier.exe
+C:\Users\bubri\Desktop\project\Project\BusinessTier\bin\Debug\BusinessTier.pdb
+C:\Users\bubri\Desktop\project\Project\BusinessTier\bin\Debug\DataTier.dll
+C:\Users\bubri\Desktop\project\Project\BusinessTier\bin\Debug\DataTier.pdb
+C:\Users\bubri\Desktop\project\Project\BusinessTier\obj\Debug\BusinessTier.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Desktop\project\Project\BusinessTier\obj\Debug\BusinessTier.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Desktop\project\Project\BusinessTier\obj\Debug\BusinessTier.exe
+C:\Users\bubri\Desktop\project\Project\BusinessTier\obj\Debug\BusinessTier.pdb

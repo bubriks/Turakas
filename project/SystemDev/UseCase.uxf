@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>540</x>
+      <y>15</y>
+      <w>130</w>
+      <h>670</h>
+    </coordinates>
+    <panel_attributes>System
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>330</x>
+      <y>350</y>
+      <w>35</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>User</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>35</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Manage login
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>60</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Manage profile
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>245</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Manage chat
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>35</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Allow to also change password
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>60</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Includes changing status for profile
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>290</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Add person to chat
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>310</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Remove person from chat
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>400</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Create like
+bg=magenta</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>420</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Remove like
+bg=magenta</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>440</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Get like
+bg=magenta</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>460</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Get activitys likes
+bg=magenta</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>440</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Shows if you have liked this activity
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>195</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Get persons chats
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>195</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>returns all users chats
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>150</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Remove friend
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>130</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Includes RelationshipType
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>860</x>
+      <y>110</y>
+      <w>135</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>we dont allow user to make new:
+Status
+RelationshipType
+Genres
+Mood
+they have to choose from given choices
+but they can manage artist
+
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>820</x>
+      <y>505</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Creating notifications doesnt 
+have its own method 
+but instead is done when activity is created
+for example when creating playlist
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>660</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Manage Song
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>665</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Includes Genres and Artist
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>505</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Manage PlayList
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>570</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Remove song
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>550</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Add song
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>220</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Get persons playlists
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>510</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Includes Mood
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>530</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Get songs
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>825</x>
+      <y>325</y>
+      <w>135</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>if its manage that means its can support
+CRUD methods:
+Create
+Read
+Update
+Delete
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>460</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Shows total number of likes
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>480</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Get profiles likes
+bg=magenta</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>480</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Shows all user liked activitys
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>130</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Add friend
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>170</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Update friend type
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>335</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>returns all messages in chat
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>820</x>
+      <y>235</y>
+      <w>135</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>You can see public chat:
+and can add your self to it
+
+You cant see private chat:
+you can be added only by preson in chat
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>615</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Add Comment
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>595</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Get comments
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>635</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Remove Comment
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>335</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Get messages
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>355</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Add Message
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>375</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Remove Message
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>270</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Get persons
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>110</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Get friends
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>545</x>
+      <y>85</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Persons notifications
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>675</x>
+      <y>85</y>
+      <w>115</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>once read are deleted from DB
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>40</y>
+      <w>200</w>
+      <h>335</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;650.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>65</y>
+      <w>200</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;600.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>90</y>
+      <w>200</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;550.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>115</y>
+      <w>200</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;500.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>135</y>
+      <w>200</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;460.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>155</y>
+      <w>200</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;420.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>175</y>
+      <w>200</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;380.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>200</y>
+      <w>200</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;330.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>295</y>
+      <w>200</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>225</y>
+      <w>200</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;280.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>250</y>
+      <w>200</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;230.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>275</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;180.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>315</y>
+      <w>200</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;100.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>340</y>
+      <w>200</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;50.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;360.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>195</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;370.0;400.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;440.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>255</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;490.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>275</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;530.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>295</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;570.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>360</y>
+      <w>200</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;620.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>810</x>
+      <y>0</y>
+      <w>135</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Profile is deleted only thru login 
+(databes does everything)
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>390</x>
+      <y>70</y>
+      <w>70</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Andrei
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>325</x>
+      <y>250</y>
+      <w>70</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Ralf
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>330</x>
+      <y>450</y>
+      <w>70</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Hannes
+bg=magenta</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>390</x>
+      <y>595</y>
+      <w>70</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Stoicho
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

@@ -1,0 +1,7 @@
+C:\Users\bubri\Source\Repos\Project\PresentationTier\bin\Debug\PresentationTier.exe.config
+C:\Users\bubri\Source\Repos\Project\PresentationTier\bin\Debug\PresentationTier.exe
+C:\Users\bubri\Source\Repos\Project\PresentationTier\bin\Debug\PresentationTier.pdb
+C:\Users\bubri\Source\Repos\Project\PresentationTier\obj\Debug\PresentationTier.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Source\Repos\Project\PresentationTier\obj\Debug\PresentationTier.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Source\Repos\Project\PresentationTier\obj\Debug\PresentationTier.exe
+C:\Users\bubri\Source\Repos\Project\PresentationTier\obj\Debug\PresentationTier.pdb
