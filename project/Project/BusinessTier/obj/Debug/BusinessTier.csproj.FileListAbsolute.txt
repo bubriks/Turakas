@@ -22,3 +22,6 @@ C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\Busin
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csproj.CoreCompileInputs.cache
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.exe
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.exe.config
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.pdb

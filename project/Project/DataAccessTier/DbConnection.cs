@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-namespace DataTier
+namespace DataAccessTier
 {
     public class DbConnection
     {

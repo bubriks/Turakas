@@ -1,11 +1,12 @@
-﻿using System;
+﻿using DataTier;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataTier
+namespace DataAccessTier
 {
     public class DbChat
     {
