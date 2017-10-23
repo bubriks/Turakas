@@ -19,10 +19,7 @@ namespace DataTier
             this.type = type;
         }
 
-        public int GetId()
-        {
-            return id;
-        }
+        public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public bool Type { get => type; set => type = value; }
     }

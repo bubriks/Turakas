@@ -9,8 +9,8 @@ namespace BusinessTier
 {
     public class UserController
     {
-        private static DbLogin dbLogin=null;
-        private static DbProfile dbProfile = null;
+        private DbLogin dbLogin=null;
+        private DbProfile dbProfile = null;//remove static
 
         public UserController()
         {
@@ -18,13 +18,5 @@ namespace BusinessTier
             dbProfile = new DbProfile();
         }
 
-        static void Main(string[] args)
-        {
-            dbLogin = new DbLogin();
-            dbProfile = new DbProfile();
-
-            Console.WriteLine(dbLogin.Login(new Login("test", "admin", "")).Item2);
-            Console.WriteLine(dbProfile.GetProfile(1).Nickname);
-        }
     }
 }
