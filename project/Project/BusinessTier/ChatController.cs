@@ -1,35 +1,26 @@
 ﻿using DataTier;
 using DataAccessTier;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessTier
 {
     class ChatController
     {
-        private static DbConnection con = null;
         private static DbChat dbChat = null;
 
         public ChatController()
         {
-            con = DbConnection.GetInstance();
-            dbChat = new DbChat(con);
+            dbChat = new DbChat();
         }
 
         static void Main(string[] args)
         {
-            con = DbConnection.GetInstance();
-            dbChat = new DbChat(con);
+            dbChat = new DbChat();
 
-            con.StartTransaction();
-            if(dbChat.UpdateChat(new Chat(1, "TestChat", true)))
+            if (dbChat.UpdateChat(new Chat(1, "Name44", true)))
             {
                 Console.WriteLine("done");
             }
-            //con.Commmit();
         }
     }
 }

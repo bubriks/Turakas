@@ -10,11 +10,12 @@ namespace DataAccessTier
 {
     public class DbProfile
     {
-        private DbConnection con = null;
+        private SqlConnection con = null;
+        private SqlTransaction trans = null;
 
         public DbProfile()
         {
-            con = DbConnection.GetInstance();
+            con = DbConnection.GetInstance().GetConnection();
         }
 
         public Profile GetProfile(int id)
@@ -22,7 +23,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "SELECT * FROM Profile where profileID = " + id;
-                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
+                SqlCommand cmd = new SqlCommand(stmt, con);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
@@ -47,7 +48,7 @@ namespace DataAccessTier
             {
                 string stmt = "INSERT INTO Profile(profileID, statusId, nickname)" +
                     " values (" + profile.ProfileID + ", " + profile.StatusID + ", '" + profile.Nickname + "')";
-                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
+                SqlCommand cmd = new SqlCommand(stmt, con);
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -62,7 +63,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "UPDATE Profile SET statusId = '" + profile.StatusID + "', nickname = '" + profile.Nickname + "' WHERE profileID = " + profile.ProfileID;
-                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
+                SqlCommand cmd = new SqlCommand(stmt, con);
                 cmd.ExecuteNonQuery();
                 return true;
             }

@@ -10,11 +10,12 @@ namespace DataAccessTier
 {
     public class DbChat
     {
-        private DbConnection con = null;
+        private SqlConnection con = null;
+        private SqlTransaction trans = null;
 
-        public DbChat(DbConnection con)
+        public DbChat()
         {
-            this.con = con;
+            con = DbConnection.GetInstance().GetConnection();
         }
 
         public Chat GetChat(int id)
@@ -22,7 +23,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "SELECT * FROM Chat where chatID = " + id;
-                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
+                SqlCommand cmd = new SqlCommand(stmt, con);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
@@ -47,7 +48,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "INSERT INTO Chat(name, type) OUTPUT INSERTED.chatID values ('"+ chat.Name + "', "+ Convert.ToInt32(chat.Type)+")";
-                SqlDataReader reader = new SqlCommand(stmt, con.GetConnection()).ExecuteReader();
+                SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
                 reader.Read();
                 chat.Id = reader.GetInt32(0);
                 return chat;
@@ -62,13 +63,17 @@ namespace DataAccessTier
         {
             try
             {
-                string stmt = "UPDATE Chat SET name = '" + chat.Name + "', type = '" + Convert.ToInt32(chat.Type) + "' WHERE chatID= " + chat.Id;
-                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
+                trans = con.BeginTransaction();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Transaction = trans;
+                cmd.CommandText = "UPDATE Chat SET name = '" + chat.Name + "', type = '" + Convert.ToInt32(chat.Type) + "' WHERE chatID= " + chat.Id;
                 cmd.ExecuteNonQuery();
+                trans.Commit();
                 return true;
             }
             catch (Exception)
             {
+                trans.Rollback();
                 return false;
             }
         }
@@ -78,7 +83,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "DELETE FROM Chat WHERE chatID = " + id;
-                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
+                SqlCommand cmd = new SqlCommand(stmt, con);
                 cmd.ExecuteNonQuery();
                 return true;
             }

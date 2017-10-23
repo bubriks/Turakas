@@ -6,11 +6,12 @@ namespace DataAccessTier
 {
     public class DbLogin
     {
-        private DbConnection con= null;
+        private SqlConnection con = null;
+        private SqlTransaction trans = null;
 
         public DbLogin()
         {
-            con = DbConnection.GetInstance();
+            con = DbConnection.GetInstance().GetConnection();
         }
 
         public Tuple<Login, int> Login(Login login)
@@ -18,7 +19,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "SELECT * FROM Login where username= '"+ login.Username + "' AND passwordHash=HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(Salt AS NVARCHAR(36)))";
-                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
+                SqlCommand cmd = new SqlCommand(stmt, con);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
@@ -44,7 +45,7 @@ namespace DataAccessTier
             {
                 string stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() INSERT INTO Login(username, salt, passwordHash, email)" +
                     "OUTPUT INSERTED.loginID values ('" + login.Username + "', @salt, HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(@salt AS NVARCHAR(36))), '" + login.Email + "')";
-                SqlDataReader reader = new SqlCommand(stmt, con.GetConnection()).ExecuteReader();
+                SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
                 reader.Read();
                 return reader.GetInt32(0);
             }
@@ -60,7 +61,7 @@ namespace DataAccessTier
             {
                 string stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID()" +
                     "UPDATE Login SET username = '" + login.Username + "', salt = @salt, passwordHash = HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(@salt AS NVARCHAR(36))), email = '" + login.Email + "' WHERE loginID= " + id;
-                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
+                SqlCommand cmd = new SqlCommand(stmt, con);
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -75,7 +76,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "DELETE FROM Login WHERE loginID = " + id;
-                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
+                SqlCommand cmd = new SqlCommand(stmt, con);
                 cmd.ExecuteNonQuery();
                 return true;
             }
