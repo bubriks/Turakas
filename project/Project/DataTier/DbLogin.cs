@@ -37,19 +37,19 @@ namespace DataTier
             }
         }
 
-        public bool CreateLogin(Login login)
+        public int CreateLogin(Login login)
         {
             try
             {
                 string stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() INSERT INTO Login(username, salt, passwordHash, email)" +
-                    " values ('" + login.Username + "', @salt, HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(@salt AS NVARCHAR(36))), '" + login.Email + "')";
-                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
-                cmd.ExecuteNonQuery();
-                return true;
+                    "OUTPUT INSERTED.loginID values ('" + login.Username + "', @salt, HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(@salt AS NVARCHAR(36))), '" + login.Email + "')";
+                SqlDataReader reader = new SqlCommand(stmt, con.GetConnection()).ExecuteReader();
+                reader.Read();
+                return reader.GetInt32(0);
             }
             catch (Exception)
             {
-                return false;
+                return -1;
             }
         }
 

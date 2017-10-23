@@ -22,7 +22,7 @@ namespace BusinessTier
         {
             dbLogin = new DbLogin();
             dbProfile = new DbProfile();
-            Console.WriteLine(DateTime.Now);
+
             Console.WriteLine(dbLogin.Login(new Login("test", "admin", "")).Item2);
             Console.WriteLine(dbProfile.GetProfile(1).Nickname);
         }
