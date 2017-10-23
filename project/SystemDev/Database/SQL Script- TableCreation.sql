@@ -166,6 +166,7 @@ playListID int IDENTITY(1,1) PRIMARY KEY,
 activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
 moodID int FOREIGN KEY REFERENCES Mood(moodID) NOT NULL,
 image image,
+name varchar(50),
 );
 
 --PlayLists Trigger
