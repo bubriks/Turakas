@@ -11,7 +11,6 @@ namespace DataAccessTier
     public class DbChat
     {
         private SqlConnection con = null;
-        private SqlTransaction trans = null;
 
         public DbChat()
         {
@@ -23,9 +22,10 @@ namespace DataAccessTier
             try
             {
                 string stmt = "INSERT INTO Chat(name, type) OUTPUT INSERTED.chatID values ('" + chat.Name + "', " + Convert.ToInt32(chat.Type) + ")";
-                SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
+                SqlCommand cmd = new SqlCommand(stmt, con);
+                SqlDataReader reader = cmd.ExecuteReader();
                 reader.Read();
-                chat.Id = reader.GetInt32(0);
+                chat.Id = Int32.Parse(reader["chatID"].ToString());
                 return chat;
             }
             catch (Exception)
@@ -59,21 +59,17 @@ namespace DataAccessTier
             }
         }
 
-        public bool UpdateChat(Chat chat)//contains transaction example
+        public bool UpdateChat(Chat chat)
         {
             try
             {
-                trans = con.BeginTransaction();
-                SqlCommand cmd = con.CreateCommand();
-                cmd.Transaction = trans;
-                cmd.CommandText = "UPDATE Chat SET name = '" + chat.Name + "', type = '" + Convert.ToInt32(chat.Type) + "' WHERE chatID= " + chat.Id;
+                string stmt = "UPDATE Chat SET name = '" + chat.Name + "', type = '" + Convert.ToInt32(chat.Type) + "' WHERE chatID= " + chat.Id;
+                SqlCommand cmd = new SqlCommand(stmt, con);
                 cmd.ExecuteNonQuery();
-                trans.Commit();
                 return true;
             }
             catch (Exception)
             {
-                trans.Rollback();
                 return false;
             }
         }
