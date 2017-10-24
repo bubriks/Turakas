@@ -21,74 +21,38 @@ namespace DataAccessTier
         #region manage chat
         public Chat CreateChat(Chat chat)
         {
-            try
-            {
-                string stmt = "INSERT INTO Chat(name, type) OUTPUT INSERTED.chatID values ('" + chat.Name + "', " + Convert.ToInt32(chat.Type) + ")";
-                SqlCommand cmd = new SqlCommand(stmt, con);
-                SqlDataReader reader = cmd.ExecuteReader();
-                reader.Read();
-                chat.Id = Int32.Parse(reader["chatID"].ToString());
-                return chat;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            string stmt = "INSERT INTO Chat(name, type) OUTPUT INSERTED.chatID values ('" + chat.Name + "', " + Convert.ToInt32(chat.Type) + ")";
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            chat.Id = Int32.Parse(reader["chatID"].ToString());
+            reader.Close();
+            return chat;
         }
         
         public Chat GetChat(int id)
         {
-            try
-            {
-                string stmt = "SELECT * FROM Chat where chatID = " + id;
-                SqlCommand cmd = new SqlCommand(stmt, con);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    Chat chat = new Chat(id, reader["name"].ToString(), (bool)reader["type"]);
-                    reader.Close();
-                    return chat;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
+            string stmt = "SELECT * FROM Chat where chatID = " + id;
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            Chat chat = new Chat(id, reader["name"].ToString(), (bool)reader["type"]);
+            reader.Close();
+            return chat;
         }
 
-        public bool UpdateChat(Chat chat)
+        public void UpdateChat(Chat chat)
         {
-            try
-            {
-                string stmt = "UPDATE Chat SET name = '" + chat.Name + "', type = '" + Convert.ToInt32(chat.Type) + "' WHERE chatID= " + chat.Id;
-                SqlCommand cmd = new SqlCommand(stmt, con);
-                cmd.ExecuteNonQuery();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            string stmt = "UPDATE Chat SET name = '" + chat.Name + "', type = '" + Convert.ToInt32(chat.Type) + "' WHERE chatID= " + chat.Id;
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            cmd.ExecuteNonQuery();
         }
 
-        public bool DeleteChat(int id)
+        public void DeleteChat(int id)
         {
-            try
-            {
-                string stmt = "DELETE FROM Chat WHERE chatID = " + id;
-                SqlCommand cmd = new SqlCommand(stmt, con);
-                cmd.ExecuteNonQuery();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            string stmt = "DELETE FROM Chat WHERE chatID = " + id;
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            cmd.ExecuteNonQuery();
         }
         #endregion
 
@@ -98,11 +62,12 @@ namespace DataAccessTier
             string stmt = "SELECT Profile.nickname FROM PersonsChats INNER JOIN Profile ON PersonsChats.profileID = Profile.profileID where chatID = " + chatId;
             SqlCommand cmd = new SqlCommand(stmt, con);
             SqlDataReader reader = cmd.ExecuteReader();
-            String names = "";
+            String names = null;
             while (reader.Read())
             {
                 names+= reader["nickname"].ToString()+" ";
             }
+            reader.Close();
             return names;
         }
 

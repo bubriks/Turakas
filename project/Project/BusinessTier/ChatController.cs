@@ -16,22 +16,52 @@ namespace BusinessTier
 
         public Chat CreateChat(Chat chat)
         {
-            return dbChat.CreateChat(chat);
+            try
+            {
+                return dbChat.CreateChat(chat);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public Chat GetChat(int id)
         {
-            return dbChat.GetChat(id);
+            try
+            {
+                return dbChat.GetChat(id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public bool UpdateChat(Chat chat)
         {
-            return dbChat.UpdateChat(chat);
+            try
+            {
+                dbChat.UpdateChat(chat);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool DeleteChat(int id)
         {
-            return dbChat.DeleteChat(id);
+            try
+            {
+                dbChat.DeleteChat(id);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public String GetPersonsInChat(int chatId)
