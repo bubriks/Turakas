@@ -4,7 +4,7 @@ using System;
 
 namespace BusinessTier
 {
-    class ChatController
+    public class ChatController: IChatController
     {
         private static DbChat dbChat = null;
 
@@ -13,14 +13,24 @@ namespace BusinessTier
             dbChat = new DbChat();
         }
 
-        static void Main(string[] args)
+        public Chat CreateChat(Chat chat)
         {
-            dbChat = new DbChat();
+            return dbChat.CreateChat(chat);
+        }
 
-            if (dbChat.UpdateChat(new Chat(1, "Name44", true)))
-            {
-                Console.WriteLine("done");
-            }
+        public Chat GetChat(int id)
+        {
+            return dbChat.GetChat(id);
+        }
+
+        public bool UpdateChat(Chat chat)
+        {
+            return dbChat.UpdateChat(chat);
+        }
+
+        public bool DeleteChat(int id)
+        {
+            return dbChat.DeleteChat(id);
         }
     }
 }

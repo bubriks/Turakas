@@ -18,6 +18,22 @@ namespace DataAccessTier
             con = DbConnection.GetInstance().GetConnection();
         }
 
+        public Chat CreateChat(Chat chat)
+        {
+            try
+            {
+                string stmt = "INSERT INTO Chat(name, type) OUTPUT INSERTED.chatID values ('" + chat.Name + "', " + Convert.ToInt32(chat.Type) + ")";
+                SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
+                reader.Read();
+                chat.Id = reader.GetInt32(0);
+                return chat;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public Chat GetChat(int id)
         {
             try
@@ -43,23 +59,7 @@ namespace DataAccessTier
             }
         }
 
-        public Chat AddChat(Chat chat)
-        {
-            try
-            {
-                string stmt = "INSERT INTO Chat(name, type) OUTPUT INSERTED.chatID values ('"+ chat.Name + "', "+ Convert.ToInt32(chat.Type)+")";
-                SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
-                reader.Read();
-                chat.Id = reader.GetInt32(0);
-                return chat;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public bool UpdateChat(Chat chat)
+        public bool UpdateChat(Chat chat)//contains transaction example
         {
             try
             {

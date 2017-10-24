@@ -5,3 +5,17 @@ C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.csprojRes
 C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
 C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.dll
 C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll.config
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll.config
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb

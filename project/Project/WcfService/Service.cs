@@ -4,28 +4,33 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using DataTier;
+using BusinessTier;
 
 namespace WcfService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class Service : IService
     {
-        public string GetData(int value)
+        static IChatController chatController = new ChatController();
+
+        public Chat CreateChat(Chat chat)
         {
-            return string.Format("You entered: {0}", value);
+            return chatController.CreateChat(chat);
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public Chat GetChat(int id)
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            return chatController.GetChat(id);
+        }
+
+        public bool UpdateChat(Chat chat)
+        {
+            return chatController.UpdateChat(chat);
+        }
+
+        public bool DeleteChat(int id)
+        {
+            return chatController.DeleteChat(id);
         }
     }
 }

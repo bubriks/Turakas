@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using DataTier;
 
 namespace WcfService
 {
@@ -11,32 +12,15 @@ namespace WcfService
     public interface IService
     {
         [OperationContract]
-        string GetData(int value);
+        Chat CreateChat(Chat chat);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-    }
+        Chat GetChat(int id);
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "WcfService.ContractType".
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        [OperationContract]
+        bool UpdateChat(Chat chat);
 
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        [OperationContract]
+        bool DeleteChat(int id);
     }
 }
