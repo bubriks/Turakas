@@ -43,7 +43,7 @@ namespace DataAccessTier
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    Chat chat = new Chat(reader.GetInt32(0), reader.GetString(1), (bool)reader.GetSqlBoolean(2));
+                    Chat chat = new Chat(id, reader["name"].ToString(), (bool)reader["type"]);
                     reader.Close();
                     return chat;
                 }
