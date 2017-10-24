@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using DataTier;
+using System.Collections;
 
 namespace WcfService
 {
@@ -22,5 +23,14 @@ namespace WcfService
 
         [OperationContract]
         bool DeleteChat(int id);
+
+        [OperationContract]
+        String GetPersonsInChat(int chatId);
+
+        [OperationContract]
+        bool AddPersonToChat(int chatId, int personId);
+
+        [OperationContract]
+        bool RemovePersonFromChat(int chatId, int personId);
     }
 }

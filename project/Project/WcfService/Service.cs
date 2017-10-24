@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using DataTier;
 using BusinessTier;
+using System.Collections;
 
 namespace WcfService
 {
@@ -31,6 +32,21 @@ namespace WcfService
         public bool DeleteChat(int id)
         {
             return chatController.DeleteChat(id);
+        }
+
+        public string GetPersonsInChat(int chatId)
+        {
+            return chatController.GetPersonsInChat(chatId);
+        }
+
+        public bool AddPersonToChat(int chatId, int personId)
+        {
+            return chatController.AddPersonToChat(chatId, personId);
+        }
+
+        public bool RemovePersonFromChat(int chatId, int personId)
+        {
+            return chatController.RemovePersonFromChat(chatId, personId);
         }
     }
 }

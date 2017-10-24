@@ -1,5 +1,6 @@
 ﻿using DataTier;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace DataAccessTier
             con = DbConnection.GetInstance().GetConnection();
         }
 
+        #region manage chat
         public Chat CreateChat(Chat chat)
         {
             try
@@ -33,7 +35,7 @@ namespace DataAccessTier
                 return null;
             }
         }
-
+        
         public Chat GetChat(int id)
         {
             try
@@ -88,6 +90,35 @@ namespace DataAccessTier
                 return false;
             }
         }
+        #endregion
 
+        #region chat users
+        public String GetPersonsInChat(int chatId)
+        {
+            string stmt = "SELECT Profile.nickname FROM PersonsChats INNER JOIN Profile ON PersonsChats.profileID = Profile.profileID where chatID = " + chatId;
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            String names = "";
+            while (reader.Read())
+            {
+                names+= reader["nickname"].ToString()+" ";
+            }
+            return names;
+        }
+
+        public void AddPersonToChat(int chatId, int personId)
+        {
+            string stmt = "INSERT INTO PersonsChats(chatID, profileID) values (" + chatId + ", " + personId + ")";
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            cmd.ExecuteNonQuery();
+        }
+
+        public void RemovePersonFromChat(int chatId, int personId)
+        {
+            string stmt = "DELETE FROM PersonsChats where chatID= " + chatId + " AND profileID= "+ personId;
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            cmd.ExecuteNonQuery();
+        }
+        #endregion
     }
 }

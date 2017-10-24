@@ -7,7 +7,6 @@ namespace DataAccessTier
     public class DbLogin
     {
         private SqlConnection con = null;
-        private SqlTransaction trans = null;
 
         public DbLogin()
         {

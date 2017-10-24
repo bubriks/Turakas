@@ -117,6 +117,24 @@ namespace PresentationTier.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteChat", ReplyAction="http://tempuri.org/IService/DeleteChatResponse")]
         System.Threading.Tasks.Task<bool> DeleteChatAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPersonsInChat", ReplyAction="http://tempuri.org/IService/GetPersonsInChatResponse")]
+        string GetPersonsInChat(int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPersonsInChat", ReplyAction="http://tempuri.org/IService/GetPersonsInChatResponse")]
+        System.Threading.Tasks.Task<string> GetPersonsInChatAsync(int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddPersonToChat", ReplyAction="http://tempuri.org/IService/AddPersonToChatResponse")]
+        bool AddPersonToChat(int chatId, int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddPersonToChat", ReplyAction="http://tempuri.org/IService/AddPersonToChatResponse")]
+        System.Threading.Tasks.Task<bool> AddPersonToChatAsync(int chatId, int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemovePersonFromChat", ReplyAction="http://tempuri.org/IService/RemovePersonFromChatResponse")]
+        bool RemovePersonFromChat(int chatId, int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemovePersonFromChat", ReplyAction="http://tempuri.org/IService/RemovePersonFromChatResponse")]
+        System.Threading.Tasks.Task<bool> RemovePersonFromChatAsync(int chatId, int personId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -176,6 +194,30 @@ namespace PresentationTier.ServiceReference {
         
         public System.Threading.Tasks.Task<bool> DeleteChatAsync(int id) {
             return base.Channel.DeleteChatAsync(id);
+        }
+        
+        public string GetPersonsInChat(int chatId) {
+            return base.Channel.GetPersonsInChat(chatId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetPersonsInChatAsync(int chatId) {
+            return base.Channel.GetPersonsInChatAsync(chatId);
+        }
+        
+        public bool AddPersonToChat(int chatId, int personId) {
+            return base.Channel.AddPersonToChat(chatId, personId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddPersonToChatAsync(int chatId, int personId) {
+            return base.Channel.AddPersonToChatAsync(chatId, personId);
+        }
+        
+        public bool RemovePersonFromChat(int chatId, int personId) {
+            return base.Channel.RemovePersonFromChat(chatId, personId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemovePersonFromChatAsync(int chatId, int personId) {
+            return base.Channel.RemovePersonFromChatAsync(chatId, personId);
         }
     }
 }

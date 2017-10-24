@@ -11,7 +11,6 @@ namespace DataAccessTier
     public class DbProfile
     {
         private SqlConnection con = null;
-        private SqlTransaction trans = null;
 
         public DbProfile()
         {

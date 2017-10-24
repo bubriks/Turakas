@@ -31,6 +31,24 @@
   <wsdl:message name="IService_DeleteChat_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteChatResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_GetPersonsInChat_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonsInChat" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetPersonsInChat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonsInChatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddPersonToChat_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPersonToChat" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddPersonToChat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPersonToChatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RemovePersonFromChat_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePersonFromChat" />
+  </wsdl:message>
+  <wsdl:message name="IService_RemovePersonFromChat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePersonFromChatResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="CreateChat">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateChat" message="tns:IService_CreateChat_InputMessage" />
@@ -47,6 +65,18 @@
     <wsdl:operation name="DeleteChat">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteChat" message="tns:IService_DeleteChat_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteChatResponse" message="tns:IService_DeleteChat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonsInChat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetPersonsInChat" message="tns:IService_GetPersonsInChat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetPersonsInChatResponse" message="tns:IService_GetPersonsInChat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonToChat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddPersonToChat" message="tns:IService_AddPersonToChat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddPersonToChatResponse" message="tns:IService_AddPersonToChat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovePersonFromChat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RemovePersonFromChat" message="tns:IService_RemovePersonFromChat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RemovePersonFromChatResponse" message="tns:IService_RemovePersonFromChat_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -80,6 +110,33 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteChat">
       <soap:operation soapAction="http://tempuri.org/IService/DeleteChat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonsInChat">
+      <soap:operation soapAction="http://tempuri.org/IService/GetPersonsInChat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonToChat">
+      <soap:operation soapAction="http://tempuri.org/IService/AddPersonToChat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePersonFromChat">
+      <soap:operation soapAction="http://tempuri.org/IService/RemovePersonFromChat" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

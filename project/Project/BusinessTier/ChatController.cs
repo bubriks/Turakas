@@ -1,6 +1,7 @@
 ﻿using DataTier;
 using DataAccessTier;
 using System;
+using System.Collections;
 
 namespace BusinessTier
 {
@@ -31,6 +32,44 @@ namespace BusinessTier
         public bool DeleteChat(int id)
         {
             return dbChat.DeleteChat(id);
+        }
+
+        public String GetPersonsInChat(int chatId)
+        {
+            try
+            {
+                return dbChat.GetPersonsInChat(chatId);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public bool AddPersonToChat(int chatId, int personId)
+        {
+            try
+            {
+                dbChat.AddPersonToChat(chatId, personId);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool RemovePersonFromChat(int chatId, int personId)
+        {
+            try
+            {
+                dbChat.RemovePersonFromChat(chatId, personId);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
