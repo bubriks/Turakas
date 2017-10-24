@@ -11,7 +11,7 @@ namespace BusinessTier
     public class UserController
     {
         private DbLogin dbLogin=null;
-        private DbProfile dbProfile = null;//remove static
+        private DbProfile dbProfile = null;
 
         public UserController()
         {
