@@ -11,7 +11,7 @@ namespace PresentationTier
         static void Main(string[] args)
         {
             ServiceReference.IService service = new ServiceReference.ServiceClient();
-            Console.WriteLine(service.GetPersonsInChat(1));
+            Console.WriteLine(service.GetChat(1).Name);
         }
     }
 }

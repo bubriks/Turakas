@@ -14,9 +14,9 @@ namespace WcfService
     {
         static IChatController chatController = new ChatController();
 
-        public Chat CreateChat(Chat chat)
+        public Chat CreateChat(Chat chat, int personId)
         {
-            return chatController.CreateChat(chat);
+            return chatController.CreateChat(chat, personId);
         }
 
         public Chat GetChat(int id)

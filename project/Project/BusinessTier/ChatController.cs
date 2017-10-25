@@ -2,6 +2,7 @@
 using DataAccessTier;
 using System;
 using System.Collections;
+using System.Transactions;
 
 namespace BusinessTier
 {
@@ -14,15 +15,21 @@ namespace BusinessTier
             dbChat = new DbChat();
         }
 
-        public Chat CreateChat(Chat chat)
+        public Chat CreateChat(Chat chat, int personId)
         {
-            try
+            using (TransactionScope ts = new TransactionScope())
             {
-                return dbChat.CreateChat(chat);
-            }
-            catch (Exception)
-            {
-                return null;
+                try
+                {
+                    chat = dbChat.CreateChat(chat);
+                    dbChat.AddPersonToChat(chat.Id, personId);
+                    ts.Complete();
+                    return chat;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
 

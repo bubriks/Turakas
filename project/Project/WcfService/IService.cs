@@ -13,7 +13,7 @@ namespace WcfService
     public interface IService
     {
         [OperationContract]
-        Chat CreateChat(Chat chat);
+        Chat CreateChat(Chat chat, int personId);
 
         [OperationContract]
         Chat GetChat(int id);
