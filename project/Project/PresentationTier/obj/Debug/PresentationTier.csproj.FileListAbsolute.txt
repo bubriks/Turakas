@@ -12,3 +12,5 @@ C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\P
 C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.csproj.CoreCompileInputs.cache
 C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.exe
 C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\bin\Debug\DataTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\bin\Debug\DataTier.pdb

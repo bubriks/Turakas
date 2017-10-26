@@ -12,9 +12,10 @@ namespace BusinessTier
     {
         Chat CreateChat(Chat chat, int personId);
         Chat GetChat(int id);
+        ArrayList GetChatsByName(String name);
         bool UpdateChat(Chat chat);
         bool DeleteChat(int id);
-        String GetPersonsInChat(int chatId);
+        ArrayList GetPersonsInChat(int chatId);
         bool AddPersonToChat(int chatId, int personId);
         bool RemovePersonFromChat(int chatId, int personId);
     }

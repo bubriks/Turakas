@@ -32,13 +32,27 @@ namespace DataAccessTier
         
         public Chat GetChat(int id)
         {
-            string stmt = "SELECT * FROM Chat where chatID = " + id;
+            string stmt = "SELECT name, type FROM Chat where chatID = " + id;
             SqlCommand cmd = new SqlCommand(stmt, con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             Chat chat = new Chat(id, reader["name"].ToString(), (bool)reader["type"]);
             reader.Close();
             return chat;
+        }
+
+        public ArrayList GetChatsByName(String name)
+        {
+            string stmt = "Select chatID, name, type FROM Chat where name like '%" + name + "%'";
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            ArrayList chats = new ArrayList();
+            while (reader.Read())
+            {
+                chats.Add(new Chat(Int32.Parse(reader["chatID"].ToString()), reader["name"].ToString(), (bool)reader["type"]));
+            }
+            reader.Close();
+            return chats;
         }
 
         public void UpdateChat(Chat chat)
@@ -55,20 +69,23 @@ namespace DataAccessTier
             cmd.ExecuteNonQuery();
         }
         #endregion
-
+        
         #region chat users
-        public String GetPersonsInChat(int chatId)
+        public ArrayList GetPersonsInChat(int chatId)
         {
-            string stmt = "SELECT Profile.nickname FROM PersonsChats INNER JOIN Profile ON PersonsChats.profileID = Profile.profileID where chatID = " + chatId;
+            string stmt = "SELECT Profile.profileID, "+
+                            "Profile.statusID, " +
+                            "Profile.nickname " +
+                            "FROM PersonsChats INNER JOIN Profile ON PersonsChats.profileID = Profile.profileID where chatID =" + chatId;
             SqlCommand cmd = new SqlCommand(stmt, con);
             SqlDataReader reader = cmd.ExecuteReader();
-            String names = null;
+            ArrayList perons = new ArrayList();
             while (reader.Read())
             {
-                names+= reader["nickname"].ToString()+" ";
+                perons.Add(new Profile(Int32.Parse(reader["profileID"].ToString()), Int32.Parse(reader["statusID"].ToString()), reader["nickname"].ToString()));
             }
             reader.Close();
-            return names;
+            return perons;
         }
 
         public void AddPersonToChat(int chatId, int personId)

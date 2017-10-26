@@ -45,6 +45,18 @@ namespace BusinessTier
             }
         }
 
+        public ArrayList GetChatsByName(String name)
+        {
+            try
+            {
+                return dbChat.GetChatsByName(name);
+            }
+            catch (Exception)
+            {
+                return new ArrayList();
+            }
+        }
+
         public bool UpdateChat(Chat chat)
         {
             try
@@ -71,7 +83,7 @@ namespace BusinessTier
             }
         }
 
-        public String GetPersonsInChat(int chatId)
+        public ArrayList GetPersonsInChat(int chatId)
         {
             try
             {
@@ -79,7 +91,7 @@ namespace BusinessTier
             }
             catch (Exception)
             {
-                return null;
+                return new ArrayList();
             }
         }
 

@@ -19,13 +19,16 @@ namespace WcfService
         Chat GetChat(int id);
 
         [OperationContract]
+        ArrayList GetChatsByName(String name);
+
+        [OperationContract]
         bool UpdateChat(Chat chat);
 
         [OperationContract]
         bool DeleteChat(int id);
 
         [OperationContract]
-        String GetPersonsInChat(int chatId);
+        ArrayList GetPersonsInChat(int chatId);
 
         [OperationContract]
         bool AddPersonToChat(int chatId, int personId);

@@ -55,11 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\ServiceReference\DataTier.xsd">
+    <None Include="Connected Services\ServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiceReference\PresentationTier.ServiceReference.Chat.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Connected Services\ServiceReference\DataTier.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference\service.wsdl" />
     <None Include="Connected Services\ServiceReference\service.xsd">
@@ -68,6 +68,7 @@
     <None Include="Connected Services\ServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\DataTier.Chat.datasource" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -86,6 +87,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataTier\DataTier.csproj">
+      <Project>{3a9d5007-caca-49a5-a714-cbad88a118e7}</Project>
+      <Name>DataTier</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

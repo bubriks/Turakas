@@ -24,6 +24,11 @@ namespace WcfService
             return chatController.GetChat(id);
         }
 
+        public ArrayList GetChatsByName(String name)
+        {
+            return chatController.GetChatsByName(name);
+        }
+
         public bool UpdateChat(Chat chat)
         {
             return chatController.UpdateChat(chat);
@@ -34,7 +39,7 @@ namespace WcfService
             return chatController.DeleteChat(id);
         }
 
-        public string GetPersonsInChat(int chatId)
+        public ArrayList GetPersonsInChat(int chatId)
         {
             return chatController.GetPersonsInChat(chatId);
         }
