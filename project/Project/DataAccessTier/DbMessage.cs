@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -34,7 +33,7 @@ namespace DataAccessTier
             new SqlCommand(stmt, con).ExecuteNonQuery();
         }
 
-        public ArrayList GetMessages(int chatId)
+        public List<Message> GetMessages(int chatId)
         {
             string stmt = "SELECT " +
                                 "Profile.nickname, " +
@@ -51,7 +50,7 @@ namespace DataAccessTier
                             "where Message.chatID = " + chatId;
             SqlCommand cmd = new SqlCommand(stmt, con);
             SqlDataReader reader = cmd.ExecuteReader();
-            ArrayList messages = new ArrayList();
+            List<Message> messages = new List<Message>();
             while (reader.Read())
             {
                 messages.Add(new Message(Int32.Parse(reader["activityID"].ToString()), Encoding.UTF8.GetString((byte[])reader["message"]), reader["nickname"].ToString(), Convert.ToDateTime(reader["timeStamp"].ToString())));

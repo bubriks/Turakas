@@ -55,9 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\ServiceReference\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\ServiceReference\DataTier.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -69,6 +66,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\DataSources\DataTier.Chat.datasource" />
+    <None Include="Properties\DataSources\DataTier.Profile.datasource" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

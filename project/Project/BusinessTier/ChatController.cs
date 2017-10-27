@@ -1,8 +1,8 @@
 ﻿using DataTier;
 using DataAccessTier;
 using System;
-using System.Collections;
 using System.Transactions;
+using System.Collections.Generic;
 
 namespace BusinessTier
 {
@@ -45,7 +45,7 @@ namespace BusinessTier
             }
         }
 
-        public ArrayList GetChatsByName(String name)
+        public List<Chat> GetChatsByName(String name)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace BusinessTier
             }
             catch (Exception)
             {
-                return new ArrayList();
+                return new List<Chat>();
             }
         }
 
@@ -83,7 +83,7 @@ namespace BusinessTier
             }
         }
 
-        public ArrayList GetPersonsInChat(int chatId)
+        public List<Profile> GetPersonsInChat(int chatId)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace BusinessTier
             }
             catch (Exception)
             {
-                return new ArrayList();
+                return new List<Profile>();
             }
         }
 

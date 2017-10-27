@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataTier
 {
+    [DataContract]
     public class Profile
     {
         private int profileID, statusID;
@@ -18,8 +20,11 @@ namespace DataTier
             this.nickname = nickname;
         }
 
+        [DataMember]
         public int ProfileID { get => profileID; set => profileID = value; }
+        [DataMember]
         public int StatusID { get => statusID; set => statusID = value; }
+        [DataMember]
         public string Nickname { get => nickname; set => nickname = value; }
     }
 }

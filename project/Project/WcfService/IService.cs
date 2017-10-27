@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using DataTier;
-using System.Collections;
 
 namespace WcfService
 {
@@ -19,7 +18,7 @@ namespace WcfService
         Chat GetChat(int id);
 
         [OperationContract]
-        ArrayList GetChatsByName(String name);
+        List<Chat> GetChatsByName(String name);
 
         [OperationContract]
         bool UpdateChat(Chat chat);
@@ -28,7 +27,7 @@ namespace WcfService
         bool DeleteChat(int id);
 
         [OperationContract]
-        ArrayList GetPersonsInChat(int chatId);
+        List<Profile> GetPersonsInChat(int chatId);
 
         [OperationContract]
         bool AddPersonToChat(int chatId, int personId);

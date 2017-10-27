@@ -8,4 +8,24 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Chat" nillable="true" type="tns:Chat" />
+  <xs:complexType name="ArrayOfChat">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Chat" nillable="true" type="tns:Chat" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfChat" nillable="true" type="tns:ArrayOfChat" />
+  <xs:complexType name="ArrayOfProfile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Profile" nillable="true" type="tns:Profile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProfile" nillable="true" type="tns:ArrayOfProfile" />
+  <xs:complexType name="Profile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Nickname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProfileID" type="xs:int" />
+      <xs:element minOccurs="0" name="StatusID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Profile" nillable="true" type="tns:Profile" />
 </xs:schema>

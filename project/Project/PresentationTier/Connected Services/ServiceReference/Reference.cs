@@ -28,12 +28,10 @@ namespace PresentationTier.ServiceReference {
         System.Threading.Tasks.Task<DataTier.Chat> GetChatAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetChatsByName", ReplyAction="http://tempuri.org/IService/GetChatsByNameResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DataTier.Chat))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<object>))]
-        System.Collections.Generic.List<object> GetChatsByName(string name);
+        System.Collections.Generic.List<DataTier.Chat> GetChatsByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetChatsByName", ReplyAction="http://tempuri.org/IService/GetChatsByNameResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<object>> GetChatsByNameAsync(string name);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DataTier.Chat>> GetChatsByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateChat", ReplyAction="http://tempuri.org/IService/UpdateChatResponse")]
         bool UpdateChat(DataTier.Chat chat);
@@ -48,12 +46,10 @@ namespace PresentationTier.ServiceReference {
         System.Threading.Tasks.Task<bool> DeleteChatAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPersonsInChat", ReplyAction="http://tempuri.org/IService/GetPersonsInChatResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DataTier.Chat))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<object>))]
-        System.Collections.Generic.List<object> GetPersonsInChat(int chatId);
+        System.Collections.Generic.List<DataTier.Profile> GetPersonsInChat(int chatId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPersonsInChat", ReplyAction="http://tempuri.org/IService/GetPersonsInChatResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<object>> GetPersonsInChatAsync(int chatId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DataTier.Profile>> GetPersonsInChatAsync(int chatId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddPersonToChat", ReplyAction="http://tempuri.org/IService/AddPersonToChatResponse")]
         bool AddPersonToChat(int chatId, int personId);
@@ -111,11 +107,11 @@ namespace PresentationTier.ServiceReference {
             return base.Channel.GetChatAsync(id);
         }
         
-        public System.Collections.Generic.List<object> GetChatsByName(string name) {
+        public System.Collections.Generic.List<DataTier.Chat> GetChatsByName(string name) {
             return base.Channel.GetChatsByName(name);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<object>> GetChatsByNameAsync(string name) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DataTier.Chat>> GetChatsByNameAsync(string name) {
             return base.Channel.GetChatsByNameAsync(name);
         }
         
@@ -135,11 +131,11 @@ namespace PresentationTier.ServiceReference {
             return base.Channel.DeleteChatAsync(id);
         }
         
-        public System.Collections.Generic.List<object> GetPersonsInChat(int chatId) {
+        public System.Collections.Generic.List<DataTier.Profile> GetPersonsInChat(int chatId) {
             return base.Channel.GetPersonsInChat(chatId);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<object>> GetPersonsInChatAsync(int chatId) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DataTier.Profile>> GetPersonsInChatAsync(int chatId) {
             return base.Channel.GetPersonsInChatAsync(chatId);
         }
         

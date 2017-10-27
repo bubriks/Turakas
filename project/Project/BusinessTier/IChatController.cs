@@ -1,6 +1,5 @@
 ﻿using DataTier;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +11,10 @@ namespace BusinessTier
     {
         Chat CreateChat(Chat chat, int personId);
         Chat GetChat(int id);
-        ArrayList GetChatsByName(String name);
+        List<Chat> GetChatsByName(String name);
         bool UpdateChat(Chat chat);
         bool DeleteChat(int id);
-        ArrayList GetPersonsInChat(int chatId);
+        List<Profile> GetPersonsInChat(int chatId);
         bool AddPersonToChat(int chatId, int personId);
         bool RemovePersonFromChat(int chatId, int personId);
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +11,9 @@ namespace PresentationTier
         static void Main(string[] args)
         {
             ServiceReference.IService service = new ServiceReference.ServiceClient();
-            foreach (Profile profile in service.GetPersonsInChat(1))
+            foreach (Chat chat in service.GetChatsByName("chat"))
             {
-                Console.WriteLine(profile.Nickname);
+                Console.WriteLine(chat.Name);
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿using DataTier;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -41,12 +40,12 @@ namespace DataAccessTier
             return chat;
         }
 
-        public ArrayList GetChatsByName(String name)
+        public List<Chat> GetChatsByName(String name)
         {
             string stmt = "Select chatID, name, type FROM Chat where name like '%" + name + "%'";
             SqlCommand cmd = new SqlCommand(stmt, con);
             SqlDataReader reader = cmd.ExecuteReader();
-            ArrayList chats = new ArrayList();
+            List<Chat> chats = new List<Chat>();
             while (reader.Read())
             {
                 chats.Add(new Chat(Int32.Parse(reader["chatID"].ToString()), reader["name"].ToString(), (bool)reader["type"]));
@@ -71,7 +70,7 @@ namespace DataAccessTier
         #endregion
         
         #region chat users
-        public ArrayList GetPersonsInChat(int chatId)
+        public List<Profile> GetPersonsInChat(int chatId)
         {
             string stmt = "SELECT Profile.profileID, "+
                             "Profile.statusID, " +
@@ -79,7 +78,7 @@ namespace DataAccessTier
                             "FROM PersonsChats INNER JOIN Profile ON PersonsChats.profileID = Profile.profileID where chatID =" + chatId;
             SqlCommand cmd = new SqlCommand(stmt, con);
             SqlDataReader reader = cmd.ExecuteReader();
-            ArrayList perons = new ArrayList();
+            List<Profile> perons = new List<Profile>();
             while (reader.Read())
             {
                 perons.Add(new Profile(Int32.Parse(reader["profileID"].ToString()), Int32.Parse(reader["statusID"].ToString()), reader["nickname"].ToString()));

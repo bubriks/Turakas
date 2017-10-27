@@ -6,7 +6,6 @@ using System.ServiceModel;
 using System.Text;
 using DataTier;
 using BusinessTier;
-using System.Collections;
 
 namespace WcfService
 {
@@ -24,7 +23,7 @@ namespace WcfService
             return chatController.GetChat(id);
         }
 
-        public ArrayList GetChatsByName(String name)
+        public List<Chat> GetChatsByName(String name)
         {
             return chatController.GetChatsByName(name);
         }
@@ -39,7 +38,7 @@ namespace WcfService
             return chatController.DeleteChat(id);
         }
 
-        public ArrayList GetPersonsInChat(int chatId)
+        public List<Profile> GetPersonsInChat(int chatId)
         {
             return chatController.GetPersonsInChat(chatId);
         }
