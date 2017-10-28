@@ -11,11 +11,13 @@ namespace WcfService
 {
     public class Service : IService
     {
-        static IChatController chatController = new ChatController();
+        IChatController chatController = new ChatController();
+        IMessageController messageController = new MessageController();
 
-        public Chat CreateChat(Chat chat, int personId)
+        #region chat
+        public Chat CreateChat(Chat chat, int profileId)
         {
-            return chatController.CreateChat(chat, personId);
+            return chatController.CreateChat(chat, profileId);
         }
 
         public Chat GetChat(int id)
@@ -43,14 +45,32 @@ namespace WcfService
             return chatController.GetPersonsInChat(chatId);
         }
 
-        public bool AddPersonToChat(int chatId, int personId)
+        public bool AddPersonToChat(int chatId, int profileId)
         {
-            return chatController.AddPersonToChat(chatId, personId);
+            return chatController.AddPersonToChat(chatId, profileId);
         }
 
-        public bool RemovePersonFromChat(int chatId, int personId)
+        public bool RemovePersonFromChat(int chatId, int profileId)
         {
-            return chatController.RemovePersonFromChat(chatId, personId);
+            return chatController.RemovePersonFromChat(chatId, profileId);
         }
+        #endregion
+
+        #region message
+        public bool CreateMessage(int profileId, string text, int chatId)
+        {
+            return messageController.CreateMessage(profileId, text, chatId);
+        }
+
+        public List<Message> GetMessages(int chatId)
+        {
+            return messageController.GetMessages(chatId);
+        }
+
+        public bool DeleteMessage(int id)
+        {
+            return messageController.DeleteMessage(id);
+        }
+        #endregion
     }
 }

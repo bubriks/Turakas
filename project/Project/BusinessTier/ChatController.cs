@@ -8,21 +8,21 @@ namespace BusinessTier
 {
     public class ChatController: IChatController
     {
-        private static DbChat dbChat = null;
+        private DbChat dbChat = null;
 
         public ChatController()
         {
             dbChat = new DbChat();
         }
 
-        public Chat CreateChat(Chat chat, int personId)
+        public Chat CreateChat(Chat chat, int profileId)
         {
             using (TransactionScope ts = new TransactionScope())
             {
                 try
                 {
                     chat = dbChat.CreateChat(chat);
-                    dbChat.AddPersonToChat(chat.Id, personId);
+                    dbChat.AddPersonToChat(chat.Id, profileId);
                     ts.Complete();
                     return chat;
                 }
@@ -95,11 +95,11 @@ namespace BusinessTier
             }
         }
 
-        public bool AddPersonToChat(int chatId, int personId)
+        public bool AddPersonToChat(int chatId, int profileId)
         {
             try
             {
-                dbChat.AddPersonToChat(chatId, personId);
+                dbChat.AddPersonToChat(chatId, profileId);
                 return true;
             }
             catch (Exception)
@@ -108,11 +108,11 @@ namespace BusinessTier
             }
         }
 
-        public bool RemovePersonFromChat(int chatId, int personId)
+        public bool RemovePersonFromChat(int chatId, int profileId)
         {
             try
             {
-                dbChat.RemovePersonFromChat(chatId, personId);
+                dbChat.RemovePersonFromChat(chatId, profileId);
                 return true;
             }
             catch (Exception)

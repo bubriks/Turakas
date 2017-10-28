@@ -11,8 +11,9 @@ namespace WcfService
     [ServiceContract]
     public interface IService
     {
+        #region chat
         [OperationContract]
-        Chat CreateChat(Chat chat, int personId);
+        Chat CreateChat(Chat chat, int profileId);
 
         [OperationContract]
         Chat GetChat(int id);
@@ -30,9 +31,21 @@ namespace WcfService
         List<Profile> GetPersonsInChat(int chatId);
 
         [OperationContract]
-        bool AddPersonToChat(int chatId, int personId);
+        bool AddPersonToChat(int chatId, int profileId);
 
         [OperationContract]
-        bool RemovePersonFromChat(int chatId, int personId);
+        bool RemovePersonFromChat(int chatId, int profileId);
+        #endregion
+
+        #region message
+        [OperationContract]
+        bool CreateMessage(int profileId, String text, int chatId);
+
+        [OperationContract]
+        List<Message> GetMessages(int chatId);
+
+        [OperationContract]
+        bool DeleteMessage(int id);
+        #endregion
     }
 }

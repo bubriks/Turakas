@@ -11,7 +11,7 @@ namespace PresentationTier
         static void Main(string[] args)
         {
             ServiceReference.IService service = new ServiceReference.ServiceClient();
-            foreach (Chat chat in service.GetChatsByName("chat"))
+            foreach (Chat chat in service.GetChatsByName(Console.ReadLine()))
             {
                 Console.WriteLine(chat.Name);
             }

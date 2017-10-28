@@ -23,8 +23,10 @@ namespace DataAccessTier
             string stmt = "INSERT INTO Chat(name, type) OUTPUT INSERTED.chatID values ('" + chat.Name + "', " + Convert.ToInt32(chat.Type) + ")";
             SqlCommand cmd = new SqlCommand(stmt, con);
             SqlDataReader reader = cmd.ExecuteReader();
-            reader.Read();
-            chat.Id = Int32.Parse(reader["chatID"].ToString());
+            if (reader.Read())
+            {
+                chat.Id = Int32.Parse(reader["chatID"].ToString());
+            }
             reader.Close();
             return chat;
         }
@@ -34,15 +36,18 @@ namespace DataAccessTier
             string stmt = "SELECT name, type FROM Chat where chatID = " + id;
             SqlCommand cmd = new SqlCommand(stmt, con);
             SqlDataReader reader = cmd.ExecuteReader();
-            reader.Read();
-            Chat chat = new Chat(id, reader["name"].ToString(), (bool)reader["type"]);
+            Chat chat=null;
+            if (reader.Read())
+            {
+                chat = new Chat(id, reader["name"].ToString(), (bool)reader["type"]);
+            }
             reader.Close();
             return chat;
         }
 
         public List<Chat> GetChatsByName(String name)
         {
-            string stmt = "Select chatID, name, type FROM Chat where name like '%" + name + "%'";
+            string stmt = "Select chatID, name, type FROM Chat where name like '%" + name + "%' AND type=1;";
             SqlCommand cmd = new SqlCommand(stmt, con);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Chat> chats = new List<Chat>();
@@ -87,16 +92,16 @@ namespace DataAccessTier
             return perons;
         }
 
-        public void AddPersonToChat(int chatId, int personId)
+        public void AddPersonToChat(int chatId, int profileId)
         {
-            string stmt = "INSERT INTO PersonsChats(chatID, profileID) values (" + chatId + ", " + personId + ")";
+            string stmt = "INSERT INTO PersonsChats(chatID, profileID) values (" + chatId + ", " + profileId + ")";
             SqlCommand cmd = new SqlCommand(stmt, con);
             cmd.ExecuteNonQuery();
         }
 
-        public void RemovePersonFromChat(int chatId, int personId)
+        public void RemovePersonFromChat(int chatId, int profileId)
         {
-            string stmt = "DELETE FROM PersonsChats where chatID= " + chatId + " AND profileID= "+ personId;
+            string stmt = "DELETE FROM PersonsChats where chatID= " + chatId + " AND profileID= "+ profileId;
             SqlCommand cmd = new SqlCommand(stmt, con);
             cmd.ExecuteNonQuery();
         }

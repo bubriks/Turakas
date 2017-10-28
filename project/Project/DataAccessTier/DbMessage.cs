@@ -21,21 +21,32 @@ namespace DataAccessTier
         {
             string stmt = "INSERT INTO Activity (profileID, timeStamp) OUTPUT INSERTED.activityID values (" + profileId + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "')";
             SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
-            reader.Read();
-
-            stmt = "INSERT INTO Text(activityID, message) OUTPUT INSERTED.textID values(" + Int32.Parse(reader["activityID"].ToString()) + ", (select cast('" + text + "' as varbinary(max))))";
+            if (reader.Read())
+            {
+                stmt = "INSERT INTO Text(activityID, message) OUTPUT INSERTED.textID values(" + Int32.Parse(reader["activityID"].ToString()) + ", (select cast('" + text + "' as varbinary(max))))";
+            }
+            else
+            {
+                throw new Exception();
+            }
             reader.Close();
-            reader = new SqlCommand(stmt, con).ExecuteReader();
-            reader.Read();
 
-            stmt = "INSERT INTO Message (textID, chatID) values (" + Int32.Parse(reader["textID"].ToString()) + ", " + chatId + ")";
+            reader = new SqlCommand(stmt, con).ExecuteReader();
+            if (reader.Read())
+            {
+                stmt = "INSERT INTO Message (textID, chatID) values (" + Int32.Parse(reader["textID"].ToString()) + ", " + chatId + ")";
+            }
+            else
+            {
+                throw new Exception();
+            }
             reader.Close();
             new SqlCommand(stmt, con).ExecuteNonQuery();
         }
 
         public List<Message> GetMessages(int chatId)
         {
-            string stmt = "SELECT " +
+            string stmt = "SELECT TOP(20) " +
                                 "Profile.nickname, " +
                                 "Activity.activityID, " +
                                 "Text.message, " +
@@ -47,7 +58,8 @@ namespace DataAccessTier
                                 "on Activity.activityID = Text.activityID " +
                             "INNER JOIN Message " +
                                 "on Text.textID = Message.textID " +
-                            "where Message.chatID = " + chatId;
+                            "where Message.chatID = " + chatId +
+                            "ORDER BY activityID DESC";
             SqlCommand cmd = new SqlCommand(stmt, con);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Message> messages = new List<Message>();
@@ -59,7 +71,7 @@ namespace DataAccessTier
             return messages;
         }
 
-        public void DeleteMessage(int id)
+        public void DeleteMessage(int id)//allways returns true also in delete chat
         {
             string stmt = "DELETE FROM Activity WHERE activityID = " + id;
             SqlCommand cmd = new SqlCommand(stmt, con);
