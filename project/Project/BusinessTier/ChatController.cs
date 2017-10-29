@@ -138,21 +138,32 @@ namespace BusinessTier
             }
         }
 
-        public bool RemovePersonFromChat(int chatId, int profileId)//also deletes chat if no profiles assigned to it
+        public bool RemovePersonFromChat(int chatId, int profileId)//not tested
         {
+            //Creates new starnsaction
+            transaction = DbConnection.GetInstance().GetConnection().BeginTransaction();
             try
             {
-                if (dbChat.RemovePersonFromChat(chatId, profileId) == 0)
+                if (dbChat.RemovePersonFromChat(chatId, profileId, transaction) == 0)
                 {
                     //returns false if no changes were made
                     return false;
+                }
+                if (dbChat.GetPersonsInChat(chatId).Count == 0)
+                {
+                    if (dbChat.DeleteChat(chatId) == 0)
+                    {
+                        //returns false if chat wasnt deleted
+                        return false;
+                    }
                 }
                 //returns true if everything went correctly
                 return true;
             }
             catch (Exception)
             {
-                //returns false if exception is thrown
+                //If exception is thrown the transaction is rolled back and null is returned
+                transaction.Rollback();
                 return false;
             }
         }

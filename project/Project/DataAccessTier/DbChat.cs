@@ -113,10 +113,10 @@ namespace DataAccessTier
             return true;
         }
 
-        public int RemovePersonFromChat(int chatId, int profileId)
+        public int RemovePersonFromChat(int chatId, int profileId, SqlTransaction transaction)
         {
             string stmt = "DELETE FROM PersonsChats where chatID= @0 AND profileID= @1";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
             cmd.Parameters.AddWithValue("@0", chatId);
             cmd.Parameters.AddWithValue("@1", profileId);
             int rows = cmd.ExecuteNonQuery();
