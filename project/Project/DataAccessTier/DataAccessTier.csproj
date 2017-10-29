@@ -45,9 +45,9 @@
   <ItemGroup>
     <Compile Include="DbChat.cs" />
     <Compile Include="DbConnection.cs" />
-    <Compile Include="DbLogin.cs" />
+    <Compile Include="DBLogin.cs" />
     <Compile Include="DbMessage.cs" />
-    <Compile Include="DbProfile.cs" />
+    <Compile Include="DBProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

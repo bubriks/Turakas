@@ -131,7 +131,7 @@ likedActivityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
 CREATE TABLE Text(
 textID int IDENTITY(1,1) PRIMARY KEY,
 activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
-message varbinary(MAX) NOT NULL,
+message varchar(MAX) NOT NULL,
 );
 
 --Text Trigger
