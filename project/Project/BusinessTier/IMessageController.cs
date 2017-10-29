@@ -10,6 +10,7 @@ namespace BusinessTier
     public interface IMessageController
     {
         bool CreateMessage(int profileId, String text, int chatId);
+        Message GetMessage(int id);
         List<Message> GetMessages(int chatId);
         bool DeleteMessage(int id);
     }

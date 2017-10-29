@@ -62,6 +62,11 @@ namespace WcfService
             return messageController.CreateMessage(profileId, text, chatId);
         }
 
+        public Message GetMessage(int id)
+        {
+            return messageController.GetMessage(id);
+        }
+
         public List<Message> GetMessages(int chatId)
         {
             return messageController.GetMessages(chatId);

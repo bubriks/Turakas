@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using DataTier;
 using DataAccessTier;
-using System.Transactions;
+using System.Data.SqlClient;
 
 namespace BusinessTier
 {
     public class MessageController: IMessageController
     {
         private DbMessage dbMessage= null;
+        private SqlTransaction transaction=null;
 
         public MessageController()
         {
@@ -19,19 +20,30 @@ namespace BusinessTier
         }
 
         public bool CreateMessage(int profileId, String text, int chatId)
-        {//transacrion not workin (creates separeatly)
-            using (TransactionScope ts = new TransactionScope())
+        {
+            transaction = DbConnection.GetInstance().GetConnection().BeginTransaction();
+            try
             {
-                try
-                {
-                    dbMessage.CreateMessage(profileId, text, chatId);
-                    return true;
-                }
-                catch (Exception)
-                {
-                    ts.Dispose();
-                    return false;
-                }
+                dbMessage.CreateMessage(profileId, text, chatId, transaction);
+                transaction.Commit();
+                return true;
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                return false;
+            }
+        }
+
+        public Message GetMessage(int id)
+        {
+            try
+            {
+                return dbMessage.GetMessage(id);
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
 
@@ -51,7 +63,10 @@ namespace BusinessTier
         {
             try
             {
-                dbMessage.DeleteMessage(id);
+                if (dbMessage.DeleteMessage(id) == 0)
+                {
+                    return false;
+                }
                 return true;
             }
             catch (Exception)

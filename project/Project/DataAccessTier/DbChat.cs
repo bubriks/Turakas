@@ -18,10 +18,10 @@ namespace DataAccessTier
         }
 
         #region manage chat
-        public Chat CreateChat(Chat chat)
+        public Chat CreateChat(Chat chat, SqlTransaction transaction)
         {
             string stmt = "INSERT INTO Chat(name, type) OUTPUT INSERTED.chatID values ('" + chat.Name + "', " + Convert.ToInt32(chat.Type) + ")";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
@@ -59,18 +59,20 @@ namespace DataAccessTier
             return chats;
         }
 
-        public void UpdateChat(Chat chat)
+        public int UpdateChat(Chat chat)
         {
             string stmt = "UPDATE Chat SET name = '" + chat.Name + "', type = '" + Convert.ToInt32(chat.Type) + "' WHERE chatID= " + chat.Id;
             SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.ExecuteNonQuery();
+            int rows = cmd.ExecuteNonQuery();
+            return rows;
         }
 
-        public void DeleteChat(int id)
+        public int DeleteChat(int id)
         {
             string stmt = "DELETE FROM Chat WHERE chatID = " + id;
             SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.ExecuteNonQuery();
+            int rows = cmd.ExecuteNonQuery();
+            return rows;
         }
         #endregion
         
@@ -92,18 +94,19 @@ namespace DataAccessTier
             return perons;
         }
 
-        public void AddPersonToChat(int chatId, int profileId)
+        public void AddPersonToChat(int chatId, int profileId, SqlTransaction transaction)
         {
             string stmt = "INSERT INTO PersonsChats(chatID, profileID) values (" + chatId + ", " + profileId + ")";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
             cmd.ExecuteNonQuery();
         }
 
-        public void RemovePersonFromChat(int chatId, int profileId)
+        public int RemovePersonFromChat(int chatId, int profileId)
         {
             string stmt = "DELETE FROM PersonsChats where chatID= " + chatId + " AND profileID= "+ profileId;
             SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.ExecuteNonQuery();
+            int rows = cmd.ExecuteNonQuery();
+            return rows;
         }
         #endregion
     }

@@ -1,8 +1,8 @@
 ﻿using DataTier;
 using DataAccessTier;
 using System;
-using System.Transactions;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace BusinessTier
 {
@@ -17,19 +17,18 @@ namespace BusinessTier
 
         public Chat CreateChat(Chat chat, int profileId)
         {
-            using (TransactionScope ts = new TransactionScope())
+            SqlTransaction transaction = DbConnection.GetInstance().GetConnection().BeginTransaction();
+            try
             {
-                try
-                {
-                    chat = dbChat.CreateChat(chat);
-                    dbChat.AddPersonToChat(chat.Id, profileId);
-                    ts.Complete();
-                    return chat;
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
+                chat = dbChat.CreateChat(chat, transaction);
+                dbChat.AddPersonToChat(chat.Id, profileId, transaction);
+                transaction.Commit();
+                return chat;
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                return null;
             }
         }
 
@@ -61,7 +60,10 @@ namespace BusinessTier
         {
             try
             {
-                dbChat.UpdateChat(chat);
+                if (dbChat.UpdateChat(chat) == 0)
+                {
+                    return false;
+                }
                 return true;
             }
             catch (Exception)
@@ -74,7 +76,10 @@ namespace BusinessTier
         {
             try
             {
-                dbChat.DeleteChat(id);
+                if (dbChat.DeleteChat(id) == 0)
+                {
+                    return false;
+                }
                 return true;
             }
             catch (Exception)
@@ -99,7 +104,7 @@ namespace BusinessTier
         {
             try
             {
-                dbChat.AddPersonToChat(chatId, profileId);
+                dbChat.AddPersonToChat(chatId, profileId, null);
                 return true;
             }
             catch (Exception)
@@ -112,7 +117,10 @@ namespace BusinessTier
         {
             try
             {
-                dbChat.RemovePersonFromChat(chatId, profileId);
+                if (dbChat.RemovePersonFromChat(chatId, profileId) == 0)
+                {
+                    return false;
+                }
                 return true;
             }
             catch (Exception)
