@@ -202,7 +202,7 @@ activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
 artistID int FOREIGN KEY REFERENCES Artists(artistID) NOT NULL,
 genreID int FOREIGN KEY REFERENCES Genres(genreID) NOT NULL,
 name varchar(50) NOT NULL,
-duration decimal(4,2) NOT NULL,
+duration int NOT NULL,
 url varchar(200) NOT NULL,
 );
 

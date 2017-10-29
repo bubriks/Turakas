@@ -48,6 +48,7 @@
     <Compile Include="DBLogin.cs" />
     <Compile Include="DbMessage.cs" />
     <Compile Include="DBProfile.cs" />
+    <Compile Include="DBSong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
