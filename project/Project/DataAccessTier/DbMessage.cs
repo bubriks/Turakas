@@ -18,7 +18,7 @@ namespace DataAccessTier
         }
 
         public void CreateMessage(int profileId, String text, int chatId, SqlTransaction transaction)
-        {//needs to bechanged varbinary to string also change everywhere elese
+        {
             string stmt = "INSERT INTO Activity (profileID, timeStamp) OUTPUT INSERTED.activityID values (@0, @1)";
             SqlCommand cmd = new SqlCommand(stmt, con, transaction);
             cmd.Parameters.AddWithValue("@0", profileId);
@@ -27,9 +27,10 @@ namespace DataAccessTier
             try
             {
                 reader.Read();
-                stmt = "INSERT INTO Text(activityID, message) OUTPUT INSERTED.textID values(@0, (select cast('" + text + "' as varbinary(max))))";
+                stmt = "INSERT INTO Text(activityID, message) OUTPUT INSERTED.textID values(@0, @1)";
                 cmd = new SqlCommand(stmt, con, transaction);
                 cmd.Parameters.AddWithValue("@0", Int32.Parse(reader["activityID"].ToString()));
+                cmd.Parameters.AddWithValue("@1", text);
                 reader.Close();
                 reader = cmd.ExecuteReader();
 
@@ -68,7 +69,7 @@ namespace DataAccessTier
             Message message = null;
             if(reader.Read())
             {
-                message = new Message(Int32.Parse(reader["activityID"].ToString()), Encoding.UTF8.GetString((byte[])reader["message"]), reader["nickname"].ToString(), Convert.ToDateTime(reader["timeStamp"].ToString()));
+                message = new Message(Int32.Parse(reader["activityID"].ToString()), reader["message"].ToString(), reader["nickname"].ToString(), Convert.ToDateTime(reader["timeStamp"].ToString()));
             }
             reader.Close();
             return message;
@@ -96,7 +97,7 @@ namespace DataAccessTier
             List<Message> messages = new List<Message>();
             while (reader.Read())
             {
-                messages.Add(new Message(Int32.Parse(reader["activityID"].ToString()), Encoding.UTF8.GetString((byte[])reader["message"]), reader["nickname"].ToString(), Convert.ToDateTime(reader["timeStamp"].ToString())));
+                messages.Add(new Message(Int32.Parse(reader["activityID"].ToString()), reader["message"].ToString(), reader["nickname"].ToString(), Convert.ToDateTime(reader["timeStamp"].ToString())));
             }
             reader.Close();
             return messages;
