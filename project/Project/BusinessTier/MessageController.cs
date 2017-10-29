@@ -21,15 +21,20 @@ namespace BusinessTier
 
         public bool CreateMessage(int profileId, String text, int chatId)
         {
+            //Creates new starnsaction
             transaction = DbConnection.GetInstance().GetConnection().BeginTransaction();
             try
             {
+                //passes the transaction further to DataAccessTier
                 dbMessage.CreateMessage(profileId, text, chatId, transaction);
+                //if everything goes as planed than commited
                 transaction.Commit();
+                //returns true if everything went correctly
                 return true;
             }
             catch (Exception)
             {
+                //If exception is thrown the transaction is rolled back and false is returned
                 transaction.Rollback();
                 return false;
             }
@@ -39,10 +44,12 @@ namespace BusinessTier
         {
             try
             {
+                //returns Object if everything went correctly
                 return dbMessage.GetMessage(id);
             }
             catch (Exception)
             {
+                //returns null if exception is thrown
                 return null;
             }
         }
@@ -51,10 +58,12 @@ namespace BusinessTier
         {
             try
             {
+                //returns list of objects if everything went correctly
                 return dbMessage.GetMessages(chatId);
             }
             catch (Exception)
             {
+                //returns empty list if exception is thrown
                 return new List<Message>();
             }
         }
@@ -65,12 +74,15 @@ namespace BusinessTier
             {
                 if (dbMessage.DeleteMessage(id) == 0)
                 {
+                    //returns false if no changes were made
                     return false;
                 }
+                //returns true if everything went correctly
                 return true;
             }
             catch (Exception)
             {
+                //returns false if exception is thrown
                 return false;
             }
         }

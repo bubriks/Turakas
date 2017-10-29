@@ -48,10 +48,11 @@ namespace DataAccessTier
             return chat;
         }
 
-        public List<Chat> GetChatsByName(String name)//doesnt have parameter for sql command problem with sql injection
+        public List<Chat> GetChatsByName(String name)
         {
-            string stmt = "Select chatID, name, type FROM Chat where name like '%" + name + "%' AND type=1;";
+            string stmt = "Select chatID, name, type FROM Chat where name like '%'+@0+'%' AND type=1;";
             SqlCommand cmd = new SqlCommand(stmt, con);
+            cmd.Parameters.AddWithValue("@0", name);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Chat> chats = new List<Chat>();
             while (reader.Read())
@@ -102,13 +103,14 @@ namespace DataAccessTier
             return perons;
         }
 
-        public void AddPersonToChat(int chatId, int profileId, SqlTransaction transaction)
+        public bool AddPersonToChat(int chatId, int profileId, SqlTransaction transaction)
         {
             string stmt = "INSERT INTO PersonsChats(chatID, profileID) values (@0, @1)";
             SqlCommand cmd = new SqlCommand(stmt, con, transaction);
             cmd.Parameters.AddWithValue("@0", chatId);
             cmd.Parameters.AddWithValue("@1", profileId);
             cmd.ExecuteNonQuery();
+            return true;
         }
 
         public int RemovePersonFromChat(int chatId, int profileId)

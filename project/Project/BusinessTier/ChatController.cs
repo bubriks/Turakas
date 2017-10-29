@@ -9,6 +9,7 @@ namespace BusinessTier
     public class ChatController: IChatController
     {
         private DbChat dbChat = null;
+        private SqlTransaction transaction = null;
 
         public ChatController()
         {
@@ -17,16 +18,21 @@ namespace BusinessTier
 
         public Chat CreateChat(Chat chat, int profileId)
         {
-            SqlTransaction transaction = DbConnection.GetInstance().GetConnection().BeginTransaction();
+            //Creates new starnsaction
+            transaction = DbConnection.GetInstance().GetConnection().BeginTransaction();
             try
             {
+                //passes the transaction further to DataAccessTier
                 chat = dbChat.CreateChat(chat, transaction);
                 dbChat.AddPersonToChat(chat.Id, profileId, transaction);
+                //if everything goes as planed than commited
                 transaction.Commit();
+                //returns Object if everything went correctly
                 return chat;
             }
             catch (Exception)
             {
+                //If exception is thrown the transaction is rolled back and null is returned
                 transaction.Rollback();
                 return null;
             }
@@ -36,10 +42,12 @@ namespace BusinessTier
         {
             try
             {
+                //returns Object if everything went correctly
                 return dbChat.GetChat(id);
             }
             catch (Exception)
             {
+                //returns null if exception is thrown
                 return null;
             }
         }
@@ -48,10 +56,12 @@ namespace BusinessTier
         {
             try
             {
+                //returns list of objects if everything went correctly
                 return dbChat.GetChatsByName(name);
             }
             catch (Exception)
             {
+                //returns empty list if exception is thrown
                 return new List<Chat>();
             }
         }
@@ -62,12 +72,15 @@ namespace BusinessTier
             {
                 if (dbChat.UpdateChat(chat) == 0)
                 {
+                    //returns false if no changes were made
                     return false;
                 }
+                //returns true if everything went correctly
                 return true;
             }
             catch (Exception)
             {
+                //returns false if exception is thrown
                 return false;
             }
         }
@@ -78,12 +91,15 @@ namespace BusinessTier
             {
                 if (dbChat.DeleteChat(id) == 0)
                 {
+                    //returns false if no changes were made
                     return false;
                 }
+                //returns true if everything went correctly
                 return true;
             }
             catch (Exception)
             {
+                //returns false if exception is thrown
                 return false;
             }
         }
@@ -92,10 +108,12 @@ namespace BusinessTier
         {
             try
             {
+                //returns list of objects if everything went correctly
                 return dbChat.GetPersonsInChat(chatId);
             }
             catch (Exception)
             {
+                //returns empty list if exception is thrown
                 return new List<Profile>();
             }
         }
@@ -104,27 +122,31 @@ namespace BusinessTier
         {
             try
             {
-                dbChat.AddPersonToChat(chatId, profileId, null);
-                return true;
+                //returns true if everything went correctly
+                return dbChat.AddPersonToChat(chatId, profileId, null);
             }
             catch (Exception)
             {
+                //returns false if exception is thrown
                 return false;
             }
         }
 
-        public bool RemovePersonFromChat(int chatId, int profileId)
+        public bool RemovePersonFromChat(int chatId, int profileId)//also deletes chat if no profiles assigned to it
         {
             try
             {
                 if (dbChat.RemovePersonFromChat(chatId, profileId) == 0)
                 {
+                    //returns false if no changes were made
                     return false;
                 }
+                //returns true if everything went correctly
                 return true;
             }
             catch (Exception)
             {
+                //returns false if exception is thrown
                 return false;
             }
         }
