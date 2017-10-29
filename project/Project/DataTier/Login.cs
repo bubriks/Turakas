@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace DataTier
 {
+    [DataContract]
     public class Login
     {
         private String username, password, email;
@@ -17,8 +15,11 @@ namespace DataTier
             this.email = email;
         }
 
+        [DataMember]
         public string Username { get => username; set => username = value; }
+        [DataMember]
         public string Password { get => password; set => password = value; }
+        [DataMember]
         public string Email { get => email; set => email = value; }
     }
 }
