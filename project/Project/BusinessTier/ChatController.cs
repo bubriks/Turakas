@@ -16,6 +16,12 @@ namespace BusinessTier
             dbChat = new DbChat();
         }
 
+        /// <summary>
+        /// Creates chat and automaticly adds the creator to it
+        /// </summary>
+        /// <param name="chat"></param>
+        /// <param name="profileId"></param>
+        /// <returns></returns>
         public Chat CreateChat(Chat chat, int profileId)
         {
             //Creates new starnsaction

@@ -43,13 +43,13 @@ namespace DataAccessTier
         /// </summary>
         /// <param name="login">New LoginInfo</param>
         /// <returns>Returns the ID assigned to the login by the database or -1 if it fails and prints error in console</returns>
-        public int CreateLogin(Login login)
+        public int CreateLogin(Login login, SqlTransaction ts)
         {
             try
             {
                 string stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() INSERT INTO Login(username, salt, passwordHash, email)" +
                     "OUTPUT INSERTED.loginID values ('" + login.Username + "', @salt, HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(@salt AS NVARCHAR(36))), '" + login.Email + "')";
-                SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
+                SqlDataReader reader = new SqlCommand(stmt, con, ts).ExecuteReader();
                 reader.Read();
                 return reader.GetInt32(0);
             }
