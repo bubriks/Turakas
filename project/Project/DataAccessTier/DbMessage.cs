@@ -17,31 +17,61 @@ namespace DataAccessTier
             con = DbConnection.GetInstance().GetConnection();
         }
 
-        public void CreateMessage(int profileId, String text, int chatId)
-        {
-            string stmt = "INSERT INTO Activity (profileID, timeStamp) OUTPUT INSERTED.activityID values (" + profileId + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "')";
-            SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
-            if (reader.Read())
+        public void CreateMessage(int profileId, String text, int chatId, SqlTransaction transaction)
+        {//needs to bechanged varbinary to string also change everywhere elese
+            string stmt = "INSERT INTO Activity (profileID, timeStamp) OUTPUT INSERTED.activityID values (@0, @1)";
+            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
+            cmd.Parameters.AddWithValue("@0", profileId);
+            cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            SqlDataReader reader = cmd.ExecuteReader();
+            try
             {
-                stmt = "INSERT INTO Text(activityID, message) OUTPUT INSERTED.textID values(" + Int32.Parse(reader["activityID"].ToString()) + ", (select cast('" + text + "' as varbinary(max))))";
-            }
-            else
-            {
-                throw new Exception();
-            }
-            reader.Close();
+                reader.Read();
+                stmt = "INSERT INTO Text(activityID, message) OUTPUT INSERTED.textID values(@0, (select cast('" + text + "' as varbinary(max))))";
+                cmd = new SqlCommand(stmt, con, transaction);
+                cmd.Parameters.AddWithValue("@0", Int32.Parse(reader["activityID"].ToString()));
+                reader.Close();
+                reader = cmd.ExecuteReader();
 
-            reader = new SqlCommand(stmt, con).ExecuteReader();
-            if (reader.Read())
-            {
-                stmt = "INSERT INTO Message (textID, chatID) values (" + Int32.Parse(reader["textID"].ToString()) + ", " + chatId + ")";
+                reader.Read();
+                stmt = "INSERT INTO Message (textID, chatID) values (@0, @1)";
+                cmd = new SqlCommand(stmt, con, transaction);
+                cmd.Parameters.AddWithValue("@0", Int32.Parse(reader["textID"].ToString()));
+                cmd.Parameters.AddWithValue("@1", chatId);
+                reader.Close();
+                cmd.ExecuteNonQuery();
             }
-            else
+            catch(Exception e)
             {
-                throw new Exception();
+                reader.Close();
+                throw e;
+            }
+        }
+
+        public Message GetMessage(int id)
+        {
+            string stmt = "SELECT Profile.nickname, " +
+                                "Activity.activityID, " +
+                                "Text.message, " +
+                                "Activity.timeStamp " +
+                            "FROM Profile " +
+                            "INNER JOIN Activity " +
+                                "on Profile.profileID = Activity.profileID " +
+                            "INNER JOIN Text " +
+                                "on Activity.activityID = Text.activityID " +
+                            "INNER JOIN Message " +
+                                "on Text.textID = Message.textID " +
+                            "where Activity.activityID = @0";
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            cmd.Parameters.AddWithValue("@0", id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            Message message = null;
+            if(reader.Read())
+            {
+                message = new Message(Int32.Parse(reader["activityID"].ToString()), Encoding.UTF8.GetString((byte[])reader["message"]), reader["nickname"].ToString(), Convert.ToDateTime(reader["timeStamp"].ToString()));
             }
             reader.Close();
-            new SqlCommand(stmt, con).ExecuteNonQuery();
+            return message;
         }
 
         public List<Message> GetMessages(int chatId)
@@ -58,9 +88,10 @@ namespace DataAccessTier
                                 "on Activity.activityID = Text.activityID " +
                             "INNER JOIN Message " +
                                 "on Text.textID = Message.textID " +
-                            "where Message.chatID = " + chatId +
+                            "where Message.chatID = @0 " +
                             "ORDER BY activityID DESC";
             SqlCommand cmd = new SqlCommand(stmt, con);
+            cmd.Parameters.AddWithValue("@0",chatId);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Message> messages = new List<Message>();
             while (reader.Read())
@@ -71,11 +102,13 @@ namespace DataAccessTier
             return messages;
         }
 
-        public void DeleteMessage(int id)//allways returns true also in delete chat
+        public int DeleteMessage(int id)
         {
-            string stmt = "DELETE FROM Activity WHERE activityID = " + id;
+            string stmt = "DELETE FROM Activity WHERE activityID = @0";
             SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.ExecuteNonQuery();
+            cmd.Parameters.AddWithValue("@0", id);
+            int rows =cmd.ExecuteNonQuery();
+            return rows;
         }
     }
 }

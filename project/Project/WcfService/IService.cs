@@ -42,6 +42,9 @@ namespace WcfService
         bool CreateMessage(int profileId, String text, int chatId);
 
         [OperationContract]
+        Message GetMessage(int id);
+
+        [OperationContract]
         List<Message> GetMessages(int chatId);
 
         [OperationContract]
