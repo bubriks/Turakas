@@ -14,6 +14,12 @@ namespace DataTier
         private string name;
         private bool type;
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
         public Chat(int id, string name, bool type)
         {
             this.id = id;

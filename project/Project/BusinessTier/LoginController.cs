@@ -1,7 +1,6 @@
 ﻿using System;
 using DataTier;
 using DataAccessTier;
-using System.Transactions;
 using System.Net.Mail;
 using System.Net;
 using System.Collections.Generic;
@@ -70,7 +69,7 @@ namespace BusinessTier
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public bool ForgotDetails(string email)
+        public bool ForgotDetails(Login login)
         {
             return false;
         }
