@@ -1,14 +1,13 @@
 ﻿using System;
 using DataTier;
 using DataAccessTier;
-using System.Transactions;
 using System.Net.Mail;
 using System.Net;
 using System.Collections.Generic;
 
 namespace BusinessTier
 {
-    class LoginController : ILoginController
+    class LoginController: ILoginController
     {
         DBLogin dbLogin;
         public LoginController()
@@ -21,21 +20,17 @@ namespace BusinessTier
             string tempPass = RandomPassword();
             string subject = ("Your Temporary Password is:");
             string body = "Hello, " + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
-            using (TransactionScope ts = new TransactionScope())
+            try
             {
-                try
-                {
-                    login.Password = tempPass;
-                    sendEmail(login.Email, subject, body);
-                    dbLogin.CreateLogin(login);
-                    ts.Complete();
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    return false;
-                }
+                login.Password = tempPass;
+                sendEmail(login.Email, subject, body);
+                dbLogin.CreateLogin(login);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
             }
         }
         public bool Authenticate(Login login)
@@ -51,9 +46,9 @@ namespace BusinessTier
             }
         }
 
-        public bool ForgotDetails(string email)
+        public bool ForgotDetails(Login login)
         {
-            
+            return false;
         }
 
         /// <summary>

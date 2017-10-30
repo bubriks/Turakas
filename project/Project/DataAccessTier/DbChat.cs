@@ -74,10 +74,10 @@ namespace DataAccessTier
             return rows;
         }
 
-        public int DeleteChat(int id)
+        public int DeleteChat(int id, SqlTransaction transaction)
         {
             string stmt = "DELETE FROM Chat WHERE chatID = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
             cmd.Parameters.AddWithValue("@0", id);
             int rows = cmd.ExecuteNonQuery();
             return rows;
@@ -85,13 +85,13 @@ namespace DataAccessTier
         #endregion
         
         #region chat users
-        public List<Profile> GetPersonsInChat(int chatId)
+        public List<Profile> GetPersonsInChat(int chatId, SqlTransaction transaction)
         {
             string stmt = "SELECT Profile.profileID, "+
                             "Profile.statusID, " +
                             "Profile.nickname " +
                             "FROM PersonsChats INNER JOIN Profile ON PersonsChats.profileID = Profile.profileID where chatID = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
             cmd.Parameters.AddWithValue("@0", chatId);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Profile> perons = new List<Profile>();

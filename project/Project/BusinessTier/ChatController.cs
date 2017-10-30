@@ -89,7 +89,7 @@ namespace BusinessTier
         {
             try
             {
-                if (dbChat.DeleteChat(id) == 0)
+                if (dbChat.DeleteChat(id, null) == 0)
                 {
                     //returns false if no changes were made
                     return false;
@@ -109,7 +109,7 @@ namespace BusinessTier
             try
             {
                 //returns list of objects if everything went correctly
-                return dbChat.GetPersonsInChat(chatId);
+                return dbChat.GetPersonsInChat(chatId, null);
             }
             catch (Exception)
             {
@@ -140,17 +140,20 @@ namespace BusinessTier
             {
                 if (dbChat.RemovePersonFromChat(chatId, profileId, transaction) == 0)
                 {
+                    transaction.Rollback();
                     //returns false if no changes were made
                     return false;
                 }
-                if (dbChat.GetPersonsInChat(chatId).Count == 0)
+                if (dbChat.GetPersonsInChat(chatId, transaction).Count == 0)
                 {
-                    if (dbChat.DeleteChat(chatId) == 0)
+                    if (dbChat.DeleteChat(chatId, transaction) == 0)
                     {
+                        transaction.Rollback();
                         //returns false if chat wasnt deleted
                         return false;
                     }
                 }
+                transaction.Commit();
                 //returns true if everything went correctly
                 return true;
             }
