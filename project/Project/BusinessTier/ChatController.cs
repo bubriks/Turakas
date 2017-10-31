@@ -15,13 +15,7 @@ namespace BusinessTier
         {
             dbChat = new DbChat();
         }
-
-        /// <summary>
-        /// Creates chat and automaticly adds the creator to it
-        /// </summary>
-        /// <param name="chat"></param>
-        /// <param name="profileId"></param>
-        /// <returns></returns>
+        
         public Chat CreateChat(Chat chat, int profileId)
         {
             //Creates new starnsaction
@@ -110,6 +104,20 @@ namespace BusinessTier
             }
         }
 
+        public List<Chat> GetPersonsChats(int profileId)
+        {
+            try
+            {
+                //returns list of objects if everything went correctly
+                return dbChat.GetPersonsChats(profileId);
+            }
+            catch (Exception)
+            {
+                //returns empty list if exception is thrown
+                return new List<Chat>();
+            }
+        }
+
         public List<Profile> GetPersonsInChat(int chatId)
         {
             try
@@ -138,7 +146,7 @@ namespace BusinessTier
             }
         }
 
-        public bool RemovePersonFromChat(int chatId, int profileId)//not tested
+        public bool RemovePersonFromChat(int chatId, int profileId)
         {
             //Creates new starnsaction
             transaction = DbConnection.GetInstance().GetConnection().BeginTransaction();

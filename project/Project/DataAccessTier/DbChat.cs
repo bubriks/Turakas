@@ -83,8 +83,26 @@ namespace DataAccessTier
             return rows;
         }
         #endregion
-        
+
         #region chat users
+        public List<Chat> GetPersonsChats(int profileId)
+        {
+            string stmt = "SELECT Chat.chatID, " +
+                        "Chat.name, " +
+                        "Chat.type " +
+                        "FROM PersonsChats INNER JOIN Chat ON PersonsChats.chatId = Chat.chatId where profileId = 1";
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            cmd.Parameters.AddWithValue("@0", profileId);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Chat> chats = new List<Chat>();
+            while (reader.Read())
+            {
+                chats.Add(new Chat(Int32.Parse(reader["chatID"].ToString()), reader["name"].ToString(), (bool)reader["type"]));
+            }
+            reader.Close();
+            return chats;
+        }
+
         public List<Profile> GetPersonsInChat(int chatId, SqlTransaction transaction)
         {
             string stmt = "SELECT Profile.profileID, "+

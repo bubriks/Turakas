@@ -40,6 +40,11 @@ namespace WcfService
             return chatController.DeleteChat(id);
         }
 
+        public List<Chat> GetPersonsChats(int profileId)
+        {
+            return chatController.GetPersonsChats(profileId);
+        }
+
         public List<Profile> GetPersonsInChat(int chatId)
         {
             return chatController.GetPersonsInChat(chatId);

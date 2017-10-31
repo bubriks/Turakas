@@ -38,6 +38,12 @@ namespace BusinessTier
         /// <returns></returns>
         bool DeleteChat(int id);
         /// <summary>
+        /// Returns all users chats (which he is part of)
+        /// </summary>
+        /// <param name="profileId"></param>
+        /// <returns></returns>
+        List<Chat> GetPersonsChats(int profileId);
+        /// <summary>
         /// Gets profiles in selected chat
         /// </summary>
         /// <param name="chatId"></param>
