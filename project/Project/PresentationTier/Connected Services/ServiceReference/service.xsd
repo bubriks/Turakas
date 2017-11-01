@@ -5,7 +5,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="chat" nillable="true" type="q1:Chat" />
-        <xs:element minOccurs="0" name="personId" type="xs:int" />
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -13,20 +13,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="CreateChatResult" nillable="true" type="q2:Chat" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetChat">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="id" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetChatResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetChatResult" nillable="true" type="q3:Chat" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -40,14 +26,14 @@
   <xs:element name="GetChatsByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetChatsByNameResult" nillable="true" type="q4:ArrayOfChat" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetChatsByNameResult" nillable="true" type="q3:ArrayOfChat" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateChat">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="chat" nillable="true" type="q5:Chat" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="chat" nillable="true" type="q4:Chat" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -72,6 +58,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetPersonsChats">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPersonsChatsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetPersonsChatsResult" nillable="true" type="q5:ArrayOfChat" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetPersonsInChat">
     <xs:complexType>
       <xs:sequence>
@@ -90,7 +90,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="chatId" type="xs:int" />
-        <xs:element minOccurs="0" name="personId" type="xs:int" />
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -105,7 +105,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="chatId" type="xs:int" />
-        <xs:element minOccurs="0" name="personId" type="xs:int" />
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -113,6 +113,50 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="RemovePersonFromChatResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
+        <xs:element minOccurs="0" name="text" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="chatId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateMessageResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="chatId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMessagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetMessagesResult" nillable="true" type="q7:ArrayOfMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteMessageResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

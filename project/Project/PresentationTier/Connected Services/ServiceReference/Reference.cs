@@ -9,35 +9,278 @@
 //------------------------------------------------------------------------------
 
 namespace PresentationTier.ServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Chat", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Chat : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool TypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Profile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NicknameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProfileIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatusIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nickname {
+            get {
+                return this.NicknameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NicknameField, value) != true)) {
+                    this.NicknameField = value;
+                    this.RaisePropertyChanged("Nickname");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProfileID {
+            get {
+                return this.ProfileIDField;
+            }
+            set {
+                if ((this.ProfileIDField.Equals(value) != true)) {
+                    this.ProfileIDField = value;
+                    this.RaisePropertyChanged("ProfileID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StatusID {
+            get {
+                return this.StatusIDField;
+            }
+            set {
+                if ((this.StatusIDField.Equals(value) != true)) {
+                    this.StatusIDField = value;
+                    this.RaisePropertyChanged("StatusID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CreatorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TextField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Creator {
+            get {
+                return this.CreatorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CreatorField, value) != true)) {
+                    this.CreatorField = value;
+                    this.RaisePropertyChanged("Creator");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Text {
+            get {
+                return this.TextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TextField, value) != true)) {
+                    this.TextField = value;
+                    this.RaisePropertyChanged("Text");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Time {
+            get {
+                return this.TimeField;
+            }
+            set {
+                if ((this.TimeField.Equals(value) != true)) {
+                    this.TimeField = value;
+                    this.RaisePropertyChanged("Time");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IService")]
     public interface IService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateChat", ReplyAction="http://tempuri.org/IService/CreateChatResponse")]
-        DataTier.Chat CreateChat(DataTier.Chat chat, int personId);
+        PresentationTier.ServiceReference.Chat CreateChat(PresentationTier.ServiceReference.Chat chat, int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateChat", ReplyAction="http://tempuri.org/IService/CreateChatResponse")]
-        System.Threading.Tasks.Task<DataTier.Chat> CreateChatAsync(DataTier.Chat chat, int personId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetChat", ReplyAction="http://tempuri.org/IService/GetChatResponse")]
-        DataTier.Chat GetChat(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetChat", ReplyAction="http://tempuri.org/IService/GetChatResponse")]
-        System.Threading.Tasks.Task<DataTier.Chat> GetChatAsync(int id);
+        System.Threading.Tasks.Task<PresentationTier.ServiceReference.Chat> CreateChatAsync(PresentationTier.ServiceReference.Chat chat, int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetChatsByName", ReplyAction="http://tempuri.org/IService/GetChatsByNameResponse")]
-        System.Collections.Generic.List<DataTier.Chat> GetChatsByName(string name);
+        PresentationTier.ServiceReference.Chat[] GetChatsByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetChatsByName", ReplyAction="http://tempuri.org/IService/GetChatsByNameResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<DataTier.Chat>> GetChatsByNameAsync(string name);
+        System.Threading.Tasks.Task<PresentationTier.ServiceReference.Chat[]> GetChatsByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateChat", ReplyAction="http://tempuri.org/IService/UpdateChatResponse")]
-        bool UpdateChat(DataTier.Chat chat);
+        bool UpdateChat(PresentationTier.ServiceReference.Chat chat);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateChat", ReplyAction="http://tempuri.org/IService/UpdateChatResponse")]
-        System.Threading.Tasks.Task<bool> UpdateChatAsync(DataTier.Chat chat);
+        System.Threading.Tasks.Task<bool> UpdateChatAsync(PresentationTier.ServiceReference.Chat chat);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteChat", ReplyAction="http://tempuri.org/IService/DeleteChatResponse")]
         bool DeleteChat(int id);
@@ -45,23 +288,47 @@ namespace PresentationTier.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteChat", ReplyAction="http://tempuri.org/IService/DeleteChatResponse")]
         System.Threading.Tasks.Task<bool> DeleteChatAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPersonsInChat", ReplyAction="http://tempuri.org/IService/GetPersonsInChatResponse")]
-        System.Collections.Generic.List<DataTier.Profile> GetPersonsInChat(int chatId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPersonsChats", ReplyAction="http://tempuri.org/IService/GetPersonsChatsResponse")]
+        PresentationTier.ServiceReference.Chat[] GetPersonsChats(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPersonsChats", ReplyAction="http://tempuri.org/IService/GetPersonsChatsResponse")]
+        System.Threading.Tasks.Task<PresentationTier.ServiceReference.Chat[]> GetPersonsChatsAsync(int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPersonsInChat", ReplyAction="http://tempuri.org/IService/GetPersonsInChatResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<DataTier.Profile>> GetPersonsInChatAsync(int chatId);
+        PresentationTier.ServiceReference.Profile[] GetPersonsInChat(int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPersonsInChat", ReplyAction="http://tempuri.org/IService/GetPersonsInChatResponse")]
+        System.Threading.Tasks.Task<PresentationTier.ServiceReference.Profile[]> GetPersonsInChatAsync(int chatId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddPersonToChat", ReplyAction="http://tempuri.org/IService/AddPersonToChatResponse")]
-        bool AddPersonToChat(int chatId, int personId);
+        bool AddPersonToChat(int chatId, int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddPersonToChat", ReplyAction="http://tempuri.org/IService/AddPersonToChatResponse")]
-        System.Threading.Tasks.Task<bool> AddPersonToChatAsync(int chatId, int personId);
+        System.Threading.Tasks.Task<bool> AddPersonToChatAsync(int chatId, int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemovePersonFromChat", ReplyAction="http://tempuri.org/IService/RemovePersonFromChatResponse")]
-        bool RemovePersonFromChat(int chatId, int personId);
+        bool RemovePersonFromChat(int chatId, int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemovePersonFromChat", ReplyAction="http://tempuri.org/IService/RemovePersonFromChatResponse")]
-        System.Threading.Tasks.Task<bool> RemovePersonFromChatAsync(int chatId, int personId);
+        System.Threading.Tasks.Task<bool> RemovePersonFromChatAsync(int chatId, int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateMessage", ReplyAction="http://tempuri.org/IService/CreateMessageResponse")]
+        bool CreateMessage(int profileId, string text, int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateMessage", ReplyAction="http://tempuri.org/IService/CreateMessageResponse")]
+        System.Threading.Tasks.Task<bool> CreateMessageAsync(int profileId, string text, int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMessages", ReplyAction="http://tempuri.org/IService/GetMessagesResponse")]
+        PresentationTier.ServiceReference.Message[] GetMessages(int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMessages", ReplyAction="http://tempuri.org/IService/GetMessagesResponse")]
+        System.Threading.Tasks.Task<PresentationTier.ServiceReference.Message[]> GetMessagesAsync(int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteMessage", ReplyAction="http://tempuri.org/IService/DeleteMessageResponse")]
+        bool DeleteMessage(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteMessage", ReplyAction="http://tempuri.org/IService/DeleteMessageResponse")]
+        System.Threading.Tasks.Task<bool> DeleteMessageAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -91,35 +358,27 @@ namespace PresentationTier.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public DataTier.Chat CreateChat(DataTier.Chat chat, int personId) {
-            return base.Channel.CreateChat(chat, personId);
+        public PresentationTier.ServiceReference.Chat CreateChat(PresentationTier.ServiceReference.Chat chat, int profileId) {
+            return base.Channel.CreateChat(chat, profileId);
         }
         
-        public System.Threading.Tasks.Task<DataTier.Chat> CreateChatAsync(DataTier.Chat chat, int personId) {
-            return base.Channel.CreateChatAsync(chat, personId);
+        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.Chat> CreateChatAsync(PresentationTier.ServiceReference.Chat chat, int profileId) {
+            return base.Channel.CreateChatAsync(chat, profileId);
         }
         
-        public DataTier.Chat GetChat(int id) {
-            return base.Channel.GetChat(id);
-        }
-        
-        public System.Threading.Tasks.Task<DataTier.Chat> GetChatAsync(int id) {
-            return base.Channel.GetChatAsync(id);
-        }
-        
-        public System.Collections.Generic.List<DataTier.Chat> GetChatsByName(string name) {
+        public PresentationTier.ServiceReference.Chat[] GetChatsByName(string name) {
             return base.Channel.GetChatsByName(name);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<DataTier.Chat>> GetChatsByNameAsync(string name) {
+        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.Chat[]> GetChatsByNameAsync(string name) {
             return base.Channel.GetChatsByNameAsync(name);
         }
         
-        public bool UpdateChat(DataTier.Chat chat) {
+        public bool UpdateChat(PresentationTier.ServiceReference.Chat chat) {
             return base.Channel.UpdateChat(chat);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateChatAsync(DataTier.Chat chat) {
+        public System.Threading.Tasks.Task<bool> UpdateChatAsync(PresentationTier.ServiceReference.Chat chat) {
             return base.Channel.UpdateChatAsync(chat);
         }
         
@@ -131,28 +390,60 @@ namespace PresentationTier.ServiceReference {
             return base.Channel.DeleteChatAsync(id);
         }
         
-        public System.Collections.Generic.List<DataTier.Profile> GetPersonsInChat(int chatId) {
+        public PresentationTier.ServiceReference.Chat[] GetPersonsChats(int profileId) {
+            return base.Channel.GetPersonsChats(profileId);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.Chat[]> GetPersonsChatsAsync(int profileId) {
+            return base.Channel.GetPersonsChatsAsync(profileId);
+        }
+        
+        public PresentationTier.ServiceReference.Profile[] GetPersonsInChat(int chatId) {
             return base.Channel.GetPersonsInChat(chatId);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<DataTier.Profile>> GetPersonsInChatAsync(int chatId) {
+        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.Profile[]> GetPersonsInChatAsync(int chatId) {
             return base.Channel.GetPersonsInChatAsync(chatId);
         }
         
-        public bool AddPersonToChat(int chatId, int personId) {
-            return base.Channel.AddPersonToChat(chatId, personId);
+        public bool AddPersonToChat(int chatId, int profileId) {
+            return base.Channel.AddPersonToChat(chatId, profileId);
         }
         
-        public System.Threading.Tasks.Task<bool> AddPersonToChatAsync(int chatId, int personId) {
-            return base.Channel.AddPersonToChatAsync(chatId, personId);
+        public System.Threading.Tasks.Task<bool> AddPersonToChatAsync(int chatId, int profileId) {
+            return base.Channel.AddPersonToChatAsync(chatId, profileId);
         }
         
-        public bool RemovePersonFromChat(int chatId, int personId) {
-            return base.Channel.RemovePersonFromChat(chatId, personId);
+        public bool RemovePersonFromChat(int chatId, int profileId) {
+            return base.Channel.RemovePersonFromChat(chatId, profileId);
         }
         
-        public System.Threading.Tasks.Task<bool> RemovePersonFromChatAsync(int chatId, int personId) {
-            return base.Channel.RemovePersonFromChatAsync(chatId, personId);
+        public System.Threading.Tasks.Task<bool> RemovePersonFromChatAsync(int chatId, int profileId) {
+            return base.Channel.RemovePersonFromChatAsync(chatId, profileId);
+        }
+        
+        public bool CreateMessage(int profileId, string text, int chatId) {
+            return base.Channel.CreateMessage(profileId, text, chatId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CreateMessageAsync(int profileId, string text, int chatId) {
+            return base.Channel.CreateMessageAsync(profileId, text, chatId);
+        }
+        
+        public PresentationTier.ServiceReference.Message[] GetMessages(int chatId) {
+            return base.Channel.GetMessages(chatId);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.Message[]> GetMessagesAsync(int chatId) {
+            return base.Channel.GetMessagesAsync(chatId);
+        }
+        
+        public bool DeleteMessage(int id) {
+            return base.Channel.DeleteMessage(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteMessageAsync(int id) {
+            return base.Channel.DeleteMessageAsync(id);
         }
     }
 }
