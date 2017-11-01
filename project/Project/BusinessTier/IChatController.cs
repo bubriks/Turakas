@@ -14,12 +14,6 @@ namespace BusinessTier
         /// <returns></returns>
         Chat CreateChat(Chat chat, int profileId);
         /// <summary>
-        /// Gets chat with the given id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Chat GetChat(int id);
-        /// <summary>
         /// Gets chats which name includes this text
         /// </summary>
         /// <param name="name"></param>

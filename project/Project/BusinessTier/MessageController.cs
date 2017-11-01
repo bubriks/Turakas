@@ -40,20 +40,6 @@ namespace BusinessTier
             }
         }
 
-        public Message GetMessage(int id)
-        {
-            try
-            {
-                //returns Object if everything went correctly
-                return dbMessage.GetMessage(id);
-            }
-            catch (Exception)
-            {
-                //returns null if exception is thrown
-                return null;
-            }
-        }
-
         public List<Message> GetMessages(int chatId)
         {
             try

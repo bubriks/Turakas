@@ -16,9 +16,6 @@ namespace WcfService
         Chat CreateChat(Chat chat, int profileId);
 
         [OperationContract]
-        Chat GetChat(int id);
-
-        [OperationContract]
         List<Chat> GetChatsByName(String name);
 
         [OperationContract]
@@ -43,9 +40,6 @@ namespace WcfService
         #region message
         [OperationContract]
         bool CreateMessage(int profileId, String text, int chatId);
-
-        [OperationContract]
-        Message GetMessage(int id);
 
         [OperationContract]
         List<Message> GetMessages(int chatId);

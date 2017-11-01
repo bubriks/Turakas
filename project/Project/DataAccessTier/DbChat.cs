@@ -32,21 +32,6 @@ namespace DataAccessTier
             reader.Close();
             return chat;
         }
-        
-        public Chat GetChat(int id)
-        {
-            string stmt = "SELECT name, type FROM Chat where chatID = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.Parameters.AddWithValue("@0",id);
-            SqlDataReader reader = cmd.ExecuteReader();
-            Chat chat=null;
-            if (reader.Read())
-            {
-                chat = new Chat(id, reader["name"].ToString(), (bool)reader["type"]);
-            }
-            reader.Close();
-            return chat;
-        }
 
         public List<Chat> GetChatsByName(String name)
         {

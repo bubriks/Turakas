@@ -38,20 +38,6 @@ namespace BusinessTier
             }
         }
 
-        public Chat GetChat(int id)
-        {
-            try
-            {
-                //returns Object if everything went correctly
-                return dbChat.GetChat(id);
-            }
-            catch (Exception)
-            {
-                //returns null if exception is thrown
-                return null;
-            }
-        }
-
         public List<Chat> GetChatsByName(String name)
         {
             try

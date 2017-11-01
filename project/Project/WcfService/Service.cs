@@ -20,11 +20,6 @@ namespace WcfService
             return chatController.CreateChat(chat, profileId);
         }
 
-        public Chat GetChat(int id)
-        {
-            return chatController.GetChat(id);
-        }
-
         public List<Chat> GetChatsByName(String name)
         {
             return chatController.GetChatsByName(name);
@@ -65,11 +60,6 @@ namespace WcfService
         public bool CreateMessage(int profileId, string text, int chatId)
         {
             return messageController.CreateMessage(profileId, text, chatId);
-        }
-
-        public Message GetMessage(int id)
-        {
-            return messageController.GetMessage(id);
         }
 
         public List<Message> GetMessages(int chatId)

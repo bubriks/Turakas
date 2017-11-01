@@ -18,12 +18,6 @@ namespace BusinessTier
         /// <returns></returns>
         bool CreateMessage(int profileId, String text, int chatId);
         /// <summary>
-        /// Gets specific message
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Message GetMessage(int id);
-        /// <summary>
         /// Gets last 20 messages in chat
         /// </summary>
         /// <param name="chatId"></param>

@@ -48,33 +48,7 @@ namespace DataAccessTier
                 throw e;
             }
         }
-
-        public Message GetMessage(int id)
-        {
-            string stmt = "SELECT Profile.nickname, " +
-                                "Activity.activityID, " +
-                                "Text.message, " +
-                                "Activity.timeStamp " +
-                            "FROM Profile " +
-                            "INNER JOIN Activity " +
-                                "on Profile.profileID = Activity.profileID " +
-                            "INNER JOIN Text " +
-                                "on Activity.activityID = Text.activityID " +
-                            "INNER JOIN Message " +
-                                "on Text.textID = Message.textID " +
-                            "where Activity.activityID = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.Parameters.AddWithValue("@0", id);
-            SqlDataReader reader = cmd.ExecuteReader();
-            Message message = null;
-            if(reader.Read())
-            {
-                message = new Message(Int32.Parse(reader["activityID"].ToString()), reader["message"].ToString(), reader["nickname"].ToString(), Convert.ToDateTime(reader["timeStamp"].ToString()));
-            }
-            reader.Close();
-            return message;
-        }
-
+        
         public List<Message> GetMessages(int chatId)
         {
             string stmt = "SELECT TOP(20) " +
