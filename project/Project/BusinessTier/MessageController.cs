@@ -12,30 +12,31 @@ namespace BusinessTier
     public class MessageController: IMessageController
     {
         private DbMessage dbMessage= null;
-        private SqlTransaction transaction=null;
+        private DbConnection con = null;
 
         public MessageController()
         {
             dbMessage = new DbMessage();
+            con = DbConnection.GetInstance();
         }
 
         public bool CreateMessage(int profileId, String text, int chatId)
         {
             //Creates new starnsaction
-            transaction = DbConnection.GetInstance().GetConnection().BeginTransaction();
+            con.BeginTransaction();
             try
             {
                 //passes the transaction further to DataAccessTier
-                dbMessage.CreateMessage(profileId, text, chatId, transaction);
+                dbMessage.CreateMessage(profileId, text, chatId);
                 //if everything goes as planed than commited
-                transaction.Commit();
+                con.Commit();
                 //returns true if everything went correctly
                 return true;
             }
             catch (Exception)
             {
                 //If exception is thrown the transaction is rolled back and false is returned
-                transaction.Rollback();
+                con.Rollback();
                 return false;
             }
         }

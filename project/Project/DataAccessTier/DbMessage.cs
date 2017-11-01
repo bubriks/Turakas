@@ -10,17 +10,17 @@ namespace DataAccessTier
 {
     public class DbMessage
     {
-        private SqlConnection con = null;
+        private DbConnection con = null;
 
         public DbMessage()
         {
-            con = DbConnection.GetInstance().GetConnection();
+            con = DbConnection.GetInstance();
         }
 
-        public void CreateMessage(int profileId, String text, int chatId, SqlTransaction transaction)
+        public void CreateMessage(int profileId, String text, int chatId)
         {
             string stmt = "INSERT INTO Activity (profileID, timeStamp) OUTPUT INSERTED.activityID values (@0, @1)";
-            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", profileId);
             cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             SqlDataReader reader = cmd.ExecuteReader();
@@ -28,7 +28,7 @@ namespace DataAccessTier
             {
                 reader.Read();
                 stmt = "INSERT INTO Text(activityID, message) OUTPUT INSERTED.textID values(@0, @1)";
-                cmd = new SqlCommand(stmt, con, transaction);
+                cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
                 cmd.Parameters.AddWithValue("@0", Int32.Parse(reader["activityID"].ToString()));
                 cmd.Parameters.AddWithValue("@1", text);
                 reader.Close();
@@ -36,7 +36,7 @@ namespace DataAccessTier
 
                 reader.Read();
                 stmt = "INSERT INTO Message (textID, chatID) values (@0, @1)";
-                cmd = new SqlCommand(stmt, con, transaction);
+                cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
                 cmd.Parameters.AddWithValue("@0", Int32.Parse(reader["textID"].ToString()));
                 cmd.Parameters.AddWithValue("@1", chatId);
                 reader.Close();
@@ -65,7 +65,7 @@ namespace DataAccessTier
                                 "on Text.textID = Message.textID " +
                             "where Message.chatID = @0 " +
                             "ORDER BY activityID DESC";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0",chatId);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Message> messages = new List<Message>();
@@ -80,7 +80,7 @@ namespace DataAccessTier
         public int DeleteMessage(int id)
         {
             string stmt = "DELETE FROM Activity WHERE activityID = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", id);
             int rows =cmd.ExecuteNonQuery();
             return rows;

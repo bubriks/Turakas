@@ -10,18 +10,18 @@ namespace DataAccessTier
 {
     public class DbChat
     {
-        private SqlConnection con = null;
+        private DbConnection con = null;
 
         public DbChat()
         {
-            con = DbConnection.GetInstance().GetConnection();
+            con = DbConnection.GetInstance();
         }
 
         #region manage chat
-        public Chat CreateChat(Chat chat, SqlTransaction transaction)
+        public Chat CreateChat(Chat chat)
         {
             string stmt = "INSERT INTO Chat(name, type) OUTPUT INSERTED.chatID values (@0, @1)";
-            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", chat.Name);
             cmd.Parameters.AddWithValue("@1", Convert.ToInt32(chat.Type));
             SqlDataReader reader = cmd.ExecuteReader();
@@ -36,7 +36,7 @@ namespace DataAccessTier
         public List<Chat> GetChatsByName(String name)
         {
             string stmt = "Select chatID, name, type FROM Chat where name like '%'+@0+'%' AND type=1;";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", name);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Chat> chats = new List<Chat>();
@@ -51,7 +51,7 @@ namespace DataAccessTier
         public int UpdateChat(Chat chat)
         {
             string stmt = "UPDATE Chat SET name = @0, type = @1 WHERE chatID= @2";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", chat.Name);
             cmd.Parameters.AddWithValue("@1", Convert.ToInt32(chat.Type));
             cmd.Parameters.AddWithValue("@2", chat.Id);
@@ -59,10 +59,10 @@ namespace DataAccessTier
             return rows;
         }
 
-        public int DeleteChat(int id, SqlTransaction transaction)
+        public int DeleteChat(int id)
         {
             string stmt = "DELETE FROM Chat WHERE chatID = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", id);
             int rows = cmd.ExecuteNonQuery();
             return rows;
@@ -76,7 +76,7 @@ namespace DataAccessTier
                         "Chat.name, " +
                         "Chat.type " +
                         "FROM PersonsChats INNER JOIN Chat ON PersonsChats.chatId = Chat.chatId where profileId = 1";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", profileId);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Chat> chats = new List<Chat>();
@@ -88,13 +88,13 @@ namespace DataAccessTier
             return chats;
         }
 
-        public List<Profile> GetPersonsInChat(int chatId, SqlTransaction transaction)
+        public List<Profile> GetPersonsInChat(int chatId)
         {
             string stmt = "SELECT Profile.profileID, "+
                             "Profile.statusID, " +
                             "Profile.nickname " +
                             "FROM PersonsChats INNER JOIN Profile ON PersonsChats.profileID = Profile.profileID where chatID = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", chatId);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Profile> perons = new List<Profile>();
@@ -106,20 +106,20 @@ namespace DataAccessTier
             return perons;
         }
 
-        public bool AddPersonToChat(int chatId, int profileId, SqlTransaction transaction)
+        public bool AddPersonToChat(int chatId, int profileId)
         {
             string stmt = "INSERT INTO PersonsChats(chatID, profileID) values (@0, @1)";
-            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", chatId);
             cmd.Parameters.AddWithValue("@1", profileId);
             cmd.ExecuteNonQuery();
             return true;
         }
 
-        public int RemovePersonFromChat(int chatId, int profileId, SqlTransaction transaction)
+        public int RemovePersonFromChat(int chatId, int profileId)
         {
             string stmt = "DELETE FROM PersonsChats where chatID= @0 AND profileID= @1";
-            SqlCommand cmd = new SqlCommand(stmt, con, transaction);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", chatId);
             cmd.Parameters.AddWithValue("@1", profileId);
             int rows = cmd.ExecuteNonQuery();

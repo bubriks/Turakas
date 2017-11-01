@@ -9,31 +9,32 @@ namespace BusinessTier
     public class ChatController: IChatController
     {
         private DbChat dbChat = null;
-        private SqlTransaction transaction = null;
+        private DbConnection con = null;
 
         public ChatController()
         {
             dbChat = new DbChat();
+            con = DbConnection.GetInstance();
         }
         
         public Chat CreateChat(Chat chat, int profileId)
         {
-            //Creates new starnsaction
-            transaction = DbConnection.GetInstance().GetConnection().BeginTransaction();
+            //Creates new transaction
+            con.BeginTransaction();
             try
             {
                 //passes the transaction further to DataAccessTier
-                chat = dbChat.CreateChat(chat, transaction);
-                dbChat.AddPersonToChat(chat.Id, profileId, transaction);
+                chat = dbChat.CreateChat(chat);
+                dbChat.AddPersonToChat(chat.Id, profileId);
                 //if everything goes as planed than commited
-                transaction.Commit();
+                con.Commit();
                 //returns Object if everything went correctly
                 return chat;
             }
             catch (Exception)
             {
                 //If exception is thrown the transaction is rolled back and null is returned
-                transaction.Rollback();
+                con.Rollback();
                 return null;
             }
         }
@@ -75,7 +76,7 @@ namespace BusinessTier
         {
             try
             {
-                if (dbChat.DeleteChat(id, null) == 0)
+                if (dbChat.DeleteChat(id) == 0)
                 {
                     //returns false if no changes were made
                     return false;
@@ -109,7 +110,7 @@ namespace BusinessTier
             try
             {
                 //returns list of objects if everything went correctly
-                return dbChat.GetPersonsInChat(chatId, null);
+                return dbChat.GetPersonsInChat(chatId);
             }
             catch (Exception)
             {
@@ -123,7 +124,7 @@ namespace BusinessTier
             try
             {
                 //returns true if everything went correctly
-                return dbChat.AddPersonToChat(chatId, profileId, null);
+                return dbChat.AddPersonToChat(chatId, profileId);
             }
             catch (Exception)
             {
@@ -135,32 +136,32 @@ namespace BusinessTier
         public bool RemovePersonFromChat(int chatId, int profileId)
         {
             //Creates new starnsaction
-            transaction = DbConnection.GetInstance().GetConnection().BeginTransaction();
+            con.BeginTransaction();
             try
             {
-                if (dbChat.RemovePersonFromChat(chatId, profileId, transaction) == 0)
+                if (dbChat.RemovePersonFromChat(chatId, profileId) == 0)
                 {
-                    transaction.Rollback();
+                    con.Rollback();
                     //returns false if no changes were made
                     return false;
                 }
-                if (dbChat.GetPersonsInChat(chatId, transaction).Count == 0)
+                if (dbChat.GetPersonsInChat(chatId).Count == 0)
                 {
-                    if (dbChat.DeleteChat(chatId, transaction) == 0)
+                    if (dbChat.DeleteChat(chatId) == 0)
                     {
-                        transaction.Rollback();
+                        con.Rollback();
                         //returns false if chat wasnt deleted
                         return false;
                     }
                 }
-                transaction.Commit();
+                con.Commit();
                 //returns true if everything went correctly
                 return true;
             }
             catch (Exception)
             {
                 //If exception is thrown the transaction is rolled back and null is returned
-                transaction.Rollback();
+                con.Rollback();
                 return false;
             }
         }

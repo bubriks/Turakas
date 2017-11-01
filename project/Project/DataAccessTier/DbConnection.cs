@@ -6,7 +6,8 @@ namespace DataAccessTier
     public class DbConnection
     {
         private static DbConnection instance;
-        private SqlConnection con;
+        private SqlConnection con = null;
+        private SqlTransaction transaction = null;
         public static DbConnection GetInstance()
         {
             if (instance == null)
@@ -44,5 +45,27 @@ namespace DataAccessTier
             }
         }
         #endregion
+
+        public void BeginTransaction()
+        {
+            transaction = con.BeginTransaction();
+        }
+
+        public SqlTransaction GetTransaction()
+        {
+            return transaction;
+        }
+
+        public void Commit()
+        {
+            transaction.Commit();
+            transaction = null;
+        }
+
+        public void Rollback()
+        {
+            transaction.Rollback();
+            transaction = null;
+        }
     }
 }
