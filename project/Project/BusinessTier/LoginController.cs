@@ -8,21 +8,16 @@ using System.Data.SqlClient;
 
 namespace BusinessTier
 {
-    class LoginController : ILoginController
+    public class LoginController : ILoginController
     {
-        private DBLogin dbLogin;
+        private DbLogin dbLogin;
         private SqlTransaction ts = null;
         public LoginController()
         {
-            dbLogin = new DBLogin();
+            dbLogin = new DbLogin();
         }
 
-        /// <summary>
-        /// Creates account, sends email with temporary password
-        /// </summary>
-        /// <param name="login"></param>
-        /// <returns>Returns true if succeded, false otherwise, transaction rollsback and prints error message in console</returns>
-        public bool CreateAccount(Login login)
+            public bool CreateAccount(Login login)
         {
             string tempPass = RandomPassword();
             string subject = ("Your Temporary Password is:");
@@ -46,11 +41,6 @@ namespace BusinessTier
             
         }
 
-        /// <summary>
-        /// Authenticates given login info
-        /// </summary>
-        /// <param name="login"></param>
-        /// <returns></returns>
         public bool Authenticate(Login login)
         {
             switch (dbLogin.Authenticate(login))
@@ -69,9 +59,55 @@ namespace BusinessTier
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public bool ForgotDetails(Login login)
+        public bool ForgotDetails(string email)
         {
+            try
+            {
+                Tuple<Login, int> tuple = dbLogin.ReadLogin(email, 3);
+            string tempPass = RandomPassword();
+            string subject = ("Your Login Details are:");
+            string body = "Hello, " + "\nYour username is: " + tuple.Item1.Username + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
+
+            //Creates new starnsaction
+            ts = DbConnection.GetInstance().GetConnection().BeginTransaction();
+            try
+            {
+                tuple.Item1.Password = tempPass;
+                sendEmail(tuple.Item1.Email, subject, body);
+                dbLogin.CreateLogin(tuple.Item1, ts);
+                ts.Commit();
+                return true;
+            }
+            catch (Exception e)
+            {
+                ts.Rollback();
+                Console.WriteLine(e);
+                return false;
+            }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return false;
+        }
+
+        public Tuple<Login, int> FindAccount(string what, int by)
+        {
+            return dbLogin.ReadLogin(what, by);
+        }
+        
+        public bool UpdateAccount(int id, Login login)
+        {
+            return dbLogin.UpdateLogin(id, login);
+        }
+
+        public bool DeleteAccount(Login login)
+        {
+            int id = dbLogin.ReadLogin(login.Email, 3).Item2;
+
+            return dbLogin.DeleteLogin(id);
         }
 
         /// <summary>
@@ -131,6 +167,5 @@ namespace BusinessTier
             return GuidString;
         }
 
-       
     }
 }

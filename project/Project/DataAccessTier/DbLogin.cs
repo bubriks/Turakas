@@ -4,11 +4,11 @@ using System.Data.SqlClient;
 
 namespace DataAccessTier
 {
-    public class DBLogin
+    public class DbLogin
     {
         private SqlConnection con = null;
 
-        public DBLogin()
+        public DbLogin()
         {
             con = DbConnection.GetInstance().GetConnection();
         }
@@ -45,39 +45,77 @@ namespace DataAccessTier
         /// <returns>Returns the ID assigned to the login by the database or -1 if it fails and prints error in console</returns>
         public int CreateLogin(Login login, SqlTransaction ts)
         {
-            try
+
+            string stmtEmail = "SELECT * FROM Login WHERE email = '"+login.Email+"';";
+            SqlDataReader readerEmail = new SqlCommand(stmtEmail, con, ts).ExecuteReader();
+
+            string stmtUsername = "SELECT * FROM Login WHERE username = '" + login.Username + "';";
+            SqlDataReader readerUsername = new SqlCommand(stmtUsername, con, ts).ExecuteReader();
+
+            if (stmtEmail != null)
             {
-                string stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() INSERT INTO Login(username, salt, passwordHash, email)" +
-                    "OUTPUT INSERTED.loginID values ('" + login.Username + "', @salt, HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(@salt AS NVARCHAR(36))), '" + login.Email + "')";
-                SqlDataReader reader = new SqlCommand(stmt, con, ts).ExecuteReader();
-                reader.Read();
-                return reader.GetInt32(0);
+                throw new Exception("Email is already being used!");
             }
-            catch (Exception e)
+            else
+                if (stmtUsername != null)
             {
-                Console.WriteLine(e);
-                return -1;
+                throw new Exception("Username is already being used!");
+            }
+            else
+            {
+                try
+                {
+                    string stmt1 = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() INSERT INTO Login(username, salt, passwordHash, email)" +
+                        "OUTPUT INSERTED.loginID values ('" + login.Username + "', @salt, HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(@salt AS NVARCHAR(36))), '" + login.Email + "')";
+                    SqlDataReader reader1 = new SqlCommand(stmt1, con, ts).ExecuteReader();
+                    reader1.Read();
+                    return reader1.GetInt32(0);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return -1;
+                }
             }
         }
 
         /// <summary>
-        /// Find loginInfo by ID
+        /// Find loginInfo by multiple parameters
         /// </summary>
-        /// <param name="id">id of info you want to find</param>
-        /// <returns>Returns Login object</returns>
-        public Login ReadLogin(int loginId)
+        /// <param name="what">string of what you are looking for</param>
+        /// <param name="by">type by which the search should be done (1 = id, 2 = username, 3 = email)</param>
+        /// <returns>Returns Login object and it's id</returns>
+        public Tuple<Login, int> ReadLogin(string what, int by)
         {
+
+            string stmt;
+
+            switch(by)
+            {
+                case 1:
+                    stmt = "SELECT * FROM Login WHERE loginId = " + what;
+                    break;
+                case 2:
+                    stmt = "SELECT * FROM Login WHERE username = " + what;
+                    break;
+                case 3:
+                    stmt = "SELECT * FROM Login WHERE email = " + what;
+                    break;
+                default:
+                    throw new Exception("'by' parameter must be either 1,2 or 3");
+            }
+
             try
             {
-                string stmt = "SELECT * FROM Login WHERE loginID = " + loginId;
                 SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
                 reader.Read();
-                return new Login(reader.GetString(0), reader.GetString(1), reader.GetString(2));
+
+                Login login1 = new Login(reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                return Tuple.Create(login1, reader.GetInt32(0));
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                return null;
+                throw (e);
             }
         }
 

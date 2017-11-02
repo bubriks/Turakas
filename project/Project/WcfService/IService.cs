@@ -47,5 +47,29 @@ namespace WcfService
         [OperationContract]
         bool DeleteMessage(int id);
         #endregion
+
+        #region login
+        [OperationContract]
+        bool CreateAccount(Login login);
+        [OperationContract]
+        bool Authenticate(Login login);
+        [OperationContract]
+        bool ForgotDetails(string email);
+        [OperationContract]
+        Tuple<Login, int> FindAccount(string what, int by);
+        [OperationContract]
+        bool UpdateAccount(int id, Login login);
+        [OperationContract]
+        bool DeleteAccount(Login login);
+        #endregion
+
+        #region profile
+        [OperationContract]
+        bool CreateProfile(Profile profile);
+        [OperationContract]
+        Profile ReadProfile(string what, int by);
+        [OperationContract]
+        bool UpdateProfile(int profileId, Profile profile);
+        #endregion
     }
 }

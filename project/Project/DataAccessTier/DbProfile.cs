@@ -4,11 +4,11 @@ using System.Data.SqlClient;
 
 namespace DataAccessTier
 {
-    class DBProfile
+    public class DbProfile
     {
         private SqlConnection con = null;
 
-        public DBProfile()
+        public DbProfile()
         {
             con = DbConnection.GetInstance().GetConnection();
         }
@@ -23,7 +23,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "INSERT INTO Profile(profileID, statusId, nickname)" +
-                    " values (" + profile.ProfileID + ", " + profile.StatusID + ", '" + profile.Nickname + "')";
+                    " VALUES (" + profile.ProfileID + ", " + profile.StatusID + ", '" + profile.Nickname + "')";
                 SqlCommand cmd = new SqlCommand(stmt, con);
                 cmd.ExecuteNonQuery();
                 return true;
@@ -38,13 +38,26 @@ namespace DataAccessTier
         /// <summary>
         /// Returns Profile
         /// </summary>
-        /// <param name="profileId"></param>
+        /// <param name="what">string of what you are looking for</param>
+        /// <param name="by">type by which the search should be done (1 = id, 2 = nickname)</param>
         /// <returns>Returns null if there is no such profile, and prints error in console, if any</returns>
-        public Profile ReadProfile(int profileId)
+        public Profile ReadProfile(string what, int by)
         {
+            string stmt;
+            switch (by)
+            {
+                case 1:
+                    stmt = "SELECT * FROM Profile where profileID = " + what;
+                    break;
+                case 2:
+                    stmt = "SELECT * FROM Profile WHERE nickname = " + what;
+                    break;
+                default:
+                    throw new Exception("'by' parameter must be either 1 or 2");
+            }
+
             try
             {
-                string stmt = "SELECT * FROM Profile where profileID = " + profileId;
                 SqlCommand cmd = new SqlCommand(stmt, con);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
