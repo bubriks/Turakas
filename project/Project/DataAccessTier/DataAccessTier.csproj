@@ -45,12 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbArtist.cs" />
     <Compile Include="DbChat.cs" />
     <Compile Include="DbConnection.cs" />
+    <Compile Include="DbGenre.cs" />
     <Compile Include="DBLogin.cs" />
     <Compile Include="DbMessage.cs" />
     <Compile Include="DBProfile.cs" />
-    <Compile Include="DBSong.cs" />
+    <Compile Include="DbSong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Artist.cs" />
     <Compile Include="Chat.cs" />
+    <Compile Include="Genre.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Profile.cs" />

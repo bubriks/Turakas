@@ -12,6 +12,17 @@ namespace DataTier
         private string name;
         private int duration;
         private string url;
+
+        public Song(int songID, int activityID, int artistID, int genreID, string name, int duration, string url)
+        {
+            songID = this.songID;
+            activityID = this.activityID;
+            artistID = this.artistID;
+            genreID = this.genreID;
+            name = this.name;
+            duration = this.duration;
+            url = this.url;
+        }
         
         [DataMember]
         public int SongId

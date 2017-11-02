@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using DataTier;
 
 namespace DataAccessTier
 {
@@ -20,6 +21,22 @@ namespace DataAccessTier
             cmd.Parameters.AddWithValue("@4", duration);
             cmd.Parameters.AddWithValue("@5", url);
             cmd.ExecuteNonQuery();
+        }
+
+        public Song FindSongByURL(string url)
+        {
+            Song song = null;
+            string stmt = "SELECT * FROM Song WHERE url = @0";
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            cmd.Parameters.AddWithValue("@0", url);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                song = new Song(reader.GetInt32(reader.GetOrdinal("songID")), reader.GetInt32(reader.GetOrdinal("activityID")), 
+                    reader.GetInt32(reader.GetOrdinal("artistID")), reader.GetInt32(reader.GetOrdinal("genreID")), reader.GetString(reader.GetOrdinal("name")), 
+                    reader.GetInt32(reader.GetOrdinal("duration")), reader.GetString(reader.GetOrdinal("url")));
+            }
+            return song;
         }
     }
 }
