@@ -17,7 +17,7 @@ namespace BusinessTier
             dbLogin = new DbLogin();
         }
 
-            public bool CreateAccount(Login login)
+            public bool CreateLogin(Login login)
         {
             string tempPass = RandomPassword();
             string subject = ("Your Temporary Password is:");
@@ -93,17 +93,17 @@ namespace BusinessTier
             return false;
         }
 
-        public Tuple<Login, int> FindAccount(string what, int by)
+        public Tuple<Login, int> FindLogin(string what, int by)
         {
             return dbLogin.ReadLogin(what, by);
         }
         
-        public bool UpdateAccount(int id, Login login)
+        public bool UpdateLogin(int id, Login login)
         {
             return dbLogin.UpdateLogin(id, login);
         }
 
-        public bool DeleteAccount(Login login)
+        public bool DeleteLogin(Login login)
         {
             int id = dbLogin.ReadLogin(login.Email, 3).Item2;
 

@@ -50,17 +50,17 @@ namespace WcfService
 
         #region login
         [OperationContract]
-        bool CreateAccount(Login login);
+        bool CreateLogin(Login login);
         [OperationContract]
         bool Authenticate(Login login);
         [OperationContract]
         bool ForgotDetails(string email);
         [OperationContract]
-        Tuple<Login, int> FindAccount(string what, int by);
+        Tuple<Login, int> FindLogin(string what, int by);
         [OperationContract]
-        bool UpdateAccount(int id, Login login);
+        bool UpdateLogin(int id, Login login);
         [OperationContract]
-        bool DeleteAccount(Login login);
+        bool DeleteLogin(Login login);
         #endregion
 
         #region profile
