@@ -13,6 +13,8 @@ namespace WcfService
     {
         IChatController chatController = new ChatController();
         IMessageController messageController = new MessageController();
+        IProfileController profileController = new ProfileController();
+        ILoginController loginController = new LoginController();
 
         #region chat
         public Chat CreateChat(Chat chat, int profileId)
@@ -70,6 +72,48 @@ namespace WcfService
         public bool DeleteMessage(int id)
         {
             return messageController.DeleteMessage(id);
+        }
+        #endregion
+
+        #region login
+        public bool CreateAccount(Login login)
+        {
+            return loginController.CreateAccount(login);
+        }
+        public bool Authenticate(Login login)
+        {
+            return loginController.Authenticate(login);
+        }
+        public bool ForgotDetails(string email)
+        {
+            return loginController.ForgotDetails(email);
+        }
+        public Tuple<Login, int> FindAccount(string what, int by)
+        {
+            return loginController.FindAccount(what, by);
+        }
+        public bool UpdateAccount(int id, Login login)
+        {
+            return loginController.UpdateAccount(id, login);
+        }
+        public bool DeleteAccount(Login login)
+        {
+            return loginController.DeleteAccount(login);
+        }
+        #endregion
+
+        #region profile
+        public bool CreateProfile(Profile profile)
+        {
+            return profileController.CreateProfile(profile);
+        }
+        public Profile ReadProfile(string what, int by)
+        {
+            return profileController.ReadProfile(what, by);
+        }
+        public bool UpdateProfile(int profileId, Profile profile)
+        {
+            return profileController.UpdateProfile(profileId, profile);
         }
         #endregion
     }
