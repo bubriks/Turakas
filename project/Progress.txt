@@ -1,0 +1,32 @@
+System development
+	DBModel
+	Domain model
+	Backlog
+		Design class diagram
+	Use cases
+	Mockup
+		Report
+	Problem statement
+Technology
+
+Programing
+	DB scripts
+	Music player (local)
+	Chat
+		*Manage chat
+		*Get chats by name
+		*Get persons in chat
+		*Get persons chats
+		*Add/remove person from chat
+
+		*Create message
+		*Get messages
+		*Remove message
+	Profile
+		*Manage login
+		*Authenticate
+		*Forgot login details
+
+		*Manage profile
+	Playlist
+	
