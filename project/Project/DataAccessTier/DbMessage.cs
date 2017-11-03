@@ -19,33 +19,24 @@ namespace DataAccessTier
 
         public void CreateMessage(int profileId, String text, int chatId)
         {
-            string stmt = "INSERT INTO Activity (profileID, timeStamp) OUTPUT INSERTED.activityID values (@0, @1)";
-            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-            cmd.Parameters.AddWithValue("@0", profileId);
-            cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            SqlDataReader reader = cmd.ExecuteReader();
-            try
-            {
-                reader.Read();
-                stmt = "INSERT INTO Text(activityID, message) OUTPUT INSERTED.textID values(@0, @1)";
-                cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-                cmd.Parameters.AddWithValue("@0", Int32.Parse(reader["activityID"].ToString()));
-                cmd.Parameters.AddWithValue("@1", text);
-                reader.Close();
-                reader = cmd.ExecuteReader();
+            string stmt = "DECLARE @id int;" +
+                "INSERT INTO Activity (profileID, timeStamp) VALUES(@0, @1);" +
+                "SET @id = @@IDENTITY;" +
 
-                reader.Read();
-                stmt = "INSERT INTO Message (textID, chatID) values (@0, @1)";
-                cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-                cmd.Parameters.AddWithValue("@0", Int32.Parse(reader["textID"].ToString()));
-                cmd.Parameters.AddWithValue("@1", chatId);
-                reader.Close();
-                cmd.ExecuteNonQuery();
-            }
-            catch(Exception e)
+                "INSERT INTO Text (activityID, message) values(@id, @2);" +
+                "SET @id = @@IDENTITY;" +
+
+                "INSERT INTO Message (textID, chatID) values (@id, @3);";
+
+            using (SqlCommand cmd = con.GetConnection().CreateCommand())
             {
-                reader.Close();
-                throw e;
+                cmd.CommandText = stmt;
+                cmd.Parameters.AddWithValue("@0", profileId);
+                cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                cmd.Parameters.AddWithValue("@2", text);
+                cmd.Parameters.AddWithValue("@3", chatId);
+                cmd.Transaction = con.GetTransaction();
+                cmd.ExecuteNonQuery();
             }
         }
         
