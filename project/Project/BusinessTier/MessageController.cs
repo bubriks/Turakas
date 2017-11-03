@@ -27,7 +27,12 @@ namespace BusinessTier
             try
             {
                 //passes the transaction further to DataAccessTier
-                dbMessage.CreateMessage(profileId, text, chatId);
+                if (dbMessage.CreateMessage(profileId, text, chatId) == 0)
+                {
+                    //transaction is rolled back and false is returned if no changes were made
+                    con.Rollback();
+                    return false;
+                }
                 //if everything goes as planed than commited
                 con.Commit();
                 //returns true if everything went correctly

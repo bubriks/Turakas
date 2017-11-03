@@ -17,7 +17,7 @@ namespace DataAccessTier
             con = DbConnection.GetInstance();
         }
 
-        public void CreateMessage(int profileId, String text, int chatId)
+        public int CreateMessage(int profileId, String text, int chatId)
         {
             string stmt = "DECLARE @id int;" +
                 "INSERT INTO Activity (profileID, timeStamp) VALUES(@0, @1);" +
@@ -36,7 +36,8 @@ namespace DataAccessTier
                 cmd.Parameters.AddWithValue("@2", text);
                 cmd.Parameters.AddWithValue("@3", chatId);
                 cmd.Transaction = con.GetTransaction();
-                cmd.ExecuteNonQuery();
+                int rows = cmd.ExecuteNonQuery();
+                return rows;
             }
         }
         
