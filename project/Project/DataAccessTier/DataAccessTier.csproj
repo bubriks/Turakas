@@ -52,6 +52,7 @@
     <Compile Include="DbGenre.cs" />
     <Compile Include="DbLogin.cs" />
     <Compile Include="DbMessage.cs" />
+    <Compile Include="DbNotification.cs" />
     <Compile Include="DbProfile.cs" />
     <Compile Include="DbRelationships.cs" />
     <Compile Include="DbSong.cs" />

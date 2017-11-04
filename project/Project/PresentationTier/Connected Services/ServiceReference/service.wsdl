@@ -5,7 +5,6 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/DataTier" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_CreateChat_InputMessage">
@@ -62,12 +61,6 @@
   <wsdl:message name="IService_CreateMessage_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateMessageResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_GetMessage_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetMessage" />
-  </wsdl:message>
-  <wsdl:message name="IService_GetMessage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetMessageResponse" />
-  </wsdl:message>
   <wsdl:message name="IService_GetMessages_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMessages" />
   </wsdl:message>
@@ -79,60 +72,6 @@
   </wsdl:message>
   <wsdl:message name="IService_DeleteMessage_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMessageResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService_CreateAccount_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateAccount" />
-  </wsdl:message>
-  <wsdl:message name="IService_CreateAccount_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateAccountResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService_Authenticate_InputMessage">
-    <wsdl:part name="parameters" element="tns:Authenticate" />
-  </wsdl:message>
-  <wsdl:message name="IService_Authenticate_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService_ForgotDetails_InputMessage">
-    <wsdl:part name="parameters" element="tns:ForgotDetails" />
-  </wsdl:message>
-  <wsdl:message name="IService_ForgotDetails_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ForgotDetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService_FindAccount_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindAccount" />
-  </wsdl:message>
-  <wsdl:message name="IService_FindAccount_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindAccountResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService_UpdateAccount_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateAccount" />
-  </wsdl:message>
-  <wsdl:message name="IService_UpdateAccount_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateAccountResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService_DeleteAccount_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAccount" />
-  </wsdl:message>
-  <wsdl:message name="IService_DeleteAccount_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAccountResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService_CreateProfile_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateProfile" />
-  </wsdl:message>
-  <wsdl:message name="IService_CreateProfile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateProfileResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService_ReadProfile_InputMessage">
-    <wsdl:part name="parameters" element="tns:ReadProfile" />
-  </wsdl:message>
-  <wsdl:message name="IService_ReadProfile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ReadProfileResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService_UpdateProfile_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateProfile" />
-  </wsdl:message>
-  <wsdl:message name="IService_UpdateProfile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateProfileResponse" />
   </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="CreateChat">
@@ -171,10 +110,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateMessage" message="tns:IService_CreateMessage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateMessageResponse" message="tns:IService_CreateMessage_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetMessage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMessage" message="tns:IService_GetMessage_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMessageResponse" message="tns:IService_GetMessage_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetMessages">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMessages" message="tns:IService_GetMessages_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMessagesResponse" message="tns:IService_GetMessages_OutputMessage" />
@@ -182,42 +117,6 @@
     <wsdl:operation name="DeleteMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteMessage" message="tns:IService_DeleteMessage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteMessageResponse" message="tns:IService_DeleteMessage_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CreateAccount">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateAccount" message="tns:IService_CreateAccount_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateAccountResponse" message="tns:IService_CreateAccount_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Authenticate">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/Authenticate" message="tns:IService_Authenticate_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/AuthenticateResponse" message="tns:IService_Authenticate_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ForgotDetails">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/ForgotDetails" message="tns:IService_ForgotDetails_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/ForgotDetailsResponse" message="tns:IService_ForgotDetails_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="FindAccount">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/FindAccount" message="tns:IService_FindAccount_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/FindAccountResponse" message="tns:IService_FindAccount_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateAccount">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/UpdateAccount" message="tns:IService_UpdateAccount_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/UpdateAccountResponse" message="tns:IService_UpdateAccount_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteAccount">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteAccount" message="tns:IService_DeleteAccount_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteAccountResponse" message="tns:IService_DeleteAccount_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CreateProfile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateProfile" message="tns:IService_CreateProfile_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateProfileResponse" message="tns:IService_CreateProfile_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ReadProfile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/ReadProfile" message="tns:IService_ReadProfile_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/ReadProfileResponse" message="tns:IService_ReadProfile_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateProfile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/UpdateProfile" message="tns:IService_UpdateProfile_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/UpdateProfileResponse" message="tns:IService_UpdateProfile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -303,15 +202,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetMessage">
-      <soap:operation soapAction="http://tempuri.org/IService/GetMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetMessages">
       <soap:operation soapAction="http://tempuri.org/IService/GetMessages" style="document" />
       <wsdl:input>
@@ -323,87 +213,6 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteMessage">
       <soap:operation soapAction="http://tempuri.org/IService/DeleteMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CreateAccount">
-      <soap:operation soapAction="http://tempuri.org/IService/CreateAccount" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Authenticate">
-      <soap:operation soapAction="http://tempuri.org/IService/Authenticate" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ForgotDetails">
-      <soap:operation soapAction="http://tempuri.org/IService/ForgotDetails" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="FindAccount">
-      <soap:operation soapAction="http://tempuri.org/IService/FindAccount" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateAccount">
-      <soap:operation soapAction="http://tempuri.org/IService/UpdateAccount" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteAccount">
-      <soap:operation soapAction="http://tempuri.org/IService/DeleteAccount" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CreateProfile">
-      <soap:operation soapAction="http://tempuri.org/IService/CreateProfile" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ReadProfile">
-      <soap:operation soapAction="http://tempuri.org/IService/ReadProfile" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateProfile">
-      <soap:operation soapAction="http://tempuri.org/IService/UpdateProfile" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

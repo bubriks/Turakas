@@ -16,6 +16,7 @@ namespace WcfService
         IProfileController profileController = new ProfileController();
         ILoginController loginController = new LoginController();
         IRelationshipController relationshipController = new RelationshipController();
+        INotificationController notificationController = new NotificationController();
 
         #region chat
         public Chat CreateChat(Chat chat, int profileId)
@@ -89,7 +90,7 @@ namespace WcfService
         {
             return loginController.ForgotDetails(email);
         }
-        public Tuple<Login, int> FindLogin(string what, int by)
+        public Login FindLogin(string what, int by)
         {
             return loginController.FindLogin(what, by);
         }
@@ -138,6 +139,30 @@ namespace WcfService
         {
             return relationshipController.DeleteRelationship(relationShip);
         }
+        #endregion
+
+        #region notification
+        
+        bool IService.CreateNotification(Notification notification)
+        {
+            return notificationController.CreateNotification(notification);
+        }
+
+        List<Notification> IService.ReadNotification(int profileId)
+        {
+            return notificationController.ReadNotification(profileId);
+        }
+
+        bool IService.DeleteNotification(Notification notification)
+        {
+            return notificationController.DeleteNotification(notification);
+        }
+
+        bool IService.DeleteAllNotifications(int profileId)
+        {
+            return notificationController.DeleteAllNotifications(profileId);
+        }
+
         #endregion
     }
 }

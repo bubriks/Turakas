@@ -260,83 +260,6 @@ namespace PresentationTier.ServiceReference {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Login", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
-    [System.SerializableAttribute()]
-    public partial class Login : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IService")]
     public interface IService {
@@ -395,12 +318,6 @@ namespace PresentationTier.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateMessage", ReplyAction="http://tempuri.org/IService/CreateMessageResponse")]
         System.Threading.Tasks.Task<bool> CreateMessageAsync(int profileId, string text, int chatId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMessage", ReplyAction="http://tempuri.org/IService/GetMessageResponse")]
-        PresentationTier.ServiceReference.Message GetMessage(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMessage", ReplyAction="http://tempuri.org/IService/GetMessageResponse")]
-        System.Threading.Tasks.Task<PresentationTier.ServiceReference.Message> GetMessageAsync(int id);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMessages", ReplyAction="http://tempuri.org/IService/GetMessagesResponse")]
         PresentationTier.ServiceReference.Message[] GetMessages(int chatId);
         
@@ -412,60 +329,6 @@ namespace PresentationTier.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteMessage", ReplyAction="http://tempuri.org/IService/DeleteMessageResponse")]
         System.Threading.Tasks.Task<bool> DeleteMessageAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateAccount", ReplyAction="http://tempuri.org/IService/CreateAccountResponse")]
-        bool CreateAccount(PresentationTier.ServiceReference.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateAccount", ReplyAction="http://tempuri.org/IService/CreateAccountResponse")]
-        System.Threading.Tasks.Task<bool> CreateAccountAsync(PresentationTier.ServiceReference.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Authenticate", ReplyAction="http://tempuri.org/IService/AuthenticateResponse")]
-        bool Authenticate(PresentationTier.ServiceReference.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Authenticate", ReplyAction="http://tempuri.org/IService/AuthenticateResponse")]
-        System.Threading.Tasks.Task<bool> AuthenticateAsync(PresentationTier.ServiceReference.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ForgotDetails", ReplyAction="http://tempuri.org/IService/ForgotDetailsResponse")]
-        bool ForgotDetails(string email);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ForgotDetails", ReplyAction="http://tempuri.org/IService/ForgotDetailsResponse")]
-        System.Threading.Tasks.Task<bool> ForgotDetailsAsync(string email);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/FindAccount", ReplyAction="http://tempuri.org/IService/FindAccountResponse")]
-        System.Tuple<PresentationTier.ServiceReference.Login, int> FindAccount(string what, int by);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/FindAccount", ReplyAction="http://tempuri.org/IService/FindAccountResponse")]
-        System.Threading.Tasks.Task<System.Tuple<PresentationTier.ServiceReference.Login, int>> FindAccountAsync(string what, int by);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateAccount", ReplyAction="http://tempuri.org/IService/UpdateAccountResponse")]
-        bool UpdateAccount(int id, PresentationTier.ServiceReference.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateAccount", ReplyAction="http://tempuri.org/IService/UpdateAccountResponse")]
-        System.Threading.Tasks.Task<bool> UpdateAccountAsync(int id, PresentationTier.ServiceReference.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteAccount", ReplyAction="http://tempuri.org/IService/DeleteAccountResponse")]
-        bool DeleteAccount(PresentationTier.ServiceReference.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteAccount", ReplyAction="http://tempuri.org/IService/DeleteAccountResponse")]
-        System.Threading.Tasks.Task<bool> DeleteAccountAsync(PresentationTier.ServiceReference.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateProfile", ReplyAction="http://tempuri.org/IService/CreateProfileResponse")]
-        bool CreateProfile(PresentationTier.ServiceReference.Profile profile);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateProfile", ReplyAction="http://tempuri.org/IService/CreateProfileResponse")]
-        System.Threading.Tasks.Task<bool> CreateProfileAsync(PresentationTier.ServiceReference.Profile profile);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ReadProfile", ReplyAction="http://tempuri.org/IService/ReadProfileResponse")]
-        PresentationTier.ServiceReference.Profile ReadProfile(string what, int by);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ReadProfile", ReplyAction="http://tempuri.org/IService/ReadProfileResponse")]
-        System.Threading.Tasks.Task<PresentationTier.ServiceReference.Profile> ReadProfileAsync(string what, int by);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateProfile", ReplyAction="http://tempuri.org/IService/UpdateProfileResponse")]
-        bool UpdateProfile(int profileId, PresentationTier.ServiceReference.Profile profile);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateProfile", ReplyAction="http://tempuri.org/IService/UpdateProfileResponse")]
-        System.Threading.Tasks.Task<bool> UpdateProfileAsync(int profileId, PresentationTier.ServiceReference.Profile profile);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -567,14 +430,6 @@ namespace PresentationTier.ServiceReference {
             return base.Channel.CreateMessageAsync(profileId, text, chatId);
         }
         
-        public PresentationTier.ServiceReference.Message GetMessage(int id) {
-            return base.Channel.GetMessage(id);
-        }
-        
-        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.Message> GetMessageAsync(int id) {
-            return base.Channel.GetMessageAsync(id);
-        }
-        
         public PresentationTier.ServiceReference.Message[] GetMessages(int chatId) {
             return base.Channel.GetMessages(chatId);
         }
@@ -589,78 +444,6 @@ namespace PresentationTier.ServiceReference {
         
         public System.Threading.Tasks.Task<bool> DeleteMessageAsync(int id) {
             return base.Channel.DeleteMessageAsync(id);
-        }
-        
-        public bool CreateAccount(PresentationTier.ServiceReference.Login login) {
-            return base.Channel.CreateAccount(login);
-        }
-        
-        public System.Threading.Tasks.Task<bool> CreateAccountAsync(PresentationTier.ServiceReference.Login login) {
-            return base.Channel.CreateAccountAsync(login);
-        }
-        
-        public bool Authenticate(PresentationTier.ServiceReference.Login login) {
-            return base.Channel.Authenticate(login);
-        }
-        
-        public System.Threading.Tasks.Task<bool> AuthenticateAsync(PresentationTier.ServiceReference.Login login) {
-            return base.Channel.AuthenticateAsync(login);
-        }
-        
-        public bool ForgotDetails(string email) {
-            return base.Channel.ForgotDetails(email);
-        }
-        
-        public System.Threading.Tasks.Task<bool> ForgotDetailsAsync(string email) {
-            return base.Channel.ForgotDetailsAsync(email);
-        }
-        
-        public System.Tuple<PresentationTier.ServiceReference.Login, int> FindAccount(string what, int by) {
-            return base.Channel.FindAccount(what, by);
-        }
-        
-        public System.Threading.Tasks.Task<System.Tuple<PresentationTier.ServiceReference.Login, int>> FindAccountAsync(string what, int by) {
-            return base.Channel.FindAccountAsync(what, by);
-        }
-        
-        public bool UpdateAccount(int id, PresentationTier.ServiceReference.Login login) {
-            return base.Channel.UpdateAccount(id, login);
-        }
-        
-        public System.Threading.Tasks.Task<bool> UpdateAccountAsync(int id, PresentationTier.ServiceReference.Login login) {
-            return base.Channel.UpdateAccountAsync(id, login);
-        }
-        
-        public bool DeleteAccount(PresentationTier.ServiceReference.Login login) {
-            return base.Channel.DeleteAccount(login);
-        }
-        
-        public System.Threading.Tasks.Task<bool> DeleteAccountAsync(PresentationTier.ServiceReference.Login login) {
-            return base.Channel.DeleteAccountAsync(login);
-        }
-        
-        public bool CreateProfile(PresentationTier.ServiceReference.Profile profile) {
-            return base.Channel.CreateProfile(profile);
-        }
-        
-        public System.Threading.Tasks.Task<bool> CreateProfileAsync(PresentationTier.ServiceReference.Profile profile) {
-            return base.Channel.CreateProfileAsync(profile);
-        }
-        
-        public PresentationTier.ServiceReference.Profile ReadProfile(string what, int by) {
-            return base.Channel.ReadProfile(what, by);
-        }
-        
-        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.Profile> ReadProfileAsync(string what, int by) {
-            return base.Channel.ReadProfileAsync(what, by);
-        }
-        
-        public bool UpdateProfile(int profileId, PresentationTier.ServiceReference.Profile profile) {
-            return base.Channel.UpdateProfile(profileId, profile);
-        }
-        
-        public System.Threading.Tasks.Task<bool> UpdateProfileAsync(int profileId, PresentationTier.ServiceReference.Profile profile) {
-            return base.Channel.UpdateProfileAsync(profileId, profile);
         }
     }
 }

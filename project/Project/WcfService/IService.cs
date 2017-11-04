@@ -56,7 +56,7 @@ namespace WcfService
         [OperationContract]
         bool ForgotDetails(string email);
         [OperationContract]
-        Tuple<Login, int> FindLogin(string what, int by);
+        Login FindLogin(string what, int by);
         [OperationContract]
         bool UpdateLogin(int id, Login login);
         [OperationContract]
@@ -84,6 +84,22 @@ namespace WcfService
 
         [OperationContract]
         bool DeleteRelationship(RelationShip relationShip);
+        #endregion
+
+        #region notification
+
+        [OperationContract]
+        bool CreateNotification(Notification notification);
+
+        [OperationContract]
+        List<Notification> ReadNotification(int profileId);
+
+        [OperationContract]
+        bool DeleteNotification(Notification notification);
+
+        [OperationContract]
+        bool DeleteAllNotifications(int profileId);
+
         #endregion
     }
 }
