@@ -16,21 +16,22 @@ namespace PresentationTier
         {
             if (!IsPostBack)
             {
-                List<Chat> chats = service.GetChatsByName(TextBox1.Text).ToList();
-                foreach (Chat chat in chats)
+                List<Message> mesagges = service.GetMessages(11).ToList();
+                foreach (Message message in mesagges)
                 {
-                    ListBox1.Items.Add(chat.Name);
+                    ListBox1.Items.Add(message.Text);
                 }
             }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            service.CreateMessage(1, TextBox1.Text, 11);
             ListBox1.Items.Clear();
-            List<Chat> chats = service.GetChatsByName(TextBox1.Text).ToList();
-            foreach(Chat chat in chats)
+            List<Message> mesagges = service.GetMessages(11).ToList();
+            foreach (Message message in mesagges)
             {
-                ListBox1.Items.Add(chat.Name);
+                ListBox1.Items.Add(message.Text);
             }
         }
     }

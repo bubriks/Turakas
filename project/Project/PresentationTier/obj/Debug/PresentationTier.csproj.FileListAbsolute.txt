@@ -7,3 +7,12 @@ C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\P
 C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.csproj.CoreCompileInputs.cache
 C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.pdb
+C:\Users\bubri\Desktop\sdfdsf\Project\PresentationTier\bin\PresentationTier.dll.config
+C:\Users\bubri\Desktop\sdfdsf\Project\PresentationTier\bin\PresentationTier.dll
+C:\Users\bubri\Desktop\sdfdsf\Project\PresentationTier\bin\PresentationTier.pdb
+C:\Users\bubri\Desktop\sdfdsf\Project\PresentationTier\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\bubri\Desktop\sdfdsf\Project\PresentationTier\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\bubri\Desktop\sdfdsf\Project\PresentationTier\obj\Debug\PresentationTier.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Desktop\sdfdsf\Project\PresentationTier\obj\Debug\PresentationTier.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Desktop\sdfdsf\Project\PresentationTier\obj\Debug\PresentationTier.dll
+C:\Users\bubri\Desktop\sdfdsf\Project\PresentationTier\obj\Debug\PresentationTier.pdb
