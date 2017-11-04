@@ -6,6 +6,10 @@ namespace BusinessTier
     public class ProfileController : IProfileController
     {
         private DbProfile dbProfile;
+        public ProfileController()
+        {
+            dbProfile = new DbProfile();
+        }
 
         public bool CreateProfile(Profile profile)
         {
