@@ -15,6 +15,7 @@ namespace WcfService
         IMessageController messageController = new MessageController();
         IProfileController profileController = new ProfileController();
         ILoginController loginController = new LoginController();
+        IRelationshipController relationshipController = new RelationshipController();
 
         #region chat
         public Chat CreateChat(Chat chat, int profileId)
@@ -114,6 +115,28 @@ namespace WcfService
         public bool UpdateProfile(int profileId, Profile profile)
         {
             return profileController.UpdateProfile(profileId, profile);
+        }
+        #endregion
+
+        #region relationship
+        public void CreateRelationship(int profileId, RelationShip relationShip)
+        {
+            relationshipController.CreateRelationship(profileId, relationShip);
+        }
+
+        public List<RelationShip> ReadRelationship(string what, int by)
+        {
+            return relationshipController.ReadRelationship(what, by);
+        }
+
+        public bool UpdateRelationship(int id, RelationShip newRelationship)
+        {
+            return relationshipController.UpdateRelationship(id, newRelationship);
+        }
+
+        public bool DeleteRelationship(RelationShip relationShip)
+        {
+            return relationshipController.DeleteRelationship(relationShip);
         }
         #endregion
     }

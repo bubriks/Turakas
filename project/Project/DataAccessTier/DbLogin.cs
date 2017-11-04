@@ -1,5 +1,6 @@
 ﻿using DataTier;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace DataAccessTier
@@ -84,10 +85,9 @@ namespace DataAccessTier
         /// </summary>
         /// <param name="what">string of what you are looking for</param>
         /// <param name="by">type by which the search should be done (1 = id, 2 = username, 3 = email)</param>
-        /// <returns>Returns Login object and it's id</returns>
-        public Tuple<Login, int> ReadLogin(string what, int by)
+        /// <returns>Returns list of Login object and it's id</returns>
+        public Login ReadLogin(string what, int by)
         {
-
             string stmt;
 
             switch(by)
@@ -108,10 +108,10 @@ namespace DataAccessTier
             try
             {
                 SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
-                reader.Read();
+                    Login login1 = new Login(reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    login1.LoginId = reader.GetInt32(0);
 
-                Login login1 = new Login(reader.GetString(1), reader.GetString(2), reader.GetString(3));
-                return Tuple.Create(login1, reader.GetInt32(0));
+                return login1;
             }
             catch (Exception e)
             {

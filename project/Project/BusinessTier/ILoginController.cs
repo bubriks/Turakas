@@ -1,5 +1,4 @@
-﻿using System;
-using DataTier;
+﻿using DataTier;
 namespace BusinessTier
 {
     public interface ILoginController
@@ -31,7 +30,7 @@ namespace BusinessTier
         /// <param name="what">string of what you are looking for</param>
         /// <param name="by">type by which the search should be done (1 = id, 2 = username, 3 = email)</param>
         /// <returns></returns>
-        Tuple<Login, int> FindLogin(string what, int by);
+        Login FindLogin(string what, int by);
 
         /// <summary>
         /// Updates LoginInfo

@@ -51,11 +51,13 @@
     <Compile Include="ILoginController.cs" />
     <Compile Include="IMessageController.cs" />
     <Compile Include="IProfileController.cs" />
+    <Compile Include="IRelationshipController.cs" />
     <Compile Include="ISongController.cs" />
     <Compile Include="LoginController.cs" />
     <Compile Include="MessageController.cs" />
     <Compile Include="ProfileController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelationshipController.cs" />
     <Compile Include="SongController.cs" />
   </ItemGroup>
   <ItemGroup>

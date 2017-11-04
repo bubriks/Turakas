@@ -71,5 +71,19 @@ namespace WcfService
         [OperationContract]
         bool UpdateProfile(int profileId, Profile profile);
         #endregion
+
+        #region relationship
+        [OperationContract]
+        void CreateRelationship(int profileId, RelationShip relationShip);
+
+        [OperationContract]
+        List<RelationShip> ReadRelationship(string what, int by);
+
+        [OperationContract]
+        bool UpdateRelationship(int id, RelationShip newRelationship);
+
+        [OperationContract]
+        bool DeleteRelationship(RelationShip relationShip);
+        #endregion
     }
 }
