@@ -9,7 +9,7 @@ namespace BusinessTier
         /// </summary>
         /// <param name="login"></param>
         /// <returns>Returns true if succeded, false otherwise, transaction rollsback and prints error message in console</returns>
-        bool CreateAccount(Login login);
+        bool CreateLogin(Login login);
 
         /// <summary>
         /// Authenticates given login info
@@ -31,7 +31,7 @@ namespace BusinessTier
         /// <param name="what">string of what you are looking for</param>
         /// <param name="by">type by which the search should be done (1 = id, 2 = username, 3 = email)</param>
         /// <returns></returns>
-        Tuple<Login, int> FindAccount(string what, int by);
+        Tuple<Login, int> FindLogin(string what, int by);
 
         /// <summary>
         /// Updates LoginInfo
@@ -39,7 +39,7 @@ namespace BusinessTier
         /// <param name="id">The ID of the info you want to change</param>
         /// <param name="login">New LoginInfo</param>
         /// <returns>Returns true if succeded, false otherwise and prints error in console</returns>
-        bool UpdateAccount(int id, Login login);
+        bool UpdateLogin(int id, Login login);
 
         /// <summary>
         /// Deletes LoginInfo
@@ -47,6 +47,6 @@ namespace BusinessTier
         /// </summary>
         /// <param name="login">info you want to delete</param>
         /// <returns>Returns true if succedes, false otherwise and prints error in console</returns>
-        bool DeleteAccount(Login login);
+        bool DeleteLogin(Login login);
     }
 }

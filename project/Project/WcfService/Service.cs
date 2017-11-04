@@ -76,9 +76,9 @@ namespace WcfService
         #endregion
 
         #region login
-        public bool CreateAccount(Login login)
+        public bool CreateLogin(Login login)
         {
-            return loginController.CreateAccount(login);
+            return loginController.CreateLogin(login);
         }
         public bool Authenticate(Login login)
         {
@@ -88,17 +88,17 @@ namespace WcfService
         {
             return loginController.ForgotDetails(email);
         }
-        public Tuple<Login, int> FindAccount(string what, int by)
+        public Tuple<Login, int> FindLogin(string what, int by)
         {
-            return loginController.FindAccount(what, by);
+            return loginController.FindLogin(what, by);
         }
-        public bool UpdateAccount(int id, Login login)
+        public bool UpdateLogin(int id, Login login)
         {
-            return loginController.UpdateAccount(id, login);
+            return loginController.UpdateLogin(id, login);
         }
-        public bool DeleteAccount(Login login)
+        public bool DeleteLogin(Login login)
         {
-            return loginController.DeleteAccount(login);
+            return loginController.DeleteLogin(login);
         }
         #endregion
 
