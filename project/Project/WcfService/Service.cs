@@ -168,7 +168,7 @@ namespace WcfService
         #region youtube
 
 
-        void AddSong(int activityID, int artistID, int genreID, string name, int duration, string url)
+        public void AddSong(int activityID, int artistID, int genreID, string name, int duration, string url)
         {
             songController.AddSong(activityID, artistID, genreID, name, duration, url);
         }
