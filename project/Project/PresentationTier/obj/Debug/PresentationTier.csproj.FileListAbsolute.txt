@@ -7,3 +7,12 @@ C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\P
 C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.csproj.CoreCompileInputs.cache
 C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.pdb
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\bin\PresentationTier.dll.config
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\bin\PresentationTier.dll
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\bin\PresentationTier.pdb
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.csprojResolveAssemblyReference.cache
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.csproj.CoreCompileInputs.cache
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.dll
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.pdb

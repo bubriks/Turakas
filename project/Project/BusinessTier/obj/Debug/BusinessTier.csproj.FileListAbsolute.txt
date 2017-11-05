@@ -25,3 +25,14 @@ C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataA
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.pdb
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.dll
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataTier.dll
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.pdb
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataTier.pdb
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csprojResolveAssemblyReference.cache
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csproj.CoreCompileInputs.cache
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.pdb
