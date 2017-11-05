@@ -13,6 +13,10 @@ namespace WcfService
     {
         IChatController chatController = new ChatController();
         IMessageController messageController = new MessageController();
+        IProfileController profileController = new ProfileController();
+        ILoginController loginController = new LoginController();
+        IRelationshipController relationshipController = new RelationshipController();
+        INotificationController notificationController = new NotificationController();
 
         #region chat
         public Chat CreateChat(Chat chat, int profileId)
@@ -71,6 +75,94 @@ namespace WcfService
         {
             return messageController.DeleteMessage(id);
         }
+        #endregion
+
+        #region login
+        public bool CreateLogin(Login login)
+        {
+            return loginController.CreateLogin(login);
+        }
+        public bool Authenticate(Login login)
+        {
+            return loginController.Authenticate(login);
+        }
+        public bool ForgotDetails(string email)
+        {
+            return loginController.ForgotDetails(email);
+        }
+        public Login FindLogin(string what, int by)
+        {
+            return loginController.FindLogin(what, by);
+        }
+        public bool UpdateLogin(int id, Login login)
+        {
+            return loginController.UpdateLogin(id, login);
+        }
+        public bool DeleteLogin(Login login)
+        {
+            return loginController.DeleteLogin(login);
+        }
+        #endregion
+
+        #region profile
+        public bool CreateProfile(Profile profile)
+        {
+            return profileController.CreateProfile(profile);
+        }
+        public Profile ReadProfile(string what, int by)
+        {
+            return profileController.ReadProfile(what, by);
+        }
+        public bool UpdateProfile(int profileId, Profile profile)
+        {
+            return profileController.UpdateProfile(profileId, profile);
+        }
+        #endregion
+
+        #region relationship
+        public void CreateRelationship(int profileId, RelationShip relationShip)
+        {
+            relationshipController.CreateRelationship(profileId, relationShip);
+        }
+
+        public List<RelationShip> ReadRelationship(string what, int by)
+        {
+            return relationshipController.ReadRelationship(what, by);
+        }
+
+        public bool UpdateRelationship(int id, RelationShip newRelationship)
+        {
+            return relationshipController.UpdateRelationship(id, newRelationship);
+        }
+
+        public bool DeleteRelationship(RelationShip relationShip)
+        {
+            return relationshipController.DeleteRelationship(relationShip);
+        }
+        #endregion
+
+        #region notification
+        
+        bool IService.CreateNotification(Notification notification)
+        {
+            return notificationController.CreateNotification(notification);
+        }
+
+        List<Notification> IService.ReadNotification(int profileId)
+        {
+            return notificationController.ReadNotification(profileId);
+        }
+
+        bool IService.DeleteNotification(Notification notification)
+        {
+            return notificationController.DeleteNotification(notification);
+        }
+
+        bool IService.DeleteAllNotifications(int profileId)
+        {
+            return notificationController.DeleteAllNotifications(profileId);
+        }
+
         #endregion
     }
 }

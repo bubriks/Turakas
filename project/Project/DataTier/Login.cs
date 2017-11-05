@@ -7,6 +7,7 @@ namespace DataTier
     public class Login
     {
         private String username, password, email;
+        private int loginId;
 
         public Login(String username, String password, String email)
         {
@@ -15,6 +16,8 @@ namespace DataTier
             this.email = email;
         }
 
+        [DataMember]
+        public int LoginId { get => loginId; set => loginId = value; }
         [DataMember]
         public string Username { get => username; set => username = value; }
         [DataMember]

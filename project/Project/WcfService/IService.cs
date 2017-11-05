@@ -47,5 +47,59 @@ namespace WcfService
         [OperationContract]
         bool DeleteMessage(int id);
         #endregion
+
+        #region login
+        [OperationContract]
+        bool CreateLogin(Login login);
+        [OperationContract]
+        bool Authenticate(Login login);
+        [OperationContract]
+        bool ForgotDetails(string email);
+        [OperationContract]
+        Login FindLogin(string what, int by);
+        [OperationContract]
+        bool UpdateLogin(int id, Login login);
+        [OperationContract]
+        bool DeleteLogin(Login login);
+        #endregion
+
+        #region profile
+        [OperationContract]
+        bool CreateProfile(Profile profile);
+        [OperationContract]
+        Profile ReadProfile(string what, int by);
+        [OperationContract]
+        bool UpdateProfile(int profileId, Profile profile);
+        #endregion
+
+        #region relationship
+        [OperationContract]
+        void CreateRelationship(int profileId, RelationShip relationShip);
+
+        [OperationContract]
+        List<RelationShip> ReadRelationship(string what, int by);
+
+        [OperationContract]
+        bool UpdateRelationship(int id, RelationShip newRelationship);
+
+        [OperationContract]
+        bool DeleteRelationship(RelationShip relationShip);
+        #endregion
+
+        #region notification
+
+        [OperationContract]
+        bool CreateNotification(Notification notification);
+
+        [OperationContract]
+        List<Notification> ReadNotification(int profileId);
+
+        [OperationContract]
+        bool DeleteNotification(Notification notification);
+
+        [OperationContract]
+        bool DeleteAllNotifications(int profileId);
+
+        #endregion
     }
 }
