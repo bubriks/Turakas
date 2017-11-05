@@ -15,6 +15,12 @@
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Find" />
         </p>
+        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        <asp:Button ID="VideoInfoButton" runat="server" OnClick="VideoInfoButton_Click" Text="GetVidInfo" />
+        <asp:Label ID="Label1" runat="server" Text="VidTitle:"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="HopefullyWorks"></asp:Label>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

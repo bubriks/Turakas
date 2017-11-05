@@ -33,5 +33,10 @@ namespace PresentationTier
                 ListBox1.Items.Add(chat.Name);
             }
         }
+
+        protected void VideoInfoButton_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

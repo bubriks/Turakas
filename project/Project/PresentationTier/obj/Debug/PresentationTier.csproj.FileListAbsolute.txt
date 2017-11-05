@@ -16,3 +16,15 @@ C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationT
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.csproj.CoreCompileInputs.cache
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.dll
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\PresentationTier\obj\Debug\PresentationTier.pdb
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\Google.Apis.Core.dll
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\Google.Apis.dll
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\Google.Apis.PlatformServices.dll
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\Newtonsoft.Json.dll
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\System.Net.Http.dll
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\System.Security.Cryptography.Algorithms.dll
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\System.Security.Cryptography.Encoding.dll
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\System.Security.Cryptography.Primitives.dll
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\Google.Apis.xml
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\Google.Apis.Core.xml
+C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\PresentationTier\bin\Newtonsoft.Json.xml

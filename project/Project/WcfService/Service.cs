@@ -17,6 +17,7 @@ namespace WcfService
         ILoginController loginController = new LoginController();
         IRelationshipController relationshipController = new RelationshipController();
         INotificationController notificationController = new NotificationController();
+        ISongController songController = new SongController();
 
         #region chat
         public Chat CreateChat(Chat chat, int profileId)
@@ -161,6 +162,20 @@ namespace WcfService
         bool IService.DeleteAllNotifications(int profileId)
         {
             return notificationController.DeleteAllNotifications(profileId);
+        }
+
+        #endregion
+        #region youtube
+
+
+        void AddSong(int activityID, int artistID, int genreID, string name, int duration, string url)
+        {
+            songController.AddSong(activityID, artistID, genreID, name, duration, url);
+        }
+        public string GetVideoInfo(string videoId)
+        {
+            return songController.GetVideoInfo(videoId);
+
         }
 
         #endregion

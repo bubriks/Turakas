@@ -46,11 +46,21 @@ namespace BusinessTier
             return service;
         }
        
-        public void GetVideoInfo(string videoId)
+        public string GetVideoInfo(string videoId)
         {
-            
+            string videoTitle = "";
+            string videoDescription;
             var videoRequest = ytService.Videos.List("snippet");
-            
+            videoRequest.Id = videoId;
+
+            var response = videoRequest.Execute();
+            if(response.Items.Count > 0)
+            {
+                videoTitle = response.Items[0].Snippet.Title;
+                videoDescription = response.Items[0].Snippet.Description;
+            }
+
+            return videoTitle;
         }
     }
 }
