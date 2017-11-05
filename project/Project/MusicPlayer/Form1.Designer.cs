@@ -89,7 +89,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "MP3 Files|*.mp3|FLAC Files|*.flac|WAV Files|*.wav";
+            this.openFileDialog1.Filter = "MP3, WAV, FLAC|*.mp3;*.wav;*.flac|all files|*.*";
             this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.Title = "Music Player";
             // 
