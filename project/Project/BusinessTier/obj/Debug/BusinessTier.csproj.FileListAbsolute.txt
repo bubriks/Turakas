@@ -63,3 +63,19 @@ C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Core.xml
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.v3.xml
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Newtonsoft.Json.xml
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\youtube_client_secret.json
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Core.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.v3.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.GData.Client.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.GData.Extensions.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.GData.YouTube.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Newtonsoft.Json.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.xml
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.xml
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Core.xml
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.v3.xml
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Newtonsoft.Json.xml

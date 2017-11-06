@@ -1,7 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BusinessTier;
-using DataTier;
+﻿using System;
+using System.Text;
 using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DataTier;
+using BusinessTier;
 
 namespace TestTier
 {
@@ -49,16 +51,16 @@ namespace TestTier
             {
                 List<Profile> profiles = controller.GetPersonsInChat(chat.Id);
                 bool b = false;
-                foreach(Profile profile in profiles)
+                foreach (Profile profile in profiles)
                 {
-                    if(profile.ProfileID == id)
+                    if (profile.ProfileID == id)
                     {
                         b = true;
                         break;
                     }
                 }
 
-                if(b)
+                if (b)
                 {
                     Assert.AreEqual(true, controller.AddPersonToChat(chat.Id, id));
                     break;
@@ -137,6 +139,5 @@ namespace TestTier
             Chat chat = list[list.Count - 1];
             Assert.AreEqual(true, controller.DeleteChat(chat.Id));
         }
-        
     }
 }

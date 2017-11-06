@@ -12,7 +12,7 @@ namespace DataTier
     {
         private int activityId, partnerId, typeId;
 
-        public RelationShip(int partnerId, int typeId)
+        public RelationShip(int activityId, int partnerId, int typeId)
         {
             this.activityId = activityId;
             this.partnerId = partnerId;

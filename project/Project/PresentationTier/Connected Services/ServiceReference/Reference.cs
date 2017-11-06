@@ -260,6 +260,237 @@ namespace PresentationTier.ServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Login", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Login : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int LoginIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int LoginId {
+            get {
+                return this.LoginIdField;
+            }
+            set {
+                if ((this.LoginIdField.Equals(value) != true)) {
+                    this.LoginIdField = value;
+                    this.RaisePropertyChanged("LoginId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RelationShip", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class RelationShip : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ActivityIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PartnerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TypeIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ActivityId {
+            get {
+                return this.ActivityIdField;
+            }
+            set {
+                if ((this.ActivityIdField.Equals(value) != true)) {
+                    this.ActivityIdField = value;
+                    this.RaisePropertyChanged("ActivityId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PartnerId {
+            get {
+                return this.PartnerIdField;
+            }
+            set {
+                if ((this.PartnerIdField.Equals(value) != true)) {
+                    this.PartnerIdField = value;
+                    this.RaisePropertyChanged("PartnerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TypeId {
+            get {
+                return this.TypeIdField;
+            }
+            set {
+                if ((this.TypeIdField.Equals(value) != true)) {
+                    this.TypeIdField = value;
+                    this.RaisePropertyChanged("TypeId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Notification", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Notification : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ActivityIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProfileIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ActivityId {
+            get {
+                return this.ActivityIdField;
+            }
+            set {
+                if ((this.ActivityIdField.Equals(value) != true)) {
+                    this.ActivityIdField = value;
+                    this.RaisePropertyChanged("ActivityId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProfileId {
+            get {
+                return this.ProfileIdField;
+            }
+            set {
+                if ((this.ProfileIdField.Equals(value) != true)) {
+                    this.ProfileIdField = value;
+                    this.RaisePropertyChanged("ProfileId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IService")]
     public interface IService {
@@ -329,6 +560,114 @@ namespace PresentationTier.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteMessage", ReplyAction="http://tempuri.org/IService/DeleteMessageResponse")]
         System.Threading.Tasks.Task<bool> DeleteMessageAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateLogin", ReplyAction="http://tempuri.org/IService/CreateLoginResponse")]
+        bool CreateLogin(PresentationTier.ServiceReference.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateLogin", ReplyAction="http://tempuri.org/IService/CreateLoginResponse")]
+        System.Threading.Tasks.Task<bool> CreateLoginAsync(PresentationTier.ServiceReference.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Authenticate", ReplyAction="http://tempuri.org/IService/AuthenticateResponse")]
+        bool Authenticate(PresentationTier.ServiceReference.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Authenticate", ReplyAction="http://tempuri.org/IService/AuthenticateResponse")]
+        System.Threading.Tasks.Task<bool> AuthenticateAsync(PresentationTier.ServiceReference.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ForgotDetails", ReplyAction="http://tempuri.org/IService/ForgotDetailsResponse")]
+        bool ForgotDetails(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ForgotDetails", ReplyAction="http://tempuri.org/IService/ForgotDetailsResponse")]
+        System.Threading.Tasks.Task<bool> ForgotDetailsAsync(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/FindLogin", ReplyAction="http://tempuri.org/IService/FindLoginResponse")]
+        PresentationTier.ServiceReference.Login FindLogin(string what, int by);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/FindLogin", ReplyAction="http://tempuri.org/IService/FindLoginResponse")]
+        System.Threading.Tasks.Task<PresentationTier.ServiceReference.Login> FindLoginAsync(string what, int by);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateLogin", ReplyAction="http://tempuri.org/IService/UpdateLoginResponse")]
+        bool UpdateLogin(int id, PresentationTier.ServiceReference.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateLogin", ReplyAction="http://tempuri.org/IService/UpdateLoginResponse")]
+        System.Threading.Tasks.Task<bool> UpdateLoginAsync(int id, PresentationTier.ServiceReference.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteLogin", ReplyAction="http://tempuri.org/IService/DeleteLoginResponse")]
+        bool DeleteLogin(PresentationTier.ServiceReference.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteLogin", ReplyAction="http://tempuri.org/IService/DeleteLoginResponse")]
+        System.Threading.Tasks.Task<bool> DeleteLoginAsync(PresentationTier.ServiceReference.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateProfile", ReplyAction="http://tempuri.org/IService/CreateProfileResponse")]
+        bool CreateProfile(PresentationTier.ServiceReference.Profile profile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateProfile", ReplyAction="http://tempuri.org/IService/CreateProfileResponse")]
+        System.Threading.Tasks.Task<bool> CreateProfileAsync(PresentationTier.ServiceReference.Profile profile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ReadProfile", ReplyAction="http://tempuri.org/IService/ReadProfileResponse")]
+        PresentationTier.ServiceReference.Profile ReadProfile(string what, int by);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ReadProfile", ReplyAction="http://tempuri.org/IService/ReadProfileResponse")]
+        System.Threading.Tasks.Task<PresentationTier.ServiceReference.Profile> ReadProfileAsync(string what, int by);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateProfile", ReplyAction="http://tempuri.org/IService/UpdateProfileResponse")]
+        bool UpdateProfile(int profileId, PresentationTier.ServiceReference.Profile profile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateProfile", ReplyAction="http://tempuri.org/IService/UpdateProfileResponse")]
+        System.Threading.Tasks.Task<bool> UpdateProfileAsync(int profileId, PresentationTier.ServiceReference.Profile profile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateRelationship", ReplyAction="http://tempuri.org/IService/CreateRelationshipResponse")]
+        void CreateRelationship(int profileId, PresentationTier.ServiceReference.RelationShip relationShip);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateRelationship", ReplyAction="http://tempuri.org/IService/CreateRelationshipResponse")]
+        System.Threading.Tasks.Task CreateRelationshipAsync(int profileId, PresentationTier.ServiceReference.RelationShip relationShip);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ReadRelationship", ReplyAction="http://tempuri.org/IService/ReadRelationshipResponse")]
+        PresentationTier.ServiceReference.RelationShip[] ReadRelationship(string what, int by);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ReadRelationship", ReplyAction="http://tempuri.org/IService/ReadRelationshipResponse")]
+        System.Threading.Tasks.Task<PresentationTier.ServiceReference.RelationShip[]> ReadRelationshipAsync(string what, int by);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateRelationship", ReplyAction="http://tempuri.org/IService/UpdateRelationshipResponse")]
+        bool UpdateRelationship(int id, PresentationTier.ServiceReference.RelationShip newRelationship);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpdateRelationship", ReplyAction="http://tempuri.org/IService/UpdateRelationshipResponse")]
+        System.Threading.Tasks.Task<bool> UpdateRelationshipAsync(int id, PresentationTier.ServiceReference.RelationShip newRelationship);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteRelationship", ReplyAction="http://tempuri.org/IService/DeleteRelationshipResponse")]
+        bool DeleteRelationship(PresentationTier.ServiceReference.RelationShip relationShip);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteRelationship", ReplyAction="http://tempuri.org/IService/DeleteRelationshipResponse")]
+        System.Threading.Tasks.Task<bool> DeleteRelationshipAsync(PresentationTier.ServiceReference.RelationShip relationShip);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateNotification", ReplyAction="http://tempuri.org/IService/CreateNotificationResponse")]
+        bool CreateNotification(PresentationTier.ServiceReference.Notification notification);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateNotification", ReplyAction="http://tempuri.org/IService/CreateNotificationResponse")]
+        System.Threading.Tasks.Task<bool> CreateNotificationAsync(PresentationTier.ServiceReference.Notification notification);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ReadNotification", ReplyAction="http://tempuri.org/IService/ReadNotificationResponse")]
+        PresentationTier.ServiceReference.Notification[] ReadNotification(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ReadNotification", ReplyAction="http://tempuri.org/IService/ReadNotificationResponse")]
+        System.Threading.Tasks.Task<PresentationTier.ServiceReference.Notification[]> ReadNotificationAsync(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteNotification", ReplyAction="http://tempuri.org/IService/DeleteNotificationResponse")]
+        bool DeleteNotification(PresentationTier.ServiceReference.Notification notification);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteNotification", ReplyAction="http://tempuri.org/IService/DeleteNotificationResponse")]
+        System.Threading.Tasks.Task<bool> DeleteNotificationAsync(PresentationTier.ServiceReference.Notification notification);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteAllNotifications", ReplyAction="http://tempuri.org/IService/DeleteAllNotificationsResponse")]
+        bool DeleteAllNotifications(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteAllNotifications", ReplyAction="http://tempuri.org/IService/DeleteAllNotificationsResponse")]
+        System.Threading.Tasks.Task<bool> DeleteAllNotificationsAsync(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddSong", ReplyAction="http://tempuri.org/IService/AddSongResponse")]
+        void AddSong(int activityID, int artistID, int genreID, string name, int duration, string url);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddSong", ReplyAction="http://tempuri.org/IService/AddSongResponse")]
+        System.Threading.Tasks.Task AddSongAsync(int activityID, int artistID, int genreID, string name, int duration, string url);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -444,6 +783,150 @@ namespace PresentationTier.ServiceReference {
         
         public System.Threading.Tasks.Task<bool> DeleteMessageAsync(int id) {
             return base.Channel.DeleteMessageAsync(id);
+        }
+        
+        public bool CreateLogin(PresentationTier.ServiceReference.Login login) {
+            return base.Channel.CreateLogin(login);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CreateLoginAsync(PresentationTier.ServiceReference.Login login) {
+            return base.Channel.CreateLoginAsync(login);
+        }
+        
+        public bool Authenticate(PresentationTier.ServiceReference.Login login) {
+            return base.Channel.Authenticate(login);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AuthenticateAsync(PresentationTier.ServiceReference.Login login) {
+            return base.Channel.AuthenticateAsync(login);
+        }
+        
+        public bool ForgotDetails(string email) {
+            return base.Channel.ForgotDetails(email);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ForgotDetailsAsync(string email) {
+            return base.Channel.ForgotDetailsAsync(email);
+        }
+        
+        public PresentationTier.ServiceReference.Login FindLogin(string what, int by) {
+            return base.Channel.FindLogin(what, by);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.Login> FindLoginAsync(string what, int by) {
+            return base.Channel.FindLoginAsync(what, by);
+        }
+        
+        public bool UpdateLogin(int id, PresentationTier.ServiceReference.Login login) {
+            return base.Channel.UpdateLogin(id, login);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateLoginAsync(int id, PresentationTier.ServiceReference.Login login) {
+            return base.Channel.UpdateLoginAsync(id, login);
+        }
+        
+        public bool DeleteLogin(PresentationTier.ServiceReference.Login login) {
+            return base.Channel.DeleteLogin(login);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteLoginAsync(PresentationTier.ServiceReference.Login login) {
+            return base.Channel.DeleteLoginAsync(login);
+        }
+        
+        public bool CreateProfile(PresentationTier.ServiceReference.Profile profile) {
+            return base.Channel.CreateProfile(profile);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CreateProfileAsync(PresentationTier.ServiceReference.Profile profile) {
+            return base.Channel.CreateProfileAsync(profile);
+        }
+        
+        public PresentationTier.ServiceReference.Profile ReadProfile(string what, int by) {
+            return base.Channel.ReadProfile(what, by);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.Profile> ReadProfileAsync(string what, int by) {
+            return base.Channel.ReadProfileAsync(what, by);
+        }
+        
+        public bool UpdateProfile(int profileId, PresentationTier.ServiceReference.Profile profile) {
+            return base.Channel.UpdateProfile(profileId, profile);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateProfileAsync(int profileId, PresentationTier.ServiceReference.Profile profile) {
+            return base.Channel.UpdateProfileAsync(profileId, profile);
+        }
+        
+        public void CreateRelationship(int profileId, PresentationTier.ServiceReference.RelationShip relationShip) {
+            base.Channel.CreateRelationship(profileId, relationShip);
+        }
+        
+        public System.Threading.Tasks.Task CreateRelationshipAsync(int profileId, PresentationTier.ServiceReference.RelationShip relationShip) {
+            return base.Channel.CreateRelationshipAsync(profileId, relationShip);
+        }
+        
+        public PresentationTier.ServiceReference.RelationShip[] ReadRelationship(string what, int by) {
+            return base.Channel.ReadRelationship(what, by);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.RelationShip[]> ReadRelationshipAsync(string what, int by) {
+            return base.Channel.ReadRelationshipAsync(what, by);
+        }
+        
+        public bool UpdateRelationship(int id, PresentationTier.ServiceReference.RelationShip newRelationship) {
+            return base.Channel.UpdateRelationship(id, newRelationship);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateRelationshipAsync(int id, PresentationTier.ServiceReference.RelationShip newRelationship) {
+            return base.Channel.UpdateRelationshipAsync(id, newRelationship);
+        }
+        
+        public bool DeleteRelationship(PresentationTier.ServiceReference.RelationShip relationShip) {
+            return base.Channel.DeleteRelationship(relationShip);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteRelationshipAsync(PresentationTier.ServiceReference.RelationShip relationShip) {
+            return base.Channel.DeleteRelationshipAsync(relationShip);
+        }
+        
+        public bool CreateNotification(PresentationTier.ServiceReference.Notification notification) {
+            return base.Channel.CreateNotification(notification);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CreateNotificationAsync(PresentationTier.ServiceReference.Notification notification) {
+            return base.Channel.CreateNotificationAsync(notification);
+        }
+        
+        public PresentationTier.ServiceReference.Notification[] ReadNotification(int profileId) {
+            return base.Channel.ReadNotification(profileId);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.ServiceReference.Notification[]> ReadNotificationAsync(int profileId) {
+            return base.Channel.ReadNotificationAsync(profileId);
+        }
+        
+        public bool DeleteNotification(PresentationTier.ServiceReference.Notification notification) {
+            return base.Channel.DeleteNotification(notification);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteNotificationAsync(PresentationTier.ServiceReference.Notification notification) {
+            return base.Channel.DeleteNotificationAsync(notification);
+        }
+        
+        public bool DeleteAllNotifications(int profileId) {
+            return base.Channel.DeleteAllNotifications(profileId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteAllNotificationsAsync(int profileId) {
+            return base.Channel.DeleteAllNotificationsAsync(profileId);
+        }
+        
+        public void AddSong(int activityID, int artistID, int genreID, string name, int duration, string url) {
+            base.Channel.AddSong(activityID, artistID, genreID, name, duration, url);
+        }
+        
+        public System.Threading.Tasks.Task AddSongAsync(int activityID, int artistID, int genreID, string name, int duration, string url) {
+            return base.Channel.AddSongAsync(activityID, artistID, genreID, name, duration, url);
         }
     }
 }

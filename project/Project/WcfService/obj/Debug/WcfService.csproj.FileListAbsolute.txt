@@ -33,3 +33,14 @@ C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\ob
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.dll
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\youtube_client_secret.json
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.xml
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.xml
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.xml
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.xml
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.xml

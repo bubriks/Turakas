@@ -1,7 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using BusinessTier;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataTier;
+using BusinessTier;
+using System.Collections.Generic;
 
 namespace TestTier
 {
@@ -10,6 +11,7 @@ namespace TestTier
     {
         private MessageController controller = new MessageController();
         private ChatController chatController = new ChatController();
+
         [TestMethod]
         public void TestCreateMessageMethod()
         {
