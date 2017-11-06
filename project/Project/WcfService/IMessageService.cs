@@ -8,16 +8,25 @@ using DataTier;
 
 namespace WcfService
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IMessageCallBack))]
     public interface IMessageService
     {
-        [OperationContract]
-        bool CreateMessage(int profileId, String text, int chatId);
+        [OperationContract(IsOneWay = true)]
+        void Register();
+
+        [OperationContract(IsOneWay = true)]
+        void CreateMessage(int profileId, String text, int chatId);
 
         [OperationContract]
         List<Message> GetMessages(int chatId);
 
         [OperationContract]
         bool DeleteMessage(int id);
+    }
+
+    public interface IMessageCallBack
+    {
+        [OperationContract(IsOneWay = true)]
+        void GetMessage(String Message);
     }
 }
