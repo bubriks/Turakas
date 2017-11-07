@@ -16,9 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTier", "TestTier\TestTier.csproj", "{703A653D-7401-41FC-8082-081BEB5B4699}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationTier", "PresentationTier\PresentationTier.csproj", "{519C4791-09B2-4CCE-941A-5C68EA03665C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{24CE0FDE-EC06-4F56-8492-36A3EB53AC4D} = {24CE0FDE-EC06-4F56-8492-36A3EB53AC4D}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
