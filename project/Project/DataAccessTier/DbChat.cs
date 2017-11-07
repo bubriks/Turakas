@@ -42,7 +42,13 @@ namespace DataAccessTier
             List<Chat> chats = new List<Chat>();
             while (reader.Read())
             {
-                chats.Add(new Chat(Int32.Parse(reader["chatID"].ToString()), reader["name"].ToString(), (bool)reader["type"]));
+                Chat chat = new Chat
+                {
+                    Id = Int32.Parse(reader["chatID"].ToString()),
+                    Name = reader["name"].ToString(),
+                    Type = (bool)reader["type"]
+                };
+                chats.Add(chat);
             }
             reader.Close();
             return chats;
@@ -82,7 +88,13 @@ namespace DataAccessTier
             List<Chat> chats = new List<Chat>();
             while (reader.Read())
             {
-                chats.Add(new Chat(Int32.Parse(reader["chatID"].ToString()), reader["name"].ToString(), (bool)reader["type"]));
+                Chat chat = new Chat
+                {
+                    Id = Int32.Parse(reader["chatID"].ToString()),
+                    Name = reader["name"].ToString(),
+                    Type = (bool)reader["type"]
+                };
+                chats.Add(chat);
             }
             reader.Close();
             return chats;

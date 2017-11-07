@@ -20,29 +20,30 @@ namespace BusinessTier
             con = DbConnection.GetInstance();
         }
 
-        public bool CreateMessage(int profileId, String text, int chatId)
+        public Message CreateMessage(int profileId, String text, int chatId)
         {
             //Creates new starnsaction
             con.BeginTransaction();
             try
             {
+                Message message = dbMessage.CreateMessage(profileId, text, chatId);
                 //passes the transaction further to DataAccessTier
-                if (dbMessage.CreateMessage(profileId, text, chatId) == 0)
+                if (message == null)
                 {
-                    //transaction is rolled back and false is returned if no changes were made
+                    //transaction is rolled back and null is returned if no changes were made
                     con.Rollback();
-                    return false;
+                    return null;
                 }
                 //if everything goes as planed than commited
                 con.Commit();
-                //returns true if everything went correctly
-                return true;
+                //returns Message if everything went correctly
+                return message;
             }
             catch (Exception)
             {
-                //If exception is thrown the transaction is rolled back and false is returned
+                //If exception is thrown the transaction is rolled back and null is returned
                 con.Rollback();
-                return false;
+                return null;
             }
         }
 

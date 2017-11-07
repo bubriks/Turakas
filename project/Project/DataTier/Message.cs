@@ -10,25 +10,13 @@ namespace DataTier
     [DataContract]
     public class Message
     {
-        private int id;
-        private string text, creator;
-        private DateTime time;
-
-        public Message(int id, string text, string creator, DateTime time)
-        {
-            this.id = id;
-            this.text = text;
-            this.creator = creator;
-            this.time = time;
-        }
-
         [DataMember]
-        public int Id { get => id; set => id = value; }
+        public int Id { get; set; }
         [DataMember]
-        public string Text { get => text; set => text = value; }
+        public string Text { get; set; }
         [DataMember]
-        public string Creator { get => creator; set => creator = value; }
+        public string Creator { get; set; }
         [DataMember]
-        public DateTime Time { get => time; set => time = value; }
+        public DateTime Time { get; set; }
     }
 }

@@ -11,11 +11,22 @@ namespace WcfService
 {
     public class MessageService: IMessageService
     {
-        IMessageController messageController = new MessageController();
+        private static List<IMessageCallBack> clientList = new List<IMessageCallBack>();
+        private IMessageController messageController = new MessageController();
 
-        public bool CreateMessage(int profileId, string text, int chatId)
+        public void Register()
         {
-            return messageController.CreateMessage(profileId, text, chatId);
+            IMessageCallBack callback = OperationContext.Current.GetCallbackChannel<IMessageCallBack>();
+            clientList.Add(callback);
+        }
+
+        public void CreateMessage(int profileId, string text, int chatId)
+        {
+            Message message = messageController.CreateMessage(profileId, text, chatId);
+            foreach(IMessageCallBack callback in clientList)
+            {
+                callback.CallBackMessage(message);
+            }
         }
 
         public List<Message> GetMessages(int chatId)
