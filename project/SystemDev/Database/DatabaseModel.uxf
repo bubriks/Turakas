@@ -24,14 +24,14 @@ fontsize=10
 
 
 // This text will be stored with each diagram;  use it for notes.</help_text>
-  <zoom_level>8</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>8</x>
-      <y>0</y>
-      <w>224</w>
-      <h>144</h>
+      <x>6</x>
+      <y>24</y>
+      <w>168</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>When a profile creates an activity,
 it creates notifications to all the
@@ -47,9 +47,9 @@ bg=red</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>0</x>
-      <y>160</y>
-      <w>336</w>
-      <h>112</h>
+      <y>144</y>
+      <w>252</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Notifications- what you are notified about (based on activity can know from whom)
 ProfileID holds the ID of the one that will receive the notification, based on relationship
@@ -66,10 +66,10 @@ type shows the type of relationship</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>672</x>
-      <y>280</y>
-      <w>80</w>
-      <h>72</h>
+      <x>504</x>
+      <y>234</y>
+      <w>60</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>Login
 --
@@ -83,10 +83,10 @@ email</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>792</x>
-      <y>272</y>
-      <w>80</w>
-      <h>64</h>
+      <x>594</x>
+      <y>228</y>
+      <w>60</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Profile
 --
@@ -99,10 +99,10 @@ nickname
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>936</x>
-      <y>264</y>
-      <w>80</w>
-      <h>56</h>
+      <x>702</x>
+      <y>222</y>
+      <w>60</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>Activity
 --
@@ -114,10 +114,10 @@ timeStamp</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>864</x>
-      <y>288</y>
-      <w>88</w>
-      <h>24</h>
+      <x>648</x>
+      <y>240</y>
+      <w>66</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
@@ -125,10 +125,10 @@ timeStamp</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1072</x>
-      <y>408</y>
-      <w>128</w>
-      <h>72</h>
+      <x>804</x>
+      <y>330</y>
+      <w>96</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>PlayLists
 --
@@ -143,10 +143,10 @@ fg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>280</y>
-      <w>80</w>
-      <h>168</h>
+      <x>756</x>
+      <y>234</y>
+      <w>60</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 fg=blue</panel_attributes>
@@ -155,10 +155,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
-      <y>408</y>
-      <w>104</w>
-      <h>48</h>
+      <x>600</x>
+      <y>330</y>
+      <w>78</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>TrackList
 --
@@ -169,10 +169,10 @@ playListID C/FK</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>896</x>
-      <y>424</y>
-      <w>192</w>
-      <h>32</h>
+      <x>672</x>
+      <y>342</y>
+      <w>144</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>220.0;20.0;170.0;10.0;10.0;10.0</additional_attributes>
@@ -180,10 +180,10 @@ playListID C/FK</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>664</x>
-      <y>368</y>
-      <w>104</w>
-      <h>96</h>
+      <x>498</x>
+      <y>300</y>
+      <w>78</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>Song
 --
@@ -200,10 +200,10 @@ fg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>392</y>
-      <w>56</w>
-      <h>64</h>
+      <x>570</x>
+      <y>318</y>
+      <w>42</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;30.0;20.0;30.0;60.0;50.0;60.0</additional_attributes>
@@ -211,10 +211,10 @@ fg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>280</y>
-      <w>72</w>
-      <h>88</h>
+      <x>756</x>
+      <y>234</y>
+      <w>54</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 fg=green</panel_attributes>
@@ -223,10 +223,10 @@ fg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1072</x>
-      <y>504</y>
-      <w>128</w>
-      <h>48</h>
+      <x>804</x>
+      <y>402</y>
+      <w>96</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Comment
 --
@@ -237,10 +237,10 @@ playListID FK</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1072</x>
-      <y>256</y>
-      <w>80</w>
-      <h>48</h>
+      <x>804</x>
+      <y>216</y>
+      <w>60</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Liked
 --
@@ -252,10 +252,10 @@ fg=magenta</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>280</y>
-      <w>80</w>
-      <h>24</h>
+      <x>756</x>
+      <y>234</y>
+      <w>60</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 fg=magenta</panel_attributes>
@@ -264,10 +264,10 @@ fg=magenta</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
-      <y>152</y>
-      <w>128</w>
-      <h>64</h>
+      <x>600</x>
+      <y>138</y>
+      <w>96</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Chat
 --
@@ -280,10 +280,10 @@ type
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>752</x>
-      <y>176</y>
-      <w>56</w>
-      <h>136</h>
+      <x>564</x>
+      <y>156</y>
+      <w>42</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;30.0;10.0;30.0;150.0;50.0;150.0</additional_attributes>
@@ -291,10 +291,10 @@ type
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>632</x>
-      <y>152</y>
-      <w>128</w>
-      <h>40</h>
+      <x>474</x>
+      <y>138</y>
+      <w>96</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>PersonsChats
 --
@@ -305,10 +305,10 @@ profileID C/FK</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>752</x>
-      <y>168</y>
-      <w>64</w>
-      <h>24</h>
+      <x>564</x>
+      <y>150</y>
+      <w>48</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
@@ -316,10 +316,10 @@ profileID C/FK</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1064</x>
-      <y>320</y>
-      <w>128</w>
-      <h>56</h>
+      <x>798</x>
+      <y>264</y>
+      <w>96</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>Text
 --
@@ -332,10 +332,10 @@ fg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>280</y>
-      <w>288</w>
-      <h>136</h>
+      <x>570</x>
+      <y>234</y>
+      <w>216</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 fg=orange</panel_attributes>
@@ -344,10 +344,10 @@ fg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>936</x>
-      <y>336</y>
-      <w>80</w>
-      <h>48</h>
+      <x>702</x>
+      <y>276</y>
+      <w>60</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Notifications
 --
@@ -358,10 +358,10 @@ profileID FK</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>864</x>
-      <y>288</y>
-      <w>88</w>
-      <h>88</h>
+      <x>648</x>
+      <y>240</y>
+      <w>66</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;30.0;20.0;30.0;90.0;90.0;90.0</additional_attributes>
@@ -369,10 +369,10 @@ profileID FK</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>280</y>
-      <w>32</w>
-      <h>104</h>
+      <x>756</x>
+      <y>234</y>
+      <w>24</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;20.0;20.0;20.0;110.0;10.0;110.0</additional_attributes>
@@ -380,10 +380,10 @@ profileID FK</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>216</y>
-      <w>32</w>
-      <h>88</h>
+      <x>756</x>
+      <y>186</y>
+      <w>24</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 bg=yellow
@@ -393,10 +393,10 @@ fg=cyan</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>936</x>
-      <y>200</y>
-      <w>80</w>
-      <h>56</h>
+      <x>702</x>
+      <y>174</y>
+      <w>60</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>RelationShips
 --
@@ -409,10 +409,10 @@ fg=cyan</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>864</x>
-      <y>224</y>
-      <w>88</w>
-      <h>88</h>
+      <x>648</x>
+      <y>192</y>
+      <w>66</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;90.0;30.0;80.0;30.0;10.0;90.0;10.0</additional_attributes>
@@ -420,10 +420,10 @@ fg=cyan</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>936</x>
-      <y>464</y>
-      <w>128</w>
-      <h>48</h>
+      <x>702</x>
+      <y>372</y>
+      <w>96</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Mood
 --
@@ -434,10 +434,10 @@ name</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>912</x>
-      <y>440</y>
-      <w>176</w>
-      <h>64</h>
+      <x>684</x>
+      <y>354</y>
+      <w>132</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>30.0;60.0;10.0;60.0;10.0;10.0;200.0;10.0</additional_attributes>
@@ -445,10 +445,10 @@ name</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1048</x>
-      <y>192</y>
-      <w>72</w>
-      <h>48</h>
+      <x>786</x>
+      <y>168</y>
+      <w>54</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>RelationshipType
 --
@@ -459,10 +459,10 @@ name</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>208</y>
-      <w>56</w>
-      <h>48</h>
+      <x>756</x>
+      <y>180</y>
+      <w>42</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>50.0;10.0;30.0;10.0;30.0;40.0;10.0;40.0</additional_attributes>
@@ -470,10 +470,10 @@ name</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1024</x>
-      <y>144</y>
-      <w>128</w>
-      <h>40</h>
+      <x>768</x>
+      <y>132</y>
+      <w>96</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Message
 --
@@ -484,10 +484,10 @@ chatID FK</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>168</y>
-      <w>120</w>
-      <h>24</h>
+      <x>690</x>
+      <y>150</y>
+      <w>90</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
     <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
@@ -495,10 +495,10 @@ chatID FK</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>904</x>
-      <y>432</y>
-      <w>184</w>
-      <h>120</h>
+      <x>678</x>
+      <y>348</y>
+      <w>138</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>210.0;10.0;10.0;10.0;10.0;130.0;210.0;130.0</additional_attributes>
@@ -506,10 +506,10 @@ chatID FK</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
-      <y>344</y>
-      <w>64</w>
-      <h>48</h>
+      <x>600</x>
+      <y>282</y>
+      <w>48</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Status
 --
@@ -520,10 +520,10 @@ name</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>744</x>
-      <y>296</y>
-      <w>64</w>
-      <h>24</h>
+      <x>558</x>
+      <y>246</y>
+      <w>48</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
@@ -531,10 +531,10 @@ name</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>776</x>
-      <y>304</y>
-      <w>40</w>
-      <h>80</h>
+      <x>582</x>
+      <y>252</y>
+      <w>30</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>30.0;80.0;10.0;80.0;10.0;10.0;20.0;10.0</additional_attributes>
@@ -542,10 +542,10 @@ name</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>568</x>
-      <y>368</y>
-      <w>64</w>
-      <h>48</h>
+      <x>426</x>
+      <y>300</y>
+      <w>48</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Artists
 --
@@ -556,10 +556,10 @@ name</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>568</x>
-      <y>424</y>
-      <w>64</w>
-      <h>48</h>
+      <x>426</x>
+      <y>342</y>
+      <w>48</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Genres
 --
@@ -570,10 +570,10 @@ name</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>384</y>
-      <w>56</w>
-      <h>40</h>
+      <x>468</x>
+      <y>312</y>
+      <w>42</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;40.0;10.0;40.0;30.0;50.0;30.0</additional_attributes>
@@ -581,10 +581,10 @@ name</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>408</y>
-      <w>56</w>
-      <h>56</h>
+      <x>468</x>
+      <y>330</y>
+      <w>42</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;40.0;50.0;40.0;10.0;50.0;10.0</additional_attributes>
@@ -592,10 +592,10 @@ name</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1144</x>
-      <y>160</y>
-      <w>80</w>
-      <h>200</h>
+      <x>858</x>
+      <y>144</y>
+      <w>60</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;10.0;80.0;220.0;60.0;230.0</additional_attributes>
@@ -603,12 +603,461 @@ name</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1184</x>
-      <y>336</y>
-      <w>40</w>
-      <h>216</h>
+      <x>888</x>
+      <y>276</y>
+      <w>30</w>
+      <h>162</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
     <additional_attributes>20.0;250.0;30.0;250.0;30.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1104</x>
+      <y>234</y>
+      <w>60</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Login
+--
+loginID PK
+username
+salt
+passwordHash
+email</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1194</x>
+      <y>228</y>
+      <w>60</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Profile
+--
+profileID P/FK
+statusID FK
+nickname
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1302</x>
+      <y>222</y>
+      <w>60</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Activity
+--
+activityID PK
+profileID FK
+timeStamp</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1248</x>
+      <y>240</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1404</x>
+      <y>330</y>
+      <w>96</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>PlayLists
+--
+playListID PK
+activityID FK
+moodID FK
+image
+name
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1356</x>
+      <y>234</y>
+      <w>60</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+fg=blue</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;20.0;40.0;190.0;80.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1200</x>
+      <y>330</y>
+      <w>78</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>TrackList
+--
+songID C/FK
+playListID C/FK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1272</x>
+      <y>342</y>
+      <w>144</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1098</x>
+      <y>300</y>
+      <w>78</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Song
+--
+songID PK
+activityID FK
+artistID FK
+genreID FK
+name
+duration
+url
+fg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>312</y>
+      <w>42</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;30.0;30.0;70.0;50.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1404</x>
+      <y>216</y>
+      <w>60</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Liked
+--
+activityID P/FK
+likedActivityID FK
+fg=magenta</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1356</x>
+      <y>234</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+fg=magenta</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1194</x>
+      <y>120</y>
+      <w>96</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Chat
+--
+chatID PK
+name
+type
+nrOfUsers</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>234</y>
+      <w>216</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+fg=orange</panel_attributes>
+    <additional_attributes>320.0;10.0;340.0;20.0;340.0;150.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1302</x>
+      <y>276</y>
+      <w>60</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Notifications
+--
+activityID P/FK
+profileID FK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1248</x>
+      <y>240</y>
+      <w>66</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;20.0;30.0;90.0;90.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1356</x>
+      <y>234</y>
+      <w>24</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;20.0;20.0;20.0;110.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1356</x>
+      <y>186</y>
+      <w>24</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+bg=yellow
+fg=cyan</panel_attributes>
+    <additional_attributes>10.0;90.0;20.0;90.0;20.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1302</x>
+      <y>174</y>
+      <w>60</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>RelationShips
+--
+activityID P/FK
+partnerID FK
+typeID FK
+fg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1248</x>
+      <y>192</y>
+      <w>66</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;30.0;80.0;30.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1302</x>
+      <y>372</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Mood
+--
+moodID PK
+name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1284</x>
+      <y>354</y>
+      <w>132</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30.0;60.0;10.0;60.0;10.0;10.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1386</x>
+      <y>168</y>
+      <w>54</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>RelationshipType
+--
+typeID PK
+name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1356</x>
+      <y>180</y>
+      <w>42</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;30.0;10.0;30.0;40.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1356</x>
+      <y>114</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Message
+--
+activityID P/FK
+chatID FK
+message</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1284</x>
+      <y>132</y>
+      <w>84</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1200</x>
+      <y>282</y>
+      <w>48</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Status
+--
+statusID PK
+name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1158</x>
+      <y>246</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1182</x>
+      <y>252</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30.0;80.0;10.0;80.0;10.0;10.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1026</x>
+      <y>300</y>
+      <w>48</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Artists
+--
+artistID PK
+name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1026</x>
+      <y>342</y>
+      <w>48</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Genres
+--
+genreID PK
+name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1068</x>
+      <y>312</y>
+      <w>42</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0;40.0;30.0;50.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1068</x>
+      <y>330</y>
+      <w>42</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;40.0;50.0;40.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1356</x>
+      <y>126</y>
+      <w>132</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>160.0;10.0;200.0;10.0;200.0;250.0;50.0;250.0;50.0;200.0;10.0;190.0</additional_attributes>
   </element>
 </diagram>
