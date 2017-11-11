@@ -11,6 +11,7 @@ namespace WcfService
     public class ChatService: IChatService
     {
         IChatController chatController = new ChatController();
+
         public Chat CreateChat(Chat chat, int profileId)
         {
             return chatController.CreateChat(chat, profileId);
@@ -29,26 +30,6 @@ namespace WcfService
         public bool DeleteChat(int id)
         {
             return chatController.DeleteChat(id);
-        }
-
-        public List<Chat> GetPersonsChats(int profileId)
-        {
-            return chatController.GetPersonsChats(profileId);
-        }
-
-        public List<Profile> GetPersonsInChat(int chatId)
-        {
-            return chatController.GetPersonsInChat(chatId);
-        }
-
-        public bool AddPersonToChat(int chatId, int profileId)
-        {
-            return chatController.AddPersonToChat(chatId, profileId);
-        }
-
-        public bool RemovePersonFromChat(int chatId, int profileId)
-        {
-            return chatController.RemovePersonFromChat(chatId, profileId);
         }
     }
 }

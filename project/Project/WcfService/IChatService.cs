@@ -22,17 +22,5 @@ namespace WcfService
 
         [OperationContract]
         bool DeleteChat(int id);
-
-        [OperationContract]
-        List<Chat> GetPersonsChats(int profileId);
-
-        [OperationContract]
-        List<Profile> GetPersonsInChat(int chatId);
-
-        [OperationContract]
-        bool AddPersonToChat(int chatId, int profileId);
-
-        [OperationContract]
-        bool RemovePersonFromChat(int chatId, int profileId);
     }
 }

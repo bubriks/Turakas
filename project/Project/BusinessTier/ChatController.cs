@@ -9,27 +9,122 @@ namespace BusinessTier
     public class ChatController: IChatController
     {
         private DbChat dbChat = null;
+        private IProfileController profileController = new ProfileController();
         private DbConnection con = null;
+        private static List<Chat> chats = new List<Chat>();
 
         public ChatController()
         {
             dbChat = new DbChat();
             con = DbConnection.GetInstance();
         }
-        
+
+        public bool JoinChat(int chatId, int profileId, object callback)
+        {
+            try
+            {
+                Chat chat = FindChat(chatId);
+                if (chat != null)
+                {
+                    if (chat.MaxNrOfUsers > chat.Users.Count)
+                    {
+                        User user = chat.Users.Find(
+                        delegate (User u)
+                        {
+                            return u.Profile.ProfileID == profileId;
+                        }
+                        );
+
+                        if(user != null)
+                        {
+                            //user is already in chat
+                            return false;
+                        }
+
+                        user = new User
+                        {
+                            Profile = profileController.ReadProfile(profileId.ToString(), 1),
+                            CallBack = callback
+                        };
+                        List<User> list = chat.Users;
+                        list.Add(user);
+                        chat.Users = list;
+                        //joined
+                        return true;
+                    }
+                    //couldnt join couse its full
+                    return false;
+                }
+                else
+                {
+                    chat = GetChat(chatId);
+                    User user = new User
+                    {
+                        Profile = profileController.ReadProfile(profileId.ToString(), 1),
+                        CallBack = callback
+                    };
+                    List<User> list = new List<User>
+                    {
+                        user
+                    };
+                    chat.Users = list;
+                    chats.Add(chat);
+                    //joined
+                    return true;
+                }
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool LeaveChat(int chatId, int profileId)
+        {
+            try
+            {
+                Chat chat = FindChat(chatId);
+                foreach (User user in chat.Users)
+                {
+                    if (user.Profile.ProfileID == profileId)
+                    {
+                        if (chat.Users.Count == 1)
+                        {
+                            chats.Remove(chat);
+                            return true;
+                        }
+                        else
+                        {
+                            chat.Users.Remove(user);
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public Chat CreateChat(Chat chat, int profileId)
         {
             //Creates new transaction
             con.BeginTransaction();
             try
             {
-                //passes the transaction further to DataAccessTier
-                chat = dbChat.CreateChat(chat);
-                dbChat.AddPersonToChat(chat.Id, profileId);
-                //if everything goes as planed than commited
-                con.Commit();
-                //returns Object if everything went correctly
-                return chat;
+                if (chat.MaxNrOfUsers > 1)
+                {
+                    //passes the transaction further to DataAccessTier
+                    chat = dbChat.CreateChat(chat);
+                    //if everything goes as planed than commited
+                    con.Commit();
+                    //returns Object if everything went correctly
+                    return chat;
+                }
+                //max users too litle
+                return null;
             }
             catch (Exception)
             {
@@ -57,13 +152,26 @@ namespace BusinessTier
         {
             try
             {
-                if (dbChat.UpdateChat(chat) == 0)
+                if (chat.MaxNrOfUsers > 1)
                 {
-                    //returns false if no changes were made
-                    return false;
+                    if (dbChat.UpdateChat(chat) == 0)
+                    {
+                        //returns false if no changes were made
+                        return false;
+                    }
+
+                    Chat foundChat = FindChat(chat.Id);
+                    if (foundChat != null)
+                    {
+                        foundChat.MaxNrOfUsers = chat.MaxNrOfUsers;
+                        foundChat.Name = chat.Name;
+                        foundChat.Type = chat.Type;
+                    }
+                    //returns true if everything went correctly
+                    return true;
                 }
-                //returns true if everything went correctly
-                return true;
+                //too few people can join
+                return false;
             }
             catch (Exception)
             {
@@ -81,6 +189,12 @@ namespace BusinessTier
                     //returns false if no changes were made
                     return false;
                 }
+
+                Chat foundChat = FindChat(id);
+                if (foundChat != null)
+                {
+                    chats.Remove(foundChat);
+                }
                 //returns true if everything went correctly
                 return true;
             }
@@ -91,78 +205,28 @@ namespace BusinessTier
             }
         }
 
-        public List<Chat> GetPersonsChats(int profileId)
+        public Chat FindChat(int chatId)
         {
-            try
+            Chat chat = chats.Find(
+            delegate (Chat c)
             {
-                //returns list of objects if everything went correctly
-                return dbChat.GetPersonsChats(profileId);
+                return c.Id == chatId;
             }
-            catch (Exception)
-            {
-                //returns empty list if exception is thrown
-                return new List<Chat>();
-            }
+            );
+            return chat;
         }
 
-        public List<Profile> GetPersonsInChat(int chatId)
+        private Chat GetChat(int id)
         {
             try
             {
-                //returns list of objects if everything went correctly
-                return dbChat.GetPersonsInChat(chatId);
+                //returns object if everything went correctly
+                return dbChat.GetChat(id);
             }
             catch (Exception)
             {
-                //returns empty list if exception is thrown
-                return new List<Profile>();
-            }
-        }
-
-        public bool AddPersonToChat(int chatId, int profileId)
-        {
-            try
-            {
-                //returns true if everything went correctly
-                return dbChat.AddPersonToChat(chatId, profileId);
-            }
-            catch (Exception)
-            {
-                //returns false if exception is thrown
-                return false;
-            }
-        }
-
-        public bool RemovePersonFromChat(int chatId, int profileId)
-        {
-            //Creates new starnsaction
-            con.BeginTransaction();
-            try
-            {
-                if (dbChat.RemovePersonFromChat(chatId, profileId) == 0)
-                {
-                    con.Rollback();
-                    //returns false if no changes were made
-                    return false;
-                }
-                if (dbChat.GetPersonsInChat(chatId).Count == 0)
-                {
-                    if (dbChat.DeleteChat(chatId) == 0)
-                    {
-                        con.Rollback();
-                        //returns false if chat wasnt deleted
-                        return false;
-                    }
-                }
-                con.Commit();
-                //returns true if everything went correctly
-                return true;
-            }
-            catch (Exception)
-            {
-                //If exception is thrown the transaction is rolled back and null is returned
-                con.Rollback();
-                return false;
+                //returns null if exception is thrown
+                return null;
             }
         }
     }

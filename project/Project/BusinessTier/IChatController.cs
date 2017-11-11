@@ -7,6 +7,19 @@ namespace BusinessTier
     public interface IChatController
     {
         /// <summary>
+        /// Person joins chat
+        /// </summary>
+        /// <param name="chatId"></param>
+        /// <param name="profileId"></param>
+        /// <param name="callback"></param>
+        bool JoinChat(int chatId, int profileId, object callback);
+        /// <summary>
+        /// Person leaves chat
+        /// </summary>
+        /// <param name="chatId"></param>
+        /// <param name="profileId"></param>
+        bool LeaveChat(int chatId, int profileId);
+        /// <summary>
         /// Creates chat and automaticly adds the creator to it
         /// </summary>
         /// <param name="chat"></param>
@@ -32,30 +45,10 @@ namespace BusinessTier
         /// <returns></returns>
         bool DeleteChat(int id);
         /// <summary>
-        /// Returns all users chats (which he is part of)
-        /// </summary>
-        /// <param name="profileId"></param>
-        /// <returns></returns>
-        List<Chat> GetPersonsChats(int profileId);
-        /// <summary>
-        /// Gets profiles in selected chat
+        /// Finds existing chat for chatroom
         /// </summary>
         /// <param name="chatId"></param>
         /// <returns></returns>
-        List<Profile> GetPersonsInChat(int chatId);
-        /// <summary>
-        /// Adds profile to specific chat
-        /// </summary>
-        /// <param name="chatId"></param>
-        /// <param name="profileId"></param>
-        /// <returns></returns>
-        bool AddPersonToChat(int chatId, int profileId);
-        /// <summary>
-        /// Removes profile from specific chat
-        /// </summary>
-        /// <param name="chatId"></param>
-        /// <param name="profileId"></param>
-        /// <returns></returns>
-        bool RemovePersonFromChat(int chatId, int profileId);
+        Chat FindChat(int chatId);
     }
 }

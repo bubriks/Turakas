@@ -15,6 +15,259 @@ namespace PresentationTier.MessageServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Profile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NicknameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProfileIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatusIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nickname {
+            get {
+                return this.NicknameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NicknameField, value) != true)) {
+                    this.NicknameField = value;
+                    this.RaisePropertyChanged("Nickname");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProfileID {
+            get {
+                return this.ProfileIDField;
+            }
+            set {
+                if ((this.ProfileIDField.Equals(value) != true)) {
+                    this.ProfileIDField = value;
+                    this.RaisePropertyChanged("ProfileID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StatusID {
+            get {
+                return this.StatusIDField;
+            }
+            set {
+                if ((this.StatusIDField.Equals(value) != true)) {
+                    this.StatusIDField = value;
+                    this.RaisePropertyChanged("StatusID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Chat", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Chat : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MaxNrOfUsersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PresentationTier.MessageServiceReference.User[] UsersField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MaxNrOfUsers {
+            get {
+                return this.MaxNrOfUsersField;
+            }
+            set {
+                if ((this.MaxNrOfUsersField.Equals(value) != true)) {
+                    this.MaxNrOfUsersField = value;
+                    this.RaisePropertyChanged("MaxNrOfUsers");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PresentationTier.MessageServiceReference.User[] Users {
+            get {
+                return this.UsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Profile[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Profile))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Chat))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.User[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Message[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Message))]
+    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object CallBackField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PresentationTier.MessageServiceReference.Profile ProfileField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object CallBack {
+            get {
+                return this.CallBackField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CallBackField, value) != true)) {
+                    this.CallBackField = value;
+                    this.RaisePropertyChanged("CallBack");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PresentationTier.MessageServiceReference.Profile Profile {
+            get {
+                return this.ProfileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProfileField, value) != true)) {
+                    this.ProfileField = value;
+                    this.RaisePropertyChanged("Profile");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
     public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -24,6 +277,9 @@ namespace PresentationTier.MessageServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CreatorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CreatorIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -53,6 +309,19 @@ namespace PresentationTier.MessageServiceReference {
                 if ((object.ReferenceEquals(this.CreatorField, value) != true)) {
                     this.CreatorField = value;
                     this.RaisePropertyChanged("Creator");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CreatorId {
+            get {
+                return this.CreatorIdField;
+            }
+            set {
+                if ((this.CreatorIdField.Equals(value) != true)) {
+                    this.CreatorIdField = value;
+                    this.RaisePropertyChanged("CreatorId");
                 }
             }
         }
@@ -110,11 +379,29 @@ namespace PresentationTier.MessageServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MessageServiceReference.IMessageService", CallbackContract=typeof(PresentationTier.MessageServiceReference.IMessageServiceCallback))]
     public interface IMessageService {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Register")]
-        void Register();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/JoinChat", ReplyAction="http://tempuri.org/IMessageService/JoinChatResponse")]
+        bool JoinChat(int chatId, int profileId);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Register")]
-        System.Threading.Tasks.Task RegisterAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/JoinChat", ReplyAction="http://tempuri.org/IMessageService/JoinChatResponse")]
+        System.Threading.Tasks.Task<bool> JoinChatAsync(int chatId, int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LeaveChat", ReplyAction="http://tempuri.org/IMessageService/LeaveChatResponse")]
+        bool LeaveChat(int chatId, int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LeaveChat", ReplyAction="http://tempuri.org/IMessageService/LeaveChatResponse")]
+        System.Threading.Tasks.Task<bool> LeaveChatAsync(int chatId, int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetOnlineProfiles", ReplyAction="http://tempuri.org/IMessageService/GetOnlineProfilesResponse")]
+        PresentationTier.MessageServiceReference.Profile[] GetOnlineProfiles(int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetOnlineProfiles", ReplyAction="http://tempuri.org/IMessageService/GetOnlineProfilesResponse")]
+        System.Threading.Tasks.Task<PresentationTier.MessageServiceReference.Profile[]> GetOnlineProfilesAsync(int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetChat", ReplyAction="http://tempuri.org/IMessageService/GetChatResponse")]
+        PresentationTier.MessageServiceReference.Chat GetChat(int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetChat", ReplyAction="http://tempuri.org/IMessageService/GetChatResponse")]
+        System.Threading.Tasks.Task<PresentationTier.MessageServiceReference.Chat> GetChatAsync(int chatId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/CreateMessage")]
         void CreateMessage(int profileId, string text, int chatId);
@@ -128,18 +415,21 @@ namespace PresentationTier.MessageServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetMessages", ReplyAction="http://tempuri.org/IMessageService/GetMessagesResponse")]
         System.Threading.Tasks.Task<PresentationTier.MessageServiceReference.Message[]> GetMessagesAsync(int chatId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteMessage", ReplyAction="http://tempuri.org/IMessageService/DeleteMessageResponse")]
-        bool DeleteMessage(int id);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/DeleteMessage")]
+        void DeleteMessage(int id, int chatId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteMessage", ReplyAction="http://tempuri.org/IMessageService/DeleteMessageResponse")]
-        System.Threading.Tasks.Task<bool> DeleteMessageAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/DeleteMessage")]
+        System.Threading.Tasks.Task DeleteMessageAsync(int id, int chatId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IMessageServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/CallBackMessage")]
-        void CallBackMessage(PresentationTier.MessageServiceReference.Message message);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/AddMessage")]
+        void AddMessage(PresentationTier.MessageServiceReference.Message message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/RemoveMessage")]
+        void RemoveMessage(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -170,12 +460,36 @@ namespace PresentationTier.MessageServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void Register() {
-            base.Channel.Register();
+        public bool JoinChat(int chatId, int profileId) {
+            return base.Channel.JoinChat(chatId, profileId);
         }
         
-        public System.Threading.Tasks.Task RegisterAsync() {
-            return base.Channel.RegisterAsync();
+        public System.Threading.Tasks.Task<bool> JoinChatAsync(int chatId, int profileId) {
+            return base.Channel.JoinChatAsync(chatId, profileId);
+        }
+        
+        public bool LeaveChat(int chatId, int profileId) {
+            return base.Channel.LeaveChat(chatId, profileId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> LeaveChatAsync(int chatId, int profileId) {
+            return base.Channel.LeaveChatAsync(chatId, profileId);
+        }
+        
+        public PresentationTier.MessageServiceReference.Profile[] GetOnlineProfiles(int chatId) {
+            return base.Channel.GetOnlineProfiles(chatId);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.MessageServiceReference.Profile[]> GetOnlineProfilesAsync(int chatId) {
+            return base.Channel.GetOnlineProfilesAsync(chatId);
+        }
+        
+        public PresentationTier.MessageServiceReference.Chat GetChat(int chatId) {
+            return base.Channel.GetChat(chatId);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.MessageServiceReference.Chat> GetChatAsync(int chatId) {
+            return base.Channel.GetChatAsync(chatId);
         }
         
         public void CreateMessage(int profileId, string text, int chatId) {
@@ -194,12 +508,12 @@ namespace PresentationTier.MessageServiceReference {
             return base.Channel.GetMessagesAsync(chatId);
         }
         
-        public bool DeleteMessage(int id) {
-            return base.Channel.DeleteMessage(id);
+        public void DeleteMessage(int id, int chatId) {
+            base.Channel.DeleteMessage(id, chatId);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteMessageAsync(int id) {
-            return base.Channel.DeleteMessageAsync(id);
+        public System.Threading.Tasks.Task DeleteMessageAsync(int id, int chatId) {
+            return base.Channel.DeleteMessageAsync(id, chatId);
         }
     }
 }

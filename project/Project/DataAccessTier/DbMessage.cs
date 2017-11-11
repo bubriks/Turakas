@@ -19,30 +19,24 @@ namespace DataAccessTier
 
         public Message CreateMessage(int profileId, String text, int chatId)
         {
-            string stmt = "DECLARE @activityID int; " +
-                          "DECLARE @textID int; " +
+            string stmt = " DECLARE @activityID int; " +
 
-            "INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
-            "SET @activityID = @@IDENTITY; " +
+            " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
+            " SET @activityID = @@IDENTITY; " +
 
-            "INSERT INTO Text(activityID, message) values(@activityID, @2); " +
-            "SET @textID = @@IDENTITY; " +
+            " INSERT INTO Message(activityID, chatID, message) values(@activityID, @3, @2); " +
 
-            "INSERT INTO Message(textID, chatID) values(@textID, @3); " +
-
-            "SELECT " +
-                "Profile.nickname, " +
-                "Activity.activityID, " +
-                "Text.message, " +
-                "Activity.timeStamp " +
-                "FROM Profile " +
-            "INNER JOIN Activity " +
-                "on Profile.profileID = Activity.profileID " +
-            "INNER JOIN Text " +
-                "on Activity.activityID = Text.activityID " +
-            "INNER JOIN Message " +
-                "on Text.textID = Message.textID " +
-            "where Activity.activityID = @activityID ";
+            " SELECT " +
+                " Profile.nickname, " +
+                " Activity.activityID, " +
+                " Message.message, " +
+                " Activity.timeStamp " +
+                " FROM Profile " +
+            " INNER JOIN Activity " +
+                " on Profile.profileID = Activity.profileID " +
+            " INNER JOIN Message " +
+                " on Activity.activityID = Message.activityID " +
+            " where Activity.activityID = @activityID ";
 
             Message message = null;
             SqlCommand cmd = con.GetConnection().CreateCommand();
@@ -61,31 +55,31 @@ namespace DataAccessTier
                     Id = Int32.Parse(reader["activityID"].ToString()),
                     Text = reader["message"].ToString(),
                     Creator = reader["nickname"].ToString(),
+                    CreatorId = profileId,
                     Time = Convert.ToDateTime(reader["timeStamp"].ToString())
                 };
-                reader.Close();
             }
+            reader.Close();
             return message;
         }
         
         public List<Message> GetMessages(int chatId)
         {
-            string stmt = "SELECT TOP(20) " +
-                                "Profile.nickname, " +
-                                "Activity.activityID, " +
-                                "Text.message, " +
-                                "Activity.timeStamp " +
-                            "FROM Profile " +
-                            "INNER JOIN Activity " +
-                                "on Profile.profileID = Activity.profileID " +
-                            "INNER JOIN Text " +
-                                "on Activity.activityID = Text.activityID " +
-                            "INNER JOIN Message " +
-                                "on Text.textID = Message.textID " +
-                            "where Message.chatID = @0 " +
-                            "ORDER BY activityID DESC";
+            string stmt = " SELECT TOP(20)" +
+                            " Profile.nickname, " +
+                            " Profile.profileID, " +
+                            " Activity.activityID, " +
+                            " Message.message," +
+                            " Activity.timeStamp" +
+                        " FROM Profile" +
+                        " INNER JOIN Activity" +
+                            " on Profile.profileID = Activity.profileID" +
+                        " INNER JOIN Message" +
+                            " on Activity.activityID = Message.activityID" +
+                        " where Message.chatID = @0" +
+                        " ORDER BY activityID DESC";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-            cmd.Parameters.AddWithValue("@0",chatId);
+            cmd.Parameters.AddWithValue("@0", chatId);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Message> messages = new List<Message>();
             while (reader.Read())
@@ -95,6 +89,7 @@ namespace DataAccessTier
                     Id = Int32.Parse(reader["activityID"].ToString()),
                     Text = reader["message"].ToString(),
                     Creator = reader["nickname"].ToString(),
+                    CreatorId = Int32.Parse(reader["profileID"].ToString()),
                     Time = Convert.ToDateTime(reader["timeStamp"].ToString())
                 };
                 messages.Add(message);
