@@ -1,5 +1,6 @@
 use dmaj0916_197331
 --Login Table
+
 CREATE TABLE Login(
 loginID int IDENTITY(1,1) PRIMARY KEY,
 username varchar(50) NOT NULL,
@@ -41,7 +42,6 @@ CREATE TRIGGER DELETE_Profile
 AS 
 BEGIN
  SET NOCOUNT ON;
- DELETE FROM PersonsChats WHERE profileID IN (SELECT profileID FROM DELETED)
  DELETE FROM Activity WHERE activityID IN (SELECT profileID FROM DELETED)
  DELETE FROM RelationShips WHERE partnerID IN (SELECT profileID FROM DELETED)
  DELETE FROM Profile WHERE profileID IN (SELECT profileID FROM DELETED)
@@ -53,6 +53,7 @@ CREATE TABLE Chat(
 chatID int IDENTITY(1,1) PRIMARY KEY,
 name varchar(50) NOT NULL,
 type bit NOT NULL,
+nrOfUsers int NOT NULL,
 );
 
 --Chat Trigger
@@ -63,18 +64,10 @@ CREATE TRIGGER DELETE_Chat
 AS 
 BEGIN
  SET NOCOUNT ON;
- DELETE FROM PersonsChats WHERE chatID IN (SELECT chatID FROM DELETED)
  DELETE FROM Message WHERE chatID IN (SELECT chatID FROM DELETED)
  DELETE FROM Chat WHERE chatID IN (SELECT chatID FROM DELETED)
 END
 go
-
---PersonsChats Table
-CREATE TABLE PersonsChats(
-chatID int FOREIGN KEY REFERENCES Chat(chatID) NOT NULL,
-profileID int FOREIGN KEY REFERENCES Profile(profileID) NOT NULL,
-PRIMARY KEY(chatID, profileID),
-);
 
 --Activity Table
 CREATE TABLE Activity(
@@ -95,7 +88,7 @@ BEGIN
  DELETE FROM RelationShips WHERE activityID IN (SELECT activityID FROM DELETED)
  DELETE FROM Liked WHERE activityID IN (SELECT activityID FROM DELETED)
  DELETE FROM Liked WHERE likedActivityID IN(SELECT activityID FROM DELETED)
- DELETE FROM Text WHERE activityID IN(SELECT activityID FROM DELETED)
+ DELETE FROM Message WHERE activityID IN(SELECT activityID FROM DELETED)
  DELETE FROM PlayLists WHERE activityID IN (SELECT activityID FROM DELETED)
  DELETE FROM Song WHERE activityID IN (SELECT activityID FROM DELETED)
  DELETE FROM Activity WHERE activityID IN (SELECT activityID FROM DELETED)
@@ -127,31 +120,11 @@ activityID int FOREIGN KEY REFERENCES Activity(activityID) PRIMARY KEY NOT NULL,
 likedActivityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
 );
 
---Text Table
-CREATE TABLE Text(
-textID int IDENTITY(1,1) PRIMARY KEY,
-activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
-message varchar(MAX) NOT NULL,
-);
-
---Text Trigger
-go
-CREATE TRIGGER DELETE_Text
-   ON Text
-   INSTEAD OF DELETE
-AS 
-BEGIN
- SET NOCOUNT ON;
- DELETE FROM Message WHERE textID IN (SELECT textID FROM DELETED)
- DELETE FROM Comment WHERE textID IN (SELECT textID FROM DELETED)
- DELETE FROM Text WHERE textID IN (SELECT textID FROM DELETED)
-END
-go
-
 --Message Table
 CREATE TABLE Message(
-textID int FOREIGN KEY REFERENCES Text(textID) PRIMARY KEY NOT NULL,
+activityID int FOREIGN KEY REFERENCES Activity(activityID) PRIMARY KEY NOT NULL,
 chatID int FOREIGN KEY REFERENCES Chat(chatID) NOT NULL,
+message varchar(MAX) NOT NULL,
 );
 
 --Mood Table
@@ -178,7 +151,6 @@ AS
 BEGIN
  SET NOCOUNT ON;
  DELETE FROM TrackList WHERE playListID IN (SELECT playListID FROM DELETED)
- DELETE FROM Comment WHERE playListID IN (SELECT playListID FROM DELETED)
  DELETE FROM PlayLists WHERE playListID IN (SELECT playListID FROM DELETED)
 END
 go
@@ -224,10 +196,4 @@ CREATE TABLE TrackList(
 songID int FOREIGN KEY REFERENCES Song(songID) NOT NULL,
 playListID int FOREIGN KEY REFERENCES PlayLists(playListID) NOT NULL,
 PRIMARY KEY(songID, playListID),
-);
-
---Comment Table
-CREATE TABLE Comment(
-textID int FOREIGN KEY REFERENCES Text(textID) PRIMARY KEY NOT NULL,
-playListID int FOREIGN KEY REFERENCES PlayLists(playListID) NOT NULL,
 );
