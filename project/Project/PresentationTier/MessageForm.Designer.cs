@@ -90,7 +90,7 @@ namespace PresentationTier
             this.label2.Size = new System.Drawing.Size(75, 23);
             this.label2.TabIndex = 8;
             this.label2.Text = "label2";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MessageForm
             // 

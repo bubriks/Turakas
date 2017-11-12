@@ -55,7 +55,7 @@ namespace PresentationTier
             this.listView1.Location = new System.Drawing.Point(12, 39);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(245, 127);
+            this.listView1.Size = new System.Drawing.Size(267, 127);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -65,7 +65,7 @@ namespace PresentationTier
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(183, 10);
+            this.button1.Location = new System.Drawing.Point(205, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -79,7 +79,7 @@ namespace PresentationTier
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(12, 13);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 20);
+            this.textBox1.Size = new System.Drawing.Size(186, 20);
             this.textBox1.TabIndex = 2;
             // 
             // groupBox1
@@ -93,7 +93,7 @@ namespace PresentationTier
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(264, 10);
+            this.groupBox1.Location = new System.Drawing.Point(286, 10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 158);
             this.groupBox1.TabIndex = 3;
@@ -175,7 +175,7 @@ namespace PresentationTier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 178);
+            this.ClientSize = new System.Drawing.Size(498, 178);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);

@@ -36,34 +36,49 @@ namespace PresentationTier
 
             if (client.JoinChat(chatId, profileId))
             {
-                foreach (MessageServiceReference.Message message in client.GetMessages(chatId).Reverse())
-                {
-                    listBox1.Items.Add(message);
-                }
-                this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
+                Messages();
 
-                foreach (Profile profile in client.GetOnlineProfiles(chatId).Reverse())
-                {
-                    listBox2.Items.Add(profile);
-                }
-                this.listBox2.SelectedIndex = this.listBox2.Items.Count - 1;
+                OnlineUsers();
 
-                Chat chat = client.GetChat(chatId);
-                if (chat.Type == true)
-                {
-                    this.Text = "Public chat: " + chat.Name;
-                }
-                else
-                {
-                    this.Text = "Private chat: " + chat.Name;
-                }
-
-                label2.Text = chat.Users.Count() + " Out of " + chat.MaxNrOfUsers + " users";
+                ChatInfo();
             }
             else
             {
-                this.Close();
+                throw new Exception();
             }
+        }
+
+        private void Messages()
+        {
+            foreach (MessageServiceReference.Message message in client.GetMessages(chatId).Reverse())
+            {
+                listBox1.Items.Add(message);
+            }
+            this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
+        }
+
+        private void OnlineUsers()
+        {
+            foreach (Profile profile in client.GetOnlineProfiles(chatId).Reverse())
+            {
+                listBox2.Items.Add(profile);
+            }
+            this.listBox2.SelectedIndex = this.listBox2.Items.Count - 1;
+        }
+
+        private void ChatInfo()
+        {
+            Chat chat = client.GetChat(chatId);
+            if (chat.Type == true)
+            {
+                this.Text = "Public chat: " + chat.Name;
+            }
+            else
+            {
+                this.Text = "Private chat: " + chat.Name;
+            }
+
+            label2.Text = chat.Users.Count() + " Out of " + chat.MaxNrOfUsers + " users";
         }
 
         #region Add message
@@ -141,17 +156,19 @@ namespace PresentationTier
 
         private void MessageForm_Closing(object sender, CancelEventArgs e)//on close event
         {
-            if(client.LeaveChat(chatId, profileId))
-            {
-                if (MessageBox.Show("Are you sure you want to quit?", "My Application", MessageBoxButtons.YesNo) == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-            }
-            else
-            {
-                e.Cancel = true;
-            }
+            client.LeaveChat(chatId, profileId);
+            e.Cancel = true;
+            //if(client.LeaveChat(chatId, profileId))
+            //{
+            //    if (MessageBox.Show("Are you sure you want to quit?", "My Application", MessageBoxButtons.YesNo) == DialogResult.No)
+            //    {
+            //        e.Cancel = true;
+            //    }
+            //}
+            //else
+            //{
+            //    e.Cancel = true;
+            //}
         }
     }
 }

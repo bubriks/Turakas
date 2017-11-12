@@ -31,7 +31,7 @@ namespace PresentationTier
             listView1.Columns.Add("Name", 60, HorizontalAlignment.Left);
             listView1.Columns.Add("Type", 60, HorizontalAlignment.Left);
             listView1.Columns.Add("Users", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Room size", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("Room size", 80, HorizontalAlignment.Left);
 
             trackBar1.Minimum = 2;
             trackBar1.Maximum = 10;
@@ -136,7 +136,12 @@ namespace PresentationTier
                 ListViewHitTestInfo lvhti = this.listView1.HitTest(e.X, e.Y);
                 if (lvhti.Item != null && Int32.Parse(lvhti.Item.SubItems[3].Text) < Int32.Parse(lvhti.Item.SubItems[4].Text))
                 {
-                    new MessageForm(chatId, profileId).Show();
+                    try
+                    {
+                        new MessageForm(chatId, profileId).Show();
+                    }
+                    catch (Exception)
+                    {}
                 }
             }
         }
