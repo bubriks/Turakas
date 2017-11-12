@@ -108,28 +108,42 @@ namespace BusinessTier
             }
         }
 
-        public Chat CreateChat(Chat chat, int profileId)
+        public Chat SaveChat(Chat chat)
         {
-            //Creates new transaction
-            con.BeginTransaction();
             try
             {
                 if (chat.MaxNrOfUsers > 1)
                 {
-                    //passes the transaction further to DataAccessTier
-                    chat = dbChat.CreateChat(chat);
-                    //if everything goes as planed than commited
-                    con.Commit();
-                    //returns Object if everything went correctly
-                    return chat;
+                    if (chat.Id == 0)
+                    {
+                        //returns Object if everything went correctly
+                        return dbChat.CreateChat(chat);
+                    }
+                    else
+                    {
+                        if (dbChat.UpdateChat(chat) == null)
+                        {
+                            //returns null if no changes were made
+                            return null;
+                        }
+
+                        Chat foundChat = FindChat(chat.Id);
+                        if (foundChat != null)
+                        {
+                            foundChat.MaxNrOfUsers = chat.MaxNrOfUsers;
+                            foundChat.Name = chat.Name;
+                            foundChat.Type = chat.Type;
+                        }
+                        //returns object if everything went correctly
+                        return chat;
+                    }
                 }
                 //max users too litle
                 return null;
             }
             catch (Exception)
             {
-                //If exception is thrown the transaction is rolled back and null is returned
-                con.Rollback();
+                //If exception is thrown null is returned
                 return null;
             }
         }
@@ -145,38 +159,6 @@ namespace BusinessTier
             {
                 //returns empty list if exception is thrown
                 return new List<Chat>();
-            }
-        }
-
-        public bool UpdateChat(Chat chat)
-        {
-            try
-            {
-                if (chat.MaxNrOfUsers > 1)
-                {
-                    if (dbChat.UpdateChat(chat) == 0)
-                    {
-                        //returns false if no changes were made
-                        return false;
-                    }
-
-                    Chat foundChat = FindChat(chat.Id);
-                    if (foundChat != null)
-                    {
-                        foundChat.MaxNrOfUsers = chat.MaxNrOfUsers;
-                        foundChat.Name = chat.Name;
-                        foundChat.Type = chat.Type;
-                    }
-                    //returns true if everything went correctly
-                    return true;
-                }
-                //too few people can join
-                return false;
-            }
-            catch (Exception)
-            {
-                //returns false if exception is thrown
-                return false;
             }
         }
 

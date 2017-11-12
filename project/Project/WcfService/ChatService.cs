@@ -12,19 +12,14 @@ namespace WcfService
     {
         IChatController chatController = new ChatController();
 
-        public Chat CreateChat(Chat chat, int profileId)
+        public Chat SaveChat(Chat chat)
         {
-            return chatController.CreateChat(chat, profileId);
+            return chatController.SaveChat(chat);
         }
 
         public List<Chat> GetChatsByName(String name)
         {
             return chatController.GetChatsByName(name);
-        }
-
-        public bool UpdateChat(Chat chat)
-        {
-            return chatController.UpdateChat(chat);
         }
 
         public bool DeleteChat(int id)

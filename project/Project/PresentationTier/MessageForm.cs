@@ -14,7 +14,7 @@ namespace PresentationTier
 {
     public partial class MessageForm : Form, IMessageServiceCallback
     {
-        private int profileId = 2;
+        private int profileId = 1;
         private int chatId = 1;
 
         private InstanceContext instanceContext = null;

@@ -116,7 +116,7 @@ namespace PresentationTier
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button1);
             this.Name = "MessageForm";
-            this.Text = "Form1";
+            this.Text = "Chat Box";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MessageForm_Closing);
             this.ResumeLayout(false);
             this.PerformLayout();

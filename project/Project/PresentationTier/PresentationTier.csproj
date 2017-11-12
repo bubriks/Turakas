@@ -48,6 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatForm.Designer.cs">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ChatServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="MessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ChatForm.resx">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -73,6 +87,19 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Connected Services\ChatServiceReference\ChatService.wsdl" />
+    <None Include="Connected Services\ChatServiceReference\ChatService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ChatServiceReference\ChatService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ChatServiceReference\ChatService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ChatServiceReference\PresentationTier.ChatServiceReference.Chat.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\MessageServiceReference\MessageService.wsdl" />
     <None Include="Connected Services\MessageServiceReference\MessageService.xsd">
       <SubType>Designer</SubType>
@@ -109,6 +136,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ChatServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\MessageServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +150,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\MessageServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ChatServiceReference\ChatService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ChatServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ChatServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ChatServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
