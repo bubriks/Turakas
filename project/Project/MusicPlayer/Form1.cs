@@ -20,7 +20,7 @@ namespace MusicPlayer
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            axWindowsMediaPlayer1.URL = paths[listBox1.SelectedIndex];
+            //axWindowsMediaPlayer1.URL = paths[listBox1.SelectedIndex];
         }
 
         private void button1_Click(object sender, EventArgs e)

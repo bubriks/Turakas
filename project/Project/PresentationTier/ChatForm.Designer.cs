@@ -38,7 +38,6 @@ namespace PresentationTier
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,6 +59,7 @@ namespace PresentationTier
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseDoubleClick);
             this.listView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseDown);
             // 
             // button1
@@ -89,7 +89,6 @@ namespace PresentationTier
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.trackBar1);
-            this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label2);
@@ -137,16 +136,6 @@ namespace PresentationTier
             this.trackBar1.TabIndex = 5;
             this.trackBar1.ValueChanged += new System.EventHandler(this.TrackBar1_ValueChanged);
             // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(134, 54);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(54, 17);
-            this.checkBox2.TabIndex = 4;
-            this.checkBox2.Text = "public";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -192,7 +181,7 @@ namespace PresentationTier
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listView1);
             this.Name = "ChatForm";
-            this.Text = "ChatForm";
+            this.Text = "Chat form";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -207,7 +196,6 @@ namespace PresentationTier
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private GroupBox groupBox1;
-        private CheckBox checkBox2;
         private CheckBox checkBox1;
         private TextBox textBox2;
         private Label label2;

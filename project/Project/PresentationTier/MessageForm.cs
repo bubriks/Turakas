@@ -14,15 +14,13 @@ namespace PresentationTier
 {
     public partial class MessageForm : Form, IMessageServiceCallback
     {
-        private int profileId = 1;
-        private int chatId = 1;
-
+        private int profileId, chatId;
         private InstanceContext instanceContext = null;
         private MessageServiceClient client;
         private ContextMenu cm;
         private ToolTip toolTip = new ToolTip();
 
-        public MessageForm()
+        public MessageForm(int chatId, int profileId)
         {
             #region initialize
             InitializeComponent();
@@ -31,9 +29,12 @@ namespace PresentationTier
 
             cm = new ContextMenu();
             cm.MenuItems.Add(new MenuItem("Remove", MenuItemNew_Click));
+
+            this.chatId = chatId;
+            this.profileId = profileId;
             #endregion
 
-            if(client.JoinChat(chatId, profileId))
+            if (client.JoinChat(chatId, profileId))
             {
                 foreach (MessageServiceReference.Message message in client.GetMessages(chatId).Reverse())
                 {
@@ -50,11 +51,11 @@ namespace PresentationTier
                 Chat chat = client.GetChat(chatId);
                 if (chat.Type == true)
                 {
-                    label1.Text = "Public chat: " + chat.Name;
+                    this.Text = "Public chat: " + chat.Name;
                 }
                 else
                 {
-                    label1.Text = "Private chat: " + chat.Name;
+                    this.Text = "Private chat: " + chat.Name;
                 }
 
                 label2.Text = chat.Users.Count() + " Out of " + chat.MaxNrOfUsers + " users";
@@ -138,7 +139,7 @@ namespace PresentationTier
             }
         }
 
-        private void MessageForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)//on close event
+        private void MessageForm_Closing(object sender, CancelEventArgs e)//on close event
         {
             if(client.LeaveChat(chatId, profileId))
             {
