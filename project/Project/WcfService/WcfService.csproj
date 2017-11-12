@@ -48,13 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatService.cs" />
-    <Compile Include="IChatService.cs" />
-    <Compile Include="ILoginService.cs" />
-    <Compile Include="IMessageService.cs" />
-    <Compile Include="INotificationService.cs" />
-    <Compile Include="IProfileService.cs" />
-    <Compile Include="IRelationshipService.cs" />
-    <Compile Include="IYoutubeService.cs" />
+    <Compile Include="Interfaces\IChatService.cs" />
+    <Compile Include="Interfaces\ILoginService.cs" />
+    <Compile Include="Interfaces\IMessageService.cs" />
+    <Compile Include="Interfaces\INotificationService.cs" />
+    <Compile Include="Interfaces\IProfileService.cs" />
+    <Compile Include="Interfaces\IRelationshipService.cs" />
+    <Compile Include="Interfaces\IYoutubeService.cs" />
     <Compile Include="LoginService.cs" />
     <Compile Include="MessageService.cs" />
     <Compile Include="NotificationService.cs" />

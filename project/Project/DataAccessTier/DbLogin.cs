@@ -108,7 +108,12 @@ namespace DataAccessTier
             try
             {
                 SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
-                    Login login1 = new Login(reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    Login login1 = new Login
+                    {
+                        Username = reader.GetString(1),
+                        Password = reader.GetString(2),
+                        Email = reader.GetString(3)
+                    };
                     login1.LoginId = reader.GetInt32(0);
 
                 return login1;

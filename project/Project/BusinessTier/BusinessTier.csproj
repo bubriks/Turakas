@@ -77,13 +77,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatController.cs" />
-    <Compile Include="IChatController.cs" />
-    <Compile Include="ILoginController.cs" />
-    <Compile Include="IMessageController.cs" />
-    <Compile Include="INotificationController.cs" />
-    <Compile Include="IProfileController.cs" />
-    <Compile Include="IRelationshipController.cs" />
-    <Compile Include="ISongController.cs" />
+    <Compile Include="Interfaces\IChatController.cs" />
+    <Compile Include="Interfaces\ILoginController.cs" />
+    <Compile Include="Interfaces\IMessageController.cs" />
+    <Compile Include="Interfaces\INotificationController.cs" />
+    <Compile Include="Interfaces\IProfileController.cs" />
+    <Compile Include="Interfaces\IRelationshipController.cs" />
+    <Compile Include="Interfaces\ISongController.cs" />
     <Compile Include="LoginController.cs" />
     <Compile Include="MessageController.cs" />
     <Compile Include="NotificationController.cs" />

@@ -50,7 +50,11 @@ namespace DataAccessTier
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Notification notification = new Notification(reader.GetInt32(0), reader.GetInt32(1));
+                    Notification notification = new Notification
+                    {
+                        ActivityId = reader.GetInt32(0),
+                        ProfileId = reader.GetInt32(1),
+                    };
                     notifications.Add(notification);
                 }
                 return notifications;

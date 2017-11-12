@@ -62,7 +62,12 @@ namespace DataAccessTier
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    Profile profile = new Profile(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
+                    Profile profile = new Profile
+                    {
+                        ProfileID = reader.GetInt32(0),
+                        StatusID = reader.GetInt32(1), 
+                        Nickname = reader.GetString(2),
+                    };
                     reader.Close();
                     return profile;
                 }

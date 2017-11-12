@@ -6,23 +6,13 @@ namespace DataTier
     [DataContract]
     public class Login
     {
-        private String username, password, email;
-        private int loginId;
-
-        public Login(String username, String password, String email)
-        {
-            this.username = username;
-            this.password = password;
-            this.email = email;
-        }
-
         [DataMember]
-        public int LoginId { get => loginId; set => loginId = value; }
+        public int LoginId { get; set; }
         [DataMember]
-        public string Username { get => username; set => username = value; }
+        public string Username { get; set; }
         [DataMember]
-        public string Password { get => password; set => password = value; }
+        public string Password { get; set; }
         [DataMember]
-        public string Email { get => email; set => email = value; }
+        public string Email { get; set; }
     }
 }
