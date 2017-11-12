@@ -13,13 +13,15 @@ namespace PresentationTier
 {
     public partial class ChatForm : Form
     {
-        private int chatId = 0;
-
+        private int chatId, profileId;
         private ChatServiceClient client;
         private ContextMenu cm;
-        public ChatForm()
+        public ChatForm(int profileId)
         {
             #region initialize
+            chatId = 0;
+            this.profileId = profileId;
+
             InitializeComponent();
             client = new ChatServiceClient();
             cm = new ContextMenu();
@@ -78,15 +80,13 @@ namespace PresentationTier
                 {
                     chatId = Int32.Parse(lvhti.Item.Text);
                     textBox2.Text = lvhti.Item.SubItems[1].Text;
-                    if (lvhti.Item.SubItems[2].Text.Equals("True"))
+                    if (lvhti.Item.SubItems[2].Text.Equals("False"))
                     {
-                        checkBox2.Checked = true;
-                        checkBox1.Checked = false;
+                        checkBox1.Checked = true;
                     }
                     else
                     {
-                        checkBox1.Checked = true;
-                        checkBox2.Checked = false;
+                        checkBox1.Checked = false;
                     }
                     trackBar1.Value = Int32.Parse(lvhti.Item.SubItems[4].Text);
                 }
@@ -95,7 +95,6 @@ namespace PresentationTier
                     chatId = 2;
                     textBox2.Text = "";
                     checkBox1.Checked = false;
-                    checkBox2.Checked = false;
                     trackBar1.Value = 2;
                 }
             }
@@ -112,13 +111,13 @@ namespace PresentationTier
             chat.Name = textBox2.Text;
             chat.MaxNrOfUsers = trackBar1.Value;
             chat.Id = chatId;
-            if (checkBox2.Checked == true)
+            if (checkBox1.Checked == true)
             {
-                chat.Type = true;
+                chat.Type = false;
             }
             else
             {
-                chat.Type = false;
+                chat.Type = true;
             }
             client.SaveChat(chat);
             Button1_Click(null, null);
@@ -128,6 +127,18 @@ namespace PresentationTier
         {
             client.DeleteChat(Int32.Parse(listView1.SelectedItems[0].Text));
             Button1_Click(null, null);
+        }
+
+        private void ListView1_MouseDoubleClick(object sender, MouseEventArgs e)//join chat room
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ListViewHitTestInfo lvhti = this.listView1.HitTest(e.X, e.Y);
+                if (lvhti.Item != null && Int32.Parse(lvhti.Item.SubItems[3].Text) < Int32.Parse(lvhti.Item.SubItems[4].Text))
+                {
+                    new MessageForm(chatId, profileId).Show();
+                }
+            }
         }
     }
 }
