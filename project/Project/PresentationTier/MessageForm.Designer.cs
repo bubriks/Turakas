@@ -35,6 +35,7 @@ namespace PresentationTier
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // button1
@@ -66,7 +67,7 @@ namespace PresentationTier
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 11);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(276, 212);
+            this.listBox1.Size = new System.Drawing.Size(276, 225);
             this.listBox1.TabIndex = 5;
             this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListBox1_MouseDown);
             this.listBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ListBox1_MouseMove);
@@ -79,24 +80,34 @@ namespace PresentationTier
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(294, 38);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(75, 186);
+            this.listBox2.Size = new System.Drawing.Size(75, 82);
             this.listBox2.TabIndex = 6;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(294, 9);
+            this.label2.Location = new System.Drawing.Point(289, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 23);
+            this.label2.Size = new System.Drawing.Size(80, 23);
             this.label2.TabIndex = 8;
-            this.label2.Text = "label2";
+            this.label2.Text = " ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(294, 126);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(75, 105);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Invite Friend";
             // 
             // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 272);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
@@ -116,6 +127,7 @@ namespace PresentationTier
         private System.Windows.Forms.ListBox listBox1;
         private ListBox listBox2;
         private Label label2;
+        private GroupBox groupBox1;
     }
 }
 

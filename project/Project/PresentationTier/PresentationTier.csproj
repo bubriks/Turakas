@@ -142,15 +142,6 @@
     <None Include="Connected Services\MessageServiceReference\MessageService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\MessageServiceReference\PresentationTier.MessageServiceReference.Chat.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\MessageServiceReference\PresentationTier.MessageServiceReference.Message.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\MessageServiceReference\PresentationTier.MessageServiceReference.Profile.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\ProfileServiceReference\PresentationTier.ProfileServiceReference.Profile.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -11,34 +11,48 @@ namespace WcfService
 {
     public class MessageService : IMessageService
     {
-        //will need chaging
         private IMessageController messageController = new MessageController();
         private IChatController chatController = new ChatController();
 
-        public bool JoinChat(int chatId, int profileId)
+        public void JoinChat(int chatId, int profileId)
         {
-            object callback = OperationContext.Current.GetCallbackChannel<IMessageCallBack>();
-            return chatController.JoinChat(chatId, profileId, callback);
-        }
-
-        public bool LeaveChat(int chatId, int profileId)
-        {
-            return chatController.LeaveChat(chatId, profileId);
-        }
-
-        public List<Profile> GetOnlineProfiles(int chatId)
-        {
-            List<Profile> profiles = new List<Profile>();
-            foreach(User user in chatController.FindChat(chatId).Users)
+            object callbackObj = OperationContext.Current.GetCallbackChannel<IMessageCallBack>();
+            IMessageCallBack callback = (IMessageCallBack)callbackObj;
+            if (chatController.JoinChat(chatId, profileId, callbackObj))
             {
-                profiles.Add(user.Profile);
+                callback.GetChat(chatController.FindChat(chatId));
+                callback.GetMessages(messageController.GetMessages(chatId));
+
+                List<Profile> profiles = new List<Profile>();
+                foreach (User user in chatController.FindChat(chatId).Users)
+                {
+                    profiles.Add(user.Profile);
+                }
+
+                foreach (User user in chatController.FindChat(chatId).Users)
+                {
+                    callback = (IMessageCallBack)user.CallBack;
+                    callback.GetOnlineProfiles(profiles);
+                }
             }
-            return profiles;
         }
 
-        public Chat GetChat(int chatId)
+        public void LeaveChat(int chatId, int profileId)
         {
-            return chatController.FindChat(chatId);
+            if(chatController.LeaveChat(chatId, profileId))
+            {
+                List<Profile> profiles = new List<Profile>();
+                foreach(User user in chatController.FindChat(chatId).Users)
+                {
+                    profiles.Add(user.Profile);
+                }
+
+                foreach (User user in chatController.FindChat(chatId).Users)
+                {
+                    IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+                    callback.GetOnlineProfiles(profiles);
+                }
+            }
         }
 
         public void CreateMessage(int profileId, string text, int chatId)
@@ -52,11 +66,6 @@ namespace WcfService
                     callback.AddMessage(message);
                 }
             }
-        }
-
-        public List<Message> GetMessages(int chatId)
-        {
-            return messageController.GetMessages(chatId);
         }
 
         public void DeleteMessage(int id, int chatId)

@@ -9,53 +9,11 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="JoinChatResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="JoinChatResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="LeaveChat">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="chatId" type="xs:int" />
         <xs:element minOccurs="0" name="profileId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="LeaveChatResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="LeaveChatResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetOnlineProfiles">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="chatId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetOnlineProfilesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetOnlineProfilesResult" nillable="true" type="q1:ArrayOfProfile" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetChat">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="chatId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetChatResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetChatResult" nillable="true" type="q2:Chat" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -65,20 +23,6 @@
         <xs:element minOccurs="0" name="profileId" type="xs:int" />
         <xs:element minOccurs="0" name="text" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="chatId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetMessages">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="chatId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetMessagesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetMessagesResult" nillable="true" type="q3:ArrayOfMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -93,7 +37,7 @@
   <xs:element name="AddMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="message" nillable="true" type="q4:Message" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="message" nillable="true" type="q1:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -101,6 +45,27 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOnlineProfiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="profiles" nillable="true" type="q2:ArrayOfProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetChat">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="chat" nillable="true" type="q3:Chat" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="messages" nillable="true" type="q4:ArrayOfMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

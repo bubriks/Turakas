@@ -29,41 +29,11 @@ namespace PresentationTier
             this.profileId = profileId;
             #endregion
 
-            if (client.JoinChat(chatId, profileId))
-            {
-                Messages();
-
-                OnlineUsers();
-
-                ChatInfo();
-            }
-            else
-            {
-                throw new Exception();
-            }
+            client.JoinChat(chatId, profileId);
         }
 
-        private void Messages()
+        public void GetChat(Chat chat)
         {
-            foreach (MessageServiceReference.Message message in client.GetMessages(chatId).Reverse())
-            {
-                listBox1.Items.Add(message);
-            }
-            this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
-        }
-
-        private void OnlineUsers()
-        {
-            foreach (Profile profile in client.GetOnlineProfiles(chatId).Reverse())
-            {
-                listBox2.Items.Add(profile);
-            }
-            this.listBox2.SelectedIndex = this.listBox2.Items.Count - 1;
-        }
-
-        private void ChatInfo()
-        {
-            Chat chat = client.GetChat(chatId);
             if (chat.Type == true)
             {
                 this.Text = "Public chat: " + chat.Name;
@@ -73,7 +43,29 @@ namespace PresentationTier
                 this.Text = "Private chat: " + chat.Name;
             }
 
-            label2.Text = chat.Users.Count() + " Out of " + chat.MaxNrOfUsers + " users";
+            label2.Text = chat.Users.Count() + " out of " + chat.MaxNrOfUsers + " users";//
+        }
+
+        public void GetMessages(MessageServiceReference.Message[] messages)
+        {
+            foreach (MessageServiceReference.Message message in messages)
+            {
+                listBox1.Items.Add(message);
+            }
+            this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
+        }
+
+        public void GetOnlineProfiles(Profile[] profiles)
+        {
+            listBox2.Items.Clear();
+            foreach (Profile profile in profiles)
+            {
+                listBox2.Items.Add(profile);
+            }
+            this.listBox2.SelectedIndex = this.listBox2.Items.Count - 1;
+
+            String text = label2.Text;
+            label2.Text = profiles.Count().ToString() + text.Substring(text.IndexOf(" ") -1 + " ".Length);
         }
 
         #region Add message
@@ -151,19 +143,7 @@ namespace PresentationTier
 
         private void MessageForm_Closing(object sender, CancelEventArgs e)//on close event
         {
-            //client.LeaveChat(chatId, profileId);
-            //e.Cancel = true;
-            if (client.LeaveChat(chatId, profileId))
-            {
-                if (MessageBox.Show("Are you sure you want to quit?", "My Application", MessageBoxButtons.YesNo) == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-            }
-            else
-            {
-                e.Cancel = true;
-            }
+            client.LeaveChat(chatId, profileId);
         }
     }
 }

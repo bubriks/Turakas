@@ -88,7 +88,7 @@ namespace BusinessTier
                 {
                     if (user.Profile.ProfileID == profileId)
                     {
-                        if (chat.Users.Count == 1)
+                        if (chat.Users.Count <= 1)
                         {
                             chats.Remove(chat);
                             return true;
