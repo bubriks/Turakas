@@ -1,8 +1,3 @@
-ServiceContract-Usable wcf classes
-OperationContract-Usable wcf method
-DataContract-Usable model classes (variable)
-DataMember-Usable model methods (variable)
-
 host: kraka.ucn.dk
 user: dmaj0916_197331
 db: dmaj0916_197331

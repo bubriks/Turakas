@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PresentationTier.MessageServiceReference;
 using System.ServiceModel;
@@ -156,19 +151,19 @@ namespace PresentationTier
 
         private void MessageForm_Closing(object sender, CancelEventArgs e)//on close event
         {
-            client.LeaveChat(chatId, profileId);
-            e.Cancel = true;
-            //if(client.LeaveChat(chatId, profileId))
-            //{
-            //    if (MessageBox.Show("Are you sure you want to quit?", "My Application", MessageBoxButtons.YesNo) == DialogResult.No)
-            //    {
-            //        e.Cancel = true;
-            //    }
-            //}
-            //else
-            //{
-            //    e.Cancel = true;
-            //}
+            //client.LeaveChat(chatId, profileId);
+            //e.Cancel = true;
+            if (client.LeaveChat(chatId, profileId))
+            {
+                if (MessageBox.Show("Are you sure you want to quit?", "My Application", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

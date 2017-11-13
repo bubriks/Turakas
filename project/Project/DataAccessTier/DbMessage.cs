@@ -20,7 +20,7 @@ namespace DataAccessTier
         public Message CreateMessage(int profileId, String text, int chatId)
         {
             string stmt = " DECLARE @activityID int; " +
-
+                
             " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
             " SET @activityID = @@IDENTITY; " +
 

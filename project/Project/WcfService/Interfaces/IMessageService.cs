@@ -11,12 +11,10 @@ namespace WcfService
     [ServiceContract(CallbackContract = typeof(IMessageCallBack))]
     public interface IMessageService
     {
-        [OperationContract(IsOneWay = true)]
-        //[OperationContract]
+        [OperationContract]
         bool JoinChat(int chatId, int profileId);
-
-        [OperationContract(IsOneWay = true)]
-        //[OperationContract]
+        
+        [OperationContract]
         bool LeaveChat(int chatId, int profileId);
 
         [OperationContract]
