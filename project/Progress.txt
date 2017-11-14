@@ -20,7 +20,10 @@ Programing
 	Get Nr of persons in chat and limit
 	Get persons in chat room
 	Join/leave from chat
-		*Limit nr of persons in chat
+	Update chat room if person joins or leaves
+	Update chat room info for all users if changed
+	Close chat room for all users if its deleted
+	Limit nr of persons in chat
 		*Invite user to chat
 		*Reserve spot
 		*Join as group
