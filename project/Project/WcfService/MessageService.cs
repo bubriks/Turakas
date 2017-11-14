@@ -11,6 +11,7 @@ namespace WcfService
 {
     public class MessageService : IMessageService
     {
+        //all thats possible put to controller
         private IMessageController messageController = new MessageController();
         private IChatController chatController = new ChatController();
 
@@ -23,13 +24,8 @@ namespace WcfService
                 callback.GetChat(chatController.FindChat(chatId));
                 callback.GetMessages(messageController.GetMessages(chatId));
 
-                List<Profile> profiles = new List<Profile>();
-                foreach (User user in chatController.FindChat(chatId).Users)
-                {
-                    profiles.Add(user.Profile);
-                }
-
-                foreach (User user in chatController.FindChat(chatId).Users)
+                List<Profile> profiles = chatController.FindChat(chatId).Users;
+                foreach (Profile user in profiles)
                 {
                     callback = (IMessageCallBack)user.CallBack;
                     callback.GetOnlineProfiles(profiles);
@@ -41,13 +37,8 @@ namespace WcfService
         {
             if(chatController.LeaveChat(chatId, profileId))
             {
-                List<Profile> profiles = new List<Profile>();
-                foreach(User user in chatController.FindChat(chatId).Users)
-                {
-                    profiles.Add(user.Profile);
-                }
-
-                foreach (User user in chatController.FindChat(chatId).Users)
+                List<Profile> profiles = chatController.FindChat(chatId).Users;
+                foreach (Profile user in profiles)
                 {
                     IMessageCallBack callback = (IMessageCallBack)user.CallBack;
                     callback.GetOnlineProfiles(profiles);
@@ -60,7 +51,7 @@ namespace WcfService
             Message message = messageController.CreateMessage(profileId, text, chatId);
             if (message != null)
             {
-                foreach (User user in chatController.FindChat(chatId).Users)
+                foreach (Profile user in chatController.FindChat(chatId).Users)
                 {
                     IMessageCallBack callback = (IMessageCallBack)user.CallBack;
                     callback.AddMessage(message);
@@ -72,7 +63,7 @@ namespace WcfService
         {
             if (messageController.DeleteMessage(id))
             {
-                foreach (User user in chatController.FindChat(chatId).Users)
+                foreach (Profile user in chatController.FindChat(chatId).Users)
                 {
                     IMessageCallBack callback = (IMessageCallBack)user.CallBack;
                     callback.RemoveMessage(id);

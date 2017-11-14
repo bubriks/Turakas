@@ -19,15 +19,6 @@ namespace DataTier
         [DataMember]
         public int MaxNrOfUsers { get; set; }
         [DataMember]
-        public List<User> Users { get; set; }
-    }
-
-    [DataContract]
-    public class User
-    {
-        [DataMember]
-        public Profile Profile { get; set; }
-        [DataMember]
-        public object CallBack { get; set; }
+        public List<Profile> Users { get; set; }
     }
 }

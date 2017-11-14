@@ -13,5 +13,7 @@ namespace DataTier
         public int StatusID { get; set; }
         [DataMember]
         public string Nickname { get; set; }
+        [DataMember]
+        public object CallBack { get; set; }
     }
 }

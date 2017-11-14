@@ -28,10 +28,10 @@ namespace BusinessTier
                 {
                     if (chat.MaxNrOfUsers > chat.Users.Count)
                     {
-                        User user = chat.Users.Find(
-                        delegate (User u)
+                        Profile user = chat.Users.Find(
+                        delegate (Profile u)
                         {
-                            return u.Profile.ProfileID == profileId;
+                            return u.ProfileID == profileId;
                         }
                         );
 
@@ -41,12 +41,9 @@ namespace BusinessTier
                             return false;
                         }
 
-                        user = new User
-                        {
-                            Profile = profileController.ReadProfile(profileId.ToString(), 1),
-                            CallBack = callback
-                        };
-                        List<User> list = chat.Users;
+                        user = profileController.ReadProfile(profileId.ToString(), 1);
+                        user.CallBack = callback;
+                        List<Profile> list = chat.Users;
                         list.Add(user);
                         chat.Users = list;
                         //joined
@@ -58,12 +55,9 @@ namespace BusinessTier
                 else
                 {
                     chat = GetChat(chatId);
-                    User user = new User
-                    {
-                        Profile = profileController.ReadProfile(profileId.ToString(), 1),
-                        CallBack = callback
-                    };
-                    List<User> list = new List<User>
+                    Profile user = profileController.ReadProfile(profileId.ToString(), 1);
+                    user.CallBack = callback;
+                    List<Profile> list = new List<Profile>
                     {
                         user
                     };
@@ -84,9 +78,9 @@ namespace BusinessTier
             try
             {
                 Chat chat = FindChat(chatId);
-                foreach (User user in chat.Users)
+                foreach (Profile user in chat.Users)
                 {
-                    if (user.Profile.ProfileID == profileId)
+                    if (user.ProfileID == profileId)
                     {
                         if (chat.Users.Count <= 1)
                         {
