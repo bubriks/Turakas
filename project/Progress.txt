@@ -22,6 +22,7 @@ Programing
 	Join/leave from chat
 		*Limit nr of persons in chat
 		*Invite user to chat
+		*Reserve spot
 	Send message
 	Recieve message
 	Get messages
