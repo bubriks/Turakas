@@ -35,7 +35,7 @@ namespace PresentationTier.ChatServiceReference {
         private bool TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private PresentationTier.ChatServiceReference.User[] UsersField;
+        private PresentationTier.ChatServiceReference.Profile[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -100,7 +100,7 @@ namespace PresentationTier.ChatServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public PresentationTier.ChatServiceReference.User[] Users {
+        public PresentationTier.ChatServiceReference.Profile[] Users {
             get {
                 return this.UsersField;
             }
@@ -124,13 +124,12 @@ namespace PresentationTier.ChatServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Chat))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.User[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Profile))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Profile[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Chat[]))]
-    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Profile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -139,7 +138,13 @@ namespace PresentationTier.ChatServiceReference {
         private object CallBackField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private PresentationTier.ChatServiceReference.Profile ProfileField;
+        private string NicknameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProfileIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatusIDField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -161,57 +166,6 @@ namespace PresentationTier.ChatServiceReference {
                     this.CallBackField = value;
                     this.RaisePropertyChanged("CallBack");
                 }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public PresentationTier.ChatServiceReference.Profile Profile {
-            get {
-                return this.ProfileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProfileField, value) != true)) {
-                    this.ProfileField = value;
-                    this.RaisePropertyChanged("Profile");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
-    [System.SerializableAttribute()]
-    public partial class Profile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NicknameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProfileIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StatusIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
             }
         }
         
@@ -269,10 +223,10 @@ namespace PresentationTier.ChatServiceReference {
     public interface IChatService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SaveChat", ReplyAction="http://tempuri.org/IChatService/SaveChatResponse")]
-        PresentationTier.ChatServiceReference.Chat SaveChat(PresentationTier.ChatServiceReference.Chat chat);
+        void SaveChat(PresentationTier.ChatServiceReference.Chat chat);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SaveChat", ReplyAction="http://tempuri.org/IChatService/SaveChatResponse")]
-        System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Chat> SaveChatAsync(PresentationTier.ChatServiceReference.Chat chat);
+        System.Threading.Tasks.Task SaveChatAsync(PresentationTier.ChatServiceReference.Chat chat);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetChatsByName", ReplyAction="http://tempuri.org/IChatService/GetChatsByNameResponse")]
         PresentationTier.ChatServiceReference.Chat[] GetChatsByName(string name);
@@ -314,11 +268,11 @@ namespace PresentationTier.ChatServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public PresentationTier.ChatServiceReference.Chat SaveChat(PresentationTier.ChatServiceReference.Chat chat) {
-            return base.Channel.SaveChat(chat);
+        public void SaveChat(PresentationTier.ChatServiceReference.Chat chat) {
+            base.Channel.SaveChat(chat);
         }
         
-        public System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Chat> SaveChatAsync(PresentationTier.ChatServiceReference.Chat chat) {
+        public System.Threading.Tasks.Task SaveChatAsync(PresentationTier.ChatServiceReference.Chat chat) {
             return base.Channel.SaveChatAsync(chat);
         }
         

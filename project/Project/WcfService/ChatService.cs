@@ -12,9 +12,20 @@ namespace WcfService
     {
         IChatController chatController = new ChatController();
 
-        public Chat SaveChat(Chat chat)
+        public void SaveChat(Chat chat)
         {
-            return chatController.SaveChat(chat);
+            if(chatController.SaveChat(chat) != null && chat.Id != 0)
+            {
+                chat = chatController.FindChat(chat.Id);
+                if (chat != null)
+                {
+                    foreach (Profile user in chat.Users)
+                    {
+                        IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+                        callback.GetChat(chat);
+                    }
+                }
+            }
         }
 
         public List<Chat> GetChatsByName(String name)
@@ -22,9 +33,20 @@ namespace WcfService
             return chatController.GetChatsByName(name);
         }
 
-        public bool DeleteChat(int id)
+        public void DeleteChat(int id)
         {
-            return chatController.DeleteChat(id);
+            Chat chat = chatController.FindChat(id);
+            if (chatController.DeleteChat(id))
+            {
+                if (chat != null)
+                {
+                    foreach (Profile user in chat.Users)
+                    {
+                        IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+                        callback.Close(true);
+                    }
+                }
+            }
         }
     }
 }

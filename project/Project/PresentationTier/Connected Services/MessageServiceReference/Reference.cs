@@ -126,10 +126,17 @@ namespace PresentationTier.MessageServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Profile[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Chat))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Message[]))]
     public partial class Profile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object CallBackField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NicknameField;
@@ -147,6 +154,19 @@ namespace PresentationTier.MessageServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object CallBack {
+            get {
+                return this.CallBackField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CallBackField, value) != true)) {
+                    this.CallBackField = value;
+                    this.RaisePropertyChanged("CallBack");
+                }
             }
         }
         
@@ -221,7 +241,7 @@ namespace PresentationTier.MessageServiceReference {
         private bool TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private PresentationTier.MessageServiceReference.User[] UsersField;
+        private PresentationTier.MessageServiceReference.Profile[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -286,7 +306,7 @@ namespace PresentationTier.MessageServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public PresentationTier.MessageServiceReference.User[] Users {
+        public PresentationTier.MessageServiceReference.Profile[] Users {
             get {
                 return this.UsersField;
             }
@@ -294,73 +314,6 @@ namespace PresentationTier.MessageServiceReference {
                 if ((object.ReferenceEquals(this.UsersField, value) != true)) {
                     this.UsersField = value;
                     this.RaisePropertyChanged("Users");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Message))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Profile[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Profile))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Chat))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.User[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Message[]))]
-    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private object CallBackField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private PresentationTier.MessageServiceReference.Profile ProfileField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public object CallBack {
-            get {
-                return this.CallBackField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CallBackField, value) != true)) {
-                    this.CallBackField = value;
-                    this.RaisePropertyChanged("CallBack");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public PresentationTier.MessageServiceReference.Profile Profile {
-            get {
-                return this.ProfileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProfileField, value) != true)) {
-                    this.ProfileField = value;
-                    this.RaisePropertyChanged("Profile");
                 }
             }
         }
@@ -421,6 +374,9 @@ namespace PresentationTier.MessageServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/GetMessages")]
         void GetMessages(PresentationTier.MessageServiceReference.Message[] messages);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Close")]
+        void Close(bool result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

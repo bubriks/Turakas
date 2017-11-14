@@ -43,7 +43,7 @@ namespace PresentationTier
                 this.Text = "Private chat: " + chat.Name;
             }
 
-            label2.Text = chat.Users.Count() + " out of " + chat.MaxNrOfUsers + " users";//
+            label2.Text = chat.Users.Count() + " out of " + chat.MaxNrOfUsers + " users";
         }
 
         public void GetMessages(MessageServiceReference.Message[] messages)
@@ -141,9 +141,19 @@ namespace PresentationTier
             }
         }
 
+        private void Button2_Click(object sender, EventArgs e)//invite button
+        {
+            
+        }
+
         private void MessageForm_Closing(object sender, CancelEventArgs e)//on close event
         {
             client.LeaveChat(chatId, profileId);
+        }
+
+        public void Close(bool result)//if chat deleted than is closed
+        {
+            this.Close();
         }
     }
 }

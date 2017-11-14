@@ -10,9 +10,7 @@
   </xs:element>
   <xs:element name="SaveChatResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="SaveChatResult" nillable="true" type="q2:Chat" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="GetChatsByName">
@@ -25,7 +23,7 @@
   <xs:element name="GetChatsByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetChatsByNameResult" nillable="true" type="q3:ArrayOfChat" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetChatsByNameResult" nillable="true" type="q2:ArrayOfChat" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

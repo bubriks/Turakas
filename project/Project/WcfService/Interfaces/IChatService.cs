@@ -12,12 +12,12 @@ namespace WcfService
     public interface IChatService
     {
         [OperationContract]
-        Chat SaveChat(Chat chat);
+        void SaveChat(Chat chat);
 
         [OperationContract]
         List<Chat> GetChatsByName(String name);
 
         [OperationContract]
-        bool DeleteChat(int id);
+        void DeleteChat(int id);
     }
 }

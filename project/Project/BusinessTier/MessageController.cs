@@ -23,7 +23,7 @@ namespace BusinessTier
         public Message CreateMessage(int profileId, String text, int chatId)
         {
             //Creates new starnsaction
-            con.BeginTransaction();
+            //con.BeginTransaction();
             try
             {
                 Message message = dbMessage.CreateMessage(profileId, text, chatId);
@@ -31,18 +31,18 @@ namespace BusinessTier
                 if (message == null)
                 {
                     //transaction is rolled back and null is returned if no changes were made
-                    con.Rollback();
+                    //con.Rollback();
                     return null;
                 }
                 //if everything goes as planed than commited
-                con.Commit();
+                //con.Commit();
                 //returns Message if everything went correctly
                 return message;
             }
             catch (Exception)
             {
                 //If exception is thrown the transaction is rolled back and null is returned
-                con.Rollback();
+                //con.Rollback();
                 return null;
             }
         }

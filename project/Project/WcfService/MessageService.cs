@@ -11,7 +11,6 @@ namespace WcfService
 {
     public class MessageService : IMessageService
     {
-        //all thats possible put to controller
         private IMessageController messageController = new MessageController();
         private IChatController chatController = new ChatController();
 

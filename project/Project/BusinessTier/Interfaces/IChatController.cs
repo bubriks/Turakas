@@ -7,19 +7,6 @@ namespace BusinessTier
     public interface IChatController
     {
         /// <summary>
-        /// Person joins chat
-        /// </summary>
-        /// <param name="chatId"></param>
-        /// <param name="profileId"></param>
-        /// <param name="callback"></param>
-        bool JoinChat(int chatId, int profileId, object callback);
-        /// <summary>
-        /// Person leaves chat
-        /// </summary>
-        /// <param name="chatId"></param>
-        /// <param name="profileId"></param>
-        bool LeaveChat(int chatId, int profileId);
-        /// <summary>
         /// Creates or updates chat and automaticly adds the creator to it
         /// </summary>
         /// <param name="chat"></param>
@@ -38,6 +25,19 @@ namespace BusinessTier
         /// <param name="id"></param>
         /// <returns></returns>
         bool DeleteChat(int id);
+        /// <summary>
+        /// Person joins chat
+        /// </summary>
+        /// <param name="chatId"></param>
+        /// <param name="profileId"></param>
+        /// <param name="callback"></param>
+        bool JoinChat(int chatId, int profileId, object callback);
+        /// <summary>
+        /// Person leaves chat
+        /// </summary>
+        /// <param name="chatId"></param>
+        /// <param name="profileId"></param>
+        bool LeaveChat(int chatId, int profileId);
         /// <summary>
         /// Finds existing chat for chatroom
         /// </summary>

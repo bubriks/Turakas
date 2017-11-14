@@ -6,25 +6,19 @@
       <xs:element minOccurs="0" name="MaxNrOfUsers" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Type" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfProfile" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Chat" nillable="true" type="tns:Chat" />
-  <xs:complexType name="ArrayOfUser">
+  <xs:complexType name="ArrayOfProfile">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Profile" nillable="true" type="tns:Profile" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
-  <xs:complexType name="User">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CallBack" nillable="true" type="xs:anyType" />
-      <xs:element minOccurs="0" name="Profile" nillable="true" type="tns:Profile" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:element name="ArrayOfProfile" nillable="true" type="tns:ArrayOfProfile" />
   <xs:complexType name="Profile">
     <xs:sequence>
+      <xs:element minOccurs="0" name="CallBack" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="Nickname" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProfileID" type="xs:int" />
       <xs:element minOccurs="0" name="StatusID" type="xs:int" />

@@ -107,10 +107,12 @@ namespace PresentationTier
 
         private void Button2_Click(object sender, EventArgs e)//change chat
         {
-            Chat chat = new Chat();
-            chat.Name = textBox2.Text;
-            chat.MaxNrOfUsers = trackBar1.Value;
-            chat.Id = chatId;
+            Chat chat = new Chat
+            {
+                Name = textBox2.Text,
+                MaxNrOfUsers = trackBar1.Value,
+                Id = chatId
+            };
             if (checkBox1.Checked == true)
             {
                 chat.Type = false;
