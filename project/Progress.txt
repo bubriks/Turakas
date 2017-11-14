@@ -8,25 +8,34 @@ System development
 		Report
 	Problem statement
 Technology
-
+		*Go through everything done in technology
 Programing
 	DB scripts
 	Music player (local)
-	Chat
-		*Manage chat
-		*Get chats by name
-		*Get persons in chat
-		*Get persons chats
-		*Add/remove person from chat
-
-		*Create message
-		*Get messages
-		*Remove message
-	Profile
-		*Manage login
+	Chat--------------------------------------------
+	Create chat
+	Delete chat
+	Update chat
+	Search for chats by name
+	Get Nr of persons in chat and limit
+	Get persons in chat room
+	Join/leave from chat
+		*Limit nr of persons in chat
+		*Invite user to chat
+	Send message
+	Recieve message
+	Get messages
+	See message info
+	Remove your message
+	Profile-----------------------------------------
+		*Create login
+		*Update login
 		*Authenticate
 		*Forgot login details
 
-		*Manage profile
-	Playlist
+		*Create profile
+		*Update profile
+		*Get Profile
+		*Delete profile	
+	Playlist-----------------------------------------
 	
