@@ -23,6 +23,7 @@ Programing
 		*Limit nr of persons in chat
 		*Invite user to chat
 		*Reserve spot
+		*Join as group
 	Send message
 	Recieve message
 	Get messages
