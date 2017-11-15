@@ -235,10 +235,10 @@ namespace PresentationTier.ChatServiceReference {
         System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Chat[]> GetChatsByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/DeleteChat", ReplyAction="http://tempuri.org/IChatService/DeleteChatResponse")]
-        bool DeleteChat(int id);
+        void DeleteChat(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/DeleteChat", ReplyAction="http://tempuri.org/IChatService/DeleteChatResponse")]
-        System.Threading.Tasks.Task<bool> DeleteChatAsync(int id);
+        System.Threading.Tasks.Task DeleteChatAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -284,11 +284,11 @@ namespace PresentationTier.ChatServiceReference {
             return base.Channel.GetChatsByNameAsync(name);
         }
         
-        public bool DeleteChat(int id) {
-            return base.Channel.DeleteChat(id);
+        public void DeleteChat(int id) {
+            base.Channel.DeleteChat(id);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteChatAsync(int id) {
+        public System.Threading.Tasks.Task DeleteChatAsync(int id) {
             return base.Channel.DeleteChatAsync(id);
         }
     }

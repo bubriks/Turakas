@@ -92,7 +92,7 @@ namespace PresentationTier
                 }
                 else
                 {
-                    chatId = 2;
+                    chatId = 0;
                     textBox2.Text = "";
                     checkBox1.Checked = false;
                     trackBar1.Value = 2;
@@ -122,6 +122,12 @@ namespace PresentationTier
                 chat.Type = true;
             }
             client.SaveChat(chat);
+
+            chatId = 0;
+            textBox2.Text = "";
+            checkBox1.Checked = false;
+            trackBar1.Value = 2;
+
             Button1_Click(null, null);
         }
 
