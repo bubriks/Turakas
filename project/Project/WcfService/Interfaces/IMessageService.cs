@@ -41,7 +41,7 @@ namespace WcfService
         [OperationContract(IsOneWay = true)]
         void GetMessages(List<Message> messages);
 
-        [OperationContract(IsOneWay = true)]//
-        void Close(bool result);
+        [OperationContract(IsOneWay = true)]
+        void Show(bool result);
     }
 }

@@ -48,7 +48,7 @@ namespace PresentationTier
 
         public void GetMessages(MessageServiceReference.Message[] messages)
         {
-            foreach (MessageServiceReference.Message message in messages)
+            foreach (MessageServiceReference.Message message in messages.Reverse())
             {
                 listBox1.Items.Add(message);
             }
@@ -151,9 +151,16 @@ namespace PresentationTier
             client.LeaveChat(chatId, profileId);
         }
 
-        public void Close(bool result)//if chat deleted than is closed
+        public void Show(bool result)
         {
-            this.Close();
+            if (result)
+            {
+                this.Show();
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

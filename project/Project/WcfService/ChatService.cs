@@ -43,7 +43,7 @@ namespace WcfService
                     foreach (Profile user in chat.Users)
                     {
                         IMessageCallBack callback = (IMessageCallBack)user.CallBack;
-                        callback.Close(true);
+                        callback.Show(false);
                     }
                 }
             }

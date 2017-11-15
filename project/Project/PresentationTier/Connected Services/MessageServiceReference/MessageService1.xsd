@@ -69,7 +69,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Close">
+  <xs:element name="Show">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="result" type="xs:boolean" />

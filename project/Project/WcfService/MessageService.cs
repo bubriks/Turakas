@@ -29,6 +29,11 @@ namespace WcfService
                     callback = (IMessageCallBack)user.CallBack;
                     callback.GetOnlineProfiles(profiles);
                 }
+                callback.Show(true);
+            }
+            else
+            {
+                callback.Show(false);
             }
         }
 

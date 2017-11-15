@@ -375,8 +375,8 @@ namespace PresentationTier.MessageServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/GetMessages")]
         void GetMessages(PresentationTier.MessageServiceReference.Message[] messages);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Close")]
-        void Close(bool result);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Show")]
+        void Show(bool result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

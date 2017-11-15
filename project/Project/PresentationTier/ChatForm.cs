@@ -146,7 +146,7 @@ namespace PresentationTier
                 {
                     try
                     {
-                        new MessageForm(chatId, profileId).Show();
+                        new MessageForm(chatId, profileId);
                     }
                     catch (Exception)
                     {}

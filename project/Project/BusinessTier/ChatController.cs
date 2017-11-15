@@ -11,14 +11,13 @@ namespace BusinessTier
         private DbChat dbChat = null;
         private IProfileController profileController = null;
         private DbConnection con = null;
-        private static List<Chat> chats = null;
+        private static List<Chat> chats = new List<Chat>();
 
         public ChatController()
         {
             dbChat = new DbChat();
             profileController = new ProfileController();
             con = DbConnection.GetInstance();
-            chats = new List<Chat>();
         }
 
         public Chat SaveChat(Chat chat)
@@ -133,17 +132,18 @@ namespace BusinessTier
                         {
                             return false;
                         }
-
-                        user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
-                        user.CallBack = callback;//adds callback object to it
-                        List<Profile> list = chat.Users;//gets chats user list
-                        list.Add(user);//adds user to list
-                        chat.Users = list;//replaces chats user list with the new one
-                        //joined
-                        return true;
+                        else
+                        {
+                            user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
+                            user.CallBack = callback;//adds callback object to it
+                            List<Profile> list = chat.Users;//gets chats user list
+                            list.Add(user);//adds user to list
+                            chat.Users = list;//replaces chats user list with the new one
+                                              //joined
+                            return true;
+                        }
                     }
-                    //couldnt join becouse its full
-                    return false;
+                    return false;//couldnt join becouse its full
                 }
                 else
                 {

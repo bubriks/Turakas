@@ -310,7 +310,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IMessageService_Close_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMessageService_Show_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -367,8 +367,8 @@
   <wsdl:message name="IMessageService_GetMessages_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetMessages" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_Close_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:Close" />
+  <wsdl:message name="IMessageService_Show_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Show" />
   </wsdl:message>
   <wsdl:portType name="IMessageService">
     <wsdl:operation name="JoinChat">
@@ -398,8 +398,8 @@
     <wsdl:operation name="GetMessages">
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetMessages" message="tns:IMessageService_GetMessages_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Close">
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/Close" message="tns:IMessageService_Close_OutputCallbackMessage" />
+    <wsdl:operation name="Show">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/Show" message="tns:IMessageService_Show_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSDualHttpBinding_IMessageService" type="tns:IMessageService">
@@ -468,10 +468,10 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Close">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/Close" style="document" />
+    <wsdl:operation name="Show">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/Show" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IMessageService_Close_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMessageService_Show_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
