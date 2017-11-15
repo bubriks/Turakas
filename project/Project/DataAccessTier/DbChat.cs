@@ -17,7 +17,6 @@ namespace DataAccessTier
             con = DbConnection.GetInstance();
         }
 
-        #region manage chat
         public Chat CreateChat(Chat chat)
         {
             string stmt = "INSERT INTO Chat(name, type, nrOfUsers) OUTPUT INSERTED.chatID values (@0, @1, @2);";
@@ -55,6 +54,22 @@ namespace DataAccessTier
             return chat;
         }
 
+        public Chat UpdateChat(Chat chat)
+        {
+            string stmt = "UPDATE Chat SET name = @0, type = @1, nrOfUsers= @2 WHERE chatID= @3";
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
+            cmd.Parameters.AddWithValue("@0", chat.Name);
+            cmd.Parameters.AddWithValue("@1", Convert.ToInt32(chat.Type));
+            cmd.Parameters.AddWithValue("@2", chat.MaxNrOfUsers);
+            cmd.Parameters.AddWithValue("@3", chat.Id);
+            int rows = cmd.ExecuteNonQuery();
+            if (rows > 0)
+            {
+                return chat;
+            }
+            return null;
+        }
+
         public List<Chat> GetChatsByName(String name)
         {
             string stmt = "Select chatID, name, type, nrOfUsers FROM Chat where name like '%'+@0+'%';";
@@ -77,22 +92,6 @@ namespace DataAccessTier
             return chats;
         }
 
-        public Chat UpdateChat(Chat chat)
-        {
-            string stmt = "UPDATE Chat SET name = @0, type = @1, nrOfUsers= @2 WHERE chatID= @3";
-            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-            cmd.Parameters.AddWithValue("@0", chat.Name);
-            cmd.Parameters.AddWithValue("@1", Convert.ToInt32(chat.Type));
-            cmd.Parameters.AddWithValue("@2", chat.MaxNrOfUsers);
-            cmd.Parameters.AddWithValue("@3", chat.Id);
-            int rows = cmd.ExecuteNonQuery();
-            if(rows > 0)
-            {
-                return chat;
-            }
-            return null;
-        }
-
         public int DeleteChat(int id)
         {
             string stmt = "DELETE FROM Chat WHERE chatID = @0";
@@ -101,6 +100,5 @@ namespace DataAccessTier
             int rows = cmd.ExecuteNonQuery();
             return rows;
         }
-        #endregion
     }
 }

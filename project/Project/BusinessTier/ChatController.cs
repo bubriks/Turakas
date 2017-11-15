@@ -60,6 +60,31 @@ namespace BusinessTier
             }
         }
 
+        public bool DeleteChat(int id)
+        {
+            try
+            {
+                if (dbChat.DeleteChat(id) == 0)
+                {
+                    //returns false if no changes were made
+                    return false;
+                }
+
+                Chat foundChat = FindChat(id);
+                if (foundChat != null)
+                {
+                    chats.Remove(foundChat);
+                }
+                //returns true if everything went correctly
+                return true;
+            }
+            catch (Exception)
+            {
+                //returns false if exception is thrown
+                return false;
+            }
+        }
+
         public List<Chat> GetChatsByName(String name)
         {
             try
@@ -84,31 +109,6 @@ namespace BusinessTier
             {
                 //returns empty list if exception is thrown
                 return new List<Chat>();
-            }
-        }
-
-        public bool DeleteChat(int id)
-        {
-            try
-            {
-                if (dbChat.DeleteChat(id) == 0)
-                {
-                    //returns false if no changes were made
-                    return false;
-                }
-
-                Chat foundChat = FindChat(id);
-                if (foundChat != null)
-                {
-                    chats.Remove(foundChat);
-                }
-                //returns true if everything went correctly
-                return true;
-            }
-            catch (Exception)
-            {
-                //returns false if exception is thrown
-                return false;
             }
         }
 

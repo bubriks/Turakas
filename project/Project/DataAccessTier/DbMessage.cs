@@ -65,7 +65,7 @@ namespace DataAccessTier
         
         public List<Message> GetMessages(int chatId)
         {
-            string stmt = " SELECT TOP(20)" +
+            string stmt = " SELECT " +
                             " Profile.nickname, " +
                             " Profile.profileID, " +
                             " Activity.activityID, " +

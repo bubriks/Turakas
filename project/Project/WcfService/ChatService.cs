@@ -28,11 +28,6 @@ namespace WcfService
             }
         }
 
-        public List<Chat> GetChatsByName(String name)
-        {
-            return chatController.GetChatsByName(name);
-        }
-
         public void DeleteChat(int id)
         {
             Chat chat = chatController.FindChat(id);
@@ -47,6 +42,11 @@ namespace WcfService
                     }
                 }
             }
+        }
+
+        public List<Chat> GetChatsByName(String name)
+        {
+            return chatController.GetChatsByName(name);
         }
     }
 }

@@ -222,10 +222,10 @@ namespace PresentationTier.ChatServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatServiceReference.IChatService")]
     public interface IChatService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SaveChat", ReplyAction="http://tempuri.org/IChatService/SaveChatResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SaveChat")]
         void SaveChat(PresentationTier.ChatServiceReference.Chat chat);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SaveChat", ReplyAction="http://tempuri.org/IChatService/SaveChatResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SaveChat")]
         System.Threading.Tasks.Task SaveChatAsync(PresentationTier.ChatServiceReference.Chat chat);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetChatsByName", ReplyAction="http://tempuri.org/IChatService/GetChatsByNameResponse")]
@@ -234,10 +234,10 @@ namespace PresentationTier.ChatServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetChatsByName", ReplyAction="http://tempuri.org/IChatService/GetChatsByNameResponse")]
         System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Chat[]> GetChatsByNameAsync(string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/DeleteChat", ReplyAction="http://tempuri.org/IChatService/DeleteChatResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/DeleteChat")]
         void DeleteChat(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/DeleteChat", ReplyAction="http://tempuri.org/IChatService/DeleteChatResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/DeleteChat")]
         System.Threading.Tasks.Task DeleteChatAsync(int id);
     }
     

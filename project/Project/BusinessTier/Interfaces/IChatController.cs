@@ -14,17 +14,17 @@ namespace BusinessTier
         /// <returns></returns>
         Chat SaveChat(Chat chat);
         /// <summary>
-        /// Gets chats which name includes this text
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        List<Chat> GetChatsByName(String name);
-        /// <summary>
         /// Deletes chat which holds this id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         bool DeleteChat(int id);
+        /// <summary>
+        /// Gets chats which name includes this text
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        List<Chat> GetChatsByName(String name);
         /// <summary>
         /// Person joins chat
         /// </summary>

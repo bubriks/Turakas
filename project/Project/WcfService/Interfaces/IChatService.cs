@@ -11,13 +11,13 @@ namespace WcfService
     [ServiceContract]
     public interface IChatService
     {
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void SaveChat(Chat chat);
+
+        [OperationContract(IsOneWay = true)]
+        void DeleteChat(int id);
 
         [OperationContract]
         List<Chat> GetChatsByName(String name);
-
-        [OperationContract]
-        void DeleteChat(int id);
     }
 }
