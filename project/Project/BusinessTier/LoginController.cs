@@ -10,33 +10,36 @@ namespace BusinessTier
     public class LoginController : ILoginController
     {
         private DbLogin dbLogin;
-        private SqlTransaction ts = null;
         public LoginController()
         {
             dbLogin = new DbLogin();
         }
 
-            public int CreateLogin(Login login)
+        public int CreateLogin(Login login)
         {
+            SqlTransaction ts = DbConnection.GetInstance().GetConnection().BeginTransaction();
             string tempPass = RandomPassword();
             string subject = ("Your Temporary Password is:");
-            string body = "Hello, " + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
+            string body = "Hello "+ login.Username +", " + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
             //Creates new starnsaction
-            ts = DbConnection.GetInstance().GetConnection().BeginTransaction();
             try
-                {
-                    login.Password = tempPass;
-                    sendEmail(login.Email, subject, body);
-                    int loginId = dbLogin.CreateLogin(login, ts);
-                    ts.Commit();
-                    return loginId;
-                }
-                catch (Exception e)
-                {
-                    ts.Rollback();
-                    Console.WriteLine(e);
-                    return -1;
-                }
+            {
+                login.Password = tempPass;
+                sendEmail(login.Email, subject, body);
+                int loginId = dbLogin.CreateLogin(login, ts);
+                ts.Commit();
+                return loginId;
+            }
+            catch (Exception e)
+            {
+                ts.Rollback();
+                Console.WriteLine(e);
+                return -1;
+            }
+            finally
+            {
+                ts.Dispose();
+            }
             
         }
 
@@ -52,6 +55,7 @@ namespace BusinessTier
         /// <returns></returns>
         public bool ForgotDetails(string email)
         {
+            SqlTransaction ts = DbConnection.GetInstance().GetConnection().BeginTransaction();
             try
             {
                 Login logins = dbLogin.ReadLogin(email, 3);
@@ -59,22 +63,25 @@ namespace BusinessTier
             string subject = ("Your Login Details are:");
             string body = "Hello, " + "\nYour username is: " + logins.Username + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
 
-            //Creates new starnsaction
-            ts = DbConnection.GetInstance().GetConnection().BeginTransaction();
-            try
-            {
-                logins.Password = tempPass;
-                sendEmail(logins.Email, subject, body);
-                dbLogin.CreateLogin(logins, ts);
-                ts.Commit();
-                return true;
-            }
-            catch (Exception e)
-            {
-                ts.Rollback();
-                Console.WriteLine(e);
-                return false;
-            }
+                //Creates new starnsaction
+                try
+                {
+                    logins.Password = tempPass;
+                    sendEmail(logins.Email, subject, body);
+                    dbLogin.CreateLogin(logins, ts);
+                    ts.Commit();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    ts.Rollback();
+                    Console.WriteLine(e);
+                    return false;
+                }
+                finally
+                {
+                    ts.Dispose();
+                }
 
             }
             catch (Exception e)

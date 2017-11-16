@@ -24,11 +24,17 @@ namespace DataAccessTier
             try
             {
                 string stmt = "SELECT loginID FROM Login WHERE username='" + login.Username + "' AND passwordHash=HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(Salt AS NVARCHAR(36)))";
-                SqlCommand cmd = new SqlCommand(stmt, con);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (SqlCommand cmd = new SqlCommand(stmt, con))
                 {
-                    return reader.GetInt32(0);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            reader.Close();
+                            return id;
+                        }
+                    }
                 }
                 return -1;
             }
@@ -48,36 +54,51 @@ namespace DataAccessTier
         {
 
             string stmtEmail = "SELECT * FROM Login WHERE email = '"+login.Email+"';";
-            SqlDataReader readerEmail = new SqlCommand(stmtEmail, con, ts).ExecuteReader();
-
+            using (SqlCommand cmd = new SqlCommand(stmtEmail, con, ts))
+            {
+                using (SqlDataReader readerEmail = cmd.ExecuteReader())
+                {
+                    if (readerEmail.Read().ToString() != null)
+                    {
+                        readerEmail.Close();
+                        throw new Exception("Email is already being used!");
+                    }
+                }
+            }
             string stmtUsername = "SELECT * FROM Login WHERE username = '" + login.Username + "';";
-            SqlDataReader readerUsername = new SqlCommand(stmtUsername, con, ts).ExecuteReader();
-
-            if (stmtEmail != null)
+            using (SqlCommand cmd = new SqlCommand(stmtEmail, con, ts))
             {
-                throw new Exception("Email is already being used!");
+                using (SqlDataReader readerUsername = cmd.ExecuteReader())
+                {
+                    if (readerUsername.Read().ToString() != null)
+                    {
+                        readerUsername.Close();
+                        throw new Exception("Username is already being used!");
+                    }
+                }
             }
-            else
-                if (stmtUsername != null)
-            {
-                throw new Exception("Username is already being used!");
-            }
-            else
-            {
+                
                 try
                 {
                     string stmt1 = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() INSERT INTO Login(username, salt, passwordHash, email)" +
                         "OUTPUT INSERTED.loginID values ('" + login.Username + "', @salt, HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(@salt AS NVARCHAR(36))), '" + login.Email + "')";
-                    SqlDataReader reader1 = new SqlCommand(stmt1, con, ts).ExecuteReader();
-                    reader1.Read();
-                    return reader1.GetInt32(0);
+                    using (SqlCommand cmd = new SqlCommand(stmt1, con, ts))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            reader.Read();
+                            int id = reader.GetInt32(0);
+                            reader.Close();
+                            return id;
+                        }
+                }
+                   
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                     return -1;
                 }
-            }
         }
 
         /// <summary>
@@ -107,16 +128,21 @@ namespace DataAccessTier
 
             try
             {
-                SqlDataReader reader = new SqlCommand(stmt, con).ExecuteReader();
-                    Login login1 = new Login
+                using (SqlCommand cmd = new SqlCommand(stmt, con))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        Username = reader.GetString(1),
-                        Password = reader.GetString(2),
-                        Email = reader.GetString(3)
-                    };
-                    login1.LoginId = reader.GetInt32(0);
 
-                return login1;
+                        Login login1 = new Login
+                        {
+                            Username = reader.GetString(1),
+                            Password = reader.GetString(2),
+                            Email = reader.GetString(3)
+                        };
+                        login1.LoginId = reader.GetInt32(0);
+                        return login1;
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -137,9 +163,11 @@ namespace DataAccessTier
             {
                 string stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID()" +
                     "UPDATE Login SET username = '" + login.Username + "', salt = @salt, passwordHash = HASHBYTES('SHA2_512', '" + login.Password + "'+CAST(@salt AS NVARCHAR(36))), email = '" + login.Email + "' WHERE loginID= " + id;
-                SqlCommand cmd = new SqlCommand(stmt, con);
-                cmd.ExecuteNonQuery();
-                return true;
+                using (SqlCommand cmd = new SqlCommand(stmt, con))
+                {
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
             }
             catch (Exception e)
             {
@@ -159,9 +187,11 @@ namespace DataAccessTier
             try
             {
                 string stmt = "DELETE FROM Login WHERE loginID = " + id;
-                SqlCommand cmd = new SqlCommand(stmt, con);
-                cmd.ExecuteNonQuery();
-                return true;
+                using (SqlCommand cmd = new SqlCommand(stmt, con))
+                {
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
             }
             catch (Exception e)
             {
