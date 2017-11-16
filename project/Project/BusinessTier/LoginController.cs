@@ -16,7 +16,7 @@ namespace BusinessTier
             dbLogin = new DbLogin();
         }
 
-            public bool CreateLogin(Login login)
+            public int CreateLogin(Login login)
         {
             string tempPass = RandomPassword();
             string subject = ("Your Temporary Password is:");
@@ -27,30 +27,22 @@ namespace BusinessTier
                 {
                     login.Password = tempPass;
                     sendEmail(login.Email, subject, body);
-                    dbLogin.CreateLogin(login, ts);
+                    int loginId = dbLogin.CreateLogin(login, ts);
                     ts.Commit();
-                    return true;
+                    return loginId;
                 }
                 catch (Exception e)
                 {
                     ts.Rollback();
                     Console.WriteLine(e);
-                    return false;
+                    return -1;
                 }
             
         }
 
-        public bool Authenticate(Login login)
+        public int Authenticate(Login login)
         {
-            switch (dbLogin.Authenticate(login))
-            {
-                case -1:
-                    return false;
-                case -2:
-                    return false;
-                default:
-                    return true;
-            }
+            return dbLogin.Authenticate(login);
         }
 
         /// <summary>

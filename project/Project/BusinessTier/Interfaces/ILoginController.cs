@@ -8,14 +8,14 @@ namespace BusinessTier
         /// </summary>
         /// <param name="login"></param>
         /// <returns>Returns true if succeded, false otherwise, transaction rollsback and prints error message in console</returns>
-        bool CreateLogin(Login login);
+        int CreateLogin(Login login);
 
         /// <summary>
         /// Authenticates given login info
         /// </summary>
         /// <param name="login"></param>
-        /// <returns></returns>
-        bool Authenticate(Login login);
+        /// <returns>Returns the ID of that Login</returns>
+        int Authenticate(Login login);
 
         /// <summary>
         /// Sets user's password to a unique random string and sends the new details via email.

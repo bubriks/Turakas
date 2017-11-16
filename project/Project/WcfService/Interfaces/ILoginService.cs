@@ -12,9 +12,9 @@ namespace WcfService
     public interface ILoginService
     {
         [OperationContract]
-        bool CreateLogin(Login login);
+        int CreateLogin(Login login);
         [OperationContract]
-        bool Authenticate(Login login);
+        int Authenticate(Login login);
         [OperationContract]
         bool ForgotDetails(string email);
         [OperationContract]

@@ -50,7 +50,7 @@ namespace DataAccessTier
                     stmt = "SELECT * FROM Profile where profileID = " + what;
                     break;
                 case 2:
-                    stmt = "SELECT * FROM Profile WHERE nickname = " + what;
+                    stmt = "SELECT * FROM Profile WHERE nickname = '" + what+"';";
                     break;
                 default:
                     throw new Exception("'by' parameter must be either 1 or 2");
@@ -94,7 +94,7 @@ namespace DataAccessTier
         {
             try
             {
-                string stmt = "UPDATE Profile SET statusId = '" + profile.StatusID + "', nickname = '" + profile.Nickname + "' WHERE profileID = " + profile.ProfileID;
+                string stmt = "UPDATE Profile SET statusId = " + profile.StatusID + ", nickname = '" + profile.Nickname + "' WHERE profileID = " + profile.ProfileID;
                 SqlCommand cmd = new SqlCommand(stmt, con);
                 cmd.ExecuteNonQuery();
                 return true;

@@ -22,7 +22,7 @@ namespace DataAccessTier
         {
             try
             {
-                string stmt = "INSERT INTO Activity (profileID, timeStamp) VALUES(" + profileId + " " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + ");";
+                string stmt = "INSERT INTO Activity (profileID, timeStamp) VALUES(" + profileId + ", " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + ");";
 
                 SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
                 cmd.ExecuteNonQuery();

@@ -111,16 +111,16 @@ namespace PresentationTier.LoginServiceReference {
     public interface ILoginService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/CreateLogin", ReplyAction="http://tempuri.org/ILoginService/CreateLoginResponse")]
-        bool CreateLogin(PresentationTier.LoginServiceReference.Login login);
+        int CreateLogin(PresentationTier.LoginServiceReference.Login login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/CreateLogin", ReplyAction="http://tempuri.org/ILoginService/CreateLoginResponse")]
-        System.Threading.Tasks.Task<bool> CreateLoginAsync(PresentationTier.LoginServiceReference.Login login);
+        System.Threading.Tasks.Task<int> CreateLoginAsync(PresentationTier.LoginServiceReference.Login login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/Authenticate", ReplyAction="http://tempuri.org/ILoginService/AuthenticateResponse")]
-        bool Authenticate(PresentationTier.LoginServiceReference.Login login);
+        int Authenticate(PresentationTier.LoginServiceReference.Login login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/Authenticate", ReplyAction="http://tempuri.org/ILoginService/AuthenticateResponse")]
-        System.Threading.Tasks.Task<bool> AuthenticateAsync(PresentationTier.LoginServiceReference.Login login);
+        System.Threading.Tasks.Task<int> AuthenticateAsync(PresentationTier.LoginServiceReference.Login login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/ForgotDetails", ReplyAction="http://tempuri.org/ILoginService/ForgotDetailsResponse")]
         bool ForgotDetails(string email);
@@ -174,19 +174,19 @@ namespace PresentationTier.LoginServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public bool CreateLogin(PresentationTier.LoginServiceReference.Login login) {
+        public int CreateLogin(PresentationTier.LoginServiceReference.Login login) {
             return base.Channel.CreateLogin(login);
         }
         
-        public System.Threading.Tasks.Task<bool> CreateLoginAsync(PresentationTier.LoginServiceReference.Login login) {
+        public System.Threading.Tasks.Task<int> CreateLoginAsync(PresentationTier.LoginServiceReference.Login login) {
             return base.Channel.CreateLoginAsync(login);
         }
         
-        public bool Authenticate(PresentationTier.LoginServiceReference.Login login) {
+        public int Authenticate(PresentationTier.LoginServiceReference.Login login) {
             return base.Channel.Authenticate(login);
         }
         
-        public System.Threading.Tasks.Task<bool> AuthenticateAsync(PresentationTier.LoginServiceReference.Login login) {
+        public System.Threading.Tasks.Task<int> AuthenticateAsync(PresentationTier.LoginServiceReference.Login login) {
             return base.Channel.AuthenticateAsync(login);
         }
         

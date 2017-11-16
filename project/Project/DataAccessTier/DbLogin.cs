@@ -96,10 +96,10 @@ namespace DataAccessTier
                     stmt = "SELECT * FROM Login WHERE loginId = " + what;
                     break;
                 case 2:
-                    stmt = "SELECT * FROM Login WHERE username = " + what;
+                    stmt = "SELECT * FROM Login WHERE username = '" + what + "';";
                     break;
                 case 3:
-                    stmt = "SELECT * FROM Login WHERE email = " + what;
+                    stmt = "SELECT * FROM Login WHERE email = '" + what + "';";
                     break;
                 default:
                     throw new Exception("'by' parameter must be either 1,2 or 3");
@@ -120,7 +120,8 @@ namespace DataAccessTier
             }
             catch (Exception e)
             {
-                throw (e);
+                //throw (e);
+                return null;
             }
         }
 

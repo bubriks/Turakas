@@ -55,8 +55,17 @@ namespace PresentationTier
                     Email = email,
                 };
 
-                if (loginService.CreateLogin(login))
+                int loginId = loginService.CreateLogin(login);
+
+                if (loginId != -1)
                 {
+                    Profile profile = new Profile
+                    {
+                        ProfileID = loginId,
+                        StatusID = 0,
+                        Nickname = nickname,
+                    };
+                    profileService.CreateProfile(profile);
                     registerError_lbl.Visible = true;
                     registerError_lbl.Text = "Check your email for confirmation!";
                     registerError_lbl.ForeColor = Color.Green;
@@ -71,132 +80,74 @@ namespace PresentationTier
         private bool CheckTheValues()
         {
             bool ok = true;
-            string username = usernameSignUp_txt.Text;
-            string password = passwordSignUp_txt.Text;
-            string email = emailSignUp_txt.Text;
-            string nickname = nicknameSignUp_txt.Text;
+            string usernameError = CheckUsername(usernameSignUp_txt.Text);
+            string passwordError = CheckPassword(usernameSignUp_txt.Text, passwordSignUp_txt.Text);
+            string emailError = CheckEmail(emailSignUp_txt.Text);
+            string nicknameError = CheckNickname(nicknameSignUp_txt.Text);
 
             #region username checking
-            if (username.Length < 5)
+            if (!usernameError.Equals(""))
             {
                 ok = false;
                 usernameSignUp_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
                 usernameSignUpError_lbl.Visible = true;
                 usernameSignUpError_lbl.ForeColor = Color.Red;
-                usernameSignUpError_lbl.Text = "Username must contain at least 5 characters!";
+                usernameSignUpError_lbl.Text = usernameError;
             }
             else
             {
-                ok = true;
                 usernameSignUpError_lbl.Visible = false;
+                usernameSignUp_txt.BackColor = Color.White;
             }
             #endregion
             #region password checking
-            if (password.Length < 6)
+            if (!passwordError.Equals(""))
             {
                 ok = false;
-                formatPasswordError("Password must be at least 6!");
+                passwordSignUp_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
+                passwordSignUpError_lbl.Visible = true;
+                passwordSignUpError_lbl.ForeColor = Color.Red;
+                passwordSignUpError_lbl.Text = passwordError;
             }
             else
             {
-                ok = true;
                 passwordSignUpError_lbl.Visible = false;
-            }
-
-            if (!password.Any(char.IsDigit))
-            {
-                ok = false;
-                formatPasswordError("Password must contain at least one digit!");
-            }
-            else
-            {
-                ok = true;
-                passwordSignUpError_lbl.Visible = false;
-            }
-
-            if (password.Equals(username))
-            {
-                ok = false;
-                formatPasswordError("Password and Username cannot be the same!");
-            }
-            else
-            {
-                ok = true;
-                passwordSignUpError_lbl.Visible = false;
+                passwordSignUp_txt.BackColor = Color.White;
             }
             #endregion
             #region email checking
-            if (email != "")
+            if (!emailError.Equals(""))
             {
-                if (!(email.Contains('@') && email.Contains('.')))
-                {
-                    ok = false;
-                    emailSignUpError_lbl.Text = "Invalid email!";
-                    emailSignUpError_lbl.ForeColor = Color.Red;
-                    emailSignUpError_lbl.Visible = true;
-                }
-                else
-                {
-                    ok = true;
-                    emailSignUpError_lbl.Visible = false;
-                }
+                ok = false;
+                emailSignUpError_lbl.Text = emailError;
+                emailSignUpError_lbl.ForeColor = Color.Red;
+                emailSignUpError_lbl.Visible = true;
 
-                if (loginService.FindLogin(email, 3) != null)
-                {
-                    ok = false;
-                    emailSignUp_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
-                    emailSignUpError_lbl.Text = "Email allready in records!";
-                    emailSignUpError_lbl.ForeColor = Color.Red;
-                    emailSignUpError_lbl.Visible = true;
-                }
-                else
-                {
-                    ok = true;
-                    emailSignUpError_lbl.Visible = false;
-                }
+                emailSignUp_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
             }
             else
             {
-                ok = false;
-                emailSignUp_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
-                emailSignUpError_lbl.Visible = true;
-                emailSignUpError_lbl.Text = "Email field cannot be empty!";
-                emailSignUpError_lbl.ForeColor = Color.Red;
+                emailSignUpError_lbl.Visible = false;
+                emailSignUp_txt.BackColor = Color.White;
             }
             #endregion
             #region nickname checking
-            if (nickname.Length < 3)
+            if (!nicknameError.Equals(""))
             {
                 ok = false;
-                formatNicknameError("Nickname must be at least 3 characters!");
+                nicknameSignUp_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
+                nicknameSignUpError_lbl.Visible = true;
+                nicknameSignUpError_lbl.Text = nicknameError;
+                nicknameSignUpError_lbl.ForeColor = Color.Red;
             }
             else
-                ok = true;
-
-            if (profileService.ReadProfile(nickname, 2) != null)
             {
-                ok = false;
-                formatNicknameError("Nickname already in use!");
+                nicknameSignUp_txt.BackColor = Color.White;
+                nicknameSignUpError_lbl.Visible = false;
             }
-            else
-                ok = true;
             #endregion
 
             return ok;
-        }
-        private void formatPasswordError(string message)
-        {
-            passwordSignUp_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
-            passwordSignUpError_lbl.Visible = true;
-            passwordSignUpError_lbl.Text += message;
-            passwordSignUpError_lbl.ForeColor = Color.Red;
-        }
-        private void formatNicknameError(string message)
-        {
-            nicknameSignUp_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
-            nicknameSignUpError_lbl.Visible = true;
-            nicknameSignUpError_lbl.Text = message;
-            nicknameSignUpError_lbl.ForeColor = Color.Red;
         }
 
         #endregion
@@ -223,39 +174,22 @@ namespace PresentationTier
         
         private void SendForgot_btn_Click(object sender, EventArgs e)
         {
-            String email = EmailForgot_txt.Text;
+            String emailError = CheckEmail(emailForgot_txt.Text);
 
-            if (EmailForgot_txt.Text != "")
+            if (emailError.Equals("Email allready in records!"))
             {
-                if (email.Contains('@') && email.Contains('.'))
-                {
-                    if (loginService.ForgotDetails(email))
-                    {
-                        emailError_lbl.Visible = true;
-                        emailError_lbl.Text = "Email has been sent!";
-                        emailError_lbl.ForeColor = Color.Green;
-                    }
-                    else
-                    {
-                        emailError_lbl.Text = "Email is not in our records!";
-                        emailError_lbl.ForeColor = Color.Red;
-                        emailError_lbl.Visible = true;
-                    }
-                    
-                }
-                else
-                {
-                    emailError_lbl.Text = "Invalid email!";
-                    emailError_lbl.ForeColor = Color.Red;
-                    emailError_lbl.Visible = true;
-                }
+                emailForgot_txt.BackColor = Color.White;
+                emailForgotError_lbl.Visible = false;
+
+                loginService.ForgotDetails(emailForgot_txt.Text);
             }
             else
             {
-                EmailForgot_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
-                emailError_lbl.Visible = true;
-                emailError_lbl.Text = "Email field cannot be empty!";
-                emailError_lbl.ForeColor = Color.Red;
+                emailForgot_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
+
+                emailForgotError_lbl.Text = emailError + "Email not in our Records!";
+                emailForgotError_lbl.ForeColor = Color.Red;
+                emailForgotError_lbl.Visible = true;
             }
         }
         #endregion
@@ -263,13 +197,117 @@ namespace PresentationTier
         #region SinIn
         private void SignIn_btn_Click(object sender, EventArgs e)
         {
-            string username = usernameSignIn_txt.Text;
-            string password = passwordSignIn_txt.Text;
+            //checking wheter the introduced data by user are ok from a criteria point of view
+            string usernameError = CheckUsername(usernameSignIn_txt.Text);
+            string passwordError = CheckPassword(usernameSignIn_txt.Text, passwordSignIn_txt.Text);
 
-            Login login = loginService.FindLogin(username, 2);
+            
+            if (usernameError.Equals("")) // if there is no error with username
+            {
+                //Reseting error label and text box
+                signInError_lbl.Visible = false;
+                usernameSignIn_txt.BackColor = Color.White;
 
-            loginService.Authenticate(login);
+                if (passwordError.Equals("")) //if there is no error with password
+                {
+                    //Reseting error label and text box
+                    passwordSignIn_lbl.Visible = false;
+                    passwordSignUp_txt.BackColor = Color.White;
+
+                    //logging in
+                    Login login = loginService.FindLogin(usernameSignIn_txt.Text, 2);
+                    int loginId = loginService.Authenticate(login);
+                    switch (loginId)
+                    {
+                        case -1: //no such info
+                            signInError_lbl.ForeColor = Color.Red;
+                            signInError_lbl.Text = "Invalid Username and Password combination!";
+                            signInError_lbl.Visible = true;
+                            break;
+                        case -2: //sql exception occured
+                            signInError_lbl.ForeColor = Color.Red;
+                            signInError_lbl.Text = "An error has occured, please try again later!";
+                            signInError_lbl.Visible = true;
+                            break;
+                        default: //loginId
+                            //ListViewHitTestInfo lvhti = this.listView1.HitTest(e.X, e.Y);
+                            signInError_lbl.Visible = false;
+                            new ChatForm(loginId);
+                            this.Close();
+                            break;
+                    }
+                }
+                else
+                {
+                    //formating password label and textbox
+                    signInError_lbl.Text = passwordError;
+                    signInError_lbl.ForeColor = Color.Red;
+                    signInError_lbl.Visible = true;
+
+                    passwordSignIn_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
+                }
+            }
+            else
+            {
+                //formating username label and textbox
+                signInError_lbl.Text = usernameError;
+                signInError_lbl.ForeColor = Color.Red;
+                signInError_lbl.Visible = true;
+
+                usernameSignIn_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
+            }
         }
+        
         #endregion
+
+        private string CheckUsername(string username)
+        {
+            if (username.Length < 5 || username.Length >16)
+                return "Username's length must be between 5 and 16!";
+            else
+                return "";
+        }
+
+        private string CheckPassword(string username, string password)
+        {
+            string error = "";
+            if (password.Length < 6)
+                error += "Password must be at least 6!";
+            else
+            if (!password.Any(char.IsDigit))
+                error += "Password must contain at least one digit!";
+            else
+            if(username != "")
+                if (password.Equals(username))
+                    error += "Password and Username cannot be the same!";
+            return error;
+        }
+
+        private string CheckEmail(string email)
+        {
+            string error = "";
+            if (email != "")
+            {
+                if (!(email.Contains('@') && email.Contains('.')))
+                    error += "Invalid email!";
+                else
+                if (loginService.FindLogin(email, 3) != null)
+                    error += "Email allready in records!";
+            }
+            else
+                error += "Email field cannot be empty!";
+            return error;
+        }
+
+        private string CheckNickname(string nickname)
+        {
+            string error = "";
+            if (nickname.Length < 3)
+                error += ("Nickname must be at least 3 characters!");
+            else
+            if (profileService.ReadProfile(nickname, 2) != null)
+                error += ("Nickname already in use!");
+            return error;
+        }
     }
 }

@@ -13,11 +13,11 @@ namespace WcfService
     {
         ILoginController loginController = new LoginController();
 
-        public bool CreateLogin(Login login)
+        public int CreateLogin(Login login)
         {
             return loginController.CreateLogin(login);
         }
-        public bool Authenticate(Login login)
+        public int Authenticate(Login login)
         {
             return loginController.Authenticate(login);
         }
