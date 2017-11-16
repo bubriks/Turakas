@@ -76,8 +76,7 @@ namespace DataAccessTier
                             " on Profile.profileID = Activity.profileID" +
                         " INNER JOIN Message" +
                             " on Activity.activityID = Message.activityID" +
-                        " where Message.chatID = @0" +
-                        " ORDER BY activityID DESC";
+                        " where Message.chatID = @0";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", chatId);
             SqlDataReader reader = cmd.ExecuteReader();

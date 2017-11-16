@@ -48,7 +48,7 @@ namespace PresentationTier
 
         public void GetMessages(MessageServiceReference.Message[] messages)
         {
-            foreach (MessageServiceReference.Message message in messages.Reverse())
+            foreach (MessageServiceReference.Message message in messages)
             {
                 listBox1.Items.Add(message);
             }

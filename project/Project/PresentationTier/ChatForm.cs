@@ -137,6 +137,11 @@ namespace PresentationTier
             Button1_Click(null, null);
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            profileId = Int32.Parse(textBox3.Text);
+        }
+
         private void ListView1_MouseDoubleClick(object sender, MouseEventArgs e)//join chat room
         {
             if (e.Button == MouseButtons.Left)

@@ -119,7 +119,7 @@ namespace BusinessTier
                 Chat chat = FindChat(chatId);
                 if (chat != null)//chat exists
                 {
-                    if (chat.MaxNrOfUsers > chat.Users.Count)//less people in chat than max nr
+                    if (chat.MaxNrOfUsers > chat.Users.Count)//ok nr of people in chat
                     {
                         Profile user = chat.Users.Find(
                         delegate (Profile u)
@@ -136,33 +136,30 @@ namespace BusinessTier
                         {
                             user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
                             user.CallBack = callback;//adds callback object to it
-                            List<Profile> list = chat.Users;//gets chats user list
-                            list.Add(user);//adds user to list
-                            chat.Users = list;//replaces chats user list with the new one
-                                              //joined
-                            return true;
+                            chat.Users.Add(user);//adds user to list
+                            return true;//joined
                         }
                     }
-                    return false;//couldnt join becouse its full
+                    else//too many people in chat
+                    {
+                        return false;//failed to join
+                    }
                 }
-                else
+                else//chat doesnt exist
                 {
                     chat = dbChat.GetChat(chatId);//Gets chat from database
                     Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets user from database
                     user.CallBack = callback;//adds callback object to it
-                    List<Profile> list = new List<Profile>//creates new user list
-                    {
-                        user//adds user to this list
-                    };
-                    chat.Users = list;//replaces chats user list with the new one
+                    List<Profile> profiles = new List<Profile>();
+                    profiles.Add(user);
+                    chat.Users = profiles;//adds user to chat
                     chats.Add(chat);//adds chat to chat list
-                    //joined
-                    return true;
+                    return true;//joined
                 }
             }
             catch (Exception)
             {
-                return false;
+                return false;//something failed
             }
         }
 
