@@ -52,30 +52,6 @@ namespace DataAccessTier
         /// <returns>Returns the ID assigned to the login by the database or -1 if it fails and prints error in console</returns>
         public int CreateLogin(Login login)
         {
-
-        //    string stmtEmail = "SELECT * FROM Login WHERE email = '"+login.Email+"';";
-        //    using (SqlCommand cmd = new SqlCommand(stmtEmail, con))
-        //    {
-        //        using (SqlDataReader readerEmail = cmd.ExecuteReader())
-        //        {
-        //            if (readerEmail.Read().ToString() != null)
-        //            {
-        //                throw new Exception("Email is already being used!");
-        //            }
-        //        }
-        //    }
-        //    string stmtUsername = "SELECT * FROM Login WHERE username = '" + login.Username + "';";
-        //    using (SqlCommand cmd = new SqlCommand(stmtEmail, con))
-        //    {
-        //        using (SqlDataReader readerUsername = cmd.ExecuteReader())
-        //        {
-        //            if (readerUsername.Read().ToString() != null)
-        //            {
-        //                throw new Exception("Username is already being used!");
-        //            }
-        //        }
-        //    }
-                
                 try
                 {
                     string stmt1 = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() INSERT INTO Login(username, salt, passwordHash, email)" +

@@ -230,7 +230,7 @@ namespace PresentationTier
                             //ListViewHitTestInfo lvhti = this.listView1.HitTest(e.X, e.Y);
                             signInError_lbl.Visible = false;
                             new ChatForm(loginId).Visible = true;
-                            Close();
+                            Hide();
                             break;
                     }
                 }
@@ -259,7 +259,7 @@ namespace PresentationTier
 
         private string CheckUsername(string username)
         {
-            if (username.Length < 5 || username.Length >16)
+            if (username.Length < 5 || username.Length > 16)
                 return "Username's length must be between 5 and 16!";
             else
                 return "";
@@ -274,7 +274,7 @@ namespace PresentationTier
             if (!password.Any(char.IsDigit))
                 error += "Password must contain at least one digit!";
             else
-            if(username != "")
+            if (username != "")
                 if (password.Equals(username))
                     error += "Password and Username cannot be the same!";
             return error;

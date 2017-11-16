@@ -9,6 +9,7 @@ namespace BusinessTier
 {
     public class LoginController : ILoginController
     {
+        IProfileController profileController = new ProfileController();
         private DbLogin dbLogin;
         public LoginController()
         {
@@ -17,7 +18,6 @@ namespace BusinessTier
 
         public int CreateLogin(Login login, string nickname)
         {
-            IProfileController profileController = new ProfileController();
             string tempPass = RandomPassword();
             login.Password = tempPass;
             string subject = ("Your Temporary Password is:");
@@ -27,7 +27,7 @@ namespace BusinessTier
             {
                 Nickname = nickname,
                 ProfileID = login.LoginId,
-                StatusID = 0,
+                StatusID = 1,
             };
             try
             {
@@ -46,6 +46,8 @@ namespace BusinessTier
 
         public int Authenticate(Login login)
         {
+            Profile profile = new Profile {StatusID = 1, };
+            profileController.UpdateProfile(login.LoginId, profile);
             return dbLogin.Authenticate(login);
         }
 

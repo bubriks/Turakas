@@ -92,9 +92,16 @@ namespace DataAccessTier
         /// <returns> Returns true if succeded, false otherwise and prints error in console</returns>
         public bool UpdateProfile(int profileId, Profile profile)
         {
+            string stmt = "UPDATE Profile SET ";
+            if (profile.StatusID != null)
+                stmt += "statusID = "+profile.StatusID + " ";
+            if (profile.ProfileID != null)
+                stmt += ", profileID = " + profile.ProfileID + " ";
+            if (profile.Nickname != null)
+                stmt += ", nickname = '" + profile.Nickname+ "' ";
             try
             {
-                string stmt = "UPDATE Profile SET statusId = " + profile.StatusID + ", nickname = '" + profile.Nickname + "' WHERE profileID = " + profile.ProfileID;
+                stmt += " WHERE profileID = " + profile.ProfileID;
                 SqlCommand cmd = new SqlCommand(stmt, con);
                 cmd.ExecuteNonQuery();
                 return true;
