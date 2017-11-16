@@ -55,17 +55,10 @@ namespace PresentationTier
                     Email = email,
                 };
 
-                int loginId = loginService.CreateLogin(login);
+                int loginId = loginService.CreateLogin(login, nickname);
 
                 if (loginId != -1)
                 {
-                    Profile profile = new Profile
-                    {
-                        ProfileID = loginId,
-                        StatusID = 0,
-                        Nickname = nickname,
-                    };
-                    profileService.CreateProfile(profile);
                     registerError_lbl.Visible = true;
                     registerError_lbl.Text = "Check your email for confirmation!";
                     registerError_lbl.ForeColor = Color.Green;
@@ -215,7 +208,11 @@ namespace PresentationTier
                     passwordSignUp_txt.BackColor = Color.White;
 
                     //logging in
-                    Login login = loginService.FindLogin(usernameSignIn_txt.Text, 2);
+                    Login login = new Login
+                    {
+                        Username = usernameSignIn_txt.Text,
+                        Password = passwordSignIn_txt.Text,
+                    };
                     int loginId = loginService.Authenticate(login);
                     switch (loginId)
                     {
@@ -232,8 +229,8 @@ namespace PresentationTier
                         default: //loginId
                             //ListViewHitTestInfo lvhti = this.listView1.HitTest(e.X, e.Y);
                             signInError_lbl.Visible = false;
-                            new ChatForm(loginId);
-                            this.Close();
+                            new ChatForm(loginId).Visible = true;
+                            Close();
                             break;
                     }
                 }

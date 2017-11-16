@@ -5,6 +5,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="login" nillable="true" type="q1:Login" />
+        <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

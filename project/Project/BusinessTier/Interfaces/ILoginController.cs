@@ -7,8 +7,9 @@ namespace BusinessTier
         /// Creates account, sends email with temporary password
         /// </summary>
         /// <param name="login"></param>
+        /// <param name ="nickanme"></param>
         /// <returns>Returns true if succeded, false otherwise, transaction rollsback and prints error message in console</returns>
-        int CreateLogin(Login login);
+        int CreateLogin(Login login, string nickname);
 
         /// <summary>
         /// Authenticates given login info

@@ -13,9 +13,9 @@ namespace WcfService
     {
         ILoginController loginController = new LoginController();
 
-        public int CreateLogin(Login login)
+        public int CreateLogin(Login login, string nickname)
         {
-            return loginController.CreateLogin(login);
+            return loginController.CreateLogin(login, nickname);
         }
         public int Authenticate(Login login)
         {

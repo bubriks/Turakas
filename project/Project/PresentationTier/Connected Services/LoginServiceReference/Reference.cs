@@ -111,10 +111,10 @@ namespace PresentationTier.LoginServiceReference {
     public interface ILoginService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/CreateLogin", ReplyAction="http://tempuri.org/ILoginService/CreateLoginResponse")]
-        int CreateLogin(PresentationTier.LoginServiceReference.Login login);
+        int CreateLogin(PresentationTier.LoginServiceReference.Login login, string nickname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/CreateLogin", ReplyAction="http://tempuri.org/ILoginService/CreateLoginResponse")]
-        System.Threading.Tasks.Task<int> CreateLoginAsync(PresentationTier.LoginServiceReference.Login login);
+        System.Threading.Tasks.Task<int> CreateLoginAsync(PresentationTier.LoginServiceReference.Login login, string nickname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/Authenticate", ReplyAction="http://tempuri.org/ILoginService/AuthenticateResponse")]
         int Authenticate(PresentationTier.LoginServiceReference.Login login);
@@ -174,12 +174,12 @@ namespace PresentationTier.LoginServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public int CreateLogin(PresentationTier.LoginServiceReference.Login login) {
-            return base.Channel.CreateLogin(login);
+        public int CreateLogin(PresentationTier.LoginServiceReference.Login login, string nickname) {
+            return base.Channel.CreateLogin(login, nickname);
         }
         
-        public System.Threading.Tasks.Task<int> CreateLoginAsync(PresentationTier.LoginServiceReference.Login login) {
-            return base.Channel.CreateLoginAsync(login);
+        public System.Threading.Tasks.Task<int> CreateLoginAsync(PresentationTier.LoginServiceReference.Login login, string nickname) {
+            return base.Channel.CreateLoginAsync(login, nickname);
         }
         
         public int Authenticate(PresentationTier.LoginServiceReference.Login login) {

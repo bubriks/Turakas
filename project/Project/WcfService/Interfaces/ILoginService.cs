@@ -12,7 +12,7 @@ namespace WcfService
     public interface ILoginService
     {
         [OperationContract]
-        int CreateLogin(Login login);
+        int CreateLogin(Login login, string nickname);
         [OperationContract]
         int Authenticate(Login login);
         [OperationContract]
