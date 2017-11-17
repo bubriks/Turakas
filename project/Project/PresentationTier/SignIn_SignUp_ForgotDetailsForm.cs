@@ -225,7 +225,6 @@ namespace PresentationTier
                             signInError_lbl.Visible = true;
                             break;
                         default: //loginId
-                            //ListViewHitTestInfo lvhti = this.listView1.HitTest(e.X, e.Y);
                             signInError_lbl.Visible = false;
                             ChatForm chat = new ChatForm(loginId);
                             Hide();

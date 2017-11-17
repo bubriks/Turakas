@@ -42,6 +42,7 @@ namespace PresentationTier
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.viewProfile_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -171,11 +172,22 @@ namespace PresentationTier
             this.label1.TabIndex = 0;
             this.label1.Text = "Chat name";
             // 
+            // viewProfile_btn
+            // 
+            this.viewProfile_btn.Location = new System.Drawing.Point(508, 246);
+            this.viewProfile_btn.Name = "viewProfile_btn";
+            this.viewProfile_btn.Size = new System.Drawing.Size(75, 23);
+            this.viewProfile_btn.TabIndex = 4;
+            this.viewProfile_btn.Text = "View Profile";
+            this.viewProfile_btn.UseVisualStyleBackColor = true;
+            this.viewProfile_btn.Click += new System.EventHandler(this.viewProfile_btn_Click);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(650, 292);
+            this.Controls.Add(this.viewProfile_btn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
@@ -204,5 +216,6 @@ namespace PresentationTier
         private Label label3;
         private TrackBar trackBar1;
         private Label label4;
+        private Button viewProfile_btn;
     }
 }

@@ -263,5 +263,13 @@ namespace PresentationTier
             return error;
         }
         #endregion
+
+        private void back_btn_Click(object sender, System.EventArgs e)
+        {
+            ChatForm chat = new ChatForm(profileId);
+            Hide();
+            chat.ShowDialog();
+            Close();
+        }
     }
 }

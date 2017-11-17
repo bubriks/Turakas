@@ -37,7 +37,7 @@ namespace PresentationTier
             trackBar1.Maximum = 10;
             trackBar1.TickFrequency = 1;
             #endregion
-
+            viewProfile_btn.BackColor = Color.Pink;
             Button1_Click(null, null);
         }
 
@@ -135,6 +135,14 @@ namespace PresentationTier
         {
             client.DeleteChat(Int32.Parse(listView1.SelectedItems[0].Text));
             Button1_Click(null, null);
+        }
+
+        private void viewProfile_btn_Click(object sender, EventArgs e)
+        {
+            ProfileForm chat = new ProfileForm(profileId);
+            Hide();
+            chat.ShowDialog();
+            Close();
         }
 
         private void ListView1_MouseDoubleClick(object sender, MouseEventArgs e)//join chat room

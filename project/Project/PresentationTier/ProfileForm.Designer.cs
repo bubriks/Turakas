@@ -46,6 +46,7 @@
             this.emailError_lbl = new System.Windows.Forms.Label();
             this.nicknameError_lbl = new System.Windows.Forms.Label();
             this.saveError_lbl = new System.Windows.Forms.Label();
+            this.back_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // username_lbl
@@ -210,12 +211,23 @@
             this.saveError_lbl.Text = "saveError_lbl";
             this.saveError_lbl.Visible = false;
             // 
+            // back_btn
+            // 
+            this.back_btn.Location = new System.Drawing.Point(13, 314);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Size = new System.Drawing.Size(75, 23);
+            this.back_btn.TabIndex = 18;
+            this.back_btn.Text = "Back";
+            this.back_btn.UseVisualStyleBackColor = true;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
+            // 
             // ProfileForm
             // 
             this.AcceptButton = this.save_btn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 349);
+            this.Controls.Add(this.back_btn);
             this.Controls.Add(this.saveError_lbl);
             this.Controls.Add(this.nicknameError_lbl);
             this.Controls.Add(this.emailError_lbl);
@@ -261,5 +273,6 @@
         private System.Windows.Forms.Label emailError_lbl;
         private System.Windows.Forms.Label nicknameError_lbl;
         private System.Windows.Forms.Label saveError_lbl;
+        private System.Windows.Forms.Button back_btn;
     }
 }
