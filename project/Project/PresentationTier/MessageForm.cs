@@ -69,6 +69,14 @@ namespace PresentationTier
         }
 
         #region Add message
+        private void TextBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == Convert.ToInt16(Keys.Enter))
+            {
+                Button1_Click(null, null);
+            }
+        }
+
         private void Button1_Click(object sender, EventArgs e)//send message
         {
             client.CreateMessage(profileId, textBox2.Text, chatId);

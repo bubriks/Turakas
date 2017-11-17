@@ -26,21 +26,20 @@ namespace BusinessTier
             {
                 if (chat.MaxNrOfUsers > 1)
                 {
-                    if (chat.Id == 0)
+                    if (chat.Id == 0)//new chat
                     {
                         //returns Object if everything went correctly
                         return dbChat.CreateChat(chat);
                     }
                     else
                     {
-                        if (dbChat.UpdateChat(chat) == null)
+                        if (dbChat.UpdateChat(chat) == null)//no changes were made
                         {
-                            //returns null if no changes were made
                             return null;
                         }
 
                         Chat foundChat = FindChat(chat.Id);
-                        if (foundChat != null)//if in use update chat in use
+                        lock (foundChat)
                         {
                             foundChat.MaxNrOfUsers = chat.MaxNrOfUsers;
                             foundChat.Name = chat.Name;
@@ -69,9 +68,9 @@ namespace BusinessTier
                     //returns false if no changes were made
                     return false;
                 }
-
+                
                 Chat foundChat = FindChat(id);
-                if (foundChat != null)
+                lock (chats)
                 {
                     chats.Remove(foundChat);
                 }
@@ -117,7 +116,7 @@ namespace BusinessTier
             try
             {
                 Chat chat = FindChat(chatId);
-                if (chat != null)//chat exists
+                lock (chat)
                 {
                     if (chat.MaxNrOfUsers > chat.Users.Count)//ok nr of people in chat
                     {
@@ -128,38 +127,42 @@ namespace BusinessTier
                         }
                         );
 
-                        if (user != null)//user is already in chat
-                        {
-                            return false;
-                        }
-                        else
+                        if (user == null)//person isnt in chat
                         {
                             user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
                             user.CallBack = callback;//adds callback object to it
                             chat.Users.Add(user);//adds user to list
                             return true;//joined
                         }
+
+                        return false;//person in chat already
                     }
                     else//too many people in chat
                     {
-                        return false;//failed to join
+                        return false;
                     }
                 }
-                else//chat doesnt exist
-                {
-                    chat = dbChat.GetChat(chatId);//Gets chat from database
-                    Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets user from database
-                    user.CallBack = callback;//adds callback object to it
-                    List<Profile> profiles = new List<Profile>();
-                    profiles.Add(user);
-                    chat.Users = profiles;//adds user to chat
-                    chats.Add(chat);//adds chat to chat list
-                    return true;//joined
-                }
             }
-            catch (Exception)
+            catch (Exception)//Chat isnt in chats list
             {
-                return false;//something failed
+                try
+                {
+                    lock (chats)
+                    {
+                        Chat chat = dbChat.GetChat(chatId);//Gets chat from database
+                        Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets user from database
+                        user.CallBack = callback;//adds callback object to it
+                        List<Profile> profiles = new List<Profile>();
+                        profiles.Add(user);
+                        chat.Users = profiles;//adds user to chat
+                        chats.Add(chat);//adds chat to chat list
+                        return true;//joined
+                    }
+                }
+                catch (Exception)//catches exeption if something went wrong
+                {
+                    return false;
+                }
             }
         }
 
@@ -168,25 +171,30 @@ namespace BusinessTier
             try
             {
                 Chat chat = FindChat(chatId);//looks for existing chat
-                foreach (Profile user in chat.Users)
+                lock (chat)
                 {
-                    if (user.ProfileID == profileId)
+                    Profile user = chat.Users.Find(
+                    delegate (Profile c)
                     {
-                        if (chat.Users.Count <= 1)
+                        return c.ProfileID == profileId;
+                    }
+                    );
+
+                    if (chat.Users.Count <= 1)
+                    {
+                        lock (chats)
                         {
-                            //removes chat if it would be empty
                             chats.Remove(chat);
                             return true;
                         }
-                        else
-                        {
-                            //removes user from chat
-                            chat.Users.Remove(user);
-                            return true;
-                        }
+                    }
+                    else
+                    {
+                        //removes user from chat
+                        chat.Users.Remove(user);
+                        return true;
                     }
                 }
-                return false;
             }
             catch (Exception)
             {
