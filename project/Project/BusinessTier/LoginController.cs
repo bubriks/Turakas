@@ -23,17 +23,17 @@ namespace BusinessTier
             string subject = ("Your Temporary Password is:");
             string body = "Hello "+ login.Username +", " + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
 
-            Profile profile = new Profile
-            {
-                Nickname = nickname,
-                ProfileID = login.LoginId,
-                StatusID = 1,
-            };
             try
             {
                 sendEmail(login.Email, subject, body);
-                profileController.CreateProfile(profile);
                 int loginId = dbLogin.CreateLogin(login);
+                Profile profile = new Profile
+                {
+                    Nickname = nickname,
+                    ProfileID = loginId,
+                    StatusID = 2,
+                };
+                profileController.CreateProfile(profile);
                 return loginId;
             }
             catch (Exception e)
@@ -46,9 +46,10 @@ namespace BusinessTier
 
         public int Authenticate(Login login)
         {
+            int loginId = dbLogin.Authenticate(login);
             Profile profile = new Profile {StatusID = 1, };
-            profileController.UpdateProfile(login.LoginId, profile);
-            return dbLogin.Authenticate(login);
+            profileController.UpdateProfile(loginId, profile);
+            return loginId;
         }
 
         /// <summary>
@@ -70,7 +71,7 @@ namespace BusinessTier
                 {
                     logins.Password = tempPass;
                     sendEmail(logins.Email, subject, body);
-                    dbLogin.CreateLogin(logins);
+                    dbLogin.UpdateLogin(logins.LoginId, logins);
                     return true;
                 }
                 catch (Exception e)

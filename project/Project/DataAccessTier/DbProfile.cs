@@ -23,9 +23,11 @@ namespace DataAccessTier
             try
             {
                 string stmt = "INSERT INTO Profile(profileID, statusId, nickname)" +
-                    " VALUES (" + profile.ProfileID + ", " + profile.StatusID + ", '" + profile.Nickname + "')";
-                SqlCommand cmd = new SqlCommand(stmt, con);
-                cmd.ExecuteNonQuery();
+                    " VALUES (" + profile.ProfileID + ", " + profile.StatusID + ", '" + profile.Nickname + "');";
+                using (SqlCommand cmd = new SqlCommand(stmt, con))
+                {
+                    cmd.ExecuteNonQuery();
+                }
                 return true;
             }
             catch (Exception e)
@@ -58,22 +60,26 @@ namespace DataAccessTier
 
             try
             {
-                SqlCommand cmd = new SqlCommand(stmt, con);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (SqlCommand cmd = new SqlCommand(stmt, con))
                 {
-                    Profile profile = new Profile
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        ProfileID = reader.GetInt32(0),
-                        StatusID = reader.GetInt32(1), 
-                        Nickname = reader.GetString(2),
-                    };
-                    reader.Close();
-                    return profile;
-                }
-                else
-                {
-                    return null;
+                        if (reader.Read())
+                        {
+                            Profile profile = new Profile
+                            {
+                                ProfileID = reader.GetInt32(0),
+                                StatusID = reader.GetInt32(1),
+                                Nickname = reader.GetString(2),
+                            };
+                            reader.Close();
+                            return profile;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
                 }
             }
             catch (Exception e)
@@ -93,17 +99,19 @@ namespace DataAccessTier
         public bool UpdateProfile(int profileId, Profile profile)
         {
             string stmt = "UPDATE Profile SET ";
-            if (profile.StatusID != null)
-                stmt += "statusID = "+profile.StatusID + " ";
-            if (profile.ProfileID != null)
+            if (profile.StatusID != 0)
+                stmt += "statusID = " + profile.StatusID + " ";
+            if (profile.ProfileID != 0)
                 stmt += ", profileID = " + profile.ProfileID + " ";
             if (profile.Nickname != null)
-                stmt += ", nickname = '" + profile.Nickname+ "' ";
+                stmt += ", nickname = '" + profile.Nickname + "' ";
             try
             {
-                stmt += " WHERE profileID = " + profile.ProfileID;
-                SqlCommand cmd = new SqlCommand(stmt, con);
-                cmd.ExecuteNonQuery();
+                stmt += " WHERE profileID = " + profile.ProfileID + ";";
+                using (SqlCommand cmd = new SqlCommand(stmt, con))
+                {
+                    cmd.ExecuteNonQuery();
+                }
                 return true;
             }
             catch (Exception e)

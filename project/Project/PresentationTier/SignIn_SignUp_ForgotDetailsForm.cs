@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PresentationTier.LoginServiceReference;
 using PresentationTier.ProfileServiceReference;
-using System.ServiceModel;
 
 namespace PresentationTier
 {
-    public partial class SignIn_SignUp_ForgotDetails: Form
+    public partial class SignIn_SignUp_ForgotDetailsForm: Form
     {
         private ILoginService loginService = new LoginServiceClient();
         private IProfileService profileService = new ProfileServiceClient();
 
-        public SignIn_SignUp_ForgotDetails()
+        public SignIn_SignUp_ForgotDetailsForm()
         {
             InitializeComponent();
 
@@ -67,6 +61,10 @@ namespace PresentationTier
                 {
 
                 }
+            }
+            else
+            {
+                registerError_lbl.Visible = false;
             }
         }
 
@@ -204,7 +202,7 @@ namespace PresentationTier
                 if (passwordError.Equals("")) //if there is no error with password
                 {
                     //Reseting error label and text box
-                    passwordSignIn_lbl.Visible = false;
+                    signInError_lbl.Visible = false;
                     passwordSignUp_txt.BackColor = Color.White;
 
                     //logging in

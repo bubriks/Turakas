@@ -28,9 +28,9 @@ namespace DataAccessTier
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        reader.Read();
                         if (reader.HasRows)
                         {
+                            reader.Read();
                             int id = Int32.Parse(reader["loginID"].ToString());
                             return id;
                         }
@@ -105,15 +105,18 @@ namespace DataAccessTier
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        reader.Read();
-                        Login login1 = new Login
+                        if (reader.HasRows)
                         {
-                            Username = reader["username"].ToString(),
-                            Password = reader["password"].ToString(),
-                            Email = reader["email"].ToString(),
-                        };
-                        login1.LoginId = reader.GetInt32(0);
-                        return login1;
+                            reader.Read();
+                            Login login1 = new Login
+                            {
+                                LoginId = Int32.Parse(reader["loginID"].ToString()),
+                                Username = reader["username"].ToString(),
+                                Email = reader["email"].ToString(),
+                            };
+                            return login1;
+                        }
+                        return null;
                     }
                 }
             }

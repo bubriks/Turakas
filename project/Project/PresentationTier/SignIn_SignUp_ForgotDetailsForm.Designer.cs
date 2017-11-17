@@ -1,6 +1,6 @@
 ﻿namespace PresentationTier
 {
-    partial class SignIn_SignUp_ForgotDetails
+    partial class SignIn_SignUp_ForgotDetailsForm
     {
         /// <summary>
         /// Required designer variable.
