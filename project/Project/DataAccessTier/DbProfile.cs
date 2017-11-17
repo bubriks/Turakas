@@ -99,12 +99,20 @@ namespace DataAccessTier
         public bool UpdateProfile(int profileId, Profile profile)
         {
             string stmt = "UPDATE Profile SET ";
-            if (profile.StatusID != 0)
-                stmt += "statusID = " + profile.StatusID + " ";
-            if (profile.ProfileID != 0)
-                stmt += ", profileID = " + profile.ProfileID + " ";
-            if (profile.Nickname != null)
-                stmt += ", nickname = '" + profile.Nickname + "' ";
+            if (profile.StatusID != 0 && profile.ProfileID != 0)
+                stmt += "statusID = " + profile.StatusID + ", " + "statusID = " + profile.StatusID + " ";
+            else
+            if (profile.StatusID != 0 && profile.Nickname != null)
+                stmt += "statusID = " + profile.StatusID + " " + " nickname = '" + profile.Nickname + "' ";
+            else
+            {
+                if (profile.StatusID != 0)
+                    stmt += "statusID = " + profile.StatusID + " ";
+                if (profile.ProfileID != 0)
+                    stmt += " profileID = " + profile.ProfileID + " ";
+                if (profile.Nickname != null)
+                    stmt += " nickname = '" + profile.Nickname + "' ";
+            }
             try
             {
                 stmt += " WHERE profileID = " + profile.ProfileID + ";";

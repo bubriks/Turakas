@@ -23,6 +23,9 @@ namespace PresentationTier.ProfileServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object CallBackField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NicknameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -38,6 +41,19 @@ namespace PresentationTier.ProfileServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object CallBack {
+            get {
+                return this.CallBackField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CallBackField, value) != true)) {
+                    this.CallBackField = value;
+                    this.RaisePropertyChanged("CallBack");
+                }
             }
         }
         

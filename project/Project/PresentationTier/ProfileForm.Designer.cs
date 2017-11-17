@@ -40,6 +40,12 @@
             this.password_txt = new System.Windows.Forms.TextBox();
             this.username_txt = new System.Windows.Forms.TextBox();
             this.friendsList_listvw = new System.Windows.Forms.ListView();
+            this.usernameError_lbl = new System.Windows.Forms.Label();
+            this.passwordError_lbl = new System.Windows.Forms.Label();
+            this.confirmPasswordError_lbl = new System.Windows.Forms.Label();
+            this.emailError_lbl = new System.Windows.Forms.Label();
+            this.nicknameError_lbl = new System.Windows.Forms.Label();
+            this.saveError_lbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // username_lbl
@@ -54,7 +60,7 @@
             // password_lbl
             // 
             this.password_lbl.AutoSize = true;
-            this.password_lbl.Location = new System.Drawing.Point(16, 42);
+            this.password_lbl.Location = new System.Drawing.Point(15, 50);
             this.password_lbl.Name = "password_lbl";
             this.password_lbl.Size = new System.Drawing.Size(56, 13);
             this.password_lbl.TabIndex = 1;
@@ -63,7 +69,7 @@
             // confirmPassword_lbl
             // 
             this.confirmPassword_lbl.AutoSize = true;
-            this.confirmPassword_lbl.Location = new System.Drawing.Point(13, 73);
+            this.confirmPassword_lbl.Location = new System.Drawing.Point(12, 93);
             this.confirmPassword_lbl.Name = "confirmPassword_lbl";
             this.confirmPassword_lbl.Size = new System.Drawing.Size(91, 13);
             this.confirmPassword_lbl.TabIndex = 2;
@@ -73,7 +79,7 @@
             // email_lbl
             // 
             this.email_lbl.AutoSize = true;
-            this.email_lbl.Location = new System.Drawing.Point(13, 106);
+            this.email_lbl.Location = new System.Drawing.Point(12, 130);
             this.email_lbl.Name = "email_lbl";
             this.email_lbl.Size = new System.Drawing.Size(35, 13);
             this.email_lbl.TabIndex = 3;
@@ -82,7 +88,7 @@
             // nickname_lbl
             // 
             this.nickname_lbl.AutoSize = true;
-            this.nickname_lbl.Location = new System.Drawing.Point(16, 145);
+            this.nickname_lbl.Location = new System.Drawing.Point(15, 167);
             this.nickname_lbl.Name = "nickname_lbl";
             this.nickname_lbl.Size = new System.Drawing.Size(58, 13);
             this.nickname_lbl.TabIndex = 4;
@@ -100,23 +106,21 @@
             // 
             // nickname_txt
             // 
-            this.nickname_txt.Location = new System.Drawing.Point(110, 142);
+            this.nickname_txt.Location = new System.Drawing.Point(110, 164);
             this.nickname_txt.Name = "nickname_txt";
             this.nickname_txt.Size = new System.Drawing.Size(100, 20);
             this.nickname_txt.TabIndex = 6;
-            this.nickname_txt.TextChanged += new System.EventHandler(this.nickname_txt_TextChanged);
             // 
             // email_txt
             // 
-            this.email_txt.Location = new System.Drawing.Point(110, 103);
+            this.email_txt.Location = new System.Drawing.Point(110, 127);
             this.email_txt.Name = "email_txt";
             this.email_txt.Size = new System.Drawing.Size(100, 20);
             this.email_txt.TabIndex = 7;
-            this.email_txt.TextChanged += new System.EventHandler(this.email_txt_TextChanged);
             // 
             // confirmPassword_txt
             // 
-            this.confirmPassword_txt.Location = new System.Drawing.Point(110, 73);
+            this.confirmPassword_txt.Location = new System.Drawing.Point(110, 90);
             this.confirmPassword_txt.Name = "confirmPassword_txt";
             this.confirmPassword_txt.Size = new System.Drawing.Size(100, 20);
             this.confirmPassword_txt.TabIndex = 8;
@@ -125,7 +129,7 @@
             // 
             // password_txt
             // 
-            this.password_txt.Location = new System.Drawing.Point(110, 39);
+            this.password_txt.Location = new System.Drawing.Point(110, 47);
             this.password_txt.Name = "password_txt";
             this.password_txt.Size = new System.Drawing.Size(100, 20);
             this.password_txt.TabIndex = 9;
@@ -137,7 +141,6 @@
             this.username_txt.Name = "username_txt";
             this.username_txt.Size = new System.Drawing.Size(100, 20);
             this.username_txt.TabIndex = 10;
-            this.username_txt.TextChanged += new System.EventHandler(this.username_txt_TextChanged);
             // 
             // friendsList_listvw
             // 
@@ -147,11 +150,78 @@
             this.friendsList_listvw.TabIndex = 11;
             this.friendsList_listvw.UseCompatibleStateImageBehavior = false;
             // 
+            // usernameError_lbl
+            // 
+            this.usernameError_lbl.AutoSize = true;
+            this.usernameError_lbl.Location = new System.Drawing.Point(107, 26);
+            this.usernameError_lbl.Name = "usernameError_lbl";
+            this.usernameError_lbl.Size = new System.Drawing.Size(91, 13);
+            this.usernameError_lbl.TabIndex = 12;
+            this.usernameError_lbl.Text = "usernameError_lbl";
+            this.usernameError_lbl.Visible = false;
+            // 
+            // passwordError_lbl
+            // 
+            this.passwordError_lbl.AutoSize = true;
+            this.passwordError_lbl.Location = new System.Drawing.Point(110, 71);
+            this.passwordError_lbl.Name = "passwordError_lbl";
+            this.passwordError_lbl.Size = new System.Drawing.Size(90, 13);
+            this.passwordError_lbl.TabIndex = 13;
+            this.passwordError_lbl.Text = "passwordError_lbl";
+            this.passwordError_lbl.Visible = false;
+            // 
+            // confirmPasswordError_lbl
+            // 
+            this.confirmPasswordError_lbl.AutoSize = true;
+            this.confirmPasswordError_lbl.Location = new System.Drawing.Point(110, 113);
+            this.confirmPasswordError_lbl.Name = "confirmPasswordError_lbl";
+            this.confirmPasswordError_lbl.Size = new System.Drawing.Size(125, 13);
+            this.confirmPasswordError_lbl.TabIndex = 14;
+            this.confirmPasswordError_lbl.Text = "confirmPasswordError_lbl";
+            this.confirmPasswordError_lbl.Visible = false;
+            // 
+            // emailError_lbl
+            // 
+            this.emailError_lbl.AutoSize = true;
+            this.emailError_lbl.Location = new System.Drawing.Point(110, 150);
+            this.emailError_lbl.Name = "emailError_lbl";
+            this.emailError_lbl.Size = new System.Drawing.Size(69, 13);
+            this.emailError_lbl.TabIndex = 15;
+            this.emailError_lbl.Text = "emailError_lbl";
+            this.emailError_lbl.Visible = false;
+            // 
+            // nicknameError_lbl
+            // 
+            this.nicknameError_lbl.AutoSize = true;
+            this.nicknameError_lbl.Location = new System.Drawing.Point(113, 191);
+            this.nicknameError_lbl.Name = "nicknameError_lbl";
+            this.nicknameError_lbl.Size = new System.Drawing.Size(91, 13);
+            this.nicknameError_lbl.TabIndex = 16;
+            this.nicknameError_lbl.Text = "nicknameError_lbl";
+            this.nicknameError_lbl.Visible = false;
+            // 
+            // saveError_lbl
+            // 
+            this.saveError_lbl.AutoSize = true;
+            this.saveError_lbl.Location = new System.Drawing.Point(176, 267);
+            this.saveError_lbl.Name = "saveError_lbl";
+            this.saveError_lbl.Size = new System.Drawing.Size(68, 13);
+            this.saveError_lbl.TabIndex = 17;
+            this.saveError_lbl.Text = "saveError_lbl";
+            this.saveError_lbl.Visible = false;
+            // 
             // ProfileForm
             // 
+            this.AcceptButton = this.save_btn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 349);
+            this.Controls.Add(this.saveError_lbl);
+            this.Controls.Add(this.nicknameError_lbl);
+            this.Controls.Add(this.emailError_lbl);
+            this.Controls.Add(this.confirmPasswordError_lbl);
+            this.Controls.Add(this.passwordError_lbl);
+            this.Controls.Add(this.usernameError_lbl);
             this.Controls.Add(this.friendsList_listvw);
             this.Controls.Add(this.username_txt);
             this.Controls.Add(this.password_txt);
@@ -185,5 +255,11 @@
         private System.Windows.Forms.TextBox password_txt;
         private System.Windows.Forms.TextBox username_txt;
         private System.Windows.Forms.ListView friendsList_listvw;
+        private System.Windows.Forms.Label usernameError_lbl;
+        private System.Windows.Forms.Label passwordError_lbl;
+        private System.Windows.Forms.Label confirmPasswordError_lbl;
+        private System.Windows.Forms.Label emailError_lbl;
+        private System.Windows.Forms.Label nicknameError_lbl;
+        private System.Windows.Forms.Label saveError_lbl;
     }
 }
