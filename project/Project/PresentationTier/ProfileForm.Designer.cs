@@ -90,7 +90,7 @@
             // 
             // save_btn
             // 
-            this.save_btn.Location = new System.Drawing.Point(42, 265);
+            this.save_btn.Location = new System.Drawing.Point(176, 286);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(75, 23);
             this.save_btn.TabIndex = 5;
@@ -100,7 +100,7 @@
             // 
             // nickname_txt
             // 
-            this.nickname_txt.Location = new System.Drawing.Point(80, 142);
+            this.nickname_txt.Location = new System.Drawing.Point(110, 142);
             this.nickname_txt.Name = "nickname_txt";
             this.nickname_txt.Size = new System.Drawing.Size(100, 20);
             this.nickname_txt.TabIndex = 6;
@@ -108,7 +108,7 @@
             // 
             // email_txt
             // 
-            this.email_txt.Location = new System.Drawing.Point(54, 106);
+            this.email_txt.Location = new System.Drawing.Point(110, 103);
             this.email_txt.Name = "email_txt";
             this.email_txt.Size = new System.Drawing.Size(100, 20);
             this.email_txt.TabIndex = 7;
@@ -125,7 +125,7 @@
             // 
             // password_txt
             // 
-            this.password_txt.Location = new System.Drawing.Point(78, 42);
+            this.password_txt.Location = new System.Drawing.Point(110, 39);
             this.password_txt.Name = "password_txt";
             this.password_txt.Size = new System.Drawing.Size(100, 20);
             this.password_txt.TabIndex = 9;
@@ -133,7 +133,7 @@
             // 
             // username_txt
             // 
-            this.username_txt.Location = new System.Drawing.Point(77, 10);
+            this.username_txt.Location = new System.Drawing.Point(110, 10);
             this.username_txt.Name = "username_txt";
             this.username_txt.Size = new System.Drawing.Size(100, 20);
             this.username_txt.TabIndex = 10;
