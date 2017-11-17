@@ -367,8 +367,9 @@
             this.emailForgot_lbl.TabIndex = 0;
             this.emailForgot_lbl.Text = "Email:";
             // 
-            // SignIn_SignUp_ForgotDetails
+            // SignIn_SignUp_ForgotDetailsForm
             // 
+            this.AcceptButton = this.signIn_btn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
@@ -376,7 +377,7 @@
             this.Controls.Add(this.ForgotDetails_grp);
             this.Controls.Add(this.SignIn_grp);
             this.Controls.Add(this.SignUp_grp);
-            this.Name = "SignIn_SignUp_ForgotDetails";
+            this.Name = "SignIn_SignUp_ForgotDetailsForm";
             this.Text = "Login";
             this.SignUp_grp.ResumeLayout(false);
             this.SignUp_grp.PerformLayout();
