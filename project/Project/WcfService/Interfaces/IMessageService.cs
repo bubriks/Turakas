@@ -16,7 +16,10 @@ namespace WcfService
 
         [OperationContract(IsOneWay = true)]
         void LeaveChat(int chatId, int profileId);
-        
+
+        [OperationContract(IsOneWay = true)]
+        void Writing(int chatId);
+
         [OperationContract(IsOneWay = true)]
         void CreateMessage(int profileId, String text, int chatId);
 
@@ -26,6 +29,9 @@ namespace WcfService
 
     public interface IMessageCallBack
     {
+        [OperationContract(IsOneWay = true)]
+        void WritingMessage();
+
         [OperationContract(IsOneWay = true)]
         void AddMessage(Message message);
 

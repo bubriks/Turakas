@@ -50,6 +50,16 @@ namespace WcfService
             }
         }
 
+        public void Writing(int chatId)
+        {
+            List<Profile> profiles = chatController.FindChat(chatId).Users;
+            foreach (Profile user in profiles)
+            {
+                IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+                callback.WritingMessage();
+            }
+        }
+
         public void CreateMessage(int profileId, string text, int chatId)
         {
             Message message = messageController.CreateMessage(profileId, text, chatId);

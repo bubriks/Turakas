@@ -141,8 +141,6 @@ namespace PresentationTier
         {
             ProfileForm chat = new ProfileForm(profileId);
             Hide();
-            chat.ShowDialog();
-            Close();
         }
 
         private void ListView1_MouseDoubleClick(object sender, MouseEventArgs e)//join chat room

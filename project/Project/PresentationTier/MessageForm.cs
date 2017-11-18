@@ -75,6 +75,22 @@ namespace PresentationTier
             {
                 Button1_Click(null, null);
             }
+            else
+            {
+                client.Writing(chatId);
+            }
+        }
+
+        public void WritingMessage()
+        {
+            toolStripStatusLabel1.Text = "Someone is writing";
+            timer1.Stop();
+            timer1.Start();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Nobody is writing";
         }
 
         private void Button1_Click(object sender, EventArgs e)//send message

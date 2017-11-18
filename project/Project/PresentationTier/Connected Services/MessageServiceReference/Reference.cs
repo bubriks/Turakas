@@ -344,6 +344,12 @@ namespace PresentationTier.MessageServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/LeaveChat")]
         System.Threading.Tasks.Task LeaveChatAsync(int chatId, int profileId);
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Writing")]
+        void Writing(int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Writing")]
+        System.Threading.Tasks.Task WritingAsync(int chatId);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/CreateMessage")]
         void CreateMessage(int profileId, string text, int chatId);
         
@@ -359,6 +365,9 @@ namespace PresentationTier.MessageServiceReference {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IMessageServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/WritingMessage")]
+        void WritingMessage();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/AddMessage")]
         void AddMessage(PresentationTier.MessageServiceReference.Message message);
@@ -421,6 +430,14 @@ namespace PresentationTier.MessageServiceReference {
         
         public System.Threading.Tasks.Task LeaveChatAsync(int chatId, int profileId) {
             return base.Channel.LeaveChatAsync(chatId, profileId);
+        }
+        
+        public void Writing(int chatId) {
+            base.Channel.Writing(chatId);
+        }
+        
+        public System.Threading.Tasks.Task WritingAsync(int chatId) {
+            return base.Channel.WritingAsync(chatId);
         }
         
         public void CreateMessage(int profileId, string text, int chatId) {
