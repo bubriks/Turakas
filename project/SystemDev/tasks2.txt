@@ -1,0 +1,14 @@
+delete frofile`			Andrei
+invite person to chat		Ralfs
+show if someone is writing	Ralfs
+play song			Stoicho
+save song			Stoicho
+update song			Stoicho
+remove song			Stoicho
+notifications			Andrei
+manage group			Hannes
+join as group			Hannes
+switching between forms		Andrei
+bugFix				Personal part
+
+Until 22.11.2017
