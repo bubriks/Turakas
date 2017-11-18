@@ -69,6 +69,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\YoutubeService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="MessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +99,12 @@
     <Compile Include="SignIn_SignUp_ForgotDetailsForm.Designer.cs">
       <DependentUpon>SignIn_SignUp_ForgotDetailsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="YoutubeAlpha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YoutubeAlpha.Designer.cs">
+      <DependentUpon>YoutubeAlpha.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +125,9 @@
     </Compile>
     <EmbeddedResource Include="SignIn_SignUp_ForgotDetailsForm.resx">
       <DependentUpon>SignIn_SignUp_ForgotDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YoutubeAlpha.resx">
+      <DependentUpon>YoutubeAlpha.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Connected Services\ChatServiceReference\ChatService.wsdl" />
     <None Include="Connected Services\ChatServiceReference\ChatService.xsd">
@@ -164,6 +178,13 @@
     <None Include="Connected Services\ProfileServiceReference\ProfileService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\YoutubeService\YoutubeService.wsdl" />
+    <None Include="Connected Services\YoutubeService\YoutubeService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\YoutubeService\YoutubeService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -185,6 +206,7 @@
     <WCFMetadataStorage Include="Connected Services\LoginServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\MessageServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\ProfileServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\YoutubeService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\MessageServiceReference\MessageService.disco" />
@@ -242,6 +264,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ProfileServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\YoutubeService\YoutubeService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\YoutubeService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\YoutubeService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\YoutubeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

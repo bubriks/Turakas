@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f22777cc-4ebc-459b-acc8-657e4ad3bc77" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/YoutubeService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="YoutubeService.xsd" MetadataType="Schema" ID="b921a825-471f-42c8-8fc7-11dca0df7952" SourceId="1" SourceUrl="http://localhost/YoutubeService?xsd=xsd1" />
+    <MetadataFile FileName="YoutubeService1.xsd" MetadataType="Schema" ID="0e7ccf87-5f06-4373-9c15-35ec7d2db2e7" SourceId="1" SourceUrl="http://localhost/YoutubeService?xsd=xsd0" />
+    <MetadataFile FileName="YoutubeService.disco" MetadataType="Disco" ID="82a977fd-8455-4f0e-9d2b-030b8a169437" SourceId="1" SourceUrl="http://localhost/YoutubeService?disco" />
+    <MetadataFile FileName="YoutubeService.wsdl" MetadataType="Wsdl" ID="3ffea06b-9490-4059-be9c-6f2d090f55cb" SourceId="1" SourceUrl="http://localhost/YoutubeService?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
