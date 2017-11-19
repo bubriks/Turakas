@@ -24,7 +24,7 @@ namespace BusinessTier
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        List<Chat> GetChatsByName(String name);
+        List<Chat> GetChatsByName(String name, int profileId);
         /// <summary>
         /// Person joins chat
         /// </summary>

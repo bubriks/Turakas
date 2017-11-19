@@ -32,6 +32,7 @@ namespace PresentationTier
             listView1.Columns.Add("Type", 60, HorizontalAlignment.Left);
             listView1.Columns.Add("Users", 60, HorizontalAlignment.Left);
             listView1.Columns.Add("Room size", 80, HorizontalAlignment.Left);
+            listView1.Columns.Add("Owner", 0, HorizontalAlignment.Left);
 
             trackBar1.Minimum = 2;
             trackBar1.Maximum = 10;
@@ -44,7 +45,7 @@ namespace PresentationTier
         private void Button1_Click(object sender, EventArgs e)//search button
         {
             listView1.Items.Clear();
-            foreach (Chat chat in client.GetChatsByName(textBox1.Text))
+            foreach (Chat chat in client.GetChatsByName(textBox1.Text, profileId))
             {
                 ListViewItem row = new ListViewItem(chat.Id.ToString());
                 row.SubItems.Add(chat.Name);
@@ -58,6 +59,7 @@ namespace PresentationTier
                     row.SubItems.Add(chat.Users.Count().ToString());
                 }
                 row.SubItems.Add(chat.MaxNrOfUsers.ToString());
+                row.SubItems.Add(chat.OwnerID.ToString());
                 listView1.Items.Add(row);
             }
         }
@@ -67,7 +69,7 @@ namespace PresentationTier
             if (e.Button == MouseButtons.Right)
             {
                 ListViewHitTestInfo lvhti = this.listView1.HitTest(e.X, e.Y);
-                if (lvhti.Item != null)
+                if (lvhti.Item != null && Int32.Parse(lvhti.Item.SubItems[5].Text) == profileId)
                 {
                     lvhti.Item.Selected = true;
                     cm.Show(this.listView1, new Point(e.X, e.Y));
@@ -89,6 +91,21 @@ namespace PresentationTier
                         checkBox1.Checked = false;
                     }
                     trackBar1.Value = Int32.Parse(lvhti.Item.SubItems[4].Text);
+                    button2.Text = "Update chat";
+                    if(Int32.Parse(lvhti.Item.SubItems[5].Text) == profileId)
+                    {
+                        textBox2.Enabled = true;
+                        checkBox1.Enabled = true;
+                        trackBar1.Enabled = true;
+                        button2.Enabled = true;
+                    }
+                    else
+                    {
+                        textBox2.Enabled = false;
+                        checkBox1.Enabled = false;
+                        trackBar1.Enabled = false;
+                        button2.Enabled = false;
+                    }
                 }
                 else
                 {
@@ -96,6 +113,7 @@ namespace PresentationTier
                     textBox2.Text = "";
                     checkBox1.Checked = false;
                     trackBar1.Value = 2;
+                    button2.Text = "Create chat";
                 }
             }
         }
@@ -111,7 +129,8 @@ namespace PresentationTier
             {
                 Name = textBox2.Text,
                 MaxNrOfUsers = trackBar1.Value,
-                Id = chatId
+                Id = chatId,
+                OwnerID = profileId
             };
             if (checkBox1.Checked == true)
             {
@@ -127,6 +146,7 @@ namespace PresentationTier
             textBox2.Text = "";
             checkBox1.Checked = false;
             trackBar1.Value = 2;
+            button2.Text = "Create chat";
 
             Button1_Click(null, null);
         }
@@ -137,7 +157,7 @@ namespace PresentationTier
             Button1_Click(null, null);
         }
 
-        private void viewProfile_btn_Click(object sender, EventArgs e)
+        private void ViewProfile_btn_Click(object sender, EventArgs e)
         {
             ProfileForm chat = new ProfileForm(profileId);
             Hide();

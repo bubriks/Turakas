@@ -44,9 +44,9 @@ namespace WcfService
             }
         }
 
-        public List<Chat> GetChatsByName(String name)
+        public List<Chat> GetChatsByName(String name, int profileId)
         {
-            return chatController.GetChatsByName(name);
+            return chatController.GetChatsByName(name, profileId);
         }
     }
 }

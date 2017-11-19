@@ -19,11 +19,12 @@ namespace DataAccessTier
 
         public Chat CreateChat(Chat chat)
         {
-            string stmt = "INSERT INTO Chat(name, type, nrOfUsers) OUTPUT INSERTED.chatID values (@0, @1, @2);";
+            string stmt = "INSERT INTO Chat(name, type, nrOfUsers, ownerID) OUTPUT INSERTED.chatID values (@0, @1, @2, @3);";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", chat.Name);
             cmd.Parameters.AddWithValue("@1", Convert.ToInt32(chat.Type));
             cmd.Parameters.AddWithValue("@2", chat.MaxNrOfUsers);
+            cmd.Parameters.AddWithValue("@3", chat.OwnerID);
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
@@ -35,7 +36,7 @@ namespace DataAccessTier
 
         public Chat GetChat(int id)
         {
-            string stmt = "Select name, type, nrOfUsers FROM Chat where chatId = @0";
+            string stmt = "Select name, type, nrOfUsers, ownerID FROM Chat where chatId = @0";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", id);
             SqlDataReader reader = cmd.ExecuteReader();
@@ -47,7 +48,8 @@ namespace DataAccessTier
                     Id = id,
                     Name = reader["name"].ToString(),
                     Type = (bool)reader["type"],
-                    MaxNrOfUsers = Int32.Parse(reader["nrOfUsers"].ToString())
+                    MaxNrOfUsers = Int32.Parse(reader["nrOfUsers"].ToString()),
+                    OwnerID = Int32.Parse(reader["ownerID"].ToString())
                 };
             }
             reader.Close();
@@ -70,11 +72,12 @@ namespace DataAccessTier
             return null;
         }
 
-        public List<Chat> GetChatsByName(String name)
+        public List<Chat> GetChatsByName(String name, int profileId)
         {
-            string stmt = "Select chatID, name, type, nrOfUsers FROM Chat where name like '%'+@0+'%';";
+            string stmt = "Select chatID, name, type, nrOfUsers, ownerID FROM Chat where name like '%'+@0+'%' AND type = 1  OR ownerID = @1";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", name);
+            cmd.Parameters.AddWithValue("@1", profileId);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Chat> chats = new List<Chat>();
             while (reader.Read())
@@ -84,7 +87,8 @@ namespace DataAccessTier
                     Id = Int32.Parse(reader["chatID"].ToString()),
                     Name = reader["name"].ToString(),
                     Type = (bool)reader["type"],
-                    MaxNrOfUsers = Int32.Parse(reader["nrOfUsers"].ToString())
+                    MaxNrOfUsers = Int32.Parse(reader["nrOfUsers"].ToString()),
+                    OwnerID = Int32.Parse(reader["ownerID"].ToString())
                 };
                 chats.Add(chat);
             }

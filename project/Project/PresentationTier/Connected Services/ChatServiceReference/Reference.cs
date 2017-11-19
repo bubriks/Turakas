@@ -32,6 +32,9 @@ namespace PresentationTier.ChatServiceReference {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OwnerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -82,6 +85,19 @@ namespace PresentationTier.ChatServiceReference {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OwnerID {
+            get {
+                return this.OwnerIDField;
+            }
+            set {
+                if ((this.OwnerIDField.Equals(value) != true)) {
+                    this.OwnerIDField = value;
+                    this.RaisePropertyChanged("OwnerID");
                 }
             }
         }
@@ -228,17 +244,17 @@ namespace PresentationTier.ChatServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SaveChat")]
         System.Threading.Tasks.Task SaveChatAsync(PresentationTier.ChatServiceReference.Chat chat);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetChatsByName", ReplyAction="http://tempuri.org/IChatService/GetChatsByNameResponse")]
-        PresentationTier.ChatServiceReference.Chat[] GetChatsByName(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetChatsByName", ReplyAction="http://tempuri.org/IChatService/GetChatsByNameResponse")]
-        System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Chat[]> GetChatsByNameAsync(string name);
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/DeleteChat")]
         void DeleteChat(int id);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/DeleteChat")]
         System.Threading.Tasks.Task DeleteChatAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetChatsByName", ReplyAction="http://tempuri.org/IChatService/GetChatsByNameResponse")]
+        PresentationTier.ChatServiceReference.Chat[] GetChatsByName(string name, int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetChatsByName", ReplyAction="http://tempuri.org/IChatService/GetChatsByNameResponse")]
+        System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Chat[]> GetChatsByNameAsync(string name, int profileId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -276,20 +292,20 @@ namespace PresentationTier.ChatServiceReference {
             return base.Channel.SaveChatAsync(chat);
         }
         
-        public PresentationTier.ChatServiceReference.Chat[] GetChatsByName(string name) {
-            return base.Channel.GetChatsByName(name);
-        }
-        
-        public System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Chat[]> GetChatsByNameAsync(string name) {
-            return base.Channel.GetChatsByNameAsync(name);
-        }
-        
         public void DeleteChat(int id) {
             base.Channel.DeleteChat(id);
         }
         
         public System.Threading.Tasks.Task DeleteChatAsync(int id) {
             return base.Channel.DeleteChatAsync(id);
+        }
+        
+        public PresentationTier.ChatServiceReference.Chat[] GetChatsByName(string name, int profileId) {
+            return base.Channel.GetChatsByName(name, profileId);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Chat[]> GetChatsByNameAsync(string name, int profileId) {
+            return base.Channel.GetChatsByNameAsync(name, profileId);
         }
     }
 }

@@ -18,6 +18,6 @@ namespace WcfService
         void DeleteChat(int id);
 
         [OperationContract]
-        List<Chat> GetChatsByName(String name);
+        List<Chat> GetChatsByName(String name, int profileId);
     }
 }

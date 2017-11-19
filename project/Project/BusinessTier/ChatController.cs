@@ -84,12 +84,12 @@ namespace BusinessTier
             }
         }
 
-        public List<Chat> GetChatsByName(String name)
+        public List<Chat> GetChatsByName(String name, int profileId)
         {
             try
             {
                 List<Chat> chatlist = new List<Chat>();
-                foreach (Chat chat in dbChat.GetChatsByName(name))
+                foreach (Chat chat in dbChat.GetChatsByName(name, profileId))
                 {
                     Chat chatitem = FindChat(chat.Id);
                     if (chatitem != null)

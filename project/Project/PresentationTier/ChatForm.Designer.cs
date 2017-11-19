@@ -116,7 +116,7 @@ namespace PresentationTier
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(179, 23);
             this.button2.TabIndex = 4;
-            this.button2.Text = "Save";
+            this.button2.Text = "Create chat";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
@@ -180,7 +180,7 @@ namespace PresentationTier
             this.viewProfile_btn.TabIndex = 4;
             this.viewProfile_btn.Text = "View Profile";
             this.viewProfile_btn.UseVisualStyleBackColor = true;
-            this.viewProfile_btn.Click += new System.EventHandler(this.viewProfile_btn_Click);
+            this.viewProfile_btn.Click += new System.EventHandler(this.ViewProfile_btn_Click);
             // 
             // ChatForm
             // 

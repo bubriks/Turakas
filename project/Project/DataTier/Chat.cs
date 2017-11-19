@@ -13,6 +13,8 @@ namespace DataTier
         [DataMember]
         public int Id { get; set; }
         [DataMember]
+        public int OwnerID { get; set; }
+        [DataMember]
         public string Name { get; set; }
         [DataMember]
         public bool Type { get; set; }
