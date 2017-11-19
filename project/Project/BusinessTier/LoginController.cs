@@ -98,11 +98,9 @@ namespace BusinessTier
             return dbLogin.UpdateLogin(id, login);
         }
 
-        public bool DeleteLogin(Login login)
+        public bool DeleteLogin(int loginId)
         {
-            int id = dbLogin.ReadLogin(login.Email, 3).LoginId;
-
-            return dbLogin.DeleteLogin(id);
+            return dbLogin.DeleteLogin(loginId);
         }
 
         /// <summary>

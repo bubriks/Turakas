@@ -77,7 +77,7 @@
   <xs:element name="DeleteLogin">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="login" nillable="true" type="q5:Login" />
+        <xs:element minOccurs="0" name="loginId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -159,8 +159,9 @@ namespace PresentationTier
 
         private void ViewProfileButton_Click(object sender, EventArgs e)//Goes to profile View
         {
-            ProfileForm chat = new ProfileForm(profileId);
+            ProfileForm profile = new ProfileForm(profileId, this);
             Hide();
+            profile.ShowDialog();
         }
 
         private void ChatListView_MouseDoubleClick(object sender, MouseEventArgs e)//join chat room

@@ -47,6 +47,6 @@ namespace BusinessTier
         /// </summary>
         /// <param name="login">info you want to delete</param>
         /// <returns>Returns true if succedes, false otherwise and prints error in console</returns>
-        bool DeleteLogin(Login login);
+        bool DeleteLogin(int loginId);
     }
 }

@@ -13,9 +13,11 @@ namespace PresentationTier
 
         private Profile profile;
         private Login login;
+        private Form chat;
 
-        public ProfileForm(int profileId)
+        public ProfileForm(int profileId, Form chat)
         {
+            this.chat = chat;
             this.profileId = profileId;
             InitializeComponent();
 
@@ -266,10 +268,35 @@ namespace PresentationTier
 
         private void back_btn_Click(object sender, System.EventArgs e)
         {
-            ChatForm chat = new ChatForm(profileId);
             Hide();
-            chat.ShowDialog();
+            chat.Show();
             Close();
+        }
+
+        private void deleteAccount_btn_Click(object sender, System.EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to delete this Account?\nWARNIGN: DELETING AN ACCOUNT WILL RESULT IN COMPLETE DELETION OF ALL OF ITS ACTIONS, INCLUDING OWNED CHATS AND MESSAGES!!!\n\nNOTE: YOU WILL BE TAKEN TO THE LOGIN SCREEN IF SUCCESFULLY DELETED.",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                if (loginService.DeleteLogin(profileId))
+                { 
+                    deleteError_lbl.ForeColor = Color.Green;
+                    deleteError_lbl.Text = "Succesfull!";
+
+                    SignIn_SignUp_ForgotDetailsForm signIn = new SignIn_SignUp_ForgotDetailsForm();
+                    Hide();
+                    signIn.ShowDialog();
+                    Close();
+                }
+                else
+                {
+                    deleteError_lbl.ForeColor = Color.Red;
+                    deleteError_lbl.Text = "Something went wrong!";
+                }
+                deleteError_lbl.Visible = true;
+            }
         }
     }
 }

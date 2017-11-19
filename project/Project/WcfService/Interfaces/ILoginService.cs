@@ -22,6 +22,6 @@ namespace WcfService
         [OperationContract]
         bool UpdateLogin(int id, Login login);
         [OperationContract]
-        bool DeleteLogin(Login login);
+        bool DeleteLogin(int loginId);
     }
 }

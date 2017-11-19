@@ -47,6 +47,8 @@
             this.nicknameError_lbl = new System.Windows.Forms.Label();
             this.saveError_lbl = new System.Windows.Forms.Label();
             this.back_btn = new System.Windows.Forms.Button();
+            this.deleteAccount_btn = new System.Windows.Forms.Button();
+            this.deleteError_lbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // username_lbl
@@ -97,7 +99,7 @@
             // 
             // save_btn
             // 
-            this.save_btn.Location = new System.Drawing.Point(176, 286);
+            this.save_btn.Location = new System.Drawing.Point(180, 314);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(75, 23);
             this.save_btn.TabIndex = 5;
@@ -204,7 +206,7 @@
             // saveError_lbl
             // 
             this.saveError_lbl.AutoSize = true;
-            this.saveError_lbl.Location = new System.Drawing.Point(176, 267);
+            this.saveError_lbl.Location = new System.Drawing.Point(180, 295);
             this.saveError_lbl.Name = "saveError_lbl";
             this.saveError_lbl.Size = new System.Drawing.Size(68, 13);
             this.saveError_lbl.TabIndex = 17;
@@ -221,12 +223,34 @@
             this.back_btn.UseVisualStyleBackColor = true;
             this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
             // 
+            // deleteAccount_btn
+            // 
+            this.deleteAccount_btn.Location = new System.Drawing.Point(339, 314);
+            this.deleteAccount_btn.Name = "deleteAccount_btn";
+            this.deleteAccount_btn.Size = new System.Drawing.Size(75, 23);
+            this.deleteAccount_btn.TabIndex = 19;
+            this.deleteAccount_btn.Text = "Delete Account";
+            this.deleteAccount_btn.UseVisualStyleBackColor = true;
+            this.deleteAccount_btn.Click += new System.EventHandler(this.deleteAccount_btn_Click);
+            // 
+            // deleteError_lbl
+            // 
+            this.deleteError_lbl.AutoSize = true;
+            this.deleteError_lbl.Location = new System.Drawing.Point(336, 296);
+            this.deleteError_lbl.Name = "deleteError_lbl";
+            this.deleteError_lbl.Size = new System.Drawing.Size(74, 13);
+            this.deleteError_lbl.TabIndex = 20;
+            this.deleteError_lbl.Text = "deleteError_lbl";
+            this.deleteError_lbl.Visible = false;
+            // 
             // ProfileForm
             // 
             this.AcceptButton = this.save_btn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 349);
+            this.Controls.Add(this.deleteError_lbl);
+            this.Controls.Add(this.deleteAccount_btn);
             this.Controls.Add(this.back_btn);
             this.Controls.Add(this.saveError_lbl);
             this.Controls.Add(this.nicknameError_lbl);
@@ -274,5 +298,7 @@
         private System.Windows.Forms.Label nicknameError_lbl;
         private System.Windows.Forms.Label saveError_lbl;
         private System.Windows.Forms.Button back_btn;
+        private System.Windows.Forms.Button deleteAccount_btn;
+        private System.Windows.Forms.Label deleteError_lbl;
     }
 }

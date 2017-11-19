@@ -33,9 +33,9 @@ namespace WcfService
         {
             return loginController.UpdateLogin(id, login);
         }
-        public bool DeleteLogin(Login login)
+        public bool DeleteLogin(int loginId)
         {
-            return loginController.DeleteLogin(login);
+            return loginController.DeleteLogin(loginId);
         }
     }
 }
