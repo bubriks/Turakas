@@ -44,6 +44,7 @@ BEGIN
  SET NOCOUNT ON;
  DELETE FROM Activity WHERE activityID IN (SELECT profileID FROM DELETED)
  DELETE FROM RelationShips WHERE partnerID IN (SELECT profileID FROM DELETED)
+ DELETE FROM Chat WHERE ownerID IN (SELECT profileID FROM DELETED)
  DELETE FROM Profile WHERE profileID IN (SELECT profileID FROM DELETED)
 END
 go
@@ -51,6 +52,7 @@ go
 --Chat Table
 CREATE TABLE Chat(
 chatID int IDENTITY(1,1) PRIMARY KEY,
+ownerID int FOREIGN KEY REFERENCES Profile(profileID) NOT NULL,
 name varchar(50) NOT NULL,
 type bit NOT NULL,
 nrOfUsers int NOT NULL,
