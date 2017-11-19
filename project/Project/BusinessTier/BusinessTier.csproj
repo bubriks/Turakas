@@ -77,7 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatController.cs" />
+    <Compile Include="GameController.cs" />
     <Compile Include="Interfaces\IChatController.cs" />
+    <Compile Include="Interfaces\IGameController.cs" />
     <Compile Include="Interfaces\ILoginController.cs" />
     <Compile Include="Interfaces\IMessageController.cs" />
     <Compile Include="Interfaces\INotificationController.cs" />

@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatService.cs" />
+    <Compile Include="GameService.cs" />
+    <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\IChatService.cs" />
     <Compile Include="Interfaces\ILoginService.cs" />
     <Compile Include="Interfaces\IMessageService.cs" />
