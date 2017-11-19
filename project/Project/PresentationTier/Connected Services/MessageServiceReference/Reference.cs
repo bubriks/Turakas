@@ -360,6 +360,12 @@ namespace PresentationTier.MessageServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/LeaveChat")]
         System.Threading.Tasks.Task LeaveChatAsync(int chatId, int profileId);
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/InviteToChat")]
+        void InviteToChat(int chatId, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/InviteToChat")]
+        System.Threading.Tasks.Task InviteToChatAsync(int chatId, string name);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Writing")]
         void Writing(int chatId);
         
@@ -390,6 +396,9 @@ namespace PresentationTier.MessageServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/RemoveMessage")]
         void RemoveMessage(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Invite")]
+        void Invite(bool result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/GetOnlineProfiles")]
         void GetOnlineProfiles(PresentationTier.MessageServiceReference.Profile[] profiles);
@@ -446,6 +455,14 @@ namespace PresentationTier.MessageServiceReference {
         
         public System.Threading.Tasks.Task LeaveChatAsync(int chatId, int profileId) {
             return base.Channel.LeaveChatAsync(chatId, profileId);
+        }
+        
+        public void InviteToChat(int chatId, string name) {
+            base.Channel.InviteToChat(chatId, name);
+        }
+        
+        public System.Threading.Tasks.Task InviteToChatAsync(int chatId, string name) {
+            return base.Channel.InviteToChatAsync(chatId, name);
         }
         
         public void Writing(int chatId) {

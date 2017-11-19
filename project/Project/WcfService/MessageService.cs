@@ -50,6 +50,28 @@ namespace WcfService
             }
         }
 
+        public void InviteToChat(int chatId, String name)
+        {
+            IMessageCallBack callback = OperationContext.Current.GetCallbackChannel<IMessageCallBack>();
+            IProfileController profileController = new ProfileController();
+            Profile user = profileController.OnlineUsers().Find(
+            delegate (Profile u)
+            {
+                return u.Nickname.Equals(name);
+            }
+            );
+            if(user != null)
+            {
+                IChatCallBack chatCallback = (IChatCallBack)user.CallBack;
+                chatCallback.Notification(chatController.FindChat(chatId));
+                callback.Invite(true);
+            }
+            else
+            {
+                callback.Invite(false);
+            }
+        }
+
         public void Writing(int chatId)
         {
             List<Profile> profiles = chatController.FindChat(chatId).Users;

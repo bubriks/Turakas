@@ -18,6 +18,9 @@ namespace WcfService
         void LeaveChat(int chatId, int profileId);
 
         [OperationContract(IsOneWay = true)]
+        void InviteToChat(int chatId, String name);//
+
+        [OperationContract(IsOneWay = true)]
         void Writing(int chatId);
 
         [OperationContract(IsOneWay = true)]
@@ -39,13 +42,10 @@ namespace WcfService
         void RemoveMessage(int id);
 
         [OperationContract(IsOneWay = true)]
+        void Invite(bool result);
+
+        [OperationContract(IsOneWay = true)]
         void GetOnlineProfiles(List<Profile> profiles);
-
-        [OperationContract(IsOneWay = true)]
-        void UserJoins(Profile profile);
-
-        [OperationContract(IsOneWay = true)]
-        void UserLeaves(Profile profile);
 
         [OperationContract(IsOneWay = true)]
         void GetChat(Chat chat);

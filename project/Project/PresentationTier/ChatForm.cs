@@ -3,12 +3,15 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using PresentationTier.ChatServiceReference;
+using System.ServiceModel;
+using System.ComponentModel;
 
 namespace PresentationTier
 {
-    public partial class ChatForm : Form
+    public partial class ChatForm : Form, IChatServiceCallback
     {
         private int chatId, profileId;
+        private InstanceContext instanceContext = null;
         private ChatServiceClient client;
         private ContextMenu cm;
         public ChatForm(int profileId)
@@ -18,7 +21,8 @@ namespace PresentationTier
             this.profileId = profileId;
 
             InitializeComponent();
-            client = new ChatServiceClient();
+            instanceContext = new InstanceContext(this);
+            client = new ChatServiceClient(instanceContext);
             cm = new ContextMenu();
             cm.MenuItems.Add(new MenuItem("Remove", RemoveMenuItem_Click));
 
@@ -34,6 +38,11 @@ namespace PresentationTier
             NrOfUsersTrackBar.TickFrequency = 1;
             #endregion
             ViewProfileButton.BackColor = Color.Pink;
+            if (!client.Online(profileId))
+            {
+                this.Close();
+            }
+
             SearchButton_Click(null, null);
         }
 
@@ -87,7 +96,7 @@ namespace PresentationTier
                     }
                     NrOfUsersTrackBar.Value = Int32.Parse(lvhti.Item.SubItems[4].Text);
                     SaveButton.Text = "Update chat";
-                    if(Int32.Parse(lvhti.Item.SubItems[5].Text) == profileId)
+                    if (Int32.Parse(lvhti.Item.SubItems[5].Text) == profileId)
                     {
                         ChatNameTextBox.Enabled = true;
                         PrivateCheckBox.Enabled = true;
@@ -176,9 +185,42 @@ namespace PresentationTier
                         new MessageForm(chatId, profileId);
                     }
                     catch (Exception)
-                    {}
+                    { }
                 }
             }
+        }
+
+        public void Notification(Chat chat)//adds new notifications to listbox
+        {
+            InviteListBox.Items.Add(chat);
+        }
+
+        private void InviteListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                int item = InviteListBox.IndexFromPoint(e.Location);
+                if (item >= 0)
+                {
+                    try
+                    {
+                        InviteListBox.SelectedIndex = item;
+                        new MessageForm((InviteListBox.SelectedItem as Chat).Id, profileId);
+                    }
+                    catch (Exception)
+                    { }
+                }
+            }
+        }
+
+        private void ClearEventsButton_Click(object sender, EventArgs e)
+        {
+            InviteListBox.Items.Clear();
+        }
+
+        private void ChatForm_Closing(object sender, CancelEventArgs e)//on close event
+        {
+            client.Offline(profileId);
         }
     }
 }

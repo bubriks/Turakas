@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using PresentationTier.MessageServiceReference;
 using System.ServiceModel;
+using System.Drawing;
 
 namespace PresentationTier
 {
@@ -167,7 +168,19 @@ namespace PresentationTier
 
         private void InviteButton_Click(object sender, EventArgs e)//invite button
         {
-            
+            client.InviteToChat(chatId, FriendNameTextBox.Text);
+        }
+
+        public void Invite(bool result)
+        {
+            if (result)
+            {
+                FriendNameTextBox.Text = "";
+            }
+            else
+            {
+                AddButton.BackColor = Color.Red;
+            }
         }
 
         private void MessageForm_Closing(object sender, CancelEventArgs e)//on close event

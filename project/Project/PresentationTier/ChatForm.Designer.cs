@@ -43,6 +43,8 @@ namespace PresentationTier
             this.TypeLabel = new System.Windows.Forms.Label();
             this.ChatNameLabel = new System.Windows.Forms.Label();
             this.ViewProfileButton = new System.Windows.Forms.Button();
+            this.InviteListBox = new System.Windows.Forms.ListBox();
+            this.ClearEventsButton = new System.Windows.Forms.Button();
             this.ChatGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NrOfUsersTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +58,7 @@ namespace PresentationTier
             this.ChatListView.Location = new System.Drawing.Point(12, 39);
             this.ChatListView.MultiSelect = false;
             this.ChatListView.Name = "ChatListView";
-            this.ChatListView.Size = new System.Drawing.Size(419, 241);
+            this.ChatListView.Size = new System.Drawing.Size(388, 250);
             this.ChatListView.TabIndex = 0;
             this.ChatListView.UseCompatibleStateImageBehavior = false;
             this.ChatListView.View = System.Windows.Forms.View.Details;
@@ -66,7 +68,7 @@ namespace PresentationTier
             // SearchButton
             // 
             this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.Location = new System.Drawing.Point(357, 10);
+            this.SearchButton.Location = new System.Drawing.Point(326, 10);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(75, 23);
             this.SearchButton.TabIndex = 1;
@@ -80,7 +82,7 @@ namespace PresentationTier
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchBox.Location = new System.Drawing.Point(12, 13);
             this.SearchBox.Name = "SearchBox";
-            this.SearchBox.Size = new System.Drawing.Size(338, 20);
+            this.SearchBox.Size = new System.Drawing.Size(307, 20);
             this.SearchBox.TabIndex = 2;
             // 
             // ChatGroupBox
@@ -94,7 +96,7 @@ namespace PresentationTier
             this.ChatGroupBox.Controls.Add(this.ChatNameTextBox);
             this.ChatGroupBox.Controls.Add(this.TypeLabel);
             this.ChatGroupBox.Controls.Add(this.ChatNameLabel);
-            this.ChatGroupBox.Location = new System.Drawing.Point(438, 10);
+            this.ChatGroupBox.Location = new System.Drawing.Point(407, 10);
             this.ChatGroupBox.Name = "ChatGroupBox";
             this.ChatGroupBox.Size = new System.Drawing.Size(200, 158);
             this.ChatGroupBox.TabIndex = 3;
@@ -174,7 +176,8 @@ namespace PresentationTier
             // 
             // ViewProfileButton
             // 
-            this.ViewProfileButton.Location = new System.Drawing.Point(508, 246);
+            this.ViewProfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ViewProfileButton.Location = new System.Drawing.Point(416, 266);
             this.ViewProfileButton.Name = "ViewProfileButton";
             this.ViewProfileButton.Size = new System.Drawing.Size(75, 23);
             this.ViewProfileButton.TabIndex = 4;
@@ -182,11 +185,36 @@ namespace PresentationTier
             this.ViewProfileButton.UseVisualStyleBackColor = true;
             this.ViewProfileButton.Click += new System.EventHandler(this.ViewProfileButton_Click);
             // 
+            // InviteListBox
+            // 
+            this.InviteListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.InviteListBox.DisplayMember = "Name";
+            this.InviteListBox.FormattingEnabled = true;
+            this.InviteListBox.Location = new System.Drawing.Point(407, 175);
+            this.InviteListBox.Name = "InviteListBox";
+            this.InviteListBox.Size = new System.Drawing.Size(200, 82);
+            this.InviteListBox.TabIndex = 5;
+            this.InviteListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.InviteListBox_MouseDoubleClick);
+            // 
+            // ClearEventsButton
+            // 
+            this.ClearEventsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClearEventsButton.Location = new System.Drawing.Point(532, 263);
+            this.ClearEventsButton.Name = "ClearEventsButton";
+            this.ClearEventsButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearEventsButton.TabIndex = 6;
+            this.ClearEventsButton.Text = "Clear events";
+            this.ClearEventsButton.UseVisualStyleBackColor = true;
+            this.ClearEventsButton.Click += new System.EventHandler(this.ClearEventsButton_Click);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 292);
+            this.ClientSize = new System.Drawing.Size(619, 301);
+            this.Controls.Add(this.ClearEventsButton);
+            this.Controls.Add(this.InviteListBox);
             this.Controls.Add(this.ViewProfileButton);
             this.Controls.Add(this.ChatGroupBox);
             this.Controls.Add(this.SearchBox);
@@ -194,6 +222,7 @@ namespace PresentationTier
             this.Controls.Add(this.ChatListView);
             this.Name = "ChatForm";
             this.Text = "Chat form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_Closing);
             this.ChatGroupBox.ResumeLayout(false);
             this.ChatGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NrOfUsersTrackBar)).EndInit();
@@ -217,5 +246,7 @@ namespace PresentationTier
         private TrackBar NrOfUsersTrackBar;
         private Label NrLabel;
         private Button ViewProfileButton;
+        private ListBox InviteListBox;
+        private Button ClearEventsButton;
     }
 }

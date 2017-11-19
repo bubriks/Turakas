@@ -8,9 +8,15 @@ using DataTier;
 
 namespace WcfService
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IChatCallBack))]
     public interface IChatService
     {
+        [OperationContract]
+        bool Online(int profileId);
+
+        [OperationContract]
+        bool Offline(int profileId);
+
         [OperationContract(IsOneWay = true)]
         void SaveChat(Chat chat);
 
@@ -19,5 +25,11 @@ namespace WcfService
 
         [OperationContract]
         List<Chat> GetChatsByName(String name, int profileId);
+    }
+
+    public interface IChatCallBack
+    {
+        [OperationContract(IsOneWay = true)]
+        void Notification(Chat chat);
     }
 }

@@ -149,6 +149,29 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMessageService_InviteToChat_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IMessageService_Writing_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -287,6 +310,29 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMessageService_Invite_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IMessageService_GetOnlineProfiles_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -392,6 +438,9 @@
   <wsdl:message name="IMessageService_LeaveChat_InputMessage">
     <wsdl:part name="parameters" element="tns:LeaveChat" />
   </wsdl:message>
+  <wsdl:message name="IMessageService_InviteToChat_InputMessage">
+    <wsdl:part name="parameters" element="tns:InviteToChat" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_Writing_InputMessage">
     <wsdl:part name="parameters" element="tns:Writing" />
   </wsdl:message>
@@ -409,6 +458,9 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_RemoveMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:RemoveMessage" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_Invite_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Invite" />
   </wsdl:message>
   <wsdl:message name="IMessageService_GetOnlineProfiles_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetOnlineProfiles" />
@@ -429,6 +481,9 @@
     <wsdl:operation name="LeaveChat">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LeaveChat" message="tns:IMessageService_LeaveChat_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="InviteToChat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/InviteToChat" message="tns:IMessageService_InviteToChat_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Writing">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/Writing" message="tns:IMessageService_Writing_InputMessage" />
     </wsdl:operation>
@@ -446,6 +501,9 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveMessage">
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RemoveMessage" message="tns:IMessageService_RemoveMessage_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Invite">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/Invite" message="tns:IMessageService_Invite_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetOnlineProfiles">
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetOnlineProfiles" message="tns:IMessageService_GetOnlineProfiles_OutputCallbackMessage" />
@@ -474,6 +532,13 @@
       <soap12:operation soapAction="http://tempuri.org/IMessageService/LeaveChat" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IMessageService_LeaveChat_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="InviteToChat">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/InviteToChat" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMessageService_InviteToChat_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
@@ -516,6 +581,13 @@
       <soap12:operation soapAction="http://tempuri.org/IMessageService/RemoveMessage" style="document" />
       <wsdl:output>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IMessageService_RemoveMessage_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Invite">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/Invite" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMessageService_Invite_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

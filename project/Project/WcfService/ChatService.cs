@@ -5,12 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using DataTier;
 using BusinessTier;
+using System.ServiceModel;
 
 namespace WcfService
 {
     public class ChatService: IChatService
     {
         IChatController chatController = new ChatController();
+        IProfileController profileController = new ProfileController();
+
+        public bool Online(int profileId)
+        {
+            object callbackObj = OperationContext.Current.GetCallbackChannel<IChatCallBack>();
+            return profileController.Online(profileId, callbackObj);
+        }
+
+        public bool Offline(int profileId)
+        {
+            return profileController.Offline(profileId);
+        }
 
         public void SaveChat(Chat chat)
         {

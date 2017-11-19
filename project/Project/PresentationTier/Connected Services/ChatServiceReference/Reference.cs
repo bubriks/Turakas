@@ -235,8 +235,20 @@ namespace PresentationTier.ChatServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatServiceReference.IChatService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatServiceReference.IChatService", CallbackContract=typeof(PresentationTier.ChatServiceReference.IChatServiceCallback))]
     public interface IChatService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Online", ReplyAction="http://tempuri.org/IChatService/OnlineResponse")]
+        bool Online(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Online", ReplyAction="http://tempuri.org/IChatService/OnlineResponse")]
+        System.Threading.Tasks.Task<bool> OnlineAsync(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Offline", ReplyAction="http://tempuri.org/IChatService/OfflineResponse")]
+        bool Offline(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Offline", ReplyAction="http://tempuri.org/IChatService/OfflineResponse")]
+        System.Threading.Tasks.Task<bool> OfflineAsync(int profileId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SaveChat")]
         void SaveChat(PresentationTier.ChatServiceReference.Chat chat);
@@ -258,30 +270,54 @@ namespace PresentationTier.ChatServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IChatServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Notification")]
+        void Notification(PresentationTier.ChatServiceReference.Chat chat);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IChatServiceChannel : PresentationTier.ChatServiceReference.IChatService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ChatServiceClient : System.ServiceModel.ClientBase<PresentationTier.ChatServiceReference.IChatService>, PresentationTier.ChatServiceReference.IChatService {
+    public partial class ChatServiceClient : System.ServiceModel.DuplexClientBase<PresentationTier.ChatServiceReference.IChatService>, PresentationTier.ChatServiceReference.IChatService {
         
-        public ChatServiceClient() {
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public ChatServiceClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public ChatServiceClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public ChatServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public ChatServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public bool Online(int profileId) {
+            return base.Channel.Online(profileId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> OnlineAsync(int profileId) {
+            return base.Channel.OnlineAsync(profileId);
+        }
+        
+        public bool Offline(int profileId) {
+            return base.Channel.Offline(profileId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> OfflineAsync(int profileId) {
+            return base.Channel.OfflineAsync(profileId);
         }
         
         public void SaveChat(PresentationTier.ChatServiceReference.Chat chat) {
