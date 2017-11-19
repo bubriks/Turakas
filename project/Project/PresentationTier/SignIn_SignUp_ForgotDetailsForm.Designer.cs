@@ -38,16 +38,13 @@
             this.registerError_lbl = new System.Windows.Forms.Label();
             this.nicknameSignUpError_lbl = new System.Windows.Forms.Label();
             this.emailSignUpError_lbl = new System.Windows.Forms.Label();
-            this.passwordSignUpError_lbl = new System.Windows.Forms.Label();
             this.usernameSignUpError_lbl = new System.Windows.Forms.Label();
             this.register_btn = new System.Windows.Forms.Button();
             this.nicknameSignUp_txt = new System.Windows.Forms.TextBox();
             this.emailSignUp_txt = new System.Windows.Forms.TextBox();
-            this.passwordSignUp_txt = new System.Windows.Forms.TextBox();
             this.usernameSignUp_txt = new System.Windows.Forms.TextBox();
             this.nicknameSignUp_lbl = new System.Windows.Forms.Label();
             this.emailSignUp_lbl = new System.Windows.Forms.Label();
-            this.passwordSignUp_lbl = new System.Windows.Forms.Label();
             this.usernameSignUp_lbl = new System.Windows.Forms.Label();
             this.forgotDetails_lbl = new System.Windows.Forms.Label();
             this.or_lbl = new System.Windows.Forms.Label();
@@ -83,9 +80,9 @@
             // 
             // usernameSignIn_txt
             // 
-            this.usernameSignIn_txt.Location = new System.Drawing.Point(70, 6);
+            this.usernameSignIn_txt.Location = new System.Drawing.Point(68, 6);
             this.usernameSignIn_txt.Name = "usernameSignIn_txt";
-            this.usernameSignIn_txt.Size = new System.Drawing.Size(152, 20);
+            this.usernameSignIn_txt.Size = new System.Drawing.Size(154, 20);
             this.usernameSignIn_txt.TabIndex = 2;
             // 
             // passwordSignIn_txt
@@ -123,16 +120,13 @@
             this.SignUp_grp.Controls.Add(this.registerError_lbl);
             this.SignUp_grp.Controls.Add(this.nicknameSignUpError_lbl);
             this.SignUp_grp.Controls.Add(this.emailSignUpError_lbl);
-            this.SignUp_grp.Controls.Add(this.passwordSignUpError_lbl);
             this.SignUp_grp.Controls.Add(this.usernameSignUpError_lbl);
             this.SignUp_grp.Controls.Add(this.register_btn);
             this.SignUp_grp.Controls.Add(this.nicknameSignUp_txt);
             this.SignUp_grp.Controls.Add(this.emailSignUp_txt);
-            this.SignUp_grp.Controls.Add(this.passwordSignUp_txt);
             this.SignUp_grp.Controls.Add(this.usernameSignUp_txt);
             this.SignUp_grp.Controls.Add(this.nicknameSignUp_lbl);
             this.SignUp_grp.Controls.Add(this.emailSignUp_lbl);
-            this.SignUp_grp.Controls.Add(this.passwordSignUp_lbl);
             this.SignUp_grp.Controls.Add(this.usernameSignUp_lbl);
             this.SignUp_grp.Location = new System.Drawing.Point(240, 12);
             this.SignUp_grp.Name = "SignUp_grp";
@@ -144,7 +138,7 @@
             // registerError_lbl
             // 
             this.registerError_lbl.AutoSize = true;
-            this.registerError_lbl.Location = new System.Drawing.Point(79, 177);
+            this.registerError_lbl.Location = new System.Drawing.Point(79, 176);
             this.registerError_lbl.Name = "registerError_lbl";
             this.registerError_lbl.Size = new System.Drawing.Size(79, 13);
             this.registerError_lbl.TabIndex = 18;
@@ -154,7 +148,7 @@
             // nicknameSignUpError_lbl
             // 
             this.nicknameSignUpError_lbl.AutoSize = true;
-            this.nicknameSignUpError_lbl.Location = new System.Drawing.Point(79, 141);
+            this.nicknameSignUpError_lbl.Location = new System.Drawing.Point(79, 114);
             this.nicknameSignUpError_lbl.Name = "nicknameSignUpError_lbl";
             this.nicknameSignUpError_lbl.Size = new System.Drawing.Size(126, 13);
             this.nicknameSignUpError_lbl.TabIndex = 17;
@@ -164,22 +158,12 @@
             // emailSignUpError_lbl
             // 
             this.emailSignUpError_lbl.AutoSize = true;
-            this.emailSignUpError_lbl.Location = new System.Drawing.Point(82, 104);
+            this.emailSignUpError_lbl.Location = new System.Drawing.Point(82, 77);
             this.emailSignUpError_lbl.Name = "emailSignUpError_lbl";
             this.emailSignUpError_lbl.Size = new System.Drawing.Size(104, 13);
             this.emailSignUpError_lbl.TabIndex = 16;
             this.emailSignUpError_lbl.Text = "emailSignUpError_lbl";
             this.emailSignUpError_lbl.Visible = false;
-            // 
-            // passwordSignUpError_lbl
-            // 
-            this.passwordSignUpError_lbl.AutoSize = true;
-            this.passwordSignUpError_lbl.Location = new System.Drawing.Point(82, 72);
-            this.passwordSignUpError_lbl.Name = "passwordSignUpError_lbl";
-            this.passwordSignUpError_lbl.Size = new System.Drawing.Size(125, 13);
-            this.passwordSignUpError_lbl.TabIndex = 15;
-            this.passwordSignUpError_lbl.Text = "passwordSignUpError_lbl";
-            this.passwordSignUpError_lbl.Visible = false;
             // 
             // usernameSignUpError_lbl
             // 
@@ -203,24 +187,17 @@
             // 
             // nicknameSignUp_txt
             // 
-            this.nicknameSignUp_txt.Location = new System.Drawing.Point(79, 121);
+            this.nicknameSignUp_txt.Location = new System.Drawing.Point(79, 94);
             this.nicknameSignUp_txt.Name = "nicknameSignUp_txt";
             this.nicknameSignUp_txt.Size = new System.Drawing.Size(100, 20);
             this.nicknameSignUp_txt.TabIndex = 12;
             // 
             // emailSignUp_txt
             // 
-            this.emailSignUp_txt.Location = new System.Drawing.Point(79, 88);
+            this.emailSignUp_txt.Location = new System.Drawing.Point(79, 61);
             this.emailSignUp_txt.Name = "emailSignUp_txt";
             this.emailSignUp_txt.Size = new System.Drawing.Size(100, 20);
             this.emailSignUp_txt.TabIndex = 11;
-            // 
-            // passwordSignUp_txt
-            // 
-            this.passwordSignUp_txt.Location = new System.Drawing.Point(79, 50);
-            this.passwordSignUp_txt.Name = "passwordSignUp_txt";
-            this.passwordSignUp_txt.Size = new System.Drawing.Size(100, 20);
-            this.passwordSignUp_txt.TabIndex = 10;
             // 
             // usernameSignUp_txt
             // 
@@ -235,7 +212,7 @@
             // nicknameSignUp_lbl
             // 
             this.nicknameSignUp_lbl.AutoSize = true;
-            this.nicknameSignUp_lbl.Location = new System.Drawing.Point(20, 124);
+            this.nicknameSignUp_lbl.Location = new System.Drawing.Point(20, 97);
             this.nicknameSignUp_lbl.Name = "nicknameSignUp_lbl";
             this.nicknameSignUp_lbl.Size = new System.Drawing.Size(58, 13);
             this.nicknameSignUp_lbl.TabIndex = 9;
@@ -244,20 +221,11 @@
             // emailSignUp_lbl
             // 
             this.emailSignUp_lbl.AutoSize = true;
-            this.emailSignUp_lbl.Location = new System.Drawing.Point(17, 91);
+            this.emailSignUp_lbl.Location = new System.Drawing.Point(17, 64);
             this.emailSignUp_lbl.Name = "emailSignUp_lbl";
             this.emailSignUp_lbl.Size = new System.Drawing.Size(35, 13);
             this.emailSignUp_lbl.TabIndex = 8;
             this.emailSignUp_lbl.Text = "Email:";
-            // 
-            // passwordSignUp_lbl
-            // 
-            this.passwordSignUp_lbl.AutoSize = true;
-            this.passwordSignUp_lbl.Location = new System.Drawing.Point(17, 53);
-            this.passwordSignUp_lbl.Name = "passwordSignUp_lbl";
-            this.passwordSignUp_lbl.Size = new System.Drawing.Size(56, 13);
-            this.passwordSignUp_lbl.TabIndex = 7;
-            this.passwordSignUp_lbl.Text = "Password:";
             // 
             // usernameSignUp_lbl
             // 
@@ -399,14 +367,12 @@
         private System.Windows.Forms.Button signUp_btn;
         private System.Windows.Forms.GroupBox SignUp_grp;
         private System.Windows.Forms.Label emailSignUp_lbl;
-        private System.Windows.Forms.Label passwordSignUp_lbl;
         private System.Windows.Forms.Label usernameSignUp_lbl;
         private System.Windows.Forms.Label nicknameSignUp_lbl;
         private System.Windows.Forms.Label forgotDetails_lbl;
         private System.Windows.Forms.Label or_lbl;
         private System.Windows.Forms.TextBox nicknameSignUp_txt;
         private System.Windows.Forms.TextBox emailSignUp_txt;
-        private System.Windows.Forms.TextBox passwordSignUp_txt;
         private System.Windows.Forms.TextBox usernameSignUp_txt;
         private System.Windows.Forms.Button register_btn;
         private System.Windows.Forms.GroupBox SignIn_grp;
@@ -416,7 +382,6 @@
         private System.Windows.Forms.Button sendForgot_btn;
         private System.Windows.Forms.Label nicknameSignUpError_lbl;
         private System.Windows.Forms.Label emailSignUpError_lbl;
-        private System.Windows.Forms.Label passwordSignUpError_lbl;
         private System.Windows.Forms.Label usernameSignUpError_lbl;
         private System.Windows.Forms.Label registerError_lbl;
         private System.Windows.Forms.Label signInError_lbl;

@@ -17,7 +17,6 @@ namespace PresentationTier
             InitializeComponent();
 
             passwordSignIn_txt.PasswordChar = '卐';
-            passwordSignUp_txt.PasswordChar = '☭';
 
             SignIn_grp.Top = 65;
             SignIn_grp.Left = 122;
@@ -38,14 +37,12 @@ namespace PresentationTier
             if (CheckTheValues())
             {
                 string username = usernameSignUp_txt.Text;
-                string password = passwordSignUp_txt.Text;
                 string email = emailSignUp_txt.Text;
                 string nickname = nicknameSignUp_txt.Text;
 
                 Login login = new Login
                 {
                     Username = username,
-                    Password = password,
                     Email = email,
                 };
 
@@ -72,7 +69,6 @@ namespace PresentationTier
         {
             bool ok = true;
             string usernameError = CheckUsername(usernameSignUp_txt.Text);
-            string passwordError = CheckPassword(usernameSignUp_txt.Text, passwordSignUp_txt.Text);
             string emailError = CheckEmail(emailSignUp_txt.Text);
             string nicknameError = CheckNickname(nicknameSignUp_txt.Text);
 
@@ -89,21 +85,6 @@ namespace PresentationTier
             {
                 usernameSignUpError_lbl.Visible = false;
                 usernameSignUp_txt.BackColor = Color.White;
-            }
-            #endregion
-            #region password checking
-            if (!passwordError.Equals(""))
-            {
-                ok = false;
-                passwordSignUp_txt.BackColor = Color.FromArgb(255, 214, 81, 81);
-                passwordSignUpError_lbl.Visible = true;
-                passwordSignUpError_lbl.ForeColor = Color.Red;
-                passwordSignUpError_lbl.Text = passwordError;
-            }
-            else
-            {
-                passwordSignUpError_lbl.Visible = false;
-                passwordSignUp_txt.BackColor = Color.White;
             }
             #endregion
             #region email checking
@@ -203,7 +184,7 @@ namespace PresentationTier
                 {
                     //Reseting error label and text box
                     signInError_lbl.Visible = false;
-                    passwordSignUp_txt.BackColor = Color.White;
+                    passwordSignIn_txt.BackColor = Color.White;
 
                     //logging in
                     Login login = new Login

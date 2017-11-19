@@ -141,10 +141,10 @@ namespace PresentationTier.LoginServiceReference {
         System.Threading.Tasks.Task<bool> UpdateLoginAsync(int id, PresentationTier.LoginServiceReference.Login login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/DeleteLogin", ReplyAction="http://tempuri.org/ILoginService/DeleteLoginResponse")]
-        bool DeleteLogin(PresentationTier.LoginServiceReference.Login login);
+        bool DeleteLogin(int loginId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/DeleteLogin", ReplyAction="http://tempuri.org/ILoginService/DeleteLoginResponse")]
-        System.Threading.Tasks.Task<bool> DeleteLoginAsync(PresentationTier.LoginServiceReference.Login login);
+        System.Threading.Tasks.Task<bool> DeleteLoginAsync(int loginId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -214,12 +214,12 @@ namespace PresentationTier.LoginServiceReference {
             return base.Channel.UpdateLoginAsync(id, login);
         }
         
-        public bool DeleteLogin(PresentationTier.LoginServiceReference.Login login) {
-            return base.Channel.DeleteLogin(login);
+        public bool DeleteLogin(int loginId) {
+            return base.Channel.DeleteLogin(loginId);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteLoginAsync(PresentationTier.LoginServiceReference.Login login) {
-            return base.Channel.DeleteLoginAsync(login);
+        public System.Threading.Tasks.Task<bool> DeleteLoginAsync(int loginId) {
+            return base.Channel.DeleteLoginAsync(loginId);
         }
     }
 }
