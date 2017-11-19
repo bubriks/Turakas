@@ -31,115 +31,115 @@ namespace PresentationTier
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.SendButton = new System.Windows.Forms.Button();
+            this.MessageTextBox = new System.Windows.Forms.TextBox();
+            this.MessageListBox = new System.Windows.Forms.ListBox();
+            this.UserListBox = new System.Windows.Forms.ListBox();
+            this.PeopleInChatLabel = new System.Windows.Forms.Label();
+            this.InviteFriendGroupBox = new System.Windows.Forms.GroupBox();
+            this.AddButton = new System.Windows.Forms.Button();
+            this.FriendNameTextBox = new System.Windows.Forms.TextBox();
+            this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.InviteFriendGroupBox.SuspendLayout();
+            this.StatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // SendButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(276, 211);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.SendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SendButton.Location = new System.Drawing.Point(276, 211);
+            this.SendButton.Name = "SendButton";
+            this.SendButton.Size = new System.Drawing.Size(75, 23);
+            this.SendButton.TabIndex = 3;
+            this.SendButton.Text = "Send";
+            this.SendButton.UseVisualStyleBackColor = true;
+            this.SendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
-            // textBox2
+            // MessageTextBox
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.MessageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(12, 214);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(258, 20);
-            this.textBox2.TabIndex = 4;
-            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox2_KeyDown);
+            this.MessageTextBox.Location = new System.Drawing.Point(12, 214);
+            this.MessageTextBox.Name = "MessageTextBox";
+            this.MessageTextBox.Size = new System.Drawing.Size(258, 20);
+            this.MessageTextBox.TabIndex = 4;
+            this.MessageTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MessageTextBox_KeyDown);
             // 
-            // listBox1
+            // MessageListBox
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.MessageListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.DisplayMember = "Text";
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 11);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(258, 199);
-            this.listBox1.TabIndex = 5;
-            this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListBox1_MouseDown);
-            this.listBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ListBox1_MouseMove);
+            this.MessageListBox.DisplayMember = "Text";
+            this.MessageListBox.FormattingEnabled = true;
+            this.MessageListBox.Location = new System.Drawing.Point(12, 11);
+            this.MessageListBox.Name = "MessageListBox";
+            this.MessageListBox.Size = new System.Drawing.Size(258, 199);
+            this.MessageListBox.TabIndex = 5;
+            this.MessageListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListBox1_MouseDown);
+            this.MessageListBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MessageListBox_MouseMove);
             // 
-            // listBox2
+            // UserListBox
             // 
-            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.UserListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox2.DisplayMember = "Nickname";
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(276, 38);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(75, 69);
-            this.listBox2.TabIndex = 6;
+            this.UserListBox.DisplayMember = "Nickname";
+            this.UserListBox.FormattingEnabled = true;
+            this.UserListBox.Location = new System.Drawing.Point(276, 38);
+            this.UserListBox.Name = "UserListBox";
+            this.UserListBox.Size = new System.Drawing.Size(75, 69);
+            this.UserListBox.TabIndex = 6;
             // 
-            // label2
+            // PeopleInChatLabel
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(271, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 23);
-            this.label2.TabIndex = 8;
-            this.label2.Text = " ";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PeopleInChatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PeopleInChatLabel.Location = new System.Drawing.Point(271, 9);
+            this.PeopleInChatLabel.Name = "PeopleInChatLabel";
+            this.PeopleInChatLabel.Size = new System.Drawing.Size(91, 23);
+            this.PeopleInChatLabel.TabIndex = 8;
+            this.PeopleInChatLabel.Text = " ";
+            this.PeopleInChatLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // groupBox1
+            // InviteFriendGroupBox
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(276, 113);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(75, 97);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Invite Friend";
+            this.InviteFriendGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.InviteFriendGroupBox.Controls.Add(this.AddButton);
+            this.InviteFriendGroupBox.Controls.Add(this.FriendNameTextBox);
+            this.InviteFriendGroupBox.Location = new System.Drawing.Point(276, 113);
+            this.InviteFriendGroupBox.Name = "InviteFriendGroupBox";
+            this.InviteFriendGroupBox.Size = new System.Drawing.Size(75, 97);
+            this.InviteFriendGroupBox.TabIndex = 9;
+            this.InviteFriendGroupBox.TabStop = false;
+            this.InviteFriendGroupBox.Text = "Invite Friend";
             // 
-            // button2
+            // AddButton
             // 
-            this.button2.Location = new System.Drawing.Point(6, 55);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(63, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Add";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.AddButton.Location = new System.Drawing.Point(6, 55);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(63, 23);
+            this.AddButton.TabIndex = 1;
+            this.AddButton.Text = "Add";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.InviteButton_Click);
             // 
-            // textBox1
+            // FriendNameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(63, 20);
-            this.textBox1.TabIndex = 0;
+            this.FriendNameTextBox.Location = new System.Drawing.Point(6, 29);
+            this.FriendNameTextBox.Name = "FriendNameTextBox";
+            this.FriendNameTextBox.Size = new System.Drawing.Size(63, 20);
+            this.FriendNameTextBox.TabIndex = 0;
             // 
-            // statusStrip1
+            // StatusStrip
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 237);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(363, 22);
-            this.statusStrip1.TabIndex = 10;
-            this.statusStrip1.Text = "statusStrip1";
+            this.StatusStrip.Location = new System.Drawing.Point(0, 237);
+            this.StatusStrip.Name = "StatusStrip";
+            this.StatusStrip.Size = new System.Drawing.Size(363, 22);
+            this.StatusStrip.TabIndex = 10;
+            this.StatusStrip.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
@@ -147,47 +147,47 @@ namespace PresentationTier
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(101, 17);
             this.toolStripStatusLabel1.Text = "Nobody is writing";
             // 
-            // timer1
+            // timer
             // 
-            this.timer1.Interval = 3000;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.timer.Interval = 3000;
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(363, 259);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.StatusStrip);
+            this.Controls.Add(this.InviteFriendGroupBox);
+            this.Controls.Add(this.PeopleInChatLabel);
+            this.Controls.Add(this.UserListBox);
+            this.Controls.Add(this.MessageListBox);
+            this.Controls.Add(this.MessageTextBox);
+            this.Controls.Add(this.SendButton);
             this.Name = "MessageForm";
             this.Text = "Message Box";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MessageForm_Closing);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.InviteFriendGroupBox.ResumeLayout(false);
+            this.InviteFriendGroupBox.PerformLayout();
+            this.StatusStrip.ResumeLayout(false);
+            this.StatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ListBox listBox1;
-        private ListBox listBox2;
-        private Label label2;
-        private GroupBox groupBox1;
-        private Button button2;
-        private TextBox textBox1;
-        private StatusStrip statusStrip1;
+        private System.Windows.Forms.Button SendButton;
+        private System.Windows.Forms.TextBox MessageTextBox;
+        private System.Windows.Forms.ListBox MessageListBox;
+        private ListBox UserListBox;
+        private Label PeopleInChatLabel;
+        private GroupBox InviteFriendGroupBox;
+        private Button AddButton;
+        private TextBox FriendNameTextBox;
+        private StatusStrip StatusStrip;
         private ToolStripStatusLabel toolStripStatusLabel1;
-        private Timer timer1;
+        private Timer timer;
     }
 }
 

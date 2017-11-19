@@ -30,6 +30,7 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="MaxNrOfUsers" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerID" type="xs:int" />
       <xs:element minOccurs="0" name="Type" type="xs:boolean" />
       <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfProfile" />
     </xs:sequence>

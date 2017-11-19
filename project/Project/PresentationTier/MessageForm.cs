@@ -43,37 +43,37 @@ namespace PresentationTier
                 this.Text = "Private chat: " + chat.Name;
             }
 
-            label2.Text = chat.Users.Count() + " out of " + chat.MaxNrOfUsers + " users";
+            PeopleInChatLabel.Text = chat.Users.Count() + " out of " + chat.MaxNrOfUsers + " users";
         }
 
         public void GetMessages(MessageServiceReference.Message[] messages)
         {
             foreach (MessageServiceReference.Message message in messages)
             {
-                listBox1.Items.Add(message);
+                MessageListBox.Items.Add(message);
             }
-            this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
+            this.MessageListBox.SelectedIndex = this.MessageListBox.Items.Count - 1;
         }
 
         public void GetOnlineProfiles(Profile[] profiles)
         {
-            listBox2.Items.Clear();
+            UserListBox.Items.Clear();
             foreach (Profile profile in profiles)
             {
-                listBox2.Items.Add(profile);
+                UserListBox.Items.Add(profile);
             }
-            this.listBox2.SelectedIndex = this.listBox2.Items.Count - 1;
+            this.UserListBox.SelectedIndex = this.UserListBox.Items.Count - 1;
 
-            String text = label2.Text;
-            label2.Text = profiles.Count().ToString() + text.Substring(text.IndexOf(" ") -1 + " ".Length);
+            String text = PeopleInChatLabel.Text;
+            PeopleInChatLabel.Text = profiles.Count().ToString() + text.Substring(text.IndexOf(" ") -1 + " ".Length);
         }
 
         #region Add message
-        private void TextBox2_KeyDown(object sender, KeyEventArgs e)
+        private void MessageTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == Convert.ToInt16(Keys.Enter))
             {
-                Button1_Click(null, null);
+                SendButton_Click(null, null);
             }
             else
             {
@@ -84,24 +84,24 @@ namespace PresentationTier
         public void WritingMessage()
         {
             toolStripStatusLabel1.Text = "Someone is writing";
-            timer1.Stop();
-            timer1.Start();
+            timer.Stop();
+            timer.Start();
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "Nobody is writing";
         }
 
-        private void Button1_Click(object sender, EventArgs e)//send message
+        private void SendButton_Click(object sender, EventArgs e)//send message
         {
-            client.CreateMessage(profileId, textBox2.Text, chatId);
-            textBox2.Text = "";
+            client.CreateMessage(profileId, MessageTextBox.Text, chatId);
+            MessageTextBox.Text = "";
         }
 
         public void AddMessage(MessageServiceReference.Message message)//call back item
         {
-            listBox1.Items.Add(message);
+            MessageListBox.Items.Add(message);
         }
         #endregion
 
@@ -111,13 +111,13 @@ namespace PresentationTier
         {
             if (e.Button == MouseButtons.Right)
             {
-                int item = listBox1.IndexFromPoint(e.Location);
+                int item = MessageListBox.IndexFromPoint(e.Location);
                 if (item >= 0)
                 {
-                    listBox1.SelectedIndex = item;
-                    if ((listBox1.SelectedItem as MessageServiceReference.Message).CreatorId == profileId)
+                    MessageListBox.SelectedIndex = item;
+                    if ((MessageListBox.SelectedItem as MessageServiceReference.Message).CreatorId == profileId)
                     {
-                        cm.Show(listBox1, e.Location);
+                        cm.Show(MessageListBox, e.Location);
                     }
                 }
             }
@@ -125,47 +125,47 @@ namespace PresentationTier
 
         private void MenuItemNew_Click(Object sender, EventArgs e)//Right cick menu button clicked
         {
-            client.DeleteMessage((listBox1.SelectedItem as MessageServiceReference.Message).Id, chatId);
+            client.DeleteMessage((MessageListBox.SelectedItem as MessageServiceReference.Message).Id, chatId);
         }
 
         public void RemoveMessage(int id)//callBack method
         {
-            foreach (MessageServiceReference.Message message in listBox1.Items)
+            foreach (MessageServiceReference.Message message in MessageListBox.Items)
             {
                 if (message.Id == id)
                 {
-                    listBox1.Items.Remove(message);
+                    MessageListBox.Items.Remove(message);
                     break;
                 }
             }
         }
         #endregion
 
-        private void ListBox1_MouseMove(object sender, MouseEventArgs e)//Shows the rest of the info
+        private void MessageListBox_MouseMove(object sender, MouseEventArgs e)//Shows the rest of the info
         {
-            int index = listBox1.IndexFromPoint(e.Location);
+            int index = MessageListBox.IndexFromPoint(e.Location);
 
             if (index >= 0)
             {
-                listBox1.SelectedIndex = index;
+                MessageListBox.SelectedIndex = index;
             }
 
-            if (index != -1 && index < listBox1.Items.Count)
+            if (index != -1 && index < MessageListBox.Items.Count)
             {
-                MessageServiceReference.Message message = (listBox1.SelectedItem as MessageServiceReference.Message);
+                MessageServiceReference.Message message = (MessageListBox.SelectedItem as MessageServiceReference.Message);
                 String text = message.Creator + " " + message.Time.ToString();
-                if (toolTip.GetToolTip(listBox1) != text)
+                if (toolTip.GetToolTip(MessageListBox) != text)
                 {
-                    toolTip.SetToolTip(listBox1, text);
+                    toolTip.SetToolTip(MessageListBox, text);
                 }
             }
             else
             {
-                toolTip.SetToolTip(this.listBox1, string.Empty);
+                toolTip.SetToolTip(this.MessageListBox, string.Empty);
             }
         }
 
-        private void Button2_Click(object sender, EventArgs e)//invite button
+        private void InviteButton_Click(object sender, EventArgs e)//invite button
         {
             
         }

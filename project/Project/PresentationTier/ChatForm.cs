@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PresentationTier.ChatServiceReference;
 
@@ -25,27 +20,27 @@ namespace PresentationTier
             InitializeComponent();
             client = new ChatServiceClient();
             cm = new ContextMenu();
-            cm.MenuItems.Add(new MenuItem("Remove", MenuItemNew_Click));
+            cm.MenuItems.Add(new MenuItem("Remove", RemoveMenuItem_Click));
 
-            listView1.Columns.Add("Id", 0, HorizontalAlignment.Left);
-            listView1.Columns.Add("Name", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Type", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Users", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Room size", 80, HorizontalAlignment.Left);
-            listView1.Columns.Add("Owner", 0, HorizontalAlignment.Left);
+            ChatListView.Columns.Add("Id", 0, HorizontalAlignment.Left);
+            ChatListView.Columns.Add("Name", 60, HorizontalAlignment.Left);
+            ChatListView.Columns.Add("Type", 60, HorizontalAlignment.Left);
+            ChatListView.Columns.Add("Users", 60, HorizontalAlignment.Left);
+            ChatListView.Columns.Add("Room size", 80, HorizontalAlignment.Left);
+            ChatListView.Columns.Add("Owner", 0, HorizontalAlignment.Left);
 
-            trackBar1.Minimum = 2;
-            trackBar1.Maximum = 10;
-            trackBar1.TickFrequency = 1;
+            NrOfUsersTrackBar.Minimum = 2;
+            NrOfUsersTrackBar.Maximum = 10;
+            NrOfUsersTrackBar.TickFrequency = 1;
             #endregion
-            viewProfile_btn.BackColor = Color.Pink;
-            Button1_Click(null, null);
+            ViewProfileButton.BackColor = Color.Pink;
+            SearchButton_Click(null, null);
         }
 
-        private void Button1_Click(object sender, EventArgs e)//search button
+        private void SearchButton_Click(object sender, EventArgs e)//search button clicked
         {
-            listView1.Items.Clear();
-            foreach (Chat chat in client.GetChatsByName(textBox1.Text, profileId))
+            ChatListView.Items.Clear();
+            foreach (Chat chat in client.GetChatsByName(SearchBox.Text, profileId))
             {
                 ListViewItem row = new ListViewItem(chat.Id.ToString());
                 row.SubItems.Add(chat.Name);
@@ -60,79 +55,84 @@ namespace PresentationTier
                 }
                 row.SubItems.Add(chat.MaxNrOfUsers.ToString());
                 row.SubItems.Add(chat.OwnerID.ToString());
-                listView1.Items.Add(row);
+                ChatListView.Items.Add(row);
             }
         }
 
-        private void ListView1_MouseDown(object sender, MouseEventArgs e)//Click on listView item
+        private void ChatListView_MouseDown(object sender, MouseEventArgs e)//Click on listView item
         {
             if (e.Button == MouseButtons.Right)
             {
-                ListViewHitTestInfo lvhti = this.listView1.HitTest(e.X, e.Y);
+                ListViewHitTestInfo lvhti = this.ChatListView.HitTest(e.X, e.Y);
                 if (lvhti.Item != null && Int32.Parse(lvhti.Item.SubItems[5].Text) == profileId)
                 {
                     lvhti.Item.Selected = true;
-                    cm.Show(this.listView1, new Point(e.X, e.Y));
+                    cm.Show(this.ChatListView, new Point(e.X, e.Y));
                 }
             }
             else
             {
-                ListViewHitTestInfo lvhti = this.listView1.HitTest(e.X, e.Y);
+                ListViewHitTestInfo lvhti = this.ChatListView.HitTest(e.X, e.Y);
                 if (lvhti.Item != null)
                 {
                     chatId = Int32.Parse(lvhti.Item.Text);
-                    textBox2.Text = lvhti.Item.SubItems[1].Text;
+                    ChatNameTextBox.Text = lvhti.Item.SubItems[1].Text;
                     if (lvhti.Item.SubItems[2].Text.Equals("False"))
                     {
-                        checkBox1.Checked = true;
+                        PrivateCheckBox.Checked = true;
                     }
                     else
                     {
-                        checkBox1.Checked = false;
+                        PrivateCheckBox.Checked = false;
                     }
-                    trackBar1.Value = Int32.Parse(lvhti.Item.SubItems[4].Text);
-                    button2.Text = "Update chat";
+                    NrOfUsersTrackBar.Value = Int32.Parse(lvhti.Item.SubItems[4].Text);
+                    SaveButton.Text = "Update chat";
                     if(Int32.Parse(lvhti.Item.SubItems[5].Text) == profileId)
                     {
-                        textBox2.Enabled = true;
-                        checkBox1.Enabled = true;
-                        trackBar1.Enabled = true;
-                        button2.Enabled = true;
+                        ChatNameTextBox.Enabled = true;
+                        PrivateCheckBox.Enabled = true;
+                        NrOfUsersTrackBar.Enabled = true;
+                        SaveButton.Enabled = true;
                     }
                     else
                     {
-                        textBox2.Enabled = false;
-                        checkBox1.Enabled = false;
-                        trackBar1.Enabled = false;
-                        button2.Enabled = false;
+                        ChatNameTextBox.Enabled = false;
+                        PrivateCheckBox.Enabled = false;
+                        NrOfUsersTrackBar.Enabled = false;
+                        SaveButton.Enabled = false;
                     }
                 }
                 else
                 {
                     chatId = 0;
-                    textBox2.Text = "";
-                    checkBox1.Checked = false;
-                    trackBar1.Value = 2;
-                    button2.Text = "Create chat";
+                    ChatNameTextBox.Text = "";
+                    PrivateCheckBox.Checked = false;
+                    NrOfUsersTrackBar.Value = 2;
+                    SaveButton.Text = "Create chat";
+
+                    ChatNameTextBox.Enabled = true;
+                    PrivateCheckBox.Enabled = true;
+                    NrOfUsersTrackBar.Enabled = true;
+                    SaveButton.Enabled = true;
                 }
             }
         }
 
-        private void TrackBar1_ValueChanged(object sender, EventArgs e)//change max value of users
+        private void NrOfUsersTrackBar_ValueChanged(object sender, EventArgs e)//change max value of users
         {
-            label4.Text = (Math.Round(trackBar1.Value / 1.0)).ToString();
+            NrLabel.Text = (Math.Round(NrOfUsersTrackBar.Value / 1.0)).ToString();
         }
 
-        private void Button2_Click(object sender, EventArgs e)//change chat
+        private void SaveButton_Click(object sender, EventArgs e)//save chat button clicked
         {
             Chat chat = new Chat
             {
-                Name = textBox2.Text,
-                MaxNrOfUsers = trackBar1.Value,
+                Name = ChatNameTextBox.Text,
+                MaxNrOfUsers = NrOfUsersTrackBar.Value,
                 Id = chatId,
                 OwnerID = profileId
             };
-            if (checkBox1.Checked == true)
+            if (PrivateCheckBox.Checked == true)
             {
                 chat.Type = false;
             }
@@ -143,31 +143,31 @@ namespace PresentationTier
             client.SaveChat(chat);
 
             chatId = 0;
-            textBox2.Text = "";
-            checkBox1.Checked = false;
-            trackBar1.Value = 2;
-            button2.Text = "Create chat";
+            ChatNameTextBox.Text = "";
+            PrivateCheckBox.Checked = false;
+            NrOfUsersTrackBar.Value = 2;
+            SaveButton.Text = "Create chat";
 
-            Button1_Click(null, null);
+            SearchButton_Click(null, null);
         }
 
-        private void MenuItemNew_Click(Object sender, EventArgs e)//Right cick menu button clicked
+        private void RemoveMenuItem_Click(Object sender, EventArgs e)//Right cick remove menu button clicked
         {
-            client.DeleteChat(Int32.Parse(listView1.SelectedItems[0].Text));
-            Button1_Click(null, null);
+            client.DeleteChat(Int32.Parse(ChatListView.SelectedItems[0].Text));
+            SearchButton_Click(null, null);
         }
 
-        private void ViewProfile_btn_Click(object sender, EventArgs e)
+        private void ViewProfileButton_Click(object sender, EventArgs e)//Goes to profile View
         {
             ProfileForm chat = new ProfileForm(profileId);
             Hide();
         }
 
-        private void ListView1_MouseDoubleClick(object sender, MouseEventArgs e)//join chat room
+        private void ChatListView_MouseDoubleClick(object sender, MouseEventArgs e)//join chat room
         {
             if (e.Button == MouseButtons.Left)
             {
-                ListViewHitTestInfo lvhti = this.listView1.HitTest(e.X, e.Y);
+                ListViewHitTestInfo lvhti = this.ChatListView.HitTest(e.X, e.Y);
                 if (lvhti.Item != null)
                 {
                     try

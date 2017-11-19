@@ -42,6 +42,12 @@ namespace WcfService
         void GetOnlineProfiles(List<Profile> profiles);
 
         [OperationContract(IsOneWay = true)]
+        void UserJoins(Profile profile);
+
+        [OperationContract(IsOneWay = true)]
+        void UserLeaves(Profile profile);
+
+        [OperationContract(IsOneWay = true)]
         void GetChat(Chat chat);
 
         [OperationContract(IsOneWay = true)]

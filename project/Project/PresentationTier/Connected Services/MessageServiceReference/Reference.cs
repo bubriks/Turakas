@@ -238,6 +238,9 @@ namespace PresentationTier.MessageServiceReference {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OwnerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -288,6 +291,19 @@ namespace PresentationTier.MessageServiceReference {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OwnerID {
+            get {
+                return this.OwnerIDField;
+            }
+            set {
+                if ((this.OwnerIDField.Equals(value) != true)) {
+                    this.OwnerIDField = value;
+                    this.RaisePropertyChanged("OwnerID");
                 }
             }
         }
