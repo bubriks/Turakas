@@ -37,12 +37,12 @@ namespace PresentationTier
             this.UserListBox = new System.Windows.Forms.ListBox();
             this.PeopleInChatLabel = new System.Windows.Forms.Label();
             this.InviteFriendGroupBox = new System.Windows.Forms.GroupBox();
+            this.rps_btn = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
             this.FriendNameTextBox = new System.Windows.Forms.TextBox();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.rps_btn = new System.Windows.Forms.Button();
             this.InviteFriendGroupBox.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -116,6 +116,17 @@ namespace PresentationTier
             this.InviteFriendGroupBox.TabStop = false;
             this.InviteFriendGroupBox.Text = "Invite Friend";
             // 
+            // rps_btn
+            // 
+            this.rps_btn.Location = new System.Drawing.Point(0, 74);
+            this.rps_btn.Name = "rps_btn";
+            this.rps_btn.Size = new System.Drawing.Size(75, 23);
+            this.rps_btn.TabIndex = 11;
+            this.rps_btn.Text = "PlayRPS";
+            this.rps_btn.UseVisualStyleBackColor = true;
+            this.rps_btn.Visible = false;
+            this.rps_btn.Click += new System.EventHandler(this.rps_btn_Click);
+            // 
             // AddButton
             // 
             this.AddButton.Location = new System.Drawing.Point(6, 55);
@@ -154,17 +165,6 @@ namespace PresentationTier
             // 
             this.timer.Interval = 3000;
             this.timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
-            // rps_btn
-            // 
-            this.rps_btn.Location = new System.Drawing.Point(0, 74);
-            this.rps_btn.Name = "rps_btn";
-            this.rps_btn.Size = new System.Drawing.Size(75, 23);
-            this.rps_btn.TabIndex = 11;
-            this.rps_btn.Text = "PlayRPS";
-            this.rps_btn.UseVisualStyleBackColor = true;
-            this.rps_btn.Visible = false;
-            this.rps_btn.Click += new System.EventHandler(this.rps_btn_Click);
             // 
             // MessageForm
             // 

@@ -213,6 +213,11 @@ namespace PresentationTier
             client.LeaveChat(chatId, profileId);
         }
 
+        private void rps_btn_Click(object sender, EventArgs e)
+        {
+            RPSForm rPSForm = new RPSForm(chatId, profileId);
+        }
+
         public void Show(bool result)
         {
             if (result)
