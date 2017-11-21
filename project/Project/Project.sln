@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessTier", "BusinessTier\BusinessTier.csproj", "{D9BE8BE0-02AE-4680-B196-5483EB0456E0}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "WcfService\WcfService.csproj", "{24CE0FDE-EC06-4F56-8492-36A3EB53AC4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessTier", "DataAccessTier\DataAccessTier.csproj", "{B08610D0-5770-4BD0-897B-AC3C1AADFBAD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayer", "MusicPlayer\MusicPlayer.csproj", "{42966D20-E3E1-47A6-B539-786D0CB134D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTier", "TestTier\TestTier.csproj", "{703A653D-7401-41FC-8082-081BEB5B4699}"
 EndProject
@@ -42,10 +40,6 @@ Global
 		{B08610D0-5770-4BD0-897B-AC3C1AADFBAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B08610D0-5770-4BD0-897B-AC3C1AADFBAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B08610D0-5770-4BD0-897B-AC3C1AADFBAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42966D20-E3E1-47A6-B539-786D0CB134D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42966D20-E3E1-47A6-B539-786D0CB134D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42966D20-E3E1-47A6-B539-786D0CB134D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42966D20-E3E1-47A6-B539-786D0CB134D5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{703A653D-7401-41FC-8082-081BEB5B4699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{703A653D-7401-41FC-8082-081BEB5B4699}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{703A653D-7401-41FC-8082-081BEB5B4699}.Release|Any CPU.ActiveCfg = Release|Any CPU

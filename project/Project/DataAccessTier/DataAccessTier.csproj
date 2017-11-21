@@ -45,16 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbActivity.cs" />
-    <Compile Include="DbArtist.cs" />
     <Compile Include="DbChat.cs" />
     <Compile Include="DbConnection.cs" />
-    <Compile Include="DbGenre.cs" />
     <Compile Include="DbLogin.cs" />
     <Compile Include="DbMessage.cs" />
-    <Compile Include="DbNotification.cs" />
     <Compile Include="DbProfile.cs" />
-    <Compile Include="DbRelationships.cs" />
     <Compile Include="DbSong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

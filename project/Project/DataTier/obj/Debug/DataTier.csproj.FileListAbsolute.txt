@@ -37,3 +37,5 @@ C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\DataTier\obj\
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.dll
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.pdb
+C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\DataTier\bin\Debug\DataTier.dll
+C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\DataTier\bin\Debug\DataTier.pdb

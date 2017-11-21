@@ -28,7 +28,7 @@ namespace PresentationTier
             cm.MenuItems.Add(new MenuItem("Remove", RemoveMenuItem_Click));
 
             ChatListView.Columns.Add("Id", 0, HorizontalAlignment.Left);
-            ChatListView.Columns.Add("Name", 60, HorizontalAlignment.Left);
+            ChatListView.Columns.Add("Name", 100, HorizontalAlignment.Left);
             ChatListView.Columns.Add("Type", 60, HorizontalAlignment.Left);
             ChatListView.Columns.Add("Users", 60, HorizontalAlignment.Left);
             ChatListView.Columns.Add("Room size", 80, HorizontalAlignment.Left);

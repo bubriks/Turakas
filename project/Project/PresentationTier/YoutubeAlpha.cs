@@ -34,12 +34,12 @@ namespace PresentationTier
         private void button1_Click(object sender, EventArgs e)
         {
             ytUrl = textBox1.Text;
-           //string vidTitle = youtubeServiceClient.GetVideoInfo(VideoId);
-            //label1.Text = vidTitle;
+            string vidTitle = youtubeServiceClient.GetVideoInfo(VideoId);
+            label1.Text = vidTitle;
             //Console.WriteLine(VideoId);
             //Console.ReadLine();
-            //webBrowser1.Navigate("file:///C:/Users/Paracetamax/Desktop/New%20Text%20Document.html");
-            
+            webBrowser1.Navigate($"https//www.youtube.com/watch?v={VideoId}");
+            /*
             var page = $@"
         <html>
             <body>
@@ -49,7 +49,7 @@ namespace PresentationTier
             </body>
         <html>";
             webBrowser1.DocumentText = page;
-            webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.ScriptErrorsSuppressed = true;*/
         }
     }
 }

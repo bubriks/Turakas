@@ -32,9 +32,16 @@ namespace DataAccessTier
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-                song = new Song(reader.GetInt32(reader.GetOrdinal("songID")), reader.GetInt32(reader.GetOrdinal("activityID")), 
-                    reader.GetInt32(reader.GetOrdinal("artistID")), reader.GetInt32(reader.GetOrdinal("genreID")), reader.GetString(reader.GetOrdinal("name")), 
-                    reader.GetInt32(reader.GetOrdinal("duration")), reader.GetString(reader.GetOrdinal("url")));
+                song = new Song
+                {
+                    SongId = reader.GetInt32(reader.GetOrdinal("songID")),
+                    ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")), 
+                    ArtistId = reader.GetInt32(reader.GetOrdinal("artistID")), 
+                    GenreId = reader.GetInt32(reader.GetOrdinal("genreID")), 
+                    Name = reader.GetString(reader.GetOrdinal("name")), 
+                    Duration = reader.GetInt32(reader.GetOrdinal("duration")), 
+                    Url = reader.GetString(reader.GetOrdinal("url"))
+                };
             }
             return song;
         }
