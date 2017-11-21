@@ -39,7 +39,7 @@ namespace PresentationTier
             //Console.WriteLine(VideoId);
             //Console.ReadLine();
             webBrowser1.Navigate($"https//www.youtube.com/watch?v={VideoId}");
-            
+            /*
             var page = $@"
         <html>
             <body>
@@ -49,7 +49,7 @@ namespace PresentationTier
             </body>
         <html>";
             webBrowser1.DocumentText = page;
-            webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.ScriptErrorsSuppressed = true;*/
         }
     }
 }
