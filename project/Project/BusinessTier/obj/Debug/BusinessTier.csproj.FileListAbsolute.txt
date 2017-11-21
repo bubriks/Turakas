@@ -63,7 +63,6 @@ C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Core.xml
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.v3.xml
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Newtonsoft.Json.xml
-C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\youtube_client_secret.json
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.PlatformServices.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Core.dll
