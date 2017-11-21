@@ -28,6 +28,9 @@ namespace PresentationTier
 
             this.chatId = chatId;
             this.profileId = profileId;
+
+            if (UserListBox.Items.Count == 2)
+                rps_btn.Visible = true;
             #endregion
 
             client.JoinChat(chatId, profileId);
@@ -67,6 +70,11 @@ namespace PresentationTier
 
             String text = PeopleInChatLabel.Text;
             PeopleInChatLabel.Text = profiles.Count().ToString() + text.Substring(text.IndexOf(" ") -1 + " ".Length);
+
+            if (UserListBox.Items.Count == 2)
+                rps_btn.Visible = true;
+            else
+                rps_btn.Visible = false;
         }
 
         #region Add message
@@ -186,6 +194,11 @@ namespace PresentationTier
         private void MessageForm_Closing(object sender, CancelEventArgs e)//on close event
         {
             client.LeaveChat(chatId, profileId);
+        }
+
+        private void rps_btn_Click(object sender, EventArgs e)
+        {
+            RPSForm rPSForm = new RPSForm(chatId, profileId);
         }
 
         public void Show(bool result)

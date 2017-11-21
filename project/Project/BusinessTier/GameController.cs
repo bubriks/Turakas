@@ -23,20 +23,19 @@ namespace BusinessTier
                 Game game = FindGame(gameId);
                 lock (game)
                 {
-
-                    if (game.Player1.ProfileID != profileId)//person isnt in game
+                    if (game.Player1 == null)
                     {
                         Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
                         user.CallBack = callback;//adds callback object to it
-                        game.Player1 = user;//adds user to list
+                        game.Player1 = user;//adds user to game
                         return 1;//joined
                     }
                     else
-                        if (game.Player2.ProfileID != profileId)
+                    if (game.Player2 == null)
                     {
                         Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
                         user.CallBack = callback;//adds callback object to it
-                        game.Player2 = user;//adds user to list
+                        game.Player2 = user;//adds user to game
                         return 2;//joined
                     }
                     else
@@ -49,7 +48,7 @@ namespace BusinessTier
                 {
                     lock (games)
                     {
-                        Game game = new Game { GameId = games.Last().GameId + 1 }; //creates new game
+                        Game game = new Game { GameId = gameId}; //creates new game
                         Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets user from database
                         user.CallBack = callback;//adds callback object to it
                         game.Player1 = user; //add player to game
@@ -114,19 +113,23 @@ namespace BusinessTier
                     game.Choice2 = choice;
                 }
 
-                if (game.Choice1 != -1 && game.Choice2 != -1) //if both players made a choice
+                if (game.Choice1 != -1) //if player1 made a choice
                 {
-                    if ((game.Choice1 == 0 && game.Choice2 == 2) || (game.Choice1 == 1 && game.Choice2 == 0) || (game.Choice1 == 2 && game.Choice2 == 0)) // player1 wins
-                        return 1;
+                    if (game.Choice2 != -1) //if player 2 made a choice
+                    {
+                        if ((game.Choice1 == 0 && game.Choice2 == 2) || (game.Choice1 == 1 && game.Choice2 == 0) || (game.Choice1 == 2 && game.Choice2 == 0)) // player1 wins
+                            return 1;
+                        else
+                          if (game.Choice1 == game.Choice2) //tie
+                            return 0;
+                        else
+                            return 2;
+                    }
                     else
-                        if (game.Choice1 == game.Choice2) //tie
-                        return 0;
-                    else
-                        return 2;
-
+                        return -2; //player2 did not make a choice
                 }
                 else
-                    return -1; //not all players made a choice
+                    return -1; //player1 did not make a choice
             }
         }
 

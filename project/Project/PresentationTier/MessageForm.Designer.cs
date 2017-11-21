@@ -42,6 +42,7 @@ namespace PresentationTier
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.rps_btn = new System.Windows.Forms.Button();
             this.InviteFriendGroupBox.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +106,7 @@ namespace PresentationTier
             // InviteFriendGroupBox
             // 
             this.InviteFriendGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.InviteFriendGroupBox.Controls.Add(this.rps_btn);
             this.InviteFriendGroupBox.Controls.Add(this.AddButton);
             this.InviteFriendGroupBox.Controls.Add(this.FriendNameTextBox);
             this.InviteFriendGroupBox.Location = new System.Drawing.Point(276, 113);
@@ -152,6 +154,17 @@ namespace PresentationTier
             this.timer.Interval = 3000;
             this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
+            // rps_btn
+            // 
+            this.rps_btn.Location = new System.Drawing.Point(0, 74);
+            this.rps_btn.Name = "rps_btn";
+            this.rps_btn.Size = new System.Drawing.Size(75, 23);
+            this.rps_btn.TabIndex = 11;
+            this.rps_btn.Text = "PlayRPS";
+            this.rps_btn.UseVisualStyleBackColor = true;
+            this.rps_btn.Visible = false;
+            this.rps_btn.Click += new System.EventHandler(this.rps_btn_Click);
+            // 
             // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -188,6 +201,7 @@ namespace PresentationTier
         private StatusStrip StatusStrip;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private Timer timer;
+        private Button rps_btn;
     }
 }
 

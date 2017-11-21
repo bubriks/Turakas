@@ -6,7 +6,6 @@ namespace DataTier
     {
         [DataMember]
         public int GameId { get; set; }
-
         [DataMember]
         public int Score1 { get; set; }
         [DataMember]

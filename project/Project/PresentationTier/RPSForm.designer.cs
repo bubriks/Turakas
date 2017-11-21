@@ -72,6 +72,7 @@
             this.rockChoice_rb.TabStop = true;
             this.rockChoice_rb.Text = "Rock";
             this.rockChoice_rb.UseVisualStyleBackColor = true;
+            this.rockChoice_rb.CheckedChanged += new System.EventHandler(this.rockRB_CheckedChanged);
             // 
             // paperChoice_rb
             // 
@@ -83,6 +84,7 @@
             this.paperChoice_rb.TabStop = true;
             this.paperChoice_rb.Text = "Paper";
             this.paperChoice_rb.UseVisualStyleBackColor = true;
+            this.paperChoice_rb.CheckedChanged += new System.EventHandler(this.rockRB_CheckedChanged);
             // 
             // scissorChoice_rb
             // 
@@ -94,6 +96,7 @@
             this.scissorChoice_rb.TabStop = true;
             this.scissorChoice_rb.Text = "Scissors";
             this.scissorChoice_rb.UseVisualStyleBackColor = true;
+            this.scissorChoice_rb.CheckedChanged += new System.EventHandler(this.rockRB_CheckedChanged);
             // 
             // choice_pnl
             // 
@@ -118,6 +121,7 @@
             this.selectChoice_btn.Size = new System.Drawing.Size(50, 50);
             this.selectChoice_btn.TabIndex = 3;
             this.selectChoice_btn.UseVisualStyleBackColor = true;
+            this.selectChoice_btn.Click += new System.EventHandler(this.selectChoice_btn_Click);
             // 
             // player2_lbl
             // 
@@ -319,7 +323,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(514, 445);
+            this.ClientSize = new System.Drawing.Size(538, 442);
             this.Controls.Add(this.myBar_lbl);
             this.Controls.Add(this.total_lbl);
             this.Controls.Add(this.player_lbl);

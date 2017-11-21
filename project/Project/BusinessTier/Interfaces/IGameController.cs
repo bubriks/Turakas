@@ -27,7 +27,7 @@ namespace BusinessTier.Interfaces
         /// <param name="gameId"></param>
         /// <param name="profileId"></param>
         /// <param name="choice"></param>
-        /// <returns>-1 if a player still needs to make choice, 0 for tie, 1 for player1, 2 for player2</returns>
+        /// <returns>-2 player2 needs to make choice, -1 player1 needs to make choice, 0 for tie, 1 for player1, 2 for player2</returns>
         int MakeChoice(int gameId, int profileId, int choice);
 
         /// <summary>

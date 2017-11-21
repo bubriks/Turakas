@@ -80,8 +80,6 @@ C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Googl
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.v3.xml
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Newtonsoft.Json.xml
 D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\youtube_client_secret.json
-D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
-D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
 D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.pdb
 D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.dll
 D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\DataTier.dll
@@ -104,7 +102,6 @@ D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.
 D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\Newtonsoft.Json.xml
 D:\Workspace\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csprojResolveAssemblyReference.cache
 D:\Workspace\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csproj.CoreCompileInputs.cache
-D:\Workspace\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
 D:\Workspace\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.pdb
 D:\Workspace\Project\BusinessTier\bin\Debug\youtube_client_secret.json
 D:\Workspace\Project\BusinessTier\bin\Debug\Google.Apis.Auth.dll
@@ -122,3 +119,6 @@ D:\Workspace\Project\BusinessTier\bin\Debug\Google.Apis.Auth.xml
 D:\Workspace\Project\BusinessTier\bin\Debug\Google.Apis.Core.xml
 D:\Workspace\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.v3.xml
 D:\Workspace\Project\BusinessTier\bin\Debug\Newtonsoft.Json.xml
+D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
+D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
+D:\Workspace\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
