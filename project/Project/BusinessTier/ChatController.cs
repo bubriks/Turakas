@@ -10,14 +10,12 @@ namespace BusinessTier
     {
         private DbChat dbChat = null;
         private IProfileController profileController = null;
-        private DbConnection con = null;
         private static List<Chat> chats = new List<Chat>();
 
         public ChatController()
         {
             dbChat = new DbChat();
             profileController = new ProfileController();
-            con = DbConnection.GetInstance();
         }
 
         public Chat SaveChat(Chat chat)

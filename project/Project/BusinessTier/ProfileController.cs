@@ -49,9 +49,15 @@ namespace BusinessTier
             }
         }
 
-        public List<Profile> OnlineUsers()
+        public Profile GetUser(String name)
         {
-            return users;
+            Profile user = users.Find(
+            delegate (Profile u)
+            {
+                return u.Nickname.Equals(name);
+            }
+            );
+            return user;
         }
 
         public bool CreateProfile(Profile profile)

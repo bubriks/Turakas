@@ -17,7 +17,7 @@ namespace MusicPlayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Youtubeform());
+            Application.Run(new Form1());
         }
        
     }

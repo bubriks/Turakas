@@ -25,6 +25,21 @@ namespace WcfService
             profileController.Offline(profileId);
         }
 
+        public bool invite(int chatId, String name)
+        {
+            Profile user = profileController.GetUser(name);
+            if (user != null)
+            {
+                IChatCallBack chatCallback = (IChatCallBack)user.CallBack;
+                chatCallback.Notification(chatController.FindChat(chatId));
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void SaveChat(Chat chat)
         {
             if(chatController.SaveChat(chat) != null && chat.Id != 0)

@@ -18,7 +18,7 @@ namespace WcfService
         void LeaveChat(int chatId, int profileId);
 
         [OperationContract(IsOneWay = true)]
-        void InviteToChat(int chatId, String name);//
+        void InviteToChat(int chatId, String name);
 
         [OperationContract(IsOneWay = true)]
         void Writing(int chatId);

@@ -12,12 +12,10 @@ namespace BusinessTier
     public class MessageController: IMessageController
     {
         private DbMessage dbMessage= null;
-        private DbConnection con = null;
 
         public MessageController()
         {
             dbMessage = new DbMessage();
-            con = DbConnection.GetInstance();
         }
 
         public Message CreateMessage(int profileId, String text, int chatId)
