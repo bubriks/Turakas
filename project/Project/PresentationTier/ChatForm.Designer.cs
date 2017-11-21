@@ -84,6 +84,7 @@ namespace PresentationTier
             this.SearchBox.Name = "SearchBox";
             this.SearchBox.Size = new System.Drawing.Size(307, 20);
             this.SearchBox.TabIndex = 2;
+            this.SearchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchBox_KeyDown);
             // 
             // ChatGroupBox
             // 
@@ -200,7 +201,7 @@ namespace PresentationTier
             // ClearEventsButton
             // 
             this.ClearEventsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearEventsButton.Location = new System.Drawing.Point(532, 263);
+            this.ClearEventsButton.Location = new System.Drawing.Point(532, 266);
             this.ClearEventsButton.Name = "ClearEventsButton";
             this.ClearEventsButton.Size = new System.Drawing.Size(75, 23);
             this.ClearEventsButton.TabIndex = 6;

@@ -238,17 +238,17 @@ namespace PresentationTier.ChatServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatServiceReference.IChatService", CallbackContract=typeof(PresentationTier.ChatServiceReference.IChatServiceCallback))]
     public interface IChatService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Online", ReplyAction="http://tempuri.org/IChatService/OnlineResponse")]
-        bool Online(int profileId);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Online")]
+        void Online(int profileId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Online", ReplyAction="http://tempuri.org/IChatService/OnlineResponse")]
-        System.Threading.Tasks.Task<bool> OnlineAsync(int profileId);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Online")]
+        System.Threading.Tasks.Task OnlineAsync(int profileId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Offline", ReplyAction="http://tempuri.org/IChatService/OfflineResponse")]
-        bool Offline(int profileId);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Offline")]
+        void Offline(int profileId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Offline", ReplyAction="http://tempuri.org/IChatService/OfflineResponse")]
-        System.Threading.Tasks.Task<bool> OfflineAsync(int profileId);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Offline")]
+        System.Threading.Tasks.Task OfflineAsync(int profileId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SaveChat")]
         void SaveChat(PresentationTier.ChatServiceReference.Chat chat);
@@ -304,19 +304,19 @@ namespace PresentationTier.ChatServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public bool Online(int profileId) {
-            return base.Channel.Online(profileId);
+        public void Online(int profileId) {
+            base.Channel.Online(profileId);
         }
         
-        public System.Threading.Tasks.Task<bool> OnlineAsync(int profileId) {
+        public System.Threading.Tasks.Task OnlineAsync(int profileId) {
             return base.Channel.OnlineAsync(profileId);
         }
         
-        public bool Offline(int profileId) {
-            return base.Channel.Offline(profileId);
+        public void Offline(int profileId) {
+            base.Channel.Offline(profileId);
         }
         
-        public System.Threading.Tasks.Task<bool> OfflineAsync(int profileId) {
+        public System.Threading.Tasks.Task OfflineAsync(int profileId) {
             return base.Channel.OfflineAsync(profileId);
         }
         

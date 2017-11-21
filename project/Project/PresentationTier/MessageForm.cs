@@ -28,15 +28,13 @@ namespace PresentationTier
 
             this.chatId = chatId;
             this.profileId = profileId;
-
-            if (UserListBox.Items.Count == 2)
-                rps_btn.Visible = true;
             #endregion
 
             client.JoinChat(chatId, profileId);
         }
 
-        public void GetChat(Chat chat)
+        #region info about chat
+        public void GetChat(Chat chat)//gets chat
         {
             if (chat.Type == true)
             {
@@ -50,7 +48,7 @@ namespace PresentationTier
             PeopleInChatLabel.Text = chat.Users.Count() + " out of " + chat.MaxNrOfUsers + " users";
         }
 
-        public void GetMessages(MessageServiceReference.Message[] messages)
+        public void GetMessages(MessageServiceReference.Message[] messages)//gets message in chat
         {
             foreach (MessageServiceReference.Message message in messages)
             {
@@ -59,7 +57,7 @@ namespace PresentationTier
             this.MessageListBox.SelectedIndex = this.MessageListBox.Items.Count - 1;
         }
 
-        public void GetOnlineProfiles(Profile[] profiles)
+        public void GetOnlineProfiles(Profile[] profiles)//gets all users online
         {
             UserListBox.Items.Clear();
             foreach (Profile profile in profiles)
@@ -70,15 +68,11 @@ namespace PresentationTier
 
             String text = PeopleInChatLabel.Text;
             PeopleInChatLabel.Text = profiles.Count().ToString() + text.Substring(text.IndexOf(" ") -1 + " ".Length);
-
-            if (UserListBox.Items.Count == 2)
-                rps_btn.Visible = true;
-            else
-                rps_btn.Visible = false;
         }
+        #endregion
 
         #region Add message
-        private void MessageTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void MessageTextBox_KeyDown(object sender, KeyEventArgs e)//Write or send
         {
             if (e.KeyValue == Convert.ToInt16(Keys.Enter))
             {
@@ -90,25 +84,28 @@ namespace PresentationTier
             }
         }
 
-        public void WritingMessage()
+        public void WritingMessage()//write message call back
         {
             toolStripStatusLabel1.Text = "Someone is writing";
             timer.Stop();
             timer.Start();
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)//timer if nobody writing than method runs
         {
             toolStripStatusLabel1.Text = "Nobody is writing";
         }
 
         private void SendButton_Click(object sender, EventArgs e)//send message
         {
-            client.CreateMessage(profileId, MessageTextBox.Text, chatId);
-            MessageTextBox.Text = "";
+            if (!MessageTextBox.Text.Equals(""))
+            {
+                client.CreateMessage(profileId, MessageTextBox.Text, chatId);
+                MessageTextBox.Text = "";
+            }
         }
 
-        public void AddMessage(MessageServiceReference.Message message)//call back item
+        public void AddMessage(MessageServiceReference.Message message)//call back item message recieved
         {
             MessageListBox.Items.Add(message);
         }
@@ -116,7 +113,7 @@ namespace PresentationTier
 
         #region Remove message
 
-        private void ListBox1_MouseDown(object sender, MouseEventArgs e)//right click clicked
+        private void ListBox1_MouseDown(object sender, MouseEventArgs e)//right click clicked on message
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -137,7 +134,7 @@ namespace PresentationTier
             client.DeleteMessage((MessageListBox.SelectedItem as MessageServiceReference.Message).Id, chatId);
         }
 
-        public void RemoveMessage(int id)//callBack method
+        public void RemoveMessage(int id)//callBack method message removed
         {
             foreach (MessageServiceReference.Message message in MessageListBox.Items)
             {
@@ -150,7 +147,7 @@ namespace PresentationTier
         }
         #endregion
 
-        private void MessageListBox_MouseMove(object sender, MouseEventArgs e)//Shows the rest of the info
+        private void MessageListBox_MouseMove(object sender, MouseEventArgs e)//Shows the rest of the info about message
         {
             int index = MessageListBox.IndexFromPoint(e.Location);
 
@@ -174,34 +171,41 @@ namespace PresentationTier
             }
         }
 
-        private void InviteButton_Click(object sender, EventArgs e)//invite button
+        #region invite
+        private void FriendNameTextBox_KeyDown(object sender, KeyEventArgs e)//if enter pressed then invite user
+        {
+            if (e.KeyValue == Convert.ToInt16(Keys.Enter))
+            {
+                InviteButton_Click(null, null);
+            }
+        }
+
+        private void InviteButton_Click(object sender, EventArgs e)//invite button clicked
         {
             client.InviteToChat(chatId, FriendNameTextBox.Text);
         }
 
-        public void Invite(bool result)
+        public void Invite(bool result)//returns if invite was successful
         {
             if (result)
             {
                 FriendNameTextBox.Text = "";
+                AddButton.BackColor = SystemColors.ButtonFace;
             }
             else
             {
                 AddButton.BackColor = Color.Red;
             }
         }
+        #endregion
 
+        #region form control
         private void MessageForm_Closing(object sender, CancelEventArgs e)//on close event
         {
             client.LeaveChat(chatId, profileId);
         }
 
-        private void rps_btn_Click(object sender, EventArgs e)
-        {
-            RPSForm rPSForm = new RPSForm(chatId, profileId);
-        }
-
-        public void Show(bool result)
+        public void Show(bool result)//callback that decides wheather to show frame
         {
             if (result)
             {
@@ -212,5 +216,6 @@ namespace PresentationTier
                 this.Close();
             }
         }
+        #endregion
     }
 }
