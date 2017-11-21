@@ -28,6 +28,9 @@ namespace PresentationTier
 
             this.chatId = chatId;
             this.profileId = profileId;
+
+            if (UserListBox.Items.Count == 2)
+                rps_btn.Visible = true;
             #endregion
 
             client.JoinChat(chatId, profileId);
@@ -68,6 +71,11 @@ namespace PresentationTier
 
             String text = PeopleInChatLabel.Text;
             PeopleInChatLabel.Text = profiles.Count().ToString() + text.Substring(text.IndexOf(" ") -1 + " ".Length);
+
+            if (UserListBox.Items.Count == 2)
+                rps_btn.Visible = true;
+            else
+                rps_btn.Visible = false;
         }
         #endregion
 
@@ -205,7 +213,7 @@ namespace PresentationTier
             client.LeaveChat(chatId, profileId);
         }
 
-        public void Show(bool result)//callback that decides wheather to show frame
+        public void Show(bool result)
         {
             if (result)
             {
