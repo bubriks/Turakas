@@ -19,6 +19,8 @@ namespace PresentationTier
         private IProfileService profileService = new ProfileServiceClient();
         private Profile player1, player2;
         private int gameId, choice = -1;
+        private System.Timers.Timer timer = new System.Timers.Timer();
+        private volatile bool requestStop = false;
 
         public RPSForm(int chatId, int playerId)
         {
@@ -34,6 +36,11 @@ namespace PresentationTier
 
             player1_lbl.Text = player1.Nickname;
             player2_lbl.Text = "PLAYER 2 NOT YET CONNECTED!";
+
+            choice = -1;
+            rockChoice_rb.Checked = false;
+            paperChoice_rb.Checked = false;
+            scissorChoice_rb.Checked = false;
 
         }
         public void Show(bool result)
@@ -64,25 +71,45 @@ namespace PresentationTier
 
         public void Result(int result)
         {
+            player1_lbl.ForeColor = Color.Black;
+            player2_lbl.ForeColor = Color.Black;
+
             switch (result)
             {
                 case -2: //player2 did not make a choice
-                    System.Timers.Timer aTimer1 = new System.Timers.Timer();
-                    aTimer1.Elapsed += new ElapsedEventHandler(OnTimedEvent1);
-                    aTimer1.Interval = 1000;
-                    aTimer1.Enabled = true;
+                    Stop();
+                    timer.Elapsed += new ElapsedEventHandler(OnTimedEvent1);
+                    timer.Interval = 1000;
+                    timer.AutoReset = false;
+                    timer.SynchronizingObject = (this);
+                    Start();
+
+                    anouncer_lbl.Visible = true;
+                    anouncer_lbl.ForeColor = Color.DeepPink;
+                    anouncer_lbl.Text = "PALYER2 DID NOT CHOOSE YET!!!";
                     break;
                 case -1: //player1 did not make a choice
-                    System.Timers.Timer aTimer = new System.Timers.Timer();
-                    aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                    aTimer.Interval = 1;
-                    aTimer.Enabled = true;
+                    Stop();
+                    timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                    timer.Interval = 1000;
+                    timer.AutoReset = false;
+                    timer.SynchronizingObject = (this);
+                    Start();
+
+                    anouncer_lbl.Visible = true;
+                    anouncer_lbl.ForeColor = Color.DeepPink;
+                    anouncer_lbl.Text = "MAKE A CHOICE, FAST!!!";
                     break;
                 case 0: //tie
-                    player1_lbl.ForeColor = Color.AliceBlue;
-                    player2_lbl.ForeColor = Color.AliceBlue;
+                    Stop();
+                    player1_lbl.ForeColor = Color.Yellow;
+                    player2_lbl.ForeColor = Color.Yellow;
 
-                    player1_pic.BackgroundImage = player2_pic.BackgroundImage;
+                    player2_pic.BackgroundImage = player1_pic.BackgroundImage;
+
+                    anouncer_lbl.Visible = true;
+                    anouncer_lbl.ForeColor = Color.Yellow;
+                    anouncer_lbl.Text = "TIE!!!";
                     break;
                 case 1: //player1 wins
                     if (choice == 0)
@@ -93,8 +120,15 @@ namespace PresentationTier
                     else
                         player2_pic.BackgroundImage = Properties.Resources.paper;
 
+                    Stop();
                     player1_lbl.ForeColor = Color.Green;
                     palyer1Points_lbl.Text = (Int32.Parse(palyer1Points_lbl.Text) + 1).ToString();
+                    player1_bar.Value = 0;
+                    player2_bar.Value = 0;
+                    
+                    anouncer_lbl.Visible = true;
+                    anouncer_lbl.ForeColor = Color.Green;
+                    anouncer_lbl.Text = "YOU WIN!!!!";
                     break;
                 default: //payer2 wins
                     if (choice == 0)
@@ -105,16 +139,29 @@ namespace PresentationTier
                     else
                         player2_pic.BackgroundImage = Properties.Resources.rock;
 
+                    Stop();
                     player2_lbl.ForeColor = Color.Green;
                     player2Points_lbl.Text = (Int32.Parse(player2Points_lbl.Text) + 1).ToString();
+                    player1_bar.Value = 0;
+                    player2_bar.Value = 0;
+
+                    anouncer_lbl.Visible = true;
+                    anouncer_lbl.ForeColor = Color.Red;
+                    anouncer_lbl.Text = "YOU LOSE!!!";
                     break;
             }
         }
 
         private void selectChoice_btn_Click(object sender, EventArgs e)
         {
-            if(choice != -1)
+            if (choice != -1)
+            {
                 gameService.MakeChoice(gameId, player1.ProfileID, choice);
+                choice = -1;
+                rockChoice_rb.Checked = false;
+                paperChoice_rb.Checked = false;
+                scissorChoice_rb.Checked = false;
+            }
 
         }
 
@@ -140,41 +187,60 @@ namespace PresentationTier
 
         }
 
+        private void newGame_btn_Click(object sender, EventArgs e)
+        {
+            RPSForm rPSForm = new RPSForm(gameId, player1.ProfileID);
+            Close();
+        }
+
         private void OnTimedEvent(object source, ElapsedEventArgs e) //plaeer1 timer
         {
-            System.Timers.Timer aTimer = new System.Timers.Timer();
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 1000;
-            aTimer.Enabled = true;
-
-            player1_lbl.ForeColor = Color.Yellow;
+            player1_lbl.ForeColor = Color.DeepPink;
             if (player1_bar.Value >= 100) //if time ran out
             {
                 player1_bar.Value = 0; //reset timer to 0
                 gameService.MakeChoice(gameId, player1.ProfileID, new Random().Next(0, 2)); //randomly choose for player
+                Stop();
             }
             else
             {
                 player1_bar.Increment(10);
             }
+            if (!requestStop)
+            {
+               Start();//restart the timer
+            }
         }
         private void OnTimedEvent1(object source, ElapsedEventArgs e) //player2 timer
         {
-            System.Timers.Timer aTimer = new System.Timers.Timer();
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent1);
-            aTimer.Interval = 1000;
-            aTimer.Enabled = true;
-
-            player2_lbl.ForeColor = Color.Yellow;
+            player2_lbl.ForeColor = Color.DeepPink;
             if (player2_bar.Value >= 100) //if time ran out
             {
                 player2_bar.Value = 0; //reset timer to 0
                 gameService.MakeChoice(gameId, player2.ProfileID, new Random().Next(0, 2)); //randomly choose for player
+                Stop();
             }
             else
             {
                 player2_bar.Increment(10);
             }
+            if (!requestStop)
+            {
+                Start();//restart the timer
+            }
+        }
+        private void Stop()
+        {
+            player1_bar.Value = 0; //reset timer to 0
+            player2_bar.Value = 0; //reset timer to 0
+            requestStop = true;
+            timer.Stop();
+        }
+
+        private void Start()
+        {
+            requestStop = false;
+            timer.Start();
         }
     }
 }

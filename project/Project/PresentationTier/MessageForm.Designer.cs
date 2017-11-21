@@ -106,7 +106,6 @@ namespace PresentationTier
             // InviteFriendGroupBox
             // 
             this.InviteFriendGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.InviteFriendGroupBox.Controls.Add(this.rps_btn);
             this.InviteFriendGroupBox.Controls.Add(this.AddButton);
             this.InviteFriendGroupBox.Controls.Add(this.FriendNameTextBox);
             this.InviteFriendGroupBox.Location = new System.Drawing.Point(276, 113);
@@ -118,7 +117,7 @@ namespace PresentationTier
             // 
             // rps_btn
             // 
-            this.rps_btn.Location = new System.Drawing.Point(0, 74);
+            this.rps_btn.Location = new System.Drawing.Point(276, 237);
             this.rps_btn.Name = "rps_btn";
             this.rps_btn.Size = new System.Drawing.Size(75, 23);
             this.rps_btn.TabIndex = 11;
@@ -171,6 +170,7 @@ namespace PresentationTier
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(363, 259);
+            this.Controls.Add(this.rps_btn);
             this.Controls.Add(this.StatusStrip);
             this.Controls.Add(this.InviteFriendGroupBox);
             this.Controls.Add(this.PeopleInChatLabel);
