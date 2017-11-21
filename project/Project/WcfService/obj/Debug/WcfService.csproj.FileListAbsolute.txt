@@ -33,7 +33,6 @@ C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\ob
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.dll
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\youtube_client_secret.json
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.dll

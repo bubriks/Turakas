@@ -120,9 +120,9 @@ namespace DataAccessTier
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw (e);
+                return null;
             }
         }
 

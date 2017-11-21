@@ -28,7 +28,7 @@ namespace PresentationTier
             SignIn_grp.Top = 12;
             SignIn_grp.Left = 12;
 
-            ForgotDetails_grp.Top = 133;
+            ForgotDetails_grp.Top = 136;
             ForgotDetails_grp.Left = 12;
         }
         
@@ -138,7 +138,7 @@ namespace PresentationTier
             }
             else
             {
-                ForgotDetails_grp.Top = 133;
+                ForgotDetails_grp.Top = 136;
                 ForgotDetails_grp.Left = 12;
                 ForgotDetails_grp.Visible = true;
             }

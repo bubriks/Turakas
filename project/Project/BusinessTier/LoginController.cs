@@ -4,6 +4,7 @@ using DataAccessTier;
 using System.Net.Mail;
 using System.Net;
 using System.Data.SqlClient;
+using System.Threading;
 
 namespace BusinessTier
 {
@@ -25,7 +26,8 @@ namespace BusinessTier
 
             try
             {
-                sendEmail(login.Email, subject, body);
+                Thread thread = new Thread(() => sendEmail(login.Email, subject, body));
+                thread.Start();
                 int loginId = dbLogin.CreateLogin(login);
                 Profile profile = new Profile
                 {
@@ -70,7 +72,9 @@ namespace BusinessTier
                 try
                 {
                     logins.Password = tempPass;
-                    sendEmail(logins.Email, subject, body);
+
+                    Thread thread = new Thread(() => sendEmail(logins.Email, subject, body));
+                    thread.Start();
                     dbLogin.UpdateLogin(logins.LoginId, logins);
                     return true;
                 }

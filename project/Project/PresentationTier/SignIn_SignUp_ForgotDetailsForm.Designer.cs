@@ -55,6 +55,7 @@
             this.emailForgot_txt = new System.Windows.Forms.TextBox();
             this.sendForgot_btn = new System.Windows.Forms.Button();
             this.emailForgot_lbl = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SignUp_grp.SuspendLayout();
             this.SignIn_grp.SuspendLayout();
             this.ForgotDetails_grp.SuspendLayout();
@@ -80,23 +81,30 @@
             // 
             // usernameSignIn_txt
             // 
+            this.usernameSignIn_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.usernameSignIn_txt.Location = new System.Drawing.Point(68, 6);
             this.usernameSignIn_txt.Name = "usernameSignIn_txt";
-            this.usernameSignIn_txt.Size = new System.Drawing.Size(154, 20);
+            this.usernameSignIn_txt.Size = new System.Drawing.Size(164, 20);
             this.usernameSignIn_txt.TabIndex = 2;
             // 
             // passwordSignIn_txt
             // 
+            this.passwordSignIn_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.passwordSignIn_txt.Location = new System.Drawing.Point(68, 35);
             this.passwordSignIn_txt.Name = "passwordSignIn_txt";
-            this.passwordSignIn_txt.Size = new System.Drawing.Size(154, 20);
+            this.passwordSignIn_txt.Size = new System.Drawing.Size(164, 20);
             this.passwordSignIn_txt.TabIndex = 3;
             // 
             // signIn_btn
             // 
-            this.signIn_btn.Location = new System.Drawing.Point(6, 86);
+            this.signIn_btn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.signIn_btn.Location = new System.Drawing.Point(6, 107);
             this.signIn_btn.Name = "signIn_btn";
-            this.signIn_btn.Size = new System.Drawing.Size(75, 23);
+            this.signIn_btn.Size = new System.Drawing.Size(85, 23);
             this.signIn_btn.TabIndex = 4;
             this.signIn_btn.Text = "Sign In";
             this.signIn_btn.UseVisualStyleBackColor = true;
@@ -104,9 +112,10 @@
             // 
             // signUp_btn
             // 
-            this.signUp_btn.Location = new System.Drawing.Point(147, 86);
+            this.signUp_btn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.signUp_btn.Location = new System.Drawing.Point(147, 107);
             this.signUp_btn.Name = "signUp_btn";
-            this.signUp_btn.Size = new System.Drawing.Size(75, 23);
+            this.signUp_btn.Size = new System.Drawing.Size(85, 23);
             this.signUp_btn.TabIndex = 5;
             this.signUp_btn.Text = "Sign Up";
             this.signUp_btn.UseVisualStyleBackColor = true;
@@ -137,6 +146,9 @@
             // 
             // registerError_lbl
             // 
+            this.registerError_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.registerError_lbl.AutoSize = true;
             this.registerError_lbl.Location = new System.Drawing.Point(79, 176);
             this.registerError_lbl.Name = "registerError_lbl";
@@ -147,6 +159,9 @@
             // 
             // nicknameSignUpError_lbl
             // 
+            this.nicknameSignUpError_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.nicknameSignUpError_lbl.AutoSize = true;
             this.nicknameSignUpError_lbl.Location = new System.Drawing.Point(79, 114);
             this.nicknameSignUpError_lbl.Name = "nicknameSignUpError_lbl";
@@ -157,6 +172,9 @@
             // 
             // emailSignUpError_lbl
             // 
+            this.emailSignUpError_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.emailSignUpError_lbl.AutoSize = true;
             this.emailSignUpError_lbl.Location = new System.Drawing.Point(82, 77);
             this.emailSignUpError_lbl.Name = "emailSignUpError_lbl";
@@ -167,6 +185,9 @@
             // 
             // usernameSignUpError_lbl
             // 
+            this.usernameSignUpError_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.usernameSignUpError_lbl.AutoSize = true;
             this.usernameSignUpError_lbl.Location = new System.Drawing.Point(79, 33);
             this.usernameSignUpError_lbl.Name = "usernameSignUpError_lbl";
@@ -177,6 +198,9 @@
             // 
             // register_btn
             // 
+            this.register_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.register_btn.Location = new System.Drawing.Point(79, 196);
             this.register_btn.Name = "register_btn";
             this.register_btn.Size = new System.Drawing.Size(75, 23);
@@ -187,6 +211,9 @@
             // 
             // nicknameSignUp_txt
             // 
+            this.nicknameSignUp_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.nicknameSignUp_txt.Location = new System.Drawing.Point(79, 94);
             this.nicknameSignUp_txt.Name = "nicknameSignUp_txt";
             this.nicknameSignUp_txt.Size = new System.Drawing.Size(100, 20);
@@ -194,6 +221,9 @@
             // 
             // emailSignUp_txt
             // 
+            this.emailSignUp_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.emailSignUp_txt.Location = new System.Drawing.Point(79, 61);
             this.emailSignUp_txt.Name = "emailSignUp_txt";
             this.emailSignUp_txt.Size = new System.Drawing.Size(100, 20);
@@ -241,6 +271,9 @@
             // 
             // forgotDetails_lbl
             // 
+            this.forgotDetails_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.forgotDetails_lbl.AutoSize = true;
             this.forgotDetails_lbl.Location = new System.Drawing.Point(108, 58);
             this.forgotDetails_lbl.Name = "forgotDetails_lbl";
@@ -251,6 +284,9 @@
             // 
             // or_lbl
             // 
+            this.or_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.or_lbl.AutoSize = true;
             this.or_lbl.Location = new System.Drawing.Point(108, 91);
             this.or_lbl.Name = "or_lbl";
@@ -260,6 +296,8 @@
             // 
             // SignIn_grp
             // 
+            this.SignIn_grp.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SignIn_grp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.SignIn_grp.Controls.Add(this.signInError_lbl);
             this.SignIn_grp.Controls.Add(this.usernameSignIn_lbl);
             this.SignIn_grp.Controls.Add(this.or_lbl);
@@ -269,14 +307,17 @@
             this.SignIn_grp.Controls.Add(this.usernameSignIn_txt);
             this.SignIn_grp.Controls.Add(this.signIn_btn);
             this.SignIn_grp.Controls.Add(this.passwordSignIn_txt);
-            this.SignIn_grp.Location = new System.Drawing.Point(11, 10);
+            this.SignIn_grp.Location = new System.Drawing.Point(2, -2);
             this.SignIn_grp.Name = "SignIn_grp";
-            this.SignIn_grp.Size = new System.Drawing.Size(222, 120);
+            this.SignIn_grp.Size = new System.Drawing.Size(232, 141);
             this.SignIn_grp.TabIndex = 9;
             this.SignIn_grp.TabStop = false;
             // 
             // signInError_lbl
             // 
+            this.signInError_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.signInError_lbl.AutoSize = true;
             this.signInError_lbl.Location = new System.Drawing.Point(45, 73);
             this.signInError_lbl.Name = "signInError_lbl";
@@ -288,19 +329,23 @@
             // 
             // ForgotDetails_grp
             // 
+            this.ForgotDetails_grp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ForgotDetails_grp.Controls.Add(this.emailForgotError_lbl);
             this.ForgotDetails_grp.Controls.Add(this.emailForgot_txt);
             this.ForgotDetails_grp.Controls.Add(this.sendForgot_btn);
             this.ForgotDetails_grp.Controls.Add(this.emailForgot_lbl);
-            this.ForgotDetails_grp.Location = new System.Drawing.Point(2, 136);
+            this.ForgotDetails_grp.Location = new System.Drawing.Point(2, 145);
             this.ForgotDetails_grp.Name = "ForgotDetails_grp";
-            this.ForgotDetails_grp.Size = new System.Drawing.Size(222, 124);
+            this.ForgotDetails_grp.Size = new System.Drawing.Size(232, 115);
             this.ForgotDetails_grp.TabIndex = 10;
             this.ForgotDetails_grp.TabStop = false;
             this.ForgotDetails_grp.Visible = false;
             // 
             // emailForgotError_lbl
             // 
+            this.emailForgotError_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.emailForgotError_lbl.AutoSize = true;
             this.emailForgotError_lbl.Location = new System.Drawing.Point(47, 52);
             this.emailForgotError_lbl.Name = "emailForgotError_lbl";
@@ -311,16 +356,22 @@
             // 
             // emailForgot_txt
             // 
+            this.emailForgot_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.emailForgot_txt.Location = new System.Drawing.Point(47, 26);
             this.emailForgot_txt.Name = "emailForgot_txt";
-            this.emailForgot_txt.Size = new System.Drawing.Size(169, 20);
+            this.emailForgot_txt.Size = new System.Drawing.Size(179, 20);
             this.emailForgot_txt.TabIndex = 2;
             // 
             // sendForgot_btn
             // 
+            this.sendForgot_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.sendForgot_btn.Location = new System.Drawing.Point(47, 75);
             this.sendForgot_btn.Name = "sendForgot_btn";
-            this.sendForgot_btn.Size = new System.Drawing.Size(75, 23);
+            this.sendForgot_btn.Size = new System.Drawing.Size(85, 30);
             this.sendForgot_btn.TabIndex = 1;
             this.sendForgot_btn.Text = "Send Email";
             this.sendForgot_btn.UseVisualStyleBackColor = true;
@@ -335,6 +386,18 @@
             this.emailForgot_lbl.TabIndex = 0;
             this.emailForgot_lbl.Text = "Email:";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Location = new System.Drawing.Point(2, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(247, 258);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Visible = false;
+            // 
             // SignIn_SignUp_ForgotDetailsForm
             // 
             this.AcceptButton = this.signIn_btn;
@@ -345,6 +408,9 @@
             this.Controls.Add(this.ForgotDetails_grp);
             this.Controls.Add(this.SignIn_grp);
             this.Controls.Add(this.SignUp_grp);
+            this.Controls.Add(this.groupBox1);
+            this.MaximumSize = new System.Drawing.Size(471, 300);
+            this.MinimumSize = new System.Drawing.Size(471, 300);
             this.Name = "SignIn_SignUp_ForgotDetailsForm";
             this.Text = "Login";
             this.SignUp_grp.ResumeLayout(false);
@@ -386,5 +452,6 @@
         private System.Windows.Forms.Label registerError_lbl;
         private System.Windows.Forms.Label signInError_lbl;
         private System.Windows.Forms.Label emailForgotError_lbl;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
