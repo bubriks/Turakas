@@ -3,6 +3,8 @@ using PresentationTier.ProfileServiceReference;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Linq;
+using System.ComponentModel;
+
 namespace PresentationTier
 {
     public partial class ProfileForm : Form

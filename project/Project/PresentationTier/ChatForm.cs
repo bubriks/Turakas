@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using PresentationTier.ChatServiceReference;
 using System.ServiceModel;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace PresentationTier
 {
@@ -38,12 +39,18 @@ namespace PresentationTier
             NrOfUsersTrackBar.TickFrequency = 1;
             #endregion
             ViewProfileButton.BackColor = Color.Pink;
-            if (!client.Online(profileId))
-            {
-                this.Close();
-            }
+            client.Online(profileId);
 
             SearchButton_Click(null, null);
+        }
+
+        #region search
+        private void SearchBox_KeyDown(object sender, KeyEventArgs e)//enter presed in search box
+        {
+            if (e.KeyValue == Convert.ToInt16(Keys.Enter))
+            {
+                SearchButton_Click(null, null);
+            }
         }
 
         private void SearchButton_Click(object sender, EventArgs e)//search button clicked
@@ -67,7 +74,9 @@ namespace PresentationTier
                 ChatListView.Items.Add(row);
             }
         }
+        #endregion
 
+        #region chat
         private void ChatListView_MouseDown(object sender, MouseEventArgs e)//Click on listView item
         {
             if (e.Button == MouseButtons.Right)
@@ -166,13 +175,6 @@ namespace PresentationTier
             SearchButton_Click(null, null);
         }
 
-        private void ViewProfileButton_Click(object sender, EventArgs e)//Goes to profile View
-        {
-            ProfileForm profile = new ProfileForm(profileId, this);
-            Hide();
-            profile.ShowDialog();
-        }
-
         private void ChatListView_MouseDoubleClick(object sender, MouseEventArgs e)//join chat room
         {
             if (e.Button == MouseButtons.Left)
@@ -189,13 +191,15 @@ namespace PresentationTier
                 }
             }
         }
+        #endregion
 
+        #region invite
         public void Notification(Chat chat)//adds new notifications to listbox
         {
             InviteListBox.Items.Add(chat);
         }
 
-        private void InviteListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void InviteListBox_MouseDoubleClick(object sender, MouseEventArgs e)//Notification double clicked
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -213,14 +217,23 @@ namespace PresentationTier
             }
         }
 
-        private void ClearEventsButton_Click(object sender, EventArgs e)
+        private void ClearEventsButton_Click(object sender, EventArgs e)//Clears events
         {
             InviteListBox.Items.Clear();
+        }
+        #endregion
+
+        private void ViewProfileButton_Click(object sender, EventArgs e)//Goes to profile View
+        {
+            ProfileForm profile = new ProfileForm(profileId, this);
+            Hide();
+            profile.ShowDialog();
         }
 
         private void ChatForm_Closing(object sender, CancelEventArgs e)//on close event
         {
             client.Offline(profileId);
+            Application.Exit();
         }
     }
 }

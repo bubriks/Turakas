@@ -11,11 +11,11 @@ namespace WcfService
     [ServiceContract(CallbackContract = typeof(IChatCallBack))]
     public interface IChatService
     {
-        [OperationContract]
-        bool Online(int profileId);
+        [OperationContract(IsOneWay = true)]
+        void Online(int profileId);
 
-        [OperationContract]
-        bool Offline(int profileId);
+        [OperationContract(IsOneWay = true)]
+        void Offline(int profileId);
 
         [OperationContract(IsOneWay = true)]
         void SaveChat(Chat chat);

@@ -130,6 +130,7 @@ namespace PresentationTier
             this.FriendNameTextBox.Name = "FriendNameTextBox";
             this.FriendNameTextBox.Size = new System.Drawing.Size(63, 20);
             this.FriendNameTextBox.TabIndex = 0;
+            this.FriendNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FriendNameTextBox_KeyDown);
             // 
             // StatusStrip
             // 

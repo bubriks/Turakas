@@ -14,15 +14,15 @@ namespace WcfService
         IChatController chatController = new ChatController();
         IProfileController profileController = new ProfileController();
 
-        public bool Online(int profileId)
+        public void Online(int profileId)
         {
             object callbackObj = OperationContext.Current.GetCallbackChannel<IChatCallBack>();
-            return profileController.Online(profileId, callbackObj);
+            profileController.Online(profileId, callbackObj);
         }
 
-        public bool Offline(int profileId)
+        public void Offline(int profileId)
         {
-            return profileController.Offline(profileId);
+            profileController.Offline(profileId);
         }
 
         public void SaveChat(Chat chat)
