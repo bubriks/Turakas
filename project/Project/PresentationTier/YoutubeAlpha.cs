@@ -34,11 +34,22 @@ namespace PresentationTier
         private void button1_Click(object sender, EventArgs e)
         {
             ytUrl = textBox1.Text;
-           string vidTitle = youtubeServiceClient.GetVideoInfo(VideoId);
-            label1.Text = vidTitle;
-            Console.WriteLine(VideoId);
-            Console.ReadLine();
-            webBrowser1.Navigate($"http://www.youtube.com/v/" + VideoId+ "&version=3");
+           //string vidTitle = youtubeServiceClient.GetVideoInfo(VideoId);
+            //label1.Text = vidTitle;
+            //Console.WriteLine(VideoId);
+            //Console.ReadLine();
+            //webBrowser1.Navigate("file:///C:/Users/Paracetamax/Desktop/New%20Text%20Document.html");
+            
+            var page = $@"
+        <html>
+            <body>
+                <iframe width='560' height='315'
+                    src='https//www.youtube.com/embed/{VideoId}' frameborder='0'>
+                </iframe>
+            </body>
+        <html>";
+            webBrowser1.DocumentText = page;
+            webBrowser1.ScriptErrorsSuppressed = true;
         }
     }
 }
