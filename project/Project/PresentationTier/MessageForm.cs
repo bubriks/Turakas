@@ -62,6 +62,11 @@ namespace PresentationTier
 
         public void GetOnlineProfiles(Profile[] profiles)//gets all users online
         {
+            if (UserListBox.Items.Count > 2)
+                rps_btn.Visible = false;
+            else
+                rps_btn.Visible = false;
+
             UserListBox.Items.Clear();
             foreach (Profile profile in profiles)
             {
