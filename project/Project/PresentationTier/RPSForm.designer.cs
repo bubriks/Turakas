@@ -54,6 +54,7 @@
             this.myBar_lbl = new System.Windows.Forms.Label();
             this.newGame_btn = new System.Windows.Forms.Button();
             this.newGame_lbl = new System.Windows.Forms.Label();
+            this.anouncer_lbl = new System.Windows.Forms.Label();
             this.choice_pnl.SuspendLayout();
             this.lastRound_grp.SuspendLayout();
             this.player2_pnl.SuspendLayout();
@@ -100,6 +101,7 @@
             // 
             // choice_pnl
             // 
+            this.choice_pnl.Controls.Add(this.anouncer_lbl);
             this.choice_pnl.Controls.Add(this.rockChoice_rb);
             this.choice_pnl.Controls.Add(this.scissorChoice_rb);
             this.choice_pnl.Controls.Add(this.selectChoice_btn);
@@ -307,6 +309,7 @@
             this.newGame_btn.Size = new System.Drawing.Size(40, 40);
             this.newGame_btn.TabIndex = 22;
             this.newGame_btn.UseVisualStyleBackColor = true;
+            this.newGame_btn.Click += new System.EventHandler(this.newGame_btn_Click);
             // 
             // newGame_lbl
             // 
@@ -316,6 +319,16 @@
             this.newGame_lbl.Size = new System.Drawing.Size(57, 13);
             this.newGame_lbl.TabIndex = 23;
             this.newGame_lbl.Text = "Play Again";
+            // 
+            // anouncer_lbl
+            // 
+            this.anouncer_lbl.AutoSize = true;
+            this.anouncer_lbl.Location = new System.Drawing.Point(116, 84);
+            this.anouncer_lbl.Name = "anouncer_lbl";
+            this.anouncer_lbl.Size = new System.Drawing.Size(68, 13);
+            this.anouncer_lbl.TabIndex = 4;
+            this.anouncer_lbl.Text = "anouncer_lbl";
+            this.anouncer_lbl.Visible = false;
             // 
             // RPSForm
             // 
@@ -381,6 +394,7 @@
         private System.Windows.Forms.Label myBar_lbl;
         private System.Windows.Forms.Button newGame_btn;
         private System.Windows.Forms.Label newGame_lbl;
+        private System.Windows.Forms.Label anouncer_lbl;
     }
 }
 

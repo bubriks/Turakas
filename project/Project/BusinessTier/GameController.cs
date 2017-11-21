@@ -31,15 +31,14 @@ namespace BusinessTier
                         return 1;//joined
                     }
                     else
-                    if (game.Player2 == null)
+                    if (game.Player2 == null && game.Player1.ProfileID != profileId)
                     {
                         Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
                         user.CallBack = callback;//adds callback object to it
                         game.Player2 = user;//adds user to game
                         return 2;//joined
                     }
-                    else
-                        return -1;//person is in game already
+                    return -1;//person is in game already
                 }
             }
             catch (Exception)//Game isnt in games list
@@ -118,12 +117,24 @@ namespace BusinessTier
                     if (game.Choice2 != -1) //if player 2 made a choice
                     {
                         if ((game.Choice1 == 0 && game.Choice2 == 2) || (game.Choice1 == 1 && game.Choice2 == 0) || (game.Choice1 == 2 && game.Choice2 == 0)) // player1 wins
+                        {
+                            game.Choice1 = -1;
+                            game.Choice2 = -1;
                             return 1;
+                        }
                         else
                           if (game.Choice1 == game.Choice2) //tie
+                        {
+                            game.Choice1 = -1;
+                            game.Choice2 = -1;
                             return 0;
+                        }
                         else
+                        {
+                            game.Choice1 = -1;
+                            game.Choice2 = -1;
                             return 2;
+                        }
                     }
                     else
                         return -2; //player2 did not make a choice
