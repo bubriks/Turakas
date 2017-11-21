@@ -62,18 +62,69 @@ namespace WcfService
         {
             Profile player1 = gameController.FindGame(gameId).Player1;
             Profile player2 = gameController.FindGame(gameId).Player2;
-
-            if (player1 != null)
+            int result = gameController.MakeChoice(gameId, profileId, choice);
+            switch (result)
             {
-                IGameCallBack player1Callback = (IGameCallBack)player1.CallBack;
-                player1Callback.Result(gameController.MakeChoice(gameId, profileId, choice));
+                case -2: //player2 did not make a choice
+                    if (player1 != null)
+                    {
+                        IGameCallBack player1Callback = (IGameCallBack)player1.CallBack;
+                        player1Callback.Result(-2);
+                    }
+                    if (player2 != null)
+                    {
+                        IGameCallBack player2Callback = (IGameCallBack)player2.CallBack;
+                        player2Callback.Result(-1);
+                    }
+                    break;
+                case -1: //player1 did not make a choice if (player1 != null)
+                    {
+                        IGameCallBack player1Callback = (IGameCallBack)player1.CallBack;
+                        player1Callback.Result(-1);
+                    }
+                    if (player2 != null)
+                    {
+                        IGameCallBack player2Callback = (IGameCallBack)player2.CallBack;
+                        player2Callback.Result(-2);
+                    }
+                    break;
+                case 1: //player1 won
+                    if (player1 != null)
+                    {
+                        IGameCallBack player1Callback = (IGameCallBack)player1.CallBack;
+                        player1Callback.Result(1);
+                    }
+                    if (player2 != null)
+                    {
+                        IGameCallBack player2Callback = (IGameCallBack)player2.CallBack;
+                        player2Callback.Result(2);
+                    }
+                    break;
+                case 2: //player2 won
+                    if (player1 != null)
+                    {
+                        IGameCallBack player1Callback = (IGameCallBack)player1.CallBack;
+                        player1Callback.Result(2);
+                    }
+                    if (player2 != null)
+                    {
+                        IGameCallBack player2Callback = (IGameCallBack)player2.CallBack;
+                        player2Callback.Result(1);
+                    }
+                    break;
+                default: //tie
+                    if (player1 != null)
+                    {
+                        IGameCallBack player1Callback = (IGameCallBack)player1.CallBack;
+                        player1Callback.Result(result);
+                    }
+                    if (player2 != null)
+                    {
+                        IGameCallBack player2Callback = (IGameCallBack)player2.CallBack;
+                        player2Callback.Result(result);
+                    }
+                    break;
             }
-            if (player2 != null)
-            {
-                IGameCallBack player2Callback = (IGameCallBack)player2.CallBack;
-                player2Callback.Result(gameController.MakeChoice(gameId, player2.ProfileID, choice));
-            }
-
         }
     }
 }
