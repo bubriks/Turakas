@@ -122,3 +122,5 @@ D:\Workspace\Project\BusinessTier\bin\Debug\Newtonsoft.Json.xml
 D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
 D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
 D:\Workspace\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
+C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csprojResolveAssemblyReference.cache
+C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.pdb
