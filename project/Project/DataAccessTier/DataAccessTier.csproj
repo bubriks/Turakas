@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbActivity.cs" />
     <Compile Include="DbChat.cs" />
     <Compile Include="DbConnection.cs" />
     <Compile Include="DbLogin.cs" />
