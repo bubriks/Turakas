@@ -90,6 +90,7 @@ namespace PresentationTier
             this.UserListBox.FormattingEnabled = true;
             this.UserListBox.Location = new System.Drawing.Point(276, 38);
             this.UserListBox.Name = "UserListBox";
+            this.UserListBox.Enabled = false;
             this.UserListBox.Size = new System.Drawing.Size(75, 69);
             this.UserListBox.TabIndex = 6;
             // 

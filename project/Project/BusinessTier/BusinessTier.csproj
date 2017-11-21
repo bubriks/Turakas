@@ -84,14 +84,12 @@
     <Compile Include="Interfaces\IMessageController.cs" />
     <Compile Include="Interfaces\INotificationController.cs" />
     <Compile Include="Interfaces\IProfileController.cs" />
-    <Compile Include="Interfaces\IRelationshipController.cs" />
     <Compile Include="Interfaces\ISongController.cs" />
     <Compile Include="LoginController.cs" />
     <Compile Include="MessageController.cs" />
     <Compile Include="NotificationController.cs" />
     <Compile Include="ProfileController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RelationshipController.cs" />
     <Compile Include="SongController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +105,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <Content Include="youtube_client_secret.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

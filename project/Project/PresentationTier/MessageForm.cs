@@ -66,8 +66,11 @@ namespace PresentationTier
             foreach (Profile profile in profiles)
             {
                 UserListBox.Items.Add(profile);
+                if (profile.ProfileID == profileId)
+                {
+                    UserListBox.SelectedIndex = UserListBox.Items.Count - 1;
+                }
             }
-            this.UserListBox.SelectedIndex = this.UserListBox.Items.Count - 1;
 
             String text = PeopleInChatLabel.Text;
             PeopleInChatLabel.Text = profiles.Count().ToString() + text.Substring(text.IndexOf(" ") -1 + " ".Length);
@@ -80,18 +83,6 @@ namespace PresentationTier
         #endregion
 
         #region Add message
-        private void MessageTextBox_KeyDown(object sender, KeyEventArgs e)//Write or send
-        {
-            if (e.KeyValue == Convert.ToInt16(Keys.Enter))
-            {
-                SendButton_Click(null, null);
-            }
-            else
-            {
-                client.Writing(chatId);
-            }
-        }
-
         public void WritingMessage()//write message call back
         {
             toolStripStatusLabel1.Text = "Someone is writing";
@@ -102,6 +93,18 @@ namespace PresentationTier
         private void Timer_Tick(object sender, EventArgs e)//timer if nobody writing than method runs
         {
             toolStripStatusLabel1.Text = "Nobody is writing";
+        }
+
+        private void MessageTextBox_KeyDown(object sender, KeyEventArgs e)//Write or send
+        {
+            if (e.KeyValue == Convert.ToInt16(Keys.Enter))
+            {
+                SendButton_Click(null, null);
+            }
+            else
+            {
+                client.Writing(chatId);
+            }
         }
 
         private void SendButton_Click(object sender, EventArgs e)//send message
