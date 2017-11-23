@@ -13,12 +13,6 @@ namespace DataTier
         public int ActivityId { get; set; }
 
         [DataMember]
-        public int ArtistId { get; set; }
-
-        [DataMember]
-        public int GenreId { get; set; }
-
-        [DataMember]
         public string Name { get; set; }
 
         [DataMember]

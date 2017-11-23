@@ -48,7 +48,7 @@ namespace PresentationTier
             //webBrowser1.Navigate($"https://www.youtube.com/embed{VideoId}");
             
             const string page1 = "<html><head><title></title></head><body>{0}</body></html>";
-            webBrowser1.DocumentText = string.Format(page1, $"<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/{VideoId}?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>");
+            webBrowser1.DocumentText = string.Format(page1, $"<iframe width=\"300\" height=\"240\" src=\"http://www.youtube.com/embed/{VideoId}?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>");
         }
         
         private void SetBrowserFeatureControlKey(string feature, string appName, uint value)
@@ -63,7 +63,6 @@ namespace PresentationTier
         
         private void SetBrowserFeatureControl()
         {
-            // http://msdn.microsoft.com/en-us/library/ee330720(v=vs.85).aspx
 
             // FeatureControl settings are per-process
             var fileName = System.IO.Path.GetFileName(Process.GetCurrentProcess().MainModule.FileName);

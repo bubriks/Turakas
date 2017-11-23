@@ -19,7 +19,7 @@ namespace BusinessTier
             Song song = dbSong.FindSongByURL(url);
             if (song != null)
             {
-                dbSong.AddSong(song.ActivityId, song.ArtistId, song.GenreId, song.Name, song.Duration, song.Url);
+                dbSong.AddSong(song.ActivityId, song.Name, song.Duration, song.Url);
             }
         }
 
