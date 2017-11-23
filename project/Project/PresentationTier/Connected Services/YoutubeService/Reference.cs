@@ -16,7 +16,7 @@ namespace PresentationTier.YoutubeService {
     public interface IYoutubeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddSong", ReplyAction="http://tempuri.org/IYoutubeService/AddSongResponse")]
-        void AddSong(int activityID, int artistID, int genreID, string name, int duration, string url);
+        void AddSong(int activityID,string name, int duration, string url);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddSong", ReplyAction="http://tempuri.org/IYoutubeService/AddSongResponse")]
         System.Threading.Tasks.Task AddSongAsync(int activityID, int artistID, int genreID, string name, int duration, string url);
@@ -55,8 +55,8 @@ namespace PresentationTier.YoutubeService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddSong(int activityID, int artistID, int genreID, string name, int duration, string url) {
-            base.Channel.AddSong(activityID, artistID, genreID, name, duration, url);
+        public void AddSong(int activityID, string name, int duration, string url) {
+            base.Channel.AddSong(activityID, name, duration, url);
         }
         
         public System.Threading.Tasks.Task AddSongAsync(int activityID, int artistID, int genreID, string name, int duration, string url) {

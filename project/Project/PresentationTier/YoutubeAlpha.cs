@@ -42,11 +42,7 @@ namespace PresentationTier
             ytUrl = textBox1.Text;
             string vidTitle = youtubeServiceClient.GetVideoInfo(VideoId);
             label1.Text = vidTitle;
-            //Console.WriteLine(VideoId);
-            //Console.ReadLine();
-            //webBrowser1.Navigate($"https://www.youtube.com/watch?v={VideoId}");
-            //webBrowser1.Navigate($"https://www.youtube.com/embed{VideoId}");
-            
+            youtubeServiceClient.AddSong(0, vidTitle, 0, VideoId);
             const string page1 = "<html><head><title></title></head><body>{0}</body></html>";
             webBrowser1.DocumentText = string.Format(page1, $"<iframe width=\"300\" height=\"240\" src=\"http://www.youtube.com/embed/{VideoId}?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>");
         }
