@@ -9,19 +9,20 @@ using DataTier;
 namespace WcfService
 {
     [ServiceContract]
-    public interface ILoginService
+    public interface IGroupService
     {
         [OperationContract]
-        int CreateLogin(Login login, string nickname);
+        bool CreateGroup(String name, Profile profile);
         [OperationContract]
-        int Authenticate(Login login);
+        bool DeleteGroup(Profile profile);
         [OperationContract]
-        bool ForgotDetails(string email);
+        bool AddMember(Profile profile);
         [OperationContract]
-        Login FindLogin(string what, int by);
+        bool RemoveMember(Profile profile);
         [OperationContract]
-        bool UpdateLogin(int id, Login login);
+        List<Profile> GetOnlineUsers();
         [OperationContract]
-        bool DeleteLogin(int loginId);
+        List<Profile> GetAllUsers();
+
     }
 }

@@ -149,7 +149,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IYoutubeService_GetVideoInfo_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IYoutubeService_GetVideoTitle_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -172,7 +172,53 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IYoutubeService_GetVideoInfo_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IYoutubeService_GetVideoTitle_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IYoutubeService_GetVideoDuration_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IYoutubeService_GetVideoDuration_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -207,20 +253,30 @@
   <wsdl:message name="IYoutubeService_AddSong_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddSongResponse" />
   </wsdl:message>
-  <wsdl:message name="IYoutubeService_GetVideoInfo_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetVideoInfo" />
+  <wsdl:message name="IYoutubeService_GetVideoTitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoTitle" />
   </wsdl:message>
-  <wsdl:message name="IYoutubeService_GetVideoInfo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetVideoInfoResponse" />
+  <wsdl:message name="IYoutubeService_GetVideoTitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYoutubeService_GetVideoDuration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoDuration" />
+  </wsdl:message>
+  <wsdl:message name="IYoutubeService_GetVideoDuration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoDurationResponse" />
   </wsdl:message>
   <wsdl:portType name="IYoutubeService">
     <wsdl:operation name="AddSong">
       <wsdl:input wsaw:Action="http://tempuri.org/IYoutubeService/AddSong" message="tns:IYoutubeService_AddSong_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IYoutubeService/AddSongResponse" message="tns:IYoutubeService_AddSong_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetVideoInfo">
-      <wsdl:input wsaw:Action="http://tempuri.org/IYoutubeService/GetVideoInfo" message="tns:IYoutubeService_GetVideoInfo_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IYoutubeService/GetVideoInfoResponse" message="tns:IYoutubeService_GetVideoInfo_OutputMessage" />
+    <wsdl:operation name="GetVideoTitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYoutubeService/GetVideoTitle" message="tns:IYoutubeService_GetVideoTitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYoutubeService/GetVideoTitleResponse" message="tns:IYoutubeService_GetVideoTitle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVideoDuration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYoutubeService/GetVideoDuration" message="tns:IYoutubeService_GetVideoDuration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYoutubeService/GetVideoDurationResponse" message="tns:IYoutubeService_GetVideoDuration_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSDualHttpBinding_IYoutubeService" type="tns:IYoutubeService">
@@ -237,14 +293,25 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetVideoInfo">
-      <soap12:operation soapAction="http://tempuri.org/IYoutubeService/GetVideoInfo" style="document" />
+    <wsdl:operation name="GetVideoTitle">
+      <soap12:operation soapAction="http://tempuri.org/IYoutubeService/GetVideoTitle" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IYoutubeService_GetVideoInfo_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IYoutubeService_GetVideoTitle_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IYoutubeService_GetVideoInfo_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IYoutubeService_GetVideoTitle_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVideoDuration">
+      <soap12:operation soapAction="http://tempuri.org/IYoutubeService/GetVideoDuration" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IYoutubeService_GetVideoDuration_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IYoutubeService_GetVideoDuration_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -255,7 +322,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost/YoutubeService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-GOARNTN\bubri</Upn>
+          <Upn>DESKTOP-HGGIHOF\Captain Jack Sparrow</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

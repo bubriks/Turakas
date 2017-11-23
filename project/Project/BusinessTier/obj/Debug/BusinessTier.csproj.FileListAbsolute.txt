@@ -22,6 +22,9 @@ C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\Busin
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.pdb
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.pdb
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
 D:\Workspace\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
 D:\Workspace\Project\BusinessTier\bin\Debug\BusinessTier.dll
 D:\Workspace\Project\BusinessTier\bin\Debug\BusinessTier.pdb
@@ -44,7 +47,6 @@ C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csproj.CoreCompileInputs.cache
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.pdb
-C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\youtube_client_secret.json
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.dll
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.PlatformServices.dll
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Core.dll
@@ -143,6 +145,31 @@ C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\bin\Debu
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.v3.xml
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
-C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
-C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
-C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\youtube_client_secret.json
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\youtube_client_secret.json
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.pdb
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\DataTier.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Core.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.v3.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.GData.Client.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.GData.Extensions.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.GData.YouTube.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.pdb
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\DataTier.pdb
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.xml
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.xml
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Core.xml
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.v3.xml
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csprojResolveAssemblyReference.cache
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csproj.CoreCompileInputs.cache
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.pdb
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
+C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll

@@ -1,36 +1,31 @@
-﻿using PresentationTier.LoginServiceReference;
-using PresentationTier.ProfileServiceReference;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using System.Linq;
-using System.ComponentModel;
+using PresentationTier.ProfileServiceReference;
 
 namespace PresentationTier
 {
     public partial class ProfileForm : Form
     {
-        private ILoginService loginService = new LoginServiceClient();
         private IProfileService profileService = new ProfileServiceClient();
         private int profileId;
-
+        
         private Profile profile;
-        private Login login;
         private Form chat;
 
         public ProfileForm(int profileId, Form chat)
         {
-            this.chat = chat;
             this.profileId = profileId;
+            this.chat = chat;
             InitializeComponent();
 
             password_txt.PasswordChar = '☭';
             confirmPassword_txt.PasswordChar = '卐';
-
+            
             profile = profileService.ReadProfile(profileId.ToString(), 1);
-            login = loginService.FindLogin(profileId.ToString(), 1);
 
-        username_txt.Text = login.Username;
-            email_txt.Text = login.Email;
+            username_txt.Text = profile.Username;
+            email_txt.Text = profile.Email;
             nickname_txt.Text = profile.Nickname;
         }
 
@@ -53,16 +48,16 @@ namespace PresentationTier
                 string email = email_txt.Text;
                 string nickname = nickname_txt.Text;
 
-                if (!username.Equals(login.Username) || !password.Equals("") || !email.Equals(login.Email))
+                if (!username.Equals(profile.Username) || !password.Equals("") || !email.Equals(profile.Email) || !nickname.Equals(profile.Nickname))
                 {
 
-                    Login login = new Login
+                    Profile profile = new Profile
                     {
                         Username = username,
                         Password = password,
                         Email = email,
                     };
-                    if (loginService.UpdateLogin(profileId, login))
+                    if (profileService.UpdateProfile(profileId, profile))
                     {
                         saveError_lbl.Visible = true;
                         saveError_lbl.Text = "New info succesfuly saved!";
@@ -75,27 +70,7 @@ namespace PresentationTier
                         saveError_lbl.ForeColor = Color.Red;
                     }
                 }
-
-                if (!nickname.Equals(profile.Nickname))
-                {
-
-                    Profile profile = new Profile
-                    {
-                        Nickname = nickname,
-                    };
-                    if (profileService.UpdateProfile(profileId, profile))
-                    {
-                        saveError_lbl.Visible = true;
-                        saveError_lbl.Text = "New info succesfuly saved!";
-                        saveError_lbl.ForeColor = Color.Green;
-                    }
-                    else
-                    {
-                        saveError_lbl.Visible = true;
-                        saveError_lbl.Text = "Something went wrong with ProfileInfo!!";
-                        saveError_lbl.ForeColor = Color.Red;
-                    }
-                }
+                
             }
             else
             {
@@ -138,7 +113,7 @@ namespace PresentationTier
             string passwordError = CheckPassword(username_txt.Text, password_txt.Text);
 
             #region username checking
-            if (!login.Username.Equals(username_txt.Text))
+            if (!profile.Username.Equals(username_txt.Text))
             {
                 string usernameError = CheckUsername(username_txt.Text);
                 if (!usernameError.Equals(""))
@@ -172,7 +147,7 @@ namespace PresentationTier
             }
             #endregion
             #region email checking
-            if (!login.Email.Equals(email_txt.Text))
+            if (!profile.Email.Equals(email_txt.Text))
             {
                 string emailError = CheckEmail(email_txt.Text);
                 if (!emailError.Equals(""))
@@ -248,7 +223,7 @@ namespace PresentationTier
                 if (!(email.Contains('@') && email.Contains('.')))
                     error += "Invalid email!";
                 else
-                if (loginService.FindLogin(email, 3) != null)
+                if (profileService.ReadProfile(email, 3) != null)
                     error += "Email allready in records!";
             }
             else
@@ -262,7 +237,7 @@ namespace PresentationTier
             if (nickname.Length < 3)
                 error += ("Nickname must be at least 3 characters!");
             else
-            if (profileService.ReadProfile(nickname, 2) != null)
+            if (profileService.ReadProfile(nickname, 4) != null)
                 error += ("Nickname already in use!");
             return error;
         }
@@ -282,7 +257,7 @@ namespace PresentationTier
                                      MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                if (loginService.DeleteLogin(profileId))
+                if (profileService.DeleteProfile(profileId))
                 { 
                     deleteError_lbl.ForeColor = Color.Green;
                     deleteError_lbl.Text = "Succesfull!";
@@ -299,6 +274,13 @@ namespace PresentationTier
                 }
                 deleteError_lbl.Visible = true;
             }
+        }
+
+        private void btnGroups_Click(object sender, System.EventArgs e)
+        {
+            GroupForm group = new GroupForm(profileId, this);
+            Hide();
+            group.ShowDialog();
         }
     }
 }

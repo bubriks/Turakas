@@ -3,9 +3,6 @@
   <xs:element name="AddSong">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="activityID" type="xs:int" />
-        <xs:element minOccurs="0" name="artistID" type="xs:int" />
-        <xs:element minOccurs="0" name="genreID" type="xs:int" />
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="duration" type="xs:int" />
         <xs:element minOccurs="0" name="url" nillable="true" type="xs:string" />
@@ -14,20 +11,36 @@
   </xs:element>
   <xs:element name="AddSongResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddSongResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetVideoInfo">
+  <xs:element name="GetVideoTitle">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="videoId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetVideoInfoResponse">
+  <xs:element name="GetVideoTitleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetVideoInfoResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="GetVideoTitleResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVideoDuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="videoId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVideoDurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVideoDurationResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

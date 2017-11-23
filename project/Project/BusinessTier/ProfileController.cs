@@ -1,7 +1,10 @@
-﻿using DataTier;
+﻿using System;
+using DataTier;
 using DataAccessTier;
+using System.Net.Mail;
+using System.Net;
+using System.Threading;
 using System.Collections.Generic;
-using System;
 
 namespace BusinessTier
 {
@@ -9,10 +12,146 @@ namespace BusinessTier
     {
         private DbProfile dbProfile;
         private static List<Profile> users = new List<Profile>();
-
         public ProfileController()
         {
             dbProfile = new DbProfile();
+        }
+
+        public int CreateProfile(Profile profile)
+        {
+            string tempPass = RandomPassword();
+            profile.Password = tempPass;
+            string subject = ("Your Temporary Password is:");
+            string body = "Hello "+ profile.Nickname +", " + "\nYour USERNAME IS: " + profile.Username + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
+
+            try
+            {
+                Thread thread = new Thread(() => sendEmail(profile.Email, subject, body));
+                thread.Start();
+                int loginId = dbProfile.CreateProfile(profile);
+                return loginId;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+            
+        }
+
+        public int Authenticate(Profile login)
+        {
+            int loginId = dbProfile.Authenticate(login);
+            return loginId;
+        }
+
+        /// <summary>
+        /// Changes
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool ForgotDetails(string email)
+        {
+            try
+            {
+                Profile profiles = dbProfile.ReadProfile(email, 3);
+            string tempPass = RandomPassword();
+            string subject = ("Your Login Details are:");
+            string body = "Hello, " + "\nYour username is: " + profiles.Nickname + "\nYour USERNAME IS: " + profiles.Username + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
+
+                //Creates new starnsaction
+                try
+                {
+                    profiles.Password = tempPass;
+
+                    Thread thread = new Thread(() => sendEmail(profiles.Email, subject, body));
+                    thread.Start();
+                    dbProfile.UpdateProfile(profiles.ProfileID, profiles);
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return false;
+        }
+
+        public Profile ReadProfile(string what, int by)
+        {
+            return dbProfile.ReadProfile(what, by);
+        }
+        
+        public bool UpdateProfile(int id, Profile profile)
+        {
+            return dbProfile.UpdateProfile(id, profile);
+        }
+
+        public bool DeleteProfile(int profileId)
+        {
+            return dbProfile.DeleteProfile(profileId);
+        }
+
+        /// <summary>
+        /// Sends email with the temporary login code
+        /// </summary>
+        /// <param name="email">address to which the email should be sent</param>
+        /// <param name="subject">subject for the email</param>
+        /// <param name ="body">body for the email</param>param>
+        /// <returns>true if succeded, false otherwise and prints error in console</returns>
+        private  void sendEmail(string email, string subject, string body)
+        {
+            try
+            {
+                var fromAddress = new MailAddress("uchouseemail@gmail.com", "noreply_DigitalDose");
+                var toAddress = new MailAddress(email, "To User");
+                const string fromPassword = "UcHousePassword1234";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                     UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw (e);
+            }
+        }
+
+        /// <summary>
+        /// Generates the temporaryPassword.
+        /// </summary>
+        /// <note>because it uses the GUID, it guarantees that in 10 million generated strings, there wont be any repetition</note>
+        /// <returns></returns>
+        private string RandomPassword()
+        {
+            Guid g = Guid.NewGuid();
+            string GuidString = Convert.ToBase64String(g.ToByteArray());
+            GuidString = GuidString.Replace("=", "");
+            GuidString = GuidString.Replace("+", "");
+
+            return GuidString;
         }
 
         public bool Online(int profileId, object obj)
@@ -60,19 +199,5 @@ namespace BusinessTier
             return user;
         }
 
-        public bool CreateProfile(Profile profile)
-        {
-            return dbProfile.CreateProfile(profile);
-        }
-
-        public Profile ReadProfile(string what, int by)
-        {
-            return dbProfile.ReadProfile(what, by);
-        }
-
-        public bool UpdateProfile(int profileId, Profile profile)
-        {
-            return dbProfile.UpdateProfile(profileId, profile);
-        }
     }
 }

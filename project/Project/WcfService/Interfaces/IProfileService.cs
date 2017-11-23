@@ -1,10 +1,10 @@
-﻿using System;
+﻿using DataTier;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using DataTier;
 
 namespace WcfService
 {
@@ -12,10 +12,16 @@ namespace WcfService
     public interface IProfileService
     {
         [OperationContract]
-        bool CreateProfile(Profile profile);
+        int CreateProfile(Profile profile);
+        [OperationContract]
+        int Authenticate(Profile profile);
+        [OperationContract]
+        bool ForgotDetails(string email);
         [OperationContract]
         Profile ReadProfile(string what, int by);
         [OperationContract]
-        bool UpdateProfile(int profileId, Profile profile);
+        bool UpdateProfile(int id, Profile profile);
+        [OperationContract]
+        bool DeleteProfile(int profileId);
     }
 }

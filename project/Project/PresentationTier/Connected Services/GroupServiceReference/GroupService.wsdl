@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="LoginService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_policy">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GroupService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
@@ -103,7 +103,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_CreateLogin_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_CreateGroup_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -126,7 +126,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_CreateLogin_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_CreateGroup_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -149,7 +149,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_Authenticate_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_DeleteGroup_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -172,7 +172,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_Authenticate_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_DeleteGroup_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -195,7 +195,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_ForgotDetails_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_AddMember_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -218,7 +218,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_ForgotDetails_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_AddMember_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -241,7 +241,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_FindLogin_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_RemoveMember_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -264,7 +264,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_FindLogin_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_RemoveMember_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -287,7 +287,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_UpdateLogin_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_GetOnlineUsers_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -310,7 +310,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_UpdateLogin_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_GetOnlineUsers_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -333,7 +333,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_DeleteLogin_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_GetAllUsers_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -356,7 +356,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ILoginService_DeleteLogin_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGroupService_GetAllUsers_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -381,150 +381,150 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost/LoginService?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost/LoginService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost/LoginService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataTier" />
+      <xsd:import schemaLocation="http://localhost/GroupService?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/GroupService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/GroupService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataTier" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="ILoginService_CreateLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateLogin" />
+  <wsdl:message name="IGroupService_CreateGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateGroup" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_CreateLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateLoginResponse" />
+  <wsdl:message name="IGroupService_CreateGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateGroupResponse" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_Authenticate_InputMessage">
-    <wsdl:part name="parameters" element="tns:Authenticate" />
+  <wsdl:message name="IGroupService_DeleteGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroup" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_Authenticate_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
+  <wsdl:message name="IGroupService_DeleteGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroupResponse" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_ForgotDetails_InputMessage">
-    <wsdl:part name="parameters" element="tns:ForgotDetails" />
+  <wsdl:message name="IGroupService_AddMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMember" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_ForgotDetails_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ForgotDetailsResponse" />
+  <wsdl:message name="IGroupService_AddMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddMemberResponse" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_FindLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindLogin" />
+  <wsdl:message name="IGroupService_RemoveMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMember" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_FindLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindLoginResponse" />
+  <wsdl:message name="IGroupService_RemoveMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMemberResponse" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_UpdateLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateLogin" />
+  <wsdl:message name="IGroupService_GetOnlineUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineUsers" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_UpdateLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateLoginResponse" />
+  <wsdl:message name="IGroupService_GetOnlineUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineUsersResponse" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_DeleteLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteLogin" />
+  <wsdl:message name="IGroupService_GetAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
   </wsdl:message>
-  <wsdl:message name="ILoginService_DeleteLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteLoginResponse" />
+  <wsdl:message name="IGroupService_GetAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
   </wsdl:message>
-  <wsdl:portType name="ILoginService">
-    <wsdl:operation name="CreateLogin">
-      <wsdl:input wsaw:Action="http://tempuri.org/ILoginService/CreateLogin" message="tns:ILoginService_CreateLogin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ILoginService/CreateLoginResponse" message="tns:ILoginService_CreateLogin_OutputMessage" />
+  <wsdl:portType name="IGroupService">
+    <wsdl:operation name="CreateGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGroupService/CreateGroup" message="tns:IGroupService_CreateGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGroupService/CreateGroupResponse" message="tns:IGroupService_CreateGroup_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Authenticate">
-      <wsdl:input wsaw:Action="http://tempuri.org/ILoginService/Authenticate" message="tns:ILoginService_Authenticate_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ILoginService/AuthenticateResponse" message="tns:ILoginService_Authenticate_OutputMessage" />
+    <wsdl:operation name="DeleteGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGroupService/DeleteGroup" message="tns:IGroupService_DeleteGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGroupService/DeleteGroupResponse" message="tns:IGroupService_DeleteGroup_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ForgotDetails">
-      <wsdl:input wsaw:Action="http://tempuri.org/ILoginService/ForgotDetails" message="tns:ILoginService_ForgotDetails_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ILoginService/ForgotDetailsResponse" message="tns:ILoginService_ForgotDetails_OutputMessage" />
+    <wsdl:operation name="AddMember">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGroupService/AddMember" message="tns:IGroupService_AddMember_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGroupService/AddMemberResponse" message="tns:IGroupService_AddMember_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FindLogin">
-      <wsdl:input wsaw:Action="http://tempuri.org/ILoginService/FindLogin" message="tns:ILoginService_FindLogin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ILoginService/FindLoginResponse" message="tns:ILoginService_FindLogin_OutputMessage" />
+    <wsdl:operation name="RemoveMember">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGroupService/RemoveMember" message="tns:IGroupService_RemoveMember_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGroupService/RemoveMemberResponse" message="tns:IGroupService_RemoveMember_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateLogin">
-      <wsdl:input wsaw:Action="http://tempuri.org/ILoginService/UpdateLogin" message="tns:ILoginService_UpdateLogin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ILoginService/UpdateLoginResponse" message="tns:ILoginService_UpdateLogin_OutputMessage" />
+    <wsdl:operation name="GetOnlineUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGroupService/GetOnlineUsers" message="tns:IGroupService_GetOnlineUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGroupService/GetOnlineUsersResponse" message="tns:IGroupService_GetOnlineUsers_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteLogin">
-      <wsdl:input wsaw:Action="http://tempuri.org/ILoginService/DeleteLogin" message="tns:ILoginService_DeleteLogin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ILoginService/DeleteLoginResponse" message="tns:ILoginService_DeleteLogin_OutputMessage" />
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGroupService/GetAllUsers" message="tns:IGroupService_GetAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGroupService/GetAllUsersResponse" message="tns:IGroupService_GetAllUsers_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="WSDualHttpBinding_ILoginService" type="tns:ILoginService">
-    <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_policy" />
+  <wsdl:binding name="WSDualHttpBinding_IGroupService" type="tns:IGroupService">
+    <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="CreateLogin">
-      <soap12:operation soapAction="http://tempuri.org/ILoginService/CreateLogin" style="document" />
+    <wsdl:operation name="CreateGroup">
+      <soap12:operation soapAction="http://tempuri.org/IGroupService/CreateGroup" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_CreateLogin_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_CreateGroup_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_CreateLogin_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_CreateGroup_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Authenticate">
-      <soap12:operation soapAction="http://tempuri.org/ILoginService/Authenticate" style="document" />
+    <wsdl:operation name="DeleteGroup">
+      <soap12:operation soapAction="http://tempuri.org/IGroupService/DeleteGroup" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_Authenticate_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_DeleteGroup_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_Authenticate_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_DeleteGroup_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ForgotDetails">
-      <soap12:operation soapAction="http://tempuri.org/ILoginService/ForgotDetails" style="document" />
+    <wsdl:operation name="AddMember">
+      <soap12:operation soapAction="http://tempuri.org/IGroupService/AddMember" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_ForgotDetails_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_AddMember_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_ForgotDetails_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_AddMember_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FindLogin">
-      <soap12:operation soapAction="http://tempuri.org/ILoginService/FindLogin" style="document" />
+    <wsdl:operation name="RemoveMember">
+      <soap12:operation soapAction="http://tempuri.org/IGroupService/RemoveMember" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_FindLogin_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_RemoveMember_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_FindLogin_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_RemoveMember_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateLogin">
-      <soap12:operation soapAction="http://tempuri.org/ILoginService/UpdateLogin" style="document" />
+    <wsdl:operation name="GetOnlineUsers">
+      <soap12:operation soapAction="http://tempuri.org/IGroupService/GetOnlineUsers" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_UpdateLogin_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_GetOnlineUsers_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_UpdateLogin_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_GetOnlineUsers_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteLogin">
-      <soap12:operation soapAction="http://tempuri.org/ILoginService/DeleteLogin" style="document" />
+    <wsdl:operation name="GetAllUsers">
+      <soap12:operation soapAction="http://tempuri.org/IGroupService/GetAllUsers" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_DeleteLogin_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_GetAllUsers_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ILoginService_DeleteLogin_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGroupService_GetAllUsers_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="LoginService">
-    <wsdl:port name="WSDualHttpBinding_ILoginService" binding="tns:WSDualHttpBinding_ILoginService">
-      <soap12:address location="http://localhost/LoginService" />
+  <wsdl:service name="GroupService">
+    <wsdl:port name="WSDualHttpBinding_IGroupService" binding="tns:WSDualHttpBinding_IGroupService">
+      <soap12:address location="http://localhost/GroupService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost/LoginService</wsa10:Address>
+        <wsa10:Address>http://localhost/GroupService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-GOARNTN\bubri</Upn>
+          <Upn>TURAKAS\Turakas</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

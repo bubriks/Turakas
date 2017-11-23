@@ -40,15 +40,26 @@ namespace PresentationTier
         private void button1_Click(object sender, EventArgs e)
         {
             ytUrl = textBox1.Text;
-            string vidTitle = youtubeServiceClient.GetVideoInfo(VideoId);
+            string vidTitle = youtubeServiceClient.GetVideoTitle(VideoId);
             label1.Text = vidTitle;
-            //Console.WriteLine(VideoId);
-            //Console.ReadLine();
-            //webBrowser1.Navigate($"https://www.youtube.com/watch?v={VideoId}");
-            //webBrowser1.Navigate($"https://www.youtube.com/embed{VideoId}");
-            
+
+            if (String.IsNullOrEmpty(vidTitle))
+            {
+                MessageBox.Show("Failed to add song. Probably the song already exists or the URL is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else if (youtubeServiceClient.AddSong(vidTitle, 0, VideoId))
+            {
+               MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Failed to add song. Probably the song already exists or the URL is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
             const string page1 = "<html><head><title></title></head><body>{0}</body></html>";
-            webBrowser1.DocumentText = string.Format(page1, $"<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/{VideoId}?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>");
+            webBrowser1.DocumentText = string.Format(page1, $"<iframe width=\"300\" height=\"240\" src=\"http://www.youtube.com/embed/{VideoId}?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>");
         }
         
         private void SetBrowserFeatureControlKey(string feature, string appName, uint value)
@@ -63,7 +74,6 @@ namespace PresentationTier
         
         private void SetBrowserFeatureControl()
         {
-            // http://msdn.microsoft.com/en-us/library/ee330720(v=vs.85).aspx
 
             // FeatureControl settings are per-process
             var fileName = System.IO.Path.GetFileName(Process.GetCurrentProcess().MainModule.FileName);

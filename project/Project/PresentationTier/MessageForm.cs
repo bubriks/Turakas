@@ -223,7 +223,8 @@ namespace PresentationTier
 
         private void rps_btn_Click(object sender, EventArgs e)
         {
-            RPSForm rPSForm = new RPSForm(chatId, profileId);
+            /*Profile profile = (Profile)UserListBox.SelectedItem;
+            RPSForm rPSForm = new RPSForm(chatId, profile);*/
         }
 
         public void Show(bool result)

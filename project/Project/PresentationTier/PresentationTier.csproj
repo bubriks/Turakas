@@ -64,7 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\LoginServiceReference\Reference.cs">
+    <Compile Include="Connected Services\GroupServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -78,6 +78,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="GroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupForm.Designer.cs">
+      <DependentUpon>GroupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MessageForm.cs">
       <SubType>Form</SubType>
@@ -164,17 +170,20 @@
     <None Include="Connected Services\GameServiceReference\GameService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\LoginServiceReference\LoginService.wsdl" />
-    <None Include="Connected Services\LoginServiceReference\LoginService.xsd">
+    <None Include="Connected Services\GameServiceReference\GameService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\LoginServiceReference\LoginService1.xsd">
+    <None Include="Connected Services\GroupServiceReference\GroupService.wsdl" />
+    <None Include="Connected Services\GroupServiceReference\GroupService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\LoginServiceReference\LoginService2.xsd">
+    <None Include="Connected Services\GroupServiceReference\GroupService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\LoginServiceReference\PresentationTier.LoginServiceReference.Login.datasource">
+    <None Include="Connected Services\GroupServiceReference\GroupService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\GroupServiceReference\PresentationTier.GroupServiceReference.Profile.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\MessageServiceReference\MessageService.wsdl" />
@@ -226,7 +235,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ChatServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\GameServiceReference\" />
-    <WCFMetadataStorage Include="Connected Services\LoginServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\GroupServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\MessageServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\ProfileServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\YoutubeService\" />
@@ -257,36 +266,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ChatServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\LoginServiceReference\LoginService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\LoginServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\LoginServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\LoginServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ProfileServiceReference\ProfileService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ProfileServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ProfileServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ProfileServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -365,6 +344,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\GameServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\GroupServiceReference\GroupService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\GroupServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\GroupServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\GroupServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ProfileServiceReference\ProfileService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ProfileServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ProfileServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ProfileServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

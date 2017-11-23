@@ -6,23 +6,36 @@ using System.ServiceModel;
 using System.Text;
 using DataTier;
 using BusinessTier;
+
 namespace WcfService
 {
     public class ProfileService: IProfileService
     {
         IProfileController profileController = new ProfileController();
 
-        public bool CreateProfile(Profile profile)
+        public int CreateProfile(Profile profile)
         {
             return profileController.CreateProfile(profile);
+        }
+        public int Authenticate(Profile profile)
+        {
+            return profileController.Authenticate(profile);
+        }
+        public bool ForgotDetails(string email)
+        {
+            return profileController.ForgotDetails(email);
         }
         public Profile ReadProfile(string what, int by)
         {
             return profileController.ReadProfile(what, by);
         }
-        public bool UpdateProfile(int profileId, Profile profile)
+        public bool UpdateProfile(int id, Profile login)
         {
-            return profileController.UpdateProfile(profileId, profile);
+            return profileController.UpdateProfile(id, login);
+        }
+        public bool DeleteProfile(int loginId)
+        {
+            return profileController.DeleteProfile(loginId);
         }
     }
 }

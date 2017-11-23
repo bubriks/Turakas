@@ -13,14 +13,16 @@ namespace BusinessTier
 {
     public class SongController: ISongController
     {
-        public void AddSong(int activityID, int artistID, int genreID, string name, int duration, string url)
+        public bool AddSong(string name, int duration, string url)
         {
             DBSong dbSong = new DBSong();
             Song song = dbSong.FindSongByURL(url);
             if (song != null)
             {
-                dbSong.AddSong(song.ActivityId, song.ArtistId, song.GenreId, song.Name, song.Duration, song.Url);
+                return false;
             }
+            dbSong.AddSong(name, duration, url);
+            return true;
         }
 
         private static YouTubeService ytService = Auth();
@@ -46,10 +48,9 @@ namespace BusinessTier
             return service;
         }
        
-        public string GetVideoInfo(string videoId)
+        public string GetVideoTitle(string videoId)
         {
             string videoTitle = "";
-            string videoDescription;
             var videoRequest = ytService.Videos.List("snippet");
             videoRequest.Id = videoId;
 
@@ -57,10 +58,27 @@ namespace BusinessTier
             if(response.Items.Count > 0)
             {
                 videoTitle = response.Items[0].Snippet.Title;
-                videoDescription = response.Items[0].Snippet.Description;
             }
 
             return videoTitle;
+        }
+
+        public int GetVideoDuration(string videoId)
+        {
+            int videoDuration = 0;
+
+            var videoRequest = ytService.Videos.List("snippet");
+            videoRequest.Id = videoId;
+
+            var response = videoRequest.Execute();
+            if(response.Items.Count > 0)
+            {
+                string duration = response.Items[0].ContentDetails.Duration;
+                Console.WriteLine(duration);
+                //videoDuration;
+            }
+            
+            return videoDuration;
         }
     }
 }

@@ -2,7 +2,9 @@
 {
     public interface ISongController
     {
-        void AddSong(int activityID, int artistID, int genreID, string name, int duration, string url);
-        string GetVideoInfo(string videoId);
+        bool AddSong(string name, int duration, string url);
+        string GetVideoTitle(string videoId);
+        int GetVideoDuration(string videoId);
+
     }
 }
