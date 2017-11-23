@@ -50,8 +50,10 @@
   <ItemGroup>
     <Compile Include="ChatService.cs" />
     <Compile Include="GameService.cs" />
+    <Compile Include="GroupService.cs" />
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\IChatService.cs" />
+    <Compile Include="Interfaces\IGroupService.cs" />
     <Compile Include="Interfaces\ILoginService.cs" />
     <Compile Include="Interfaces\IMessageService.cs" />
     <Compile Include="Interfaces\IProfileService.cs" />
