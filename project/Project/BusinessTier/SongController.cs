@@ -8,6 +8,8 @@ using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace BusinessTier
 {
@@ -58,8 +60,8 @@ namespace BusinessTier
             if(response.Items.Count > 0)
             {
                 videoTitle = response.Items[0].Snippet.Title;
+                GetVideoDuration(videoId);
             }
-
             return videoTitle;
         }
 
@@ -67,17 +69,37 @@ namespace BusinessTier
         {
             int videoDuration = 0;
 
-            var videoRequest = ytService.Videos.List("snippet");
+            var videoRequest = ytService.Videos.List("contentDetails");
             videoRequest.Id = videoId;
 
             var response = videoRequest.Execute();
             if(response.Items.Count > 0)
             {
                 string duration = response.Items[0].ContentDetails.Duration;
-                Console.WriteLine(duration);
+                Debug.WriteLine(duration);
+               
+                
+                var durationArray = new Regex(@"PT(\d+H)?(\d+M)?(\d+S)?").Match(duration);
+                string hour = durationArray.Groups[1].ToString();
+                string min = durationArray.Groups[2].ToString();
+                string sec = durationArray.Groups[3].ToString();
+
+
+                if (!String.IsNullOrEmpty(hour))
+                {
+                    videoDuration += Int32.Parse(hour.Remove(hour.Length-1))*3600;
+                }
+                if (!String.IsNullOrEmpty(min))
+                {
+                    videoDuration += Int32.Parse(min.Remove(min.Length - 1)) * 60;
+                }
+                if (!String.IsNullOrEmpty(hour))
+                {
+                    videoDuration += Int32.Parse(sec.Remove(sec.Length - 1));
+                }
                 //videoDuration;
             }
-            
+            Debug.WriteLine(videoDuration);
             return videoDuration;
         }
     }
