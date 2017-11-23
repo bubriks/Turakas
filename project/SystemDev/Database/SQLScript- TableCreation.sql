@@ -157,24 +157,12 @@ BEGIN
 END
 go
 
---Artists Table
-CREATE TABLE Artists(
-artistID int IDENTITY(1,1) PRIMARY KEY,
-name varchar(50) NOT NULL,
-);
 
---Genres Table
-CREATE TABLE Genres(
-genreID int IDENTITY(1,1) PRIMARY KEY,
-name varchar(50) NOT NULL,
-);
 
 --Song Table
 CREATE TABLE Song(
 songID int IDENTITY(1,1) PRIMARY KEY,
 activityID int FOREIGN KEY REFERENCES Activity(activityID) NOT NULL,
-artistID int FOREIGN KEY REFERENCES Artists(artistID) NOT NULL,
-genreID int FOREIGN KEY REFERENCES Genres(genreID) NOT NULL,
 name varchar(50) NOT NULL,
 duration int NOT NULL,
 url varchar(200) NOT NULL,
