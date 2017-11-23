@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1e06f79b-1e23-46b0-9dd5-3c4eaf30bdf6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/GroupService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GroupService.disco" MetadataType="Disco" ID="2c8e4ad6-1482-4aa4-b472-4c0166af83bc" SourceId="1" SourceUrl="http://localhost/GroupService?disco" />
+    <MetadataFile FileName="GroupService.xsd" MetadataType="Schema" ID="e6feb423-517c-42df-a874-38f75504dbfa" SourceId="1" SourceUrl="http://localhost/GroupService?xsd=xsd2" />
+    <MetadataFile FileName="GroupService1.xsd" MetadataType="Schema" ID="09f8f5eb-3e78-4847-a7dc-843791a6515c" SourceId="1" SourceUrl="http://localhost/GroupService?xsd=xsd1" />
+    <MetadataFile FileName="GroupService2.xsd" MetadataType="Schema" ID="4ee68af0-7c74-47e7-8beb-e29c477de8a1" SourceId="1" SourceUrl="http://localhost/GroupService?xsd=xsd0" />
+    <MetadataFile FileName="GroupService.wsdl" MetadataType="Wsdl" ID="aab406fd-1922-451c-b07b-ff402620e1c3" SourceId="1" SourceUrl="http://localhost/GroupService?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

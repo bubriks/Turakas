@@ -300,5 +300,12 @@ namespace PresentationTier
                 deleteError_lbl.Visible = true;
             }
         }
+
+        private void btnGroups_Click(object sender, System.EventArgs e)
+        {
+            GroupForm group = new GroupForm(profileId, this);
+            Hide();
+            group.ShowDialog();
+        }
     }
 }
