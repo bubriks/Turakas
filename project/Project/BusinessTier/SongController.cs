@@ -60,7 +60,6 @@ namespace BusinessTier
             if(response.Items.Count > 0)
             {
                 videoTitle = response.Items[0].Snippet.Title;
-                GetVideoDuration(videoId);
             }
             return videoTitle;
         }
@@ -75,15 +74,12 @@ namespace BusinessTier
             var response = videoRequest.Execute();
             if(response.Items.Count > 0)
             {
-                string duration = response.Items[0].ContentDetails.Duration;
-                Debug.WriteLine(duration);
-               
+                string duration = response.Items[0].ContentDetails.Duration;              
                 
                 var durationArray = new Regex(@"PT(\d+H)?(\d+M)?(\d+S)?").Match(duration);
                 string hour = durationArray.Groups[1].ToString();
                 string min = durationArray.Groups[2].ToString();
                 string sec = durationArray.Groups[3].ToString();
-
 
                 if (!String.IsNullOrEmpty(hour))
                 {
@@ -97,9 +93,7 @@ namespace BusinessTier
                 {
                     videoDuration += Int32.Parse(sec.Remove(sec.Length - 1));
                 }
-                //videoDuration;
             }
-            Debug.WriteLine(videoDuration);
             return videoDuration;
         }
     }

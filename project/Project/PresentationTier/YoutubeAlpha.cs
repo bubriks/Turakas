@@ -48,7 +48,7 @@ namespace PresentationTier
                 MessageBox.Show("Failed to add song. Probably the song already exists or the URL is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-            else if (youtubeServiceClient.AddSong(vidTitle, 0, VideoId))
+            else if (youtubeServiceClient.AddSong(vidTitle, youtubeServiceClient.GetVideoDuration(VideoId), VideoId))
             {
                MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
