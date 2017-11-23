@@ -93,7 +93,6 @@ D:\Workspace\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyRefere
 D:\Workspace\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
 D:\Workspace\Project\WcfService\obj\Debug\WcfService.dll
 D:\Workspace\Project\WcfService\obj\Debug\WcfService.pdb
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\youtube_client_secret.json
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
 C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.dll

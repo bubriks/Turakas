@@ -47,7 +47,6 @@ C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csproj.CoreCompileInputs.cache
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.pdb
-C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\youtube_client_secret.json
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.dll
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Auth.PlatformServices.dll
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.Core.dll

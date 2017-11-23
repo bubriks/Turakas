@@ -16,16 +16,22 @@ namespace PresentationTier.YoutubeService {
     public interface IYoutubeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddSong", ReplyAction="http://tempuri.org/IYoutubeService/AddSongResponse")]
-        void AddSong(int activityID,string name, int duration, string url);
+        void AddSong(int activityID, string name, int duration, string url);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddSong", ReplyAction="http://tempuri.org/IYoutubeService/AddSongResponse")]
-        System.Threading.Tasks.Task AddSongAsync(int activityID, int artistID, int genreID, string name, int duration, string url);
+        System.Threading.Tasks.Task AddSongAsync(int activityID, string name, int duration, string url);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetVideoInfo", ReplyAction="http://tempuri.org/IYoutubeService/GetVideoInfoResponse")]
-        string GetVideoInfo(string videoId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetVideoTitle", ReplyAction="http://tempuri.org/IYoutubeService/GetVideoTitleResponse")]
+        string GetVideoTitle(string videoId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetVideoInfo", ReplyAction="http://tempuri.org/IYoutubeService/GetVideoInfoResponse")]
-        System.Threading.Tasks.Task<string> GetVideoInfoAsync(string videoId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetVideoTitle", ReplyAction="http://tempuri.org/IYoutubeService/GetVideoTitleResponse")]
+        System.Threading.Tasks.Task<string> GetVideoTitleAsync(string videoId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetVideoDuration", ReplyAction="http://tempuri.org/IYoutubeService/GetVideoDurationResponse")]
+        int GetVideoDuration(string videoId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetVideoDuration", ReplyAction="http://tempuri.org/IYoutubeService/GetVideoDurationResponse")]
+        System.Threading.Tasks.Task<int> GetVideoDurationAsync(string videoId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -59,16 +65,24 @@ namespace PresentationTier.YoutubeService {
             base.Channel.AddSong(activityID, name, duration, url);
         }
         
-        public System.Threading.Tasks.Task AddSongAsync(int activityID, int artistID, int genreID, string name, int duration, string url) {
-            return base.Channel.AddSongAsync(activityID, artistID, genreID, name, duration, url);
+        public System.Threading.Tasks.Task AddSongAsync(int activityID, string name, int duration, string url) {
+            return base.Channel.AddSongAsync(activityID, name, duration, url);
         }
         
-        public string GetVideoInfo(string videoId) {
-            return base.Channel.GetVideoInfo(videoId);
+        public string GetVideoTitle(string videoId) {
+            return base.Channel.GetVideoTitle(videoId);
         }
         
-        public System.Threading.Tasks.Task<string> GetVideoInfoAsync(string videoId) {
-            return base.Channel.GetVideoInfoAsync(videoId);
+        public System.Threading.Tasks.Task<string> GetVideoTitleAsync(string videoId) {
+            return base.Channel.GetVideoTitleAsync(videoId);
+        }
+        
+        public int GetVideoDuration(string videoId) {
+            return base.Channel.GetVideoDuration(videoId);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetVideoDurationAsync(string videoId) {
+            return base.Channel.GetVideoDurationAsync(videoId);
         }
     }
 }
