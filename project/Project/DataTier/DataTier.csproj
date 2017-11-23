@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Chat.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Group.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Profile.cs" />
