@@ -26,13 +26,19 @@ namespace PresentationTier.ProfileServiceReference {
         private object CallBackField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NicknameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ProfileIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StatusIDField;
+        private string UsernameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -58,6 +64,19 @@ namespace PresentationTier.ProfileServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Nickname {
             get {
                 return this.NicknameField;
@@ -66,6 +85,19 @@ namespace PresentationTier.ProfileServiceReference {
                 if ((object.ReferenceEquals(this.NicknameField, value) != true)) {
                     this.NicknameField = value;
                     this.RaisePropertyChanged("Nickname");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
                 }
             }
         }
@@ -84,14 +116,14 @@ namespace PresentationTier.ProfileServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int StatusID {
+        public string Username {
             get {
-                return this.StatusIDField;
+                return this.UsernameField;
             }
             set {
-                if ((this.StatusIDField.Equals(value) != true)) {
-                    this.StatusIDField = value;
-                    this.RaisePropertyChanged("StatusID");
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
                 }
             }
         }
@@ -111,10 +143,22 @@ namespace PresentationTier.ProfileServiceReference {
     public interface IProfileService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/CreateProfile", ReplyAction="http://tempuri.org/IProfileService/CreateProfileResponse")]
-        bool CreateProfile(PresentationTier.ProfileServiceReference.Profile profile);
+        int CreateProfile(PresentationTier.ProfileServiceReference.Profile profile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/CreateProfile", ReplyAction="http://tempuri.org/IProfileService/CreateProfileResponse")]
-        System.Threading.Tasks.Task<bool> CreateProfileAsync(PresentationTier.ProfileServiceReference.Profile profile);
+        System.Threading.Tasks.Task<int> CreateProfileAsync(PresentationTier.ProfileServiceReference.Profile profile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/Authenticate", ReplyAction="http://tempuri.org/IProfileService/AuthenticateResponse")]
+        int Authenticate(PresentationTier.ProfileServiceReference.Profile profile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/Authenticate", ReplyAction="http://tempuri.org/IProfileService/AuthenticateResponse")]
+        System.Threading.Tasks.Task<int> AuthenticateAsync(PresentationTier.ProfileServiceReference.Profile profile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/ForgotDetails", ReplyAction="http://tempuri.org/IProfileService/ForgotDetailsResponse")]
+        bool ForgotDetails(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/ForgotDetails", ReplyAction="http://tempuri.org/IProfileService/ForgotDetailsResponse")]
+        System.Threading.Tasks.Task<bool> ForgotDetailsAsync(string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/ReadProfile", ReplyAction="http://tempuri.org/IProfileService/ReadProfileResponse")]
         PresentationTier.ProfileServiceReference.Profile ReadProfile(string what, int by);
@@ -123,10 +167,16 @@ namespace PresentationTier.ProfileServiceReference {
         System.Threading.Tasks.Task<PresentationTier.ProfileServiceReference.Profile> ReadProfileAsync(string what, int by);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/UpdateProfile", ReplyAction="http://tempuri.org/IProfileService/UpdateProfileResponse")]
-        bool UpdateProfile(int profileId, PresentationTier.ProfileServiceReference.Profile profile);
+        bool UpdateProfile(int id, PresentationTier.ProfileServiceReference.Profile profile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/UpdateProfile", ReplyAction="http://tempuri.org/IProfileService/UpdateProfileResponse")]
-        System.Threading.Tasks.Task<bool> UpdateProfileAsync(int profileId, PresentationTier.ProfileServiceReference.Profile profile);
+        System.Threading.Tasks.Task<bool> UpdateProfileAsync(int id, PresentationTier.ProfileServiceReference.Profile profile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/DeleteProfile", ReplyAction="http://tempuri.org/IProfileService/DeleteProfileResponse")]
+        bool DeleteProfile(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/DeleteProfile", ReplyAction="http://tempuri.org/IProfileService/DeleteProfileResponse")]
+        System.Threading.Tasks.Task<bool> DeleteProfileAsync(int profileId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -156,12 +206,28 @@ namespace PresentationTier.ProfileServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public bool CreateProfile(PresentationTier.ProfileServiceReference.Profile profile) {
+        public int CreateProfile(PresentationTier.ProfileServiceReference.Profile profile) {
             return base.Channel.CreateProfile(profile);
         }
         
-        public System.Threading.Tasks.Task<bool> CreateProfileAsync(PresentationTier.ProfileServiceReference.Profile profile) {
+        public System.Threading.Tasks.Task<int> CreateProfileAsync(PresentationTier.ProfileServiceReference.Profile profile) {
             return base.Channel.CreateProfileAsync(profile);
+        }
+        
+        public int Authenticate(PresentationTier.ProfileServiceReference.Profile profile) {
+            return base.Channel.Authenticate(profile);
+        }
+        
+        public System.Threading.Tasks.Task<int> AuthenticateAsync(PresentationTier.ProfileServiceReference.Profile profile) {
+            return base.Channel.AuthenticateAsync(profile);
+        }
+        
+        public bool ForgotDetails(string email) {
+            return base.Channel.ForgotDetails(email);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ForgotDetailsAsync(string email) {
+            return base.Channel.ForgotDetailsAsync(email);
         }
         
         public PresentationTier.ProfileServiceReference.Profile ReadProfile(string what, int by) {
@@ -172,12 +238,20 @@ namespace PresentationTier.ProfileServiceReference {
             return base.Channel.ReadProfileAsync(what, by);
         }
         
-        public bool UpdateProfile(int profileId, PresentationTier.ProfileServiceReference.Profile profile) {
-            return base.Channel.UpdateProfile(profileId, profile);
+        public bool UpdateProfile(int id, PresentationTier.ProfileServiceReference.Profile profile) {
+            return base.Channel.UpdateProfile(id, profile);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateProfileAsync(int profileId, PresentationTier.ProfileServiceReference.Profile profile) {
-            return base.Channel.UpdateProfileAsync(profileId, profile);
+        public System.Threading.Tasks.Task<bool> UpdateProfileAsync(int id, PresentationTier.ProfileServiceReference.Profile profile) {
+            return base.Channel.UpdateProfileAsync(id, profile);
+        }
+        
+        public bool DeleteProfile(int profileId) {
+            return base.Channel.DeleteProfile(profileId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteProfileAsync(int profileId) {
+            return base.Channel.DeleteProfileAsync(profileId);
         }
     }
 }

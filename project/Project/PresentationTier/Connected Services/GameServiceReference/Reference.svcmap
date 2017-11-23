@@ -25,6 +25,7 @@
     <MetadataFile FileName="GameService.wsdl" MetadataType="Wsdl" ID="baeae21b-93ae-4f0c-b293-1fe254379acd" SourceId="1" SourceUrl="http://localhost/GameService?wsdl" />
     <MetadataFile FileName="GameService.xsd" MetadataType="Schema" ID="a7553264-c6ed-4320-85aa-befd05f254f7" SourceId="1" SourceUrl="http://localhost/GameService?xsd=xsd0" />
     <MetadataFile FileName="GameService1.xsd" MetadataType="Schema" ID="4de0918e-0582-46c8-b241-fbe7af105758" SourceId="1" SourceUrl="http://localhost/GameService?xsd=xsd1" />
+    <MetadataFile FileName="GameService2.xsd" MetadataType="Schema" ID="4e39ee14-830f-408c-8a21-498e80df03a5" SourceId="1" SourceUrl="http://localhost/GameService?xsd=xsd2" />
     <MetadataFile FileName="GameService.disco" MetadataType="Disco" ID="ccf35808-cef6-4239-b655-8cb89e5d6cb8" SourceId="1" SourceUrl="http://localhost/GameService?disco" />
   </Metadata>
   <Extensions>

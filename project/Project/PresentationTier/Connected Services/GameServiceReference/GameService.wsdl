@@ -268,6 +268,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost/GameService?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost/GameService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/GameService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataTier" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IGameService_JoinGame_InputMessage">
@@ -373,7 +374,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost/GameService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-GOARNTN\bubri</Upn>
+          <Upn>TURAKAS\Turakas</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
