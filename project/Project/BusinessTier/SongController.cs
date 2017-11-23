@@ -19,10 +19,10 @@ namespace BusinessTier
             Song song = dbSong.FindSongByURL(url);
             if (song != null)
             {
-                dbSong.AddSong(song.Name, song.Duration, song.Url);
-                return true;
+                return false;
             }
-            return false;
+            dbSong.AddSong(name, duration, url);
+            return true;
         }
 
         private static YouTubeService ytService = Auth();
