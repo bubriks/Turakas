@@ -44,7 +44,7 @@ namespace PresentationTier
             label1.Text = vidTitle;
             if (!String.IsNullOrEmpty(vidTitle))
             {
-                if (youtubeServiceClient.AddSong(0, vidTitle, 0, VideoId))
+                if (youtubeServiceClient.AddSong(vidTitle, 0, VideoId))
                 {
                     MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
