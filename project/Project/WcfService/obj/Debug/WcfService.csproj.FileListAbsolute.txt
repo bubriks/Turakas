@@ -125,3 +125,4 @@ C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\obj\Debug\WcfService.dll
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
+C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\youtube_client_secret.json

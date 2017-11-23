@@ -10,14 +10,13 @@ namespace DataAccessTier
         {
             con = DbConnection.GetInstance().GetConnection();
         }
-        public void AddSong(int activityID, string name, int duration, string url)
+        public void AddSong(string name, int duration, string url)
         {
-            string stmt = "INSERT INTO Song(activityID, name, duration, url) values (@0, @1, @2, @3)";
+            string stmt = "INSERT INTO Song(name, duration, url) values (@0, @1, @2)";
             SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.Parameters.AddWithValue("@0", activityID);
-            cmd.Parameters.AddWithValue("@1", name);
-            cmd.Parameters.AddWithValue("@2", duration);
-            cmd.Parameters.AddWithValue("@3", url);
+            cmd.Parameters.AddWithValue("@0", name);
+            cmd.Parameters.AddWithValue("@1", duration);
+            cmd.Parameters.AddWithValue("@2", url);
             cmd.ExecuteNonQuery();
         }
 
@@ -33,7 +32,6 @@ namespace DataAccessTier
                 song = new Song
                 {
                     SongId = reader.GetInt32(reader.GetOrdinal("songID")),
-                    ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")), 
                     Name = reader.GetString(reader.GetOrdinal("name")), 
                     Duration = reader.GetInt32(reader.GetOrdinal("duration")), 
                     Url = reader.GetString(reader.GetOrdinal("url"))

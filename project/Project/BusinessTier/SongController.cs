@@ -13,14 +13,16 @@ namespace BusinessTier
 {
     public class SongController: ISongController
     {
-        public void AddSong(int activityID, string name, int duration, string url)
+        public bool AddSong(string name, int duration, string url)
         {
             DBSong dbSong = new DBSong();
             Song song = dbSong.FindSongByURL(url);
             if (song != null)
             {
-                dbSong.AddSong(song.ActivityId, song.Name, song.Duration, song.Url);
+                dbSong.AddSong(song.Name, song.Duration, song.Url);
+                return true;
             }
+            return false;
         }
 
         private static YouTubeService ytService = Auth();

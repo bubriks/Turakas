@@ -16,10 +16,10 @@ namespace PresentationTier.YoutubeService {
     public interface IYoutubeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddSong", ReplyAction="http://tempuri.org/IYoutubeService/AddSongResponse")]
-        void AddSong(int activityID, string name, int duration, string url);
+        bool AddSong(string name, int duration, string url);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddSong", ReplyAction="http://tempuri.org/IYoutubeService/AddSongResponse")]
-        System.Threading.Tasks.Task AddSongAsync(int activityID, string name, int duration, string url);
+        System.Threading.Tasks.Task<bool> AddSongAsync(string name, int duration, string url);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetVideoTitle", ReplyAction="http://tempuri.org/IYoutubeService/GetVideoTitleResponse")]
         string GetVideoTitle(string videoId);
@@ -61,12 +61,12 @@ namespace PresentationTier.YoutubeService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddSong(int activityID, string name, int duration, string url) {
-            base.Channel.AddSong(activityID, name, duration, url);
+        public bool AddSong(string name, int duration, string url) {
+            return base.Channel.AddSong(name, duration, url);
         }
         
-        public System.Threading.Tasks.Task AddSongAsync(int activityID, string name, int duration, string url) {
-            return base.Channel.AddSongAsync(activityID, name, duration, url);
+        public System.Threading.Tasks.Task<bool> AddSongAsync(string name, int duration, string url) {
+            return base.Channel.AddSongAsync(name, duration, url);
         }
         
         public string GetVideoTitle(string videoId) {

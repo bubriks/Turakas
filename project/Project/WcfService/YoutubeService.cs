@@ -13,9 +13,9 @@ namespace WcfService
     {
         ISongController songController = new SongController();
 
-        public void AddSong(int activityID, string name, int duration, string url)
+        public bool AddSong(string name, int duration, string url)
         {
-            songController.AddSong(activityID, name, duration, url);
+           return songController.AddSong(name, duration, url);
         }
         public string GetVideoTitle(string videoId)
         {

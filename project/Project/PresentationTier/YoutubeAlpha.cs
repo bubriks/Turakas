@@ -42,7 +42,20 @@ namespace PresentationTier
             ytUrl = textBox1.Text;
             string vidTitle = youtubeServiceClient.GetVideoTitle(VideoId);
             label1.Text = vidTitle;
-            youtubeServiceClient.AddSong(0, vidTitle, 0, VideoId);
+            if (!String.IsNullOrEmpty(vidTitle))
+            {
+                if (youtubeServiceClient.AddSong(0, vidTitle, 0, VideoId))
+                {
+                    MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Failed to add song. Probably the song already exists or the URL is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
             const string page1 = "<html><head><title></title></head><body>{0}</body></html>";
             webBrowser1.DocumentText = string.Format(page1, $"<iframe width=\"300\" height=\"240\" src=\"http://www.youtube.com/embed/{VideoId}?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>");
         }
