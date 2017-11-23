@@ -2,14 +2,12 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using PresentationTier.LoginServiceReference;
 using PresentationTier.ProfileServiceReference;
 
 namespace PresentationTier
 {
     public partial class SignIn_SignUp_ForgotDetailsForm: Form
     {
-        private ILoginService loginService = new LoginServiceClient();
         private IProfileService profileService = new ProfileServiceClient();
 
         public SignIn_SignUp_ForgotDetailsForm()
@@ -40,13 +38,14 @@ namespace PresentationTier
                 string email = emailSignUp_txt.Text;
                 string nickname = nicknameSignUp_txt.Text;
 
-                Login login = new Login
+                Profile profile = new Profile
                 {
                     Username = username,
                     Email = email,
+                    Nickname = nickname,
                 };
 
-                int loginId = loginService.CreateLogin(login, nickname);
+                int loginId = profileService.CreateProfile(profile);
 
                 if (loginId != -1)
                 {
@@ -153,7 +152,7 @@ namespace PresentationTier
                 emailForgot_txt.BackColor = Color.White;
                 emailForgotError_lbl.Visible = false;
 
-                loginService.ForgotDetails(emailForgot_txt.Text);
+                profileService.ForgotDetails(emailForgot_txt.Text);
             }
             else
             {
@@ -187,13 +186,13 @@ namespace PresentationTier
                     passwordSignIn_txt.BackColor = Color.White;
 
                     //logging in
-                    Login login = new Login
+                    Profile profile = new Profile
                     {
                         Username = usernameSignIn_txt.Text,
                         Password = passwordSignIn_txt.Text,
                     };
-                    int loginId = loginService.Authenticate(login);
-                    switch (loginId)
+                    int profileId = profileService.Authenticate(profile);
+                    switch (profileId)
                     {
                         case -1: //no such info
                             signInError_lbl.ForeColor = Color.Red;
@@ -207,7 +206,7 @@ namespace PresentationTier
                             break;
                         default: //loginId
                             signInError_lbl.Visible = false;
-                            ChatForm chat = new ChatForm(loginId);
+                            ChatForm chat = new ChatForm(profileId);
                             Hide();
                             chat.ShowDialog();
                             Close();
@@ -268,7 +267,7 @@ namespace PresentationTier
                 if (!(email.Contains('@') && email.Contains('.')))
                     error += "Invalid email!";
                 else
-                if (loginService.FindLogin(email, 3) != null)
+                if (profileService.ReadProfile(email, 3) != null)
                     error += "Email allready in records!";
             }
             else
@@ -282,7 +281,7 @@ namespace PresentationTier
             if (nickname.Length < 3)
                 error += ("Nickname must be at least 3 characters!");
             else
-            if (profileService.ReadProfile(nickname, 2) != null)
+            if (profileService.ReadProfile(nickname, 4) != null)
                 error += ("Nickname already in use!");
             return error;
         }

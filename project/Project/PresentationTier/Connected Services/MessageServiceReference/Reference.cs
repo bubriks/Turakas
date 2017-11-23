@@ -139,13 +139,19 @@ namespace PresentationTier.MessageServiceReference {
         private object CallBackField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NicknameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ProfileIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StatusIDField;
+        private string UsernameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -171,6 +177,19 @@ namespace PresentationTier.MessageServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Nickname {
             get {
                 return this.NicknameField;
@@ -179,6 +198,19 @@ namespace PresentationTier.MessageServiceReference {
                 if ((object.ReferenceEquals(this.NicknameField, value) != true)) {
                     this.NicknameField = value;
                     this.RaisePropertyChanged("Nickname");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
                 }
             }
         }
@@ -197,14 +229,14 @@ namespace PresentationTier.MessageServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int StatusID {
+        public string Username {
             get {
-                return this.StatusIDField;
+                return this.UsernameField;
             }
             set {
-                if ((this.StatusIDField.Equals(value) != true)) {
-                    this.StatusIDField = value;
-                    this.RaisePropertyChanged("StatusID");
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
                 }
             }
         }

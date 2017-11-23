@@ -27,10 +27,10 @@ namespace WcfService
                     Profile user1 = gameController.FindGame(gameId).Player2;
 
                     callback = (IGameCallBack)user.CallBack;
-                    callback.PlayerJoins(user1.ProfileID);
+                    callback.PlayerJoins(user1);
 
                     callback = (IGameCallBack)user1.CallBack;
-                    callback.PlayerJoins(user.ProfileID);
+                    callback.PlayerJoins(user);
                 }
 
                 callback.Show(true);
@@ -47,14 +47,14 @@ namespace WcfService
             {
                 Profile user = gameController.FindGame(gameId).Player2;
                 IGameCallBack callback = (IGameCallBack)user.CallBack;
-                callback.PlayerLeaves(user.ProfileID);
+                callback.PlayerLeaves();
             }
             else
             if (gameController.LeaveGame(gameId, profileId) == 2 && gameController.FindGame(gameId).Player1 != null)
             {
                 Profile user = gameController.FindGame(gameId).Player1;
                 IGameCallBack callback = (IGameCallBack)user.CallBack;
-                callback.PlayerLeaves(user.ProfileID);
+                callback.PlayerLeaves();
             }
         }
 

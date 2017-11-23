@@ -4,35 +4,31 @@ using System.Drawing;
 using System.Windows.Forms;
 using PresentationTier.GameServiceReference;
 using System.ServiceModel;
-using PresentationTier.ProfileServiceReference;
 using System.Timers;
 
 namespace PresentationTier
 
 {
-
     public partial class RPSForm : Form, IGameServiceCallback
     {
         private List<string> list = new List<string>();
         private InstanceContext instanceContext;
         private IGameService gameService;
-        private IProfileService profileService = new ProfileServiceClient();
         private Profile player1, player2;
         private int gameId, choice = -1;
         private System.Timers.Timer timer = new System.Timers.Timer();
         private volatile bool requestStop = false;
 
-        public RPSForm(int chatId, int playerId)
+        public RPSForm(int chatId, Profile player1)
         {
             InitializeComponent();
             instanceContext = new InstanceContext(this);
             gameService = new GameServiceClient(instanceContext);
-            
-            player1 = profileService.ReadProfile(playerId.ToString(), 1);
 
             gameId = chatId;
+            this.player1 = player1;
 
-            gameService.JoinGame(gameId, playerId); //player1 joins game
+            gameService.JoinGame(gameId, player1.ProfileID); //player1 joins game
 
             player1_lbl.Text = player1.Nickname;
             player2_lbl.Text = "PLAYER 2 NOT YET CONNECTED!";
@@ -55,14 +51,14 @@ namespace PresentationTier
             }
         }
 
-        public void PlayerJoins(int playerId)
+        public void PlayerJoins(Profile player2)
         {
             player2_lbl.ForeColor = Color.Black;
-            player2 = profileService.ReadProfile(playerId.ToString(), 1);
+            this.player2 = player2;
             player2_lbl.Text = player2.Nickname;
         }
 
-        public void PlayerLeaves(int profileId)
+        public void PlayerLeaves()
         {
             player2_lbl.ForeColor = Color.Red;
             player2_lbl.Text = "PLAYER 2 DISCONECTED!";
@@ -189,7 +185,7 @@ namespace PresentationTier
 
         private void newGame_btn_Click(object sender, EventArgs e)
         {
-            RPSForm rPSForm = new RPSForm(gameId, player1.ProfileID);
+            RPSForm rPSForm = new RPSForm(gameId, player1);
             Close();
         }
 

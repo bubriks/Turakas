@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using DataTier;
 
 namespace WcfService
 {
@@ -22,10 +23,10 @@ namespace WcfService
     public interface IGameCallBack
     {
         [OperationContract(IsOneWay = true)]
-        void PlayerJoins(int profileId);
+        void PlayerJoins(Profile profile);
 
         [OperationContract(IsOneWay = true)]
-        void PlayerLeaves(int profileId);
+        void PlayerLeaves();
 
         [OperationContract(IsOneWay = true)]
         void Result(int result);
