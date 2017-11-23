@@ -40,7 +40,7 @@ namespace PresentationTier
         private void button1_Click(object sender, EventArgs e)
         {
             ytUrl = textBox1.Text;
-            string vidTitle = youtubeServiceClient.GetVideoInfo(VideoId);
+            string vidTitle = youtubeServiceClient.GetVideoTitle(VideoId);
             label1.Text = vidTitle;
             youtubeServiceClient.AddSong(0, vidTitle, 0, VideoId);
             const string page1 = "<html><head><title></title></head><body>{0}</body></html>";
