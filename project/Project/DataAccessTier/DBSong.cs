@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using DataTier;
 using System;
+using System.Collections.Generic;
 
 namespace DataAccessTier
 {
@@ -44,6 +45,12 @@ namespace DataAccessTier
             }
             reader.Close();
             return song;
+        }
+
+        public List<Song> FindSongByName(string name)
+        {
+
+            return null;
         }
     }
 }
