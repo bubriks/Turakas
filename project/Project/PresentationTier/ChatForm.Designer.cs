@@ -30,203 +30,203 @@ namespace PresentationTier
         /// </summary>
         private void InitializeComponent()
         {
-            this.ChatListView = new System.Windows.Forms.ListView();
-            this.SearchButton = new System.Windows.Forms.Button();
-            this.SearchBox = new System.Windows.Forms.TextBox();
-            this.ChatGroupBox = new System.Windows.Forms.GroupBox();
-            this.NrLabel = new System.Windows.Forms.Label();
-            this.SaveButton = new System.Windows.Forms.Button();
-            this.NrOfUsersLable = new System.Windows.Forms.Label();
-            this.NrOfUsersTrackBar = new System.Windows.Forms.TrackBar();
-            this.PrivateCheckBox = new System.Windows.Forms.CheckBox();
-            this.ChatNameTextBox = new System.Windows.Forms.TextBox();
-            this.TypeLabel = new System.Windows.Forms.Label();
-            this.ChatNameLabel = new System.Windows.Forms.Label();
-            this.ViewProfileButton = new System.Windows.Forms.Button();
-            this.InviteListBox = new System.Windows.Forms.ListBox();
-            this.ClearEventsButton = new System.Windows.Forms.Button();
-            this.ChatGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NrOfUsersTrackBar)).BeginInit();
+            this.chatListView = new System.Windows.Forms.ListView();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.chatGroupBox = new System.Windows.Forms.GroupBox();
+            this.nrLabel = new System.Windows.Forms.Label();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.nrOfUsersLable = new System.Windows.Forms.Label();
+            this.nrOfUsersTrackBar = new System.Windows.Forms.TrackBar();
+            this.privateCheckBox = new System.Windows.Forms.CheckBox();
+            this.chatNameTextBox = new System.Windows.Forms.TextBox();
+            this.typeLabel = new System.Windows.Forms.Label();
+            this.chatNameLabel = new System.Windows.Forms.Label();
+            this.viewProfileButton = new System.Windows.Forms.Button();
+            this.inviteListBox = new System.Windows.Forms.ListBox();
+            this.clearEventsButton = new System.Windows.Forms.Button();
+            this.chatGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nrOfUsersTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
-            // ChatListView
+            // chatListView
             // 
-            this.ChatListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.chatListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChatListView.FullRowSelect = true;
-            this.ChatListView.Location = new System.Drawing.Point(12, 39);
-            this.ChatListView.MultiSelect = false;
-            this.ChatListView.Name = "ChatListView";
-            this.ChatListView.Size = new System.Drawing.Size(388, 250);
-            this.ChatListView.TabIndex = 0;
-            this.ChatListView.UseCompatibleStateImageBehavior = false;
-            this.ChatListView.View = System.Windows.Forms.View.Details;
-            this.ChatListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ChatListView_MouseDoubleClick);
-            this.ChatListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ChatListView_MouseDown);
+            this.chatListView.FullRowSelect = true;
+            this.chatListView.Location = new System.Drawing.Point(12, 39);
+            this.chatListView.MultiSelect = false;
+            this.chatListView.Name = "chatListView";
+            this.chatListView.Size = new System.Drawing.Size(388, 250);
+            this.chatListView.TabIndex = 0;
+            this.chatListView.UseCompatibleStateImageBehavior = false;
+            this.chatListView.View = System.Windows.Forms.View.Details;
+            this.chatListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ChatListView_MouseDoubleClick);
+            this.chatListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ChatListView_MouseDown);
             // 
-            // SearchButton
+            // searchButton
             // 
-            this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.Location = new System.Drawing.Point(326, 10);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(75, 23);
-            this.SearchButton.TabIndex = 1;
-            this.SearchButton.Text = "Refresh";
-            this.SearchButton.UseVisualStyleBackColor = true;
-            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.Location = new System.Drawing.Point(326, 10);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(75, 23);
+            this.searchButton.TabIndex = 1;
+            this.searchButton.Text = "Refresh";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
-            // SearchBox
+            // searchBox
             // 
-            this.SearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchBox.Location = new System.Drawing.Point(12, 13);
-            this.SearchBox.Name = "SearchBox";
-            this.SearchBox.Size = new System.Drawing.Size(307, 20);
-            this.SearchBox.TabIndex = 2;
-            this.SearchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchBox_KeyDown);
+            this.searchBox.Location = new System.Drawing.Point(12, 13);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(307, 20);
+            this.searchBox.TabIndex = 2;
+            this.searchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchBox_KeyDown);
             // 
-            // ChatGroupBox
+            // chatGroupBox
             // 
-            this.ChatGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChatGroupBox.Controls.Add(this.NrLabel);
-            this.ChatGroupBox.Controls.Add(this.SaveButton);
-            this.ChatGroupBox.Controls.Add(this.NrOfUsersLable);
-            this.ChatGroupBox.Controls.Add(this.NrOfUsersTrackBar);
-            this.ChatGroupBox.Controls.Add(this.PrivateCheckBox);
-            this.ChatGroupBox.Controls.Add(this.ChatNameTextBox);
-            this.ChatGroupBox.Controls.Add(this.TypeLabel);
-            this.ChatGroupBox.Controls.Add(this.ChatNameLabel);
-            this.ChatGroupBox.Location = new System.Drawing.Point(407, 10);
-            this.ChatGroupBox.Name = "ChatGroupBox";
-            this.ChatGroupBox.Size = new System.Drawing.Size(200, 158);
-            this.ChatGroupBox.TabIndex = 3;
-            this.ChatGroupBox.TabStop = false;
-            this.ChatGroupBox.Text = "Chat";
+            this.chatGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatGroupBox.Controls.Add(this.nrLabel);
+            this.chatGroupBox.Controls.Add(this.saveButton);
+            this.chatGroupBox.Controls.Add(this.nrOfUsersLable);
+            this.chatGroupBox.Controls.Add(this.nrOfUsersTrackBar);
+            this.chatGroupBox.Controls.Add(this.privateCheckBox);
+            this.chatGroupBox.Controls.Add(this.chatNameTextBox);
+            this.chatGroupBox.Controls.Add(this.typeLabel);
+            this.chatGroupBox.Controls.Add(this.chatNameLabel);
+            this.chatGroupBox.Location = new System.Drawing.Point(407, 10);
+            this.chatGroupBox.Name = "chatGroupBox";
+            this.chatGroupBox.Size = new System.Drawing.Size(200, 158);
+            this.chatGroupBox.TabIndex = 3;
+            this.chatGroupBox.TabStop = false;
+            this.chatGroupBox.Text = "Chat";
             // 
-            // NrLabel
+            // nrLabel
             // 
-            this.NrLabel.AutoSize = true;
-            this.NrLabel.Location = new System.Drawing.Point(6, 90);
-            this.NrLabel.Name = "NrLabel";
-            this.NrLabel.Size = new System.Drawing.Size(13, 13);
-            this.NrLabel.TabIndex = 7;
-            this.NrLabel.Text = "2";
+            this.nrLabel.AutoSize = true;
+            this.nrLabel.Location = new System.Drawing.Point(6, 90);
+            this.nrLabel.Name = "nrLabel";
+            this.nrLabel.Size = new System.Drawing.Size(13, 13);
+            this.nrLabel.TabIndex = 7;
+            this.nrLabel.Text = "2";
             // 
-            // SaveButton
+            // saveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(9, 129);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(179, 23);
-            this.SaveButton.TabIndex = 4;
-            this.SaveButton.Text = "Create chat";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            this.saveButton.Location = new System.Drawing.Point(9, 129);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(179, 23);
+            this.saveButton.TabIndex = 4;
+            this.saveButton.Text = "Create chat";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // NrOfUsersLable
+            // nrOfUsersLable
             // 
-            this.NrOfUsersLable.AutoSize = true;
-            this.NrOfUsersLable.Location = new System.Drawing.Point(6, 77);
-            this.NrOfUsersLable.Name = "NrOfUsersLable";
-            this.NrOfUsersLable.Size = new System.Drawing.Size(58, 13);
-            this.NrOfUsersLable.TabIndex = 6;
-            this.NrOfUsersLable.Text = "Nr of users";
+            this.nrOfUsersLable.AutoSize = true;
+            this.nrOfUsersLable.Location = new System.Drawing.Point(6, 77);
+            this.nrOfUsersLable.Name = "nrOfUsersLable";
+            this.nrOfUsersLable.Size = new System.Drawing.Size(58, 13);
+            this.nrOfUsersLable.TabIndex = 6;
+            this.nrOfUsersLable.Text = "Nr of users";
             // 
-            // NrOfUsersTrackBar
+            // nrOfUsersTrackBar
             // 
-            this.NrOfUsersTrackBar.Location = new System.Drawing.Point(70, 77);
-            this.NrOfUsersTrackBar.Name = "NrOfUsersTrackBar";
-            this.NrOfUsersTrackBar.Size = new System.Drawing.Size(124, 45);
-            this.NrOfUsersTrackBar.TabIndex = 5;
-            this.NrOfUsersTrackBar.ValueChanged += new System.EventHandler(this.NrOfUsersTrackBar_ValueChanged);
+            this.nrOfUsersTrackBar.Location = new System.Drawing.Point(70, 77);
+            this.nrOfUsersTrackBar.Name = "nrOfUsersTrackBar";
+            this.nrOfUsersTrackBar.Size = new System.Drawing.Size(124, 45);
+            this.nrOfUsersTrackBar.TabIndex = 5;
+            this.nrOfUsersTrackBar.ValueChanged += new System.EventHandler(this.NrOfUsersTrackBar_ValueChanged);
             // 
-            // PrivateCheckBox
+            // privateCheckBox
             // 
-            this.PrivateCheckBox.AutoSize = true;
-            this.PrivateCheckBox.Location = new System.Drawing.Point(70, 53);
-            this.PrivateCheckBox.Name = "PrivateCheckBox";
-            this.PrivateCheckBox.Size = new System.Drawing.Size(58, 17);
-            this.PrivateCheckBox.TabIndex = 3;
-            this.PrivateCheckBox.Text = "private";
-            this.PrivateCheckBox.UseVisualStyleBackColor = true;
+            this.privateCheckBox.AutoSize = true;
+            this.privateCheckBox.Location = new System.Drawing.Point(70, 53);
+            this.privateCheckBox.Name = "privateCheckBox";
+            this.privateCheckBox.Size = new System.Drawing.Size(58, 17);
+            this.privateCheckBox.TabIndex = 3;
+            this.privateCheckBox.Text = "private";
+            this.privateCheckBox.UseVisualStyleBackColor = true;
             // 
-            // ChatNameTextBox
+            // chatNameTextBox
             // 
-            this.ChatNameTextBox.Location = new System.Drawing.Point(70, 19);
-            this.ChatNameTextBox.Name = "ChatNameTextBox";
-            this.ChatNameTextBox.Size = new System.Drawing.Size(124, 20);
-            this.ChatNameTextBox.TabIndex = 2;
+            this.chatNameTextBox.Location = new System.Drawing.Point(70, 19);
+            this.chatNameTextBox.Name = "chatNameTextBox";
+            this.chatNameTextBox.Size = new System.Drawing.Size(124, 20);
+            this.chatNameTextBox.TabIndex = 2;
             // 
-            // TypeLabel
+            // typeLabel
             // 
-            this.TypeLabel.AutoSize = true;
-            this.TypeLabel.Location = new System.Drawing.Point(6, 54);
-            this.TypeLabel.Name = "TypeLabel";
-            this.TypeLabel.Size = new System.Drawing.Size(31, 13);
-            this.TypeLabel.TabIndex = 1;
-            this.TypeLabel.Text = "Type";
+            this.typeLabel.AutoSize = true;
+            this.typeLabel.Location = new System.Drawing.Point(6, 54);
+            this.typeLabel.Name = "typeLabel";
+            this.typeLabel.Size = new System.Drawing.Size(31, 13);
+            this.typeLabel.TabIndex = 1;
+            this.typeLabel.Text = "Type";
             // 
-            // ChatNameLabel
+            // chatNameLabel
             // 
-            this.ChatNameLabel.AutoSize = true;
-            this.ChatNameLabel.Location = new System.Drawing.Point(6, 22);
-            this.ChatNameLabel.Name = "ChatNameLabel";
-            this.ChatNameLabel.Size = new System.Drawing.Size(58, 13);
-            this.ChatNameLabel.TabIndex = 0;
-            this.ChatNameLabel.Text = "Chat name";
+            this.chatNameLabel.AutoSize = true;
+            this.chatNameLabel.Location = new System.Drawing.Point(6, 22);
+            this.chatNameLabel.Name = "chatNameLabel";
+            this.chatNameLabel.Size = new System.Drawing.Size(58, 13);
+            this.chatNameLabel.TabIndex = 0;
+            this.chatNameLabel.Text = "Chat name";
             // 
-            // ViewProfileButton
+            // viewProfileButton
             // 
-            this.ViewProfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ViewProfileButton.Location = new System.Drawing.Point(416, 266);
-            this.ViewProfileButton.Name = "ViewProfileButton";
-            this.ViewProfileButton.Size = new System.Drawing.Size(75, 23);
-            this.ViewProfileButton.TabIndex = 4;
-            this.ViewProfileButton.Text = "View Profile";
-            this.ViewProfileButton.UseVisualStyleBackColor = true;
-            this.ViewProfileButton.Click += new System.EventHandler(this.ViewProfileButton_Click);
+            this.viewProfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewProfileButton.Location = new System.Drawing.Point(416, 266);
+            this.viewProfileButton.Name = "viewProfileButton";
+            this.viewProfileButton.Size = new System.Drawing.Size(75, 23);
+            this.viewProfileButton.TabIndex = 4;
+            this.viewProfileButton.Text = "View Profile";
+            this.viewProfileButton.UseVisualStyleBackColor = true;
+            this.viewProfileButton.Click += new System.EventHandler(this.ViewProfileButton_Click);
             // 
-            // InviteListBox
+            // inviteListBox
             // 
-            this.InviteListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.inviteListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.InviteListBox.DisplayMember = "Name";
-            this.InviteListBox.FormattingEnabled = true;
-            this.InviteListBox.Location = new System.Drawing.Point(407, 175);
-            this.InviteListBox.Name = "InviteListBox";
-            this.InviteListBox.Size = new System.Drawing.Size(200, 82);
-            this.InviteListBox.TabIndex = 5;
-            this.InviteListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.InviteListBox_MouseDoubleClick);
+            this.inviteListBox.DisplayMember = "Name";
+            this.inviteListBox.FormattingEnabled = true;
+            this.inviteListBox.Location = new System.Drawing.Point(407, 175);
+            this.inviteListBox.Name = "inviteListBox";
+            this.inviteListBox.Size = new System.Drawing.Size(200, 82);
+            this.inviteListBox.TabIndex = 5;
+            this.inviteListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.InviteListBox_MouseDoubleClick);
             // 
-            // ClearEventsButton
+            // clearEventsButton
             // 
-            this.ClearEventsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearEventsButton.Location = new System.Drawing.Point(532, 266);
-            this.ClearEventsButton.Name = "ClearEventsButton";
-            this.ClearEventsButton.Size = new System.Drawing.Size(75, 23);
-            this.ClearEventsButton.TabIndex = 6;
-            this.ClearEventsButton.Text = "Clear events";
-            this.ClearEventsButton.UseVisualStyleBackColor = true;
-            this.ClearEventsButton.Click += new System.EventHandler(this.ClearEventsButton_Click);
+            this.clearEventsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearEventsButton.Location = new System.Drawing.Point(532, 266);
+            this.clearEventsButton.Name = "clearEventsButton";
+            this.clearEventsButton.Size = new System.Drawing.Size(75, 23);
+            this.clearEventsButton.TabIndex = 6;
+            this.clearEventsButton.Text = "Clear events";
+            this.clearEventsButton.UseVisualStyleBackColor = true;
+            this.clearEventsButton.Click += new System.EventHandler(this.ClearEventsButton_Click);
             // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 301);
-            this.Controls.Add(this.ClearEventsButton);
-            this.Controls.Add(this.InviteListBox);
-            this.Controls.Add(this.ViewProfileButton);
-            this.Controls.Add(this.ChatGroupBox);
-            this.Controls.Add(this.SearchBox);
-            this.Controls.Add(this.SearchButton);
-            this.Controls.Add(this.ChatListView);
+            this.Controls.Add(this.clearEventsButton);
+            this.Controls.Add(this.inviteListBox);
+            this.Controls.Add(this.viewProfileButton);
+            this.Controls.Add(this.chatGroupBox);
+            this.Controls.Add(this.searchBox);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.chatListView);
             this.Name = "ChatForm";
             this.Text = "Chat form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_Closing);
-            this.ChatGroupBox.ResumeLayout(false);
-            this.ChatGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NrOfUsersTrackBar)).EndInit();
+            this.chatGroupBox.ResumeLayout(false);
+            this.chatGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nrOfUsersTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,20 +234,20 @@ namespace PresentationTier
 
         #endregion
 
-        private System.Windows.Forms.ListView ChatListView;
-        private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.TextBox SearchBox;
-        private GroupBox ChatGroupBox;
-        private CheckBox PrivateCheckBox;
-        private TextBox ChatNameTextBox;
-        private Label TypeLabel;
-        private Label ChatNameLabel;
-        private Button SaveButton;
-        private Label NrOfUsersLable;
-        private TrackBar NrOfUsersTrackBar;
-        private Label NrLabel;
-        private Button ViewProfileButton;
-        private ListBox InviteListBox;
-        private Button ClearEventsButton;
+        private System.Windows.Forms.ListView chatListView;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.TextBox searchBox;
+        private GroupBox chatGroupBox;
+        private CheckBox privateCheckBox;
+        private TextBox chatNameTextBox;
+        private Label typeLabel;
+        private Label chatNameLabel;
+        private Button saveButton;
+        private Label nrOfUsersLable;
+        private TrackBar nrOfUsersTrackBar;
+        private Label nrLabel;
+        private Button viewProfileButton;
+        private ListBox inviteListBox;
+        private Button clearEventsButton;
     }
 }

@@ -22,9 +22,6 @@ C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\Busin
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.pdb
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.pdb
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\DataAccessTier.dll
-C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
-C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
-C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
 D:\Workspace\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
 D:\Workspace\Project\BusinessTier\bin\Debug\BusinessTier.dll
 D:\Workspace\Project\BusinessTier\bin\Debug\BusinessTier.pdb
@@ -146,3 +143,6 @@ C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\bin\Debu
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\bin\Debug\Google.Apis.YouTube.v3.xml
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll.config
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll

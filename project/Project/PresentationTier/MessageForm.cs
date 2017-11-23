@@ -29,7 +29,7 @@ namespace PresentationTier
             this.chatId = chatId;
             this.profileId = profileId;
 
-            if (UserListBox.Items.Count == 2)
+            if (userListBox.Items.Count == 2)
                 rps_btn.Visible = true;
             #endregion
 
@@ -48,39 +48,39 @@ namespace PresentationTier
                 this.Text = "Private chat: " + chat.Name;
             }
 
-            PeopleInChatLabel.Text = chat.Users.Count() + " out of " + chat.MaxNrOfUsers + " users";
+            peopleInChatLabel.Text = chat.Users.Count() + " out of " + chat.MaxNrOfUsers + " users";
         }
 
         public void GetMessages(MessageServiceReference.Message[] messages)//gets message in chat
         {
             foreach (MessageServiceReference.Message message in messages)
             {
-                MessageListBox.Items.Add(message);
+                messageListBox.Items.Add(message);
             }
-            this.MessageListBox.SelectedIndex = this.MessageListBox.Items.Count - 1;
+            this.messageListBox.SelectedIndex = this.messageListBox.Items.Count - 1;
         }
 
         public void GetOnlineProfiles(Profile[] profiles)//gets all users online
         {
-            if (UserListBox.Items.Count > 2)
+            if (userListBox.Items.Count > 2)
                 rps_btn.Visible = false;
             else
                 rps_btn.Visible = false;
 
-            UserListBox.Items.Clear();
+            userListBox.Items.Clear();
             foreach (Profile profile in profiles)
             {
-                UserListBox.Items.Add(profile);
+                userListBox.Items.Add(profile);
                 if (profile.ProfileID == profileId)
                 {
-                    UserListBox.SelectedIndex = UserListBox.Items.Count - 1;
+                    userListBox.SelectedIndex = userListBox.Items.Count - 1;
                 }
             }
 
-            String text = PeopleInChatLabel.Text;
-            PeopleInChatLabel.Text = profiles.Count().ToString() + text.Substring(text.IndexOf(" ") -1 + " ".Length);
+            String text = peopleInChatLabel.Text;
+            peopleInChatLabel.Text = profiles.Count().ToString() + text.Substring(text.IndexOf(" ") -1 + " ".Length);
 
-            if (UserListBox.Items.Count == 2)
+            if (userListBox.Items.Count == 2)
                 rps_btn.Visible = true;
             else
                 rps_btn.Visible = false;
@@ -114,16 +114,16 @@ namespace PresentationTier
 
         private void SendButton_Click(object sender, EventArgs e)//send message
         {
-            if (!MessageTextBox.Text.Equals(""))
+            if (!messageTextBox.Text.Equals(""))
             {
-                client.CreateMessage(profileId, MessageTextBox.Text, chatId);
-                MessageTextBox.Text = "";
+                client.CreateMessage(profileId, messageTextBox.Text, chatId);
+                messageTextBox.Text = "";
             }
         }
 
         public void AddMessage(MessageServiceReference.Message message)//call back item message recieved
         {
-            MessageListBox.Items.Add(message);
+            messageListBox.Items.Add(message);
         }
         #endregion
 
@@ -133,13 +133,13 @@ namespace PresentationTier
         {
             if (e.Button == MouseButtons.Right)
             {
-                int item = MessageListBox.IndexFromPoint(e.Location);
+                int item = messageListBox.IndexFromPoint(e.Location);
                 if (item >= 0)
                 {
-                    MessageListBox.SelectedIndex = item;
-                    if ((MessageListBox.SelectedItem as MessageServiceReference.Message).CreatorId == profileId)
+                    messageListBox.SelectedIndex = item;
+                    if ((messageListBox.SelectedItem as MessageServiceReference.Message).CreatorId == profileId)
                     {
-                        cm.Show(MessageListBox, e.Location);
+                        cm.Show(messageListBox, e.Location);
                     }
                 }
             }
@@ -147,16 +147,16 @@ namespace PresentationTier
 
         private void MenuItemNew_Click(Object sender, EventArgs e)//Right cick menu button clicked
         {
-            client.DeleteMessage((MessageListBox.SelectedItem as MessageServiceReference.Message).Id, chatId);
+            client.DeleteMessage((messageListBox.SelectedItem as MessageServiceReference.Message).Id, chatId);
         }
 
         public void RemoveMessage(int id)//callBack method message removed
         {
-            foreach (MessageServiceReference.Message message in MessageListBox.Items)
+            foreach (MessageServiceReference.Message message in messageListBox.Items)
             {
                 if (message.Id == id)
                 {
-                    MessageListBox.Items.Remove(message);
+                    messageListBox.Items.Remove(message);
                     break;
                 }
             }
@@ -165,25 +165,25 @@ namespace PresentationTier
 
         private void MessageListBox_MouseMove(object sender, MouseEventArgs e)//Shows the rest of the info about message
         {
-            int index = MessageListBox.IndexFromPoint(e.Location);
+            int index = messageListBox.IndexFromPoint(e.Location);
 
             if (index >= 0)
             {
-                MessageListBox.SelectedIndex = index;
+                messageListBox.SelectedIndex = index;
             }
 
-            if (index != -1 && index < MessageListBox.Items.Count)
+            if (index != -1 && index < messageListBox.Items.Count)
             {
-                MessageServiceReference.Message message = (MessageListBox.SelectedItem as MessageServiceReference.Message);
+                MessageServiceReference.Message message = (messageListBox.SelectedItem as MessageServiceReference.Message);
                 String text = message.Creator + " " + message.Time.ToString();
-                if (toolTip.GetToolTip(MessageListBox) != text)
+                if (toolTip.GetToolTip(messageListBox) != text)
                 {
-                    toolTip.SetToolTip(MessageListBox, text);
+                    toolTip.SetToolTip(messageListBox, text);
                 }
             }
             else
             {
-                toolTip.SetToolTip(this.MessageListBox, string.Empty);
+                toolTip.SetToolTip(this.messageListBox, string.Empty);
             }
         }
 
@@ -198,19 +198,19 @@ namespace PresentationTier
 
         private void InviteButton_Click(object sender, EventArgs e)//invite button clicked
         {
-            client.InviteToChat(chatId, FriendNameTextBox.Text);
+            client.InviteToChat(chatId, friendNameTextBox.Text);
         }
 
         public void Invite(bool result)//returns if invite was successful
         {
             if (result)
             {
-                FriendNameTextBox.Text = "";
-                AddButton.BackColor = SystemColors.ButtonFace;
+                friendNameTextBox.Text = "";
+                addButton.BackColor = SystemColors.ButtonFace;
             }
             else
             {
-                AddButton.BackColor = Color.Red;
+                addButton.BackColor = Color.Red;
             }
         }
         #endregion

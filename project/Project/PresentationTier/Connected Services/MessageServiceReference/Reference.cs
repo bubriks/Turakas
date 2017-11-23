@@ -241,6 +241,9 @@ namespace PresentationTier.MessageServiceReference {
         private int OwnerIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -304,6 +307,19 @@ namespace PresentationTier.MessageServiceReference {
                 if ((this.OwnerIDField.Equals(value) != true)) {
                     this.OwnerIDField = value;
                     this.RaisePropertyChanged("OwnerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Time {
+            get {
+                return this.TimeField;
+            }
+            set {
+                if ((this.TimeField.Equals(value) != true)) {
+                    this.TimeField = value;
+                    this.RaisePropertyChanged("Time");
                 }
             }
         }

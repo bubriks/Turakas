@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataTier;
 
 namespace DataAccessTier
@@ -20,20 +17,20 @@ namespace DataAccessTier
         public Message CreateMessage(int profileId, String text, int chatId)
         {
             string stmt = " DECLARE @activityID int; " +
-                
-            " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
-            " SET @activityID = @@IDENTITY; " +
+
+            " INSERT INTO Activity(loginID, timeStamp) VALUES(@0, @1); " +
+            " SET @activityID = @@IDENTITY;" +
 
             " INSERT INTO Message(activityID, chatID, message) values(@activityID, @3, @2); " +
 
             " SELECT " +
-                " Profile.nickname, " +
+                " Login.nickname, " +
                 " Activity.activityID, " +
                 " Message.message, " +
                 " Activity.timeStamp " +
-                " FROM Profile " +
+                " FROM Login " +
             " INNER JOIN Activity " +
-                " on Profile.profileID = Activity.profileID " +
+                " on Login.loginID = Activity.loginID " +
             " INNER JOIN Message " +
                 " on Activity.activityID = Message.activityID " +
             " where Activity.activityID = @activityID ";
@@ -66,14 +63,14 @@ namespace DataAccessTier
         public List<Message> GetMessages(int chatId)
         {
             string stmt = " SELECT " +
-                            " Profile.nickname, " +
-                            " Profile.profileID, " +
+                            " Login.nickname, " +
+                            " Login.profileID, " +
                             " Activity.activityID, " +
                             " Message.message," +
                             " Activity.timeStamp" +
-                        " FROM Profile" +
+                        " FROM Login" +
                         " INNER JOIN Activity" +
-                            " on Profile.profileID = Activity.profileID" +
+                            " on Login.loginID = Activity.loginID" +
                         " INNER JOIN Message" +
                             " on Activity.activityID = Message.activityID" +
                         " where Message.chatID = @0";

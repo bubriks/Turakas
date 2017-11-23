@@ -15,6 +15,8 @@ namespace DataTier
         [DataMember]
         public int OwnerID { get; set; }
         [DataMember]
+        public DateTime Time { get; set; }
+        [DataMember]
         public string Name { get; set; }
         [DataMember]
         public bool Type { get; set; }
