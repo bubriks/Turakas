@@ -42,13 +42,15 @@ namespace PresentationTier
             ytUrl = textBox1.Text;
             string vidTitle = youtubeServiceClient.GetVideoTitle(VideoId);
             label1.Text = vidTitle;
-            if (!String.IsNullOrEmpty(vidTitle))
-            {
-                if (youtubeServiceClient.AddSong(0, vidTitle, 0, VideoId))
-                {
-                    MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                }
+            if (String.IsNullOrEmpty(vidTitle))
+            {
+                MessageBox.Show("Failed to add song. Probably the song already exists or the URL is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else if (youtubeServiceClient.AddSong(vidTitle, 0, VideoId))
+            {
+               MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
