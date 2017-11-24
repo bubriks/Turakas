@@ -71,7 +71,7 @@ namespace WcfService
                 callback.WritingMessage();
             }
         }
-
+        
         public void CreateMessage(int profileId, string text, int chatId)
         {
             Message message = messageController.CreateMessage(profileId, text, chatId);
