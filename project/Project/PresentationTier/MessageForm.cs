@@ -62,11 +62,6 @@ namespace PresentationTier
 
         public void GetOnlineProfiles(Profile[] profiles)//gets all users online
         {
-            if (userListBox.Items.Count > 2)
-                rps_btn.Visible = false;
-            else
-                rps_btn.Visible = false;
-
             userListBox.Items.Clear();
             foreach (Profile profile in profiles)
             {
@@ -223,8 +218,7 @@ namespace PresentationTier
 
         private void rps_btn_Click(object sender, EventArgs e)
         {
-            /*Profile profile = (Profile)UserListBox.SelectedItem;
-            RPSForm rPSForm = new RPSForm(chatId, profile);*/
+            RPSForm rPSForm = new RPSForm(chatId, userListBox.SelectedItem);
         }
 
         public void Show(bool result)

@@ -19,18 +19,18 @@ namespace PresentationTier
         private System.Timers.Timer timer = new System.Timers.Timer();
         private volatile bool requestStop = false;
 
-        public RPSForm(int chatId, Profile player1)
+        public RPSForm(int chatId, Object player1)
         {
             InitializeComponent();
             instanceContext = new InstanceContext(this);
             gameService = new GameServiceClient(instanceContext);
 
             gameId = chatId;
-            this.player1 = player1;
+            this.player1 = (Profile)player1;
 
-            gameService.JoinGame(gameId, player1.ProfileID); //player1 joins game
+            gameService.JoinGame(gameId, this.player1.ProfileID); //player1 joins game
 
-            player1_lbl.Text = player1.Nickname;
+            player1_lbl.Text = this.player1.Nickname;
             player2_lbl.Text = "PLAYER 2 NOT YET CONNECTED!";
 
             choice = -1;

@@ -95,8 +95,7 @@ namespace DataAccessTier
 
         public List<Chat> GetChatsByName(String name, int profileId)
         {
-            string stmt = "use dmaj0916_197331; " +/////////////////////////////////////////////////////////////////////////////////////////////////
-                          " SELECT " +
+            string stmt = " SELECT " +
                             " Login.loginID, " +
                             " timeStamp, " +
                             " Activity.activityID, " +

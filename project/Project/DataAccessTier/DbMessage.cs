@@ -21,7 +21,7 @@ namespace DataAccessTier
             " INSERT INTO Activity(loginID, timeStamp) VALUES(@0, @1); " +
             " SET @activityID = @@IDENTITY;" +
 
-            " INSERT INTO Message(activityID, chatID, message) values(@activityID, @3, @2); " +
+            " INSERT INTO Message(activityID, chatActivityID, message) values(@activityID, @3, @2); " +
 
             " SELECT " +
                 " Login.nickname, " +
@@ -64,7 +64,7 @@ namespace DataAccessTier
         {
             string stmt = " SELECT " +
                             " Login.nickname, " +
-                            " Login.profileID, " +
+                            " Login.loginID, " +
                             " Activity.activityID, " +
                             " Message.message," +
                             " Activity.timeStamp" +
@@ -73,7 +73,7 @@ namespace DataAccessTier
                             " on Login.loginID = Activity.loginID" +
                         " INNER JOIN Message" +
                             " on Activity.activityID = Message.activityID" +
-                        " where Message.chatID = @0";
+                        " where Message.chatActivityID = @0";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", chatId);
             SqlDataReader reader = cmd.ExecuteReader();
@@ -85,7 +85,7 @@ namespace DataAccessTier
                     Id = Int32.Parse(reader["activityID"].ToString()),
                     Text = reader["message"].ToString(),
                     Creator = reader["nickname"].ToString(),
-                    CreatorId = Int32.Parse(reader["profileID"].ToString()),
+                    CreatorId = Int32.Parse(reader["loginID"].ToString()),
                     Time = Convert.ToDateTime(reader["timeStamp"].ToString())
                 };
                 messages.Add(message);
@@ -96,7 +96,7 @@ namespace DataAccessTier
 
         public int DeleteMessage(int id)
         {
-            string stmt = "DELETE FROM Activity WHERE activityID = @0";
+            string stmt = "DELETE FROM Activity WHERE activityID = @0 ";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", id);
             int rows =cmd.ExecuteNonQuery();
