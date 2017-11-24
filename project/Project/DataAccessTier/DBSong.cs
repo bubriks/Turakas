@@ -77,7 +77,7 @@ namespace DataAccessTier
                 });
             }
 
-            
+            reader.Close();
             return results;
         }
     }
