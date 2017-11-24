@@ -57,8 +57,8 @@ namespace DataAccessTier
             
             for (int i = 0; i < keywords.Length; i++)
             {
-                stmt += $"LIKE '%{keywords[i]}%'";
-                if (!String.IsNullOrEmpty(keywords[i + 1]))
+                stmt += $"LIKE '%{keywords[i].Trim()}%'";
+                if (!String.IsNullOrEmpty(keywords[i + 1].Trim()))
                 {
                     stmt += " AND ";
                 }
