@@ -13,18 +13,10 @@ namespace DataTier
         [DataMember]
         public String Name { get; set; }
         [DataMember]
-        public Profile Creator { get; set; }
+        public int CreatorId { get; set; }
         [DataMember]
-        public List<Profile> AllUsers { get; set; }
+        public List<int> AllUsers { get; set; }
         [DataMember]
-        public List<Profile> OnlineUsers { get; set; }
-        public void SetName(String name)
-        {
-            Name = name;
-        }
-        public void SetCreator(Profile creator)
-        {
-            Creator = creator;
-        }
+        public List<int> OnlineUsers { get; set; }
     }
 }

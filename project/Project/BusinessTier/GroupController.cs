@@ -16,34 +16,38 @@ namespace BusinessTier
         {
             dbGroup = new DbGroup();
         }
-        public bool AddMember(Profile profile)
+        public void SomethingWentWrong()
+        {
+            Console.WriteLine("Something went wrong!");
+        }
+        public void AddMember(int profileId)
         {
             try
             {
-                return dbGroup.AddMember(profile);
+                dbGroup.AddMember(profileId);
             }
-            catch { return false; }
+            catch { SomethingWentWrong(); }
         }
 
-        public bool CreateGroup(String name, Profile profile)
+        public void CreateGroup(String name, int profileId)
         {
             try
             {
-                return dbGroup.CreateGroup(name, profile);
+                dbGroup.CreateGroup(name, profileId);
             }
-            catch { return false; }
+            catch { SomethingWentWrong(); }
         }
 
-        public bool DeleteGroup(Profile profile)
+        public void DeleteGroup(String name)
         {
             try
             {
-                return dbGroup.DeleteGroup(profile);
+                dbGroup.DeleteGroup(name);
             }
-            catch { return false; }
+            catch { SomethingWentWrong(); }
         }
 
-        public List<Profile> GetAllUsers()
+        public List<int> GetAllUsers()
         {
             try
             {
@@ -52,7 +56,7 @@ namespace BusinessTier
             catch { return null; }
         }
 
-        public List<Profile> GetOnlineUsers()
+        public List<int> GetOnlineUsers()
         {
             try
             {
@@ -61,13 +65,13 @@ namespace BusinessTier
             catch { return null; }
         }
 
-        public bool RemoveMember(Profile profile)
+        public void RemoveMember(int profileId)
         {
             try
             {
-                return dbGroup.RemoveMember(profile);
+                dbGroup.RemoveMember(profileId);
             }
-            catch { return false; }
+            catch { SomethingWentWrong(); }
         }
     }
 }

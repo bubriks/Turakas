@@ -16,34 +16,32 @@ namespace PresentationTier
         private int profileId;
         private Form profileform;
         private GroupServiceClient client;
-        private Profile profile;
         public GroupForm(int profileId, Form profileform)
         {
             this.profileId = profileId;
             this.profileform = profileform;
-            profile = new Profile();
             InitializeComponent();
         }
 
         private void BtnCreate_Click(object sender, EventArgs e)
         {
             String name = txtName.Text;
-            client.CreateGroup(name, profile);
+            client.CreateGroup(name, profileId);
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            client.DeleteGroup(profile);
+            client.DeleteGroup(lbAllGroups.Text.ToString());
         }
 
         private void BtnAddUser_Click(object sender, EventArgs e)
         {
-            client.AddMember(profile);
+            client.AddMember(profileId);
         }
 
         private void BtnDeleteUser_Click(object sender, EventArgs e)
         {
-            client.RemoveMember(profile);
+            client.RemoveMember(profileId);
         }
 
         private void BntAllUsers_Click(object sender, EventArgs e)
@@ -56,7 +54,7 @@ namespace PresentationTier
             lbGroupMembers.Text = client.GetOnlineUsers().ToString();
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
             Hide();
             profileform.Show();

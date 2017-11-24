@@ -174,3 +174,4 @@ C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessT
 C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\bin\Debug\BusinessTier.dll
 C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\youtube_client_secret.json
+C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\BusinessTier\bin\Debug\youtube_client_secret.json

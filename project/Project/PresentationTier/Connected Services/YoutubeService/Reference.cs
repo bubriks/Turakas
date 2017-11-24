@@ -9,7 +9,102 @@
 //------------------------------------------------------------------------------
 
 namespace PresentationTier.YoutubeService {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Song", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Song : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ActivityIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DurationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UrlField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ActivityId {
+            get {
+                return this.ActivityIdField;
+            }
+            set {
+                if ((this.ActivityIdField.Equals(value) != true)) {
+                    this.ActivityIdField = value;
+                    this.RaisePropertyChanged("ActivityId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Duration {
+            get {
+                return this.DurationField;
+            }
+            set {
+                if ((this.DurationField.Equals(value) != true)) {
+                    this.DurationField = value;
+                    this.RaisePropertyChanged("Duration");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Url {
+            get {
+                return this.UrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UrlField, value) != true)) {
+                    this.UrlField = value;
+                    this.RaisePropertyChanged("Url");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="YoutubeService.IYoutubeService")]
@@ -32,6 +127,12 @@ namespace PresentationTier.YoutubeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetVideoDuration", ReplyAction="http://tempuri.org/IYoutubeService/GetVideoDurationResponse")]
         System.Threading.Tasks.Task<int> GetVideoDurationAsync(string videoId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/FindSongsByName", ReplyAction="http://tempuri.org/IYoutubeService/FindSongsByNameResponse")]
+        PresentationTier.YoutubeService.Song[] FindSongsByName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/FindSongsByName", ReplyAction="http://tempuri.org/IYoutubeService/FindSongsByNameResponse")]
+        System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> FindSongsByNameAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +184,14 @@ namespace PresentationTier.YoutubeService {
         
         public System.Threading.Tasks.Task<int> GetVideoDurationAsync(string videoId) {
             return base.Channel.GetVideoDurationAsync(videoId);
+        }
+        
+        public PresentationTier.YoutubeService.Song[] FindSongsByName(string name) {
+            return base.Channel.FindSongsByName(name);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> FindSongsByNameAsync(string name) {
+            return base.Channel.FindSongsByNameAsync(name);
         }
     }
 }

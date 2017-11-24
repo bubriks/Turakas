@@ -12,44 +12,58 @@ namespace DataAccessTier
     public class DbGroup
     {
         private SqlConnection con = null;
-        public List<Profile> allUsers = new List<Profile>();
-        public List<Profile> onlineUsers = new List<Profile>();
+        public List<int> allUsers = new List<int>();
+        public List<int> onlineUsers = new List<int>();
 
         public DbGroup()
         {
             con = DbConnection.GetInstance().GetConnection();
         }
-        public bool CreateGroup(String name, Profile creator)
+        public bool CreateGroup(String name, int profileId)
         {
-            Group group = new Group();
-            group.SetName(name);
-            group.SetCreator(creator);
-            allUsers.Add(creator);
-            return true;
+            Group group = new Group{Name = name, CreatorId = profileId};
+            if (group == null)
+                return false;
+            else
+                return true;
         }
-        public bool AddMember(Profile profile)
+        public bool AddMember(int profileId)
         {
-            allUsers.Add(profile);
-            return true;
+            try
+            {
+                allUsers.Add(profileId);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
-        public bool RemoveMember(Profile profile)
+        public bool RemoveMember(int profileId)
         {
-            allUsers.Remove(profile);
-            return true;
+            try
+            {
+                allUsers.Remove(profileId);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
-        public List<Profile> GetAllUsers()
+        public List<int> GetAllUsers()
         {
             return allUsers;
         }
-        public List<Profile> GetOnlineUsers()
+        public List<int> GetOnlineUsers()
         {
-            foreach (Profile p in allUsers)
+            foreach (int p in allUsers)
             {
                 onlineUsers.Add(p);
             }
             return onlineUsers;
         }
-        public bool DeleteGroup(Profile profile)
+        public bool DeleteGroup(String name)
         {
             return true;
         }

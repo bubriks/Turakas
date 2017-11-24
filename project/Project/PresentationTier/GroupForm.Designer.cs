@@ -40,7 +40,7 @@
             this.BtnAddUser = new System.Windows.Forms.Button();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.BtnDeleteUser = new System.Windows.Forms.Button();
-            this.BtnCancel = new System.Windows.Forms.Button();
+            this.BtnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -153,22 +153,22 @@
             this.BtnDeleteUser.UseVisualStyleBackColor = true;
             this.BtnDeleteUser.Click += new System.EventHandler(this.BtnDeleteUser_Click);
             // 
-            // BtnCancel
+            // BtnBack
             // 
-            this.BtnCancel.Location = new System.Drawing.Point(16, 394);
-            this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(75, 23);
-            this.BtnCancel.TabIndex = 12;
-            this.BtnCancel.Text = "Cancel";
-            this.BtnCancel.UseVisualStyleBackColor = true;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.BtnBack.Location = new System.Drawing.Point(16, 394);
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(75, 23);
+            this.BtnBack.TabIndex = 12;
+            this.BtnBack.Text = "Back";
+            this.BtnBack.UseVisualStyleBackColor = true;
+            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
             // GroupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 430);
-            this.Controls.Add(this.BtnCancel);
+            this.Controls.Add(this.BtnBack);
             this.Controls.Add(this.BtnDeleteUser);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.BtnAddUser);
@@ -202,6 +202,6 @@
         private System.Windows.Forms.Button BtnAddUser;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Button BtnDeleteUser;
-        private System.Windows.Forms.Button BtnCancel;
+        private System.Windows.Forms.Button BtnBack;
     }
 }

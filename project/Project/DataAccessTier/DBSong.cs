@@ -37,7 +37,7 @@ namespace DataAccessTier
             {
                 song = new Song
                 {
-                    SongId = reader.GetInt32(reader.GetOrdinal("songID")),
+                    ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
                     Name = reader.GetString(reader.GetOrdinal("name")), 
                     Duration = reader.GetInt32(reader.GetOrdinal("duration")), 
                     Url = reader.GetString(reader.GetOrdinal("url"))
@@ -47,10 +47,44 @@ namespace DataAccessTier
             return song;
         }
 
-        public List<Song> FindSongByName(string name)
+        public List<Song> FindSongsByName(string name)
         {
+            List<Song> results = new List<Song>();
+            name = name.Trim();
+            string stmt = "SELECT * FROM Song where name ";
+            char[] delimiters = {' '};
+            string[] keywords = name.Split(delimiters);
+            
+            for (int i = 0; i < keywords.Length; i++)
+            {
+                stmt += $"LIKE '%{keywords[i].Trim()}%'";
+                
+                try
+                {
+                   string next = keywords[i + 1];
+                   stmt += " AND name ";
+                }
+                catch (System.IndexOutOfRangeException)
+                {
+                    
+                }
+            }
+            
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                results.Add( new Song
+                {
+                    ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
+                    Name = reader.GetString(reader.GetOrdinal("name")), 
+                    Duration = reader.GetInt32(reader.GetOrdinal("duration")), 
+                    Url = reader.GetString(reader.GetOrdinal("url"))
+                });
+            }
 
-            return null;
+            reader.Close();
+            return results;
         }
     }
 }

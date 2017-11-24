@@ -25,6 +25,7 @@
     <MetadataFile FileName="YoutubeService.xsd" MetadataType="Schema" ID="b921a825-471f-42c8-8fc7-11dca0df7952" SourceId="1" SourceUrl="http://localhost/YoutubeService?xsd=xsd1" />
     <MetadataFile FileName="YoutubeService1.xsd" MetadataType="Schema" ID="0e7ccf87-5f06-4373-9c15-35ec7d2db2e7" SourceId="1" SourceUrl="http://localhost/YoutubeService?xsd=xsd0" />
     <MetadataFile FileName="YoutubeService.disco" MetadataType="Disco" ID="82a977fd-8455-4f0e-9d2b-030b8a169437" SourceId="1" SourceUrl="http://localhost/YoutubeService?disco" />
+    <MetadataFile FileName="YoutubeService2.xsd" MetadataType="Schema" ID="69266669-7ac4-4a1f-a809-8e3f7a727ba5" SourceId="1" SourceUrl="http://localhost/YoutubeService?xsd=xsd2" />
     <MetadataFile FileName="YoutubeService.wsdl" MetadataType="Wsdl" ID="3ffea06b-9490-4059-be9c-6f2d090f55cb" SourceId="1" SourceUrl="http://localhost/YoutubeService?wsdl" />
   </Metadata>
   <Extensions>

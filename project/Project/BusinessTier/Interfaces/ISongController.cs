@@ -1,10 +1,15 @@
-﻿namespace BusinessTier
+﻿using System.Collections.Generic;
+using DataTier;
+
+namespace BusinessTier
 {
     public interface ISongController
     {
         bool AddSong(string name, int duration, string url);
         string GetVideoTitle(string videoId);
         int GetVideoDuration(string videoId);
+        List<Song> FindSongsByName(string name);
+
 
     }
 }

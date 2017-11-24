@@ -1,5 +1,6 @@
 ﻿﻿using System;
-using DataAccessTier;
+ using System.Collections.Generic;
+ using DataAccessTier;
 using DataTier;
 using System.Web;
 using Google.Apis.Auth.OAuth2;
@@ -96,5 +97,12 @@ namespace BusinessTier
             }
             return videoDuration;
         }
+
+        public List<Song> FindSongsByName(string name)
+        {
+            DBSong dbSong = new DBSong();
+            return dbSong.FindSongsByName(name);
+        }
+
     }
 }
