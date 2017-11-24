@@ -21,7 +21,7 @@ namespace DataAccessTier
         {
             string stmt = "DECLARE @activityID int; " +
 
-            " INSERT INTO Activity(loginID, timeStamp) VALUES(@0, @1); " +
+            " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
             " SET @activityID = @@IDENTITY;" +
 
             " INSERT INTO Chat(activityID, name, type, nrOfUsers) values (@activityID, @2, @3, @4);" +
@@ -46,14 +46,14 @@ namespace DataAccessTier
         public Chat GetChat(int id)
         {
             string stmt = "SELECT " +
-                            " Login.loginID, " +
+                            " Profile.profileID, " +
                             " timeStamp, " +
                             " name, " +
                             " type, " +
                             " nrOfUsers " +
-                        " FROM Login " +
+                        " FROM Profile " +
                         " INNER JOIN Activity " +
-                            " on Login.loginID = Activity.loginID " +
+                            " on Profile.profileID = Activity.profileID " +
                         " INNER JOIN Chat " +
                             " on Activity.activityID = chat.activityID " +
                         " where Activity.activityID = @0 ;";
@@ -66,7 +66,7 @@ namespace DataAccessTier
                 chat = new Chat
                 {
                     Id = id,
-                    OwnerID = Int32.Parse(reader["loginID"].ToString()),
+                    OwnerID = Int32.Parse(reader["profileID"].ToString()),
                     Time = Convert.ToDateTime(reader["timeStamp"].ToString()),
                     Name = reader["name"].ToString(),
                     Type = (bool)reader["type"],
@@ -96,7 +96,7 @@ namespace DataAccessTier
         public List<Chat> GetChatsByName(String name, int profileId)
         {
             string stmt = " SELECT " +
-                            " Login.loginID, " +
+                            " Profile.profileID, " +
                             " timeStamp, " +
                             " Activity.activityID, " +
                             " name, " +
@@ -105,9 +105,9 @@ namespace DataAccessTier
                         " FROM Chat " +
                         " INNER JOIN Activity " +
                             " on Chat.activityID = Activity.activityID " +
-                        " INNER JOIN Login " +
-                            " on Activity.loginID = Login.loginID " +
-                        " where name like '%' +@0+ '%' AND type = 1  OR Login.loginID = @1; ";
+                        " INNER JOIN Profile " +
+                            " on Activity.profileID = Profile.profileID " +
+                        " where name like '%' +@0+ '%' AND type = 1  OR Profile.profileID = @1; ";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", name);
             cmd.Parameters.AddWithValue("@1", profileId);
@@ -118,7 +118,7 @@ namespace DataAccessTier
                 Chat chat = new Chat
                 {
                     Id = Int32.Parse(reader["activityID"].ToString()),
-                    OwnerID = Int32.Parse(reader["loginID"].ToString()),
+                    OwnerID = Int32.Parse(reader["profileID"].ToString()),
                     Time = Convert.ToDateTime(reader["timeStamp"].ToString()),
                     Name = reader["name"].ToString(),
                     Type = (bool)reader["type"],

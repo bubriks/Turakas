@@ -24,13 +24,13 @@ namespace DataAccessTier
             " INSERT INTO Message(activityID, chatActivityID, message) values(@activityID, @3, @2); " +
 
             " SELECT " +
-                " Login.nickname, " +
+                " Profile.nickname, " +
                 " Activity.activityID, " +
                 " Message.message, " +
                 " Activity.timeStamp " +
-                " FROM Login " +
+                " FROM Profile " +
             " INNER JOIN Activity " +
-                " on Login.loginID = Activity.loginID " +
+                " on Profile.profileID = Activity.profileID " +
             " INNER JOIN Message " +
                 " on Activity.activityID = Message.activityID " +
             " where Activity.activityID = @activityID ";
@@ -63,14 +63,14 @@ namespace DataAccessTier
         public List<Message> GetMessages(int chatId)
         {
             string stmt = " SELECT " +
-                            " Login.nickname, " +
-                            " Login.loginID, " +
+                            " Profile.nickname, " +
+                            " Profile.profileID, " +
                             " Activity.activityID, " +
                             " Message.message," +
                             " Activity.timeStamp" +
-                        " FROM Login" +
+                        " FROM Profile" +
                         " INNER JOIN Activity" +
-                            " on Login.loginID = Activity.loginID" +
+                            " on Profile.profileID = Activity.profileID" +
                         " INNER JOIN Message" +
                             " on Activity.activityID = Message.activityID" +
                         " where Message.chatActivityID = @0";
