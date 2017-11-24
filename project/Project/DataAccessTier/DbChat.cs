@@ -45,7 +45,7 @@ namespace DataAccessTier
 
         public Chat GetChat(int id)
         {
-            string stmt = "SELECT" +
+            string stmt = "SELECT " +
                             " Login.loginID, " +
                             " timeStamp, " +
                             " name, " +
@@ -53,10 +53,10 @@ namespace DataAccessTier
                             " nrOfUsers " +
                         " FROM Login " +
                         " INNER JOIN Activity " +
-                            " on Login.loginID = Activity.activityID " +
+                            " on Login.loginID = Activity.loginID " +
                         " INNER JOIN Chat " +
                             " on Activity.activityID = chat.activityID " +
-                        " where Activity.activityID = @0;";
+                        " where Activity.activityID = @0 ;";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", id);
             SqlDataReader reader = cmd.ExecuteReader();
@@ -66,7 +66,7 @@ namespace DataAccessTier
                 chat = new Chat
                 {
                     Id = id,
-                    OwnerID = Int32.Parse(reader["ownerID"].ToString()),
+                    OwnerID = Int32.Parse(reader["loginID"].ToString()),
                     Time = Convert.ToDateTime(reader["timeStamp"].ToString()),
                     Name = reader["name"].ToString(),
                     Type = (bool)reader["type"],

@@ -10,7 +10,6 @@ C:\Users\bubri\Desktop\project\Project\DataTier\obj\Debug\DataTier.csprojResolve
 C:\Users\bubri\Desktop\project\Project\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
 C:\Users\bubri\Desktop\project\Project\DataTier\obj\Debug\DataTier.dll
 C:\Users\bubri\Desktop\project\Project\DataTier\obj\Debug\DataTier.pdb
-C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
 C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
 C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.pdb
 C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\bin\Debug\DataTier.pdb
