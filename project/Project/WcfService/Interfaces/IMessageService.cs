@@ -27,7 +27,7 @@ namespace WcfService
         void CreateMessage(int profileId, String text, int chatId);
 
         [OperationContract(IsOneWay = true)]
-        void DeleteMessage(int id, int chatId);
+        void DeleteMessage(int profileId, int id, int chatId);
     }
 
     public interface IMessageCallBack

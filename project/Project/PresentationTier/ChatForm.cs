@@ -160,7 +160,7 @@ namespace PresentationTier
             {
                 chat.Type = true;
             }
-            client.SaveChat(chat);
+            client.SaveChat(profileId, chat);
 
             chatId = 0;
             chatNameTextBox.Text = "";
@@ -173,7 +173,7 @@ namespace PresentationTier
 
         private void RemoveMenuItem_Click(Object sender, EventArgs e)//Right cick remove menu button clicked
         {
-            client.DeleteChat(Int32.Parse(chatListView.SelectedItems[0].Text));
+            client.DeleteChat(profileId, Int32.Parse(chatListView.SelectedItems[0].Text));
             SearchButton_Click(null, null);
         }
 

@@ -18,10 +18,10 @@ namespace WcfService
         void Offline(int profileId);
 
         [OperationContract(IsOneWay = true)]
-        void SaveChat(Chat chat);
+        void SaveChat(int profileId, Chat chat);
 
         [OperationContract(IsOneWay = true)]
-        void DeleteChat(int id);
+        void DeleteChat(int profileId, int id);
 
         [OperationContract]
         List<Chat> GetChatsByName(String name, int profileId);

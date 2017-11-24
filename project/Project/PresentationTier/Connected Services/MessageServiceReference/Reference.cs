@@ -427,10 +427,10 @@ namespace PresentationTier.MessageServiceReference {
         System.Threading.Tasks.Task CreateMessageAsync(int profileId, string text, int chatId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/DeleteMessage")]
-        void DeleteMessage(int id, int chatId);
+        void DeleteMessage(int profileId, int id, int chatId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/DeleteMessage")]
-        System.Threading.Tasks.Task DeleteMessageAsync(int id, int chatId);
+        System.Threading.Tasks.Task DeleteMessageAsync(int profileId, int id, int chatId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -529,12 +529,12 @@ namespace PresentationTier.MessageServiceReference {
             return base.Channel.CreateMessageAsync(profileId, text, chatId);
         }
         
-        public void DeleteMessage(int id, int chatId) {
-            base.Channel.DeleteMessage(id, chatId);
+        public void DeleteMessage(int profileId, int id, int chatId) {
+            base.Channel.DeleteMessage(profileId, id, chatId);
         }
         
-        public System.Threading.Tasks.Task DeleteMessageAsync(int id, int chatId) {
-            return base.Channel.DeleteMessageAsync(id, chatId);
+        public System.Threading.Tasks.Task DeleteMessageAsync(int profileId, int id, int chatId) {
+            return base.Channel.DeleteMessageAsync(profileId, id, chatId);
         }
     }
 }

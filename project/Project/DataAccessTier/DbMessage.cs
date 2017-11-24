@@ -85,7 +85,7 @@ namespace DataAccessTier
                     Id = Int32.Parse(reader["activityID"].ToString()),
                     Text = reader["message"].ToString(),
                     Creator = reader["nickname"].ToString(),
-                    CreatorId = Int32.Parse(reader["loginID"].ToString()),
+                    CreatorId = Int32.Parse(reader["profileID"].ToString()),
                     Time = Convert.ToDateTime(reader["timeStamp"].ToString())
                 };
                 messages.Add(message);
@@ -94,13 +94,14 @@ namespace DataAccessTier
             return messages;
         }
 
-        public int DeleteMessage(int id)
+        public int DeleteMessage(int profileId, int id)
         {
-            string stmt = "DELETE FROM Activity WHERE activityID = @0 ";
+            string stmt = " if (select profileID from Activity where activityId = @0) = @1 " +
+                            " DELETE FROM Activity WHERE activityID = @0; ";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", id);
-            int rows =cmd.ExecuteNonQuery();
-            return rows;
+            cmd.Parameters.AddWithValue("@1", profileId);
+            return cmd.ExecuteNonQuery();
         }
     }
 }

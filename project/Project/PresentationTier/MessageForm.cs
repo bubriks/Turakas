@@ -142,7 +142,7 @@ namespace PresentationTier
 
         private void MenuItemNew_Click(Object sender, EventArgs e)//Right cick menu button clicked
         {
-            client.DeleteMessage((messageListBox.SelectedItem as MessageServiceReference.Message).Id, chatId);
+            client.DeleteMessage (profileId, (messageListBox.SelectedItem as MessageServiceReference.Message).Id, chatId);
         }
 
         public void RemoveMessage(int id)//callBack method message removed

@@ -85,9 +85,9 @@ namespace WcfService
             }
         }
 
-        public void DeleteMessage(int id, int chatId)
+        public void DeleteMessage(int profileId, int id, int chatId)
         {
-            if (messageController.DeleteMessage(id))
+            if (messageController.DeleteMessage(profileId, id))
             {
                 foreach (Profile user in chatController.FindChat(chatId).Users)
                 {

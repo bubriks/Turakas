@@ -28,6 +28,6 @@ namespace BusinessTier
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        bool DeleteMessage(int id);
+        bool DeleteMessage(int profileId, int id);
     }
 }

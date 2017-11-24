@@ -17,7 +17,7 @@ namespace DataAccessTier
             string stmt = " DECLARE @activityID int; " +
 
             " INSERT INTO Activity(profileID, timeStamp) VALUES(1, @0); " +
-            " SET @activityID = @@IDENTITY; " + "INSERT INTO Song(activityID, name, duration, url) values (@activityID, @1, @2, @3)";
+            " SET @activityID = @@IDENTITY; " + "INSERT INTO Video(activityID, name, duration, url) values (@activityID, @1, @2, @3)";
             SqlCommand cmd = new SqlCommand(stmt, con);
             cmd.Parameters.AddWithValue("@0",DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             cmd.Parameters.AddWithValue("@1", name);
@@ -29,7 +29,7 @@ namespace DataAccessTier
         public Song FindSongByURL(string url)
         {
             Song song = null;
-            string stmt = "SELECT * FROM Song WHERE url = @0";
+            string stmt = "SELECT * FROM Video WHERE url = @0";
             SqlCommand cmd = new SqlCommand(stmt, con);
             cmd.Parameters.AddWithValue("@0", url);
             SqlDataReader reader = cmd.ExecuteReader();
@@ -51,7 +51,7 @@ namespace DataAccessTier
         {
             List<Song> results = new List<Song>();
             name = name.Trim();
-            string stmt = "SELECT * FROM Song where name ";
+            string stmt = "SELECT * FROM Video where name ";
             char[] delimiters = {' '};
             string[] keywords = name.Split(delimiters);
             

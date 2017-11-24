@@ -77,7 +77,7 @@ namespace DataAccessTier
             return chat;
         }
 
-        public Chat UpdateChat(Chat chat)
+        public int UpdateChat(Chat chat)
         {
             string stmt = "UPDATE Chat SET name = @0, type = @1, nrOfUsers= @2 WHERE activityID= @3;";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
@@ -85,12 +85,7 @@ namespace DataAccessTier
             cmd.Parameters.AddWithValue("@1", Convert.ToInt32(chat.Type));
             cmd.Parameters.AddWithValue("@2", chat.MaxNrOfUsers);
             cmd.Parameters.AddWithValue("@3", chat.Id);
-            int rows = cmd.ExecuteNonQuery();
-            if (rows > 0)
-            {
-                return chat;
-            }
-            return null;
+            return cmd.ExecuteNonQuery();
         }
 
         public List<Chat> GetChatsByName(String name, int profileId)
@@ -135,8 +130,7 @@ namespace DataAccessTier
             string stmt = "DELETE FROM Activity WHERE activityID = @0";
             SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0", id);
-            int rows = cmd.ExecuteNonQuery();
-            return rows;
+            return cmd.ExecuteNonQuery();
         }
     }
 }

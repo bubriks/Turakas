@@ -22,6 +22,12 @@ namespace BusinessTier
         {
             try
             {
+                if (text.Equals(""))
+                {
+                    //if message is empty
+                    return null;
+                }
+
                 Message message = dbMessage.CreateMessage(profileId, text, chatId);
                 if (message == null)
                 {
@@ -52,11 +58,11 @@ namespace BusinessTier
             }
         }
 
-        public bool DeleteMessage(int id)
+        public bool DeleteMessage(int profileId, int id)
         {
             try
             {
-                if (dbMessage.DeleteMessage(id) == 0)
+                if (dbMessage.DeleteMessage(profileId, id) != 1)
                 {
                     //returns false if no changes were made
                     return false;

@@ -26,7 +26,7 @@ namespace BusinessTier
 
             try
             {
-                Thread thread = new Thread(() => sendEmail(profile.Email, subject, body));
+                Thread thread = new Thread(() => SendEmail(profile.Email, subject, body));
                 thread.Start();
                 int loginId = dbProfile.CreateProfile(profile);
                 return loginId;
@@ -64,7 +64,7 @@ namespace BusinessTier
                 {
                     profiles.Password = tempPass;
 
-                    Thread thread = new Thread(() => sendEmail(profiles.Email, subject, body));
+                    Thread thread = new Thread(() => SendEmail(profiles.Email, subject, body));
                     thread.Start();
                     dbProfile.UpdateProfile(profiles.ProfileID, profiles);
                     return true;
@@ -105,7 +105,7 @@ namespace BusinessTier
         /// <param name="subject">subject for the email</param>
         /// <param name ="body">body for the email</param>param>
         /// <returns>true if succeded, false otherwise and prints error in console</returns>
-        private  void sendEmail(string email, string subject, string body)
+        private  void SendEmail(string email, string subject, string body)
         {
             try
             {
