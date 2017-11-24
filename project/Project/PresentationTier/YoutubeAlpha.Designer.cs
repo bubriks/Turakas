@@ -1,4 +1,6 @@
-﻿namespace PresentationTier
+﻿using System.Windows.Forms;
+
+namespace PresentationTier
 {
     partial class YoutubeAlpha
     {
@@ -86,6 +88,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(215, 290);
             this.listBox1.TabIndex = 4;
+            //this.listBox1.DataSource;
             // 
             // textBox2
             // 
@@ -94,6 +97,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(215, 20);
             this.textBox2.TabIndex = 5;
+            this.textBox2.KeyUp += new KeyEventHandler(this.textBox2_KeyUp);
             // 
             // button2
             // 

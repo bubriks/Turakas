@@ -7,7 +7,7 @@ namespace DataTier
     {
         
         [DataMember]
-        public int SongId { get; set; }
+        public int ActivityId { get; set; }
 
         [DataMember]
         public string Name { get; set; }

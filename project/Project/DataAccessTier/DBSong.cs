@@ -37,7 +37,7 @@ namespace DataAccessTier
             {
                 song = new Song
                 {
-                    SongId = reader.GetInt32(reader.GetOrdinal("songID")),
+                    ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
                     Name = reader.GetString(reader.GetOrdinal("name")), 
                     Duration = reader.GetInt32(reader.GetOrdinal("duration")), 
                     Url = reader.GetString(reader.GetOrdinal("url"))
@@ -47,7 +47,7 @@ namespace DataAccessTier
             return song;
         }
 
-        public List<Song> FindSongByName(string name)
+        public List<Song> FindSongsByName(string name)
         {
             List<Song> results = new List<Song>();
             name = name.Trim();
@@ -70,7 +70,7 @@ namespace DataAccessTier
             {
                 results.Add( new Song
                 {
-                    SongId = reader.GetInt32(reader.GetOrdinal("songID")),
+                    ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
                     Name = reader.GetString(reader.GetOrdinal("name")), 
                     Duration = reader.GetInt32(reader.GetOrdinal("duration")), 
                     Url = reader.GetString(reader.GetOrdinal("url"))

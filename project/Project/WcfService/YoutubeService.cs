@@ -27,5 +27,11 @@ namespace WcfService
         {
             return songController.GetVideoDuration(videoId);
         }
+
+        public List<Song> FindSongsByName(string name)
+        {
+            return songController.FindSongsByName(name);
+        }
+
     }
 }
