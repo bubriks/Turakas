@@ -10,11 +10,11 @@ namespace BusinessTier
 {
     public interface IGroupController
     {
-        bool CreateGroup(String name, Profile profile);
-        bool DeleteGroup(Profile profile);
-        bool AddMember(Profile profile);
-        bool RemoveMember(Profile profile);
-        List<Profile> GetOnlineUsers();
-        List<Profile> GetAllUsers();
+        void CreateGroup(String name, int profileId);
+        void DeleteGroup(String name);
+        void AddMember(int profileId);
+        void RemoveMember(int profileId);
+        List<int> GetOnlineUsers();
+        List<int> GetAllUsers();
     }
 }

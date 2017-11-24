@@ -1,61 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/GroupService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataTier" />
+  <xs:import schemaLocation="http://localhost/GroupService?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="CreateGroup">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="profile" nillable="true" type="q1:Profile" />
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateGroupResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CreateGroupResult" type="xs:boolean" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteGroup">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="profile" nillable="true" type="q2:Profile" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteGroupResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteGroupResult" type="xs:boolean" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="AddMember">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="profile" nillable="true" type="q3:Profile" />
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddMemberResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="AddMemberResult" type="xs:boolean" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveMember">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="profile" nillable="true" type="q4:Profile" />
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveMemberResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="RemoveMemberResult" type="xs:boolean" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="GetOnlineUsers">
@@ -66,7 +58,7 @@
   <xs:element name="GetOnlineUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetOnlineUsersResult" nillable="true" type="q5:ArrayOfProfile" />
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetOnlineUsersResult" nillable="true" type="q1:ArrayOfint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -78,7 +70,7 @@
   <xs:element name="GetAllUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q6:ArrayOfProfile" />
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q2:ArrayOfint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
