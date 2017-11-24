@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace PresentationTier
 {
@@ -88,7 +89,8 @@ namespace PresentationTier
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(215, 290);
             this.listBox1.TabIndex = 4;
-            //this.listBox1.DataSource;
+            this.listBox1.SelectionMode = SelectionMode.One;
+            this.listBox1.DoubleClick += new EventHandler(this.listBox1_DoubleClick);
             // 
             // textBox2
             // 

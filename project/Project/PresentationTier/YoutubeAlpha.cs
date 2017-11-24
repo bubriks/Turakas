@@ -69,6 +69,12 @@ namespace PresentationTier
             listBox1.DisplayMember = "Name";
         }
 
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            const string page1 = "<html><head><title></title></head><body>{0}</body></html>";
+            webBrowser1.DocumentText = string.Format(page1, $"<iframe width=\"300\" height=\"240\" src=\"http://www.youtube.com/embed/{listBox1.SelectedValue.ToString()}?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>");
+        }
+
         
         private void SetBrowserFeatureControlKey(string feature, string appName, uint value)
         {
