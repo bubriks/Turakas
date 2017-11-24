@@ -55,7 +55,7 @@ name varchar(50),
 --Video Table
 CREATE TABLE Video(
 activityID int FOREIGN KEY REFERENCES Activity(activityID) PRIMARY KEY NOT NULL,
-name varchar(50) NOT NULL,
+name varchar(500) NOT NULL,
 duration int NOT NULL,
 url varchar(200) NOT NULL,
 );
@@ -75,7 +75,7 @@ CREATE TRIGGER DELETE_Profile
 AS 
 BEGIN
  SET NOCOUNT ON;
- DELETE FROM Activity WHERE activityID IN (SELECT profileID FROM DELETED)
+ DELETE FROM Activity WHERE profileID IN (SELECT profileID FROM DELETED)
  DELETE FROM Profile WHERE profileID IN (SELECT profileID FROM DELETED)
 END
 go
