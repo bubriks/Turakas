@@ -1,8 +1,8 @@
 USE dmaj0916_197331
---Login Table
+--Profile Table
 go
-CREATE TABLE Login(
-loginID int IDENTITY(1,1) PRIMARY KEY,
+CREATE TABLE Profile(
+profileID int IDENTITY(1,1) PRIMARY KEY,
 username varchar(50) NOT NULL,
 salt uniqueIdentifier NOT NULL,
 passwordHash binary(64) NOT NULL,
@@ -13,7 +13,7 @@ nickname varchar(50) NOT NULL,
 --Activity Table
 CREATE TABLE Activity(
 activityID int IDENTITY(1,1) PRIMARY KEY,
-loginID int FOREIGN KEY REFERENCES Login(loginID) NOT NULL,
+profileID int FOREIGN KEY REFERENCES Profile(profileID) NOT NULL,
 timeStamp datetime2 NOT NULL,
 );
 
@@ -67,16 +67,16 @@ playListActivityID int FOREIGN KEY REFERENCES PlayLists(activityID) NOT NULL,
 PRIMARY KEY(videoID, playListActivityID),
 );
 
---Login Trigger
+--Profile Trigger
 go
-CREATE TRIGGER DELETE_Login
-   ON Login
+CREATE TRIGGER DELETE_Profile
+   ON Profile
    INSTEAD OF DELETE
 AS 
 BEGIN
  SET NOCOUNT ON;
- DELETE FROM Activity WHERE activityID IN (SELECT loginID FROM DELETED)
- DELETE FROM Login WHERE loginID IN (SELECT loginID FROM DELETED)
+ DELETE FROM Activity WHERE activityID IN (SELECT profileID FROM DELETED)
+ DELETE FROM Profile WHERE profileID IN (SELECT profileID FROM DELETED)
 END
 go
 
