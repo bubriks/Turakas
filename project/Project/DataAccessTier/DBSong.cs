@@ -51,16 +51,22 @@ namespace DataAccessTier
         {
             List<Song> results = new List<Song>();
             name = name.Trim();
-            string stmt = "SELECT * FROM Song where name";
+            string stmt = "SELECT * FROM Song where name ";
             char[] delimiters = {' '};
             string[] keywords = name.Split(delimiters);
             
             for (int i = 0; i < keywords.Length; i++)
             {
                 stmt += $"LIKE '%{keywords[i].Trim()}%'";
-                if (!String.IsNullOrEmpty(keywords[i + 1].Trim()))
+                
+                try
                 {
-                    stmt += " AND ";
+                   string next = keywords[i + 1];
+                   stmt += " AND name ";
+                }
+                catch (System.IndexOutOfRangeException)
+                {
+                    
                 }
             }
             
