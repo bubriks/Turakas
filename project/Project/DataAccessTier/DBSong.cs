@@ -49,8 +49,36 @@ namespace DataAccessTier
 
         public List<Song> FindSongByName(string name)
         {
+            List<Song> results = new List<Song>();
+            name = name.Trim();
+            string stmt = "SELECT * FROM Song where name";
+            char[] delimiters = {' '};
+            string[] keywords = name.Split(delimiters);
+            
+            for (int i = 0; i < keywords.Length; i++)
+            {
+                stmt += $"LIKE '%{keywords[i]}%'";
+                if (!String.IsNullOrEmpty(keywords[i + 1]))
+                {
+                    stmt += " AND ";
+                }
+            }
+            
+            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                results.Add( new Song
+                {
+                    SongId = reader.GetInt32(reader.GetOrdinal("songID")),
+                    Name = reader.GetString(reader.GetOrdinal("name")), 
+                    Duration = reader.GetInt32(reader.GetOrdinal("duration")), 
+                    Url = reader.GetString(reader.GetOrdinal("url"))
+                });
+            }
 
-            return null;
+            
+            return results;
         }
     }
 }
