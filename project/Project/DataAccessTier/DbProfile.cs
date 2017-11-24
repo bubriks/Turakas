@@ -113,10 +113,10 @@ namespace DataAccessTier
                             reader.Read();
                             Profile profileID = new Profile
                             {
-                                ProfileID = Int32.Parse(reader["profieID"].ToString()),
+                                ProfileID = Int32.Parse(reader["profileID"].ToString()),
                                 Username = reader["username"].ToString(),
                                 Email = reader["email"].ToString(),
-                                Nickname = reader["nickname"].ToString(),
+                                Nickname = reader["nickname"].ToString()
                             };
                             return profileID;
                         }
