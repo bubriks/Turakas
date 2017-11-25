@@ -163,6 +163,8 @@ namespace DataAccessTier
         /// <returns>Returns true if succedes, false otherwise and prints error in console</returns>
         public bool DeleteProfile(int id)
         {
+            if (id < 1)
+                return false;
             try
             {
                 string stmt = "DELETE FROM Profile WHERE profileID = " + id;

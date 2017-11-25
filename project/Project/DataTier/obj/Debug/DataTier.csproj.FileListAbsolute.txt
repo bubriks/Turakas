@@ -26,7 +26,6 @@ D:\Workspace\Project\DataTier\obj\Debug\DataTier.dll
 D:\Workspace\Project\DataTier\obj\Debug\DataTier.pdb
 D:\Workspace\Turakas\project\Project\DataTier\bin\Debug\DataTier.dll
 D:\Workspace\Turakas\project\Project\DataTier\bin\Debug\DataTier.pdb
-D:\Workspace\Turakas\project\Project\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
 D:\Workspace\Turakas\project\Project\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
 D:\Workspace\Turakas\project\Project\DataTier\obj\Debug\DataTier.dll
 D:\Workspace\Turakas\project\Project\DataTier\obj\Debug\DataTier.pdb

@@ -210,15 +210,15 @@ namespace PresentationTier
         }
         #endregion
 
+        private void Rps_btn_Click(object sender, EventArgs e)
+        {
+            RPSForm rPSForm = new RPSForm(chatId, profileId);
+        }
+
         #region form control
         private void MessageForm_Closing(object sender, CancelEventArgs e)//on close event
         {
             client.LeaveChat(chatId, profileId);
-        }
-
-        private void rps_btn_Click(object sender, EventArgs e)
-        {
-            RPSForm rPSForm = new RPSForm(chatId, userListBox.SelectedItem);
         }
 
         public void Show(bool result)
