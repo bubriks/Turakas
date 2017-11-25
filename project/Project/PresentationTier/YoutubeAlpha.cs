@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -34,8 +35,13 @@ namespace PresentationTier
                 return ytMatch.Success ? ytMatch.Groups[1].Value : string.Empty;
             }
         }
-        
-        
+
+        private void playVideo(string videoId)
+        {
+            const string page1 = "<html><head><title></title></head><body>{0}</body></html>";
+            webBrowser1.DocumentText = string.Format(page1, $"<iframe width=\"300\" height=\"240\" src=\"http://www.youtube.com/embed/{videoId}?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>");
+
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -58,8 +64,7 @@ namespace PresentationTier
 
             }
 
-            const string page1 = "<html><head><title></title></head><body>{0}</body></html>";
-            webBrowser1.DocumentText = string.Format(page1, $"<iframe width=\"300\" height=\"240\" src=\"http://www.youtube.com/embed/{VideoId}?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>");
+            playVideo(VideoId);
         }
 
         private void textBox2_KeyUp(object sender, KeyEventArgs e)
@@ -71,9 +76,29 @@ namespace PresentationTier
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            const string page1 = "<html><head><title></title></head><body>{0}</body></html>";
-            webBrowser1.DocumentText = string.Format(page1, $"<iframe width=\"300\" height=\"240\" src=\"http://www.youtube.com/embed/{listBox1.SelectedValue.ToString()}?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>");
+            playVideo(listBox1.SelectedValue.ToString());
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int selected = listBox1.SelectedIndex;
+            if (selected != -1 && selected+1 >= listBox1.Items.Count)
+            {
+                listBox1.SetSelected(selected+1, true);
+                playVideo(listBox1.SelectedValue.ToString());
+            }
+        }
+        
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int selected = listBox1.SelectedIndex;
+            if ( selected != -1 && selected != 0)
+            {
+                listBox1.SetSelected(selected-1, true);
+                playVideo(listBox1.SelectedValue.ToString());
+            }
+        }
+
 
         
         private void SetBrowserFeatureControlKey(string feature, string appName, uint value)
