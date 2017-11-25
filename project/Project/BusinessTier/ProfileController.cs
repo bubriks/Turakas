@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Threading;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessTier
 {
@@ -19,30 +20,34 @@ namespace BusinessTier
 
         public int CreateProfile(Profile profile)
         {
-            string tempPass = RandomPassword();
-            profile.Password = tempPass;
-            string subject = ("Your Temporary Password is:");
-            string body = "Hello "+ profile.Nickname +", " + "\nYour USERNAME IS: " + profile.Username + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
+            if (CheckTheValues(profile, true))
+            {
+                string tempPass = RandomPassword();
+                profile.Password = tempPass;
+                string subject = ("Your Temporary Password is:");
+                string body = "Hello " + profile.Nickname + ", " + "\nYour USERNAME IS: " + profile.Username + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
 
-            try
-            {
-                Thread thread = new Thread(() => SendEmail(profile.Email, subject, body));
-                thread.Start();
-                int loginId = dbProfile.CreateProfile(profile);
-                return loginId;
+                try
+                {
+                    Thread thread = new Thread(() => SendEmail(profile.Email, subject, body));
+                    thread.Start();
+                    int loginId = dbProfile.CreateProfile(profile);
+                    return loginId;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return -1;
+                }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return -1;
-            }
-            
+            return -1;
+
         }
 
-        public int Authenticate(Profile login)
+        public int Authenticate(Profile profile)
         {
-            int loginId = dbProfile.Authenticate(login);
-            return loginId;
+            int profileId = dbProfile.Authenticate(profile);
+            return profileId;
         }
 
         /// <summary>
@@ -90,7 +95,9 @@ namespace BusinessTier
         
         public bool UpdateProfile(int id, Profile profile)
         {
-            return dbProfile.UpdateProfile(id, profile);
+            if(CheckTheValues(profile, false))
+                return dbProfile.UpdateProfile(id, profile);
+            return false;
         }
 
         public bool DeleteProfile(int profileId)
@@ -197,6 +204,65 @@ namespace BusinessTier
             }
             );
             return user;
+        }
+
+        private bool CheckTheValues(Profile profile, bool create)
+        {
+            bool ok = true;
+                
+
+            if (create)
+            {
+                #region username checking
+                if (profile.Username.Equals(""))
+                {
+                    ok = false;
+                }
+
+                if (profile.Username.Length < 5 || profile.Username.Length > 16)
+                    ok = false;
+
+                #endregion
+                #region email checking
+                if (profile.Email.Equals(""))
+                {
+                    ok = false;
+                }
+
+                if (ReadProfile(profile.Email, 3) != null)
+                    ok = false;
+                if (!(profile.Email.Contains("@") && profile.Email.Contains(".")))
+                    ok = false;
+
+                #endregion
+                #region nickname checking
+                if (profile.Nickname.Equals(""))
+                {
+                    ok = false;
+                }
+
+                if (profile.Nickname.Length < 3)
+                    ok = false;
+
+                if (ReadProfile(profile.Nickname, 4) != null)
+                    ok = false;
+
+                #endregion
+            }
+            else
+            {
+                if (!profile.Username.Equals("") && (profile.Username.Length < 5 || profile.Username.Length > 16))
+                    ok = false;
+
+                if(!profile.Password.Equals("") && (profile.Password.Length < 6 && !profile.Password.Any(char.IsDigit)))
+                
+                if (!profile.Email.Equals("") && (!(profile.Email.Contains("@") && profile.Email.Contains("."))))
+                    ok = false;
+                
+                if (!profile.Nickname.Equals("") && (profile.Nickname.Length < 3))
+                    ok = false;
+            }
+            return ok;
         }
 
     }
