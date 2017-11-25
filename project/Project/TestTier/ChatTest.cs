@@ -10,134 +10,185 @@ namespace TestTier
     [TestClass]
     public class ChatTest
     {
-        private ChatController controller = new ChatController();
+        private ChatController controller = null;
+        private int profileId = 1, profileId1 = 2;
 
-    //    [TestMethod]
-    //    public void TestCreateChatMethod()
-    //    {
-    //        Assert.AreNotEqual(null, controller.CreateChat(new Chat(0, "testChat", true), 1));
-    //    }
+        public ChatTest()
+        {
+            controller = new ChatController();
+        }
 
-    //    [TestMethod]
-    //    public void TestGetChatsByNameMethod()
-    //    {
-    //        List<Chat> list = controller.GetChatsByName("");
-    //        Assert.AreNotEqual(0, list.Count);
-    //    }
+        [TestMethod]
+        public void CreateChatWorking()
+        {
+            Chat chat = new Chat
+            {
+                MaxNrOfUsers = 2,
+                Name = "testChat",
+                OwnerID = profileId,
+                Type = true
+            };
+            Assert.AreNotEqual(null, controller.SaveChat(profileId, chat));
+        }
 
-    //    [TestMethod]
-    //    public void TestUpdateChatMethod()
-    //    {
-    //        List<Chat> list = controller.GetChatsByName("");
-    //        Chat chat = list[0];
-    //        Assert.AreEqual(true, controller.UpdateChat(new Chat(chat.Id, "testingChat", true)));
-    //    }
+        [TestMethod]
+        public void CreateChatWithWrongDetails()
+        {
+            Chat chat = new Chat
+            {
+                MaxNrOfUsers = 2,
+                Name = "testChat",
+                OwnerID = 0,
+                Type = true
+            };
+            Assert.AreEqual(null, controller.SaveChat(profileId, chat));
+        }
 
-    //    [TestMethod]
-    //    public void TestAddPersonToChatMethod()//should work if there were more than one person
-    //    {
-    //        int id = 0;
-    //        foreach (Chat chat in controller.GetChatsByName(""))
-    //        {
-    //            List<Profile> profiles = controller.GetPersonsInChat(chat.Id);
-    //            if (profiles.Count != 0)
-    //            {
-    //                id = profiles[0].ProfileID;
-    //                break;
-    //            }
-    //        }
+        [TestMethod]
+        public void UpdateChatWorking()
+        {
+            Chat chat = controller.GetChatsByName("iiasdfhc zkdbefasbcgvAasda", profileId)[0];
+            chat.Type = true;
+            Assert.AreNotEqual(null, controller.SaveChat(profileId, chat));
+        }
 
-    //        foreach (Chat chat in controller.GetChatsByName(""))
-    //        {
-    //            List<Profile> profiles = controller.GetPersonsInChat(chat.Id);
-    //            bool b = false;
-    //            foreach (Profile profile in profiles)
-    //            {
-    //                if (profile.ProfileID == id)
-    //                {
-    //                    b = true;
-    //                    break;
-    //                }
-    //            }
+        [TestMethod]
+        public void UpdateNotYourChatDetails()
+        {
+            Chat chat = controller.GetChatsByName("", profileId)[0];
+            chat.Type = true;
+            Assert.AreEqual(null, controller.SaveChat(0, chat));
+        }
 
-    //            if (b)
-    //            {
-    //                Assert.AreEqual(true, controller.AddPersonToChat(chat.Id, id));
-    //                break;
-    //            }
-    //            else
-    //            {
-    //                Assert.AreEqual(true, false);
-    //            }
-    //        }
-    //    }
+        [TestMethod]
+        public void UpdateChatWrongDetails()
+        {
+            Chat chat = new Chat
+            {
+                MaxNrOfUsers = 2,
+                Name = "testChat",
+                Id = 0,
+                Type = true
+            };
+            Assert.AreEqual(null, controller.SaveChat(profileId, chat));
+        }
 
-    //    [TestMethod]
-    //    public void TestGetPersonsChatsMethod()
-    //    {
-    //        foreach (Chat chat in controller.GetChatsByName(""))
-    //        {
-    //            List<Profile> profiles = controller.GetPersonsInChat(chat.Id);
-    //            if (profiles.Count != 0)
-    //            {
-    //                Assert.IsFalse(false);
-    //                break;
-    //            }
-    //            else
-    //            {
-    //                Assert.IsFalse(true);
-    //            }
-    //        }
-    //    }
+        [TestMethod]
+        public void DeleteChatWorking()
+        {
+            List<Chat> chats = controller.GetChatsByName("", profileId);
+            Chat chat = chats[chats.Count-1];
+            Assert.AreEqual(true, controller.DeleteChat(profileId, chat.Id));
+        }
 
-    //    [TestMethod]
-    //    public void TestGetPersonsInChatMethod()
-    //    {
-    //        foreach (Chat chat in controller.GetChatsByName(""))
-    //        {
-    //            if (controller.GetPersonsInChat(chat.Id).Count != 0)
-    //            {
-    //                Assert.AreEqual(true, true);
-    //                break;
-    //            }
-    //            else
-    //            {
-    //                Assert.AreEqual(true, false);
-    //            }
-    //        }
-    //    }
+        [TestMethod]
+        public void DeleteNotYourChatDetails()
+        {
+            Chat chat = controller.GetChatsByName("", profileId)[0];
+            Assert.AreEqual(false, controller.DeleteChat(0, chat.Id));
+        }
 
-    //    [TestMethod]
-    //    public void TestRemovePersonFromChatMethod()
-    //    {
-    //        int id = 0;
-    //        foreach (Chat chat in controller.GetChatsByName(""))
-    //        {
-    //            List<Profile> profiles = controller.GetPersonsInChat(chat.Id);
-    //            if (profiles.Count != 0)
-    //            {
-    //                id = profiles[0].ProfileID;
-    //                break;
-    //            }
-    //        }
+        [TestMethod]
+        public void DeleteChatWrongId()
+        {
+            Assert.AreEqual(false, controller.DeleteChat(profileId, 0));
+        }
 
-    //        List<Chat> chats = controller.GetPersonsChats(id);
-    //        if (chats.Count != 0)
-    //        {
-    //            Assert.AreEqual(true, controller.RemovePersonFromChat(chats[0].Id, id));
-    //        }
-    //        else
-    //        {
-    //            Assert.AreEqual(true, false);
-    //        }
-    //    }
+        [TestMethod]
+        public void GetChatWorking()
+        {
+            Assert.AreNotEqual(0, controller.GetChatsByName("", profileId).Count);
+        }
 
-    //    [TestMethod]
-    //    public void TestDeleteChatMethod()
-    //    {
-    //        List<Chat> list = controller.GetChatsByName("");
-    //        Chat chat = list[list.Count - 1];
-    //        Assert.AreEqual(true, controller.DeleteChat(chat.Id));
-    //    }
+        [TestMethod]
+        public void JoinChatWorking()
+        {
+            List<Chat> chats = controller.GetChatsByName("", profileId);
+            Chat chat = chats[chats.Count - 1];
+            Assert.AreEqual(true, controller.JoinChat(chat.Id, profileId, new object()));
+        }
+
+        [TestMethod]
+        public void JoinChatWrongChatId()
+        {
+            Assert.AreEqual(false, controller.JoinChat(0, profileId, new object()));
+        }
+
+        [TestMethod]
+        public void JoinChatWrongProfileId()
+        {
+            List<Chat> chats = controller.GetChatsByName("", profileId);
+            Chat chat = chats[chats.Count - 1];
+            Assert.AreEqual(false, controller.JoinChat(chat.Id, 0, new object()));
+        }
+
+        [TestMethod]
+        public void JoinExistingChatWorking()
+        {
+            List<Chat> chats = controller.GetChatsByName("", profileId);
+            Chat chat = chats[chats.Count - 1];
+            controller.JoinChat(chat.Id, profileId, new object());
+            Assert.AreEqual(true, controller.JoinChat(chat.Id, profileId1, new object()));
+        }
+
+        [TestMethod]
+        public void JoinExistingChatTwiceFromSameProfile()
+        {
+            List<Chat> chats = controller.GetChatsByName("", profileId);
+            Chat chat = chats[chats.Count - 1];
+            controller.JoinChat(chat.Id, profileId, new object());
+            Assert.AreEqual(false, controller.JoinChat(chat.Id, profileId, new object()));
+        }
+
+        [TestMethod]
+        public void LeaveChatWorking()
+        {
+            List<Chat> chats = controller.GetChatsByName("", profileId);
+            Chat chat = chats[chats.Count - 1];
+            controller.JoinChat(chat.Id, profileId, new object());
+            Assert.AreEqual(true, controller.LeaveChat(chat.Id, profileId));
+        }
+
+        [TestMethod]
+        public void LeaveChatWrongProfileId()
+        {
+            List<Chat> chats = controller.GetChatsByName("", profileId);
+            Chat chat = chats[chats.Count - 1];
+            controller.JoinChat(chat.Id, profileId, new object());
+            Assert.AreEqual(false, controller.LeaveChat(chat.Id, 0));
+        }
+
+        [TestMethod]
+        public void LeaveChatWrongChatId()
+        {
+            List<Chat> chats = controller.GetChatsByName("", profileId);
+            Chat chat = chats[chats.Count - 1];
+            controller.JoinChat(chat.Id, profileId, new object());
+            Assert.AreEqual(false, controller.LeaveChat(0, profileId));
+        }
+
+        [TestMethod]
+        public void LeaveChatIfNotJoined()
+        {
+            List<Chat> chats = controller.GetChatsByName("", profileId);
+            Chat chat = chats[chats.Count - 1];
+            controller.LeaveChat(chat.Id, profileId);
+            Assert.AreEqual(false, controller.LeaveChat(chat.Id, profileId));
+        }
+
+        [TestMethod]
+        public void GetWorkingChat()
+        {
+            List<Chat> chats = controller.GetChatsByName("", profileId);
+            Chat chat = chats[chats.Count - 1];
+            controller.JoinChat(chat.Id, profileId, new object());
+            Assert.AreNotEqual(null, controller.FindChat(chat.Id));
+        }
+
+        [TestMethod]
+        public void GetNotWorkingChat()
+        {
+            Assert.AreEqual(null, controller.FindChat(0));
+        }
     }
 }

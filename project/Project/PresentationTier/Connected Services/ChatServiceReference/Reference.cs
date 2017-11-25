@@ -299,16 +299,16 @@ namespace PresentationTier.ChatServiceReference {
         System.Threading.Tasks.Task OfflineAsync(int profileId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SaveChat")]
-        void SaveChat(PresentationTier.ChatServiceReference.Chat chat);
+        void SaveChat(int profileId, PresentationTier.ChatServiceReference.Chat chat);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SaveChat")]
-        System.Threading.Tasks.Task SaveChatAsync(PresentationTier.ChatServiceReference.Chat chat);
+        System.Threading.Tasks.Task SaveChatAsync(int profileId, PresentationTier.ChatServiceReference.Chat chat);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/DeleteChat")]
-        void DeleteChat(int id);
+        void DeleteChat(int profileId, int id);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/DeleteChat")]
-        System.Threading.Tasks.Task DeleteChatAsync(int id);
+        System.Threading.Tasks.Task DeleteChatAsync(int profileId, int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetChatsByName", ReplyAction="http://tempuri.org/IChatService/GetChatsByNameResponse")]
         PresentationTier.ChatServiceReference.Chat[] GetChatsByName(string name, int profileId);
@@ -368,20 +368,20 @@ namespace PresentationTier.ChatServiceReference {
             return base.Channel.OfflineAsync(profileId);
         }
         
-        public void SaveChat(PresentationTier.ChatServiceReference.Chat chat) {
-            base.Channel.SaveChat(chat);
+        public void SaveChat(int profileId, PresentationTier.ChatServiceReference.Chat chat) {
+            base.Channel.SaveChat(profileId, chat);
         }
         
-        public System.Threading.Tasks.Task SaveChatAsync(PresentationTier.ChatServiceReference.Chat chat) {
-            return base.Channel.SaveChatAsync(chat);
+        public System.Threading.Tasks.Task SaveChatAsync(int profileId, PresentationTier.ChatServiceReference.Chat chat) {
+            return base.Channel.SaveChatAsync(profileId, chat);
         }
         
-        public void DeleteChat(int id) {
-            base.Channel.DeleteChat(id);
+        public void DeleteChat(int profileId, int id) {
+            base.Channel.DeleteChat(profileId, id);
         }
         
-        public System.Threading.Tasks.Task DeleteChatAsync(int id) {
-            return base.Channel.DeleteChatAsync(id);
+        public System.Threading.Tasks.Task DeleteChatAsync(int profileId, int id) {
+            return base.Channel.DeleteChatAsync(profileId, id);
         }
         
         public PresentationTier.ChatServiceReference.Chat[] GetChatsByName(string name, int profileId) {

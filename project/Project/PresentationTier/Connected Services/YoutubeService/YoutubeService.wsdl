@@ -241,10 +241,57 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IYoutubeService_FindSongsByName_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IYoutubeService_FindSongsByName_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost/YoutubeService?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost/YoutubeService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/YoutubeService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataTier" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IYoutubeService_AddSong_InputMessage">
@@ -265,6 +312,12 @@
   <wsdl:message name="IYoutubeService_GetVideoDuration_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetVideoDurationResponse" />
   </wsdl:message>
+  <wsdl:message name="IYoutubeService_FindSongsByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindSongsByName" />
+  </wsdl:message>
+  <wsdl:message name="IYoutubeService_FindSongsByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindSongsByNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IYoutubeService">
     <wsdl:operation name="AddSong">
       <wsdl:input wsaw:Action="http://tempuri.org/IYoutubeService/AddSong" message="tns:IYoutubeService_AddSong_InputMessage" />
@@ -277,6 +330,10 @@
     <wsdl:operation name="GetVideoDuration">
       <wsdl:input wsaw:Action="http://tempuri.org/IYoutubeService/GetVideoDuration" message="tns:IYoutubeService_GetVideoDuration_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IYoutubeService/GetVideoDurationResponse" message="tns:IYoutubeService_GetVideoDuration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindSongsByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYoutubeService/FindSongsByName" message="tns:IYoutubeService_FindSongsByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYoutubeService/FindSongsByNameResponse" message="tns:IYoutubeService_FindSongsByName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSDualHttpBinding_IYoutubeService" type="tns:IYoutubeService">
@@ -312,6 +369,17 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IYoutubeService_GetVideoDuration_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindSongsByName">
+      <soap12:operation soapAction="http://tempuri.org/IYoutubeService/FindSongsByName" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IYoutubeService_FindSongsByName_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IYoutubeService_FindSongsByName_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

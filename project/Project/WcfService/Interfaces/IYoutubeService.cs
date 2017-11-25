@@ -17,6 +17,7 @@ namespace WcfService
         string GetVideoTitle(string videoId);
         [OperationContract]
         int GetVideoDuration(string videoId);
-
+        [OperationContract]
+        List<Song> FindSongsByName(string name);
     }
 }

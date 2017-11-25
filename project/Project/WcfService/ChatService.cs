@@ -40,9 +40,9 @@ namespace WcfService
             }
         }
 
-        public void SaveChat(Chat chat)
+        public void SaveChat(int profileId, Chat chat)
         {
-            if(chatController.SaveChat(chat) != null && chat.Id != 0)
+            if(chatController.SaveChat(profileId, chat) != null && chat.Id != 0)
             {
                 chat = chatController.FindChat(chat.Id);
                 if (chat != null)
@@ -56,10 +56,10 @@ namespace WcfService
             }
         }
 
-        public void DeleteChat(int id)
+        public void DeleteChat(int profileId, int id)
         {
             Chat chat = chatController.FindChat(id);
-            if (chatController.DeleteChat(id))
+            if (chatController.DeleteChat(profileId, id))
             {
                 if (chat != null)
                 {

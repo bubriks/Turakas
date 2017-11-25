@@ -18,7 +18,7 @@ namespace BusinessTier
             profileController = new ProfileController();
         }
 
-        public Chat SaveChat(Chat chat)
+        public Chat SaveChat(int profileId, Chat chat)
         {
             try
             {
@@ -31,20 +31,28 @@ namespace BusinessTier
                     }
                     else
                     {
-                        if (dbChat.UpdateChat(chat) == null)//no changes were made
+                        if (profileId == chat.OwnerID)
                         {
-                            return null;
-                        }
+                            if (dbChat.UpdateChat(chat) == 0)//no changes were made
+                            {
+                                return null;
+                            }
 
-                        Chat foundChat = FindChat(chat.Id);
-                        lock (foundChat)
-                        {
-                            foundChat.MaxNrOfUsers = chat.MaxNrOfUsers;
-                            foundChat.Name = chat.Name;
-                            foundChat.Type = chat.Type;
+                            Chat foundChat = FindChat(chat.Id);
+                            if (foundChat != null)
+                            {
+                                lock (foundChat)
+                                {
+                                    foundChat.MaxNrOfUsers = chat.MaxNrOfUsers;
+                                    foundChat.Name = chat.Name;
+                                    foundChat.Type = chat.Type;
+                                }
+                            }
+                            //returns object if everything went correctly
+                            return chat;
                         }
-                        //returns object if everything went correctly
-                        return chat;
+                        //not owner of chat
+                        return null;
                     }
                 }
                 //max users too litle
@@ -57,23 +65,28 @@ namespace BusinessTier
             }
         }
 
-        public bool DeleteChat(int id)
+        public bool DeleteChat(int profileId, int id)
         {
             try
             {
-                if (dbChat.DeleteChat(id) == 0)
+                if (dbChat.GetChat(id).OwnerID == profileId)
                 {
-                    //returns false if no changes were made
-                    return false;
+                    if (dbChat.DeleteChat(id) == 0)
+                    {
+                        //returns false if no changes were made
+                        return false;
+                    }
+
+                    Chat foundChat = FindChat(id);
+                    lock (chats)
+                    {
+                        chats.Remove(foundChat);
+                    }
+                    //returns true if everything went correctly
+                    return true;
                 }
-                
-                Chat foundChat = FindChat(id);
-                lock (chats)
-                {
-                    chats.Remove(foundChat);
-                }
-                //returns true if everything went correctly
-                return true;
+                //returns false if not owner of chat
+                return false;
             }
             catch (Exception)
             {
@@ -108,7 +121,7 @@ namespace BusinessTier
                 return new List<Chat>();
             }
         }
-
+        
         public bool JoinChat(int chatId, int profileId, object callback)
         {
             try
@@ -177,6 +190,11 @@ namespace BusinessTier
                         return c.ProfileID == profileId;
                     }
                     );
+
+                    if(user == null)
+                    {
+                        return false;
+                    }
 
                     if (chat.Users.Count <= 1)
                     {
