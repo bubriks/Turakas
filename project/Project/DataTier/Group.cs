@@ -11,6 +11,8 @@ namespace DataTier
     public class Group
     {
         [DataMember]
+        public int GroupId { get; set; }
+        [DataMember]
         public String Name { get; set; }
         [DataMember]
         public int CreatorId { get; set; }
