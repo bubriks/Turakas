@@ -87,6 +87,7 @@
             this.lbAllGroups.Name = "lbAllGroups";
             this.lbAllGroups.Size = new System.Drawing.Size(250, 164);
             this.lbAllGroups.TabIndex = 4;
+            this.lbAllGroups.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LbAllGroups_SelectObject);
             // 
             // lbGroupMembers
             // 

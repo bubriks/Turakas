@@ -18,6 +18,7 @@ namespace PresentationTier
         private GroupServiceClient client;
         public GroupForm(int profileId, Form profileform)
         {
+            client = new GroupServiceClient();
             this.profileId = profileId;
             this.profileform = profileform;
             groupId = 1;
@@ -53,6 +54,25 @@ namespace PresentationTier
         private void BtnOnlineUsers_Click(object sender, EventArgs e)
         {
             lbGroupMembers.Text = client.GetOnlineUsers(groupId).ToString();
+        }
+
+        private void LbAllGroups_SelectObject(object sender, MouseEventArgs e)
+        {
+            int index = lbAllGroups.IndexFromPoint(e.Location);
+
+            if (index >= 0)
+            {
+                lbAllGroups.SelectedIndex = index;
+            }
+
+            if (index != -1 && index < lbAllGroups.Items.Count)
+            {
+                Object group = (lbAllGroups.SelectedItem as Object);
+                String text = group.ToString();
+            }
+            else
+            {
+            }
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
