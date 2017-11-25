@@ -16,10 +16,10 @@ namespace BusinessTier
 {
     public class SongController: ISongController
     {
-        public bool AddSong(string name, int duration, string url)
+        public bool AddSong(string url)
         {
             DBSong dbSong = new DBSong();
-            return dbSong.AddSong(name, duration, url);
+            return dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url);
         }
 
         private static YouTubeService ytService = Auth();

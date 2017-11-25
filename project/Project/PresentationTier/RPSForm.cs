@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using PresentationTier.GameServiceReference;
@@ -25,24 +24,89 @@ namespace PresentationTier
             InitializeComponent();
             instanceContext = new InstanceContext(this);
             gameService = new GameServiceClient(instanceContext);
+            //Formating player2 label
             player2_lbl.Text = "PLAYER2 NOT CONNECTED!";
             player2_lbl.ForeColor = Color.Red;
+            //Making the button unclicable
             selectChoice_btn.Enabled = false;
-            #endregion
-
-            gameId = chatId;
-            this.playerId = playerId;
-
-            gameService.JoinGame(gameId, playerId); //player joins game
-
-            #region Choice
+            
+            //diselecting any choice
             choice = -1;
             rockChoice_rb.Checked = false;
             paperChoice_rb.Checked = false;
             scissorChoice_rb.Checked = false;
             #endregion
+
+            gameId = chatId; //since chatId is unique, gameId will be unique
+            this.playerId = playerId;
+
+            gameService.JoinGame(gameId, playerId); //player joins game
+
+            
         }
 
+
+        /// <summary>
+        /// Sends player's choice to service
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SelectChoice_btn_Click(object sender, EventArgs e)
+        {
+            if (choice != -1) //if player made a choice
+            {
+                gameService.MakeChoice(gameId, playerId, choice); //send choice
+
+                //diselect all choice to prevent missunderstandings
+                rockChoice_rb.Checked = false;
+                paperChoice_rb.Checked = false;
+                scissorChoice_rb.Checked = false;
+            }
+            choice = -1; //reset choice
+        }
+
+        /// <summary>
+        /// Selects player's choice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RockRB_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;//initialize which button is selected
+
+            if (rb == rockChoice_rb) 
+            {
+                player1_pic.BackgroundImage = Properties.Resources.rock;
+                choice = 0;
+            }
+            else if (rb == paperChoice_rb) 
+            {
+                player1_pic.BackgroundImage = Properties.Resources.paper;
+                choice = 1;
+            }
+            else 
+            {
+                player1_pic.BackgroundImage = Properties.Resources.scissor; 
+                choice = 2;
+            }
+
+        }
+
+        /// <summary>
+        /// Creates new game with the inside player
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NewGame_btn_Click(object sender, EventArgs e)
+        {
+            RPSForm rPSForm = new RPSForm(gameId, playerId);
+            Close();
+        }
+
+        /// <summary>
+        /// Callback methode, makes form show or close
+        /// </summary>
+        /// <param name="result"></param>
         public void Show(bool result)
         {
             if (result)
@@ -53,52 +117,67 @@ namespace PresentationTier
             {
                 this.Close();
             }
-        }
+        } 
 
+        /// <summary>
+        /// Callback methode, notifies RPSForm that a player has joined the game
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
         public void PlayerJoins(int id, string name)
         {
-            if(id == playerId)
+            //in the UI level, the player that opens the Form is allways player1
+            if(id == playerId) //so if the player that joined is the player that had opened the Form
             {
-                player1_lbl.Text = name;
+                player1_lbl.Text = name; //displaying his nickname as player1
             }
             else
             {
+                //display his name as player2 and format the player2 label
                 player2_lbl.Text = name;
                 player2_lbl.ForeColor = Color.Black;
                 selectChoice_btn.Enabled = true;
             }
         }
 
+        /// <summary>
+        /// Callback methode, notifies RPSForm that a player has left the game
+        /// </summary>
         public void PlayerLeaves()
-        {
+        {//format player2 label
             player2_lbl.ForeColor = Color.Red;
             player2_lbl.Text = "PLAYER 2 DISCONECTED!";
             selectChoice_btn.Enabled = false;
         }
 
+        /// <summary>
+        /// Callback methode, notifies RPSForm of the result of the player's choice
+        /// </summary>
+        /// <param name="result"></param>
         public void Result(int result)
         {
+            //reseting player labels's format
             player1_lbl.ForeColor = Color.Black;
             player2_lbl.ForeColor = Color.Black;
 
-            string historyChoice;
-            switch (result)
+            string historyChoice; //string for the history listbox
+            switch (result) //depending on the response from service
             {
                 case -2: //player2 did not make a choice
-                    Stop();
-                    timer.Elapsed += new ElapsedEventHandler(OnTimedEvent1);
-                    timer.Interval = 1000;
-                    timer.AutoReset = false;
-                    timer.SynchronizingObject = (this);
-                    Start();
+                    Stop(); //stop previouse timer
+                    timer.Elapsed += new ElapsedEventHandler(Player2Timer); //add event to timer
+                    timer.Interval = 1000; //make timer perform action after 1 second
+                    timer.AutoReset = false; //make sure timer wont reset
+                    timer.SynchronizingObject = (this); //syncronize timer thread with RPSForm thread, in order to allow timer thread to modify RPSForm elements
+                    Start(); //start timer
 
-                    anouncer_lbl.Visible = true;
+                    //format anouncer label so that the player will know what is happeneing
                     anouncer_lbl.ForeColor = Color.DeepPink;
                     anouncer_lbl.Text = "PALYER2 DID NOT CHOOSE YET!!!";
                     break;
                 case -1: //player1 did not make a choice
                     Stop();
-                    timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                    timer.Elapsed += new ElapsedEventHandler(Player1Timer);
                     timer.Interval = 1000;
                     timer.AutoReset = false;
                     timer.SynchronizingObject = (this);
@@ -110,15 +189,16 @@ namespace PresentationTier
                     break;
                 case 0: //tie
                     Stop();
-                    player1_lbl.ForeColor = Color.Yellow;
-                    player2_lbl.ForeColor = Color.Yellow;
+                    player1_lbl.ForeColor = Color.Blue;
+                    player2_lbl.ForeColor = Color.Blue;
 
-                    player2_pic.BackgroundImage = player1_pic.BackgroundImage;
+                    //since its a tie, we know player2 chose the same thing as player1
+                    player2_pic.BackgroundImage = player1_pic.BackgroundImage; //format player2 choice image
 
                     anouncer_lbl.Visible = true;
-                    anouncer_lbl.ForeColor = Color.Yellow;
+                    anouncer_lbl.ForeColor = Color.Blue;
                     anouncer_lbl.Text = "TIE!!!";
-                    switch (choice)
+                    switch (choice) //format string depeding on what player1 chose, for the history box
                     {
                         case 0:
                             historyChoice = "ROCK";
@@ -130,9 +210,10 @@ namespace PresentationTier
                             historyChoice = "SCISSORS";
                             break;
                     }
-                    history_listBox.Items.Add("TIE!!! - on " + historyChoice);
+                    history_listBox.Items.Add("TIE!!! - on " + historyChoice); //add string to list box
                     break;
                 case 1: //player1 wins
+                    //format player2 choice depeding on player1's choice
                     if (choice == 0)
                     {
                         player2_pic.BackgroundImage = Properties.Resources.scissor;
@@ -150,9 +231,10 @@ namespace PresentationTier
                         historyChoice = " YOU WIN WITH: SCISSORS on PAPER";
                     }
 
-                    Stop();
+                    Stop(); //make sure timer has stopped
+                    //format labels to accomodate player1's win
                     player1_lbl.ForeColor = Color.Green;
-                    palyer1Points_lbl.Text = (Int32.Parse(palyer1Points_lbl.Text) + 1).ToString();
+                    palyer1Points_lbl.Text = (Int32.Parse(palyer1Points_lbl.Text) + 1).ToString(); //add points
                     player1_bar.Value = 0;
                     player2_bar.Value = 0;
                     
@@ -179,9 +261,10 @@ namespace PresentationTier
                         historyChoice = " YOU LOSE WITH: SCISSORS on ROCK";
                     }
 
-                    Stop();
+                    Stop(); //make sure timer has stopped
+                    //format labels to acomodate for player2's win
                     player2_lbl.ForeColor = Color.Green;
-                    player2Points_lbl.Text = (Int32.Parse(player2Points_lbl.Text) + 1).ToString();
+                    player2Points_lbl.Text = (Int32.Parse(player2Points_lbl.Text) + 1).ToString(); //add points to palyer2
                     player1_bar.Value = 0;
                     player2_bar.Value = 0;
 
@@ -192,52 +275,16 @@ namespace PresentationTier
                     break;
             }
         }
-
-        private void SelectChoice_btn_Click(object sender, EventArgs e)
-        {
-            if (choice != -1)
-            {
-                gameService.MakeChoice(gameId, playerId, choice);
-                
-                rockChoice_rb.Checked = false;
-                paperChoice_rb.Checked = false;
-                scissorChoice_rb.Checked = false;
-            }
-            choice = -1;
-        }
-
-        private void RockRB_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton rb = (RadioButton)sender;//variabile
-
-            if (rb == rockChoice_rb) //daca apas pe butonul repartizat pietrei
-            {
-                player1_pic.BackgroundImage = Properties.Resources.rock;//schimb imaginea reprezentativa din ce era in piatra
-                choice = 0;
-            }
-            else if (rb == paperChoice_rb)  //daca apas pe butonul repartizat hartiei
-            {
-                player1_pic.BackgroundImage = Properties.Resources.paper;//schimb imaginea reprezentativa din ce era in hartie
-                choice = 1;
-            }
-            else //altfel daca apas pe foarfece
-            {
-                player1_pic.BackgroundImage = Properties.Resources.scissor; //schimb imaginea reprezentativa din ce era in foarfece
-                choice = 2;
-            }
-
-        }
-
-        private void NewGame_btn_Click(object sender, EventArgs e)
-        {
-            RPSForm rPSForm = new RPSForm(gameId, playerId);
-            Close();
-        }
-
-        private void OnTimedEvent(object source, ElapsedEventArgs e) //plaeer1 timer
+        
+        /// <summary>
+        /// Timer event for player1 timer
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private void Player1Timer(object source, ElapsedEventArgs e)
         {
             player1_lbl.ForeColor = Color.DeepPink;
-            if (player1_bar.Value >= 100) //if time ran out
+            if (player1_bar.Value >= 100) //if time ran out (10 seconds have passed)
             {
                 player1_bar.Value = 0; //reset timer to 0
                 gameService.MakeChoice(gameId, playerId, new Random().Next(0, 2)); //randomly choose for player
@@ -245,7 +292,7 @@ namespace PresentationTier
             }
             else
             {
-                player1_bar.Increment(10);
+                player1_bar.Increment(10); //add 1 sec to timer
             }
             if (!requestStop)
             {
@@ -253,10 +300,15 @@ namespace PresentationTier
             }
         }
 
-        private void OnTimedEvent1(object source, ElapsedEventArgs e) //player2 timer
+        /// <summary>
+        /// Timer event for player2 timer
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private void Player2Timer(object source, ElapsedEventArgs e) //player2 timer
         {
             player2_lbl.ForeColor = Color.DeepPink;
-            if (player2_bar.Value >= 100) //if time ran out
+            if (player2_bar.Value >= 100) //if time ran out (10 seconds)
             {
                 player2_bar.Value = 0; //reset timer to 0
                 gameService.MakeChoice(gameId, playerId, new Random().Next(0, 2)); //randomly choose for player
@@ -264,7 +316,7 @@ namespace PresentationTier
             }
             else
             {
-                player2_bar.Increment(10);
+                player2_bar.Increment(10); //add 1 second to timer
             }
             if (!requestStop)
             {
@@ -272,25 +324,38 @@ namespace PresentationTier
             }
         }
 
+        /// <summary>
+        /// Stop timer
+        /// </summary>
         private void Stop()
-        {
-            player1_bar.Value = 0; //reset timer to 0
-            player2_bar.Value = 0; //reset timer to 0
-            timer.Elapsed -= new ElapsedEventHandler(OnTimedEvent);
-            timer.Elapsed -= new ElapsedEventHandler(OnTimedEvent1);
-            requestStop = true;
-            timer.Stop();
+        { 
+            //reset timer to 0
+            player1_bar.Value = 0;
+            player2_bar.Value = 0;
+            //remove timer events
+            timer.Elapsed -= new ElapsedEventHandler(Player1Timer);
+            timer.Elapsed -= new ElapsedEventHandler(Player2Timer);
+            requestStop = true; //make sure timer will stop
+            timer.Stop(); //stop timer
         }
 
+        /// <summary>
+        /// Start timer
+        /// </summary>
         private void Start()
         {
             requestStop = false;
             timer.Start();
         }
 
-        private void RPSForm_Closing(object sender, CancelEventArgs e)//on close event
+        /// <summary>
+        /// On close event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RPSForm_Closing(object sender, CancelEventArgs e)
         {
-            gameService.LeaveGame(gameId, playerId);
+            gameService.LeaveGame(gameId, playerId); //disconnect player from game
         }
     }
 }

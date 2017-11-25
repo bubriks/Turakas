@@ -45,6 +45,7 @@ namespace PresentationTier
             this.viewProfileButton = new System.Windows.Forms.Button();
             this.inviteListBox = new System.Windows.Forms.ListBox();
             this.clearEventsButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.chatGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nrOfUsersTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -209,11 +210,23 @@ namespace PresentationTier
             this.clearEventsButton.UseVisualStyleBackColor = true;
             this.clearEventsButton.Click += new System.EventHandler(this.ClearEventsButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button1.Location = new System.Drawing.Point(497, 266);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(29, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "YT";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 301);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.clearEventsButton);
             this.Controls.Add(this.inviteListBox);
             this.Controls.Add(this.viewProfileButton);
@@ -249,5 +262,6 @@ namespace PresentationTier
         private Button viewProfileButton;
         private ListBox inviteListBox;
         private Button clearEventsButton;
+        private Button button1;
     }
 }

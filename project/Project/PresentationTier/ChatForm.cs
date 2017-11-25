@@ -232,6 +232,11 @@ namespace PresentationTier
             profile.ShowDialog();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new YoutubeAlpha();
+        }
+
         private void ChatForm_Closing(object sender, CancelEventArgs e)//on close event
         {
             client.Offline(profileId);
