@@ -11,34 +11,34 @@ namespace PresentationTier
 {
     public partial class RPSForm : Form, IGameServiceCallback
     {
-        private List<string> list = new List<string>();
         private InstanceContext instanceContext;
         private IGameService gameService;
-        private Profile player1, player2;
-        private int gameId, choice = -1;
+        private int playerId;
+        private int gameId, choice;
         private System.Timers.Timer timer = new System.Timers.Timer();
         private volatile bool requestStop = false;
 
-        public RPSForm(int chatId, Object player1)
+        public RPSForm(int chatId, int playerId)
         {
+            #region Initialize
             InitializeComponent();
             instanceContext = new InstanceContext(this);
             gameService = new GameServiceClient(instanceContext);
+            #endregion
 
             gameId = chatId;
-            this.player1 = (Profile)player1;
+            this.playerId = playerId;
 
-            gameService.JoinGame(gameId, this.player1.ProfileID); //player1 joins game
+            gameService.JoinGame(gameId, playerId); //player joins game
 
-            player1_lbl.Text = this.player1.Nickname;
-            player2_lbl.Text = "PLAYER 2 NOT YET CONNECTED!";
-
+            #region Choice
             choice = -1;
             rockChoice_rb.Checked = false;
             paperChoice_rb.Checked = false;
             scissorChoice_rb.Checked = false;
-
+            #endregion
         }
+
         public void Show(bool result)
         {
             if (result)
@@ -51,18 +51,22 @@ namespace PresentationTier
             }
         }
 
-        public void PlayerJoins(Profile player2)
+        public void PlayerJoins(int id, string name)
         {
-            player2_lbl.ForeColor = Color.Black;
-            this.player2 = player2;
-            player2_lbl.Text = player2.Nickname;
+            if(id == playerId)
+            {
+                player1_lbl.Text = name;
+            }
+            else
+            {
+                player2_lbl.Text = name;
+            }
         }
 
         public void PlayerLeaves()
         {
             player2_lbl.ForeColor = Color.Red;
             player2_lbl.Text = "PLAYER 2 DISCONECTED!";
-            player2 = null;
         }
 
         public void Result(int result)
@@ -106,6 +110,7 @@ namespace PresentationTier
                     anouncer_lbl.Visible = true;
                     anouncer_lbl.ForeColor = Color.Yellow;
                     anouncer_lbl.Text = "TIE!!!";
+                    history_listBox.Items.Add("");/////////////////////
                     break;
                 case 1: //player1 wins
                     if (choice == 0)
@@ -148,20 +153,19 @@ namespace PresentationTier
             }
         }
 
-        private void selectChoice_btn_Click(object sender, EventArgs e)
+        private void SelectChoice_btn_Click(object sender, EventArgs e)
         {
             if (choice != -1)
             {
-                gameService.MakeChoice(gameId, player1.ProfileID, choice);
+                gameService.MakeChoice(gameId, playerId, choice);
                 choice = -1;
                 rockChoice_rb.Checked = false;
                 paperChoice_rb.Checked = false;
                 scissorChoice_rb.Checked = false;
             }
-
         }
 
-        private void rockRB_CheckedChanged(object sender, EventArgs e)
+        private void RockRB_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton rb = (RadioButton)sender;//variabile
 
@@ -183,9 +187,9 @@ namespace PresentationTier
 
         }
 
-        private void newGame_btn_Click(object sender, EventArgs e)
+        private void NewGame_btn_Click(object sender, EventArgs e)
         {
-            RPSForm rPSForm = new RPSForm(gameId, player1);
+            RPSForm rPSForm = new RPSForm(gameId, playerId);
             Close();
         }
 
@@ -195,7 +199,7 @@ namespace PresentationTier
             if (player1_bar.Value >= 100) //if time ran out
             {
                 player1_bar.Value = 0; //reset timer to 0
-                gameService.MakeChoice(gameId, player1.ProfileID, new Random().Next(0, 2)); //randomly choose for player
+                gameService.MakeChoice(gameId, playerId, new Random().Next(0, 2)); //randomly choose for player
                 Stop();
             }
             else
@@ -207,13 +211,14 @@ namespace PresentationTier
                Start();//restart the timer
             }
         }
+
         private void OnTimedEvent1(object source, ElapsedEventArgs e) //player2 timer
         {
             player2_lbl.ForeColor = Color.DeepPink;
             if (player2_bar.Value >= 100) //if time ran out
             {
                 player2_bar.Value = 0; //reset timer to 0
-                gameService.MakeChoice(gameId, player2.ProfileID, new Random().Next(0, 2)); //randomly choose for player
+                gameService.MakeChoice(gameId, playerId, new Random().Next(0, 2)); //randomly choose for player
                 Stop();
             }
             else
@@ -225,6 +230,7 @@ namespace PresentationTier
                 Start();//restart the timer
             }
         }
+
         private void Stop()
         {
             player1_bar.Value = 0; //reset timer to 0

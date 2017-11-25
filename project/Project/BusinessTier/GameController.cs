@@ -51,6 +51,8 @@ namespace BusinessTier
                         Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets user from database
                         user.CallBack = callback;//adds callback object to it
                         game.Player1 = user; //add player to game
+                        game.Choice1 = -1;
+                        game.Choice2 = -1;
                         games.Add(game);//adds game to games list
                         return 1;//joined
                     }

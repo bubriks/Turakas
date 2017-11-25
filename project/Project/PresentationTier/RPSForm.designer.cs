@@ -73,7 +73,7 @@
             this.rockChoice_rb.TabStop = true;
             this.rockChoice_rb.Text = "Rock";
             this.rockChoice_rb.UseVisualStyleBackColor = true;
-            this.rockChoice_rb.CheckedChanged += new System.EventHandler(this.rockRB_CheckedChanged);
+            this.rockChoice_rb.CheckedChanged += new System.EventHandler(this.RockRB_CheckedChanged);
             // 
             // paperChoice_rb
             // 
@@ -85,7 +85,7 @@
             this.paperChoice_rb.TabStop = true;
             this.paperChoice_rb.Text = "Paper";
             this.paperChoice_rb.UseVisualStyleBackColor = true;
-            this.paperChoice_rb.CheckedChanged += new System.EventHandler(this.rockRB_CheckedChanged);
+            this.paperChoice_rb.CheckedChanged += new System.EventHandler(this.RockRB_CheckedChanged);
             // 
             // scissorChoice_rb
             // 
@@ -97,7 +97,7 @@
             this.scissorChoice_rb.TabStop = true;
             this.scissorChoice_rb.Text = "Scissors";
             this.scissorChoice_rb.UseVisualStyleBackColor = true;
-            this.scissorChoice_rb.CheckedChanged += new System.EventHandler(this.rockRB_CheckedChanged);
+            this.scissorChoice_rb.CheckedChanged += new System.EventHandler(this.RockRB_CheckedChanged);
             // 
             // choice_pnl
             // 
@@ -123,7 +123,7 @@
             this.selectChoice_btn.Size = new System.Drawing.Size(50, 50);
             this.selectChoice_btn.TabIndex = 3;
             this.selectChoice_btn.UseVisualStyleBackColor = true;
-            this.selectChoice_btn.Click += new System.EventHandler(this.selectChoice_btn_Click);
+            this.selectChoice_btn.Click += new System.EventHandler(this.SelectChoice_btn_Click);
             // 
             // player2_lbl
             // 
@@ -309,7 +309,7 @@
             this.newGame_btn.Size = new System.Drawing.Size(40, 40);
             this.newGame_btn.TabIndex = 22;
             this.newGame_btn.UseVisualStyleBackColor = true;
-            this.newGame_btn.Click += new System.EventHandler(this.newGame_btn_Click);
+            this.newGame_btn.Click += new System.EventHandler(this.NewGame_btn_Click);
             // 
             // newGame_lbl
             // 
