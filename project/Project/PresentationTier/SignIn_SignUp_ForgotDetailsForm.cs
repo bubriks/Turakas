@@ -14,14 +14,16 @@ namespace PresentationTier
         {
             InitializeComponent();
 
-            passwordSignIn_txt.PasswordChar = '卐';
+            passwordSignIn_txt.PasswordChar = '*';
 
             SignIn_grp.Top = 65;
             SignIn_grp.Left = 122;
         }
+
         #region SignUp
         private void SignUp_btn_Click(object sender, EventArgs e)
         {
+            //make the SignUp part show up
             SignUp_grp.Visible = true;
             SignIn_grp.Top = 12;
             SignIn_grp.Left = 12;
@@ -32,7 +34,7 @@ namespace PresentationTier
         
         private void Register_btn_Click(object sender, EventArgs e)
         {
-            if (CheckTheValues())
+            if (CheckTheValues()) //if the introduced values are valid
             {
                 string username = usernameSignUp_txt.Text;
                 string email = emailSignUp_txt.Text;
@@ -45,17 +47,20 @@ namespace PresentationTier
                     Nickname = nickname,
                 };
 
-                int loginId = profileService.CreateProfile(profile);
+                int profileId = profileService.CreateProfile(profile); //create profile and get it's assigned Id
 
-                if (loginId != -1)
+                if (profileId != -1) //if the profile was sucessfuly created
                 {
+                    //format labels
                     registerError_lbl.Visible = true;
                     registerError_lbl.Text = "Check your email for confirmation!";
                     registerError_lbl.ForeColor = Color.Green;
                 }
                 else
                 {
-
+                    registerError_lbl.Visible = true;
+                    registerError_lbl.Text = "Something went wrong!";
+                    registerError_lbl.ForeColor = Color.Red;
                 }
             }
             else
@@ -71,7 +76,7 @@ namespace PresentationTier
             string emailError = CheckEmail(emailSignUp_txt.Text);
             string nicknameError = CheckNickname(nicknameSignUp_txt.Text);
 
-            #region username checking
+            #region username validation and displaying
             if (!usernameError.Equals(""))
             {
                 ok = false;
@@ -86,7 +91,7 @@ namespace PresentationTier
                 usernameSignUp_txt.BackColor = Color.White;
             }
             #endregion
-            #region email checking
+            #region email validation and displaying
             if (!emailError.Equals(""))
             {
                 ok = false;
@@ -102,7 +107,7 @@ namespace PresentationTier
                 emailSignUp_txt.BackColor = Color.White;
             }
             #endregion
-            #region nickname checking
+            #region nickname validation and displaying
             if (!nicknameError.Equals(""))
             {
                 ok = false;

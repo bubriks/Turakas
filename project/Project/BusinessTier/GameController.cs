@@ -16,14 +16,22 @@ namespace BusinessTier
             profileController = new ProfileController();
         }
 
+        /// <summary>
+        /// Add player to game
+        /// </summary>
+        /// <param name="gameId"></param>
+        /// <param name="profileId"></param>
+        /// <param name="callback"></param>
+        /// <returns></returns>
+        /// <note>In here there is a definite diference between player1 and player2</note>
         public int JoinGame(int gameId, int profileId, object callback)
         {
             try
             {
-                Game game = FindGame(gameId);
-                lock (game)
+                Game game = FindGame(gameId); //find the given game
+                lock (game) //lock it, to make sure only 1 player will join at a time
                 {
-                    if (game.Player1 == null)
+                    if (game.Player1 == null) //if there is no player1 in the game
                     {
                         Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
                         user.CallBack = callback;//adds callback object to it
@@ -31,7 +39,7 @@ namespace BusinessTier
                         return 1;//joined
                     }
                     else
-                    if (game.Player2 == null && game.Player1.ProfileID != profileId)
+                    if (game.Player2 == null && game.Player1.ProfileID != profileId) //if there is no player2 and this player did not join as player1
                     {
                         Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
                         user.CallBack = callback;//adds callback object to it
@@ -64,6 +72,12 @@ namespace BusinessTier
             }
         }
 
+        /// <summary>
+        /// Remove player from game and delete game if there are no palyers in it
+        /// </summary>
+        /// <param name="gameId"></param>
+        /// <param name="profileId"></param>
+        /// <returns></returns>
         public int LeaveGame(int gameId, int profileId)
         {
             try
@@ -100,6 +114,13 @@ namespace BusinessTier
             }
         }
 
+        /// <summary>
+        /// Make a choice and return the result
+        /// </summary>
+        /// <param name="gameId"></param>
+        /// <param name="profileId"></param>
+        /// <param name="choice"></param>
+        /// <returns></returns>
         public int MakeChoice(int gameId, int profileId, int choice)
         {
             Game game = FindGame(gameId);
@@ -146,6 +167,11 @@ namespace BusinessTier
             }
         }
 
+        /// <summary>
+        /// Find the game by Id
+        /// </summary>
+        /// <param name="gameId"></param>
+        /// <returns></returns>
         public Game FindGame(int gameId)
         {
             Game game = games.Find(
