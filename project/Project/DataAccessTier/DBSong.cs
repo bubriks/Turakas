@@ -7,30 +7,36 @@ namespace DataAccessTier
 {
     public class DBSong
     {
-        private SqlConnection con = null;
+        private DbConnection con = null;
         public DBSong()
         {
-            con = DbConnection.GetInstance().GetConnection();
+            con = DbConnection.GetInstance();
         }
-        public void AddSong(string name, int duration, string url)
+        public bool AddSong(string name, int duration, string url)
         {
             string stmt = " DECLARE @activityID int; " +
 
             " INSERT INTO Activity(profileID, timeStamp) VALUES(1, @0); " +
             " SET @activityID = @@IDENTITY; " + "INSERT INTO Video(activityID, name, duration, url) values (@activityID, @1, @2, @3)";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
             cmd.Parameters.AddWithValue("@0",DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             cmd.Parameters.AddWithValue("@1", name);
             cmd.Parameters.AddWithValue("@2", duration);
             cmd.Parameters.AddWithValue("@3", url);
+            Song song = FindSongByURL(url);
+            if (song != null)
+            {
+                return false;
+            }
             cmd.ExecuteNonQuery();
+            return true;
         }
 
         public Song FindSongByURL(string url)
         {
             Song song = null;
             string stmt = "SELECT * FROM Video WHERE url = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
             cmd.Parameters.AddWithValue("@0", url);
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
@@ -70,7 +76,7 @@ namespace DataAccessTier
                 }
             }
             
-            SqlCommand cmd = new SqlCommand(stmt, con);
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection());
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
