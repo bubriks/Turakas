@@ -5,7 +5,7 @@ namespace BusinessTier
 {
     public interface ISongController
     {
-        bool AddSong(string name, int duration, string url);
+        bool AddSong(string url);
         string GetVideoTitle(string videoId);
         int GetVideoDuration(string videoId);
         List<Song> FindSongsByName(string name);

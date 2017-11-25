@@ -12,7 +12,7 @@ namespace WcfService
     public interface IYoutubeService
     {
         [OperationContract]
-        bool AddSong(string name, int duration, string url);
+        bool AddSong(string url);
         [OperationContract]
         string GetVideoTitle(string videoId);
         [OperationContract]
