@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using PresentationTier.GameServiceReference;
 using System.ServiceModel;
 using System.Timers;
+using System.ComponentModel;
 
 namespace PresentationTier
 
@@ -24,6 +25,9 @@ namespace PresentationTier
             InitializeComponent();
             instanceContext = new InstanceContext(this);
             gameService = new GameServiceClient(instanceContext);
+            player2_lbl.Text = "PLAYER2 NOT CONNECTED!";
+            player2_lbl.ForeColor = Color.Red;
+            selectChoice_btn.Enabled = false;
             #endregion
 
             gameId = chatId;
@@ -60,6 +64,8 @@ namespace PresentationTier
             else
             {
                 player2_lbl.Text = name;
+                player2_lbl.ForeColor = Color.Black;
+                selectChoice_btn.Enabled = true;
             }
         }
 
@@ -67,6 +73,7 @@ namespace PresentationTier
         {
             player2_lbl.ForeColor = Color.Red;
             player2_lbl.Text = "PLAYER 2 DISCONECTED!";
+            selectChoice_btn.Enabled = false;
         }
 
         public void Result(int result)
@@ -74,6 +81,7 @@ namespace PresentationTier
             player1_lbl.ForeColor = Color.Black;
             player2_lbl.ForeColor = Color.Black;
 
+            string historyChoice;
             switch (result)
             {
                 case -2: //player2 did not make a choice
@@ -110,16 +118,37 @@ namespace PresentationTier
                     anouncer_lbl.Visible = true;
                     anouncer_lbl.ForeColor = Color.Yellow;
                     anouncer_lbl.Text = "TIE!!!";
-                    history_listBox.Items.Add("TIE!!!");
+                    switch (choice)
+                    {
+                        case 0:
+                            historyChoice = "ROCK";
+                            break;
+                        case 1:
+                            historyChoice = "PAPER";
+                            break;
+                        default:
+                            historyChoice = "SCISSORS";
+                            break;
+                    }
+                    history_listBox.Items.Add("TIE!!! - on " + historyChoice);
                     break;
                 case 1: //player1 wins
                     if (choice == 0)
+                    {
                         player2_pic.BackgroundImage = Properties.Resources.scissor;
+                        historyChoice = " YOU WIN WITH: ROCK on SCISSORS";
+                    }
                     else
-                        if(choice == 1)
+                        if (choice == 1)
+                    {
                         player2_pic.BackgroundImage = Properties.Resources.rock;
+                        historyChoice = " YOU WIN WITH: PAPER on ROCK";
+                    }
                     else
+                    {
                         player2_pic.BackgroundImage = Properties.Resources.paper;
+                        historyChoice = " YOU WIN WITH: SCISSORS on PAPER";
+                    }
 
                     Stop();
                     player1_lbl.ForeColor = Color.Green;
@@ -134,12 +163,21 @@ namespace PresentationTier
                     break;
                 default: //payer2 wins
                     if (choice == 0)
+                    {
                         player2_pic.BackgroundImage = Properties.Resources.paper;
+                        historyChoice = " YOU LOSE WITH: ROCK on PAPER";
+                    }
                     else
                         if (choice == 1)
+                    {
                         player2_pic.BackgroundImage = Properties.Resources.scissor;
+                        historyChoice = " YOU LOSE WITH: PAPER on SCISSORS";
+                    }
                     else
+                    {
                         player2_pic.BackgroundImage = Properties.Resources.rock;
+                        historyChoice = " YOU LOSE WITH: SCISSORS on ROCK";
+                    }
 
                     Stop();
                     player2_lbl.ForeColor = Color.Green;
@@ -160,11 +198,12 @@ namespace PresentationTier
             if (choice != -1)
             {
                 gameService.MakeChoice(gameId, playerId, choice);
-                choice = -1;
+                
                 rockChoice_rb.Checked = false;
                 paperChoice_rb.Checked = false;
                 scissorChoice_rb.Checked = false;
             }
+            choice = -1;
         }
 
         private void RockRB_CheckedChanged(object sender, EventArgs e)
@@ -237,6 +276,8 @@ namespace PresentationTier
         {
             player1_bar.Value = 0; //reset timer to 0
             player2_bar.Value = 0; //reset timer to 0
+            timer.Elapsed -= new ElapsedEventHandler(OnTimedEvent);
+            timer.Elapsed -= new ElapsedEventHandler(OnTimedEvent1);
             requestStop = true;
             timer.Stop();
         }
@@ -245,6 +286,11 @@ namespace PresentationTier
         {
             requestStop = false;
             timer.Start();
+        }
+
+        private void RPSForm_Closing(object sender, CancelEventArgs e)//on close event
+        {
+            gameService.LeaveGame(gameId, playerId);
         }
     }
 }

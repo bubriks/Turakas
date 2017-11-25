@@ -318,6 +318,7 @@
             this.player1_pnl.ResumeLayout(false);
             this.player1_pnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.player1_pic)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RPSForm_Closing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
