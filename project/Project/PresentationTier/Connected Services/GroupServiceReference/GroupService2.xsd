@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/GroupService?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost/GroupService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataTier" />
   <xs:element name="CreateGroup">
     <xs:complexType>
       <xs:sequence>
@@ -17,7 +17,7 @@
   <xs:element name="DeleteGroup">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="groupId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -30,6 +30,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="profileId" type="xs:int" />
+        <xs:element minOccurs="0" name="groupId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -42,6 +43,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="profileId" type="xs:int" />
+        <xs:element minOccurs="0" name="groupId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -52,25 +54,29 @@
   </xs:element>
   <xs:element name="GetOnlineUsers">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupId" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetOnlineUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetOnlineUsersResult" nillable="true" type="q1:ArrayOfint" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetOnlineUsersResult" nillable="true" type="q1:ArrayOfProfile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAllUsers">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupId" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAllUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q2:ArrayOfint" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q2:ArrayOfProfile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

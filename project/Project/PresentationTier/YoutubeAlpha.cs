@@ -74,6 +74,23 @@ namespace PresentationTier
             listBox1.DisplayMember = "Name";
         }
 
+        private void textBox2_GotFocus(object sender, EventArgs e)
+        {
+            if (textBox2.Text.Equals("Search..."))
+            {
+                textBox2.Text = "";
+            }
+        }
+        
+        private void textBox2_LostFocus(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(textBox2.Text))
+            {
+                textBox2.Text = "Search...";
+            }
+        }
+
+
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             playVideo(listBox1.SelectedValue.ToString());
