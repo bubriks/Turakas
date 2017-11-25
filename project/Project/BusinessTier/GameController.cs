@@ -118,7 +118,7 @@ namespace BusinessTier
                 {
                     if (game.Choice2 != -1) //if player 2 made a choice
                     {
-                        if ((game.Choice1 == 0 && game.Choice2 == 2) || (game.Choice1 == 1 && game.Choice2 == 0) || (game.Choice1 == 2 && game.Choice2 == 0)) // player1 wins
+                        if ((game.Choice1 == 0 && game.Choice2 == 2) || (game.Choice1 == 1 && game.Choice2 == 0) || (game.Choice1 == 2 && game.Choice2 == 1)) // player1 wins
                         {
                             game.Choice1 = -1;
                             game.Choice2 = -1;

@@ -55,14 +55,15 @@ namespace WcfService
             Game game = gameController.FindGame(gameId);
             Profile user = game.Player1;
             Profile user1 = game.Player2;
+            int leaveResult = gameController.LeaveGame(gameId, profileId);
 
-            if (gameController.LeaveGame(gameId, profileId) == 1 && user1 != null)
+            if (leaveResult == 1 && user1 != null)
             {
-                IGameCallBack callback = (IGameCallBack)user.CallBack;
+                IGameCallBack callback = (IGameCallBack)user1.CallBack;
                 callback.PlayerLeaves();
             }
             else
-            if (gameController.LeaveGame(gameId, profileId) == 2 && user != null)
+            if (leaveResult == 2 && user != null)
             {
                 IGameCallBack callback = (IGameCallBack)user.CallBack;
                 callback.PlayerLeaves();
