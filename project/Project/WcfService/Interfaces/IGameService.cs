@@ -13,8 +13,10 @@ namespace WcfService
     {
         [OperationContract(IsOneWay = true)]
         void JoinGame(int gameId, int profileId);
+
         [OperationContract(IsOneWay = true)]
         void LeaveGame(int gameId, int profileId);
+
         [OperationContract(IsOneWay = true)]
         void MakeChoice(int gameId, int profileId, int choice);
 
@@ -23,7 +25,7 @@ namespace WcfService
     public interface IGameCallBack
     {
         [OperationContract(IsOneWay = true)]
-        void PlayerJoins(Profile profile);
+        void PlayerJoins(int id, String name);
 
         [OperationContract(IsOneWay = true)]
         void PlayerLeaves();

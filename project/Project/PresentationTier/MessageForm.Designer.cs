@@ -143,7 +143,7 @@ namespace PresentationTier
             this.rps_btn.Text = "PlayRPS";
             this.rps_btn.UseVisualStyleBackColor = true;
             this.rps_btn.Visible = false;
-            this.rps_btn.Click += new System.EventHandler(this.rps_btn_Click);
+            this.rps_btn.Click += new System.EventHandler(this.Rps_btn_Click);
             // 
             // statusStrip
             // 
