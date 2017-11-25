@@ -110,6 +110,7 @@ namespace PresentationTier
             this.button2.TabIndex = 6;
             this.button2.Text = "Next";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -120,6 +121,7 @@ namespace PresentationTier
             this.button3.TabIndex = 7;
             this.button3.Text = "Previous";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new EventHandler(this.button3_Click);
             // 
             // YoutubeAlpha
             // 

@@ -11,157 +11,193 @@ namespace DataAccessTier
 {
     public class DbGroup
     {
-        private SqlConnection con = null;
-        public List<int> allUsers = new List<int>();
-        public List<int> onlineUsers = new List<int>();
+        private DbConnection con = null;
 
         public DbGroup()
         {
-            con = DbConnection.GetInstance().GetConnection();
+            con = DbConnection.GetInstance();
         }
-        public bool CreateGroup(String name, int profileId)
+        public int CreateGroup(String name, int profileId)
         {
-            Group group = new Group{Name = name, CreatorId = profileId};
-            if (group == null)
-                return false;
-            else
-                return true;
-        }
-        public bool AddMember(int profileId)
-        {
+            int id = -1;
             try
             {
-                allUsers.Add(profileId);
-                return true;
+                string stmt = " DECLARE @activityID int; " +
+
+                " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
+                " SET @activityID = @@IDENTITY;" +
+
+                " INSERT INTO Groups(activityID, name) OUTPUT INSERTED.activityID values(@activityID, @2); ";
+
+                using (SqlCommand cmd = con.GetConnection().CreateCommand())
+                {
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("@0", profileId);
+                    cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                    cmd.Parameters.AddWithValue("@2", name);
+                    cmd.Parameters.AddWithValue("@3", name);
+                    cmd.Transaction = con.GetTransaction();
+
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        reader.Read();
+                        id = reader.GetInt32(0);
+                    }
+                }
+                AddMember(profileId, id);
             }
-            catch
+            catch (Exception e)
             {
-                return false;
+                Console.WriteLine(e);
             }
+            return id;
+        }
+
+        public bool AddMember(int profileId, int groupId)
+        {
+            bool b;
+            try
+            {
+                String stmt = " DECLARE @activityID1 int; " +
+                " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
+                " SET @activityID1 = @@IDENTITY;" +
+                "INSERT INTO GroupMembers(activityID, groupID) values(@activityID1, @2);";
+
+                using (SqlCommand cmd = con.GetConnection().CreateCommand())
+                {
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("@0", profileId);
+                    cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                    cmd.Parameters.AddWithValue("@2", groupId);
+                    cmd.Transaction = con.GetTransaction();
+
+                    cmd.ExecuteNonQuery();
+                }
+                b = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                b = false;
+            }
+            return b;
         }
         public bool RemoveMember(int profileId)
         {
             try
             {
-                allUsers.Remove(profileId);
+                string stmt = "DELETE FROM GroupMembers WHERE profileID = @0";
+                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
+                cmd.Parameters.AddWithValue("@0", profileId);
+                cmd.ExecuteNonQuery();
                 return true;
             }
-            catch
+            catch { return false; }
+        }
+        public List<Group> GetAllGroupsByProfileId(int profileId)
+        {
+            String stmt = " SELECT " +
+                    " Profile.profileID, " +
+                    " Activity.activityID, " +
+                    " Groups.name, " +
+                    " Activity.timeStamp " +
+                    " FROM Groups " +
+                " INNER JOIN Activity " +
+                    " on Profile.profileID = Activity.profileID " +
+                " INNER JOIN Groups " +
+                    " on Activity.activityID = Groups.activityID " +
+                " where Profile.profileID = @0 ";
+            SqlCommand cmd = con.GetConnection().CreateCommand();
+            cmd.CommandText = stmt;
+            cmd.Parameters.AddWithValue("@0", profileId);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Group> groups = new List<Group>();
+            while (reader.Read())
             {
-                return false;
+                Group group = new Group
+                {
+                    Name = reader["name"].ToString(),
+                    CreatorId = Int32.Parse(reader["profileID"].ToString()),
+                    GroupId = Int32.Parse(reader["ActivityID"].ToString()),
+                };
+                groups.Add(group);
             }
+            reader.Close();
+            return groups;
         }
-        public List<int> GetAllUsers()
+        public Group GetGroupByID(int groupId)
         {
-            return allUsers;
-        }
-        public List<int> GetOnlineUsers()
-        {
-            foreach (int p in allUsers)
+            String stmt = " SELECT " +
+                    " Profile.profileID, " +
+                    " Activity.activityID, " +
+                    " Groups.name, " +
+                    " Activity.timeStamp " +
+                    " FROM Groups " +
+                " INNER JOIN Activity " +
+                    " on Profile.profileID = Activity.profileID " +
+                " INNER JOIN Groups " +
+                    " on Activity.activityID = Groups.activityID " +
+                " where Activity.activityID = @0 ";
+            SqlCommand cmd = con.GetConnection().CreateCommand();
+            cmd.CommandText = stmt;
+            cmd.Parameters.AddWithValue("@0", groupId);
+            SqlDataReader reader = cmd.ExecuteReader();
+            Group group = null;
+            while (reader.Read())
             {
-                onlineUsers.Add(p);
+                group = new Group
+                {
+                    Name = reader["name"].ToString(),
+                    CreatorId = Int32.Parse(reader["profileID"].ToString()),
+                    GroupId = Int32.Parse(reader["ActivityID"].ToString()),
+                };
             }
-            return onlineUsers;
+            reader.Close();
+            return group;
         }
-        public bool DeleteGroup(String name)
+        public List<Profile> GetAllUsers(int groupId)
         {
-            return true;
+            String stmt = " SELECT " +
+                    " Profile.profileID, " +
+                    " Profile.Nickname, " +
+                    " Activity.activityID, " +
+                    " Groups.name, " +
+                    " Activity.timeStamp " +
+                    " FROM Groups " +
+                " INNER JOIN Activity " +
+                    " on Profile.profileID = Activity.profileID " +
+                " INNER JOIN Groups " +
+                    " on Activity.activityID = Groups.activityID " +
+                " where Activity.activityID = @0 ";
+            SqlCommand cmd = con.GetConnection().CreateCommand();
+            cmd.CommandText = stmt;
+            cmd.Parameters.AddWithValue("@0", groupId);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Profile> profiles = new List<Profile>();
+            while (reader.Read())
+            {
+                Profile profile = new Profile
+                {
+                    Nickname = reader["Nickname"].ToString(),
+                    ProfileID = Int32.Parse(reader["profileID"].ToString()),
+                };
+                profiles.Add(profile);
+            }
+            reader.Close();
+            return profiles;
+        }
+        public bool DeleteGroup(int groupId)
+        {
+            try
+            {
+                string stmt = "DELETE FROM Activity WHERE activityID = @0";
+                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
+                cmd.Parameters.AddWithValue("@0", groupId);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch { return false; }
         }
     }
 }
-
-/*public bool CreateGroup(Profile profile)
-{
-
-    try
-    {
-        string stmt = "INSERT INTO Group(creator, member)" +
-            " VALUES (" + profile.ProfileID + ", " + profile.profileID + "');";
-        using (SqlCommand cmd = new SqlCommand(stmt, con))
-        {
-            cmd.ExecuteNonQuery();
-        }
-        return true;
-    }
-    catch (Exception e)
-    {
-        Console.WriteLine(e);
-        return false;
-    }
-}
-public bool AddMember(Profile profile)
-{
-    try
-    {
-        string stmt = "INSERT INTO Group(member)" +
-            " VALUES (" + profile.ProfileID + "');";
-        using (SqlCommand cmd = new SqlCommand(stmt, con))
-        {
-            cmd.ExecuteNonQuery();
-        }
-        return true;
-    }
-    catch (Exception e)
-    {
-        Console.WriteLine(e);
-        return false;
-    }
-}
-public int RemoveMember(int profileID)
-{
-    string stmt = "DELETE FROM Group WHERE member = @0";
-    SqlCommand cmd = new SqlCommand(stmt, con);
-    cmd.Parameters.AddWithValue("@0", profileID);
-    int rows = cmd.ExecuteNonQuery();
-    return rows;
-}
-public List<Profile> GetOnlineUsers()
-{
-    string stmt = " SELECT members FROM Profile" +
-                " INNER JOIN Activity" +
-                    " on Profile.profileID = Activity.profileID" +
-                " INNER JOIN Message" +
-                    " on Activity.activityID = Message.activityID" +
-                " where Message.chatID = @0";
-    SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-    cmd.Parameters.AddWithValue("@0", chatId);
-    SqlDataReader reader = cmd.ExecuteReader();
-    List<Message> messages = new List<Message>();
-    while (reader.Read())
-    {
-        Message message = new Message
-        {
-            Id = Int32.Parse(reader["activityID"].ToString()),
-            Text = reader["message"].ToString(),
-            Creator = reader["nickname"].ToString(),
-            CreatorId = Int32.Parse(reader["profileID"].ToString()),
-            Time = Convert.ToDateTime(reader["timeStamp"].ToString())
-        };
-        messages.Add(message);
-    }
-    reader.Close();
-    return messages;
-}
-public bool DeleteGroup()
-{
-    return true;
-}
-public List<Profile> GetAllUsers(String name)
-{
-    string stmt = "Select members FROM Group where name = " + name;
-    SqlCommand cmd = new SqlCommand(stmt, con);
-    SqlDataReader reader = cmd.ExecuteReader();
-    List<Profile> profiles = new List<Profile>();
-    while (reader.Read())
-    {
-        Profile profile = new Profile();
-        {
-
-        }
-        profiles.Add(profile);
-    }
-    reader.Close();
-    return profiles;
-}
-}*/
-
