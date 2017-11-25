@@ -12,8 +12,6 @@ namespace DataAccessTier
     public class DbGroup
     {
         private DbConnection con = null;
-        public List<int> allUsers = new List<int>();
-        public List<int> onlineUsers = new List<int>();
 
         public DbGroup()
         {
@@ -30,7 +28,7 @@ namespace DataAccessTier
                 " SET @activityID = @@IDENTITY;" +
 
                 " INSERT INTO Groups(activityID, name) OUTPUT INSERTED.activityID values(@activityID, @2); ";
-                
+
                 using (SqlCommand cmd = con.GetConnection().CreateCommand())
                 {
                     cmd.CommandText = stmt;
@@ -49,13 +47,13 @@ namespace DataAccessTier
                 }
                 AddMember(profileId, id);
             }
-            catch ( Exception e )
+            catch (Exception e)
             {
-                Console.WriteLine(e) ;
+                Console.WriteLine(e);
             }
             return id;
         }
-        
+
         public bool AddMember(int profileId, int groupId)
         {
             bool b;
@@ -63,7 +61,7 @@ namespace DataAccessTier
             {
                 String stmt = " DECLARE @activityID1 int; " +
                 " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
-                " SET @activityID1 = @@IDENTITY;"+
+                " SET @activityID1 = @@IDENTITY;" +
                 "INSERT INTO GroupMembers(activityID, groupID) values(@activityID1, @2);";
 
                 using (SqlCommand cmd = con.GetConnection().CreateCommand())
@@ -73,7 +71,7 @@ namespace DataAccessTier
                     cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                     cmd.Parameters.AddWithValue("@2", groupId);
                     cmd.Transaction = con.GetTransaction();
-                    
+
                     cmd.ExecuteNonQuery();
                 }
                 b = true;
@@ -89,13 +87,13 @@ namespace DataAccessTier
         {
             try
             {
-                allUsers.Remove(profileId);
+                string stmt = "DELETE FROM GroupMembers WHERE profileID = @0";
+                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
+                cmd.Parameters.AddWithValue("@0", profileId);
+                cmd.ExecuteNonQuery();
                 return true;
             }
-            catch
-            {
-                return false;
-            }
+            catch { return false; }
         }
         public List<Group> GetAllGroupsByProfileId(int profileId)
         {
@@ -128,7 +126,7 @@ namespace DataAccessTier
             reader.Close();
             return groups;
         }
-        public Group GetChatByID(int groupId)
+        public Group GetGroupByID(int groupId)
         {
             String stmt = " SELECT " +
                     " Profile.profileID, " +
@@ -158,10 +156,11 @@ namespace DataAccessTier
             reader.Close();
             return group;
         }
-        public List<int> GetAllUsers(int groupId)
+        public List<Profile> GetAllUsers(int groupId)
         {
             String stmt = " SELECT " +
                     " Profile.profileID, " +
+                    " Profile.Nickname, " +
                     " Activity.activityID, " +
                     " Groups.name, " +
                     " Activity.timeStamp " +
@@ -175,57 +174,30 @@ namespace DataAccessTier
             cmd.CommandText = stmt;
             cmd.Parameters.AddWithValue("@0", groupId);
             SqlDataReader reader = cmd.ExecuteReader();
-            Group group = null;
+            List<Profile> profiles = new List<Profile>();
             while (reader.Read())
             {
-                group = new Group
+                Profile profile = new Profile
                 {
-                    Name = reader["name"].ToString(),
-                    CreatorId = Int32.Parse(reader["profileID"].ToString()),
-                    GroupId = Int32.Parse(reader["ActivityID"].ToString()),
+                    Nickname = reader["Nickname"].ToString(),
+                    ProfileID = Int32.Parse(reader["profileID"].ToString()),
                 };
+                profiles.Add(profile);
             }
             reader.Close();
-            return allUsers;
+            return profiles;
         }
-        public List<int> GetOnlineUsers()
-        {
-            foreach (int p in allUsers)
-            {
-                onlineUsers.Add(p);
-            }
-            return onlineUsers;
-        }
-        public bool DeleteGroup(String name)
+        public bool DeleteGroup(int groupId)
         {
             try
             {
-                String stmt = " SELECT " +
-                    " Profile.nickname, " +
-                    " Activity.activityID, " +
-                    " Groups.name, " +
-                    " Activity.timeStamp " +
-                    " FROM Profile " +
-                " INNER JOIN Activity " +
-                    " on Profile.profileID = Activity.profileID " +
-                " INNER JOIN Groups " +
-                    " on Activity.activityID = Groups.activityID " +
-                " where Activity.activityID = @activityID ";
+                string stmt = "DELETE FROM Activity WHERE activityID = @0";
+                SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
+                cmd.Parameters.AddWithValue("@0", groupId);
+                cmd.ExecuteNonQuery();
                 return true;
             }
             catch { return false; }
         }
     }
-    /*         " SELECT " +
-                    " Profile.nickname, " +
-                    " Activity.activityID, " +
-                    " Groups.name, " +
-                    " Activity.timeStamp " +
-                    " FROM Profile " +
-                " INNER JOIN Activity " +
-                    " on Profile.profileID = Activity.profileID " +
-                " INNER JOIN Groups " +
-                    " on Activity.activityID = Groups.activityID " +
-                " where Activity.activityID = @activityID ";
-                */
 }
