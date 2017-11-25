@@ -16,78 +16,112 @@ namespace BusinessTier
         {
             dbGroup = new DbGroup();
         }
-        public bool SomethingWentWrong()
-        {
-            return false;
-        }
-        public bool AddMember(int profileId, int groupId)
-        {
-            try
-            {
-                return dbGroup.AddMember(profileId, groupId);
-            }
-            catch { return SomethingWentWrong(); }
-        }
 
-        public int CreateGroup(String name, int profileId)
+        public bool CreateGroup(String name, int profileId)
         {
             try
             {
-                int i = dbGroup.CreateGroup(name, profileId);
-                return i;
+                if(dbGroup.CreateGroup(name, profileId) == 0)
+                {
+                    return false;
+                }
+                return true;
             }
-            catch { return -5; }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool DeleteGroup(int groupId)
         {
             try
             {
-                return dbGroup.DeleteGroup(groupId);
-            }
-            catch { return SomethingWentWrong(); }
-        }
-
-        public List<Profile> GetAllUsers(int groupId)
-        {
-            try
-            {
-                return dbGroup.GetAllUsers(groupId);
-            }
-            catch { return null; }
-        }
-
-        public List<Profile> GetOnlineUsers(int groupId)
-        {
-            List<Profile> allOnlineUsers = new List<Profile>();
-            try
-            {
-
-                ProfileController pc = new ProfileController();
-                List<Profile> onlineUsers = pc.GetOnlineUsers();
-                List<Profile> allUsers = dbGroup.GetAllUsers(groupId);
-                foreach(Profile p in allUsers)
+                if(dbGroup.DeleteGroup(groupId) == 0)
                 {
-                    foreach(Profile prof in onlineUsers)
-                    {
-                        if(prof.Nickname == p.Nickname)
-                        {
-                            allOnlineUsers.Add(p);
-                        }
-                    }
+                    return false;
                 }
-                return allOnlineUsers;
+
+                return true;
             }
-            catch { return null; }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateGroup(String name, int groupId)
+        {
+            try
+            {
+                if (dbGroup.UpdateGroup(name, groupId) == 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<Group> GetUsersGroups(int profileId)
+        {
+            try
+            {
+                return dbGroup.GetUsersGroups(profileId);
+            }
+            catch (Exception)
+            {
+                return new List<Group>();
+            }
+        }
+
+        
+        public bool AddMember(int profileId, int groupId)
+        {
+            try
+            {
+                if(dbGroup.AddMember(profileId, groupId) < 2)
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool RemoveMember(int profileId, int groupId)
         {
             try
             {
-                return dbGroup.RemoveMember(profileId, groupId);
+                if (dbGroup.RemoveMember(profileId, groupId) == 0)
+                {
+                    return false;
+                }
+                return true;
             }
-            catch { return SomethingWentWrong(); }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<Profile> GetUsers(int groupId)
+        {
+            try
+            {
+                return dbGroup.GetUsers(groupId);
+            }
+            catch
+            {
+                return new List<Profile>();
+            }
         }
     }
 }

@@ -183,6 +183,12 @@
     <None Include="Connected Services\GroupServiceReference\GroupService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\GroupServiceReference\GroupService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\GroupServiceReference\PresentationTier.GroupServiceReference.Group.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\GroupServiceReference\PresentationTier.GroupServiceReference.Profile.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

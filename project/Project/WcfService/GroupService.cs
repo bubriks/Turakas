@@ -10,35 +10,41 @@ namespace WcfService
 {
     public class GroupService : IGroupService
     {
-        IGroupController gc = new GroupController();
-        public void AddMember(int profileId, int groupId)
+        private IGroupController groupController = new GroupController();
+
+        public bool CreateGroup(String name, int profileId)
         {
-            gc.AddMember(profileId, groupId);
+            return groupController.CreateGroup(name, profileId);
         }
 
-        public void CreateGroup(String name, int profileId)
+        public bool DeleteGroup(int groupId)
         {
-            gc.CreateGroup(name, profileId);
+            return groupController.DeleteGroup(groupId);
         }
 
-        public void DeleteGroup(int groupId)
+        public bool UpdateGroup(string name, int groupId)
         {
-            gc.DeleteGroup(groupId);
+            return groupController.UpdateGroup(name, groupId);
         }
 
-        public List<Profile> GetAllUsers(int groupId)
+        public List<Group> GetUsersGroups(int profileId)
         {
-            return gc.GetAllUsers(groupId);
+            return groupController.GetUsersGroups(profileId);
         }
 
-        public List<Profile> GetOnlineUsers(int groupId)
+        public bool AddMember(int profileId, int groupId)
         {
-            return gc.GetOnlineUsers(groupId);
+            return groupController.AddMember(profileId, groupId);
         }
 
-        public void RemoveMember(int profileId, int groupId)
+        public bool RemoveMember(int profileId, int groupId)
         {
-            gc.RemoveMember(profileId, groupId);
+            return groupController.RemoveMember(profileId, groupId);
+        }
+
+        public List<Profile> GetUsers(int groupId)
+        {
+            return groupController.GetUsers(groupId);
         }
     }
 }
