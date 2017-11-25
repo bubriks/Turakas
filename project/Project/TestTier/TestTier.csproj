@@ -51,6 +51,7 @@
     <Compile Include="ChatTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MessageTest.cs" />
+    <Compile Include="GroupTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

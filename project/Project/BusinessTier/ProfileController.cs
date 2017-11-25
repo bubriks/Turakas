@@ -198,6 +198,10 @@ namespace BusinessTier
             );
             return user;
         }
+        public List<Profile> GetOnlineUsers()
+        {
+            return users;
+        }
 
     }
 }

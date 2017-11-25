@@ -11,9 +11,9 @@ namespace WcfService
     public class GroupService : IGroupService
     {
         IGroupController gc = new GroupController();
-        public void AddMember(int profileId)
+        public void AddMember(int profileId, int groupId)
         {
-            gc.AddMember(profileId);
+            gc.AddMember(profileId, groupId);
         }
 
         public void CreateGroup(String name, int profileId)
@@ -21,24 +21,24 @@ namespace WcfService
             gc.CreateGroup(name, profileId);
         }
 
-        public void DeleteGroup(String name)
+        public void DeleteGroup(int groupId)
         {
-            gc.DeleteGroup(name);
+            gc.DeleteGroup(groupId);
         }
 
-        public List<int> GetAllUsers()
+        public List<Profile> GetAllUsers(int groupId)
         {
-            return gc.GetAllUsers();
+            return gc.GetAllUsers(groupId);
         }
 
-        public List<int> GetOnlineUsers()
+        public List<Profile> GetOnlineUsers(int groupId)
         {
-            return gc.GetOnlineUsers();
+            return gc.GetOnlineUsers(groupId);
         }
 
-        public void RemoveMember(int profileId)
+        public void RemoveMember(int profileId, int groupId)
         {
-            gc.RemoveMember(profileId);
+            gc.RemoveMember(profileId, groupId);
         }
     }
 }

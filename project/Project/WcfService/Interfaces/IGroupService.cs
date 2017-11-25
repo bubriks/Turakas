@@ -14,15 +14,15 @@ namespace WcfService
         [OperationContract]
         void CreateGroup(String name, int profileId);
         [OperationContract]
-        void DeleteGroup(String name);
+        void DeleteGroup(int groupId);
         [OperationContract]
-        void AddMember(int profileId);
+        void AddMember(int profileId, int groupId);
         [OperationContract]
-        void RemoveMember(int profileId);
+        void RemoveMember(int profileId, int groupId);
         [OperationContract]
-        List<int> GetOnlineUsers();
+        List<Profile> GetOnlineUsers(int groupId);
         [OperationContract]
-        List<int> GetAllUsers();
+        List<Profile> GetAllUsers(int groupId);
 
     }
 }

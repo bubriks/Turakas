@@ -35,7 +35,6 @@ namespace DataAccessTier
                     cmd.Parameters.AddWithValue("@0", profileId);
                     cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                     cmd.Parameters.AddWithValue("@2", name);
-                    cmd.Parameters.AddWithValue("@3", name);
                     cmd.Transaction = con.GetTransaction();
 
 
@@ -83,12 +82,14 @@ namespace DataAccessTier
             }
             return b;
         }
-        public bool RemoveMember(int profileId)
+        public bool RemoveMember(int profileId, int groupId)
         {
             try
             {
-                string stmt = "DELETE FROM GroupMembers WHERE profileID = @0";
+                string stmt = " if (select profileID from Activity where groupId = @0) = @1 " +
+                            " DELETE FROM GroupMembers WHERE activityID = @0" ;
                 SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
+                cmd.Parameters.AddWithValue("@0", groupId);
                 cmd.Parameters.AddWithValue("@0", profileId);
                 cmd.ExecuteNonQuery();
                 return true;
@@ -164,7 +165,7 @@ namespace DataAccessTier
                     " Activity.activityID, " +
                     " Groups.name, " +
                     " Activity.timeStamp " +
-                    " FROM Groups " +
+                    " FROM Profile " +
                 " INNER JOIN Activity " +
                     " on Profile.profileID = Activity.profileID " +
                 " INNER JOIN Groups " +

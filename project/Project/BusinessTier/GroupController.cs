@@ -16,62 +16,78 @@ namespace BusinessTier
         {
             dbGroup = new DbGroup();
         }
-        public void SomethingWentWrong()
+        public bool SomethingWentWrong()
         {
-            Console.WriteLine("Something went wrong!");
+            return false;
         }
-        public void AddMember(int profileId)
+        public bool AddMember(int profileId, int groupId)
         {
             try
             {
-                dbGroup.AddMember(profileId);
+                return dbGroup.AddMember(profileId, groupId);
             }
-            catch { SomethingWentWrong(); }
+            catch { return SomethingWentWrong(); }
         }
 
-        public void CreateGroup(String name, int profileId)
+        public int CreateGroup(String name, int profileId)
         {
             try
             {
-                dbGroup.CreateGroup(name, profileId);
+                int i = dbGroup.CreateGroup(name, profileId);
+                return i;
             }
-            catch { SomethingWentWrong(); }
+            catch { return -5; }
         }
 
-        public void DeleteGroup(String name)
+        public bool DeleteGroup(int groupId)
         {
             try
             {
-                dbGroup.DeleteGroup(name);
+                return dbGroup.DeleteGroup(groupId);
             }
-            catch { SomethingWentWrong(); }
+            catch { return SomethingWentWrong(); }
         }
 
-        public List<int> GetAllUsers()
+        public List<Profile> GetAllUsers(int groupId)
         {
             try
             {
-                return dbGroup.GetAllUsers();
+                return dbGroup.GetAllUsers(groupId);
             }
             catch { return null; }
         }
 
-        public List<int> GetOnlineUsers()
+        public List<Profile> GetOnlineUsers(int groupId)
         {
+            List<Profile> allOnlineUsers = new List<Profile>();
             try
             {
-                return dbGroup.GetOnlineUsers();
+
+                ProfileController pc = new ProfileController();
+                List<Profile> onlineUsers = pc.GetOnlineUsers();
+                List<Profile> allUsers = dbGroup.GetAllUsers(groupId);
+                foreach(Profile p in allUsers)
+                {
+                    foreach(Profile prof in onlineUsers)
+                    {
+                        if(prof.Nickname == p.Nickname)
+                        {
+                            allOnlineUsers.Add(p);
+                        }
+                    }
+                }
+                return allOnlineUsers;
             }
             catch { return null; }
         }
 
-        public void RemoveMember(int profileId)
+        public bool RemoveMember(int profileId, int groupId)
         {
             try
             {
-                dbGroup.RemoveMember(profileId);
+                return dbGroup.RemoveMember(profileId, groupId);
             }
-            catch { SomethingWentWrong(); }
+            catch { return SomethingWentWrong(); }
         }
     }
 }
