@@ -99,7 +99,10 @@ namespace PresentationTier
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(215, 20);
             this.textBox2.TabIndex = 5;
+            this.textBox1.Text = "Search...";
             this.textBox2.KeyUp += new KeyEventHandler(this.textBox2_KeyUp);
+            this.textBox2.GotFocus += new EventHandler(this.textBox2_GotFocus);
+            this.textBox2.LostFocus += new EventHandler(this.textBox2_LostFocus);
             // 
             // button2
             // 
