@@ -110,7 +110,7 @@ namespace PresentationTier
                     anouncer_lbl.Visible = true;
                     anouncer_lbl.ForeColor = Color.Yellow;
                     anouncer_lbl.Text = "TIE!!!";
-                    history_listBox.Items.Add("");/////////////////////
+                    history_listBox.Items.Add("TIE!!!");
                     break;
                 case 1: //player1 wins
                     if (choice == 0)
@@ -130,6 +130,7 @@ namespace PresentationTier
                     anouncer_lbl.Visible = true;
                     anouncer_lbl.ForeColor = Color.Green;
                     anouncer_lbl.Text = "YOU WIN!!!!";
+                    history_listBox.Items.Add("YOU WIN!!!!");
                     break;
                 default: //payer2 wins
                     if (choice == 0)
@@ -149,6 +150,7 @@ namespace PresentationTier
                     anouncer_lbl.Visible = true;
                     anouncer_lbl.ForeColor = Color.Red;
                     anouncer_lbl.Text = "YOU LOSE!!!";
+                    history_listBox.Items.Add("YOU LOSE!!!!");
                     break;
             }
         }
