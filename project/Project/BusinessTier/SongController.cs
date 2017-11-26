@@ -19,7 +19,13 @@ namespace BusinessTier
         public bool AddSong(string url)
         {
             DBSong dbSong = new DBSong();
-            return dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url);
+            Song song = dbSong.FindSongByURL(url);
+            if (song != null)
+            {
+                return false;
+            }
+            dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url);
+            return true;
         }
 
         private static YouTubeService ytService = Auth();

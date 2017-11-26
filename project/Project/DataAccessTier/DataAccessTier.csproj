@@ -48,6 +48,7 @@
     <Compile Include="DbChat.cs" />
     <Compile Include="DbConnection.cs" />
     <Compile Include="DbGroup.cs" />
+    <Compile Include="DbPlayList.cs" />
     <Compile Include="DbProfile.cs" />
     <Compile Include="DbMessage.cs" />
     <Compile Include="DbSong.cs" />
