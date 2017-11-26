@@ -296,6 +296,12 @@ namespace PresentationTier.GroupServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetUsers", ReplyAction="http://tempuri.org/IGroupService/GetUsersResponse")]
         System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetUsersAsync(int groupId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetOnlineMembers", ReplyAction="http://tempuri.org/IGroupService/GetOnlineMembersResponse")]
+        PresentationTier.GroupServiceReference.Profile[] GetOnlineMembers(int groupId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetOnlineMembers", ReplyAction="http://tempuri.org/IGroupService/GetOnlineMembersResponse")]
+        System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetOnlineMembersAsync(int groupId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -379,6 +385,14 @@ namespace PresentationTier.GroupServiceReference {
         
         public System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetUsersAsync(int groupId) {
             return base.Channel.GetUsersAsync(groupId);
+        }
+        
+        public PresentationTier.GroupServiceReference.Profile[] GetOnlineMembers(int groupId) {
+            return base.Channel.GetOnlineMembers(groupId);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetOnlineMembersAsync(int groupId) {
+            return base.Channel.GetOnlineMembersAsync(groupId);
         }
     }
 }

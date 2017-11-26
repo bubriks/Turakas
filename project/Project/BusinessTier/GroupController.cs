@@ -80,7 +80,6 @@ namespace BusinessTier
                 return new List<Group>();
             }
         }
-
         
         public bool AddMember(String memberName, int groupId)
         {
@@ -140,6 +139,20 @@ namespace BusinessTier
             {
                 return new List<Profile>();
             }
+        }
+
+        public List<Profile> GetOnlineMembers(int groupId)
+        {
+            List<Profile> onlineMembers = new List<Profile>();
+            foreach (Profile member in GetUsers(groupId))
+            {
+                Profile user = profileController.GetUser(member.ProfileID);
+                if(user != null)
+                {
+                    onlineMembers.Add(user);
+                }
+            }
+            return onlineMembers;
         }
     }
 }

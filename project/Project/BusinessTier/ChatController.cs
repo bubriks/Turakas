@@ -10,12 +10,14 @@ namespace BusinessTier
     {
         private DbChat dbChat = null;
         private IProfileController profileController = null;
+        private IGroupController groupController = null;
         private static List<Chat> chats = new List<Chat>();
 
         public ChatController()
         {
             dbChat = new DbChat();
             profileController = new ProfileController();
+            groupController = new GroupController();
         }
 
         public Chat SaveChat(int profileId, Chat chat)
@@ -121,7 +123,12 @@ namespace BusinessTier
                 return new List<Chat>();
             }
         }
-        
+
+        public List<Profile> JoinChatAsGroup(int groupId)
+        {
+            return groupController.GetOnlineMembers(groupId);
+        }
+
         public bool JoinChat(int chatId, int profileId, object callback)
         {
             try

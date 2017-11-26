@@ -158,9 +158,12 @@ namespace PresentationTier.ChatServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(int[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Chat))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Profile[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Chat[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Group[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Group))]
     public partial class Profile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -282,6 +285,115 @@ namespace PresentationTier.ChatServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Group", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Group : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] AllUsersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CreatorIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GroupIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] AllUsers {
+            get {
+                return this.AllUsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AllUsersField, value) != true)) {
+                    this.AllUsersField = value;
+                    this.RaisePropertyChanged("AllUsers");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CreatorId {
+            get {
+                return this.CreatorIdField;
+            }
+            set {
+                if ((this.CreatorIdField.Equals(value) != true)) {
+                    this.CreatorIdField = value;
+                    this.RaisePropertyChanged("CreatorId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GroupId {
+            get {
+                return this.GroupIdField;
+            }
+            set {
+                if ((this.GroupIdField.Equals(value) != true)) {
+                    this.GroupIdField = value;
+                    this.RaisePropertyChanged("GroupId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Time {
+            get {
+                return this.TimeField;
+            }
+            set {
+                if ((this.TimeField.Equals(value) != true)) {
+                    this.TimeField = value;
+                    this.RaisePropertyChanged("Time");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatServiceReference.IChatService", CallbackContract=typeof(PresentationTier.ChatServiceReference.IChatServiceCallback))]
     public interface IChatService {
@@ -315,6 +427,18 @@ namespace PresentationTier.ChatServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetChatsByName", ReplyAction="http://tempuri.org/IChatService/GetChatsByNameResponse")]
         System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Chat[]> GetChatsByNameAsync(string name, int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetUsersGroups", ReplyAction="http://tempuri.org/IChatService/GetUsersGroupsResponse")]
+        PresentationTier.ChatServiceReference.Group[] GetUsersGroups(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetUsersGroups", ReplyAction="http://tempuri.org/IChatService/GetUsersGroupsResponse")]
+        System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Group[]> GetUsersGroupsAsync(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/joinChatWhithGroup")]
+        void joinChatWhithGroup(int groupId, int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/joinChatWhithGroup")]
+        System.Threading.Tasks.Task joinChatWhithGroupAsync(int groupId, int chatId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -390,6 +514,22 @@ namespace PresentationTier.ChatServiceReference {
         
         public System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Chat[]> GetChatsByNameAsync(string name, int profileId) {
             return base.Channel.GetChatsByNameAsync(name, profileId);
+        }
+        
+        public PresentationTier.ChatServiceReference.Group[] GetUsersGroups(int profileId) {
+            return base.Channel.GetUsersGroups(profileId);
+        }
+        
+        public System.Threading.Tasks.Task<PresentationTier.ChatServiceReference.Group[]> GetUsersGroupsAsync(int profileId) {
+            return base.Channel.GetUsersGroupsAsync(profileId);
+        }
+        
+        public void joinChatWhithGroup(int groupId, int chatId) {
+            base.Channel.joinChatWhithGroup(groupId, chatId);
+        }
+        
+        public System.Threading.Tasks.Task joinChatWhithGroupAsync(int groupId, int chatId) {
+            return base.Channel.joinChatWhithGroupAsync(groupId, chatId);
         }
     }
 }

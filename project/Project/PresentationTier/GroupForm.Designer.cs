@@ -33,14 +33,12 @@
             this.BtnCreate = new System.Windows.Forms.Button();
             this.lbAllGroups = new System.Windows.Forms.ListBox();
             this.lbGroupMembers = new System.Windows.Forms.ListBox();
-            this.BntAllUsers = new System.Windows.Forms.Button();
-            this.BtnOnlineUsers = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnAddUser = new System.Windows.Forms.Button();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.BtnBack = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.onlineCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -95,26 +93,6 @@
             this.lbGroupMembers.TabIndex = 5;
             this.lbGroupMembers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LbGroupMembers_MouseDown);
             // 
-            // BntAllUsers
-            // 
-            this.BntAllUsers.Location = new System.Drawing.Point(223, 183);
-            this.BntAllUsers.Margin = new System.Windows.Forms.Padding(2);
-            this.BntAllUsers.Name = "BntAllUsers";
-            this.BntAllUsers.Size = new System.Drawing.Size(94, 19);
-            this.BntAllUsers.TabIndex = 6;
-            this.BntAllUsers.Text = "All users";
-            this.BntAllUsers.UseVisualStyleBackColor = true;
-            // 
-            // BtnOnlineUsers
-            // 
-            this.BtnOnlineUsers.Location = new System.Drawing.Point(321, 183);
-            this.BtnOnlineUsers.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnOnlineUsers.Name = "BtnOnlineUsers";
-            this.BtnOnlineUsers.Size = new System.Drawing.Size(89, 19);
-            this.BtnOnlineUsers.TabIndex = 7;
-            this.BtnOnlineUsers.Text = "Online users";
-            this.BtnOnlineUsers.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -165,29 +143,28 @@
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
             // 
-            // button1
+            // onlineCheckBox
             // 
-            this.button1.Location = new System.Drawing.Point(335, 316);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Refresh";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.ButtonRefreshGroupMembers_Click);
+            this.onlineCheckBox.AutoSize = true;
+            this.onlineCheckBox.Location = new System.Drawing.Point(223, 184);
+            this.onlineCheckBox.Name = "onlineCheckBox";
+            this.onlineCheckBox.Size = new System.Drawing.Size(134, 17);
+            this.onlineCheckBox.TabIndex = 14;
+            this.onlineCheckBox.Text = "Show only online users";
+            this.onlineCheckBox.UseVisualStyleBackColor = true;
+            this.onlineCheckBox.CheckStateChanged += new System.EventHandler(this.OnlineCheckBox_CheckStateChanged);
             // 
             // GroupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 349);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.onlineCheckBox);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.BtnBack);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.BtnAddUser);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.BtnOnlineUsers);
-            this.Controls.Add(this.BntAllUsers);
             this.Controls.Add(this.lbGroupMembers);
             this.Controls.Add(this.lbAllGroups);
             this.Controls.Add(this.BtnCreate);
@@ -208,13 +185,11 @@
         private System.Windows.Forms.Button BtnCreate;
         private System.Windows.Forms.ListBox lbAllGroups;
         private System.Windows.Forms.ListBox lbGroupMembers;
-        private System.Windows.Forms.Button BntAllUsers;
-        private System.Windows.Forms.Button BtnOnlineUsers;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnAddUser;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Button BtnBack;
         private System.Windows.Forms.Button buttonRefresh;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox onlineCheckBox;
     }
 }

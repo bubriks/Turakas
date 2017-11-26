@@ -205,9 +205,16 @@ namespace BusinessTier
             );
             return user;
         }
-        public List<Profile> GetOnlineUsers()
+
+        public Profile GetUser(int profiled)
         {
-            return users;
+            Profile user = users.Find(
+            delegate (Profile u)
+            {
+                return u.ProfileID == profiled;
+            }
+            );
+            return user;
         }
 
         private bool CheckTheValues(Profile profile, bool create)
@@ -268,6 +275,5 @@ namespace BusinessTier
             }
             return ok;
         }
-
     }
 }

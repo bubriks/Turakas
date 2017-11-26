@@ -31,7 +31,7 @@ namespace PresentationTier
             #endregion
 
             ButtonRefresh_Click(null, null);
-            BntAllUsers.Select();
+            GetUsers(onlineCheckBox.Checked == true);
             txtUserName.Enabled = false;
             BtnAddUser.Enabled = false;
         }
@@ -97,7 +97,7 @@ namespace PresentationTier
                 {
                     lbAllGroups.SelectedIndex = item;
                     groupId = (lbAllGroups.SelectedItem as Group).GroupId;
-                    ButtonRefreshGroupMembers_Click(null, null);
+                    GetUsers(onlineCheckBox.Checked == true);
                     BtnCreate.Text = "Update group";
                     txtUserName.Enabled = true;
                     BtnAddUser.Enabled = true;
@@ -125,14 +125,6 @@ namespace PresentationTier
         #endregion
 
         #region Manage members
-        private void ButtonRefreshGroupMembers_Click(object sender, EventArgs e)
-        {
-            lbGroupMembers.Items.Clear();
-            foreach(Profile profile in client.GetUsers(groupId))
-            {
-                lbGroupMembers.Items.Add(profile);
-            }
-        }
 
         private void LbGroupMembers_MouseDown(object sender, MouseEventArgs e)
         {
@@ -152,7 +144,42 @@ namespace PresentationTier
             if(client.AddMember(txtUserName.Text, groupId))
             {
                 txtUserName.Text = "";
-                ButtonRefreshGroupMembers_Click(null, null);
+                GetUsers(onlineCheckBox.Checked == true);
+            }
+        }
+
+        private void GetOnlineUsers()
+        {
+            lbGroupMembers.Items.Clear();
+            foreach (Profile profile in client.GetOnlineMembers(groupId))
+            {
+                lbGroupMembers.Items.Add(profile);
+            }
+        }
+
+        private void GetAllUsers()
+        {
+            lbGroupMembers.Items.Clear();
+            foreach (Profile profile in client.GetUsers(groupId))
+            {
+                lbGroupMembers.Items.Add(profile);
+            }
+        }
+
+        private void OnlineCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            GetUsers(onlineCheckBox.Checked == true);
+        }
+
+        public void GetUsers(bool result)
+        {
+            if (result == true)
+            {
+                GetOnlineUsers();
+            }
+            else
+            {
+                GetAllUsers();
             }
         }
 
@@ -160,7 +187,7 @@ namespace PresentationTier
         {
             if(client.RemoveMember((lbGroupMembers.SelectedItem as Profile).ProfileID, groupId))
             {
-                ButtonRefreshGroupMembers_Click(null, null);
+                GetUsers(onlineCheckBox.Checked == true);
             }
         }
         #endregion

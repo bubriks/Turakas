@@ -31,5 +31,8 @@ namespace WcfService
 
         [OperationContract]
         List<Profile> GetUsers(int groupId);
+
+        [OperationContract]
+        List<Profile> GetOnlineMembers(int groupId);
     }
 }

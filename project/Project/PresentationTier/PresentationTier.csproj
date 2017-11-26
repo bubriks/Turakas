@@ -163,7 +163,13 @@
     <None Include="Connected Services\ChatServiceReference\ChatService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ChatServiceReference\ChatService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ChatServiceReference\PresentationTier.ChatServiceReference.Chat.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatServiceReference\PresentationTier.ChatServiceReference.Group.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\GameServiceReference\GameService.wsdl" />

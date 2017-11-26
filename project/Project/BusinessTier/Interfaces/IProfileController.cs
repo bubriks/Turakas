@@ -1,5 +1,6 @@
 ﻿using DataTier;
 using System;
+using System.Collections.Generic;
 
 namespace BusinessTier
 {
@@ -51,7 +52,11 @@ namespace BusinessTier
         bool DeleteProfile(int profileId);
 
         bool Online(int profileId, object obj);
+
         bool Offline(int profileId);
+
         Profile GetUser(String name);
+
+        Profile GetUser(int profiled);
     }
 }

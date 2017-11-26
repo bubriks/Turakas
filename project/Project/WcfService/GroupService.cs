@@ -46,5 +46,10 @@ namespace WcfService
         {
             return groupController.GetUsers(groupId);
         }
+
+        public List<Profile> GetOnlineMembers(int groupId)
+        {
+            return groupController.GetOnlineMembers(groupId);
+        }
     }
 }
