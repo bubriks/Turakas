@@ -54,7 +54,11 @@ namespace BusinessTier
             catch (Exception)
             {
                 //returns empty list if exception is thrown
-                return new List<Message>();
+                List<Message> messages = new List<Message>();
+                Message message = new Message();
+                message.Text = "fail";
+                messages.Add(message);
+                return messages;
             }
         }
 

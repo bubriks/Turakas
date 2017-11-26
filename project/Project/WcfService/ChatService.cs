@@ -84,18 +84,15 @@ namespace WcfService
 
         public void joinChatWhithGroup(int groupId, int chatId)
         {
-            Chat chat = chatController.FindChat(chatId);
-            if (chat != null)
+            List<Profile> profiles = chatController.JoinChatAsGroup(groupId, chatId);
+            if (profiles.Count > 0)
             {
-                foreach (Profile user in chatController.JoinChatAsGroup(groupId))
+                foreach (Profile user in profiles)
                 {
                     IChatCallBack chatCallback = (IChatCallBack)user.CallBack;
-                    chatCallback.Notification(chatController.FindChat(chatId));
+                    chatCallback.joinChat(chatId);
                 }
             }
-            //doesnt work if chat isnt active!
-            //checks if they are using this message form already
-            //adds them to chat with joinChat(int chatId);
         }
     }
 }

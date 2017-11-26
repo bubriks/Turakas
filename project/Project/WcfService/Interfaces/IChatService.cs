@@ -38,7 +38,7 @@ namespace WcfService
         [OperationContract(IsOneWay = true)]
         void Notification(Chat chat);
 
-        //[OperationContract(IsOneWay = true)]
-        //void joinChat(int chatId);//
+        [OperationContract(IsOneWay = true)]
+        void joinChat(int chatId);
     }
 }

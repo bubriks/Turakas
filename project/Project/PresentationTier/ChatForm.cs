@@ -255,6 +255,11 @@ namespace PresentationTier
                 }
             }
         }
+
+        public void joinChat(int chatId)//joins the chat with the group
+        {
+            new MessageForm(chatId, profileId);
+        }
         #endregion
 
         #region invite

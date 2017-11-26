@@ -446,6 +446,9 @@ namespace PresentationTier.ChatServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Notification")]
         void Notification(PresentationTier.ChatServiceReference.Chat chat);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/joinChat")]
+        void joinChat(int chatId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

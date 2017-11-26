@@ -31,7 +31,7 @@ namespace BusinessTier
         /// <param name="chatId"></param>
         /// <param name="groupId"></param>
         /// <returns></returns>
-        List<Profile>JoinChatAsGroup(int groupId);
+        List<Profile>JoinChatAsGroup(int groupId, int chatId);
         /// <summary>
         /// Person joins chat
         /// </summary>
