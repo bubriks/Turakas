@@ -122,8 +122,9 @@ namespace PresentationTier
             txtUserName.Enabled = false;
             BtnAddUser.Enabled = false;
         }
-        #endregion 
+        #endregion
 
+        #region Manage members
         private void ButtonRefreshGroupMembers_Click(object sender, EventArgs e)
         {
             lbGroupMembers.Items.Clear();
@@ -162,6 +163,7 @@ namespace PresentationTier
                 ButtonRefreshGroupMembers_Click(null, null);
             }
         }
+        #endregion
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
