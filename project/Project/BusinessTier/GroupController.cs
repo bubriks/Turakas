@@ -12,9 +12,11 @@ namespace BusinessTier
     public class GroupController : IGroupController
     {
         private DbGroup dbGroup;
+        private IProfileController profileController;
         public GroupController()
         {
             dbGroup = new DbGroup();
+            profileController = new ProfileController();
         }
 
         public bool CreateGroup(String name, int profileId)
@@ -80,18 +82,34 @@ namespace BusinessTier
         }
 
         
-        public bool AddMember(int profileId, int groupId)
+        public bool AddMember(String memberName, int groupId)
         {
             try
             {
-                if(dbGroup.AddMember(profileId, groupId) < 2)
-                {
+                Profile profile = profileController.ReadProfile(memberName, 4);
+                if (profile == null)
+                {//user not found
                     return false;
                 }
-                return true;
+                else
+                {//user found
+                    if (dbGroup.UserIsMemberOfGroup(profile.ProfileID, groupId))
+                    {//user isnt in group
+                        if (dbGroup.AddMember(profile.ProfileID, groupId) < 2)
+                        {//not added
+                            return false;
+                        }
+                        //added
+                        return true;
+                    }
+                    else
+                    {//user already in group
+                        return false;
+                    }
+                }
             }
             catch
-            {
+            {//problem in db
                 return false;
             }
         }

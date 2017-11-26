@@ -83,6 +83,26 @@ namespace DataAccessTier
             return groups;
         }
 
+        public bool UserIsMemberOfGroup(int profileId, int groupId)
+        {
+            bool canJoin = true;
+            string stmt = " select Activity.activityId " +
+                " from groupMembers " +
+                " inner join Activity " +
+                " on Activity.activityId = GroupMembers.activityId " +
+                " where (Activity.profileId = @0 and GroupMembers.groupID = @1)";
+            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
+            cmd.Parameters.AddWithValue("@0", profileId);
+            cmd.Parameters.AddWithValue("@1", groupId);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if(reader.Read())
+            {
+                canJoin = false;
+            }
+            reader.Close();
+            return canJoin;
+        }
+
         public int AddMember(int profileId, int groupId)
         {
             String stmt = " DECLARE @activityID int; " +

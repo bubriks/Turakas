@@ -280,10 +280,10 @@ namespace PresentationTier.GroupServiceReference {
         System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Group[]> GetUsersGroupsAsync(int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/AddMember", ReplyAction="http://tempuri.org/IGroupService/AddMemberResponse")]
-        bool AddMember(int profileId, int groupId);
+        bool AddMember(string memberName, int groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/AddMember", ReplyAction="http://tempuri.org/IGroupService/AddMemberResponse")]
-        System.Threading.Tasks.Task<bool> AddMemberAsync(int profileId, int groupId);
+        System.Threading.Tasks.Task<bool> AddMemberAsync(string memberName, int groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/RemoveMember", ReplyAction="http://tempuri.org/IGroupService/RemoveMemberResponse")]
         bool RemoveMember(int profileId, int groupId);
@@ -357,12 +357,12 @@ namespace PresentationTier.GroupServiceReference {
             return base.Channel.GetUsersGroupsAsync(profileId);
         }
         
-        public bool AddMember(int profileId, int groupId) {
-            return base.Channel.AddMember(profileId, groupId);
+        public bool AddMember(string memberName, int groupId) {
+            return base.Channel.AddMember(memberName, groupId);
         }
         
-        public System.Threading.Tasks.Task<bool> AddMemberAsync(int profileId, int groupId) {
-            return base.Channel.AddMemberAsync(profileId, groupId);
+        public System.Threading.Tasks.Task<bool> AddMemberAsync(string memberName, int groupId) {
+            return base.Channel.AddMemberAsync(memberName, groupId);
         }
         
         public bool RemoveMember(int profileId, int groupId) {

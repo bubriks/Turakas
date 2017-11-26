@@ -14,7 +14,7 @@ namespace BusinessTier
         bool DeleteGroup(int groupId);
         bool UpdateGroup(String name, int groupId);
         List<Group> GetUsersGroups(int profileId);
-        bool AddMember(int profileId, int groupId);
+        bool AddMember(String memberName, int groupId);
         bool RemoveMember(int profileId, int groupId);
         List<Profile> GetUsers(int groupId);
     }

@@ -32,9 +32,9 @@ namespace WcfService
             return groupController.GetUsersGroups(profileId);
         }
 
-        public bool AddMember(int profileId, int groupId)
+        public bool AddMember(String memberName, int groupId)
         {
-            return groupController.AddMember(profileId, groupId);
+            return groupController.AddMember(memberName, groupId);
         }
 
         public bool RemoveMember(int profileId, int groupId)

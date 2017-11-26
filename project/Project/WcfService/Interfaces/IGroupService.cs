@@ -24,7 +24,7 @@ namespace WcfService
         List<Group> GetUsersGroups(int profileId);
 
         [OperationContract]
-        bool AddMember(int profileId, int groupId);
+        bool AddMember(String memberName, int groupId);
 
         [OperationContract]
         bool RemoveMember(int profileId, int groupId);

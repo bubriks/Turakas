@@ -31,6 +31,9 @@ namespace PresentationTier
             #endregion
 
             ButtonRefresh_Click(null, null);
+            BntAllUsers.Select();
+            txtUserName.Enabled = false;
+            BtnAddUser.Enabled = false;
         }
 
         #region Manage groups
@@ -60,6 +63,8 @@ namespace PresentationTier
                     txtName.Text = "";
                     groupId = 0;
                     BtnCreate.Text = "Create new group";
+                    txtUserName.Enabled = false;
+                    BtnAddUser.Enabled = false;
                 }
             }
             else
@@ -67,6 +72,8 @@ namespace PresentationTier
                 if (client.CreateGroup(txtName.Text, profileId))
                 {
                     txtName.Text = "";
+                    txtUserName.Enabled = false;
+                    BtnAddUser.Enabled = false;
                 }
             }
             ButtonRefresh_Click(null, null);
@@ -92,6 +99,8 @@ namespace PresentationTier
                     groupId = (lbAllGroups.SelectedItem as Group).GroupId;
                     ButtonRefreshGroupMembers_Click(null, null);
                     BtnCreate.Text = "Update group";
+                    txtUserName.Enabled = true;
+                    BtnAddUser.Enabled = true;
                 }
                 else
                 {
@@ -99,6 +108,8 @@ namespace PresentationTier
                     groupId = 0;
                     lbGroupMembers.Items.Clear();
                     BtnCreate.Text = "Create new group";
+                    txtUserName.Enabled = false;
+                    BtnAddUser.Enabled = false;
                 }
             }
         }
@@ -108,6 +119,8 @@ namespace PresentationTier
             client.DeleteGroup((lbAllGroups.SelectedItem as Group).GroupId);
             groupId = 0;
             BtnCreate.Text = "Create new group";
+            txtUserName.Enabled = false;
+            BtnAddUser.Enabled = false;
         }
         #endregion 
 
@@ -130,6 +143,15 @@ namespace PresentationTier
                     lbGroupMembers.SelectedIndex = item;
                     cmMembers.Show(lbGroupMembers, e.Location);
                 }
+            }
+        }
+
+        private void BtnAddUser_Click(object sender, EventArgs e)
+        {
+            if(client.AddMember(txtUserName.Text, groupId))
+            {
+                txtUserName.Text = "";
+                ButtonRefreshGroupMembers_Click(null, null);
             }
         }
 
