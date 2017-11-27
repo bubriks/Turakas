@@ -205,9 +205,9 @@ namespace PresentationTier
 
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
-            listBox2.DataSource = youtubeServiceClient.GetSongsFromPlayList(listBox2.SelectedValue.ToString());
-            listBox2.ValueMember = "ActivityId";
-            listBox2.DisplayMember = "Name";
+            listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(listBox2.SelectedValue.ToString());
+            listBox1.ValueMember = "Url";
+            listBox1.DisplayMember = "Name";
         }
 
 
