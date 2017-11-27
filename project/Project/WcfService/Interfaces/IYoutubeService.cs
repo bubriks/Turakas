@@ -15,19 +15,29 @@ namespace WcfService
         bool AddSong(string url);
         [OperationContract]
         string GetVideoTitle(string videoId);
+        
         [OperationContract]
         int GetVideoDuration(string videoId);
+        
         [OperationContract]
         List<Song> FindSongsByName(string name);
+        
         [OperationContract]
-        void AddPlayList(string name);
+        bool AddPlayList(string name);
         [OperationContract]
         List<PlayList> FindPlayListsByName(string name);
+        
         [OperationContract]
-        bool AddSongToPlayList(int songId, int playListId);
+        bool AddSongToPlayList(string url, string playListId);
+        
         [OperationContract]
-        List<Song> GetSongsFromPlayList(int playListId);
+        List<Song> GetSongsFromPlayList(string playListId);
+        
+        [OperationContract]
+        bool RemovePlaylist(string playlistId);
 
+        [OperationContract]
+        bool RemoveSongFromPlaylist(string url, string playlistId);
 
     }
 }

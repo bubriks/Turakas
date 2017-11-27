@@ -196,10 +196,10 @@ namespace PresentationTier.YoutubeService {
         System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> FindSongsByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddPlayList", ReplyAction="http://tempuri.org/IYoutubeService/AddPlayListResponse")]
-        void AddPlayList(string name);
+        bool AddPlayList(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddPlayList", ReplyAction="http://tempuri.org/IYoutubeService/AddPlayListResponse")]
-        System.Threading.Tasks.Task AddPlayListAsync(string name);
+        System.Threading.Tasks.Task<bool> AddPlayListAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/FindPlayListsByName", ReplyAction="http://tempuri.org/IYoutubeService/FindPlayListsByNameResponse")]
         PresentationTier.YoutubeService.PlayList[] FindPlayListsByName(string name);
@@ -208,16 +208,28 @@ namespace PresentationTier.YoutubeService {
         System.Threading.Tasks.Task<PresentationTier.YoutubeService.PlayList[]> FindPlayListsByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddSongToPlayList", ReplyAction="http://tempuri.org/IYoutubeService/AddSongToPlayListResponse")]
-        bool AddSongToPlayList(int songId, int playListId);
+        bool AddSongToPlayList(string url, string playListId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddSongToPlayList", ReplyAction="http://tempuri.org/IYoutubeService/AddSongToPlayListResponse")]
-        System.Threading.Tasks.Task<bool> AddSongToPlayListAsync(int songId, int playListId);
+        System.Threading.Tasks.Task<bool> AddSongToPlayListAsync(string url, string playListId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetSongsFromPlayList", ReplyAction="http://tempuri.org/IYoutubeService/GetSongsFromPlayListResponse")]
-        PresentationTier.YoutubeService.Song[] GetSongsFromPlayList(int playListId);
+        PresentationTier.YoutubeService.Song[] GetSongsFromPlayList(string playListId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetSongsFromPlayList", ReplyAction="http://tempuri.org/IYoutubeService/GetSongsFromPlayListResponse")]
-        System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> GetSongsFromPlayListAsync(int playListId);
+        System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> GetSongsFromPlayListAsync(string playListId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/RemovePlaylist", ReplyAction="http://tempuri.org/IYoutubeService/RemovePlaylistResponse")]
+        bool RemovePlaylist(string playlistId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/RemovePlaylist", ReplyAction="http://tempuri.org/IYoutubeService/RemovePlaylistResponse")]
+        System.Threading.Tasks.Task<bool> RemovePlaylistAsync(string playlistId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/RemoveSongFromPlaylist", ReplyAction="http://tempuri.org/IYoutubeService/RemoveSongFromPlaylistResponse")]
+        bool RemoveSongFromPlaylist(string url, string playlistId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/RemoveSongFromPlaylist", ReplyAction="http://tempuri.org/IYoutubeService/RemoveSongFromPlaylistResponse")]
+        System.Threading.Tasks.Task<bool> RemoveSongFromPlaylistAsync(string url, string playlistId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -279,11 +291,11 @@ namespace PresentationTier.YoutubeService {
             return base.Channel.FindSongsByNameAsync(name);
         }
         
-        public void AddPlayList(string name) {
-            base.Channel.AddPlayList(name);
+        public bool AddPlayList(string name) {
+            return base.Channel.AddPlayList(name);
         }
         
-        public System.Threading.Tasks.Task AddPlayListAsync(string name) {
+        public System.Threading.Tasks.Task<bool> AddPlayListAsync(string name) {
             return base.Channel.AddPlayListAsync(name);
         }
         
@@ -295,20 +307,36 @@ namespace PresentationTier.YoutubeService {
             return base.Channel.FindPlayListsByNameAsync(name);
         }
         
-        public bool AddSongToPlayList(int songId, int playListId) {
-            return base.Channel.AddSongToPlayList(songId, playListId);
+        public bool AddSongToPlayList(string url, string playListId) {
+            return base.Channel.AddSongToPlayList(url, playListId);
         }
         
-        public System.Threading.Tasks.Task<bool> AddSongToPlayListAsync(int songId, int playListId) {
-            return base.Channel.AddSongToPlayListAsync(songId, playListId);
+        public System.Threading.Tasks.Task<bool> AddSongToPlayListAsync(string url, string playListId) {
+            return base.Channel.AddSongToPlayListAsync(url, playListId);
         }
         
-        public PresentationTier.YoutubeService.Song[] GetSongsFromPlayList(int playListId) {
+        public PresentationTier.YoutubeService.Song[] GetSongsFromPlayList(string playListId) {
             return base.Channel.GetSongsFromPlayList(playListId);
         }
         
-        public System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> GetSongsFromPlayListAsync(int playListId) {
+        public System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> GetSongsFromPlayListAsync(string playListId) {
             return base.Channel.GetSongsFromPlayListAsync(playListId);
+        }
+        
+        public bool RemovePlaylist(string playlistId) {
+            return base.Channel.RemovePlaylist(playlistId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemovePlaylistAsync(string playlistId) {
+            return base.Channel.RemovePlaylistAsync(playlistId);
+        }
+        
+        public bool RemoveSongFromPlaylist(string url, string playlistId) {
+            return base.Channel.RemoveSongFromPlaylist(url, playlistId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemoveSongFromPlaylistAsync(string url, string playlistId) {
+            return base.Channel.RemoveSongFromPlaylistAsync(url, playlistId);
         }
     }
 }

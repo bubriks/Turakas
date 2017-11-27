@@ -11,13 +11,24 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using Microsoft.VisualBasic;
 
 namespace PresentationTier
 {
     public partial class YoutubeAlpha : Form
     {
         private YoutubeService.YoutubeServiceClient youtubeServiceClient = new YoutubeService.YoutubeServiceClient();
-        public YoutubeAlpha()
+        private static YoutubeAlpha instance;
+
+        public static YoutubeAlpha GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new YoutubeAlpha();
+            }
+            return instance;
+        }
+        private YoutubeAlpha()
         {
             SetBrowserFeatureControl();
 
@@ -133,9 +144,17 @@ namespace PresentationTier
             }
         }
 
-        private void listBox2_DragDrop(object sender, DragEventArgs e)
+        private void addSongToPlaylistToolStripMenu_Click(object sender, EventArgs e)
         {
-
+            if(youtubeServiceClient.AddSongToPlayList(listBox1.SelectedValue.ToString(),
+                listBox2.SelectedValue.ToString()))
+            {
+                MessageBox.Show("Song added to playlist.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Operation failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void textBox3_KeyUp(object sender, KeyEventArgs e)
@@ -147,17 +166,46 @@ namespace PresentationTier
 
         private void removePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string playlistId = listBox2.SelectedValue.ToString();
+            if (youtubeServiceClient.RemovePlaylist(listBox2.SelectedValue.ToString()))
+            {
+                MessageBox.Show("Playlist removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Operation failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void addPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string plName = Interaction.InputBox("Add song", "Enter song name: ", "Default", -1, -1);
+            if (!String.IsNullOrEmpty(plName)&&youtubeServiceClient.AddPlayList(plName))
+            {
+                MessageBox.Show("Playlist added.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Operation failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void removeSongFromPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (youtubeServiceClient.RemoveSongFromPlaylist(listBox1.SelectedValue.ToString(), listBox2.SelectedValue.ToString()))
+            {
+                MessageBox.Show("Song removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
+            else
+            {
+                MessageBox.Show("Operation failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBox2_DoubleClick(object sender, EventArgs e)
         {
-            listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(Int32.Parse(listBox2.SelectedValue.ToString()));
+            listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(listBox2.SelectedValue.ToString());
             listBox1.ValueMember = "Url";
             listBox1.DisplayMember = "Name";
         }
@@ -170,7 +218,7 @@ namespace PresentationTier
                 String.Concat(@"Software\Microsoft\Internet Explorer\Main\FeatureControl\", feature),
                 RegistryKeyPermissionCheck.ReadWriteSubTree))
             {
-                key.SetValue(appName, (UInt32)value, RegistryValueKind.DWord);
+                key.SetValue(appName, value, RegistryValueKind.DWord);
             }
         }
 

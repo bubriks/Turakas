@@ -66,7 +66,9 @@
   </xs:element>
   <xs:element name="AddPlayListResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddPlayListResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="FindPlayListsByName">
@@ -86,8 +88,8 @@
   <xs:element name="AddSongToPlayList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="songId" type="xs:int" />
-        <xs:element minOccurs="0" name="playListId" type="xs:int" />
+        <xs:element minOccurs="0" name="url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="playListId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -101,7 +103,7 @@
   <xs:element name="GetSongsFromPlayList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="playListId" type="xs:int" />
+        <xs:element minOccurs="0" name="playListId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -109,6 +111,35 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetSongsFromPlayListResult" nillable="true" type="q3:ArrayOfSong" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemovePlaylist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="playlistId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemovePlaylistResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemovePlaylistResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveSongFromPlaylist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="playlistId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveSongFromPlaylistResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveSongFromPlaylistResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
