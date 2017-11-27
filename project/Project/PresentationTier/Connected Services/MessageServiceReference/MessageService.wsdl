@@ -430,6 +430,7 @@
       <xsd:import schemaLocation="http://localhost/MessageService?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost/MessageService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost/MessageService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataTier" />
+      <xsd:import schemaLocation="http://localhost/MessageService?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IMessageService_JoinChat_InputMessage">
@@ -626,7 +627,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost/MessageService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TURAKAS\Turakas</Upn>
+          <Upn>DESKTOP-GOARNTN\bubri</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

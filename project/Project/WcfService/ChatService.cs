@@ -47,9 +47,9 @@ namespace WcfService
                 chat = chatController.FindChat(chat.Id);
                 if (chat != null)
                 {
-                    foreach (Profile user in chat.Users)
+                    foreach (var tuple in chat.Users)
                     {
-                        IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+                        IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
                         callback.GetChat(chat);
                     }
                 }
@@ -63,9 +63,9 @@ namespace WcfService
             {
                 if (chat != null)
                 {
-                    foreach (Profile user in chat.Users)
+                    foreach (var tuple in chat.Users)
                     {
-                        IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+                        IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
                         callback.Show(false);
                     }
                 }

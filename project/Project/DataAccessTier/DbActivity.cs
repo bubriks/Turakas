@@ -21,7 +21,7 @@ namespace DataAccessTier
         /// <returns>Returns true, if succesfull</returns>
         public int CreateActivity(int profileId)
         {
-            string stmt = "OUTPUT INSERT INTO Activity (profileID, timeStamp) VALUES(@0, @1);";
+            string stmt = "OUTPUT INSERT INTO Activity (profileID, timeStamp) OUTPUT INSERTED.activityID VALUES(@0, @1);";
 
             using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection()))
             {

@@ -126,6 +126,8 @@ namespace PresentationTier.MessageServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<PresentationTier.MessageServiceReference.Profile, object>[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<PresentationTier.MessageServiceReference.Profile, object>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Message))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Profile[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Chat))]
@@ -279,7 +281,7 @@ namespace PresentationTier.MessageServiceReference {
         private bool TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private PresentationTier.MessageServiceReference.Profile[] UsersField;
+        private System.Tuple<PresentationTier.MessageServiceReference.Profile, object>[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -370,7 +372,7 @@ namespace PresentationTier.MessageServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public PresentationTier.MessageServiceReference.Profile[] Users {
+        public System.Tuple<PresentationTier.MessageServiceReference.Profile, object>[] Users {
             get {
                 return this.UsersField;
             }

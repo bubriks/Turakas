@@ -20,6 +20,6 @@ namespace DataTier
         [DataMember]
         public int MaxNrOfUsers { get; set; }
         [DataMember]
-        public List<Profile> Users { get; set; }
+        public List<Tuple<Profile, object>> Users { get; set; }
     }
 }

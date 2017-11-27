@@ -32,7 +32,11 @@ namespace DataAccessTier
                 cmd.Parameters.AddWithValue("@0", profileId);
                 cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 cmd.Parameters.AddWithValue("@2", name);
-                return cmd.ExecuteNonQuery();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    return reader.GetInt32(0);
+                }
             }
         }
 

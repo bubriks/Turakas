@@ -132,25 +132,23 @@ namespace BusinessTier
                 {
                     lock (chat)//locks the chat object so only one process can access it
                     {
-                        List<Profile> membersToJoin = new List<Profile>();//list where members who have to join will be stored
+                        List<Tuple<Profile, object>> membersToJoin = new List<Tuple<Profile, object>>();//list where members who have to join will be stored
                         foreach (Profile member in profiles)
                         {
-                            Profile user = chat.Users.Find(//looks if there is a profile with this id already in chat
-                            delegate (Profile u)
+                            Profile user = null;
+                            foreach(var i in chat.Users)
                             {
-                                return u.ProfileID == member.ProfileID;
+                                Profile p = i.Item1;
+                                if (p.ProfileID == member.ProfileID)
+                                {
+                                    user = p;
+                                    break;
+                                }
                             }
-                            );
 
                             if (user == null)//if user isnt in chat already
                             {
-                                Profile joinngMember = new Profile
-                                {
-                                    Nickname = member.Nickname,
-                                    ProfileID = member.ProfileID,
-                                    CallBack = null
-                                };
-                                membersToJoin.Add(joinngMember);//adds the member to list (who will join chat)
+                                membersToJoin.Add(new Tuple<Profile, object>(member, null));//adds the member to list (who will join chat)
                             }
                             else
                             {
@@ -176,18 +174,12 @@ namespace BusinessTier
                         chat = dbChat.GetChat(chatId);//Gets chat from database
                         if (chat.MaxNrOfUsers >= profiles.Count)
                         {
-                            List<Profile> members = new List<Profile>();
+                            List<Tuple<Profile, object>> membersToJoin = new List<Tuple<Profile, object>>();
                             foreach (Profile user in profiles)
                             {
-                                Profile member = new Profile//new member is created without callback (so when user joins he can add his call back)
-                                {
-                                    Nickname = user.Nickname,
-                                    ProfileID = user.ProfileID,
-                                    CallBack = null
-                                };
-                                members.Add(member);//member added to list of members to join
+                                membersToJoin.Add(new Tuple<Profile, object>(user, null));//member added to list of members to join
                             }
-                            chat.Users = members;//adds user to chat
+                            chat.Users = membersToJoin;//adds user to chat
                             chats.Add(chat);//adds chat to chat list
                             return profiles;//Returns joined users
                         }
@@ -213,20 +205,21 @@ namespace BusinessTier
                 {
                     lock (chat)//locks the chat object so it cant be changed at the same time
                     {
-                        Profile user = chat.Users.Find(//looks for specific user in chat
-                        delegate (Profile u)
+                        Tuple<Profile, object> user = null;
+                        foreach (var i in chat.Users)//gets touple with the same id
                         {
-                            return u.ProfileID == profileId;
+                            Profile p = i.Item1;
+                            if (p.ProfileID == profileId)
+                            {
+                                user = i;
+                            }
                         }
-                        );
 
                         if (user == null)//if user wanst found
                         {
                             if (chat.MaxNrOfUsers > chat.Users.Count)//if chat can have that many users
                             {
-                                user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
-                                user.CallBack = callback;//adds callback object to user
-                                chat.Users.Add(user);//adds user to list
+                                chat.Users.Add(new Tuple<Profile, object>(profileController.GetUser(profileId), callback));//adds user to list
                                 return true;//joined
                             }
                             else
@@ -236,9 +229,10 @@ namespace BusinessTier
                         }
                         else//user is in the chat
                         {
-                            if (user.CallBack == null)//if user doesnt have callback assigned
+                            if (user.Item2 == null)//if user doesnt have callback assigned
                             {
-                                user.CallBack = callback;//assignes callback object to user
+                                chat.Users.Remove(user);
+                                chat.Users.Add(new Tuple<Profile, object>(user.Item1, callback));
                                 return true;//joined
                             }
                             else
@@ -253,10 +247,9 @@ namespace BusinessTier
                     lock (chats)
                     {
                         chat = dbChat.GetChat(chatId);//Gets chat from database
-                        Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets user from database
-                        user.CallBack = callback;//adds callback object to it
-                        List<Profile> profiles = new List<Profile>{ user };//adds user to chat users
-                        chat.Users = profiles;//adds users to chat
+                        List<Tuple<Profile, object>> membersToJoin = new List<Tuple<Profile, object>>();//adds user to chat users
+                        membersToJoin.Add(new Tuple<Profile, object>(profileController.GetUser(profileId), callback));
+                        chat.Users = membersToJoin;//adds users to chat
                         chats.Add(chat);//adds chat to chat list
                         return true;//joined
                     }
@@ -275,12 +268,16 @@ namespace BusinessTier
                 Chat chat = FindChat(chatId);//looks for existing chat
                 lock (chat)//locks chat so only one proces can make changes to it at a time
                 {
-                    Profile user = chat.Users.Find(//looks for user in that chat
-                    delegate (Profile c)
+                    Tuple<Profile, object> user = null;
+                    foreach (var i in chat.Users)//finds touple that holds person with this id
                     {
-                        return c.ProfileID == profileId;
+                        Profile p = i.Item1;
+                        if (p.ProfileID == profileId)
+                        {
+                            user = i;
+                            break;
+                        }
                     }
-                    );
 
                     if (user == null)//if user wasnt found
                     {

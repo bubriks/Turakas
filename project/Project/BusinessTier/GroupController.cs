@@ -23,11 +23,22 @@ namespace BusinessTier
         {
             try
             {
-                if(dbGroup.CreateGroup(name, profileId) == 0)
+                Profile profile = profileController.ReadProfile(profileId.ToString(), 1);
+                if (profile != null)
                 {
-                    return false;
+                    if (AddMember(profile.Nickname, dbGroup.CreateGroup(name, profileId)))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                return true;
+                else
+                {
+                    return false;//profile doesnt exist
+                }
             }
             catch
             {
