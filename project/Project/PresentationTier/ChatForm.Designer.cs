@@ -182,11 +182,11 @@ namespace PresentationTier
             // viewProfileButton
             // 
             this.viewProfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewProfileButton.Location = new System.Drawing.Point(12, 271);
+            this.viewProfileButton.Location = new System.Drawing.Point(197, 271);
             this.viewProfileButton.Name = "viewProfileButton";
-            this.viewProfileButton.Size = new System.Drawing.Size(75, 23);
+            this.viewProfileButton.Size = new System.Drawing.Size(60, 23);
             this.viewProfileButton.TabIndex = 4;
-            this.viewProfileButton.Text = "View Profile";
+            this.viewProfileButton.Text = "Profile";
             this.viewProfileButton.UseVisualStyleBackColor = true;
             this.viewProfileButton.Click += new System.EventHandler(this.ViewProfileButton_Click);
             // 
@@ -205,7 +205,7 @@ namespace PresentationTier
             // clearEventsButton
             // 
             this.clearEventsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearEventsButton.Location = new System.Drawing.Point(153, 271);
+            this.clearEventsButton.Location = new System.Drawing.Point(530, 271);
             this.clearEventsButton.Name = "clearEventsButton";
             this.clearEventsButton.Size = new System.Drawing.Size(75, 23);
             this.clearEventsButton.TabIndex = 6;
@@ -216,16 +216,17 @@ namespace PresentationTier
             // youtubeButton
             // 
             this.youtubeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.youtubeButton.Location = new System.Drawing.Point(102, 271);
+            this.youtubeButton.Location = new System.Drawing.Point(344, 271);
             this.youtubeButton.Name = "youtubeButton";
-            this.youtubeButton.Size = new System.Drawing.Size(29, 23);
+            this.youtubeButton.Size = new System.Drawing.Size(55, 23);
             this.youtubeButton.TabIndex = 7;
-            this.youtubeButton.Text = "YT";
+            this.youtubeButton.Text = "Youtube";
             this.youtubeButton.UseVisualStyleBackColor = true;
             this.youtubeButton.Click += new System.EventHandler(this.YoutubeButton_Click);
             // 
             // btnGroups
             // 
+            this.btnGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGroups.Location = new System.Drawing.Point(263, 271);
             this.btnGroups.Name = "btnGroups";
             this.btnGroups.Size = new System.Drawing.Size(75, 23);
@@ -236,7 +237,8 @@ namespace PresentationTier
             // 
             // logOut_btn
             // 
-            this.logOut_btn.Location = new System.Drawing.Point(366, 271);
+            this.logOut_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.logOut_btn.Location = new System.Drawing.Point(13, 271);
             this.logOut_btn.Name = "logOut_btn";
             this.logOut_btn.Size = new System.Drawing.Size(75, 23);
             this.logOut_btn.TabIndex = 23;

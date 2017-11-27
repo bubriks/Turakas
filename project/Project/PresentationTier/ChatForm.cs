@@ -40,7 +40,6 @@ namespace PresentationTier
             nrOfUsersTrackBar.Maximum = 10;
             nrOfUsersTrackBar.TickFrequency = 1;
             #endregion
-            viewProfileButton.BackColor = Color.Pink;
             client.Online(profileId);
 
             SearchButton_Click(null, null);

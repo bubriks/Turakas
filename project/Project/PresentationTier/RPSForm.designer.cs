@@ -96,6 +96,7 @@
             // 
             // choice_pnl
             // 
+            this.choice_pnl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.choice_pnl.Controls.Add(this.anouncer_lbl);
             this.choice_pnl.Controls.Add(this.rockChoice_rb);
             this.choice_pnl.Controls.Add(this.scissorChoice_rb);
@@ -150,6 +151,7 @@
             // 
             // palyer1Points_lbl
             // 
+            this.palyer1Points_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.palyer1Points_lbl.AutoSize = true;
             this.palyer1Points_lbl.Location = new System.Drawing.Point(189, 19);
             this.palyer1Points_lbl.Name = "palyer1Points_lbl";
@@ -159,6 +161,7 @@
             // 
             // player2Points_lbl
             // 
+            this.player2Points_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.player2Points_lbl.AutoSize = true;
             this.player2Points_lbl.Location = new System.Drawing.Point(189, 20);
             this.player2Points_lbl.Name = "player2Points_lbl";
@@ -180,6 +183,8 @@
             // 
             // player2_pnl
             // 
+            this.player2_pnl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.player2_pnl.BackColor = System.Drawing.SystemColors.Control;
             this.player2_pnl.Controls.Add(this.player2_bar);
             this.player2_pnl.Controls.Add(this.player2_lbl);
@@ -192,6 +197,8 @@
             // 
             // player2_bar
             // 
+            this.player2_bar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.player2_bar.Location = new System.Drawing.Point(13, 20);
             this.player2_bar.Name = "player2_bar";
             this.player2_bar.Size = new System.Drawing.Size(100, 23);
@@ -199,6 +206,7 @@
             // 
             // player2_pic
             // 
+            this.player2_pic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.player2_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.player2_pic.Image = global::PresentationTier.Properties.Resources.scissor;
             this.player2_pic.InitialImage = null;
@@ -210,6 +218,8 @@
             // 
             // player1_pnl
             // 
+            this.player1_pnl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.player1_pnl.Controls.Add(this.player1_lbl);
             this.player1_pnl.Controls.Add(this.player1_bar);
             this.player1_pnl.Controls.Add(this.player1_pic);
@@ -221,6 +231,8 @@
             // 
             // player1_bar
             // 
+            this.player1_bar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.player1_bar.Location = new System.Drawing.Point(13, 19);
             this.player1_bar.Name = "player1_bar";
             this.player1_bar.Size = new System.Drawing.Size(100, 23);
@@ -228,6 +240,7 @@
             // 
             // player1_pic
             // 
+            this.player1_pic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.player1_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.player1_pic.InitialImage = null;
             this.player1_pic.Location = new System.Drawing.Point(138, 6);
@@ -238,6 +251,7 @@
             // 
             // points_lbl
             // 
+            this.points_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.points_lbl.AutoSize = true;
             this.points_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.points_lbl.Location = new System.Drawing.Point(204, 9);
@@ -249,6 +263,7 @@
             // 
             // choice_lbl
             // 
+            this.choice_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.choice_lbl.AutoSize = true;
             this.choice_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.choice_lbl.Location = new System.Drawing.Point(154, 9);
@@ -308,8 +323,10 @@
             this.Controls.Add(this.player2_pnl);
             this.Controls.Add(this.history_listBox);
             this.Controls.Add(this.choice_pnl);
+            this.MinimumSize = new System.Drawing.Size(515, 347);
             this.Name = "RPSForm";
             this.Text = "Piatra, Pergament, Foarfece";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RPSForm_Closing);
             this.choice_pnl.ResumeLayout(false);
             this.choice_pnl.PerformLayout();
             this.player2_pnl.ResumeLayout(false);
@@ -318,7 +335,6 @@
             this.player1_pnl.ResumeLayout(false);
             this.player1_pnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.player1_pic)).EndInit();
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RPSForm_Closing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -156,7 +156,7 @@
             // usernameError_lbl
             // 
             this.usernameError_lbl.AutoSize = true;
-            this.usernameError_lbl.Location = new System.Drawing.Point(107, 26);
+            this.usernameError_lbl.Location = new System.Drawing.Point(110, 33);
             this.usernameError_lbl.Name = "usernameError_lbl";
             this.usernameError_lbl.Size = new System.Drawing.Size(91, 13);
             this.usernameError_lbl.TabIndex = 12;
@@ -270,9 +270,10 @@
             this.Controls.Add(this.confirmPassword_lbl);
             this.Controls.Add(this.password_lbl);
             this.Controls.Add(this.username_lbl);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileForm_Closing);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ProfileForm";
             this.Text = "ProfileForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileForm_Closing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
