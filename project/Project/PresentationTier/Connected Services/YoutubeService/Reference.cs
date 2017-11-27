@@ -106,67 +106,6 @@ namespace PresentationTier.YoutubeService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PlayList", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
-    [System.SerializableAttribute()]
-    public partial class PlayList : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ActivityIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ActivityId {
-            get {
-                return this.ActivityIdField;
-            }
-            set {
-                if ((this.ActivityIdField.Equals(value) != true)) {
-                    this.ActivityIdField = value;
-                    this.RaisePropertyChanged("ActivityId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="YoutubeService.IYoutubeService")]
     public interface IYoutubeService {
@@ -194,30 +133,6 @@ namespace PresentationTier.YoutubeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/FindSongsByName", ReplyAction="http://tempuri.org/IYoutubeService/FindSongsByNameResponse")]
         System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> FindSongsByNameAsync(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddPlayList", ReplyAction="http://tempuri.org/IYoutubeService/AddPlayListResponse")]
-        void AddPlayList(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddPlayList", ReplyAction="http://tempuri.org/IYoutubeService/AddPlayListResponse")]
-        System.Threading.Tasks.Task AddPlayListAsync(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/FindPlayListsByName", ReplyAction="http://tempuri.org/IYoutubeService/FindPlayListsByNameResponse")]
-        PresentationTier.YoutubeService.PlayList[] FindPlayListsByName(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/FindPlayListsByName", ReplyAction="http://tempuri.org/IYoutubeService/FindPlayListsByNameResponse")]
-        System.Threading.Tasks.Task<PresentationTier.YoutubeService.PlayList[]> FindPlayListsByNameAsync(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddSongToPlayList", ReplyAction="http://tempuri.org/IYoutubeService/AddSongToPlayListResponse")]
-        bool AddSongToPlayList(int songId, int playListId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/AddSongToPlayList", ReplyAction="http://tempuri.org/IYoutubeService/AddSongToPlayListResponse")]
-        System.Threading.Tasks.Task<bool> AddSongToPlayListAsync(int songId, int playListId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetSongsFromPlayList", ReplyAction="http://tempuri.org/IYoutubeService/GetSongsFromPlayListResponse")]
-        PresentationTier.YoutubeService.Song[] GetSongsFromPlayList(int playListId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IYoutubeService/GetSongsFromPlayList", ReplyAction="http://tempuri.org/IYoutubeService/GetSongsFromPlayListResponse")]
-        System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> GetSongsFromPlayListAsync(int playListId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -277,38 +192,6 @@ namespace PresentationTier.YoutubeService {
         
         public System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> FindSongsByNameAsync(string name) {
             return base.Channel.FindSongsByNameAsync(name);
-        }
-        
-        public void AddPlayList(string name) {
-            base.Channel.AddPlayList(name);
-        }
-        
-        public System.Threading.Tasks.Task AddPlayListAsync(string name) {
-            return base.Channel.AddPlayListAsync(name);
-        }
-        
-        public PresentationTier.YoutubeService.PlayList[] FindPlayListsByName(string name) {
-            return base.Channel.FindPlayListsByName(name);
-        }
-        
-        public System.Threading.Tasks.Task<PresentationTier.YoutubeService.PlayList[]> FindPlayListsByNameAsync(string name) {
-            return base.Channel.FindPlayListsByNameAsync(name);
-        }
-        
-        public bool AddSongToPlayList(int songId, int playListId) {
-            return base.Channel.AddSongToPlayList(songId, playListId);
-        }
-        
-        public System.Threading.Tasks.Task<bool> AddSongToPlayListAsync(int songId, int playListId) {
-            return base.Channel.AddSongToPlayListAsync(songId, playListId);
-        }
-        
-        public PresentationTier.YoutubeService.Song[] GetSongsFromPlayList(int playListId) {
-            return base.Channel.GetSongsFromPlayList(playListId);
-        }
-        
-        public System.Threading.Tasks.Task<PresentationTier.YoutubeService.Song[]> GetSongsFromPlayListAsync(int playListId) {
-            return base.Channel.GetSongsFromPlayListAsync(playListId);
         }
     }
 }

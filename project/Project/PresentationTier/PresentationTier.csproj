@@ -221,9 +221,6 @@
     <None Include="Connected Services\ProfileServiceReference\ProfileService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\YoutubeService\PresentationTier.YoutubeService.PlayList.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\YoutubeService\PresentationTier.YoutubeService.Song.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

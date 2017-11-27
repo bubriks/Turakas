@@ -47,6 +47,7 @@ namespace PresentationTier
             this.clearEventsButton = new System.Windows.Forms.Button();
             this.youtubeButton = new System.Windows.Forms.Button();
             this.btnGroups = new System.Windows.Forms.Button();
+            this.logOut_btn = new System.Windows.Forms.Button();
             this.chatGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nrOfUsersTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -233,11 +234,22 @@ namespace PresentationTier
             this.btnGroups.UseVisualStyleBackColor = true;
             this.btnGroups.Click += new System.EventHandler(this.btnGroups_Click);
             // 
+            // logOut_btn
+            // 
+            this.logOut_btn.Location = new System.Drawing.Point(366, 271);
+            this.logOut_btn.Name = "logOut_btn";
+            this.logOut_btn.Size = new System.Drawing.Size(75, 23);
+            this.logOut_btn.TabIndex = 23;
+            this.logOut_btn.Text = "LogOut";
+            this.logOut_btn.UseVisualStyleBackColor = true;
+            this.logOut_btn.Click += new System.EventHandler(this.logOut_btn_Click);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 306);
+            this.Controls.Add(this.logOut_btn);
             this.Controls.Add(this.btnGroups);
             this.Controls.Add(this.youtubeButton);
             this.Controls.Add(this.clearEventsButton);
@@ -277,5 +289,6 @@ namespace PresentationTier
         private Button clearEventsButton;
         private Button youtubeButton;
         private Button btnGroups;
+        private Button logOut_btn;
     }
 }

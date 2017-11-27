@@ -6,6 +6,7 @@ using PresentationTier.ChatServiceReference;
 using System.ServiceModel;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace PresentationTier
 {
@@ -294,9 +295,7 @@ namespace PresentationTier
 
         private void ViewProfileButton_Click(object sender, EventArgs e)//Goes to profile View
         {
-            this.Visible = false;
-            ProfileForm profile = new ProfileForm(profileId, this);
-            profile.Show();
+            ProfileForm.GetInstance(profileId, this);
         }
 
         private void YoutubeButton_Click(object sender, EventArgs e)//youtube button pressed
@@ -306,9 +305,15 @@ namespace PresentationTier
 
         private void btnGroups_Click(object sender, EventArgs e)
         {
-            GroupForm group = new GroupForm(profileId, this);
-            group.Show();
-            this.Visible = false;
+            GroupForm.GetInstance(profileId, this);
+        }
+
+        private void logOut_btn_Click(object sender, EventArgs e)
+        {
+            SignIn_SignUp_ForgotDetailsForm signIn = new SignIn_SignUp_ForgotDetailsForm();
+            Hide();
+            signIn.ShowDialog();
+            Close();
         }
 
         private void ChatForm_Closing(object sender, CancelEventArgs e)//on close event
