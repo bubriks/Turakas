@@ -57,4 +57,59 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddPlayList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPlayListResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindPlayListsByName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindPlayListsByNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="FindPlayListsByNameResult" nillable="true" type="q2:ArrayOfPlayList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddSongToPlayList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="songId" type="xs:int" />
+        <xs:element minOccurs="0" name="playListId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddSongToPlayListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddSongToPlayListResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSongsFromPlayList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="playListId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSongsFromPlayListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetSongsFromPlayListResult" nillable="true" type="q3:ArrayOfSong" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

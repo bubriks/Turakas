@@ -140,7 +140,9 @@ namespace PresentationTier
 
         private void textBox3_KeyUp(object sender, KeyEventArgs e)
         {
-
+            listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(textBox3.Text);
+            listBox2.ValueMember = "ActivityId";
+            listBox2.DisplayMember = "Name";
         }
 
 
