@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Linq;
 using PresentationTier.ProfileServiceReference;
+using System.ComponentModel;
 
 namespace PresentationTier
 {
@@ -9,14 +10,23 @@ namespace PresentationTier
     {
         private IProfileService profileService = new ProfileServiceClient();
         private int profileId;
-        
+        private static ProfileForm instance;
         private Profile profile;
-        private Form chat;
+        private Form chatForm;
 
-        public ProfileForm(int profileId, Form chat)
+        public static ProfileForm GetInstance(int profileId, Form chatForm)
+        {
+            if (instance == null)
+            {
+                instance = new ProfileForm(profileId, chatForm);
+            }
+            return instance;
+        }
+
+        private ProfileForm(int profileId, Form chatForm)
         {
             this.profileId = profileId;
-            this.chat = chat;
+            this.chatForm = chatForm;
             InitializeComponent();
 
             password_txt.PasswordChar = '*';
@@ -27,6 +37,8 @@ namespace PresentationTier
             username_txt.Text = profile.Username;
             email_txt.Text = profile.Email;
             nickname_txt.Text = profile.Nickname;
+            chatForm.Hide();
+            this.Show();
         }
 
         private void password_txt_TextChanged(object sender, System.EventArgs e)
@@ -245,9 +257,9 @@ namespace PresentationTier
 
         private void back_btn_Click(object sender, System.EventArgs e)
         {
-            Hide();
-            chat.Visible = true;
+            chatForm.Show();
             Close();
+            instance = null;
         }
 
         private void deleteAccount_btn_Click(object sender, System.EventArgs e)
@@ -275,6 +287,12 @@ namespace PresentationTier
                 deleteError_lbl.Visible = true;
             }
         }
-        
+
+        private void ProfileForm_Closing(object sender, CancelEventArgs e)//on close event
+        {
+            chatForm.Show();
+            instance = null;
+        }
+
     }
 }

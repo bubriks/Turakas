@@ -38,6 +38,7 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.onlineCheckBox = new System.Windows.Forms.CheckBox();
+            this.back_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -142,11 +143,22 @@
             this.onlineCheckBox.UseVisualStyleBackColor = true;
             this.onlineCheckBox.CheckStateChanged += new System.EventHandler(this.OnlineCheckBox_CheckStateChanged);
             // 
+            // back_btn
+            // 
+            this.back_btn.Location = new System.Drawing.Point(13, 314);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Size = new System.Drawing.Size(75, 23);
+            this.back_btn.TabIndex = 15;
+            this.back_btn.Text = "Back";
+            this.back_btn.UseVisualStyleBackColor = true;
+            this.back_btn.Click += new System.EventHandler(this.Back_btn_Click);
+            // 
             // GroupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 349);
+            this.Controls.Add(this.back_btn);
             this.Controls.Add(this.onlineCheckBox);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.txtUserName);
@@ -157,6 +169,7 @@
             this.Controls.Add(this.BtnCreate);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GroupForm_Closing);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GroupForm";
             this.Text = "GroupForm";
@@ -177,5 +190,6 @@
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.CheckBox onlineCheckBox;
+        private System.Windows.Forms.Button back_btn;
     }
 }
