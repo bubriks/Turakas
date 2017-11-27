@@ -91,6 +91,22 @@ namespace PresentationTier
             }
         }
 
+        private void textBox3_GotFocus(object sender, EventArgs e)
+        {
+            if (textBox3.Text.Equals("Search..."))
+            {
+                textBox3.Text = "";
+            }
+        }
+
+        private void textBox3_LostFocus(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(textBox3.Text))
+            {
+                textBox3.Text = "Search...";
+            }
+        }
+
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
@@ -115,6 +131,16 @@ namespace PresentationTier
                 listBox1.SetSelected(selected - 1, true);
                 playVideo(listBox1.SelectedValue.ToString());
             }
+        }
+
+        private void listBox2_DragDrop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void textBox3_KeyUp(object sender, KeyEventArgs e)
+        {
+
         }
 
 
@@ -204,5 +230,7 @@ namespace PresentationTier
 
             return mode;
         }
+
+        
     }
 }
