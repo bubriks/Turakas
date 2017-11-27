@@ -299,7 +299,7 @@ namespace PresentationTier
 
         private void YoutubeButton_Click(object sender, EventArgs e)//youtube button pressed
         {
-            new YoutubeAlpha();
+            new YoutubeAlpha().Visible = true;
         }
 
         private void btnGroups_Click(object sender, EventArgs e)
