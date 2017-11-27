@@ -192,11 +192,5 @@ namespace PresentationTier
         }
         #endregion
 
-        private void BtnBack_Click(object sender, EventArgs e)
-        {
-            Hide();
-            profileform.Show();
-            Close();
-        }
     }
 }

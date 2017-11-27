@@ -46,6 +46,7 @@ namespace PresentationTier
             this.inviteListBox = new System.Windows.Forms.ListBox();
             this.clearEventsButton = new System.Windows.Forms.Button();
             this.youtubeButton = new System.Windows.Forms.Button();
+            this.btnGroups = new System.Windows.Forms.Button();
             this.chatGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nrOfUsersTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -56,10 +57,10 @@ namespace PresentationTier
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chatListView.FullRowSelect = true;
-            this.chatListView.Location = new System.Drawing.Point(12, 39);
+            this.chatListView.Location = new System.Drawing.Point(13, 39);
             this.chatListView.MultiSelect = false;
             this.chatListView.Name = "chatListView";
-            this.chatListView.Size = new System.Drawing.Size(386, 255);
+            this.chatListView.Size = new System.Drawing.Size(386, 218);
             this.chatListView.TabIndex = 0;
             this.chatListView.UseCompatibleStateImageBehavior = false;
             this.chatListView.View = System.Windows.Forms.View.Details;
@@ -180,7 +181,7 @@ namespace PresentationTier
             // viewProfileButton
             // 
             this.viewProfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewProfileButton.Location = new System.Drawing.Point(414, 271);
+            this.viewProfileButton.Location = new System.Drawing.Point(12, 271);
             this.viewProfileButton.Name = "viewProfileButton";
             this.viewProfileButton.Size = new System.Drawing.Size(75, 23);
             this.viewProfileButton.TabIndex = 4;
@@ -203,7 +204,7 @@ namespace PresentationTier
             // clearEventsButton
             // 
             this.clearEventsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearEventsButton.Location = new System.Drawing.Point(530, 271);
+            this.clearEventsButton.Location = new System.Drawing.Point(153, 271);
             this.clearEventsButton.Name = "clearEventsButton";
             this.clearEventsButton.Size = new System.Drawing.Size(75, 23);
             this.clearEventsButton.TabIndex = 6;
@@ -214,7 +215,7 @@ namespace PresentationTier
             // youtubeButton
             // 
             this.youtubeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.youtubeButton.Location = new System.Drawing.Point(496, 271);
+            this.youtubeButton.Location = new System.Drawing.Point(102, 271);
             this.youtubeButton.Name = "youtubeButton";
             this.youtubeButton.Size = new System.Drawing.Size(29, 23);
             this.youtubeButton.TabIndex = 7;
@@ -222,11 +223,22 @@ namespace PresentationTier
             this.youtubeButton.UseVisualStyleBackColor = true;
             this.youtubeButton.Click += new System.EventHandler(this.YoutubeButton_Click);
             // 
+            // btnGroups
+            // 
+            this.btnGroups.Location = new System.Drawing.Point(263, 271);
+            this.btnGroups.Name = "btnGroups";
+            this.btnGroups.Size = new System.Drawing.Size(75, 23);
+            this.btnGroups.TabIndex = 22;
+            this.btnGroups.Text = "Groups";
+            this.btnGroups.UseVisualStyleBackColor = true;
+            this.btnGroups.Click += new System.EventHandler(this.btnGroups_Click);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 306);
+            this.Controls.Add(this.btnGroups);
             this.Controls.Add(this.youtubeButton);
             this.Controls.Add(this.clearEventsButton);
             this.Controls.Add(this.inviteListBox);
@@ -264,5 +276,6 @@ namespace PresentationTier
         private ListBox inviteListBox;
         private Button clearEventsButton;
         private Button youtubeButton;
+        private Button btnGroups;
     }
 }

@@ -18,12 +18,14 @@ namespace DataAccessTier
 
             " INSERT INTO Activity(profileID, timeStamp) VALUES(1, @0); " +
             " SET @activityID = @@IDENTITY; " + "INSERT INTO Video(activityID, name, duration, url) values (@activityID, @1, @2, @3)";
-            SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.Parameters.AddWithValue("@0",DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            cmd.Parameters.AddWithValue("@1", name);
-            cmd.Parameters.AddWithValue("@2", duration);
-            cmd.Parameters.AddWithValue("@3", url);
-            cmd.ExecuteNonQuery();
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
+            {
+                cmd.Parameters.AddWithValue("@0", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                cmd.Parameters.AddWithValue("@1", name);
+                cmd.Parameters.AddWithValue("@2", duration);
+                cmd.Parameters.AddWithValue("@3", url);
+                cmd.ExecuteNonQuery();
+            }
             
         }
 
@@ -31,21 +33,24 @@ namespace DataAccessTier
         {
             Song song = null;
             string stmt = "SELECT * FROM Video WHERE url = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.Parameters.AddWithValue("@0", url);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
             {
-                song = new Song
+                cmd.Parameters.AddWithValue("@0", url);
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
-                    Name = reader.GetString(reader.GetOrdinal("name")), 
-                    Duration = reader.GetInt32(reader.GetOrdinal("duration")), 
-                    Url = reader.GetString(reader.GetOrdinal("url"))
-                };
+                    if (reader.Read())
+                    {
+                        song = new Song
+                        {
+                            ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
+                            Name = reader.GetString(reader.GetOrdinal("name")),
+                            Duration = reader.GetInt32(reader.GetOrdinal("duration")),
+                            Url = reader.GetString(reader.GetOrdinal("url"))
+                        };
+                    }
+                    return song;
+                }
             }
-            reader.Close();
-            return song;
         }
 
         public List<Song> FindSongsByName(string name)
@@ -65,27 +70,30 @@ namespace DataAccessTier
                    string next = keywords[i + 1];
                    stmt += " AND name ";
                 }
-                catch (System.IndexOutOfRangeException)
+                catch (IndexOutOfRangeException)
                 {
                     
                 }
             }
-            
-            SqlCommand cmd = new SqlCommand(stmt, con);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                results.Add( new Song
-                {
-                    ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
-                    Name = reader.GetString(reader.GetOrdinal("name")), 
-                    Duration = reader.GetInt32(reader.GetOrdinal("duration")), 
-                    Url = reader.GetString(reader.GetOrdinal("url"))
-                });
-            }
 
-            reader.Close();
-            return results;
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        results.Add(new Song
+                        {
+                            ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
+                            Name = reader.GetString(reader.GetOrdinal("name")),
+                            Duration = reader.GetInt32(reader.GetOrdinal("duration")),
+                            Url = reader.GetString(reader.GetOrdinal("url"))
+                        });
+                    }
+                    
+                    return results;
+                }
+            }
         }
     }
 }

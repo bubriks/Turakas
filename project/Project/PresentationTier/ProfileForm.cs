@@ -19,8 +19,8 @@ namespace PresentationTier
             this.chat = chat;
             InitializeComponent();
 
-            password_txt.PasswordChar = '☭';
-            confirmPassword_txt.PasswordChar = '卐';
+            password_txt.PasswordChar = '*';
+            confirmPassword_txt.PasswordChar = '*';
             
             profile = profileService.ReadProfile(profileId.ToString(), 1);
 
@@ -246,7 +246,7 @@ namespace PresentationTier
         private void back_btn_Click(object sender, System.EventArgs e)
         {
             Hide();
-            chat.Show();
+            chat.Visible = true;
             Close();
         }
 
@@ -275,12 +275,6 @@ namespace PresentationTier
                 deleteError_lbl.Visible = true;
             }
         }
-
-        private void btnGroups_Click(object sender, System.EventArgs e)
-        {
-            GroupForm group = new GroupForm(profileId, this);
-            Hide();
-            group.ShowDialog();
-        }
+        
     }
 }

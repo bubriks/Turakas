@@ -33,7 +33,7 @@ namespace BusinessTier
         private static YouTubeService Auth()
         {
             UserCredential credential;
-            using (var stream = new FileStream("youtube_client_secret.json", FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream("//youtube_client_secret.json", FileMode.Open, FileAccess.Read))
             {
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(GoogleClientSecrets.Load(stream).Secrets,
                     new[] { YouTubeService.Scope.YoutubeReadonly },
