@@ -262,16 +262,23 @@ namespace BusinessTier
             }
             else
             {
-                if (!profile.Username.Equals("") && (profile.Username.Length < 5 || profile.Username.Length > 16))
-                    ok = false;
-
-                if(!profile.Password.Equals("") && (profile.Password.Length < 6 && !profile.Password.Any(char.IsDigit)))
+                if(profile.Username != null)
+                    if (!profile.Username.Equals(""))
+                        if(profile.Username.Length < 5 || profile.Username.Length > 16)
+                            ok = false;
+                if(profile.Password != null)
+                    if (!profile.Password.Equals(""))
+                        if (profile.Password.Length < 6 && !profile.Password.Any(char.IsDigit))
+                            ok = false;
+                if(profile.Email != null)
+                    if(!profile.Email.Equals(""))
+                        if (!(profile.Email.Contains("@") && profile.Email.Contains(".")))
+                            ok = false;
+                if (profile.Nickname != null)
+                    if (!profile.Nickname.Equals(""))
+                        if (profile.Nickname.Length < 3)
+                            ok = false;
                 
-                if (!profile.Email.Equals("") && (!(profile.Email.Contains("@") && profile.Email.Contains("."))))
-                    ok = false;
-                
-                if (!profile.Nickname.Equals("") && (profile.Nickname.Length < 3))
-                    ok = false;
             }
             return ok;
         }

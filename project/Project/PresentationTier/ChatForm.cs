@@ -319,6 +319,7 @@ namespace PresentationTier
             SignIn_SignUp_ForgotDetailsForm signIn = new SignIn_SignUp_ForgotDetailsForm();
             Hide();
             signIn.ShowDialog();
+            client.Offline(profileId);
             Close();
         }
 
