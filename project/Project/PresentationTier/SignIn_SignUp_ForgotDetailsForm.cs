@@ -28,7 +28,7 @@ namespace PresentationTier
             SignIn_grp.Top = 12;
             SignIn_grp.Left = 12;
 
-            ForgotDetails_grp.Top = 136;
+            ForgotDetails_grp.Top = 158;
             ForgotDetails_grp.Left = 12;
         }
         
@@ -133,16 +133,16 @@ namespace PresentationTier
         {
             if (!SignUp_grp.Visible)
             {
-                SignIn_grp.Top = 7;
+                SignIn_grp.Top = 12;
                 SignIn_grp.Left = 123;
 
-                ForgotDetails_grp.Top = 136;
-                ForgotDetails_grp.Left = 119;
+                ForgotDetails_grp.Top = 158;
+                ForgotDetails_grp.Left = 123;
                 ForgotDetails_grp.Visible = true;
             }
             else
             {
-                ForgotDetails_grp.Top = 136;
+                ForgotDetails_grp.Top = 158;
                 ForgotDetails_grp.Left = 12;
                 ForgotDetails_grp.Visible = true;
             }
