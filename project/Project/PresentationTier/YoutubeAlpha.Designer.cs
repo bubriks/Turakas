@@ -71,8 +71,8 @@ namespace PresentationTier
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.webBrowser1.Location = new System.Drawing.Point(12, 41);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
@@ -82,14 +82,15 @@ namespace PresentationTier
             // 
             // listBox1
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(293, 41);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(215, 290);
             this.listBox1.TabIndex = 4;
-            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            this.listBox1.SelectionMode = SelectionMode.One;
+            this.listBox1.DoubleClick += new EventHandler(this.listBox1_DoubleClick);
             // 
             // textBox2
             // 
@@ -98,10 +99,10 @@ namespace PresentationTier
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(215, 20);
             this.textBox2.TabIndex = 5;
-            this.textBox2.GotFocus += new System.EventHandler(this.textBox2_GotFocus);
-            this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
-            this.textBox2.LostFocus += new System.EventHandler(this.textBox2_LostFocus);
             this.textBox2.Text = "Search...";
+            this.textBox2.KeyUp += new KeyEventHandler(this.textBox2_KeyUp);
+            this.textBox2.GotFocus += new EventHandler(this.textBox2_GotFocus);
+            this.textBox2.LostFocus += new EventHandler(this.textBox2_LostFocus);
             // 
             // button2
             // 
@@ -112,7 +113,7 @@ namespace PresentationTier
             this.button2.TabIndex = 6;
             this.button2.Text = "Next";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -123,7 +124,7 @@ namespace PresentationTier
             this.button3.TabIndex = 7;
             this.button3.Text = "Previous";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new EventHandler(this.button3_Click);
             // 
             // YoutubeAlpha
             // 

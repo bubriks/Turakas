@@ -24,8 +24,11 @@ namespace BusinessTier
             {
                 return false;
             }
-            dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url);
-            return true;
+            if (dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url) > 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         private static YouTubeService ytService = Auth();
@@ -33,7 +36,7 @@ namespace BusinessTier
         private static YouTubeService Auth()
         {
             UserCredential credential;
-            using (var stream = new FileStream("BusinessTier/youtube_client_secret.json", FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream("youtube_client_secret.json", FileMode.Open, FileAccess.Read))
             {
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(GoogleClientSecrets.Load(stream).Secrets,
                     new[] { YouTubeService.Scope.YoutubeReadonly },

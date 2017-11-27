@@ -276,6 +276,7 @@ namespace PresentationTier
                     history_listBox.Items.Add(historyChoice);
                     break;
             }
+            this.history_listBox.SelectedIndex = this.history_listBox.Items.Count - 1;
         }
         
         /// <summary>

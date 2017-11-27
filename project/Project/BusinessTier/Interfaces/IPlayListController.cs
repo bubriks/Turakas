@@ -8,7 +8,6 @@ namespace BusinessTier.Interfaces
         void AddPlayList(string name);
         List<PlayList> FindPlayListsByName(string name);
         bool AddSongToPlayList(int songId, int playListId);
-
         List<Song> GetSongsFromPlayList(int playListId);
 
 

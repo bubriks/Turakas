@@ -6,12 +6,14 @@ using System.ServiceModel;
 using System.Text;
 using DataTier;
 using BusinessTier;
+using BusinessTier.Interfaces;
 
 namespace WcfService
 {
     public class YoutubeService : IYoutubeService
     {
         ISongController songController = new SongController();
+        IPlayListController playListController = new PlayListController();
 
         public bool AddSong(string url)
         {
@@ -31,6 +33,26 @@ namespace WcfService
         public List<Song> FindSongsByName(string name)
         {
             return songController.FindSongsByName(name);
+        }
+
+        public void AddPlayList(string name)
+        {
+            playListController.AddPlayList(name);
+        }
+
+        public List<PlayList> FindPlayListsByName(string name)
+        {
+            return playListController.FindPlayListsByName(name);
+        }
+
+        public bool AddSongToPlayList(int songId, int playListId)
+        {
+            return playListController.AddSongToPlayList(songId, playListId);
+        }
+
+        public List<Song> GetSongsFromPlayList(int playListId)
+        {
+            return playListController.GetSongsFromPlayList(playListId);
         }
 
     }

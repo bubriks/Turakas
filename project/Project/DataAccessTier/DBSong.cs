@@ -12,7 +12,7 @@ namespace DataAccessTier
         {
             con = DbConnection.GetInstance().GetConnection();
         }
-        public void AddSong(string name, int duration, string url)
+        public int AddSong(string name, int duration, string url)
         {
             string stmt = " DECLARE @activityID int; " +
 
@@ -24,7 +24,7 @@ namespace DataAccessTier
                 cmd.Parameters.AddWithValue("@1", name);
                 cmd.Parameters.AddWithValue("@2", duration);
                 cmd.Parameters.AddWithValue("@3", url);
-                cmd.ExecuteNonQuery();
+                return cmd.ExecuteNonQuery();
             }
             
         }
