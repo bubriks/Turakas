@@ -166,6 +166,9 @@
     <None Include="Connected Services\ChatServiceReference\ChatService3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ChatServiceReference\ChatService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ChatServiceReference\PresentationTier.ChatServiceReference.Chat.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -206,6 +209,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\MessageServiceReference\MessageService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MessageServiceReference\MessageService3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ProfileServiceReference\PresentationTier.ProfileServiceReference.Profile.datasource">

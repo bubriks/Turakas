@@ -41,7 +41,7 @@ namespace PresentationTier.ChatServiceReference {
         private bool TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private PresentationTier.ChatServiceReference.Profile[] UsersField;
+        private System.Tuple<PresentationTier.ChatServiceReference.Profile, object>[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -132,7 +132,7 @@ namespace PresentationTier.ChatServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public PresentationTier.ChatServiceReference.Profile[] Users {
+        public System.Tuple<PresentationTier.ChatServiceReference.Profile, object>[] Users {
             get {
                 return this.UsersField;
             }
@@ -159,8 +159,9 @@ namespace PresentationTier.ChatServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(int[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<PresentationTier.ChatServiceReference.Profile, object>[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<PresentationTier.ChatServiceReference.Profile, object>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Chat))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Profile[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Chat[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Group[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.ChatServiceReference.Group))]

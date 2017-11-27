@@ -66,6 +66,7 @@ namespace PresentationTier
                         Username = username,
                         Password = password,
                         Email = email,
+                        Nickname = nickname
                     };
                     if (profileService.UpdateProfile(profileId, profile))
                     {

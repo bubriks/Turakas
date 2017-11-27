@@ -21,15 +21,21 @@ namespace WcfService
             if (chatController.JoinChat(chatId, profileId, callbackObj))
             {
                 Chat chat = chatController.FindChat(chatId);
+                List<object> callbacks = new List<object>();
+                List<Profile> profiles = new List<Profile>();
+                foreach (var tuple in chat.Users)
+                {
+                    profiles.Add(tuple.Item1);
+                    callbacks.Add(tuple.Item2);
+                }
                 callback.GetChat(chat);
                 callback.GetMessages(messageController.GetMessages(chatId));
-                callback.GetOnlineProfiles(chat.Users);
+                callback.GetOnlineProfiles(profiles);
                 callback.Show(true);
-
-                List<Profile> profiles = chat.Users;
-                foreach (Profile user in profiles)
+                
+                foreach (object messageCallBack in callbacks)
                 {
-                    callback = (IMessageCallBack)user.CallBack;
+                    callback = (IMessageCallBack)messageCallBack;
                     callback.GetOnlineProfiles(profiles);
                 }
             }
@@ -41,15 +47,22 @@ namespace WcfService
 
         public void LeaveChat(int chatId, int profileId)
         {
-            if(chatController.LeaveChat(chatId, profileId))
+            Chat chat = chatController.FindChat(chatId);
+            if (chatController.LeaveChat(chatId, profileId))
             {
-                Chat chat = chatController.FindChat(chatId);
                 if(chat != null)
                 {
-                    List<Profile> profiles = chat.Users;
-                    foreach (Profile user in profiles)
+                    List<object> callbacks = new List<object>();
+                    List<Profile> profiles = new List<Profile>();
+                    foreach (var tuple in chat.Users)
                     {
-                        IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+                        profiles.Add(tuple.Item1);
+                        callbacks.Add(tuple.Item2);
+                    }
+
+                    foreach (object messageCallBack in callbacks)
+                    {
+                        IMessageCallBack callback = (IMessageCallBack)messageCallBack;
                         callback.GetOnlineProfiles(profiles);
                     }
                 }
@@ -64,10 +77,9 @@ namespace WcfService
 
         public void Writing(int chatId)
         {
-            List<Profile> profiles = chatController.FindChat(chatId).Users;
-            foreach (Profile user in profiles)
+            foreach (var tuple in chatController.FindChat(chatId).Users)
             {
-                IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+                IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
                 callback.WritingMessage();
             }
         }
@@ -77,9 +89,9 @@ namespace WcfService
             Message message = messageController.CreateMessage(profileId, text, chatId);
             if (message != null)
             {
-                foreach (Profile user in chatController.FindChat(chatId).Users)
+                foreach (var tuple in chatController.FindChat(chatId).Users)
                 {
-                    IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+                    IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
                     callback.AddMessage(message);
                 }
             }
@@ -89,9 +101,9 @@ namespace WcfService
         {
             if (messageController.DeleteMessage(profileId, id))
             {
-                foreach (Profile user in chatController.FindChat(chatId).Users)
+                foreach (var tuple in chatController.FindChat(chatId).Users)
                 {
-                    IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+                    IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
                     callback.RemoveMessage(id);
                 }
             }

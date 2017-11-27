@@ -282,7 +282,8 @@ namespace BusinessTier
                 if (!profile.Username.Equals("") && (profile.Username.Length < 5 || profile.Username.Length > 16))
                     ok = false;
 
-                if(!profile.Password.Equals("") && (profile.Password.Length < 6 && !profile.Password.Any(char.IsDigit)))
+                if (!profile.Password.Equals("") && (profile.Password.Length < 6 && !profile.Password.Any(char.IsDigit)))
+                    ok = false;
                 
                 if (!profile.Email.Equals("") && (!(profile.Email.Contains("@") && profile.Email.Contains("."))))
                     ok = false;
