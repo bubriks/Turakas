@@ -19,43 +19,110 @@ namespace TestTier
             group = new Group();
             gc = new GroupController();
 
-            profileId = 1;
+            profileId = 2; //Profile named hanes
+            groupId = 645; //Group named lol
+        }
+        [TestMethod]
+        public void CreateGroupTestWrongProfileID()
+        {
+            name = "TestGroup2";
+            profileId = 99;
+            Assert.AreNotEqual(true, gc.CreateGroup(name, profileId));
         }
         [TestMethod]
         public void CreateGroupTest()
         {
             name = "TestGroup1";
-            groupId = gc.CreateGroup(name, profileId);
-            Assert.AreNotEqual(-1, groupId);
+            Assert.AreEqual(true, gc.CreateGroup(name, profileId));
         }
         [TestMethod]
-        public void AddMemberTestProfile2Group598()
+        public void AddMemberTestWrongProfile()
         {
-            Assert.AreEqual(true, gc.AddMember(2, groupId));
+            String userName = "XxXxX";
+            Assert.AreNotEqual(true, gc.AddMember(userName, 4));
         }
         [TestMethod]
-        public void GetAllUsersTestGroup598()
+        public void AddMemberTestWrongByType()
+        {
+            String userName = "Uganda";
+            Assert.AreNotEqual(true, gc.AddMember(userName, 1));
+        }
+        [TestMethod]
+        public void AddMemberTest()
+        {
+            String userName = "Uganda";
+            Assert.AreEqual(true, gc.AddMember(userName, groupId));
+        }
+        [TestMethod]
+        public void GetAllUsersTestWrongGroupID()
+        {
+            groupId = 100;
+            List<Profile> profiles = new List<Profile>();
+            profiles = gc.GetUsers(groupId);
+            Assert.AreEqual(0, profiles.Count);
+        }
+        [TestMethod]
+        public void GetAllUsersTest()
         {
             List<Profile> profiles = new List<Profile>();
-            profiles = gc.GetAllUsers(groupId);
+            profiles = gc.GetUsers(groupId);
             Assert.AreNotEqual(0, profiles.Count);
         }
         [TestMethod]
-        public void GetOnlineUsersTestGroup598()
+        public void GetOnlineMembersTestWrongGroupID()
+        {
+            groupId = 100;
+            List<Profile> profiles = new List<Profile>();
+            profiles = gc.GetOnlineMembers(groupId);
+            Assert.AreNotEqual(null, profiles);
+        }
+        [TestMethod]
+        public void GetOnlineMembersTest()
         {
             List<Profile> profiles = new List<Profile>();
-            profiles = gc.GetOnlineUsers(groupId);
+            profiles = gc.GetOnlineMembers(groupId);
             Assert.AreNotEqual(null, profiles);
+        }
+        [TestMethod]
+        public void RemoveMemberTestNoSuchProfileInGroup()
+        {
+            profileId = 20;
+            Assert.AreNotEqual(true, gc.RemoveMember(profileId, groupId));
+        }
+        [TestMethod]
+        public void RemoveMemberTestNoSuchGroup()
+        {
+            groupId = 100;
+            Assert.AreNotEqual(true, gc.RemoveMember(2, groupId));
         }
         [TestMethod]
         public void RemoveMemberTest()
         {
-            Assert.AreEqual(true, gc.RemoveMember(2, groupId));
+            Assert.AreNotEqual(true, gc.RemoveMember(profileId, groupId));
+        }
+        [TestMethod]
+        public void DeleteGroupTestNoSuchGroup()
+        {
+            groupId = 100;
+            Assert.AreNotEqual(true, gc.DeleteGroup(groupId));
         }
         [TestMethod]
         public void DeleteGroupTest()
         {
             Assert.AreEqual(true, gc.DeleteGroup(groupId));
+        }
+        [TestMethod]
+        public void UpdateGroupTestWrongGroupID()
+        {
+            String groupName = "NewGroupName";
+            groupId = 100;
+            Assert.AreNotEqual(true, gc.UpdateGroup(groupName, groupId));
+        }
+        [TestMethod]
+        public void UpdateGroupTest()
+        {
+            String groupName = "NewGroupName";
+            Assert.AreEqual(true, gc.UpdateGroup(groupName, groupId));
         }
     }
 }
