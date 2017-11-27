@@ -102,6 +102,8 @@ namespace PresentationTier
             this.listBox1.Size = new System.Drawing.Size(215, 290);
             this.listBox1.TabIndex = 4;
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            this.listBox1.ContextMenuStrip = this.contextMenuStrip2;
+
             
             // 
             // textBox2
