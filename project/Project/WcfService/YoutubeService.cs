@@ -45,24 +45,24 @@ namespace WcfService
             return playListController.FindPlayListsByName(name);
         }
 
-        public bool AddSongToPlayList(int songId, int playListId)
+        public bool AddSongToPlayList(string url, string playListId)
         {
-            return playListController.AddSongToPlayList(songId, playListId);
+            return playListController.AddSongToPlayList(url, playListId);
         }
 
-        public List<Song> GetSongsFromPlayList(int playListId)
+        public List<Song> GetSongsFromPlayList(string playListId)
         {
             return playListController.GetSongsFromPlayList(playListId);
         }
 
-        public bool RemovePlaylist(int playlistId)
+        public bool RemovePlaylist(string playlistId)
         {
             return playListController.RemovePlaylist(playlistId);
         }
 
-        public bool RemoveSongFromPlaylist(int songId)
+        public bool RemoveSongFromPlaylist(string url, string playListId)
         {
-            return playListController.RemoveSongFromPlaylist(songId);
+            return playListController.RemoveSongFromPlaylist(url, playListId);
         }
 
     }

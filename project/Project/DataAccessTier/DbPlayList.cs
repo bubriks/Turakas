@@ -131,12 +131,13 @@ namespace DataAccessTier
             }
         }
 
-        public int RemoveSongFromPlaylist(int songId)
+        public int RemoveSongFromPlaylist(int songId, int playlistId)
         {
-            string stmt = "DELETE FROM VideoList where VideoId = @0";
+            string stmt = "DELETE FROM VideoList where VideoID = @0 AND playListActivityID = @1";
             using (SqlCommand cmd = new SqlCommand(stmt, con))
             {
                 cmd.Parameters.AddWithValue("@0", songId);
+                cmd.Parameters.AddWithValue("@1", playlistId);
                 return cmd.ExecuteNonQuery();
             }
         }

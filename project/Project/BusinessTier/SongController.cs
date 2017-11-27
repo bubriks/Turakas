@@ -107,5 +107,10 @@ namespace BusinessTier
             return dbSong.FindSongsByName(name);
         }
 
+        public Song GetSongByUrl(string url)
+        {
+            return new DBSong().FindSongByURL(url);
+        }
+
     }
 }

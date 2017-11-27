@@ -28,16 +28,16 @@ namespace WcfService
         List<PlayList> FindPlayListsByName(string name);
         
         [OperationContract]
-        bool AddSongToPlayList(int songId, int playListId);
+        bool AddSongToPlayList(string url, string playListId);
         
         [OperationContract]
-        List<Song> GetSongsFromPlayList(int playListId);
+        List<Song> GetSongsFromPlayList(string playListId);
         
         [OperationContract]
-        bool RemovePlaylist(int playlistId);
+        bool RemovePlaylist(string playlistId);
 
         [OperationContract]
-        bool RemoveSongFromPlaylist(int songId);
+        bool RemoveSongFromPlaylist(string url, string playlistId);
 
     }
 }

@@ -7,9 +7,9 @@ namespace BusinessTier.Interfaces
     {
         bool AddPlayList(string name);
         List<PlayList> FindPlayListsByName(string name);
-        bool AddSongToPlayList(int songId, int playListId);
-        List<Song> GetSongsFromPlayList(int playListId);
-        bool RemovePlaylist(int playlistId);
-        bool RemoveSongFromPlaylist(int songId);
+        bool AddSongToPlayList(string url, string playListId);
+        List<Song> GetSongsFromPlayList(string playListId);
+        bool RemovePlaylist(string playlistId);
+        bool RemoveSongFromPlaylist(string url, string playListId);
     }
 }

@@ -157,12 +157,30 @@ namespace PresentationTier
 
         private void removePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string playlistId = listBox2.SelectedValue.ToString();
+            if (youtubeServiceClient.RemovePlaylist(listBox2.SelectedValue.ToString()))
+            {
+                MessageBox.Show("Playlist removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+            {
+                MessageBox.Show("Operation failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void removeSongFromPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (youtubeServiceClient.RemoveSongFromPlaylist(listBox2.SelectedValue.ToString()))
+            {
+                MessageBox.Show("Song removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
+            else
+            {
+                MessageBox.Show("Operation failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
