@@ -17,7 +17,17 @@ namespace PresentationTier
     public partial class YoutubeAlpha : Form
     {
         private YoutubeService.YoutubeServiceClient youtubeServiceClient = new YoutubeService.YoutubeServiceClient();
-        public YoutubeAlpha()
+        private static YoutubeAlpha instance;
+
+        public static YoutubeAlpha GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new YoutubeAlpha();
+            }
+            return instance;
+        }
+        private YoutubeAlpha()
         {
             SetBrowserFeatureControl();
 
@@ -157,9 +167,9 @@ namespace PresentationTier
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(Int32.Parse(listBox2.SelectedValue.ToString()));
-            listBox1.ValueMember = "Url";
-            listBox1.DisplayMember = "Name";
+            listBox2.DataSource = youtubeServiceClient.GetSongsFromPlayList(Int32.Parse(listBox2.SelectedValue.ToString()));
+            listBox2.ValueMember = "ActivityId";
+            listBox2.DisplayMember = "Name";
         }
 
 
