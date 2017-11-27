@@ -5,12 +5,10 @@ namespace BusinessTier.Interfaces
 {
     public interface IPlayListController
     {
-        void AddPlayList(string name);
+        bool AddPlayList(string name);
         List<PlayList> FindPlayListsByName(string name);
         bool AddSongToPlayList(int songId, int playListId);
         List<Song> GetSongsFromPlayList(int playListId);
-
-
-
+        bool RemovePlaylist(int playlistId);
     }
 }

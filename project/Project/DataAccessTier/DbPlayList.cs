@@ -13,7 +13,7 @@ namespace DataAccessTier
             con = DbConnection.GetInstance().GetConnection();
         }
         
-        public void AddPlayList(string name)
+        public int AddPlayList(string name)
         {
             string stmt = " DECLARE @activityID int; " +
 
@@ -23,7 +23,7 @@ namespace DataAccessTier
             {
                 cmd.Parameters.AddWithValue("@0", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 cmd.Parameters.AddWithValue("@1", name);
-                cmd.ExecuteNonQuery();
+                return cmd.ExecuteNonQuery();
             }
         }
         
@@ -68,14 +68,14 @@ namespace DataAccessTier
             }
         }
 
-        public void AddSongToPlayList(int songId, int playListId)
+        public int AddSongToPlayList(int songId, int playListId)
         {
             string stmt = " INSERT INTO VideoList(videoID, playListActivityId) VALUES(@0, @1); ";
             using (SqlCommand cmd = new SqlCommand(stmt, con))
             {
                 cmd.Parameters.AddWithValue("@0", songId);
                 cmd.Parameters.AddWithValue("@1", playListId);
-                cmd.ExecuteNonQuery();
+                return cmd.ExecuteNonQuery();
             }
         }
 
@@ -118,6 +118,16 @@ namespace DataAccessTier
                 {
                     return reader.Read();
                 }
+            }
+        }
+
+        public int RemovePlaylist(int playlistId)
+        {
+            string stmt = "DELETE FROM Activity where ActivityId = @0";
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
+            {
+                cmd.Parameters.AddWithValue("@0", playlistId);
+                return cmd.ExecuteNonQuery();
             }
         }
 

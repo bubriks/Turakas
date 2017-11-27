@@ -35,9 +35,9 @@ namespace WcfService
             return songController.FindSongsByName(name);
         }
 
-        public void AddPlayList(string name)
+        public bool AddPlayList(string name)
         {
-            playListController.AddPlayList(name);
+           return playListController.AddPlayList(name);
         }
 
         public List<PlayList> FindPlayListsByName(string name)
@@ -54,6 +54,12 @@ namespace WcfService
         {
             return playListController.GetSongsFromPlayList(playListId);
         }
+
+        public bool RemovePlaylist(int playlistId)
+        {
+            return playListController.RemovePlaylist(playlistId);
+        }
+        
 
     }
 }

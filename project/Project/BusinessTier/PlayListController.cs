@@ -9,10 +9,16 @@ namespace BusinessTier
 {
     public class PlayListController: IPlayListController
     {
-        public void AddPlayList(string name)
+        public bool AddPlayList(string name)
         {
             DbPlayList dbPlayList = new DbPlayList();
-            dbPlayList.AddPlayList(name);
+
+            if (dbPlayList.AddPlayList(name)>0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public List<PlayList> FindPlayListsByName(string name)
@@ -30,8 +36,12 @@ namespace BusinessTier
             }
             try
             {
-                dbPlayList.AddSongToPlayList(songId, playListId);
-                return true;
+                
+                if (dbPlayList.AddSongToPlayList(songId, playListId) > 0)
+                {
+                    return true;
+                }
+                return false;
             }
             catch (SqlException e)
             {
@@ -44,6 +54,16 @@ namespace BusinessTier
         {
             DbPlayList dbPlayList = new DbPlayList();
             return dbPlayList.GetSongsFromPlayList(playListId);
+        }
+
+        public bool RemovePlaylist(int playlistId)
+        {
+            DbPlayList dbPlayList = new DbPlayList();
+            if (dbPlayList.RemovePlaylist(playlistId) > 0)
+            {
+                return true;
+            }
+            return false;
         }
 
 
