@@ -43,7 +43,6 @@ C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.xml
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.xml
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.xml
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\youtube_client_secret.json
 D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll.config
 D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll
 D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\WcfService.pdb
