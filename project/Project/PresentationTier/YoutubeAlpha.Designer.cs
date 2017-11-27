@@ -99,6 +99,7 @@ namespace PresentationTier
             this.listBox1.Size = new System.Drawing.Size(215, 290);
             this.listBox1.TabIndex = 4;
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            
             // 
             // textBox2
             // 
@@ -145,7 +146,8 @@ namespace PresentationTier
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(210, 290);
             this.listBox2.TabIndex = 8;
-            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            this.listBox2.AllowDrop = true;
+            this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
             this.listBox2.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBox2_DragDrop);
             // 
             // textBox3

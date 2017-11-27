@@ -145,7 +145,15 @@ namespace PresentationTier
 
         private void listBox2_DragDrop(object sender, DragEventArgs e)
         {
-
+            if(youtubeServiceClient.AddSongToPlayList(listBox1.SelectedValue.ToString(),
+                listBox2.SelectedValue.ToString()))
+            {
+                MessageBox.Show("Song added to playlist.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Operation failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void textBox3_KeyUp(object sender, KeyEventArgs e)
@@ -160,18 +168,16 @@ namespace PresentationTier
             if (youtubeServiceClient.RemovePlaylist(listBox2.SelectedValue.ToString()))
             {
                 MessageBox.Show("Playlist removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
             else
             {
                 MessageBox.Show("Operation failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
 
         private void removeSongFromPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (youtubeServiceClient.RemoveSongFromPlaylist(listBox2.SelectedValue.ToString()))
+            if (youtubeServiceClient.RemoveSongFromPlaylist(listBox1.SelectedValue.ToString(), listBox2.SelectedValue.ToString()))
             {
                 MessageBox.Show("Song removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -183,9 +189,9 @@ namespace PresentationTier
             }
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBox2_DoubleClick(object sender, EventArgs e)
         {
-            listBox2.DataSource = youtubeServiceClient.GetSongsFromPlayList(Int32.Parse(listBox2.SelectedValue.ToString()));
+            listBox2.DataSource = youtubeServiceClient.GetSongsFromPlayList(listBox2.SelectedValue.ToString());
             listBox2.ValueMember = "ActivityId";
             listBox2.DisplayMember = "Name";
         }
@@ -198,7 +204,7 @@ namespace PresentationTier
                 String.Concat(@"Software\Microsoft\Internet Explorer\Main\FeatureControl\", feature),
                 RegistryKeyPermissionCheck.ReadWriteSubTree))
             {
-                key.SetValue(appName, (UInt32)value, RegistryValueKind.DWord);
+                key.SetValue(appName, value, RegistryValueKind.DWord);
             }
         }
 
