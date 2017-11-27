@@ -36,7 +36,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.BtnAddUser = new System.Windows.Forms.Button();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.BtnBack = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.onlineCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
@@ -122,17 +121,6 @@
             this.txtUserName.Size = new System.Drawing.Size(76, 20);
             this.txtUserName.TabIndex = 10;
             // 
-            // BtnBack
-            // 
-            this.BtnBack.Location = new System.Drawing.Point(12, 320);
-            this.BtnBack.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnBack.Name = "BtnBack";
-            this.BtnBack.Size = new System.Drawing.Size(56, 19);
-            this.BtnBack.TabIndex = 12;
-            this.BtnBack.Text = "Back";
-            this.BtnBack.UseVisualStyleBackColor = true;
-            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
-            // 
             // buttonRefresh
             // 
             this.buttonRefresh.Location = new System.Drawing.Point(335, 124);
@@ -161,7 +149,6 @@
             this.ClientSize = new System.Drawing.Size(426, 349);
             this.Controls.Add(this.onlineCheckBox);
             this.Controls.Add(this.buttonRefresh);
-            this.Controls.Add(this.BtnBack);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.BtnAddUser);
             this.Controls.Add(this.label2);
@@ -188,7 +175,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnAddUser;
         private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.Button BtnBack;
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.CheckBox onlineCheckBox;
     }

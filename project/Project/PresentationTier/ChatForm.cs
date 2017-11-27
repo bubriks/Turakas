@@ -294,14 +294,21 @@ namespace PresentationTier
 
         private void ViewProfileButton_Click(object sender, EventArgs e)//Goes to profile View
         {
+            this.Visible = false;
             ProfileForm profile = new ProfileForm(profileId, this);
-            Hide();
-            profile.ShowDialog();
+            profile.Show();
         }
 
         private void YoutubeButton_Click(object sender, EventArgs e)//youtube button pressed
         {
             new YoutubeAlpha();
+        }
+
+        private void btnGroups_Click(object sender, EventArgs e)
+        {
+            GroupForm group = new GroupForm(profileId, this);
+            group.Show();
+            this.Visible = false;
         }
 
         private void ChatForm_Closing(object sender, CancelEventArgs e)//on close event

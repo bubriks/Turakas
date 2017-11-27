@@ -19,11 +19,12 @@ namespace DataAccessTier
 
                           " INSERT INTO Activity(profileID, timeStamp) VALUES(1, @0); " +
                           " SET @activityID = @@IDENTITY; " + "INSERT INTO PlayLists(activityID, name) values (@activityID, @1)";
-            SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.Parameters.AddWithValue("@0",DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            cmd.Parameters.AddWithValue("@1", name);
-            cmd.ExecuteNonQuery();
-            
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
+            {
+                cmd.Parameters.AddWithValue("@0", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                cmd.Parameters.AddWithValue("@1", name);
+                cmd.ExecuteNonQuery();
+            }
         }
         
         public List<PlayList> FindPlayListsByName(string name)
@@ -48,30 +49,34 @@ namespace DataAccessTier
                     
                 }
             }
-            
-            SqlCommand cmd = new SqlCommand(stmt, con);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                results.Add( new PlayList()
-                {
-                    ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
-                    Name = reader.GetString(reader.GetOrdinal("name")), 
-                    });
-            }
 
-            reader.Close();
-            return results;
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        results.Add(new PlayList()
+                        {
+                            ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
+                            Name = reader.GetString(reader.GetOrdinal("name")),
+                        });
+                    }
+                    
+                    return results;
+                }
+            }
         }
 
         public void AddSongToPlayList(int songId, int playListId)
         {
             string stmt = " INSERT INTO VideoList(videoID, playListActivityId) VALUES(@0, @1); ";
-            SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.Parameters.AddWithValue("@0",songId);
-            cmd.Parameters.AddWithValue("@1", playListId);
-            cmd.ExecuteNonQuery();
-
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
+            {
+                cmd.Parameters.AddWithValue("@0", songId);
+                cmd.Parameters.AddWithValue("@1", playListId);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public List<Song> GetSongsFromPlayList(int playListId)
@@ -80,32 +85,40 @@ namespace DataAccessTier
             string stmt = "Select VideoList.playListActivityID, Video.ActivityID, Video.name, Video.duration, " +
                           "Video.url FROM VideoList  INNER JOIN  Video on " +
                           "VideoList.VideoID = Video.ActivityID WHERE VideoList.PlayListActivityID = @0 ";
-            SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.Parameters.AddWithValue("@0", playListId);
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
             {
-                songs.Add(new Song
+                cmd.Parameters.AddWithValue("@0", playListId);
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
-                    Name = reader.GetString(reader.GetOrdinal("name")), 
-                    Duration = reader.GetInt32(reader.GetOrdinal("duration")), 
-                    Url = reader.GetString(reader.GetOrdinal("url"))
-                });
+
+                    while (reader.Read())
+                    {
+                        songs.Add(new Song
+                        {
+                            ActivityId = reader.GetInt32(reader.GetOrdinal("activityID")),
+                            Name = reader.GetString(reader.GetOrdinal("name")),
+                            Duration = reader.GetInt32(reader.GetOrdinal("duration")),
+                            Url = reader.GetString(reader.GetOrdinal("url"))
+                        });
+                    }
+
+                    return songs;
+                }
             }
-            
-            return songs;
         }
 
         public bool IsSongInPlayList(int songId, int playListId)
         {
             string stmt = " SELECT * FROM VideoList WHERE videoId = @0 AND playListActivityID = @1; ";
-            SqlCommand cmd = new SqlCommand(stmt, con);
-            cmd.Parameters.AddWithValue("@0",songId);
-            cmd.Parameters.AddWithValue("@1", playListId);
-            SqlDataReader reader = cmd.ExecuteReader();
-            return reader.Read();
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
+            {
+                cmd.Parameters.AddWithValue("@0", songId);
+                cmd.Parameters.AddWithValue("@1", playListId);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    return reader.Read();
+                }
+            }
         }
 
     }

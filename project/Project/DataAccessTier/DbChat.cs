@@ -27,19 +27,22 @@ namespace DataAccessTier
             " INSERT INTO Chat(activityID, name, type, nrOfUsers) values (@activityID, @2, @3, @4);" +
              
             " Select activityID, timeStamp from Activity where activityID = @activityID;";
-            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-            cmd.Parameters.AddWithValue("@0", chat.OwnerID);
-            cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            cmd.Parameters.AddWithValue("@2", chat.Name);
-            cmd.Parameters.AddWithValue("@3", Convert.ToInt32(chat.Type));
-            cmd.Parameters.AddWithValue("@4", chat.MaxNrOfUsers);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
             {
-                chat.Id = Int32.Parse(reader["activityID"].ToString());
-                chat.Time = Convert.ToDateTime(reader["timeStamp"].ToString());
+                cmd.Parameters.AddWithValue("@0", chat.OwnerID);
+                cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                cmd.Parameters.AddWithValue("@2", chat.Name);
+                cmd.Parameters.AddWithValue("@3", Convert.ToInt32(chat.Type));
+                cmd.Parameters.AddWithValue("@4", chat.MaxNrOfUsers);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        chat.Id = Int32.Parse(reader["activityID"].ToString());
+                        chat.Time = Convert.ToDateTime(reader["timeStamp"].ToString());
+                    }
+                }
             }
-            reader.Close();
             return chat;
         }
 
@@ -57,35 +60,40 @@ namespace DataAccessTier
                         " INNER JOIN Chat " +
                             " on Activity.activityID = chat.activityID " +
                         " where Activity.activityID = @0 ;";
-            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-            cmd.Parameters.AddWithValue("@0", id);
-            SqlDataReader reader = cmd.ExecuteReader();
-            Chat chat = null;
-            if(reader.Read())
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
             {
-                chat = new Chat
+                cmd.Parameters.AddWithValue("@0", id);
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Id = id,
-                    OwnerID = Int32.Parse(reader["profileID"].ToString()),
-                    Time = Convert.ToDateTime(reader["timeStamp"].ToString()),
-                    Name = reader["name"].ToString(),
-                    Type = (bool)reader["type"],
-                    MaxNrOfUsers = Int32.Parse(reader["nrOfUsers"].ToString())
-                };
+                    Chat chat = null;
+                    if (reader.Read())
+                    {
+                        chat = new Chat
+                        {
+                            Id = id,
+                            OwnerID = Int32.Parse(reader["profileID"].ToString()),
+                            Time = Convert.ToDateTime(reader["timeStamp"].ToString()),
+                            Name = reader["name"].ToString(),
+                            Type = (bool)reader["type"],
+                            MaxNrOfUsers = Int32.Parse(reader["nrOfUsers"].ToString())
+                        };
+                    }
+                    return chat;
+                }
             }
-            reader.Close();
-            return chat;
         }
 
         public int UpdateChat(Chat chat)
         {
             string stmt = "UPDATE Chat SET name = @0, type = @1, nrOfUsers= @2 WHERE activityID= @3;";
-            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-            cmd.Parameters.AddWithValue("@0", chat.Name);
-            cmd.Parameters.AddWithValue("@1", Convert.ToInt32(chat.Type));
-            cmd.Parameters.AddWithValue("@2", chat.MaxNrOfUsers);
-            cmd.Parameters.AddWithValue("@3", chat.Id);
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            {
+                cmd.Parameters.AddWithValue("@0", chat.Name);
+                cmd.Parameters.AddWithValue("@1", Convert.ToInt32(chat.Type));
+                cmd.Parameters.AddWithValue("@2", chat.MaxNrOfUsers);
+                cmd.Parameters.AddWithValue("@3", chat.Id);
             return cmd.ExecuteNonQuery();
+            }
         }
 
         public List<Chat> GetChatsByName(String name, int profileId)
@@ -103,34 +111,39 @@ namespace DataAccessTier
                         " INNER JOIN Profile " +
                             " on Activity.profileID = Profile.profileID " +
                         " where name like '%' +@0+ '%' AND type = 1  OR Profile.profileID = @1; ";
-            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-            cmd.Parameters.AddWithValue("@0", name);
-            cmd.Parameters.AddWithValue("@1", profileId);
-            SqlDataReader reader = cmd.ExecuteReader();
-            List<Chat> chats = new List<Chat>();
-            while (reader.Read())
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
             {
-                Chat chat = new Chat
+                cmd.Parameters.AddWithValue("@0", name);
+                cmd.Parameters.AddWithValue("@1", profileId);
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Id = Int32.Parse(reader["activityID"].ToString()),
-                    OwnerID = Int32.Parse(reader["profileID"].ToString()),
-                    Time = Convert.ToDateTime(reader["timeStamp"].ToString()),
-                    Name = reader["name"].ToString(),
-                    Type = (bool)reader["type"],
-                    MaxNrOfUsers = Int32.Parse(reader["nrOfUsers"].ToString())
-                };
-                chats.Add(chat);
+                    List<Chat> chats = new List<Chat>();
+                    while (reader.Read())
+                    {
+                        Chat chat = new Chat
+                        {
+                            Id = Int32.Parse(reader["activityID"].ToString()),
+                            OwnerID = Int32.Parse(reader["profileID"].ToString()),
+                            Time = Convert.ToDateTime(reader["timeStamp"].ToString()),
+                            Name = reader["name"].ToString(),
+                            Type = (bool)reader["type"],
+                            MaxNrOfUsers = Int32.Parse(reader["nrOfUsers"].ToString())
+                        };
+                        chats.Add(chat);
+                    }
+                    return chats;
+                }
             }
-            reader.Close();
-            return chats;
         }
 
         public int DeleteChat(int id)
         {
             string stmt = "DELETE FROM Activity WHERE activityID = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-            cmd.Parameters.AddWithValue("@0", id);
-            return cmd.ExecuteNonQuery();
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            {
+                cmd.Parameters.AddWithValue("@0", id);
+                return cmd.ExecuteNonQuery();
+            }
         }
     }
 }

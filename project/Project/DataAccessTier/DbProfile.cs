@@ -23,9 +23,11 @@ namespace DataAccessTier
         {
             try
             {
-                string stmt = "SELECT profileID FROM Profile WHERE username='" + profile.Username + "' AND passwordHash=HASHBYTES('SHA2_512', '" + profile.Password + "'+CAST(Salt AS NVARCHAR(36)))";
+                string stmt = "SELECT profileID FROM Profile WHERE username=@0 AND passwordHash=HASHBYTES('SHA2_512', @1+CAST(Salt AS NVARCHAR(36)))";
                 using (SqlCommand cmd = new SqlCommand(stmt, con))
                 {
+                    cmd.Parameters.AddWithValue("@0", profile.Username);
+                    cmd.Parameters.AddWithValue("@1", profile.Password);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.HasRows)
@@ -55,9 +57,13 @@ namespace DataAccessTier
             try
             {
                 string stmt1 = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() INSERT INTO Profile(username, salt, passwordHash, email, nickname)" +
-                    "OUTPUT INSERTED.profileID values ('" + profile.Username + "', @salt, HASHBYTES('SHA2_512', '" + profile.Password + "'+CAST(@salt AS NVARCHAR(36))), '" + profile.Email + "', '" + profile.Nickname + "' );";
+                    "OUTPUT INSERTED.profileID values (@0, @salt, HASHBYTES('SHA2_512', @1 +CAST(@salt AS NVARCHAR(36))), @2, @3 );";
                 using (SqlCommand cmd = new SqlCommand(stmt1, con))
                 {
+                    cmd.Parameters.AddWithValue("@0", profile.Username);
+                    cmd.Parameters.AddWithValue("@1", profile.Password);
+                    cmd.Parameters.AddWithValue("@2", profile.Email);
+                    cmd.Parameters.AddWithValue("@3", profile.Nickname);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         reader.Read();
@@ -87,16 +93,16 @@ namespace DataAccessTier
             switch (by)
             {
                 case 1:
-                    stmt = "SELECT * FROM Profile WHERE profileID = " + what;
+                    stmt = "SELECT * FROM Profile WHERE profileID = @0";
                     break;
                 case 2:
-                    stmt = "SELECT * FROM Profile WHERE username = '" + what + "';";
+                    stmt = "SELECT * FROM Profile WHERE username = @0;";
                     break;
                 case 3:
-                    stmt = "SELECT * FROM Profile WHERE email = '" + what + "';";
+                    stmt = "SELECT * FROM Profile WHERE email = @0;";
                     break;
                 case 4:
-                    stmt = "SELECT * FROM Profile WHERE nickname = '" + what + "';";
+                    stmt = "SELECT * FROM Profile WHERE nickname = @0;";
                     break;
                 default:
                     throw new Exception("'by' parameter must be either 1, 2, 3 or 4");
@@ -106,6 +112,7 @@ namespace DataAccessTier
             {
                 using (SqlCommand cmd = new SqlCommand(stmt, con))
                 {
+                    cmd.Parameters.AddWithValue("@0", what);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.HasRows)
@@ -141,9 +148,14 @@ namespace DataAccessTier
             try
             {
                 string stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID()" +
-                    "UPDATE Profile SET username = '" + profile.Username + "', salt = @salt, passwordHash = HASHBYTES('SHA2_512', '" + profile.Password + "'+CAST(@salt AS NVARCHAR(36))), email = '" + profile.Email + "', nickname = '" + profile.Nickname + "' WHERE profileID= " + id;
+                    "UPDATE Profile SET username = @0, salt = @salt, passwordHash = HASHBYTES('SHA2_512', @1+CAST(@salt AS NVARCHAR(36))), email = @2, nickname = @3 WHERE profileID= @4";
                 using (SqlCommand cmd = new SqlCommand(stmt, con))
                 {
+                    cmd.Parameters.AddWithValue("@0", profile.Username);
+                    cmd.Parameters.AddWithValue("@1", profile.Password);
+                    cmd.Parameters.AddWithValue("@2", profile.Email);
+                    cmd.Parameters.AddWithValue("@3", profile.Nickname);
+                    cmd.Parameters.AddWithValue("@4", id);
                     cmd.ExecuteNonQuery();
                     return true;
                 }
@@ -167,9 +179,10 @@ namespace DataAccessTier
                 return false;
             try
             {
-                string stmt = "DELETE FROM Profile WHERE profileID = " + id;
+                string stmt = "DELETE FROM Profile WHERE profileID = @0";
                 using (SqlCommand cmd = new SqlCommand(stmt, con))
                 {
+                    cmd.Parameters.AddWithValue("@0", id);
                     cmd.ExecuteNonQuery();
                     return true;
                 }

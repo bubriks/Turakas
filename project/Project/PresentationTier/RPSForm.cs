@@ -14,7 +14,7 @@ namespace PresentationTier
         private InstanceContext instanceContext;
         private IGameService gameService;
         private int playerId;
-        private int gameId, choice;
+        private int gameId, prevChoice, choice;
         private System.Timers.Timer timer = new System.Timers.Timer();
         private volatile bool requestStop = false;
 
@@ -32,6 +32,7 @@ namespace PresentationTier
             
             //diselecting any choice
             choice = -1;
+            prevChoice = -1;
             rockChoice_rb.Checked = false;
             paperChoice_rb.Checked = false;
             scissorChoice_rb.Checked = false;
@@ -61,6 +62,7 @@ namespace PresentationTier
                 rockChoice_rb.Checked = false;
                 paperChoice_rb.Checked = false;
                 scissorChoice_rb.Checked = false;
+                prevChoice = choice;
             }
             choice = -1; //reset choice
         }
@@ -86,7 +88,7 @@ namespace PresentationTier
             }
             else 
             {
-                player1_pic.BackgroundImage = Properties.Resources.scissor; 
+                player1_pic.BackgroundImage = Properties.Resources.scissor;
                 choice = 2;
             }
 
@@ -198,7 +200,7 @@ namespace PresentationTier
                     anouncer_lbl.Visible = true;
                     anouncer_lbl.ForeColor = Color.Blue;
                     anouncer_lbl.Text = "TIE!!!";
-                    switch (choice) //format string depeding on what player1 chose, for the history box
+                    switch (prevChoice) //format string depeding on what player1 chose, for the history box
                     {
                         case 0:
                             historyChoice = "ROCK";
@@ -214,13 +216,13 @@ namespace PresentationTier
                     break;
                 case 1: //player1 wins
                     //format player2 choice depeding on player1's choice
-                    if (choice == 0)
+                    if (prevChoice == 0)
                     {
                         player2_pic.BackgroundImage = Properties.Resources.scissor;
                         historyChoice = " YOU WIN WITH: ROCK on SCISSORS";
                     }
                     else
-                        if (choice == 1)
+                        if (prevChoice == 1)
                     {
                         player2_pic.BackgroundImage = Properties.Resources.rock;
                         historyChoice = " YOU WIN WITH: PAPER on ROCK";
@@ -241,16 +243,16 @@ namespace PresentationTier
                     anouncer_lbl.Visible = true;
                     anouncer_lbl.ForeColor = Color.Green;
                     anouncer_lbl.Text = "YOU WIN!!!!";
-                    history_listBox.Items.Add("YOU WIN!!!!");
+                    history_listBox.Items.Add(historyChoice);
                     break;
                 default: //payer2 wins
-                    if (choice == 0)
+                    if (prevChoice == 0)
                     {
                         player2_pic.BackgroundImage = Properties.Resources.paper;
                         historyChoice = " YOU LOSE WITH: ROCK on PAPER";
                     }
                     else
-                        if (choice == 1)
+                        if (prevChoice == 1)
                     {
                         player2_pic.BackgroundImage = Properties.Resources.scissor;
                         historyChoice = " YOU LOSE WITH: PAPER on SCISSORS";
@@ -271,7 +273,7 @@ namespace PresentationTier
                     anouncer_lbl.Visible = true;
                     anouncer_lbl.ForeColor = Color.Red;
                     anouncer_lbl.Text = "YOU LOSE!!!";
-                    history_listBox.Items.Add("YOU LOSE!!!!");
+                    history_listBox.Items.Add(historyChoice);
                     break;
             }
         }
