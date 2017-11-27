@@ -21,66 +21,50 @@ namespace DataAccessTier
         /// <returns>Returns true, if succesfull</returns>
         public int CreateActivity(int profileId)
         {
-            try
-            {
-                string stmt = "OUTPUT INSERT INTO Activity (profileID, timeStamp) VALUES(@0, @1);";
+            string stmt = "OUTPUT INSERT INTO Activity (profileID, timeStamp) VALUES(@0, @1);";
 
-                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection()))
-                {
-                    cmd.Parameters.AddWithValue("@0", profileId);
-                    cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-                    cmd.ExecuteNonQuery();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        reader.Read();
-                        int id = reader.GetInt32(0);
-                        return id;
-                    }
-                }
-            }
-            catch (Exception e)
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection()))
             {
-                throw e;
+                cmd.Parameters.AddWithValue("@0", profileId);
+                cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                cmd.ExecuteNonQuery();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    return reader.GetInt32(0);
+                }
             }
         }
 
-       /// <summary>
-       /// Returns Activity Object
-       /// </summary>
-       /// <param name="id"></param>
-       /// <param name="by">1 = profileId, 2 = activityId</param>
-       /// <returns></returns>
+        /// <summary>
+        /// Returns Activity Object
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="by">1 = profileId, 2 = activityId</param>
+        /// <returns></returns>
         public Activity ReadActivity(int id, int by)
         {
             string stmt;
             Activity activity = null;
-            try
-            {
-                if (by == 1)
-                    stmt = "SELECT * FROM Activity WHERE activityId = @0";
-                else
-                    stmt = "SELECT * FROM Activity WHERE profileId = @0";
+            if (by == 1)
+                stmt = "SELECT * FROM Activity WHERE activityId = @0";
+            else
+                stmt = "SELECT * FROM Activity WHERE profileId = @0";
 
-                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection()))
-                {
-                    cmd.Parameters.AddWithValue("@0", id);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                            activity = new Activity
-                            {
-                                ActivityId = Int32.Parse(reader["activityID"].ToString()),
-                                ProfileId = Int32.Parse(reader["profileID"].ToString()),
-                                TimeStamp = (DateTime)reader["timestamp"],
-                            };
-                    }
-                    return activity;
-                }
-                
-            }
-            catch (Exception e)
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection()))
             {
-                throw e;
+                cmd.Parameters.AddWithValue("@0", id);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                        activity = new Activity
+                        {
+                            ActivityId = Int32.Parse(reader["activityID"].ToString()),
+                            ProfileId = Int32.Parse(reader["profileID"].ToString()),
+                            TimeStamp = (DateTime)reader["timestamp"],
+                        };
+                }
+                return activity;
             }
         }
 
@@ -90,23 +74,14 @@ namespace DataAccessTier
         /// <param name="activityId">The Id of the activity you wish to delete</param>
         /// <note>Can be used in combination with FindActivities, to delete a profiles all activities; Throws exceptions, if any</note>
         /// <returns>Returns true, if succesfull</returns>
-        public bool DeleteActivity(int activityId)
+        public int DeleteActivity(int activityId)
         {
-            try
+            string stmt = "DELETE FROM Activity WHERE activityID = @0";
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection()))
             {
-                string stmt = "DELETE FROM Activity WHERE activityID = @0";
-                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection()))
-                {
-                    cmd.Parameters.AddWithValue("@0", activityId);
-                    cmd.ExecuteNonQuery();
-                    return true;
-                }
+                cmd.Parameters.AddWithValue("@0", activityId);
+                return cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
         }
     }
 }

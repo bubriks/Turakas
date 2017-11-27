@@ -61,7 +61,14 @@ namespace PresentationTier
             {
                 ListViewItem row = new ListViewItem(chat.Id.ToString());
                 row.SubItems.Add(chat.Name);
-                row.SubItems.Add(chat.Type.ToString());
+                if (chat.Type)
+                {
+                    row.SubItems.Add("public");
+                }
+                else
+                {
+                    row.SubItems.Add("private");
+                }
                 if (chat.Users == null)
                 {
                     row.SubItems.Add(0.ToString());
@@ -294,7 +301,7 @@ namespace PresentationTier
 
         private void ViewProfileButton_Click(object sender, EventArgs e)//Goes to profile View
         {
-            ProfileForm.GetInstance(profileId, this);
+            ProfileForm.GetInstance(profileId, this).Show();
         }
 
         private void YoutubeButton_Click(object sender, EventArgs e)//youtube button pressed
@@ -302,12 +309,12 @@ namespace PresentationTier
             new YoutubeAlpha();
         }
 
-        private void btnGroups_Click(object sender, EventArgs e)
+        private void BtnGroups_Click(object sender, EventArgs e)
         {
-            GroupForm.GetInstance(profileId, this);
+            GroupForm.GetInstance(profileId, this).Show();
         }
 
-        private void logOut_btn_Click(object sender, EventArgs e)
+        private void LogOut_btn_Click(object sender, EventArgs e)
         {
             SignIn_SignUp_ForgotDetailsForm signIn = new SignIn_SignUp_ForgotDetailsForm();
             Hide();

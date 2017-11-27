@@ -19,7 +19,11 @@ namespace WcfService
         }
         public int Authenticate(Profile profile)
         {
-            return profileController.Authenticate(profile);
+            int profileId = profileController.Authenticate(profile);
+            if (profileId != -1)
+                if (profileController.GetUser(profileId) != null)
+                    return -3;
+            return profileId;
         }
         public bool ForgotDetails(string email)
         {

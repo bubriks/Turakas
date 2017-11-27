@@ -233,7 +233,7 @@ namespace PresentationTier
             this.btnGroups.TabIndex = 22;
             this.btnGroups.Text = "Groups";
             this.btnGroups.UseVisualStyleBackColor = true;
-            this.btnGroups.Click += new System.EventHandler(this.btnGroups_Click);
+            this.btnGroups.Click += new System.EventHandler(this.BtnGroups_Click);
             // 
             // logOut_btn
             // 
@@ -244,7 +244,7 @@ namespace PresentationTier
             this.logOut_btn.TabIndex = 23;
             this.logOut_btn.Text = "LogOut";
             this.logOut_btn.UseVisualStyleBackColor = true;
-            this.logOut_btn.Click += new System.EventHandler(this.logOut_btn_Click);
+            this.logOut_btn.Click += new System.EventHandler(this.LogOut_btn_Click);
             // 
             // ChatForm
             // 

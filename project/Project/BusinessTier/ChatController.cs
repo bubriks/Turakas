@@ -20,7 +20,7 @@ namespace BusinessTier
             groupController = new GroupController();
         }
 
-        public bool SaveChat(int profileId, Chat chat)//make bool
+        public bool SaveChat(int profileId, Chat chat)
         {
             try
             {

@@ -37,8 +37,6 @@ namespace PresentationTier
             username_txt.Text = profile.Username;
             email_txt.Text = profile.Email;
             nickname_txt.Text = profile.Nickname;
-            chatForm.Hide();
-            this.Show();
         }
 
         private void password_txt_TextChanged(object sender, System.EventArgs e)
@@ -290,7 +288,6 @@ namespace PresentationTier
 
         private void ProfileForm_Closing(object sender, CancelEventArgs e)//on close event
         {
-            chatForm.Show();
             instance = null;
         }
 

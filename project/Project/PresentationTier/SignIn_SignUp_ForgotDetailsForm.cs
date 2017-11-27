@@ -209,6 +209,11 @@ namespace PresentationTier
                             signInError_lbl.Text = "An error has occured, please try again later!";
                             signInError_lbl.Visible = true;
                             break;
+                        case -3:
+                            signInError_lbl.ForeColor = Color.Red;
+                            signInError_lbl.Text = "Already Logged In!!!";
+                            signInError_lbl.Visible = true;
+                            break;
                         default: //loginId
                             signInError_lbl.Visible = false;
                             ChatForm chat = new ChatForm(profileId);

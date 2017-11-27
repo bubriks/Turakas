@@ -38,7 +38,6 @@ namespace PresentationTier
             cmMembers = new ContextMenu();
             cmMembers.MenuItems.Add(new MenuItem("Remove", MenuItemNewRemoveMember_Click));
             this.profileId = profileId;
-            chatForm.Hide();
             this.chatForm = chatForm;
             #endregion
 
@@ -46,7 +45,6 @@ namespace PresentationTier
             GetUsers(onlineCheckBox.Checked == true);
             txtUserName.Enabled = false;
             BtnAddUser.Enabled = false;
-            this.Show();
         }
 
         #region Manage groups
@@ -134,6 +132,7 @@ namespace PresentationTier
             BtnCreate.Text = "Create new group";
             txtUserName.Enabled = false;
             BtnAddUser.Enabled = false;
+            ButtonRefresh_Click(null, null);
         }
         #endregion
 
@@ -214,7 +213,6 @@ namespace PresentationTier
 
         private void GroupForm_Closing(object sender, CancelEventArgs e)//on close event
         {
-            chatForm.Show();
             instance = null;
         }
     }
