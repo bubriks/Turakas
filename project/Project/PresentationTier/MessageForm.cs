@@ -119,6 +119,7 @@ namespace PresentationTier
         public void AddMessage(MessageServiceReference.Message message)//call back item message recieved
         {
             messageListBox.Items.Add(message);
+            this.messageListBox.SelectedIndex = this.messageListBox.Items.Count - 1;
         }
         #endregion
 

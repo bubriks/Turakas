@@ -20,15 +20,15 @@ namespace BusinessTier
             groupController = new GroupController();
         }
 
-        public Chat SaveChat(int profileId, Chat chat)//make bool
+        public bool SaveChat(int profileId, Chat chat)//make bool
         {
             try
             {
                 if (chat.MaxNrOfUsers > 1)
                 {
-                    if (chat.Id == 0)//new chat if id = 0
+                    if (chat.Id == 0 && dbChat.CreateChat(chat) > 0)//new chat if id = 0 and if chat was created
                     {
-                        return dbChat.CreateChat(chat);//returns the created object
+                        return true;
                     }
                     else//update existing chat
                     {
@@ -36,7 +36,7 @@ namespace BusinessTier
                         {
                             if (dbChat.UpdateChat(chat) == 0)//no changes were made
                             {
-                                return null;
+                                return false;
                             }
 
                             Chat foundChat = FindChat(chat.Id);//finds chat
@@ -49,22 +49,22 @@ namespace BusinessTier
                                     foundChat.Type = chat.Type;
                                 }
                             }
-                            return chat;//returns chat if everything went correctly
+                            return true;//returns chat if everything went correctly
                         }
                         else//not owner of chat
                         {
-                            return null;
+                            return false;
                         }
                     }
                 }
                 else//limit of users too small
                 {
-                    return null;
+                    return false;
                 }
             }
             catch (Exception)
             {
-                return null;
+                return false;
             }
         }
 
