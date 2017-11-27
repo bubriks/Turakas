@@ -84,7 +84,7 @@ namespace WcfService
 
         public void joinChatWhithGroup(int groupId, int chatId)
         {
-            List<Profile> profiles = chatController.JoinChatAsGroup(groupId, chatId);
+            List<Profile> profiles = chatController.JoinChatWithGroup(groupId, chatId);
             if (profiles.Count > 0)
             {
                 foreach (Profile user in profiles)

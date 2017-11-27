@@ -26,12 +26,12 @@ namespace BusinessTier
         /// <returns></returns>
         List<Chat> GetChatsByName(String name, int profileId);
         /// <summary>
-        /// returns all online group members
+        /// returns all online group members that are added to chat
         /// </summary>
         /// <param name="chatId"></param>
         /// <param name="groupId"></param>
         /// <returns></returns>
-        List<Profile>JoinChatAsGroup(int groupId, int chatId);
+        List<Profile> JoinChatWithGroup(int groupId, int chatId);
         /// <summary>
         /// Person joins chat
         /// </summary>

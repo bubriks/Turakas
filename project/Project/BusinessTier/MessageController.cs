@@ -22,24 +22,20 @@ namespace BusinessTier
         {
             try
             {
-                if (text.Equals(""))
+                if (text.Equals(""))//if message is empty
                 {
-                    //if message is empty
                     return null;
                 }
 
                 Message message = dbMessage.CreateMessage(profileId, text, chatId);
-                if (message == null)
+                if (message == null)//null is returned if no changes were made
                 {
-                    //null is returned if no changes were made
                     return null;
                 }
-                //returns Message if everything went correctly
                 return message;
             }
             catch (Exception)
             {
-                //If exception is thrown null is returned
                 return null;
             }
         }
@@ -48,13 +44,11 @@ namespace BusinessTier
         {
             try
             {
-                //returns list of objects if everything went correctly
-                return dbMessage.GetMessages(chatId);
+                return dbMessage.GetMessages(chatId);//returns list of messages
             }
             catch (Exception)
             {
-                //returns empty list if exception is thrown
-                return new List<Message>();
+                return new List<Message>();//returns empty list
             }
         }
 
@@ -62,17 +56,17 @@ namespace BusinessTier
         {
             try
             {
-                if (dbMessage.DeleteMessage(profileId, id) != 1)
+                if (dbMessage.DeleteMessage(profileId, id) < 1)//if no changes made
                 {
-                    //returns false if no changes were made
                     return false;
                 }
-                //returns true if everything went correctly
-                return true;
+                else//changes were done
+                {
+                    return true;
+                }
             }
             catch (Exception)
             {
-                //returns false if exception is thrown
                 return false;
             }
         }

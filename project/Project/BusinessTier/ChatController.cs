@@ -20,49 +20,50 @@ namespace BusinessTier
             groupController = new GroupController();
         }
 
-        public Chat SaveChat(int profileId, Chat chat)
+        public Chat SaveChat(int profileId, Chat chat)//make bool
         {
             try
             {
                 if (chat.MaxNrOfUsers > 1)
                 {
-                    if (chat.Id == 0)//new chat
+                    if (chat.Id == 0)//new chat if id = 0
                     {
-                        //returns Object if everything went correctly
-                        return dbChat.CreateChat(chat);
+                        return dbChat.CreateChat(chat);//returns the created object
                     }
-                    else
+                    else//update existing chat
                     {
-                        if (profileId == chat.OwnerID)
+                        if (profileId == chat.OwnerID)//if the owner of the chat
                         {
                             if (dbChat.UpdateChat(chat) == 0)//no changes were made
                             {
                                 return null;
                             }
 
-                            Chat foundChat = FindChat(chat.Id);
-                            if (foundChat != null)
+                            Chat foundChat = FindChat(chat.Id);//finds chat
+                            if (foundChat != null)//if chat was found
                             {
-                                lock (foundChat)
+                                lock (foundChat)//locks the chat so only one person ca edit it
                                 {
                                     foundChat.MaxNrOfUsers = chat.MaxNrOfUsers;
                                     foundChat.Name = chat.Name;
                                     foundChat.Type = chat.Type;
                                 }
                             }
-                            //returns object if everything went correctly
-                            return chat;
+                            return chat;//returns chat if everything went correctly
                         }
-                        //not owner of chat
-                        return null;
+                        else//not owner of chat
+                        {
+                            return null;
+                        }
                     }
                 }
-                //max users too litle
-                return null;
+                else//limit of users too small
+                {
+                    return null;
+                }
             }
             catch (Exception)
             {
-                //If exception is thrown null is returned
                 return null;
             }
         }
@@ -71,28 +72,27 @@ namespace BusinessTier
         {
             try
             {
-                if (dbChat.GetChat(id).OwnerID == profileId)
+                if (dbChat.GetChat(id).OwnerID == profileId)//if chats owner is the person who asks to delete
                 {
-                    if (dbChat.DeleteChat(id) == 0)
+                    if (dbChat.DeleteChat(id) == 0)//if chat wasnt deleted
                     {
-                        //returns false if no changes were made
                         return false;
                     }
 
-                    Chat foundChat = FindChat(id);
-                    lock (chats)
+                    Chat foundChat = FindChat(id);//checks if chat is active
+                    if (foundChat != null)
                     {
-                        chats.Remove(foundChat);
+                        lock (chats)//locks chats 
+                        {
+                            chats.Remove(foundChat);//removes chat from active chats
+                        }
                     }
-                    //returns true if everything went correctly
                     return true;
                 }
-                //returns false if not owner of chat
-                return false;
+                return false;//not the owner of the chat
             }
             catch (Exception)
             {
-                //returns false if exception is thrown
                 return false;
             }
         }
@@ -101,106 +101,106 @@ namespace BusinessTier
         {
             try
             {
-                List<Chat> chatlist = new List<Chat>();
+                List<Chat> chatlist = new List<Chat>();//creates list of chats that user will recieve
                 foreach (Chat chat in dbChat.GetChatsByName(name, profileId))
                 {
-                    Chat chatitem = FindChat(chat.Id);
-                    if (chatitem != null)
+                    Chat chatitem = FindChat(chat.Id);//trys finding the active chat 
+                    if (chatitem != null)//if active chat was found is is added to list
                     {
                         chatlist.Add(chatitem);
                     }
-                    else
+                    else//chat wasnt found chat from db is added
                     {
                         chatlist.Add(chat);
                     }
                 }
-                //returns list of objects if everything went correctly
-                return chatlist;
+                return chatlist;//returns list of chats if everything went correctly
             }
             catch (Exception)
             {
-                //returns empty list if exception is thrown
-                return new List<Chat>();
+                return new List<Chat>();//returns empty list of chats if exception is thrown
             }
         }
-
-        public List<Profile> JoinChatAsGroup(int groupId, int chatId)
+        
+        public List<Profile> JoinChatWithGroup(int groupId, int chatId)
         {
-            List<Profile> onlineMembers = groupController.GetOnlineMembers(groupId);
-            if (JoinChatWithGroup(chatId, groupController.GetOnlineMembers(groupId)))
-            {
-                return onlineMembers;
-            }
-            else
-            {
-                return new List<Profile>();
-            }
-        }
-
-        private bool JoinChatWithGroup(int chatId, List<Profile> profiles)
-        {
-            Chat chat = FindChat(chatId);
+            List<Profile> profiles = groupController.GetOnlineMembers(groupId);//gets all online members of the group
+            Chat chat = FindChat(chatId);//finds active chat
             try
             {
-                lock (chat)
+                if (chat != null)//chat is active right now
                 {
-                    List<Profile> membersToJoin = new List<Profile>();
-                    foreach (Profile member in profiles)
+                    lock (chat)//locks the chat object so only one process can access it
                     {
-                        Profile user = chat.Users.Find(
-                        delegate (Profile u)
+                        List<Profile> membersToJoin = new List<Profile>();//list where members who have to join will be stored
+                        foreach (Profile member in profiles)
                         {
-                            return u.ProfileID == member.ProfileID;
-                        }
-                        );
-
-                        if (user == null)
-                        {
-                            Profile joinngMember = new Profile
+                            Profile user = chat.Users.Find(//looks if there is a profile with this id already in chat
+                            delegate (Profile u)
                             {
-                                Nickname = member.Nickname,
-                                ProfileID = member.ProfileID,
-                                CallBack = null
-                            };
-                            membersToJoin.Add(joinngMember);
+                                return u.ProfileID == member.ProfileID;
+                            }
+                            );
+
+                            if (user == null)//if user isnt in chat already
+                            {
+                                Profile joinngMember = new Profile
+                                {
+                                    Nickname = member.Nickname,
+                                    ProfileID = member.ProfileID,
+                                    CallBack = null
+                                };
+                                membersToJoin.Add(joinngMember);//adds the member to list (who will join chat)
+                            }
+                            else
+                            {
+                                profiles.Remove(user);//removes user from profiles if hi is already in chat so we dont have to call him back
+                            }
+                        }
+
+                        if ((chat.MaxNrOfUsers - chat.Users.Count) >= membersToJoin.Count)//ok nr of people in chat
+                        {
+                            chat.Users.AddRange(membersToJoin);//adds this list to already existing list
+                            return profiles;//persons added to chat
+                        }
+                        else
+                        {
+                            return new List<Profile>();//too few places
                         }
                     }
-
-                    if ((chat.MaxNrOfUsers - chat.Users.Count) >= membersToJoin.Count)//ok nr of people in chat
+                }
+                else
+                {
+                    lock (chats)//optimize
                     {
-                        chat.Users.AddRange(membersToJoin);
-                        return true;//everything went as planned
-                    }
-                    else
-                    {
-                        return false;//too few places
+                        chat = dbChat.GetChat(chatId);//Gets chat from database
+                        if (chat.MaxNrOfUsers >= profiles.Count)
+                        {
+                            List<Profile> members = new List<Profile>();
+                            foreach (Profile user in profiles)
+                            {
+                                Profile member = new Profile//new member is created without callback (so when user joins he can add his call back)
+                                {
+                                    Nickname = user.Nickname,
+                                    ProfileID = user.ProfileID,
+                                    CallBack = null
+                                };
+                                members.Add(member);//member added to list of members to join
+                            }
+                            chat.Users = members;//adds user to chat
+                            chats.Add(chat);//adds chat to chat list
+                            return profiles;//Returns joined users
+                        }
+                        else
+                        {
+                            return new List<Profile>();//too few spots in chatbox (no one has joined)
+                        }
                     }
                 }
             }
-            catch (Exception)//Chat isnt in chats list
+            catch (Exception)
             {
-                lock (chats)//optimize
-                {
-                    chat = dbChat.GetChat(chatId);//Gets chat from database
-                    if (chat.MaxNrOfUsers >= profiles.Count)
-                    {
-                        List<Profile> members = new List<Profile>();
-                        foreach(Profile user in profiles)
-                        {
-                            Profile member = new Profile
-                            {
-                                Nickname = user.Nickname,
-                                ProfileID = user.ProfileID,
-                                CallBack = null
-                            };
-                            members.Add(member);
-                        }
-                        chat.Users = members;//adds user to chat
-                        chats.Add(chat);//adds chat to chat list
-                        return true;//joined
-                    }
-                    return false;//too few spots in chatbox
-                }
+                return new List<Profile>();//something went wrong (no one should be called back)
             }
         }
 
@@ -208,64 +208,63 @@ namespace BusinessTier
         {
             try
             {
-                Chat chat = FindChat(chatId);
-                lock (chat)
+                Chat chat = FindChat(chatId);//finds active chat
+                if (chat != null)//if chat is active
                 {
-                    Profile user = chat.Users.Find(
-                    delegate (Profile u)
+                    lock (chat)//locks the chat object so it cant be changed at the same time
                     {
-                        return u.ProfileID == profileId;
-                    }
-                    );
+                        Profile user = chat.Users.Find(//looks for specific user in chat
+                        delegate (Profile u)
+                        {
+                            return u.ProfileID == profileId;
+                        }
+                        );
 
-                    if(user == null)
-                    {
-                        if (chat.MaxNrOfUsers > chat.Users.Count)//ok nr of people in chat
+                        if (user == null)//if user wanst found
                         {
-                            user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
-                            user.CallBack = callback;//adds callback object to user
-                            chat.Users.Add(user);//adds user to list
-                            return true;//joined
+                            if (chat.MaxNrOfUsers > chat.Users.Count)//if chat can have that many users
+                            {
+                                user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
+                                user.CallBack = callback;//adds callback object to user
+                                chat.Users.Add(user);//adds user to list
+                                return true;//joined
+                            }
+                            else
+                            { 
+                                return false;//too many people in chat
+                            }
                         }
-                        else
-                        {//too many people in chat
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        if (user.CallBack == null)
+                        else//user is in the chat
                         {
-                            user.CallBack = callback;//adds callback object to user
-                            return true;//joined
-                        }
-                        else
-                        {//trying to open 2nd window
-                            return false;
+                            if (user.CallBack == null)//if user doesnt have callback assigned
+                            {
+                                user.CallBack = callback;//assignes callback object to user
+                                return true;//joined
+                            }
+                            else
+                            {
+                                return false;//trying to open 2nd window
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception)//Chat isnt in chats list
-            {
-                try
+                else//chat isnt active right now
                 {
                     lock (chats)
                     {
-                        Chat chat = dbChat.GetChat(chatId);//Gets chat from database
+                        chat = dbChat.GetChat(chatId);//Gets chat from database
                         Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets user from database
                         user.CallBack = callback;//adds callback object to it
-                        List<Profile> profiles = new List<Profile>();
-                        profiles.Add(user);
-                        chat.Users = profiles;//adds user to chat
+                        List<Profile> profiles = new List<Profile>{ user };//adds user to chat users
+                        chat.Users = profiles;//adds users to chat
                         chats.Add(chat);//adds chat to chat list
                         return true;//joined
                     }
                 }
-                catch (Exception)//catches exeption if something went wrong
-                {
-                    return false;
-                }
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
@@ -274,33 +273,34 @@ namespace BusinessTier
             try
             {
                 Chat chat = FindChat(chatId);//looks for existing chat
-                lock (chat)
+                lock (chat)//locks chat so only one proces can make changes to it at a time
                 {
-                    Profile user = chat.Users.Find(
+                    Profile user = chat.Users.Find(//looks for user in that chat
                     delegate (Profile c)
                     {
                         return c.ProfileID == profileId;
                     }
                     );
 
-                    if(user == null)
+                    if (user == null)//if user wasnt found
                     {
                         return false;
                     }
-
-                    if (chat.Users.Count <= 1)
+                    else//user found
                     {
-                        lock (chats)
+                        if (chat.Users.Count <= 1)//if chat has only one user in it
                         {
-                            chats.Remove(chat);
+                            lock (chats)//locks chats so there can be no conflict
+                            {
+                                chats.Remove(chat);//removes chat from chat list
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            chat.Users.Remove(user);//removes user from chat
                             return true;
                         }
-                    }
-                    else
-                    {
-                        //removes user from chat
-                        chat.Users.Remove(user);
-                        return true;
                     }
                 }
             }
@@ -312,7 +312,7 @@ namespace BusinessTier
 
         public Chat FindChat(int chatId)
         {
-            Chat chat = chats.Find(
+            Chat chat = chats.Find(//finds chat with this id
             delegate (Chat c)
             {
                 return c.Id == chatId;
