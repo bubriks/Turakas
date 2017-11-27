@@ -35,5 +35,9 @@ namespace WcfService
         
         [OperationContract]
         bool RemovePlaylist(int playlistId);
+
+        [OperationContract]
+        bool RemoveSongFromPlaylist(int songId);
+
     }
 }

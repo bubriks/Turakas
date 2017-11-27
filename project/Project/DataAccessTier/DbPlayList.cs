@@ -131,5 +131,15 @@ namespace DataAccessTier
             }
         }
 
+        public int RemoveSongFromPlaylist(int songId)
+        {
+            string stmt = "DELETE FROM VideoList where VideoId = @0";
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
+            {
+                cmd.Parameters.AddWithValue("@0", songId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }

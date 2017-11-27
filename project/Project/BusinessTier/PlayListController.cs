@@ -66,6 +66,16 @@ namespace BusinessTier
             return false;
         }
 
+        public bool RemoveSongFromPlaylist(int songId)
+        {
+            DbPlayList dbPlayList = new DbPlayList();
+            if (dbPlayList.RemoveSongFromPlaylist(songId) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
     }
 }

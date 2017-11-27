@@ -59,7 +59,11 @@ namespace WcfService
         {
             return playListController.RemovePlaylist(playlistId);
         }
-        
+
+        public bool RemoveSongFromPlaylist(int songId)
+        {
+            return playListController.RemoveSongFromPlaylist(songId);
+        }
 
     }
 }

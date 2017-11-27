@@ -10,5 +10,6 @@ namespace BusinessTier.Interfaces
         bool AddSongToPlayList(int songId, int playListId);
         List<Song> GetSongsFromPlayList(int playListId);
         bool RemovePlaylist(int playlistId);
+        bool RemoveSongFromPlaylist(int songId);
     }
 }
