@@ -44,6 +44,8 @@ namespace PresentationTier
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeSongFromPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
@@ -166,7 +168,7 @@ namespace PresentationTier
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removePlaylistToolStripMenuItem});
+            this.removePlaylistToolStripMenuItem, this.addPlaylistToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(158, 26);
             // 
@@ -176,6 +178,13 @@ namespace PresentationTier
             this.removePlaylistToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.removePlaylistToolStripMenuItem.Text = "Remove Playlist";
             this.removePlaylistToolStripMenuItem.Click += new System.EventHandler(this.removePlaylistToolStripMenuItem_Click);
+            // 
+            // addPlaylistToolStripMenuItem
+            // 
+            this.addPlaylistToolStripMenuItem.Name = "addPlaylistToolStripMenuItem";
+            this.addPlaylistToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.addPlaylistToolStripMenuItem.Text = "Add Playlist";
+            this.addPlaylistToolStripMenuItem.Click += new System.EventHandler(this.addPlaylistToolStripMenuItem_Click);
             // 
             // contextMenuStrip2
             // 
@@ -229,6 +238,7 @@ namespace PresentationTier
         private TextBox textBox3;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem removePlaylistToolStripMenuItem;
+        private ToolStripMenuItem addPlaylistToolStripMenuItem;
         private ContextMenuStrip contextMenuStrip2;
         private ToolStripMenuItem removeSongFromPlaylistToolStripMenuItem;
     }

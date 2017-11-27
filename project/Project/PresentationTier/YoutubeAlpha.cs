@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using Microsoft.VisualBasic;
 
 namespace PresentationTier
 {
@@ -168,6 +169,19 @@ namespace PresentationTier
             if (youtubeServiceClient.RemovePlaylist(listBox2.SelectedValue.ToString()))
             {
                 MessageBox.Show("Playlist removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Operation failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void addPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string plName = Interaction.InputBox("Add song", "Enter song name: ", "Default", -1, -1);
+            if (!String.IsNullOrEmpty(plName)&&youtubeServiceClient.AddPlayList(plName))
+            {
+                MessageBox.Show("Playlist added.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
