@@ -48,6 +48,7 @@ namespace PresentationTier
 
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeSongFromPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addSongToPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -148,9 +149,7 @@ namespace PresentationTier
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(210, 290);
             this.listBox2.TabIndex = 8;
-            this.listBox2.AllowDrop = true;
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
-            this.listBox2.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBox2_DragDrop);
             // 
             // textBox3
             // 
@@ -189,7 +188,7 @@ namespace PresentationTier
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeSongFromPlaylistToolStripMenuItem});
+            this.removeSongFromPlaylistToolStripMenuItem, this.addSongToPlaylistToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(216, 48);
             // 
@@ -199,6 +198,14 @@ namespace PresentationTier
             this.removeSongFromPlaylistToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.removeSongFromPlaylistToolStripMenuItem.Text = "Remove song from playlist";
             this.removeSongFromPlaylistToolStripMenuItem.Click += new System.EventHandler(this.removeSongFromPlaylistToolStripMenuItem_Click);
+            
+            // 
+            // addSongToPlaylistToolStripMenuItem
+            // 
+            this.addSongToPlaylistToolStripMenuItem.Name = "addSongFromPlaylistToolStripMenuItem";
+            this.addSongToPlaylistToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.addSongToPlaylistToolStripMenuItem.Text = "Add song to playlist";
+            this.addSongToPlaylistToolStripMenuItem.Click += new System.EventHandler(this.addSongToPlaylistToolStripMenu_Click);
             // 
             // YoutubeAlpha
             // 
@@ -241,5 +248,6 @@ namespace PresentationTier
         private ToolStripMenuItem addPlaylistToolStripMenuItem;
         private ContextMenuStrip contextMenuStrip2;
         private ToolStripMenuItem removeSongFromPlaylistToolStripMenuItem;
+        private ToolStripMenuItem addSongToPlaylistToolStripMenuItem;
     }
 }

@@ -144,7 +144,7 @@ namespace PresentationTier
             }
         }
 
-        private void listBox2_DragDrop(object sender, DragEventArgs e)
+        private void addSongToPlaylistToolStripMenu_Click(object sender, EventArgs e)
         {
             if(youtubeServiceClient.AddSongToPlayList(listBox1.SelectedValue.ToString(),
                 listBox2.SelectedValue.ToString()))
