@@ -29,6 +29,7 @@ namespace PresentationTier
         {
             String name = txtName.Text;
             client.CreateGroup(name, profileId);
+            lbAllGroups.Items.Add(name);
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
