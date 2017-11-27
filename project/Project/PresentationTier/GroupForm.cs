@@ -146,7 +146,10 @@ namespace PresentationTier
                 if (item >= 0)
                 {
                     lbGroupMembers.SelectedIndex = item;
-                    cmMembers.Show(lbGroupMembers, e.Location);
+                    if((lbGroupMembers.SelectedItem as Profile).ProfileID != profileId)
+                    {
+                        cmMembers.Show(lbGroupMembers, e.Location);
+                    }
                 }
             }
         }
