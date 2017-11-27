@@ -145,6 +145,23 @@ namespace PresentationTier
             listBox2.DisplayMember = "Name";
         }
 
+        private void removePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string playlistId = listBox2.SelectedValue.ToString();
+        }
+
+        private void removeSongFromPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(Int32.Parse(listBox2.SelectedValue.ToString()));
+            listBox1.ValueMember = "Url";
+            listBox1.DisplayMember = "Name";
+        }
+
 
 
         private void SetBrowserFeatureControlKey(string feature, string appName, uint value)

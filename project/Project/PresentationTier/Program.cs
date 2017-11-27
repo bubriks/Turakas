@@ -16,7 +16,8 @@ namespace PresentationTier
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChatForm(1));
+            //Application.Run(new ChatForm(1));
+            Application.Run(new YoutubeAlpha());
         }
     }
 }
