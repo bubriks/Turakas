@@ -42,5 +42,3 @@ C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\DataTier\
 C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\DataTier\obj\Debug\DataTier.dll
 C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\DataTier\obj\Debug\DataTier.pdb
 C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache

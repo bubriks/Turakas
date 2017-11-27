@@ -57,6 +57,8 @@ namespace PresentationTier
             else if (youtubeServiceClient.AddSong(VideoId))
             {
                MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               playVideo(VideoId);
+
             }
             else
             {
@@ -64,7 +66,6 @@ namespace PresentationTier
 
             }
 
-            playVideo(VideoId);
         }
 
         private void textBox2_KeyUp(object sender, KeyEventArgs e)
@@ -203,5 +204,6 @@ namespace PresentationTier
     
         return mode;
         }
+
     }
 }
