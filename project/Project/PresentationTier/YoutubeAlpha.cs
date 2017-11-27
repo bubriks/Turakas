@@ -20,9 +20,9 @@ namespace PresentationTier
         public YoutubeAlpha()
         {
             SetBrowserFeatureControl();
-
+            
             InitializeComponent();
-
+            
         }
 
         string ytUrl;
@@ -56,9 +56,9 @@ namespace PresentationTier
             }
             else if (youtubeServiceClient.AddSong(VideoId))
             {
-                MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                playVideo(VideoId);
-                
+               MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               playVideo(VideoId);
+
             }
             else
             {
@@ -82,7 +82,7 @@ namespace PresentationTier
                 textBox2.Text = "";
             }
         }
-
+        
         private void textBox2_LostFocus(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(textBox2.Text))
@@ -100,35 +100,35 @@ namespace PresentationTier
         private void button2_Click(object sender, EventArgs e)
         {
             int selected = listBox1.SelectedIndex;
-            if (selected != -1 && selected + 1 < listBox1.Items.Count)
+            if (selected != -1 && selected+1 < listBox1.Items.Count)
             {
-                listBox1.SetSelected(selected + 1, true);
+                listBox1.SetSelected(selected+1, true);
                 playVideo(listBox1.SelectedValue.ToString());
             }
         }
-
+        
         private void button3_Click(object sender, EventArgs e)
         {
             int selected = listBox1.SelectedIndex;
-            if (selected != -1 && selected != 0)
+            if ( selected != -1 && selected != 0)
             {
-                listBox1.SetSelected(selected - 1, true);
+                listBox1.SetSelected(selected-1, true);
                 playVideo(listBox1.SelectedValue.ToString());
             }
         }
 
 
-
+        
         private void SetBrowserFeatureControlKey(string feature, string appName, uint value)
         {
             using (var key = Registry.CurrentUser.CreateSubKey(
-                String.Concat(@"Software\Microsoft\Internet Explorer\Main\FeatureControl\", feature),
+                String.Concat(@"Software\Microsoft\Internet Explorer\Main\FeatureControl\", feature), 
                 RegistryKeyPermissionCheck.ReadWriteSubTree))
             {
                 key.SetValue(appName, (UInt32)value, RegistryValueKind.DWord);
             }
         }
-
+        
         private void SetBrowserFeatureControl()
         {
 
@@ -136,8 +136,8 @@ namespace PresentationTier
             var fileName = System.IO.Path.GetFileName(Process.GetCurrentProcess().MainModule.FileName);
 
             // make sure the control is not running inside Visual Studio Designer
-            if (String.Compare(fileName, "devenv.exe", true) == 0 || String.Compare(fileName, "XDesProc.exe", true) == 0)
-                return;
+            if (String.Compare(fileName, "devenv.exe", true) == 0 || String.Compare(fileName, "XDesProc.exe", true) == 0) 
+            return;
 
             SetBrowserFeatureControlKey("FEATURE_BROWSER_EMULATION", fileName, GetBrowserEmulationMode()); // Webpages containing standards-based !DOCTYPE directives are displayed in IE10 Standards mode.
             SetBrowserFeatureControlKey("FEATURE_AJAX_CONNECTIONEVENTS", fileName, 1);
@@ -177,32 +177,33 @@ namespace PresentationTier
                 {
                     version = ieKey.GetValue("Version");
                     if (null == version)
-                        throw new ApplicationException("Microsoft Internet Explorer is required!");
+                    throw new ApplicationException("Microsoft Internet Explorer is required!");
                 }
-                int.TryParse(version.ToString().Split('.')[0], out browserVersion);
+            int.TryParse(version.ToString().Split('.')[0], out browserVersion);
             }
-
+    
             UInt32 mode = 11000; // Internet Explorer 11. Webpages containing standards-based !DOCTYPE directives are displayed in IE11 Standards mode. Default value for Internet Explorer 11.
             switch (browserVersion)
             {
-                case 7:
-                    mode = 7000; // Webpages containing standards-based !DOCTYPE directives are displayed in IE7 Standards mode. Default value for applications hosting the WebBrowser Control.
-                    break;
-                case 8:
-                    mode = 8000; // Webpages containing standards-based !DOCTYPE directives are displayed in IE8 mode. Default value for Internet Explorer 8
-                    break;
-                case 9:
-                    mode = 9000; // Internet Explorer 9. Webpages containing standards-based !DOCTYPE directives are displayed in IE9 mode. Default value for Internet Explorer 9.
-                    break;
-                case 10:
-                    mode = 10000; // Internet Explorer 10. Webpages containing standards-based !DOCTYPE directives are displayed in IE10 mode. Default value for Internet Explorer 10.
-                    break;
-                default:
-                    // use IE11 mode by default
-                    break;
+            case 7:
+                mode = 7000; // Webpages containing standards-based !DOCTYPE directives are displayed in IE7 Standards mode. Default value for applications hosting the WebBrowser Control.
+                break;
+            case 8:
+                mode = 8000; // Webpages containing standards-based !DOCTYPE directives are displayed in IE8 mode. Default value for Internet Explorer 8
+                break;
+            case 9:
+                mode = 9000; // Internet Explorer 9. Webpages containing standards-based !DOCTYPE directives are displayed in IE9 mode. Default value for Internet Explorer 9.
+                break;
+            case 10:
+                mode = 10000; // Internet Explorer 10. Webpages containing standards-based !DOCTYPE directives are displayed in IE10 mode. Default value for Internet Explorer 10.
+                break;
+            default:
+                // use IE11 mode by default
+                break;
             }
-
-            return mode;
+    
+        return mode;
         }
+
     }
 }

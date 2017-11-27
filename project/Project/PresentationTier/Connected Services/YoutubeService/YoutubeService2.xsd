@@ -15,17 +15,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Song" nillable="true" type="tns:Song" />
-  <xs:complexType name="ArrayOfPlayList">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlayList" nillable="true" type="tns:PlayList" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPlayList" nillable="true" type="tns:ArrayOfPlayList" />
-  <xs:complexType name="PlayList">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ActivityId" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="PlayList" nillable="true" type="tns:PlayList" />
 </xs:schema>

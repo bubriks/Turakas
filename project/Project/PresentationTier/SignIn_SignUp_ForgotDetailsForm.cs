@@ -28,8 +28,8 @@ namespace PresentationTier
             SignIn_grp.Top = 12;
             SignIn_grp.Left = 12;
 
-            ForgotDetails_grp.Top = 150;
-            ForgotDetails_grp.Left = 14;
+            ForgotDetails_grp.Top = 136;
+            ForgotDetails_grp.Left = 12;
         }
         
         private void Register_btn_Click(object sender, EventArgs e)
@@ -136,13 +136,13 @@ namespace PresentationTier
                 SignIn_grp.Top = 7;
                 SignIn_grp.Left = 123;
 
-                ForgotDetails_grp.Top = 150;
-                ForgotDetails_grp.Left = 123;
+                ForgotDetails_grp.Top = 136;
+                ForgotDetails_grp.Left = 119;
                 ForgotDetails_grp.Visible = true;
             }
             else
             {
-                ForgotDetails_grp.Top = 150;
+                ForgotDetails_grp.Top = 136;
                 ForgotDetails_grp.Left = 12;
                 ForgotDetails_grp.Visible = true;
             }
