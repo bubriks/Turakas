@@ -15,6 +15,7 @@ namespace PresentationTier
         private InstanceContext instanceContext = null;
         private ChatServiceClient client;
         private ContextMenu cm;
+        private MenuItem joinWithGroup;
         public ChatForm(int profileId)
         {
             #region initialize
@@ -25,7 +26,6 @@ namespace PresentationTier
             instanceContext = new InstanceContext(this);
             client = new ChatServiceClient(instanceContext);
             cm = new ContextMenu();
-            cm.MenuItems.Add(new MenuItem("Remove", RemoveMenuItem_Click));
 
             chatListView.Columns.Add("Id", 0, HorizontalAlignment.Left);
             chatListView.Columns.Add("Name", 100, HorizontalAlignment.Left);
@@ -76,18 +76,75 @@ namespace PresentationTier
                 chatListView.Items.Add(row);
             }
         }
+
+        private void ChatListView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)//doesnt allow row 0 and 5 to be resized
+        {
+            if (e.ColumnIndex == 0 || e.ColumnIndex == 5)
+            {
+                e.Cancel = true;
+                e.NewWidth = chatListView.Columns[e.ColumnIndex].Width;
+            }
+        }
         #endregion
 
         #region chat
+        //fix this mae more efficient and bug free
         private void ChatListView_MouseDown(object sender, MouseEventArgs e)//Click on listView item
         {
             if (e.Button == MouseButtons.Right)
             {
                 ListViewHitTestInfo lvhti = this.chatListView.HitTest(e.X, e.Y);
-                if (lvhti.Item != null && Int32.Parse(lvhti.Item.SubItems[5].Text) == profileId)
+                if (lvhti.Item != null)
                 {
                     lvhti.Item.Selected = true;
-                    cm.Show(this.chatListView, new Point(e.X, e.Y));
+                    chatId = Int32.Parse(lvhti.Item.Text);
+
+                    if (Int32.Parse(lvhti.Item.SubItems[5].Text) == profileId) {
+                        MenuItem removeItem = new MenuItem("Remove", RemoveMenuItem_Click);
+                        cm.MenuItems.Add(removeItem);
+                        Group[] groupList = client.GetUsersGroups(profileId);
+                        if (groupList.Length > 0)
+                        {
+                            joinWithGroup = new MenuItem("Join with group");
+                            cm.MenuItems.Add(joinWithGroup);
+                            joinWithGroup.MenuItems.Clear();
+                            foreach (Group group in client.GetUsersGroups(profileId))
+                            {
+                                MenuItem item = new MenuItem();
+                                item.Text = group.Name;
+                                item.Click += delegate { JoinWithGroup(group.GroupId); };
+                                joinWithGroup.MenuItems.Add(item);
+                            }
+                            cm.Show(this.chatListView, new Point(e.X, e.Y));
+                            cm.MenuItems.Remove(joinWithGroup);
+                            cm.MenuItems.Remove(removeItem);
+                        }
+                        else
+                        {
+                            cm.Show(this.chatListView, new Point(e.X, e.Y));
+                            cm.MenuItems.Remove(removeItem);
+                        }
+                    }
+                    else
+                    {
+                        Group[] groupList = client.GetUsersGroups(profileId);
+                        if (groupList.Length > 0)
+                        {
+                            joinWithGroup = new MenuItem("Join with group");
+                            cm.MenuItems.Add(joinWithGroup);
+                            joinWithGroup.MenuItems.Clear();
+                            foreach (Group group in groupList)
+                            {
+                                MenuItem item = new MenuItem();
+                                item.Text = group.Name;
+                                item.Click += delegate { JoinWithGroup(group.GroupId); };
+                                joinWithGroup.MenuItems.Add(item);
+                            }
+                            cm.MenuItems.Add(joinWithGroup);
+                            cm.Show(this.chatListView, new Point(e.X, e.Y));
+                            cm.MenuItems.Remove(joinWithGroup);
+                        }
+                    }
                 }
             }
             else
@@ -138,6 +195,11 @@ namespace PresentationTier
             }
         }
 
+        private void JoinWithGroup(int groupId)//change
+        {
+            client.joinChatWhithGroup(groupId, chatId);
+        }
+
         private void NrOfUsersTrackBar_ValueChanged(object sender, EventArgs e)//change max value of users
         {
             nrLabel.Text = (Math.Round(nrOfUsersTrackBar.Value / 1.0)).ToString();
@@ -173,7 +235,7 @@ namespace PresentationTier
 
         private void RemoveMenuItem_Click(Object sender, EventArgs e)//Right cick remove menu button clicked
         {
-            client.DeleteChat(profileId, Int32.Parse(chatListView.SelectedItems[0].Text));
+            client.DeleteChat(profileId, chatId);
             SearchButton_Click(null, null);
         }
 
@@ -192,6 +254,11 @@ namespace PresentationTier
                     { }
                 }
             }
+        }
+
+        public void joinChat(int chatId)//joins the chat with the group
+        {
+            new MessageForm(chatId, profileId);
         }
         #endregion
 
@@ -230,6 +297,11 @@ namespace PresentationTier
             ProfileForm profile = new ProfileForm(profileId, this);
             Hide();
             profile.ShowDialog();
+        }
+
+        private void YoutubeButton_Click(object sender, EventArgs e)//youtube button pressed
+        {
+            new YoutubeAlpha();
         }
 
         private void ChatForm_Closing(object sender, CancelEventArgs e)//on close event

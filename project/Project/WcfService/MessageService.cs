@@ -24,6 +24,7 @@ namespace WcfService
                 callback.GetChat(chat);
                 callback.GetMessages(messageController.GetMessages(chatId));
                 callback.GetOnlineProfiles(chat.Users);
+                callback.Show(true);
 
                 List<Profile> profiles = chat.Users;
                 foreach (Profile user in profiles)
@@ -31,7 +32,6 @@ namespace WcfService
                     callback = (IMessageCallBack)user.CallBack;
                     callback.GetOnlineProfiles(profiles);
                 }
-                callback.Show(true);
             }
             else
             {

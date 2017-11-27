@@ -54,7 +54,7 @@ namespace PresentationTier
                 MessageBox.Show("Failed to add song. Probably the song already exists or the URL is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-            else if (youtubeServiceClient.AddSong(vidTitle, youtubeServiceClient.GetVideoDuration(VideoId), VideoId))
+            else if (youtubeServiceClient.AddSong(VideoId))
             {
                MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -99,7 +99,7 @@ namespace PresentationTier
         private void button2_Click(object sender, EventArgs e)
         {
             int selected = listBox1.SelectedIndex;
-            if (selected != -1 && selected+1 >= listBox1.Items.Count)
+            if (selected != -1 && selected+1 < listBox1.Items.Count)
             {
                 listBox1.SetSelected(selected+1, true);
                 playVideo(listBox1.SelectedValue.ToString());

@@ -45,6 +45,7 @@ namespace PresentationTier
             this.viewProfileButton = new System.Windows.Forms.Button();
             this.inviteListBox = new System.Windows.Forms.ListBox();
             this.clearEventsButton = new System.Windows.Forms.Button();
+            this.youtubeButton = new System.Windows.Forms.Button();
             this.chatGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nrOfUsersTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -58,17 +59,18 @@ namespace PresentationTier
             this.chatListView.Location = new System.Drawing.Point(12, 39);
             this.chatListView.MultiSelect = false;
             this.chatListView.Name = "chatListView";
-            this.chatListView.Size = new System.Drawing.Size(388, 250);
+            this.chatListView.Size = new System.Drawing.Size(386, 255);
             this.chatListView.TabIndex = 0;
             this.chatListView.UseCompatibleStateImageBehavior = false;
             this.chatListView.View = System.Windows.Forms.View.Details;
+            this.chatListView.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.ChatListView_ColumnWidthChanging);
             this.chatListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ChatListView_MouseDoubleClick);
             this.chatListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ChatListView_MouseDown);
             // 
             // searchButton
             // 
             this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchButton.Location = new System.Drawing.Point(326, 10);
+            this.searchButton.Location = new System.Drawing.Point(324, 10);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(75, 23);
             this.searchButton.TabIndex = 1;
@@ -82,7 +84,7 @@ namespace PresentationTier
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBox.Location = new System.Drawing.Point(12, 13);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(307, 20);
+            this.searchBox.Size = new System.Drawing.Size(305, 20);
             this.searchBox.TabIndex = 2;
             this.searchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchBox_KeyDown);
             // 
@@ -97,7 +99,7 @@ namespace PresentationTier
             this.chatGroupBox.Controls.Add(this.chatNameTextBox);
             this.chatGroupBox.Controls.Add(this.typeLabel);
             this.chatGroupBox.Controls.Add(this.chatNameLabel);
-            this.chatGroupBox.Location = new System.Drawing.Point(407, 10);
+            this.chatGroupBox.Location = new System.Drawing.Point(405, 10);
             this.chatGroupBox.Name = "chatGroupBox";
             this.chatGroupBox.Size = new System.Drawing.Size(200, 158);
             this.chatGroupBox.TabIndex = 3;
@@ -178,7 +180,7 @@ namespace PresentationTier
             // viewProfileButton
             // 
             this.viewProfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewProfileButton.Location = new System.Drawing.Point(416, 266);
+            this.viewProfileButton.Location = new System.Drawing.Point(414, 271);
             this.viewProfileButton.Name = "viewProfileButton";
             this.viewProfileButton.Size = new System.Drawing.Size(75, 23);
             this.viewProfileButton.TabIndex = 4;
@@ -192,7 +194,7 @@ namespace PresentationTier
             | System.Windows.Forms.AnchorStyles.Right)));
             this.inviteListBox.DisplayMember = "Name";
             this.inviteListBox.FormattingEnabled = true;
-            this.inviteListBox.Location = new System.Drawing.Point(407, 175);
+            this.inviteListBox.Location = new System.Drawing.Point(405, 175);
             this.inviteListBox.Name = "inviteListBox";
             this.inviteListBox.Size = new System.Drawing.Size(200, 82);
             this.inviteListBox.TabIndex = 5;
@@ -201,7 +203,7 @@ namespace PresentationTier
             // clearEventsButton
             // 
             this.clearEventsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearEventsButton.Location = new System.Drawing.Point(532, 266);
+            this.clearEventsButton.Location = new System.Drawing.Point(530, 271);
             this.clearEventsButton.Name = "clearEventsButton";
             this.clearEventsButton.Size = new System.Drawing.Size(75, 23);
             this.clearEventsButton.TabIndex = 6;
@@ -209,11 +211,23 @@ namespace PresentationTier
             this.clearEventsButton.UseVisualStyleBackColor = true;
             this.clearEventsButton.Click += new System.EventHandler(this.ClearEventsButton_Click);
             // 
+            // youtubeButton
+            // 
+            this.youtubeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.youtubeButton.Location = new System.Drawing.Point(496, 271);
+            this.youtubeButton.Name = "youtubeButton";
+            this.youtubeButton.Size = new System.Drawing.Size(29, 23);
+            this.youtubeButton.TabIndex = 7;
+            this.youtubeButton.Text = "YT";
+            this.youtubeButton.UseVisualStyleBackColor = true;
+            this.youtubeButton.Click += new System.EventHandler(this.YoutubeButton_Click);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 301);
+            this.ClientSize = new System.Drawing.Size(617, 306);
+            this.Controls.Add(this.youtubeButton);
             this.Controls.Add(this.clearEventsButton);
             this.Controls.Add(this.inviteListBox);
             this.Controls.Add(this.viewProfileButton);
@@ -249,5 +263,6 @@ namespace PresentationTier
         private Button viewProfileButton;
         private ListBox inviteListBox;
         private Button clearEventsButton;
+        private Button youtubeButton;
     }
 }

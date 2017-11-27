@@ -76,5 +76,23 @@ namespace WcfService
         {
             return chatController.GetChatsByName(name, profileId);
         }
+
+        public List<Group> GetUsersGroups(int profileId)
+        {
+            return new GroupController().GetUsersGroups(profileId);
+        }
+
+        public void joinChatWhithGroup(int groupId, int chatId)
+        {
+            List<Profile> profiles = chatController.JoinChatAsGroup(groupId, chatId);
+            if (profiles.Count > 0)
+            {
+                foreach (Profile user in profiles)
+                {
+                    IChatCallBack chatCallback = (IChatCallBack)user.CallBack;
+                    chatCallback.joinChat(chatId);
+                }
+            }
+        }
     }
 }

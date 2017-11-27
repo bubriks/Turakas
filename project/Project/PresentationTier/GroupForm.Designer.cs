@@ -31,107 +31,84 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.BtnCreate = new System.Windows.Forms.Button();
-            this.BtnDelete = new System.Windows.Forms.Button();
             this.lbAllGroups = new System.Windows.Forms.ListBox();
             this.lbGroupMembers = new System.Windows.Forms.ListBox();
-            this.BntAllUsers = new System.Windows.Forms.Button();
-            this.BtnOnlineUsers = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnAddUser = new System.Windows.Forms.Button();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.BtnDeleteUser = new System.Windows.Forms.Button();
             this.BtnBack = new System.Windows.Forms.Button();
+            this.buttonRefresh = new System.Windows.Forms.Button();
+            this.onlineCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(10, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(65, 13);
+            this.txtName.Location = new System.Drawing.Point(49, 11);
+            this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(100, 22);
+            this.txtName.Size = new System.Drawing.Size(76, 20);
             this.txtName.TabIndex = 1;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtName_KeyDown);
             // 
             // BtnCreate
             // 
-            this.BtnCreate.Location = new System.Drawing.Point(12, 54);
+            this.BtnCreate.Location = new System.Drawing.Point(9, 44);
+            this.BtnCreate.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCreate.Name = "BtnCreate";
-            this.BtnCreate.Size = new System.Drawing.Size(152, 25);
+            this.BtnCreate.Size = new System.Drawing.Size(114, 20);
             this.BtnCreate.TabIndex = 2;
             this.BtnCreate.Text = "Create new group";
             this.BtnCreate.UseVisualStyleBackColor = true;
             this.BtnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
             // 
-            // BtnDelete
-            // 
-            this.BtnDelete.Location = new System.Drawing.Point(12, 88);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(152, 25);
-            this.BtnDelete.TabIndex = 3;
-            this.BtnDelete.Text = "Delete group";
-            this.BtnDelete.UseVisualStyleBackColor = true;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
-            // 
             // lbAllGroups
             // 
+            this.lbAllGroups.DisplayMember = "Name";
             this.lbAllGroups.FormattingEnabled = true;
-            this.lbAllGroups.ItemHeight = 16;
-            this.lbAllGroups.Location = new System.Drawing.Point(297, 13);
+            this.lbAllGroups.Location = new System.Drawing.Point(223, 11);
+            this.lbAllGroups.Margin = new System.Windows.Forms.Padding(2);
             this.lbAllGroups.Name = "lbAllGroups";
-            this.lbAllGroups.Size = new System.Drawing.Size(250, 164);
+            this.lbAllGroups.Size = new System.Drawing.Size(188, 108);
             this.lbAllGroups.TabIndex = 4;
             this.lbAllGroups.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LbAllGroups_SelectObject);
             // 
             // lbGroupMembers
             // 
+            this.lbGroupMembers.DisplayMember = "Nickname";
             this.lbGroupMembers.FormattingEnabled = true;
-            this.lbGroupMembers.ItemHeight = 16;
-            this.lbGroupMembers.Location = new System.Drawing.Point(297, 254);
+            this.lbGroupMembers.Location = new System.Drawing.Point(223, 206);
+            this.lbGroupMembers.Margin = new System.Windows.Forms.Padding(2);
             this.lbGroupMembers.Name = "lbGroupMembers";
-            this.lbGroupMembers.Size = new System.Drawing.Size(250, 164);
+            this.lbGroupMembers.Size = new System.Drawing.Size(187, 108);
             this.lbGroupMembers.TabIndex = 5;
-            // 
-            // BntAllUsers
-            // 
-            this.BntAllUsers.Location = new System.Drawing.Point(297, 225);
-            this.BntAllUsers.Name = "BntAllUsers";
-            this.BntAllUsers.Size = new System.Drawing.Size(125, 23);
-            this.BntAllUsers.TabIndex = 6;
-            this.BntAllUsers.Text = "All users";
-            this.BntAllUsers.UseVisualStyleBackColor = true;
-            this.BntAllUsers.Click += new System.EventHandler(this.BntAllUsers_Click);
-            // 
-            // BtnOnlineUsers
-            // 
-            this.BtnOnlineUsers.Location = new System.Drawing.Point(428, 225);
-            this.BtnOnlineUsers.Name = "BtnOnlineUsers";
-            this.BtnOnlineUsers.Size = new System.Drawing.Size(119, 23);
-            this.BtnOnlineUsers.TabIndex = 7;
-            this.BtnOnlineUsers.Text = "Online users";
-            this.BtnOnlineUsers.UseVisualStyleBackColor = true;
-            this.BtnOnlineUsers.Click += new System.EventHandler(this.BtnOnlineUsers_Click);
+            this.lbGroupMembers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LbGroupMembers_MouseDown);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 254);
+            this.label2.Location = new System.Drawing.Point(10, 206);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 17);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "Name";
             // 
             // BtnAddUser
             // 
-            this.BtnAddUser.Location = new System.Drawing.Point(12, 295);
+            this.BtnAddUser.Location = new System.Drawing.Point(9, 240);
+            this.BtnAddUser.Margin = new System.Windows.Forms.Padding(2);
             this.BtnAddUser.Name = "BtnAddUser";
-            this.BtnAddUser.Size = new System.Drawing.Size(152, 25);
+            this.BtnAddUser.Size = new System.Drawing.Size(114, 20);
             this.BtnAddUser.TabIndex = 9;
             this.BtnAddUser.Text = "Add User";
             this.BtnAddUser.UseVisualStyleBackColor = true;
@@ -139,49 +116,61 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(65, 254);
+            this.txtUserName.Location = new System.Drawing.Point(49, 206);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(100, 22);
+            this.txtUserName.Size = new System.Drawing.Size(76, 20);
             this.txtUserName.TabIndex = 10;
-            // 
-            // BtnDeleteUser
-            // 
-            this.BtnDeleteUser.Location = new System.Drawing.Point(12, 324);
-            this.BtnDeleteUser.Name = "BtnDeleteUser";
-            this.BtnDeleteUser.Size = new System.Drawing.Size(152, 25);
-            this.BtnDeleteUser.TabIndex = 11;
-            this.BtnDeleteUser.Text = "Delete User";
-            this.BtnDeleteUser.UseVisualStyleBackColor = true;
-            this.BtnDeleteUser.Click += new System.EventHandler(this.BtnDeleteUser_Click);
             // 
             // BtnBack
             // 
-            this.BtnBack.Location = new System.Drawing.Point(16, 394);
+            this.BtnBack.Location = new System.Drawing.Point(12, 320);
+            this.BtnBack.Margin = new System.Windows.Forms.Padding(2);
             this.BtnBack.Name = "BtnBack";
-            this.BtnBack.Size = new System.Drawing.Size(75, 23);
+            this.BtnBack.Size = new System.Drawing.Size(56, 19);
             this.BtnBack.TabIndex = 12;
             this.BtnBack.Text = "Back";
             this.BtnBack.UseVisualStyleBackColor = true;
             this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Location = new System.Drawing.Point(335, 124);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(75, 23);
+            this.buttonRefresh.TabIndex = 13;
+            this.buttonRefresh.Text = "Refresh";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
+            // 
+            // onlineCheckBox
+            // 
+            this.onlineCheckBox.AutoSize = true;
+            this.onlineCheckBox.Location = new System.Drawing.Point(223, 184);
+            this.onlineCheckBox.Name = "onlineCheckBox";
+            this.onlineCheckBox.Size = new System.Drawing.Size(134, 17);
+            this.onlineCheckBox.TabIndex = 14;
+            this.onlineCheckBox.Text = "Show only online users";
+            this.onlineCheckBox.UseVisualStyleBackColor = true;
+            this.onlineCheckBox.CheckStateChanged += new System.EventHandler(this.OnlineCheckBox_CheckStateChanged);
+            // 
             // GroupForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 430);
+            this.ClientSize = new System.Drawing.Size(426, 349);
+            this.Controls.Add(this.onlineCheckBox);
+            this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.BtnBack);
-            this.Controls.Add(this.BtnDeleteUser);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.BtnAddUser);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.BtnOnlineUsers);
-            this.Controls.Add(this.BntAllUsers);
             this.Controls.Add(this.lbGroupMembers);
             this.Controls.Add(this.lbAllGroups);
-            this.Controls.Add(this.BtnDelete);
             this.Controls.Add(this.BtnCreate);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GroupForm";
             this.Text = "GroupForm";
             this.ResumeLayout(false);
@@ -194,15 +183,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button BtnCreate;
-        private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.ListBox lbAllGroups;
         private System.Windows.Forms.ListBox lbGroupMembers;
-        private System.Windows.Forms.Button BntAllUsers;
-        private System.Windows.Forms.Button BtnOnlineUsers;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnAddUser;
         private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.Button BtnDeleteUser;
         private System.Windows.Forms.Button BtnBack;
+        private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.CheckBox onlineCheckBox;
     }
 }

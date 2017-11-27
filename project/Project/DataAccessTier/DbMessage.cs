@@ -59,38 +59,41 @@ namespace DataAccessTier
             reader.Close();
             return message;
         }
-        
+
         public List<Message> GetMessages(int chatId)
         {
             string stmt = " SELECT " +
                             " Profile.nickname, " +
                             " Profile.profileID, " +
                             " Activity.activityID, " +
-                            " Message.message," +
-                            " Activity.timeStamp" +
-                        " FROM Profile" +
-                        " INNER JOIN Activity" +
-                            " on Profile.profileID = Activity.profileID" +
-                        " INNER JOIN Message" +
-                            " on Activity.activityID = Message.activityID" +
-                        " where Message.chatActivityID = @0";
-            SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction());
-            cmd.Parameters.AddWithValue("@0", chatId);
-            SqlDataReader reader = cmd.ExecuteReader();
+                            " Message.message, " +
+                            " Activity.timeStamp " +
+                        " FROM Profile " +
+                        " INNER JOIN Activity " +
+                            " on Profile.profileID = Activity.profileID " +
+                        " INNER JOIN Message " +
+                            " on Activity.activityID = Message.activityID " +
+                        " where Message.chatActivityID = @0 ";
             List<Message> messages = new List<Message>();
-            while (reader.Read())
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection()))
             {
-                Message message = new Message
+                cmd.Parameters.AddWithValue("@0", chatId);
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Id = Int32.Parse(reader["activityID"].ToString()),
-                    Text = reader["message"].ToString(),
-                    Creator = reader["nickname"].ToString(),
-                    CreatorId = Int32.Parse(reader["profileID"].ToString()),
-                    Time = Convert.ToDateTime(reader["timeStamp"].ToString())
-                };
-                messages.Add(message);
+                    while (reader.Read())
+                    {
+                        Message message = new Message
+                        {
+                            Id = Int32.Parse(reader["activityID"].ToString()),
+                            Text = reader["message"].ToString(),
+                            Creator = reader["nickname"].ToString(),
+                            CreatorId = Int32.Parse(reader["profileID"].ToString()),
+                            Time = Convert.ToDateTime(reader["timeStamp"].ToString())
+                        };
+                        messages.Add(message);
+                    }
+                }
             }
-            reader.Close();
             return messages;
         }
 

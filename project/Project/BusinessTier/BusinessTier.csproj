@@ -82,9 +82,11 @@
     <Compile Include="Interfaces\IChatController.cs" />
     <Compile Include="Interfaces\IGameController.cs" />
     <Compile Include="Interfaces\IGroupController.cs" />
+    <Compile Include="Interfaces\IPlayListController.cs" />
     <Compile Include="Interfaces\IProfileController.cs" />
     <Compile Include="Interfaces\IMessageController.cs" />
     <Compile Include="Interfaces\ISongController.cs" />
+    <Compile Include="PlayListController.cs" />
     <Compile Include="ProfileController.cs" />
     <Compile Include="MessageController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

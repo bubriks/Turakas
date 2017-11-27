@@ -12,17 +12,27 @@ namespace WcfService
     public interface IGroupService
     {
         [OperationContract]
-        void CreateGroup(String name, int profileId);
-        [OperationContract]
-        void DeleteGroup(int groupId);
-        [OperationContract]
-        void AddMember(int profileId, int groupId);
-        [OperationContract]
-        void RemoveMember(int profileId, int groupId);
-        [OperationContract]
-        List<Profile> GetOnlineUsers(int groupId);
-        [OperationContract]
-        List<Profile> GetAllUsers(int groupId);
+        bool CreateGroup(String name, int profileId);
 
+        [OperationContract]
+        bool DeleteGroup(int groupId);
+
+        [OperationContract]
+        bool UpdateGroup(String name, int groupId);
+
+        [OperationContract]
+        List<Group> GetUsersGroups(int profileId);
+
+        [OperationContract]
+        bool AddMember(String memberName, int groupId);
+
+        [OperationContract]
+        bool RemoveMember(int profileId, int groupId);
+
+        [OperationContract]
+        List<Profile> GetUsers(int groupId);
+
+        [OperationContract]
+        List<Profile> GetOnlineMembers(int groupId);
     }
 }

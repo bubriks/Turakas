@@ -1,6 +1,6 @@
 ﻿﻿using System;
- using System.Collections.Generic;
- using DataAccessTier;
+using System.Collections.Generic;
+using DataAccessTier;
 using DataTier;
 using System.Web;
 using Google.Apis.Auth.OAuth2;
@@ -16,10 +16,16 @@ namespace BusinessTier
 {
     public class SongController: ISongController
     {
-        public bool AddSong(string name, int duration, string url)
+        public bool AddSong(string url)
         {
             DBSong dbSong = new DBSong();
-            return dbSong.AddSong(name, duration, url);
+            Song song = dbSong.FindSongByURL(url);
+            if (song != null)
+            {
+                return false;
+            }
+            dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url);
+            return true;
         }
 
         private static YouTubeService ytService = Auth();

@@ -46,10 +46,39 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetUsersGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersGroupsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="GetUsersGroupsResult" nillable="true" type="q3:ArrayOfGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="joinChatWhithGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupId" type="xs:int" />
+        <xs:element minOccurs="0" name="chatId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Notification">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="chat" nillable="true" type="q3:Chat" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataTier" minOccurs="0" name="chat" nillable="true" type="q4:Chat" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="joinChat">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="chatId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

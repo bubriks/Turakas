@@ -15,9 +15,121 @@ namespace PresentationTier.GroupServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Group", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Group : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] AllUsersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CreatorIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GroupIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] AllUsers {
+            get {
+                return this.AllUsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AllUsersField, value) != true)) {
+                    this.AllUsersField = value;
+                    this.RaisePropertyChanged("AllUsers");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CreatorId {
+            get {
+                return this.CreatorIdField;
+            }
+            set {
+                if ((this.CreatorIdField.Equals(value) != true)) {
+                    this.CreatorIdField = value;
+                    this.RaisePropertyChanged("CreatorId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GroupId {
+            get {
+                return this.GroupIdField;
+            }
+            set {
+                if ((this.GroupIdField.Equals(value) != true)) {
+                    this.GroupIdField = value;
+                    this.RaisePropertyChanged("GroupId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Time {
+            get {
+                return this.TimeField;
+            }
+            set {
+                if ((this.TimeField.Equals(value) != true)) {
+                    this.TimeField = value;
+                    this.RaisePropertyChanged("Time");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.GroupServiceReference.Group[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.GroupServiceReference.Group))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.GroupServiceReference.Profile[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(int[]))]
     public partial class Profile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -144,40 +256,52 @@ namespace PresentationTier.GroupServiceReference {
     public interface IGroupService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/CreateGroup", ReplyAction="http://tempuri.org/IGroupService/CreateGroupResponse")]
-        void CreateGroup(string name, int profileId);
+        bool CreateGroup(string name, int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/CreateGroup", ReplyAction="http://tempuri.org/IGroupService/CreateGroupResponse")]
-        System.Threading.Tasks.Task CreateGroupAsync(string name, int profileId);
+        System.Threading.Tasks.Task<bool> CreateGroupAsync(string name, int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/DeleteGroup", ReplyAction="http://tempuri.org/IGroupService/DeleteGroupResponse")]
-        void DeleteGroup(int groupId);
+        bool DeleteGroup(int groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/DeleteGroup", ReplyAction="http://tempuri.org/IGroupService/DeleteGroupResponse")]
-        System.Threading.Tasks.Task DeleteGroupAsync(int groupId);
+        System.Threading.Tasks.Task<bool> DeleteGroupAsync(int groupId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/UpdateGroup", ReplyAction="http://tempuri.org/IGroupService/UpdateGroupResponse")]
+        bool UpdateGroup(string name, int groupId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/UpdateGroup", ReplyAction="http://tempuri.org/IGroupService/UpdateGroupResponse")]
+        System.Threading.Tasks.Task<bool> UpdateGroupAsync(string name, int groupId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetUsersGroups", ReplyAction="http://tempuri.org/IGroupService/GetUsersGroupsResponse")]
+        PresentationTier.GroupServiceReference.Group[] GetUsersGroups(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetUsersGroups", ReplyAction="http://tempuri.org/IGroupService/GetUsersGroupsResponse")]
+        System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Group[]> GetUsersGroupsAsync(int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/AddMember", ReplyAction="http://tempuri.org/IGroupService/AddMemberResponse")]
-        void AddMember(int profileId, int groupId);
+        bool AddMember(string memberName, int groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/AddMember", ReplyAction="http://tempuri.org/IGroupService/AddMemberResponse")]
-        System.Threading.Tasks.Task AddMemberAsync(int profileId, int groupId);
+        System.Threading.Tasks.Task<bool> AddMemberAsync(string memberName, int groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/RemoveMember", ReplyAction="http://tempuri.org/IGroupService/RemoveMemberResponse")]
-        void RemoveMember(int profileId, int groupId);
+        bool RemoveMember(int profileId, int groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/RemoveMember", ReplyAction="http://tempuri.org/IGroupService/RemoveMemberResponse")]
-        System.Threading.Tasks.Task RemoveMemberAsync(int profileId, int groupId);
+        System.Threading.Tasks.Task<bool> RemoveMemberAsync(int profileId, int groupId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetOnlineUsers", ReplyAction="http://tempuri.org/IGroupService/GetOnlineUsersResponse")]
-        PresentationTier.GroupServiceReference.Profile[] GetOnlineUsers(int groupId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetUsers", ReplyAction="http://tempuri.org/IGroupService/GetUsersResponse")]
+        PresentationTier.GroupServiceReference.Profile[] GetUsers(int groupId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetOnlineUsers", ReplyAction="http://tempuri.org/IGroupService/GetOnlineUsersResponse")]
-        System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetOnlineUsersAsync(int groupId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetUsers", ReplyAction="http://tempuri.org/IGroupService/GetUsersResponse")]
+        System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetUsersAsync(int groupId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetAllUsers", ReplyAction="http://tempuri.org/IGroupService/GetAllUsersResponse")]
-        PresentationTier.GroupServiceReference.Profile[] GetAllUsers(int groupId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetOnlineMembers", ReplyAction="http://tempuri.org/IGroupService/GetOnlineMembersResponse")]
+        PresentationTier.GroupServiceReference.Profile[] GetOnlineMembers(int groupId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetAllUsers", ReplyAction="http://tempuri.org/IGroupService/GetAllUsersResponse")]
-        System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetAllUsersAsync(int groupId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/GetOnlineMembers", ReplyAction="http://tempuri.org/IGroupService/GetOnlineMembersResponse")]
+        System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetOnlineMembersAsync(int groupId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -207,52 +331,68 @@ namespace PresentationTier.GroupServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public void CreateGroup(string name, int profileId) {
-            base.Channel.CreateGroup(name, profileId);
+        public bool CreateGroup(string name, int profileId) {
+            return base.Channel.CreateGroup(name, profileId);
         }
         
-        public System.Threading.Tasks.Task CreateGroupAsync(string name, int profileId) {
+        public System.Threading.Tasks.Task<bool> CreateGroupAsync(string name, int profileId) {
             return base.Channel.CreateGroupAsync(name, profileId);
         }
         
-        public void DeleteGroup(int groupId) {
-            base.Channel.DeleteGroup(groupId);
+        public bool DeleteGroup(int groupId) {
+            return base.Channel.DeleteGroup(groupId);
         }
         
-        public System.Threading.Tasks.Task DeleteGroupAsync(int groupId) {
+        public System.Threading.Tasks.Task<bool> DeleteGroupAsync(int groupId) {
             return base.Channel.DeleteGroupAsync(groupId);
         }
         
-        public void AddMember(int profileId, int groupId) {
-            base.Channel.AddMember(profileId, groupId);
+        public bool UpdateGroup(string name, int groupId) {
+            return base.Channel.UpdateGroup(name, groupId);
         }
         
-        public System.Threading.Tasks.Task AddMemberAsync(int profileId, int groupId) {
-            return base.Channel.AddMemberAsync(profileId, groupId);
+        public System.Threading.Tasks.Task<bool> UpdateGroupAsync(string name, int groupId) {
+            return base.Channel.UpdateGroupAsync(name, groupId);
         }
         
-        public void RemoveMember(int profileId, int groupId) {
-            base.Channel.RemoveMember(profileId, groupId);
+        public PresentationTier.GroupServiceReference.Group[] GetUsersGroups(int profileId) {
+            return base.Channel.GetUsersGroups(profileId);
         }
         
-        public System.Threading.Tasks.Task RemoveMemberAsync(int profileId, int groupId) {
+        public System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Group[]> GetUsersGroupsAsync(int profileId) {
+            return base.Channel.GetUsersGroupsAsync(profileId);
+        }
+        
+        public bool AddMember(string memberName, int groupId) {
+            return base.Channel.AddMember(memberName, groupId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddMemberAsync(string memberName, int groupId) {
+            return base.Channel.AddMemberAsync(memberName, groupId);
+        }
+        
+        public bool RemoveMember(int profileId, int groupId) {
+            return base.Channel.RemoveMember(profileId, groupId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemoveMemberAsync(int profileId, int groupId) {
             return base.Channel.RemoveMemberAsync(profileId, groupId);
         }
         
-        public PresentationTier.GroupServiceReference.Profile[] GetOnlineUsers(int groupId) {
-            return base.Channel.GetOnlineUsers(groupId);
+        public PresentationTier.GroupServiceReference.Profile[] GetUsers(int groupId) {
+            return base.Channel.GetUsers(groupId);
         }
         
-        public System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetOnlineUsersAsync(int groupId) {
-            return base.Channel.GetOnlineUsersAsync(groupId);
+        public System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetUsersAsync(int groupId) {
+            return base.Channel.GetUsersAsync(groupId);
         }
         
-        public PresentationTier.GroupServiceReference.Profile[] GetAllUsers(int groupId) {
-            return base.Channel.GetAllUsers(groupId);
+        public PresentationTier.GroupServiceReference.Profile[] GetOnlineMembers(int groupId) {
+            return base.Channel.GetOnlineMembers(groupId);
         }
         
-        public System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetAllUsersAsync(int groupId) {
-            return base.Channel.GetAllUsersAsync(groupId);
+        public System.Threading.Tasks.Task<PresentationTier.GroupServiceReference.Profile[]> GetOnlineMembersAsync(int groupId) {
+            return base.Channel.GetOnlineMembersAsync(groupId);
         }
     }
 }

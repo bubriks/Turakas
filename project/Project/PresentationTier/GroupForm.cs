@@ -13,68 +13,184 @@ namespace PresentationTier
 {
     public partial class GroupForm : Form
     {
-        private int profileId, groupId;
+        private int profileId, groupId = 0;
         private Form profileform;
+        private ContextMenu cmGroups, cmMembers;
         private GroupServiceClient client;
         public GroupForm(int profileId, Form profileform)
         {
+            #region Initialize
+            InitializeComponent();
             client = new GroupServiceClient();
+            cmGroups = new ContextMenu();
+            cmGroups.MenuItems.Add(new MenuItem("Remove", MenuItemNewRemoveGroup_Click));
+            cmMembers = new ContextMenu();
+            cmMembers.MenuItems.Add(new MenuItem("Remove", MenuItemNewRemoveMember_Click));
             this.profileId = profileId;
             this.profileform = profileform;
-            groupId = 1;
-            InitializeComponent();
+            #endregion
+
+            ButtonRefresh_Click(null, null);
+            GetUsers(onlineCheckBox.Checked == true);
+            txtUserName.Enabled = false;
+            BtnAddUser.Enabled = false;
         }
 
-        private void BtnCreate_Click(object sender, EventArgs e)
+        #region Manage groups
+        private void ButtonRefresh_Click(object sender, EventArgs e)//Refreshes
         {
-            String name = txtName.Text;
-            client.CreateGroup(name, profileId);
-            lbAllGroups.Items.Add(name);
+            lbAllGroups.Items.Clear();
+            foreach (Group group in client.GetUsersGroups(profileId))
+            {
+                lbAllGroups.Items.Add(group);
+            }
         }
 
-        private void BtnDelete_Click(object sender, EventArgs e)
+        private void TxtName_KeyDown(object sender, KeyEventArgs e)//Enter pressed
         {
-            client.DeleteGroup(groupId);
+            if (e.KeyValue == Convert.ToInt16(Keys.Enter))
+            {
+                BtnCreate_Click(null, null);
+            }
+        }
+
+        private void BtnCreate_Click(object sender, EventArgs e)//Create group pressed
+        {
+            if(groupId != 0)
+            {
+                if (client.UpdateGroup(txtName.Text, groupId))
+                {
+                    txtName.Text = "";
+                    groupId = 0;
+                    BtnCreate.Text = "Create new group";
+                    txtUserName.Enabled = false;
+                    BtnAddUser.Enabled = false;
+                }
+            }
+            else
+            {
+                if (client.CreateGroup(txtName.Text, profileId))
+                {
+                    txtName.Text = "";
+                    txtUserName.Enabled = false;
+                    BtnAddUser.Enabled = false;
+                }
+            }
+            ButtonRefresh_Click(null, null);
+        }
+
+        private void LbAllGroups_SelectObject(object sender, MouseEventArgs e)//right click clicked
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int item = lbAllGroups.IndexFromPoint(e.Location);
+                if (item >= 0)
+                {
+                    lbAllGroups.SelectedIndex = item;
+                    cmGroups.Show(lbAllGroups, e.Location);
+                }
+            }
+            else
+            {
+                int item = lbAllGroups.IndexFromPoint(e.Location);
+                if (item >= 0)
+                {
+                    lbAllGroups.SelectedIndex = item;
+                    groupId = (lbAllGroups.SelectedItem as Group).GroupId;
+                    GetUsers(onlineCheckBox.Checked == true);
+                    BtnCreate.Text = "Update group";
+                    txtUserName.Enabled = true;
+                    BtnAddUser.Enabled = true;
+                }
+                else
+                {
+                    lbAllGroups.SelectedIndex = -1;
+                    groupId = 0;
+                    lbGroupMembers.Items.Clear();
+                    BtnCreate.Text = "Create new group";
+                    txtUserName.Enabled = false;
+                    BtnAddUser.Enabled = false;
+                }
+            }
+        }
+
+        private void MenuItemNewRemoveGroup_Click(Object sender, EventArgs e)//Right cick menu button clicked
+        {
+            client.DeleteGroup((lbAllGroups.SelectedItem as Group).GroupId);
+            groupId = 0;
+            BtnCreate.Text = "Create new group";
+            txtUserName.Enabled = false;
+            BtnAddUser.Enabled = false;
+        }
+        #endregion
+
+        #region Manage members
+
+        private void LbGroupMembers_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int item = lbGroupMembers.IndexFromPoint(e.Location);
+                if (item >= 0)
+                {
+                    lbGroupMembers.SelectedIndex = item;
+                    cmMembers.Show(lbGroupMembers, e.Location);
+                }
+            }
         }
 
         private void BtnAddUser_Click(object sender, EventArgs e)
         {
-            client.AddMember(profileId, groupId);
-        }
-
-        private void BtnDeleteUser_Click(object sender, EventArgs e)
-        {
-            client.RemoveMember(profileId, groupId);
-        }
-
-        private void BntAllUsers_Click(object sender, EventArgs e)
-        {
-            lbGroupMembers.Text = client.GetAllUsers(groupId).ToString();
-        }
-
-        private void BtnOnlineUsers_Click(object sender, EventArgs e)
-        {
-            lbGroupMembers.Text = client.GetOnlineUsers(groupId).ToString();
-        }
-
-        private void LbAllGroups_SelectObject(object sender, MouseEventArgs e)
-        {
-            int index = lbAllGroups.IndexFromPoint(e.Location);
-
-            if (index >= 0)
+            if(client.AddMember(txtUserName.Text, groupId))
             {
-                lbAllGroups.SelectedIndex = index;
+                txtUserName.Text = "";
+                GetUsers(onlineCheckBox.Checked == true);
             }
+        }
 
-            if (index != -1 && index < lbAllGroups.Items.Count)
+        private void GetOnlineUsers()
+        {
+            lbGroupMembers.Items.Clear();
+            foreach (Profile profile in client.GetOnlineMembers(groupId))
             {
-                Object group = (lbAllGroups.SelectedItem as Object);
-                String text = group.ToString();
+                lbGroupMembers.Items.Add(profile);
+            }
+        }
+
+        private void GetAllUsers()
+        {
+            lbGroupMembers.Items.Clear();
+            foreach (Profile profile in client.GetUsers(groupId))
+            {
+                lbGroupMembers.Items.Add(profile);
+            }
+        }
+
+        private void OnlineCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            GetUsers(onlineCheckBox.Checked == true);
+        }
+
+        public void GetUsers(bool result)
+        {
+            if (result == true)
+            {
+                GetOnlineUsers();
             }
             else
             {
+                GetAllUsers();
             }
         }
+
+        private void MenuItemNewRemoveMember_Click(Object sender, EventArgs e)//Right cick menu button clicked
+        {
+            if(client.RemoveMember((lbGroupMembers.SelectedItem as Profile).ProfileID, groupId))
+            {
+                GetUsers(onlineCheckBox.Checked == true);
+            }
+        }
+        #endregion
 
         private void BtnBack_Click(object sender, EventArgs e)
         {

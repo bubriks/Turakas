@@ -25,11 +25,20 @@ namespace WcfService
 
         [OperationContract]
         List<Chat> GetChatsByName(String name, int profileId);
+
+        [OperationContract]
+        List<Group> GetUsersGroups(int profileId);
+
+        [OperationContract(IsOneWay = true)]
+        void joinChatWhithGroup(int groupId, int chatId);
     }
 
     public interface IChatCallBack
     {
         [OperationContract(IsOneWay = true)]
         void Notification(Chat chat);
+
+        [OperationContract(IsOneWay = true)]
+        void joinChat(int chatId);
     }
 }

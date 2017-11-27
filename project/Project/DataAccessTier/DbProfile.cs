@@ -111,14 +111,14 @@ namespace DataAccessTier
                         if (reader.HasRows)
                         {
                             reader.Read();
-                            Profile profileID = new Profile
+                            Profile profile = new Profile
                             {
                                 ProfileID = Int32.Parse(reader["profileID"].ToString()),
                                 Username = reader["username"].ToString(),
                                 Email = reader["email"].ToString(),
                                 Nickname = reader["nickname"].ToString()
                             };
-                            return profileID;
+                            return profile;
                         }
                         return null;
                     }
