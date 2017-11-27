@@ -19,5 +19,15 @@ namespace WcfService
         int GetVideoDuration(string videoId);
         [OperationContract]
         List<Song> FindSongsByName(string name);
+        [OperationContract]
+        void AddPlayList(string name);
+        [OperationContract]
+        List<PlayList> FindPlayListsByName(string name);
+        [OperationContract]
+        bool AddSongToPlayList(int songId, int playListId);
+        [OperationContract]
+        List<Song> GetSongsFromPlayList(int playListId);
+
+
     }
 }
