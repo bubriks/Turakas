@@ -17,16 +17,14 @@ namespace DataAccessTier
             con = DbConnection.GetInstance();
         }
 
-        public Chat CreateChat(Chat chat)
+        public int CreateChat(Chat chat)
         {
             string stmt = "DECLARE @activityID int; " +
 
             " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
             " SET @activityID = @@IDENTITY;" +
 
-            " INSERT INTO Chat(activityID, name, type, nrOfUsers) values (@activityID, @2, @3, @4);" +
-             
-            " Select activityID, timeStamp from Activity where activityID = @activityID;";
+            " INSERT INTO Chat(activityID, name, type, nrOfUsers) values (@activityID, @2, @3, @4);";
             using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
             {
                 cmd.Parameters.AddWithValue("@0", chat.OwnerID);
@@ -34,16 +32,8 @@ namespace DataAccessTier
                 cmd.Parameters.AddWithValue("@2", chat.Name);
                 cmd.Parameters.AddWithValue("@3", Convert.ToInt32(chat.Type));
                 cmd.Parameters.AddWithValue("@4", chat.MaxNrOfUsers);
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        chat.Id = Int32.Parse(reader["activityID"].ToString());
-                        chat.Time = Convert.ToDateTime(reader["timeStamp"].ToString());
-                    }
-                }
+                return cmd.ExecuteNonQuery();
             }
-            return chat;
         }
 
         public Chat GetChat(int id)

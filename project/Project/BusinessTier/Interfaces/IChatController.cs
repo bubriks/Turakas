@@ -12,7 +12,7 @@ namespace BusinessTier
         /// <param name="chat"></param>
         /// <param name="profileId"></param>
         /// <returns></returns>
-        Chat SaveChat(int profileId, Chat chat);
+        bool SaveChat(int profileId, Chat chat);
         /// <summary>
         /// Deletes chat which holds this id
         /// </summary>

@@ -42,7 +42,7 @@ namespace WcfService
 
         public void SaveChat(int profileId, Chat chat)
         {
-            if(chatController.SaveChat(profileId, chat) != null && chat.Id != 0)
+            if(chatController.SaveChat(profileId, chat) && chat.Id != 0)
             {
                 chat = chatController.FindChat(chat.Id);
                 if (chat != null)
