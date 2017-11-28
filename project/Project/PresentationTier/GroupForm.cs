@@ -69,7 +69,7 @@ namespace PresentationTier
         {
             if(groupId != 0)
             {
-                if (client.UpdateGroup(txtName.Text, groupId))
+                if (!txtName.Text.Equals("") && client.UpdateGroup(txtName.Text, groupId))
                 {
                     txtName.Text = "";
                     groupId = 0;
@@ -80,7 +80,7 @@ namespace PresentationTier
             }
             else
             {
-                if (client.CreateGroup(txtName.Text, profileId))
+                if (!txtName.Text.Equals("") && client.CreateGroup(txtName.Text, profileId))
                 {
                     txtName.Text = "";
                     txtUserName.Enabled = false;

@@ -150,5 +150,4 @@ C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfServic
 C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
 C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.dll
 C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\youtube_client_secret.json
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\youtube_client_secret.json
