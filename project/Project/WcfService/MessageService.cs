@@ -26,7 +26,10 @@ namespace WcfService
                 foreach (var tuple in chat.Users)
                 {
                     profiles.Add(tuple.Item1);
-                    callbacks.Add(tuple.Item2);
+                    if(tuple.Item2 != null)
+                    {
+                        callbacks.Add(tuple.Item2);
+                    }
                 }
                 callback.GetChat(chat);
                 callback.GetMessages(messageController.GetMessages(chatId));

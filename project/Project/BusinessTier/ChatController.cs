@@ -212,6 +212,7 @@ namespace BusinessTier
                             if (p.ProfileID == profileId)
                             {
                                 user = i;
+                                break;
                             }
                         }
 
