@@ -314,52 +314,52 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Actions-document-save-icon.png" />
+    <EmbeddedResource Include="Resources\Actions-document-save-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Actions-edit-delete-icon %281%29.png" />
+    <EmbeddedResource Include="Resources\Actions-edit-delete-icon %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Actions-edit-delete-icon.png" />
+    <EmbeddedResource Include="Resources\Actions-edit-delete-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Actions-edit-undo-icon.png" />
+    <EmbeddedResource Include="Resources\Actions-edit-undo-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Actions-go-jump-locationbar-icon.png" />
+    <EmbeddedResource Include="Resources\Actions-go-jump-locationbar-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\archive-icon.png" />
+    <EmbeddedResource Include="Resources\archive-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Cute-Ball-Go-icon %281%29.png" />
+    <EmbeddedResource Include="Resources\Cute-Ball-Go-icon %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Cute-Ball-Go-icon.png" />
+    <EmbeddedResource Include="Resources\Cute-Ball-Go-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ko.png" />
+    <EmbeddedResource Include="Resources\ko.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ollo.png" />
+    <EmbeddedResource Include="Resources\ollo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paper.png" />
+    <EmbeddedResource Include="Resources\paper.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\papir.png" />
+    <EmbeddedResource Include="Resources\papir.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\rock.png" />
+    <EmbeddedResource Include="Resources\rock.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\scissor.png" />
+    <EmbeddedResource Include="Resources\scissor.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\smile-icon.png" />
+    <EmbeddedResource Include="Resources\smile-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\welcome-icon.png" />
+    <EmbeddedResource Include="Resources\welcome-icon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\GameServiceReference\GameService.disco" />

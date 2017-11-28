@@ -148,7 +148,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID()" +
-                    "UPDATE Profile SET username = @0, salt = @salt, passwordHash = HASHBYTES('SHA2_512', @1+CAST(@salt AS NVARCHAR(36))), email = @2, nickname = @3 WHERE profileID= @4";
+                    "UPDATE Profile SET username = ISNULL(NULLIF(@0, ''), username), salt = @salt, passwordHash = HASHBYTES('SHA2_512', ISNULL(NULLIF(@1, ''), passwordHash) + CAST(@salt AS NVARCHAR(36))), email = ISNULL(NULLIF(@2, ''), email), nickname = ISNULL(NULLIF(@3, ''), nickname) WHERE profileID= @4";
                 using (SqlCommand cmd = new SqlCommand(stmt, con))
                 {
                     cmd.Parameters.AddWithValue("@0", profile.Username);
