@@ -12,7 +12,7 @@ namespace WcfService
     public interface IYoutubeService
     {
         [OperationContract]
-        bool AddSong(string url);
+        bool AddSong(string url, int profileId);
         [OperationContract]
         string GetVideoTitle(string videoId);
         
@@ -23,21 +23,21 @@ namespace WcfService
         List<Song> FindSongsByName(string name);
         
         [OperationContract]
-        bool AddPlayList(string name);
+        bool AddPlayList(string name, int profileId);
         [OperationContract]
         List<PlayList> FindPlayListsByName(string name);
         
         [OperationContract]
-        bool AddSongToPlayList(string url, string playListId);
+        bool AddSongToPlayList(string url, string playListId, int profileId);
         
         [OperationContract]
         List<Song> GetSongsFromPlayList(string playListId);
         
         [OperationContract]
-        bool RemovePlaylist(string playlistId);
+        bool RemovePlaylist(string playlistId, int profileId);
 
         [OperationContract]
-        bool RemoveSongFromPlaylist(string url, string playlistId);
+        bool RemoveSongFromPlaylist(string url, string playlistId, int profileId);
 
     }
 }

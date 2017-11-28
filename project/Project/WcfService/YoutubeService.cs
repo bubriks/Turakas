@@ -15,9 +15,9 @@ namespace WcfService
         ISongController songController = new SongController();
         IPlayListController playListController = new PlayListController();
 
-        public bool AddSong(string url)
+        public bool AddSong(string url, int profileId)
         {
-           return songController.AddSong(url);
+           return songController.AddSong(url, profileId);
         }
         public string GetVideoTitle(string videoId)
         {
@@ -35,9 +35,9 @@ namespace WcfService
             return songController.FindSongsByName(name);
         }
 
-        public bool AddPlayList(string name)
+        public bool AddPlayList(string name, int profileId)
         {
-           return playListController.AddPlayList(name);
+           return playListController.AddPlayList(name, profileId);
         }
 
         public List<PlayList> FindPlayListsByName(string name)
@@ -45,9 +45,9 @@ namespace WcfService
             return playListController.FindPlayListsByName(name);
         }
 
-        public bool AddSongToPlayList(string url, string playListId)
+        public bool AddSongToPlayList(string url, string playListId, int profileId)
         {
-            return playListController.AddSongToPlayList(url, playListId);
+            return playListController.AddSongToPlayList(url, playListId, profileId);
         }
 
         public List<Song> GetSongsFromPlayList(string playListId)
@@ -55,14 +55,14 @@ namespace WcfService
             return playListController.GetSongsFromPlayList(playListId);
         }
 
-        public bool RemovePlaylist(string playlistId)
+        public bool RemovePlaylist(string playlistId, int profileId)
         {
-            return playListController.RemovePlaylist(playlistId);
+            return playListController.RemovePlaylist(playlistId, profileId);
         }
 
-        public bool RemoveSongFromPlaylist(string url, string playListId)
+        public bool RemoveSongFromPlaylist(string url, string playListId, int profileId)
         {
-            return playListController.RemoveSongFromPlaylist(url, playListId);
+            return playListController.RemoveSongFromPlaylist(url, playListId, profileId);
         }
 
     }
