@@ -262,10 +262,10 @@ namespace PresentationTier.GroupServiceReference {
         System.Threading.Tasks.Task<bool> CreateGroupAsync(string name, int profileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/DeleteGroup", ReplyAction="http://tempuri.org/IGroupService/DeleteGroupResponse")]
-        bool DeleteGroup(int groupId);
+        bool DeleteGroup(int profileId, int groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/DeleteGroup", ReplyAction="http://tempuri.org/IGroupService/DeleteGroupResponse")]
-        System.Threading.Tasks.Task<bool> DeleteGroupAsync(int groupId);
+        System.Threading.Tasks.Task<bool> DeleteGroupAsync(int profileId, int groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGroupService/UpdateGroup", ReplyAction="http://tempuri.org/IGroupService/UpdateGroupResponse")]
         bool UpdateGroup(string name, int groupId);
@@ -339,12 +339,12 @@ namespace PresentationTier.GroupServiceReference {
             return base.Channel.CreateGroupAsync(name, profileId);
         }
         
-        public bool DeleteGroup(int groupId) {
-            return base.Channel.DeleteGroup(groupId);
+        public bool DeleteGroup(int profileId, int groupId) {
+            return base.Channel.DeleteGroup(profileId, groupId);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteGroupAsync(int groupId) {
-            return base.Channel.DeleteGroupAsync(groupId);
+        public System.Threading.Tasks.Task<bool> DeleteGroupAsync(int profileId, int groupId) {
+            return base.Channel.DeleteGroupAsync(profileId, groupId);
         }
         
         public bool UpdateGroup(string name, int groupId) {

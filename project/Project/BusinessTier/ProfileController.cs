@@ -206,12 +206,12 @@ namespace BusinessTier
             return user;
         }
 
-        public Profile GetUser(int profiled)
+        public Profile GetUser(int profileId)
         {
             Profile user = users.Find(
             delegate (Profile u)
             {
-                return u.ProfileID == profiled;
+                return u.ProfileID == profileId;
             }
             );
             return user;

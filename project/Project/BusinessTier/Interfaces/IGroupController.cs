@@ -11,7 +11,7 @@ namespace BusinessTier
     public interface IGroupController
     {
         bool CreateGroup(String name, int profileId);
-        bool DeleteGroup(int groupId);
+        bool DeleteGroup(int profileId, int groupId);
         bool UpdateGroup(String name, int groupId);
         List<Group> GetUsersGroups(int profileId);
         bool AddMember(String memberName, int groupId);

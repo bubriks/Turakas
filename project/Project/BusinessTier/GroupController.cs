@@ -11,14 +11,16 @@ namespace BusinessTier
 {
     public class GroupController : IGroupController
     {
-        private DbGroup dbGroup;
+        private DbGroup dbGroup = null;
+        private DbActivity dbActivity = null;
         private IProfileController profileController;
         public GroupController()
         {
             dbGroup = new DbGroup();
+            dbActivity = new DbActivity();
             profileController = new ProfileController();
         }
-
+        
         public bool CreateGroup(String name, int profileId)
         {
             try
@@ -26,7 +28,7 @@ namespace BusinessTier
                 Profile profile = profileController.ReadProfile(profileId.ToString(), 1);
                 if (profile != null)
                 {
-                    if (AddMember(profile.Nickname, dbGroup.CreateGroup(name, profileId)))
+                    if (AddMember(profile.Nickname, dbGroup.CreateGroup(dbActivity.CreateActivity(profileId), name)))
                     {
                         return true;
                     }
@@ -46,16 +48,18 @@ namespace BusinessTier
             }
         }
 
-        public bool DeleteGroup(int groupId)
+        public bool DeleteGroup(int groupId, int profileId)
         {
             try
             {
-                if(dbGroup.DeleteGroup(groupId) == 0)
+                if (dbActivity.DeleteActivity(profileId, groupId) == 0)
                 {
                     return false;
                 }
-
-                return true;
+                else
+                {
+                    return true;
+                }
             }
             catch
             {
@@ -67,7 +71,7 @@ namespace BusinessTier
         {
             try
             {
-                if (dbGroup.UpdateGroup(name, groupId) == 0)
+                if (dbGroup.UpdateGroup(groupId, name) == 0)
                 {
                     return false;
                 }
@@ -105,7 +109,7 @@ namespace BusinessTier
                 {//user found
                     if (dbGroup.UserIsMemberOfGroup(profile.ProfileID, groupId))
                     {//user isnt in group
-                        if (dbGroup.AddMember(profile.ProfileID, groupId) < 2)
+                        if (dbGroup.AddMember(dbActivity.CreateActivity(profile.ProfileID), groupId) < 2)
                         {//not added
                             return false;
                         }
@@ -132,7 +136,10 @@ namespace BusinessTier
                 {
                     return false;
                 }
-                return true;
+                else
+                {
+                    return true;
+                }
             }
             catch
             {

@@ -5,21 +5,22 @@ using System.Windows.Forms;
 using PresentationTier.ChatServiceReference;
 using System.ServiceModel;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.Threading;
 
 namespace PresentationTier
 {
     public partial class ChatForm : Form, IChatServiceCallback
     {
+        #region Variables
         private int chatId, profileId;
         private InstanceContext instanceContext = null;
         private ChatServiceClient client;
         private ContextMenu cm;
         private MenuItem joinWithGroup;
+        #endregion
+
         public ChatForm(int profileId)
         {
-            #region initialize
+            #region Initialize
             chatId = 0;
             this.profileId = profileId;
 
@@ -43,9 +44,10 @@ namespace PresentationTier
             client.Online(profileId);
 
             SearchButton_Click(null, null);
+            refreshTimer.Start();
         }
 
-        #region search
+        #region Search
         private void SearchBox_KeyDown(object sender, KeyEventArgs e)//enter presed in search box
         {
             if (e.KeyValue == Convert.ToInt16(Keys.Enter))
@@ -94,8 +96,7 @@ namespace PresentationTier
         }
         #endregion
 
-        #region chat
-        //fix this mae more efficient and bug free
+        #region Chat
         private void ChatListView_MouseDown(object sender, MouseEventArgs e)//Click on listView item
         {
             if (e.Button == MouseButtons.Right)
@@ -202,7 +203,7 @@ namespace PresentationTier
             }
         }
 
-        private void JoinWithGroup(int groupId)//change
+        private void JoinWithGroup(int groupId)//menu item join with group clicked
         {
             client.joinChatWhithGroup(groupId, chatId);
         }
@@ -266,13 +267,15 @@ namespace PresentationTier
         public void joinChat(int chatId)//joins the chat with the group
         {
             new MessageForm(chatId, profileId);
+            Refreshed();
         }
         #endregion
 
-        #region invite
+        #region Invite
         public void Notification(Chat chat)//adds new notifications to listbox
         {
             inviteListBox.Items.Add(chat);
+            Refreshed();
         }
 
         private void InviteListBox_MouseDoubleClick(object sender, MouseEventArgs e)//Notification double clicked
@@ -299,22 +302,23 @@ namespace PresentationTier
         }
         #endregion
 
+        #region Form control
         private void ViewProfileButton_Click(object sender, EventArgs e)//Goes to profile View
         {
             ProfileForm.GetInstance(profileId, this).Show();
         }
 
-        private void YoutubeButton_Click(object sender, EventArgs e)//youtube button pressed
+        private void YoutubeButton_Click(object sender, EventArgs e)//Goes to Youtube View
         {
             YoutubeAlpha.GetInstance().Visible = true;
         }
 
-        private void BtnGroups_Click(object sender, EventArgs e)
+        private void BtnGroups_Click(object sender, EventArgs e)//Goes to Group View
         {
             GroupForm.GetInstance(profileId, this).Show();
         }
 
-        private void LogOut_btn_Click(object sender, EventArgs e)
+        private void LogOut_btn_Click(object sender, EventArgs e)//Goes to Login View
         {
             client.Offline(profileId);
             SignIn_SignUp_ForgotDetailsForm signIn = new SignIn_SignUp_ForgotDetailsForm();
@@ -328,5 +332,17 @@ namespace PresentationTier
             client.Offline(profileId);
             Application.Exit();
         }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            client.RefreshConnection(profileId);
+        }
+
+        public void Refreshed()
+        {
+            refreshTimer.Stop();
+            refreshTimer.Start();
+        }
+        #endregion
     }
 }

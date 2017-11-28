@@ -9,6 +9,7 @@ namespace BusinessTier
     public class ChatController: IChatController
     {
         private DbChat dbChat = null;
+        private DbActivity dbActivity = null;
         private IProfileController profileController = null;
         private IGroupController groupController = null;
         private static List<Chat> chats = new List<Chat>();
@@ -16,19 +17,28 @@ namespace BusinessTier
         public ChatController()
         {
             dbChat = new DbChat();
+            dbActivity = new DbActivity();
             profileController = new ProfileController();
             groupController = new GroupController();
         }
-
+        
         public bool SaveChat(int profileId, Chat chat)
         {
             try
             {
                 if (chat.MaxNrOfUsers > 1)
                 {
-                    if (chat.Id == 0 && dbChat.CreateChat(chat) > 0)//new chat if id = 0 and if chat was created
+                    if (chat.Id == 0)//new chat if id = 0
                     {
-                        return true;
+                        chat.Id = dbActivity.CreateActivity(chat.OwnerID);
+                        if (dbChat.CreateChat(chat) == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
                     }
                     else//update existing chat
                     {
@@ -67,29 +77,25 @@ namespace BusinessTier
                 return false;
             }
         }
-
+        
         public bool DeleteChat(int profileId, int id)
         {
             try
             {
-                if (dbChat.GetChat(id).OwnerID == profileId)//if chats owner is the person who asks to delete
+                if (dbActivity.DeleteActivity(profileId, id) == 0)//if chat wasnt deleted
                 {
-                    if (dbChat.DeleteChat(id) == 0)//if chat wasnt deleted
-                    {
-                        return false;
-                    }
-
-                    Chat foundChat = FindChat(id);//checks if chat is active
-                    if (foundChat != null)
-                    {
-                        lock (chats)//locks chats 
-                        {
-                            chats.Remove(foundChat);//removes chat from active chats
-                        }
-                    }
-                    return true;
+                    return false;
                 }
-                return false;//not the owner of the chat
+
+                Chat foundChat = FindChat(id);//checks if chat is active
+                if (foundChat != null)
+                {
+                    lock (chats)//locks chats 
+                    {
+                        chats.Remove(foundChat);//removes chat from active chats
+                    }
+                }
+                return true;
             }
             catch (Exception)
             {
@@ -135,16 +141,12 @@ namespace BusinessTier
                         List<Tuple<Profile, object>> membersToJoin = new List<Tuple<Profile, object>>();//list where members who have to join will be stored
                         foreach (Profile member in profiles)
                         {
-                            Profile user = null;
-                            foreach(var i in chat.Users)
+                            Tuple<Profile, object> user = FindChat(chatId).Users.Find(
+                            delegate (Tuple<Profile, object> tuple)
                             {
-                                Profile p = i.Item1;
-                                if (p.ProfileID == member.ProfileID)
-                                {
-                                    user = p;
-                                    break;
-                                }
+                                return tuple.Item1.ProfileID == member.ProfileID;
                             }
+                            );
 
                             if (user == null)//if user isnt in chat already
                             {
@@ -152,7 +154,7 @@ namespace BusinessTier
                             }
                             else
                             {
-                                profiles.Remove(user);//removes user from profiles if hi is already in chat so we dont have to call him back
+                                profiles.Remove(user.Item1);//removes user from profiles if hi is already in chat so we dont have to call him back
                             }
                         }
 
@@ -169,7 +171,7 @@ namespace BusinessTier
                 }
                 else
                 {
-                    lock (chats)//optimize
+                    lock (chats)
                     {
                         chat = dbChat.GetChat(chatId);//Gets chat from database
                         if (chat.MaxNrOfUsers >= profiles.Count)
@@ -205,16 +207,12 @@ namespace BusinessTier
                 {
                     lock (chat)//locks the chat object so it cant be changed at the same time
                     {
-                        Tuple<Profile, object> user = null;
-                        foreach (var i in chat.Users)//gets touple with the same id
+                        Tuple<Profile, object> user = FindChat(chatId).Users.Find(
+                        delegate (Tuple<Profile, object> tuple)
                         {
-                            Profile p = i.Item1;
-                            if (p.ProfileID == profileId)
-                            {
-                                user = i;
-                                break;
-                            }
+                            return tuple.Item1.ProfileID == profileId;
                         }
+                        );
 
                         if (user == null)//if user wanst found
                         {
@@ -269,16 +267,12 @@ namespace BusinessTier
                 Chat chat = FindChat(chatId);//looks for existing chat
                 lock (chat)//locks chat so only one proces can make changes to it at a time
                 {
-                    Tuple<Profile, object> user = null;
-                    foreach (var i in chat.Users)//finds touple that holds person with this id
+                    Tuple<Profile, object> user = FindChat(chatId).Users.Find(
+                    delegate (Tuple<Profile, object> tuple)
                     {
-                        Profile p = i.Item1;
-                        if (p.ProfileID == profileId)
-                        {
-                            user = i;
-                            break;
-                        }
+                        return tuple.Item1.ProfileID == profileId;
                     }
+                    );
 
                     if (user == null)//if user wasnt found
                     {
