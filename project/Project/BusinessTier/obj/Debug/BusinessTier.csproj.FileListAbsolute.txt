@@ -180,3 +180,4 @@ C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\obj\Debug\BusinessTier.csproj.GenerateResource.Cache
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\BusinessTier\bin\Debug\Resources\youtube_client_secret.json
 C:\Users\bubri\Source\Repos\Turakas\project\Project\BusinessTier\bin\Debug\Resources\youtube_client_secret.json
+D:\Workspace\Turakas\project\Project\BusinessTier\bin\Debug\Resources\youtube_client_secret.json
