@@ -15,7 +15,7 @@ namespace PresentationTier
         private IGameService gameService;
         private int playerId;
         private int gameId, prevChoice, choice;
-        private System.Timers.Timer timer = new System.Timers.Timer();
+        private System.Timers.Timer timer;
         private volatile bool requestStop = false;
 
         public RPSForm(int chatId, int playerId)
@@ -36,6 +36,12 @@ namespace PresentationTier
             rockChoice_rb.Checked = false;
             paperChoice_rb.Checked = false;
             scissorChoice_rb.Checked = false;
+
+            //initialise timer
+            timer = new System.Timers.Timer();
+            timer.Interval = 1000; //make timer perform action after 1 second
+            timer.AutoReset = false; //make sure timer wont reset
+            timer.SynchronizingObject = (this); //syncronize timer thread with RPSForm thread, in order to allow timer thread to modify RPSForm elements
             #endregion
 
             gameId = chatId; //since chatId is unique, gameId will be unique
@@ -146,7 +152,9 @@ namespace PresentationTier
         /// Callback methode, notifies RPSForm that a player has left the game
         /// </summary>
         public void PlayerLeaves()
-        {//format player2 label
+        {
+            Stop();
+            //format player2 label
             player2_lbl.ForeColor = Color.Red;
             player2_lbl.Text = "PLAYER 2 DISCONECTED!";
             selectChoice_btn.Enabled = false;
@@ -168,9 +176,6 @@ namespace PresentationTier
                 case -2: //player2 did not make a choice
                     Stop(); //stop previouse timer
                     timer.Elapsed += new ElapsedEventHandler(Player2Timer); //add event to timer
-                    timer.Interval = 1000; //make timer perform action after 1 second
-                    timer.AutoReset = false; //make sure timer wont reset
-                    timer.SynchronizingObject = (this); //syncronize timer thread with RPSForm thread, in order to allow timer thread to modify RPSForm elements
                     Start(); //start timer
 
                     //format anouncer label so that the player will know what is happeneing
@@ -180,9 +185,6 @@ namespace PresentationTier
                 case -1: //player1 did not make a choice
                     Stop();
                     timer.Elapsed += new ElapsedEventHandler(Player1Timer);
-                    timer.Interval = 1000;
-                    timer.AutoReset = false;
-                    timer.SynchronizingObject = (this);
                     Start();
 
                     anouncer_lbl.Visible = true;
