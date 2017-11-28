@@ -151,3 +151,4 @@ C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfServic
 C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
 C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\youtube_client_secret.json
 C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\WcfService\bin\Debug\Resources\youtube_client_secret.json
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Resources\youtube_client_secret.json
