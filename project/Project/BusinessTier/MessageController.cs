@@ -11,13 +11,15 @@ namespace BusinessTier
 {
     public class MessageController: IMessageController
     {
-        private DbMessage dbMessage= null;
+        private DbMessage dbMessage = null;
+        private DbActivity dbActivity = null;
 
         public MessageController()
         {
             dbMessage = new DbMessage();
+            dbActivity = new DbActivity();
         }
-
+        
         public Message CreateMessage(int profileId, String text, int chatId)
         {
             try
@@ -26,13 +28,8 @@ namespace BusinessTier
                 {
                     return null;
                 }
-
-                Message message = dbMessage.CreateMessage(profileId, text, chatId);
-                if (message == null)//null is returned if no changes were made
-                {
-                    return null;
-                }
-                return message;
+                
+                return dbMessage.CreateMessage(dbActivity.CreateActivity(profileId), text, chatId);
             }
             catch (Exception)
             {
@@ -56,7 +53,7 @@ namespace BusinessTier
         {
             try
             {
-                if (dbMessage.DeleteMessage(profileId, id) < 1)//if no changes made
+                if (dbActivity.DeleteActivity(profileId, id) == 0)//if no changes made
                 {
                     return false;
                 }

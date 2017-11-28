@@ -440,6 +440,12 @@ namespace PresentationTier.ChatServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/joinChatWhithGroup")]
         System.Threading.Tasks.Task joinChatWhithGroupAsync(int groupId, int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/RefreshConnection")]
+        void RefreshConnection(int profileId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/RefreshConnection")]
+        System.Threading.Tasks.Task RefreshConnectionAsync(int profileId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -450,6 +456,9 @@ namespace PresentationTier.ChatServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/joinChat")]
         void joinChat(int chatId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Refreshed")]
+        void Refreshed();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -534,6 +543,14 @@ namespace PresentationTier.ChatServiceReference {
         
         public System.Threading.Tasks.Task joinChatWhithGroupAsync(int groupId, int chatId) {
             return base.Channel.joinChatWhithGroupAsync(groupId, chatId);
+        }
+        
+        public void RefreshConnection(int profileId) {
+            base.Channel.RefreshConnection(profileId);
+        }
+        
+        public System.Threading.Tasks.Task RefreshConnectionAsync(int profileId) {
+            return base.Channel.RefreshConnectionAsync(profileId);
         }
     }
 }

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PresentationTier.GroupServiceReference;
 
@@ -13,11 +7,13 @@ namespace PresentationTier
 {
     public partial class GroupForm : Form
     {
+        #region Variables
         private static GroupForm instance;
         private int profileId, groupId = 0;
         private Form chatForm;
         private ContextMenu cmGroups, cmMembers;
         private GroupServiceClient client;
+        #endregion
 
         public static GroupForm GetInstance(int profileId, Form chatForm)
         {
@@ -47,7 +43,7 @@ namespace PresentationTier
             BtnAddUser.Enabled = false;
         }
 
-        #region Manage groups
+        #region Groups
         private void ButtonRefresh_Click(object sender, EventArgs e)//Refreshes
         {
             lbAllGroups.Items.Clear();
@@ -69,7 +65,7 @@ namespace PresentationTier
         {
             if(groupId != 0)
             {
-                if (client.UpdateGroup(txtName.Text, groupId))
+                if (!txtName.Text.Equals("") && client.UpdateGroup(txtName.Text, groupId))
                 {
                     txtName.Text = "";
                     groupId = 0;
@@ -80,7 +76,7 @@ namespace PresentationTier
             }
             else
             {
-                if (client.CreateGroup(txtName.Text, profileId))
+                if (!txtName.Text.Equals("") && client.CreateGroup(txtName.Text, profileId))
                 {
                     txtName.Text = "";
                     txtUserName.Enabled = false;
@@ -127,7 +123,7 @@ namespace PresentationTier
 
         private void MenuItemNewRemoveGroup_Click(Object sender, EventArgs e)//Right cick menu button clicked
         {
-            client.DeleteGroup((lbAllGroups.SelectedItem as Group).GroupId);
+            client.DeleteGroup(profileId, (lbAllGroups.SelectedItem as Group).GroupId);
             groupId = 0;
             BtnCreate.Text = "Create new group";
             txtUserName.Enabled = false;
@@ -136,7 +132,7 @@ namespace PresentationTier
         }
         #endregion
 
-        #region Manage members
+        #region Members
 
         private void LbGroupMembers_MouseDown(object sender, MouseEventArgs e)
         {
@@ -214,9 +210,11 @@ namespace PresentationTier
         }
         #endregion
 
+        #region Form control
         private void GroupForm_Closing(object sender, CancelEventArgs e)//on close event
         {
             instance = null;
         }
+        #endregion
     }
 }

@@ -310,6 +310,29 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatService_RefreshConnection_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IChatService_Notification_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -334,6 +357,29 @@
     </wsp:ExactlyOne>
   </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IChatService_joinChat_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatService_Refreshed_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -392,11 +438,17 @@
   <wsdl:message name="IChatService_joinChatWhithGroup_InputMessage">
     <wsdl:part name="parameters" element="tns:joinChatWhithGroup" />
   </wsdl:message>
+  <wsdl:message name="IChatService_RefreshConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshConnection" />
+  </wsdl:message>
   <wsdl:message name="IChatService_Notification_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Notification" />
   </wsdl:message>
   <wsdl:message name="IChatService_joinChat_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:joinChat" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_Refreshed_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Refreshed" />
   </wsdl:message>
   <wsdl:portType name="IChatService">
     <wsdl:operation name="Online">
@@ -422,11 +474,17 @@
     <wsdl:operation name="joinChatWhithGroup">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/joinChatWhithGroup" message="tns:IChatService_joinChatWhithGroup_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RefreshConnection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/RefreshConnection" message="tns:IChatService_RefreshConnection_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Notification">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/Notification" message="tns:IChatService_Notification_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="joinChat">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/joinChat" message="tns:IChatService_joinChat_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Refreshed">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/Refreshed" message="tns:IChatService_Refreshed_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSDualHttpBinding_IChatService" type="tns:IChatService">
@@ -489,6 +547,13 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="RefreshConnection">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/RefreshConnection" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatService_RefreshConnection_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="Notification">
       <soap12:operation soapAction="http://tempuri.org/IChatService/Notification" style="document" />
       <wsdl:output>
@@ -500,6 +565,13 @@
       <soap12:operation soapAction="http://tempuri.org/IChatService/joinChat" style="document" />
       <wsdl:output>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IChatService_joinChat_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Refreshed">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/Refreshed" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatService_Refreshed_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

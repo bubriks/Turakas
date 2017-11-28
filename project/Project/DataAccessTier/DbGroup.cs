@@ -18,20 +18,14 @@ namespace DataAccessTier
             con = DbConnection.GetInstance();
         }
 
-        public int CreateGroup(String name, int profileId)
+        public int CreateGroup(int activityId, String name)
         {
-            string stmt = " DECLARE @activityID int; " +
-
-                " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
-                " SET @activityID = @@IDENTITY;" +
-
-                " INSERT INTO Groups(activityID, name) OUTPUT INSERTED.activityID values(@activityID, @2);";
+            string stmt = "INSERT INTO Groups(activityID, name) OUTPUT INSERTED.activityID values(@0, @1);";
 
             using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
             {
-                cmd.Parameters.AddWithValue("@0", profileId);
-                cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-                cmd.Parameters.AddWithValue("@2", name);
+                cmd.Parameters.AddWithValue("@0", activityId);
+                cmd.Parameters.AddWithValue("@1", name);
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     reader.Read();
@@ -40,17 +34,7 @@ namespace DataAccessTier
             }
         }
 
-        public int DeleteGroup(int groupId)
-        {
-            string stmt = "DELETE FROM Activity WHERE activityID = @0";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
-            {
-                cmd.Parameters.AddWithValue("@0", groupId);
-                return cmd.ExecuteNonQuery();
-            }
-        }
-
-        public int UpdateGroup(String name, int groupId)
+        public int UpdateGroup(int groupId, String name)
         {
             string stmt = " UPDATE Groups SET name = @0 WHERE activityID= @1;";
             using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
@@ -100,10 +84,10 @@ namespace DataAccessTier
         {
             bool canJoin = true;
             string stmt = " select Activity.activityId " +
-                " from groupMembers " +
-                " inner join Activity " +
-                " on Activity.activityId = GroupMembers.activityId " +
-                " where (Activity.profileId = @0 and GroupMembers.groupID = @1)";
+                          " from groupMembers " +
+                                " inner join Activity " +
+                                " on Activity.activityId = GroupMembers.activityId " +
+                          " where (Activity.profileId = @0 and GroupMembers.groupID = @1)";
             using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
             {
                 cmd.Parameters.AddWithValue("@0", profileId);
@@ -120,17 +104,13 @@ namespace DataAccessTier
             }
         }
 
-        public int AddMember(int profileId, int groupId)
+        public int AddMember(int id, int groupId)
         {
-            String stmt = " DECLARE @activityID int; " +
-                    " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
-                    " SET @activityID = @@IDENTITY; " +
-                    " INSERT INTO GroupMembers(activityID, groupID) values(@activityID, @2); ";
+            String stmt = " INSERT INTO GroupMembers(activityID, groupID) values(@0, @1); ";
             using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
             {
-                cmd.Parameters.AddWithValue("@0", profileId);
-                cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-                cmd.Parameters.AddWithValue("@2", groupId);
+                cmd.Parameters.AddWithValue("@0", id);
+                cmd.Parameters.AddWithValue("@1", groupId);
                 return cmd.ExecuteNonQuery();
             }
         }
@@ -151,15 +131,14 @@ namespace DataAccessTier
 
         public List<Profile> GetUsers(int groupId)
         {
-            string stmt = " SELECT " +
-                      " Profile.profileID," +
-                      " Profile.nickname " +
-                  " FROM GroupMembers " +
-                 " INNER JOIN Activity " +
-                      " on Activity.activityID = GroupMembers.activityID " +
-                 " INNER JOIN Profile " +
-                     "  on Profile.profileID = Activity.profileID " +
-                  " where GroupMembers.groupID = @0;";
+            string stmt = " SELECT Profile.profileID," +
+                                " Profile.nickname " +
+                            " FROM GroupMembers " +
+                            " INNER JOIN Activity " +
+                                " on Activity.activityID = GroupMembers.activityID " +
+                            " INNER JOIN Profile " +
+                                " on Profile.profileID = Activity.profileID " +
+                            " where GroupMembers.groupID = @0;";
             using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
             {
                 cmd.Parameters.AddWithValue("@0", groupId);

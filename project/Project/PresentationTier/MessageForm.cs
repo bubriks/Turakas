@@ -10,11 +10,13 @@ namespace PresentationTier
 {
     public partial class MessageForm : Form, IMessageServiceCallback
     {
+        #region Variables
         private int profileId, chatId;
         private InstanceContext instanceContext = null;
         private MessageServiceClient client;
         private ContextMenu cm;
         private ToolTip toolTip = new ToolTip();
+        #endregion
 
         public MessageForm(int chatId, int profileId)
         {
@@ -34,6 +36,7 @@ namespace PresentationTier
             #endregion
 
             client.JoinChat(chatId, profileId);
+            refreshTimer.Start();
         }
 
         #region info about chat
@@ -49,6 +52,7 @@ namespace PresentationTier
             }
 
             peopleInChatLabel.Text = chat.Users.Count() + " out of " + chat.MaxNrOfUsers + " users";
+            Refreshed();
         }
 
         public void GetMessages(MessageServiceReference.Message[] messages)//gets message in chat
@@ -58,6 +62,7 @@ namespace PresentationTier
                 messageListBox.Items.Add(message);
             }
             this.messageListBox.SelectedIndex = this.messageListBox.Items.Count - 1;
+            Refreshed();
         }
 
         public void GetOnlineProfiles(Profile[] profiles)//gets all users online
@@ -79,6 +84,8 @@ namespace PresentationTier
                 rps_btn.Visible = true;
             else
                 rps_btn.Visible = false;
+
+            Refreshed();
         }
         #endregion
 
@@ -88,6 +95,7 @@ namespace PresentationTier
             toolStripStatusLabel1.Text = "Someone is writing";
             timer.Stop();
             timer.Start();
+            Refreshed();
         }
 
         private void Timer_Tick(object sender, EventArgs e)//timer if nobody writing than method runs
@@ -119,11 +127,11 @@ namespace PresentationTier
         public void AddMessage(MessageServiceReference.Message message)//call back item message recieved
         {
             messageListBox.Items.Add(message);
+            Refreshed();
         }
         #endregion
 
         #region Remove message
-
         private void ListBox1_MouseDown(object sender, MouseEventArgs e)//right click clicked on message
         {
             if (e.Button == MouseButtons.Right)
@@ -155,9 +163,11 @@ namespace PresentationTier
                     break;
                 }
             }
+            Refreshed();
         }
         #endregion
 
+        #region message info
         private void MessageListBox_MouseMove(object sender, MouseEventArgs e)//Shows the rest of the info about message
         {
             int index = messageListBox.IndexFromPoint(e.Location);
@@ -181,6 +191,7 @@ namespace PresentationTier
                 toolTip.SetToolTip(this.messageListBox, string.Empty);
             }
         }
+        #endregion
 
         #region invite
         private void FriendNameTextBox_KeyDown(object sender, KeyEventArgs e)//if enter pressed then invite user
@@ -207,10 +218,11 @@ namespace PresentationTier
             {
                 addButton.BackColor = Color.Red;
             }
+            Refreshed();
         }
         #endregion
 
-        #region form control
+        #region Form control
         private void Rps_btn_Click(object sender, EventArgs e)
         {
             RPSForm rPSForm = new RPSForm(chatId, profileId);
@@ -231,6 +243,17 @@ namespace PresentationTier
             {
                 this.Close();
             }
+        }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            client.RefreshConnection(profileId, chatId);
+        }
+
+        public void Refreshed()
+        {
+            refreshTimer.Stop();
+            refreshTimer.Start();
         }
         #endregion
     }

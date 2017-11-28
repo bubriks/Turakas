@@ -26,7 +26,10 @@ namespace WcfService
                 foreach (var tuple in chat.Users)
                 {
                     profiles.Add(tuple.Item1);
-                    callbacks.Add(tuple.Item2);
+                    if(tuple.Item2 != null)
+                    {
+                        callbacks.Add(tuple.Item2);
+                    }
                 }
                 callback.GetChat(chat);
                 callback.GetMessages(messageController.GetMessages(chatId));
@@ -107,6 +110,18 @@ namespace WcfService
                     callback.RemoveMessage(id);
                 }
             }
+        }
+
+        public void RefreshConnection(int profileId, int chatId)
+        {
+            Tuple<Profile, object> user = chatController.FindChat(chatId).Users.Find(
+            delegate (Tuple<Profile, object> tuple)
+            {
+                return tuple.Item1.ProfileID == profileId;
+            }
+            );
+            IMessageCallBack callback = (IMessageCallBack)user.Item2;
+            callback.Refreshed();
         }
     }
 }

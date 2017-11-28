@@ -15,7 +15,7 @@ namespace WcfService
         bool CreateGroup(String name, int profileId);
 
         [OperationContract]
-        bool DeleteGroup(int groupId);
+        bool DeleteGroup(int profileId, int groupId);
 
         [OperationContract]
         bool UpdateGroup(String name, int groupId);

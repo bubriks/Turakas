@@ -28,6 +28,9 @@ namespace WcfService
 
         [OperationContract(IsOneWay = true)]
         void DeleteMessage(int profileId, int id, int chatId);
+
+        [OperationContract(IsOneWay = true)]
+        void RefreshConnection(int profileId, int chatId);
     }
 
     public interface IMessageCallBack
@@ -55,5 +58,8 @@ namespace WcfService
 
         [OperationContract(IsOneWay = true)]
         void Show(bool result);
+
+        [OperationContract(IsOneWay = true)]
+        void Refreshed();
     }
 }

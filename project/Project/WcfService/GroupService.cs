@@ -17,9 +17,9 @@ namespace WcfService
             return groupController.CreateGroup(name, profileId);
         }
 
-        public bool DeleteGroup(int groupId)
+        public bool DeleteGroup(int profileId, int groupId)
         {
-            return groupController.DeleteGroup(groupId);
+            return groupController.DeleteGroup(profileId, groupId);
         }
 
         public bool UpdateGroup(string name, int groupId)

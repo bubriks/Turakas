@@ -31,6 +31,9 @@ namespace WcfService
 
         [OperationContract(IsOneWay = true)]
         void joinChatWhithGroup(int groupId, int chatId);
+
+        [OperationContract(IsOneWay = true)]
+        void RefreshConnection(int profileId);
     }
 
     public interface IChatCallBack
@@ -40,5 +43,8 @@ namespace WcfService
 
         [OperationContract(IsOneWay = true)]
         void joinChat(int chatId);
+
+        [OperationContract(IsOneWay = true)]
+        void Refreshed();
     }
 }

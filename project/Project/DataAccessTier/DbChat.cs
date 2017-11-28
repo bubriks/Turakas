@@ -16,19 +16,13 @@ namespace DataAccessTier
 
         public int CreateChat(Chat chat)
         {
-            string stmt = "DECLARE @activityID int; " +
-
-            " INSERT INTO Activity(profileID, timeStamp) VALUES(@0, @1); " +
-            " SET @activityID = @@IDENTITY;" +
-
-            " INSERT INTO Chat(activityID, name, type, nrOfUsers) values (@activityID, @2, @3, @4);";
+            string stmt ="INSERT INTO Chat(activityID, name, type, nrOfUsers) values (@0, @1, @2, @3);";
             using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
             {
-                cmd.Parameters.AddWithValue("@0", chat.OwnerID);
-                cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-                cmd.Parameters.AddWithValue("@2", chat.Name);
-                cmd.Parameters.AddWithValue("@3", Convert.ToInt32(chat.Type));
-                cmd.Parameters.AddWithValue("@4", chat.MaxNrOfUsers);
+                cmd.Parameters.AddWithValue("@0", chat.Id);
+                cmd.Parameters.AddWithValue("@1", chat.Name);
+                cmd.Parameters.AddWithValue("@2", Convert.ToInt32(chat.Type));
+                cmd.Parameters.AddWithValue("@3", chat.MaxNrOfUsers);
                 return cmd.ExecuteNonQuery();
             }
         }
@@ -120,16 +114,6 @@ namespace DataAccessTier
                     }
                     return chats;
                 }
-            }
-        }
-
-        public int DeleteChat(int id)
-        {
-            string stmt = "DELETE FROM Activity WHERE activityID = @0";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
-            {
-                cmd.Parameters.AddWithValue("@0", id);
-                return cmd.ExecuteNonQuery();
             }
         }
     }
