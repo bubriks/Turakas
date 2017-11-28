@@ -143,7 +143,7 @@ namespace BusinessTier
                         List<Tuple<Profile, object>> membersToJoin = new List<Tuple<Profile, object>>();//list where members who have to join will be stored
                         foreach (Profile member in profiles)
                         {
-                            Tuple<Profile, object> user = chat.Users.Find(
+                            Tuple<Profile, object> user = FindChat(chatId).Users.Find(
                             delegate (Tuple<Profile, object> tuple)
                             {
                                 return tuple.Item1.ProfileID == member.ProfileID;
@@ -209,7 +209,7 @@ namespace BusinessTier
                 {
                     lock (chat)//locks the chat object so it cant be changed at the same time
                     {
-                        Tuple<Profile, object> user = chat.Users.Find(
+                        Tuple<Profile, object> user = FindChat(chatId).Users.Find(
                         delegate (Tuple<Profile, object> tuple)
                         {
                             return tuple.Item1.ProfileID == profileId;
@@ -274,7 +274,7 @@ namespace BusinessTier
                 Chat chat = FindChat(chatId);//looks for existing chat
                 lock (chat)//locks chat so only one proces can make changes to it at a time
                 {
-                    Tuple<Profile, object> user = chat.Users.Find(
+                    Tuple<Profile, object> user = FindChat(chatId).Users.Find(
                     delegate (Tuple<Profile, object> tuple)
                     {
                         return tuple.Item1.ProfileID == profileId;

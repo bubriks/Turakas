@@ -19,8 +19,8 @@ namespace DataAccessTier
             string stmt =" INSERT INTO Message(activityID, chatActivityID, message) values(@0, @1, @2); " +
 
             " SELECT " +
-                " Profile.nickname, " +
-                " Activity.activityID, " +
+                " Profile.nickname," +
+                " Profile.profileID, " +
                 " Message.message, " +
                 " Activity.timeStamp " +
                 " FROM Profile " +
@@ -42,10 +42,10 @@ namespace DataAccessTier
                     {
                         message = new Message
                         {
-                            Id = Int32.Parse(reader["activityID"].ToString()),
+                            Id = id,
                             Text = reader["message"].ToString(),
                             Creator = reader["nickname"].ToString(),
-                            CreatorId = id,
+                            CreatorId = Int32.Parse(reader["profileID"].ToString()),
                             Time = Convert.ToDateTime(reader["timeStamp"].ToString())
                         };
                     }

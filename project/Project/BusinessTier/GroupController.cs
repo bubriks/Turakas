@@ -48,7 +48,7 @@ namespace BusinessTier
             }
         }
 
-        public bool DeleteGroup(int groupId, int profileId)
+        public bool DeleteGroup(int profileId, int groupId)
         {
             try
             {

@@ -70,7 +70,7 @@ namespace DataAccessTier
                         {
                             GroupId = Int32.Parse(reader["activityID"].ToString()),
                             Name = reader["name"].ToString(),
-                            CreatorId = Int32.Parse(reader["profileID"].ToString()),
+                            CreatorId = profileId,
                             Time = Convert.ToDateTime(reader["timeStamp"].ToString())
                         };
                         groups.Add(group);
