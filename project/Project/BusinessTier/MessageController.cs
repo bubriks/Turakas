@@ -53,13 +53,13 @@ namespace BusinessTier
         {
             try
             {
-                if (dbActivity.DeleteActivity(profileId, id) == 0)//if no changes made
+                if (dbActivity.DeleteActivity(profileId, id) == 1)//if no changes made
                 {
-                    return false;
+                    return true;
                 }
                 else//changes were done
                 {
-                    return true;
+                    return false;
                 }
             }
             catch (Exception)

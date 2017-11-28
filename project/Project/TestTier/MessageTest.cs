@@ -11,7 +11,7 @@ namespace TestTier
     {
         private MessageController controller = null;
         private ChatController chatController = null;
-        private int profileId = 1;
+        private int profileId = 12;
 
         public MessageTest()
         {
@@ -19,6 +19,7 @@ namespace TestTier
             chatController = new ChatController();
         }
 
+        #region Create message
         [TestMethod]
         public void CreateMessageWorking()
         {
@@ -48,7 +49,9 @@ namespace TestTier
             Chat chat = chats[chats.Count - 1];
             Assert.AreEqual(null, controller.CreateMessage(profileId, "", chat.Id));
         }
+        #endregion
 
+        #region Get messages
         [TestMethod]
         public void GetMessagesWorking()
         {
@@ -63,7 +66,9 @@ namespace TestTier
         {
             Assert.AreEqual(0, controller.GetMessages(0).Count);
         }
+        #endregion
 
+        #region Delete message
         [TestMethod]
         public void DeleteMessagesWorking()
         {
@@ -87,5 +92,6 @@ namespace TestTier
             Message message = controller.CreateMessage(profileId, "test", chat.Id);
             Assert.AreEqual(false, controller.DeleteMessage(0, message.Id));
         }
+        #endregion
     }
 }
