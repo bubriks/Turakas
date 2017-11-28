@@ -288,9 +288,9 @@ namespace PresentationTier
             player1_lbl.ForeColor = Color.DeepPink;
             if (player1_bar.Value >= 100) //if time ran out (10 seconds have passed)
             {
+                Stop();
                 player1_bar.Value = 0; //reset timer to 0
                 gameService.MakeChoice(gameId, playerId, new Random().Next(0, 2)); //randomly choose for player
-                Stop();
             }
             else
             {
@@ -312,9 +312,8 @@ namespace PresentationTier
             player2_lbl.ForeColor = Color.DeepPink;
             if (player2_bar.Value >= 100) //if time ran out (10 seconds)
             {
-                player2_bar.Value = 0; //reset timer to 0
-                gameService.MakeChoice(gameId, playerId, new Random().Next(0, 2)); //randomly choose for player
                 Stop();
+                player2_bar.Value = 0; //reset timer to 0
             }
             else
             {

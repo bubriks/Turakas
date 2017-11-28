@@ -11,11 +11,18 @@ using System.IO;
 using System.Threading;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace BusinessTier
 {
     public class SongController: ISongController
     {
+        private static YouTubeService ytService;
+        public SongController()
+        {
+            ytService = Auth();
+
+        }
         public bool AddSong(string url)
         {
             DBSong dbSong = new DBSong();
@@ -31,14 +38,12 @@ namespace BusinessTier
             return false;
         }
 
-        private static YouTubeService ytService = Auth();
-
-        private static YouTubeService Auth()
+        private YouTubeService Auth()
         {
             UserCredential credential;
-            using (var stream = new FileStream("youtube_client_secret.json", FileMode.Open, FileAccess.Read))
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("BusinessTier.Resources.youtube_client_secret.json"))
             {
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(GoogleClientSecrets.Load(stream).Secrets,
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(GoogleClientSecrets.Load(stream).Secrets,
                     new[] { YouTubeService.Scope.YoutubeReadonly },
                     "user",
                     CancellationToken.None,

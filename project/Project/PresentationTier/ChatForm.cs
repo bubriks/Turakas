@@ -316,9 +316,11 @@ namespace PresentationTier
 
         private void LogOut_btn_Click(object sender, EventArgs e)
         {
+            client.Offline(profileId);
             SignIn_SignUp_ForgotDetailsForm signIn = new SignIn_SignUp_ForgotDetailsForm();
             Hide();
             signIn.ShowDialog();
+            client.Offline(profileId);
             Close();
         }
 
