@@ -13,6 +13,7 @@ namespace BusinessTier
     {
         private DbProfile dbProfile;
         private static List<Profile> users = new List<Profile>();
+
         public ProfileController()
         {
             dbProfile = new DbProfile();

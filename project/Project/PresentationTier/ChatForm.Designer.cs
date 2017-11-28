@@ -31,6 +31,7 @@ namespace PresentationTier
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.chatListView = new System.Windows.Forms.ListView();
             this.searchButton = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
@@ -49,10 +50,15 @@ namespace PresentationTier
             this.youtubeButton = new System.Windows.Forms.Button();
             this.btnGroups = new System.Windows.Forms.Button();
             this.logOut_btn = new System.Windows.Forms.Button();
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.chatGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nrOfUsersTrackBar)).BeginInit();
             this.SuspendLayout();
+            // 
+            // refreshTimer
+            // 
+            this.refreshTimer.Enabled = true;
+            this.refreshTimer.Interval = 120000;
+            this.refreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
             // 
             // chatListView
             // 
@@ -247,11 +253,6 @@ namespace PresentationTier
             this.logOut_btn.Text = "LogOut";
             this.logOut_btn.UseVisualStyleBackColor = true;
             this.logOut_btn.Click += new System.EventHandler(this.LogOut_btn_Click);
-            // 
-            // refreshTimer
-            // 
-            this.refreshTimer.Interval = 120000;
-            this.refreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
             // 
             // ChatForm
             // 

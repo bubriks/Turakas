@@ -109,7 +109,7 @@ namespace BusinessTier
                 {//user found
                     if (dbGroup.UserIsMemberOfGroup(profile.ProfileID, groupId))
                     {//user isnt in group
-                        if (dbGroup.AddMember(dbActivity.CreateActivity(profile.ProfileID), groupId) < 2)
+                        if (dbGroup.AddMember(dbActivity.CreateActivity(profile.ProfileID), groupId) == 0)
                         {//not added
                             return false;
                         }

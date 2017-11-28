@@ -98,7 +98,7 @@ namespace WcfService
         public void RefreshConnection(int profileId)
         {
             Profile user = profileController.GetUser(profileId);
-            IMessageCallBack callback = (IMessageCallBack)user.CallBack;
+            IChatCallBack callback = (IChatCallBack)user.CallBack;
             callback.Refreshed();
         }
     }
