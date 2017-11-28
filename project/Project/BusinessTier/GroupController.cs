@@ -26,7 +26,7 @@ namespace BusinessTier
             try
             {
                 Profile profile = profileController.ReadProfile(profileId.ToString(), 1);
-                if (profile != null)
+                if (profile != null && !name.Equals(""))
                 {
                     if (AddMember(profile.Nickname, dbGroup.CreateGroup(dbActivity.CreateActivity(profileId), name)))
                     {
@@ -52,13 +52,13 @@ namespace BusinessTier
         {
             try
             {
-                if (dbActivity.DeleteActivity(profileId, groupId) == 0)
+                if (dbActivity.DeleteActivity(profileId, groupId) == 1)
                 {
-                    return false;
+                    return true;
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
             }
             catch
@@ -71,12 +71,14 @@ namespace BusinessTier
         {
             try
             {
-                if (dbGroup.UpdateGroup(groupId, name) == 0)
+                if (!name.Equals("") && dbGroup.UpdateGroup(groupId, name) == 1)
+                {
+                    return true;
+                }
+                else
                 {
                     return false;
                 }
-
-                return true;
             }
             catch
             {
