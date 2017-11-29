@@ -29,14 +29,6 @@ namespace PresentationTier
             client = new ChatServiceClient(instanceContext);
             cm = new ContextMenu();
 
-            chatListView.Columns.Add("Id", 0, HorizontalAlignment.Left);
-            chatListView.Columns.Add("Name", 100, HorizontalAlignment.Left);
-            chatListView.Columns.Add("Type", 60, HorizontalAlignment.Left);
-            chatListView.Columns.Add("Users", 60, HorizontalAlignment.Left);
-            chatListView.Columns.Add("Room size", 80, HorizontalAlignment.Left);
-            chatListView.Columns.Add("Owner", 0, HorizontalAlignment.Left);
-            chatListView.Columns.Add("Time of creation", 150, HorizontalAlignment.Left);
-
             nrOfUsersTrackBar.Minimum = 2;
             nrOfUsersTrackBar.Maximum = 10;
             nrOfUsersTrackBar.TickFrequency = 1;
@@ -62,6 +54,7 @@ namespace PresentationTier
             foreach (Chat chat in client.GetChatsByName(searchBox.Text, profileId))
             {
                 ListViewItem row = new ListViewItem(chat.Id.ToString());
+                row.SubItems.Add(chat.OwnerID.ToString());
                 row.SubItems.Add(chat.Name);
                 if (chat.Type)
                 {
@@ -80,15 +73,14 @@ namespace PresentationTier
                     row.SubItems.Add(chat.Users.Count().ToString());
                 }
                 row.SubItems.Add(chat.MaxNrOfUsers.ToString());
-                row.SubItems.Add(chat.OwnerID.ToString());
                 row.SubItems.Add(chat.Time.ToString());
                 chatListView.Items.Add(row);
             }
         }
 
-        private void ChatListView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)//doesnt allow row 0 and 5 to be resized
+        private void ChatListView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)//doesnt allow row 0 and 1 to be resized
         {
-            if (e.ColumnIndex == 0 || e.ColumnIndex == 5)
+            if (e.ColumnIndex == 0 || e.ColumnIndex == 1)
             {
                 e.Cancel = true;
                 e.NewWidth = chatListView.Columns[e.ColumnIndex].Width;
@@ -106,8 +98,7 @@ namespace PresentationTier
                 {
                     lvhti.Item.Selected = true;
                     chatId = Int32.Parse(lvhti.Item.Text);
-
-                    if (Int32.Parse(lvhti.Item.SubItems[5].Text) == profileId) {
+                    if (Int32.Parse(lvhti.Item.SubItems[1].Text) == profileId) {
                         MenuItem removeItem = new MenuItem("Remove", RemoveMenuItem_Click);
                         cm.MenuItems.Add(removeItem);
                         Group[] groupList = client.GetUsersGroups(profileId);
@@ -161,8 +152,8 @@ namespace PresentationTier
                 if (lvhti.Item != null)
                 {
                     chatId = Int32.Parse(lvhti.Item.Text);
-                    chatNameTextBox.Text = lvhti.Item.SubItems[1].Text;
-                    if (lvhti.Item.SubItems[2].Text.Equals("False"))
+                    chatNameTextBox.Text = lvhti.Item.SubItems[2].Text;
+                    if (lvhti.Item.SubItems[3].Text.Equals("False"))
                     {
                         privateCheckBox.Checked = true;
                     }
@@ -170,9 +161,9 @@ namespace PresentationTier
                     {
                         privateCheckBox.Checked = false;
                     }
-                    nrOfUsersTrackBar.Value = Int32.Parse(lvhti.Item.SubItems[4].Text);
+                    nrOfUsersTrackBar.Value = Int32.Parse(lvhti.Item.SubItems[5].Text);
                     saveButton.Text = "Update chat";
-                    if (Int32.Parse(lvhti.Item.SubItems[5].Text) == profileId)
+                    if (Int32.Parse(lvhti.Item.SubItems[1].Text) == profileId)
                     {
                         chatNameTextBox.Enabled = true;
                         privateCheckBox.Enabled = true;

@@ -16,7 +16,7 @@ namespace PresentationTier
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SignIn_SignUp_ForgotDetailsForm());
+            Application.Run(new ChatForm(12));
         }
     }
 }

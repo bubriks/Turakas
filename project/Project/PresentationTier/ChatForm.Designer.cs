@@ -31,8 +31,17 @@ namespace PresentationTier
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Id"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.MenuHighlight, null);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.chatListView = new System.Windows.Forms.ListView();
+            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Users = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Room = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Owner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.searchButton = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.chatGroupBox = new System.Windows.Forms.GroupBox();
@@ -65,11 +74,23 @@ namespace PresentationTier
             this.chatListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ID,
+            this.Owner,
+            this.Name,
+            this.Type,
+            this.Users,
+            this.Room,
+            this.Time});
             this.chatListView.FullRowSelect = true;
+            listViewItem1.Checked = true;
+            listViewItem1.StateImageIndex = 1;
+            this.chatListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
             this.chatListView.Location = new System.Drawing.Point(13, 39);
             this.chatListView.MultiSelect = false;
             this.chatListView.Name = "chatListView";
-            this.chatListView.Size = new System.Drawing.Size(386, 218);
+            this.chatListView.Size = new System.Drawing.Size(454, 207);
             this.chatListView.TabIndex = 0;
             this.chatListView.UseCompatibleStateImageBehavior = false;
             this.chatListView.View = System.Windows.Forms.View.Details;
@@ -77,10 +98,43 @@ namespace PresentationTier
             this.chatListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ChatListView_MouseDoubleClick);
             this.chatListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ChatListView_MouseDown);
             // 
+            // ID
+            // 
+            this.ID.Text = "ID";
+            this.ID.Width = 0;
+            // 
+            // Owner
+            // 
+            this.Owner.Text = "Owner";
+            this.Owner.Width = 0;
+            // 
+            // Name
+            // 
+            this.Name.Text = "Name";
+            this.Name.Width = 100;
+            // 
+            // Type
+            // 
+            this.Type.Text = "Type";
+            // 
+            // Users
+            // 
+            this.Users.Text = "Users";
+            // 
+            // Room
+            // 
+            this.Room.Text = "Room size";
+            this.Room.Width = 80;
+            // 
+            // Time
+            // 
+            this.Time.Text = "Time of creation";
+            this.Time.Width = 150;
+            // 
             // searchButton
             // 
             this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchButton.Location = new System.Drawing.Point(324, 10);
+            this.searchButton.Location = new System.Drawing.Point(392, 10);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(75, 23);
             this.searchButton.TabIndex = 1;
@@ -94,7 +148,7 @@ namespace PresentationTier
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBox.Location = new System.Drawing.Point(12, 13);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(305, 20);
+            this.searchBox.Size = new System.Drawing.Size(373, 20);
             this.searchBox.TabIndex = 2;
             this.searchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchBox_KeyDown);
             // 
@@ -109,7 +163,7 @@ namespace PresentationTier
             this.chatGroupBox.Controls.Add(this.chatNameTextBox);
             this.chatGroupBox.Controls.Add(this.typeLabel);
             this.chatGroupBox.Controls.Add(this.chatNameLabel);
-            this.chatGroupBox.Location = new System.Drawing.Point(405, 10);
+            this.chatGroupBox.Location = new System.Drawing.Point(473, 10);
             this.chatGroupBox.Name = "chatGroupBox";
             this.chatGroupBox.Size = new System.Drawing.Size(200, 158);
             this.chatGroupBox.TabIndex = 3;
@@ -190,7 +244,7 @@ namespace PresentationTier
             // viewProfileButton
             // 
             this.viewProfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewProfileButton.Location = new System.Drawing.Point(197, 271);
+            this.viewProfileButton.Location = new System.Drawing.Point(265, 260);
             this.viewProfileButton.Name = "viewProfileButton";
             this.viewProfileButton.Size = new System.Drawing.Size(60, 23);
             this.viewProfileButton.TabIndex = 4;
@@ -204,16 +258,16 @@ namespace PresentationTier
             | System.Windows.Forms.AnchorStyles.Right)));
             this.inviteListBox.DisplayMember = "Name";
             this.inviteListBox.FormattingEnabled = true;
-            this.inviteListBox.Location = new System.Drawing.Point(405, 175);
+            this.inviteListBox.Location = new System.Drawing.Point(473, 175);
             this.inviteListBox.Name = "inviteListBox";
-            this.inviteListBox.Size = new System.Drawing.Size(200, 82);
+            this.inviteListBox.Size = new System.Drawing.Size(200, 69);
             this.inviteListBox.TabIndex = 5;
             this.inviteListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.InviteListBox_MouseDoubleClick);
             // 
             // clearEventsButton
             // 
             this.clearEventsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearEventsButton.Location = new System.Drawing.Point(530, 271);
+            this.clearEventsButton.Location = new System.Drawing.Point(598, 260);
             this.clearEventsButton.Name = "clearEventsButton";
             this.clearEventsButton.Size = new System.Drawing.Size(75, 23);
             this.clearEventsButton.TabIndex = 6;
@@ -224,7 +278,7 @@ namespace PresentationTier
             // youtubeButton
             // 
             this.youtubeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.youtubeButton.Location = new System.Drawing.Point(344, 271);
+            this.youtubeButton.Location = new System.Drawing.Point(412, 260);
             this.youtubeButton.Name = "youtubeButton";
             this.youtubeButton.Size = new System.Drawing.Size(55, 23);
             this.youtubeButton.TabIndex = 7;
@@ -235,7 +289,7 @@ namespace PresentationTier
             // btnGroups
             // 
             this.btnGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGroups.Location = new System.Drawing.Point(263, 271);
+            this.btnGroups.Location = new System.Drawing.Point(331, 260);
             this.btnGroups.Name = "btnGroups";
             this.btnGroups.Size = new System.Drawing.Size(75, 23);
             this.btnGroups.TabIndex = 22;
@@ -246,7 +300,7 @@ namespace PresentationTier
             // logOut_btn
             // 
             this.logOut_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.logOut_btn.Location = new System.Drawing.Point(13, 271);
+            this.logOut_btn.Location = new System.Drawing.Point(13, 260);
             this.logOut_btn.Name = "logOut_btn";
             this.logOut_btn.Size = new System.Drawing.Size(75, 23);
             this.logOut_btn.TabIndex = 23;
@@ -258,7 +312,7 @@ namespace PresentationTier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 306);
+            this.ClientSize = new System.Drawing.Size(685, 295);
             this.Controls.Add(this.logOut_btn);
             this.Controls.Add(this.btnGroups);
             this.Controls.Add(this.youtubeButton);
@@ -269,7 +323,7 @@ namespace PresentationTier
             this.Controls.Add(this.searchBox);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.chatListView);
-            this.Name = "ChatForm";
+            this.MinimumSize = new System.Drawing.Size(701, 334);
             this.Text = "Chat form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_Closing);
             this.chatGroupBox.ResumeLayout(false);
@@ -301,5 +355,12 @@ namespace PresentationTier
         private Button btnGroups;
         private Button logOut_btn;
         private Timer refreshTimer;
+        private ColumnHeader ID;
+        private new ColumnHeader Name;
+        private ColumnHeader Type;
+        private ColumnHeader Users;
+        private ColumnHeader Room;
+        private new ColumnHeader Owner;
+        private ColumnHeader Time;
     }
 }
