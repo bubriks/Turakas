@@ -63,7 +63,7 @@ namespace BusinessTier
                 Profile profiles = dbProfile.ReadProfile(email, 3);
                 string tempPass = RandomPassword();
                 string subject = ("Your Login Details are:");
-                string body = "Hello, " + "\nYour username is: " + profiles.Nickname + "\nYour USERNAME IS: " + profiles.Username + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
+                string body = "Hello, " + profiles.Nickname + "\nYour USERNAME IS: " + profiles.Username + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
 
                 //Creates new starnsaction
                 try
@@ -159,6 +159,7 @@ namespace BusinessTier
             GuidString = GuidString.Replace("=", "");
             GuidString = GuidString.Replace("+", "");
 
+            GuidString += "1";
             return GuidString;
         }
 
