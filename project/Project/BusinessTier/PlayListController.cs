@@ -5,6 +5,7 @@ using System.Diagnostics;
 using BusinessTier.Interfaces;
 using DataAccessTier;
 using DataTier;
+using System.Data;
 
 namespace BusinessTier
 {
@@ -25,16 +26,30 @@ namespace BusinessTier
         
         public bool AddPlayList(string name, int profileId)
         {
-            con.BeginTransaction();
-            int activityId = dbActivity.CreateActivity(profileId);
-
-            if (activityId>0 && dbPlayList.AddPlayList(name, activityId)>0)
+            using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
             {
-                con.Commit();
-                return true;
+
+                try
+                {
+                    int activityId = dbActivity.CreateActivity(profileId);
+
+                    if (activityId > 0 && dbPlayList.AddPlayList(name, activityId) > 0)
+                    {
+                        tran.Commit();
+                        return true;
+                    }
+                    else
+                    {
+                        tran.Rollback();
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+                    tran.Rollback();
+                    return false;
+                }
             }
-            con.Rollback();
-            return false;
         }
 
         public List<PlayList> FindPlayListsByName(string name)

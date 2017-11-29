@@ -45,26 +45,17 @@ namespace DataAccessTier
         }
         #endregion
 
-        public void BeginTransaction()
+        #region Transaction
+        public SqlTransaction BeginTransaction()
         {
             transaction = con.BeginTransaction();
+            return transaction;
         }
 
         public SqlTransaction GetTransaction()
         {
             return transaction;
         }
-
-        public void Commit()
-        {
-            transaction.Commit();
-            transaction = null;
-        }
-
-        public void Rollback()
-        {
-            transaction.Rollback();
-            transaction = null;
-        }
+        #endregion
     }
 }

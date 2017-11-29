@@ -3,6 +3,7 @@ using DataAccessTier;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace BusinessTier
 {
@@ -30,14 +31,27 @@ namespace BusinessTier
                 {
                     if (chat.Id == 0)//new chat if id = 0
                     {
-                        chat.Id = dbActivity.CreateActivity(chat.OwnerID);
-                        if (dbChat.CreateChat(chat) == 0)
+                        using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
                         {
-                            return false;
-                        }
-                        else
-                        {
-                            return true;
+                            try
+                            {
+                                chat.Id = dbActivity.CreateActivity(chat.OwnerID);
+                                if (dbChat.CreateChat(chat) == 0)
+                                {
+                                    tran.Rollback();
+                                    return false;
+                                }
+                                else
+                                {
+                                    tran.Commit();
+                                    return true;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                tran.Rollback();
+                                return false;
+                            }
                         }
                     }
                     else//update existing chat

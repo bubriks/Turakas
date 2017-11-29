@@ -12,6 +12,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using System.Data;
 
 namespace BusinessTier
 {
@@ -27,21 +28,35 @@ namespace BusinessTier
         {
             DBSong dbSong = new DBSong();
             DbActivity dbActivity = new DbActivity();
-            DbConnection dbConnection = DbConnection.GetInstance();
-            Song song = dbSong.FindSongByURL(url);
-            if (song != null)
+            using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
             {
-                return false;
+
+                try
+                {
+                    Song song = dbSong.FindSongByURL(url);
+                    if (song != null)
+                    {
+                        return false;
+                    }
+
+                    int activityId = dbActivity.CreateActivity(profileId);
+                    if (activityId > 0 && dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url, activityId) > 0)
+                    {
+                        tran.Commit();
+                        return true;
+                    }
+                    else
+                    {
+                        tran.Rollback();
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+                    tran.Rollback();
+                    return false;
+                }
             }
-            dbConnection.BeginTransaction();
-            int activityId = dbActivity.CreateActivity(profileId);
-            if (activityId>0 &&dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url, activityId) > 0)
-            {
-                dbConnection.Commit();
-                return true;
-            }
-            dbConnection.Rollback();
-            return false;
         }
 
         private YouTubeService Auth()
