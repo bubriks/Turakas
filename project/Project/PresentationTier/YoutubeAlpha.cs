@@ -70,6 +70,9 @@ namespace PresentationTier
             else if (youtubeServiceClient.AddSong(VideoId, profileId))
             {
                 MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listBox1.DataSource = youtubeServiceClient.FindSongsByName(textBox2.Text);
+                listBox1.ValueMember = "Url";
+                listBox1.DisplayMember = "Name";
                 playVideo(VideoId);
                 
             }
@@ -152,6 +155,9 @@ namespace PresentationTier
                 listBox2.SelectedValue.ToString(), profileId))
             {
                 MessageBox.Show("Song added to playlist.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(listBox2.SelectedValue.ToString());
+                listBox1.ValueMember = "Url";
+                listBox1.DisplayMember = "Name";
             }
             else
             {
@@ -171,6 +177,9 @@ namespace PresentationTier
             if (youtubeServiceClient.RemovePlaylist(listBox2.SelectedValue.ToString(), profileId))
             {
                 MessageBox.Show("Playlist removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(textBox3.Text);
+                listBox2.ValueMember = "ActivityId";
+                listBox2.DisplayMember = "Name";
             }
             else
             {
@@ -184,6 +193,9 @@ namespace PresentationTier
             if (!String.IsNullOrEmpty(plName)&&youtubeServiceClient.AddPlayList(plName, profileId))
             {
                 MessageBox.Show("Playlist added.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(textBox3.Text);
+                listBox2.ValueMember = "ActivityId";
+                listBox2.DisplayMember = "Name";
             }
             else
             {
@@ -196,6 +208,9 @@ namespace PresentationTier
             if (youtubeServiceClient.RemoveSongFromPlaylist(listBox1.SelectedValue.ToString(), listBox2.SelectedValue.ToString(), profileId))
             {
                 MessageBox.Show("Song removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(listBox2.SelectedValue.ToString());
+                listBox1.ValueMember = "Url";
+                listBox1.DisplayMember = "Name";
 
             }
             else
@@ -211,6 +226,8 @@ namespace PresentationTier
             listBox1.ValueMember = "Url";
             listBox1.DisplayMember = "Name";
         }
+        
+        
 
 
 
