@@ -12,15 +12,12 @@ namespace DataAccessTier
         {
             con = DbConnection.GetInstance().GetConnection();
         }
-        public int AddSong(string name, int duration, string url)
+        public int AddSong(string name, int duration, string url, int activityId)
         {
-            string stmt = " DECLARE @activityID int; " +
-
-            " INSERT INTO Activity(profileID, timeStamp) VALUES(1, @0); " +
-            " SET @activityID = @@IDENTITY; " + "INSERT INTO Video(activityID, name, duration, url) values (@activityID, @1, @2, @3)";
+            string stmt = "INSERT INTO Video(activityID, name, duration, url) values (@0, @1, @2, @3)";
             using (SqlCommand cmd = new SqlCommand(stmt, con))
             {
-                cmd.Parameters.AddWithValue("@0", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                cmd.Parameters.AddWithValue("@0", activityId);
                 cmd.Parameters.AddWithValue("@1", name);
                 cmd.Parameters.AddWithValue("@2", duration);
                 cmd.Parameters.AddWithValue("@3", url);

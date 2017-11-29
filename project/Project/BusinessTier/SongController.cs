@@ -23,18 +23,24 @@ namespace BusinessTier
             ytService = Auth();
 
         }
-        public bool AddSong(string url)
+        public bool AddSong(string url, int profileId)
         {
             DBSong dbSong = new DBSong();
+            DbActivity dbActivity = new DbActivity();
+            DbConnection dbConnection = DbConnection.GetInstance();
             Song song = dbSong.FindSongByURL(url);
             if (song != null)
             {
                 return false;
             }
-            if (dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url) > 0)
+            dbConnection.BeginTransaction();
+            int activityId = dbActivity.CreateActivity(profileId);
+            if (activityId>0 &&dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url, activityId) > 0)
             {
+                dbConnection.Commit();
                 return true;
             }
+            dbConnection.Rollback();
             return false;
         }
 

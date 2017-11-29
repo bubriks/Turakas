@@ -13,15 +13,12 @@ namespace DataAccessTier
             con = DbConnection.GetInstance().GetConnection();
         }
         
-        public int AddPlayList(string name)
+        public int AddPlayList(string name, int activityId)
         {
-            string stmt = " DECLARE @activityID int; " +
-
-                          " INSERT INTO Activity(profileID, timeStamp) VALUES(1, @0); " +
-                          " SET @activityID = @@IDENTITY; " + "INSERT INTO PlayLists(activityID, name) values (@activityID, @1)";
+            string stmt = "INSERT INTO PlayLists(activityID, name) values (@0, @1)";
             using (SqlCommand cmd = new SqlCommand(stmt, con))
             {
-                cmd.Parameters.AddWithValue("@0", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                cmd.Parameters.AddWithValue("@0", activityId);
                 cmd.Parameters.AddWithValue("@1", name);
                 return cmd.ExecuteNonQuery();
             }
@@ -139,6 +136,20 @@ namespace DataAccessTier
                 cmd.Parameters.AddWithValue("@0", songId);
                 cmd.Parameters.AddWithValue("@1", playlistId);
                 return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public bool IsPlaylistOwner(int playlistId, int profileId)
+        {
+            string stmt = " SELECT * FROM Activity WHERE activityID = @0 AND profileID = @1; ";
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
+            {
+                cmd.Parameters.AddWithValue("@0", playlistId);
+                cmd.Parameters.AddWithValue("@1", profileId);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    return reader.Read();
+                }
             }
         }
 
