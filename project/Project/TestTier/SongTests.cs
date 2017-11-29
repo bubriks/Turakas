@@ -12,13 +12,18 @@ namespace TestTier
     public class SongTests
     {
         private SongController songController;
-        private DbConnection dbConnection; 
+        private DbConnection dbConnection;
+        private DbActivity dbActivity;
+        private DBSong dbSong;
 
         public SongTests()
         {
+            dbActivity = new DbActivity();
             songController = new SongController();
             dbConnection = DbConnection.GetInstance();
+            dbSong = new DBSong();
         }
+        
         [TestMethod]
         public void GetVideoTitleCorrect()
         {
@@ -101,9 +106,8 @@ namespace TestTier
         public void FindSongByNameExisting()
         {
             string name = "Idiot Test";
-            dbConnection.BeginTransaction();
-            songController.AddSong("YWo4qBnSwjM");
-            songController.AddSong("2a4Uxdy9TQY");
+            songController.AddSong("YWo4qBnSwjM",1);
+            songController.AddSong("2a4Uxdy9TQY",1);
             List<string> urlsActual = new List<string>();
             List<string> urlsExpected = new List<string>();
             urlsExpected.Add("YWo4qBnSwjM");
@@ -116,7 +120,9 @@ namespace TestTier
                 urlsActual.Add(song.Url);
             }
             CollectionAssert.AreEqual(urlsExpected, urlsActual);
-            dbConnection.Rollback();
+            dbActivity.DeleteActivity(dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId, 1);
+            dbActivity.DeleteActivity(dbSong.FindSongByURL("2a4Uxdy9TQY").ActivityId, 1);
+
         }
         
         [TestMethod]
@@ -129,19 +135,17 @@ namespace TestTier
         [TestMethod]
         public void AddSongExisting()
         {
-            dbConnection.BeginTransaction();
-            songController.AddSong("YWo4qBnSwjM");
-            Assert.IsFalse(songController.AddSong("YWo4qBnSwjM"));
-            dbConnection.Rollback();
+            songController.AddSong("YWo4qBnSwjM",1);
+            Assert.IsFalse(songController.AddSong("YWo4qBnSwjM",1));
+            dbActivity.DeleteActivity(dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId, 1);
 
         }
         
         [TestMethod]
         public void AddNonExisting()
         {
-            dbConnection.BeginTransaction();
-            Assert.IsTrue(songController.AddSong("YWo4qBnSwjM"));
-            dbConnection.Rollback();
+            Assert.IsTrue(songController.AddSong("YWo4qBnSwjM",1));
+            dbActivity.DeleteActivity(dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId, 1);
         }
         
         
