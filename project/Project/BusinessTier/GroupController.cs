@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataTier;
 using DataAccessTier;
+using System.Data;
 
 namespace BusinessTier
 {
@@ -20,31 +21,39 @@ namespace BusinessTier
             dbActivity = new DbActivity();
             profileController = new ProfileController();
         }
-        
+
         public bool CreateGroup(String name, int profileId)
         {
-            try
+            Profile profile = profileController.ReadProfile(profileId.ToString(), 1);
+            if (profile != null && !name.Equals(""))
             {
-                Profile profile = profileController.ReadProfile(profileId.ToString(), 1);
-                if (profile != null && !name.Equals(""))
+                using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
                 {
-                    if (AddMember(profile.Nickname, dbGroup.CreateGroup(dbActivity.CreateActivity(profileId), name)))
+                    try
                     {
-                        return true;
+                        int activityId = dbActivity.CreateActivity(profileId);
+                        int groupId = dbGroup.CreateGroup(activityId, name);
+                        if (AddMember(profile.Nickname, groupId))
+                        {
+                            tran.Commit();
+                            return true;
+                        }
+                        else
+                        {
+                            tran.Rollback();
+                            return false;
+                        }
                     }
-                    else
+                    catch (Exception)
                     {
+                        tran.Rollback();
                         return false;
                     }
                 }
-                else
-                {
-                    return false;//profile doesnt exist
-                }
             }
-            catch
+            else
             {
-                return false;
+                return false;//profile doesnt exist
             }
         }
 

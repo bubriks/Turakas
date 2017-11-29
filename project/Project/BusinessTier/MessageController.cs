@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataTier;
 using DataAccessTier;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace BusinessTier
 {
@@ -28,8 +29,29 @@ namespace BusinessTier
                 {
                     return null;
                 }
-                
-                return dbMessage.CreateMessage(dbActivity.CreateActivity(profileId), text, chatId);
+                using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
+                {
+                    try
+                    {
+                        int activityId = dbActivity.CreateActivity(profileId);
+                        Message message = dbMessage.CreateMessage(activityId, text, chatId);
+                        if (message == null)
+                        {
+                            tran.Rollback();
+                            return null;
+                        }
+                        else
+                        {
+                            tran.Commit();
+                            return message;
+                        }
+                    }
+                    catch
+                    {
+                        tran.Rollback();
+                        return null;
+                    }
+                }
             }
             catch (Exception)
             {
