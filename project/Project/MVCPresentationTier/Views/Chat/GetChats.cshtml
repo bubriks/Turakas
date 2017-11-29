@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "ChatView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Chat index page</title>
+</head>
+<body>
+    <div>
+        <h1>Chat</h1>
+        <div>
+            <ul>
+                @foreach (var chat in Model)
+                {
+                    <li>@chat.Id @chat.OwnerID @chat.Name @chat.Type @chat.MaxNrOfUsers @chat.Time</li>
+                }
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -7,6 +7,6 @@ namespace MVCPresentationTier.Models
 {
     public class Chat: ChatServiceReference.Chat
     {
-
+        
     }
 }

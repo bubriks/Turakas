@@ -10,12 +10,17 @@ namespace MVCPresentationTier.Controllers
 {
     public class ChatController : Controller, IChatServiceCallback
     {
-        public ActionResult Index()
+        public ActionResult GetChats(String input, int? profileId)
         {
+            if (!profileId.HasValue)
+                profileId = 2;
+            if (String.IsNullOrWhiteSpace(input))
+                input = "";
             ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
-            return View(client.GetChatsByName("", 1));
+            return View(client.GetChatsByName(input, profileId.Value));
         }
 
+        #region For later
         public void joinChat(int chatId)
         {
             throw new NotImplementedException();
@@ -30,5 +35,6 @@ namespace MVCPresentationTier.Controllers
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }
