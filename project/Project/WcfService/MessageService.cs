@@ -111,17 +111,5 @@ namespace WcfService
                 }
             }
         }
-
-        public void RefreshConnection(int profileId, int chatId)
-        {
-            Tuple<Profile, object> user = chatController.FindChat(chatId).Users.Find(
-            delegate (Tuple<Profile, object> tuple)
-            {
-                return tuple.Item1.ProfileID == profileId;
-            }
-            );
-            IMessageCallBack callback = (IMessageCallBack)user.Item2;
-            callback.Refreshed();
-        }
     }
 }

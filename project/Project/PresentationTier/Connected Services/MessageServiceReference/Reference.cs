@@ -433,12 +433,6 @@ namespace PresentationTier.MessageServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/DeleteMessage")]
         System.Threading.Tasks.Task DeleteMessageAsync(int profileId, int id, int chatId);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/RefreshConnection")]
-        void RefreshConnection(int profileId, int chatId);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/RefreshConnection")]
-        System.Threading.Tasks.Task RefreshConnectionAsync(int profileId, int chatId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -464,9 +458,6 @@ namespace PresentationTier.MessageServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/GetMessages")]
         void GetMessages(PresentationTier.MessageServiceReference.Message[] messages);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Refreshed")]
-        void Refreshed();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Show")]
         void Show(bool result);
@@ -546,14 +537,6 @@ namespace PresentationTier.MessageServiceReference {
         
         public System.Threading.Tasks.Task DeleteMessageAsync(int profileId, int id, int chatId) {
             return base.Channel.DeleteMessageAsync(profileId, id, chatId);
-        }
-        
-        public void RefreshConnection(int profileId, int chatId) {
-            base.Channel.RefreshConnection(profileId, chatId);
-        }
-        
-        public System.Threading.Tasks.Task RefreshConnectionAsync(int profileId, int chatId) {
-            return base.Channel.RefreshConnectionAsync(profileId, chatId);
         }
     }
 }

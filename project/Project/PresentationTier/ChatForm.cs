@@ -36,7 +36,6 @@ namespace PresentationTier
             client.Online(profileId);
 
             SearchButton_Click(null, null);
-            refreshTimer.Start();
         }
 
         #region Search
@@ -258,7 +257,6 @@ namespace PresentationTier
         public void joinChat(int chatId)//joins the chat with the group
         {
             new MessageForm(chatId, profileId);
-            Refreshed();
         }
         #endregion
 
@@ -266,7 +264,6 @@ namespace PresentationTier
         public void Notification(Chat chat)//adds new notifications to listbox
         {
             inviteListBox.Items.Add(chat);
-            Refreshed();
         }
 
         private void InviteListBox_MouseDoubleClick(object sender, MouseEventArgs e)//Notification double clicked
@@ -322,17 +319,6 @@ namespace PresentationTier
         {
             client.Offline(profileId);
             Application.Exit();
-        }
-
-        private void RefreshTimer_Tick(object sender, EventArgs e)
-        {
-            client.RefreshConnection(profileId);
-        }
-
-        public void Refreshed()
-        {
-            refreshTimer.Stop();
-            refreshTimer.Start();
         }
         #endregion
     }

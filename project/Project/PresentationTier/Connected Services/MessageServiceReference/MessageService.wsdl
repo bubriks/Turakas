@@ -241,29 +241,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IMessageService_RefreshConnection_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IMessageService_WritingMessage_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -425,29 +402,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IMessageService_Refreshed_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IMessageService_Show_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -497,9 +451,6 @@
   <wsdl:message name="IMessageService_DeleteMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMessage" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_RefreshConnection_InputMessage">
-    <wsdl:part name="parameters" element="tns:RefreshConnection" />
-  </wsdl:message>
   <wsdl:message name="IMessageService_WritingMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:WritingMessage" />
   </wsdl:message>
@@ -520,9 +471,6 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_GetMessages_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetMessages" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_Refreshed_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:Refreshed" />
   </wsdl:message>
   <wsdl:message name="IMessageService_Show_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Show" />
@@ -546,9 +494,6 @@
     <wsdl:operation name="DeleteMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeleteMessage" message="tns:IMessageService_DeleteMessage_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="RefreshConnection">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RefreshConnection" message="tns:IMessageService_RefreshConnection_InputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="WritingMessage">
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/WritingMessage" message="tns:IMessageService_WritingMessage_OutputCallbackMessage" />
     </wsdl:operation>
@@ -569,9 +514,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetMessages">
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetMessages" message="tns:IMessageService_GetMessages_OutputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Refreshed">
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/Refreshed" message="tns:IMessageService_Refreshed_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="Show">
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/Show" message="tns:IMessageService_Show_OutputCallbackMessage" />
@@ -622,13 +564,6 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="RefreshConnection">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/RefreshConnection" style="document" />
-      <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IMessageService_RefreshConnection_Input_policy" />
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
     <wsdl:operation name="WritingMessage">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/WritingMessage" style="document" />
       <wsdl:output>
@@ -675,13 +610,6 @@
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetMessages" style="document" />
       <wsdl:output>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IMessageService_GetMessages_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Refreshed">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/Refreshed" style="document" />
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IMessageService_Refreshed_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
