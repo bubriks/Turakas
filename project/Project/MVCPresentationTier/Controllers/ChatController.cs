@@ -20,6 +20,11 @@ namespace MVCPresentationTier.Controllers
             return View(client.GetChatsByName(input, profileId.Value));
         }
 
+        public ActionResult GetChat(Chat chat)
+        {
+            return View(chat);
+        }
+
         #region For later
         public void joinChat(int chatId)
         {
