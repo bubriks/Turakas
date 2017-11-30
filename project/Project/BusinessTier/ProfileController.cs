@@ -96,8 +96,16 @@ namespace BusinessTier
         
         public bool UpdateProfile(int id, Profile profile)
         {
-            if(CheckTheValues(profile, false))
-                return dbProfile.UpdateProfile(id, profile);
+            if (CheckTheValues(profile, false))
+                if (dbProfile.UpdateProfile(id, profile))
+                {
+                    Profile user = GetUser(id);
+                    user.Email = profile.Email;
+                    user.Nickname = profile.Nickname;
+                    user.Password = profile.Password;
+                    user.Username = profile.Username;
+                    return true;
+                }
             return false;
         }
 

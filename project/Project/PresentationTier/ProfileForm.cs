@@ -63,6 +63,7 @@ namespace PresentationTier
 
                     Profile profile = new Profile
                     {
+                        ProfileID = profileId,
                         Username = username,
                         Password = password,
                         Email = email,

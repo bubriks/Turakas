@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using PresentationTier.ChatServiceReference;
 using System.ServiceModel;
 using System.ComponentModel;
+using System.Threading;
 
 namespace PresentationTier
 {
@@ -309,10 +310,7 @@ namespace PresentationTier
         private void LogOut_btn_Click(object sender, EventArgs e)//Goes to Login View
         {
             client.Offline(profileId);
-            SignIn_SignUp_ForgotDetailsForm signIn = new SignIn_SignUp_ForgotDetailsForm();
-            Hide();
-            signIn.ShowDialog();
-            Close();
+            Application.Restart();
         }
 
         private void ChatForm_Closing(object sender, CancelEventArgs e)//on close event
