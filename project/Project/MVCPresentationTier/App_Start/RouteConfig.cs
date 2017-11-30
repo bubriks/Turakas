@@ -20,18 +20,6 @@ namespace MVCPresentationTier
             );
 
             routes.MapRoute(
-                "GetChat",
-                "Chat/GetChat/{chat}/",
-                new { controller = "Chat", action = "GetChat", chat = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
-                "GetChats",
-                "Chat/GetChats/{input}/{profileId}",
-                new { controller = "Chat", action = "GetChats", input = UrlParameter.Optional , profileId = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

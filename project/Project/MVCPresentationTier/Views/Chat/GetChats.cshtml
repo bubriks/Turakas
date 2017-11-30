@@ -65,7 +65,22 @@
                     <td bgcolor="#00FF00" onclick="window.location='http://localhost:53660/Message/ChatRoom/@chat.Id/@chat.OwnerID';">Join</td>
                 </tr>
             }
+            <tr onmouseover="" style="cursor: pointer;">
+                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
+                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
+                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
+                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
+                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
+                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
+                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
+            </tr>
         </table>
+        @using (Html.BeginForm())
+        {
+            <input type="text" name="input" />
+            <input type="number" name="profileId" />
+            <input type="submit" />
+        }
     </div>
 </body>
 </html>

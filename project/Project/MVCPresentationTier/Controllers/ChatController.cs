@@ -10,19 +10,24 @@ namespace MVCPresentationTier.Controllers
 {
     public class ChatController : Controller, IChatServiceCallback
     {
+        public ActionResult GetChats()
+        {
+            ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
+            return View(client.GetChatsByName("", 1));
+        }
+
+        [HttpPost]
         public ActionResult GetChats(String input, int? profileId)
         {
             if (!profileId.HasValue)
-                profileId = 2;
-            if (String.IsNullOrWhiteSpace(input))
-                input = "";
+                profileId = 0;
             ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
             return View(client.GetChatsByName(input, profileId.Value));
         }
-        
-        public ActionResult GetChat(Chat chat)
+
+        public ActionResult GetChat()
         {
-            return View(chat);
+            return View(new Chat());
         }
 
         #region For later

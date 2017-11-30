@@ -16,12 +16,12 @@ namespace MVCPresentationTier.Controllers
                 chatId = 1;
             if (!profileId.HasValue)
                 profileId = 1;
-            //MessageServiceClient client = new MessageServiceClient(new InstanceContext(this));
             ViewBag.ChatId = "ChatId is " + chatId;
             ViewBag.ProfileId = "ProfileId is " + profileId;
             return View();
         }
 
+        #region For later
         public void AddMessage(Message message)
         {
             throw new NotImplementedException();
@@ -61,5 +61,6 @@ namespace MVCPresentationTier.Controllers
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }
