@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "ChatView";
+    ViewBag.Title = "GetChats";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,19 +8,55 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Chat index page</title>
+    <title>Get chats page</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+        }
+        th {
+            text-align: left;
+        }
+        table tr:nth-child(even) {
+            background-color: #eee;
+        }
+        table tr:nth-child(odd) {
+            background-color: #fff;
+        }
+        table th {
+            background-color: black;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div>
         <h1>Chat</h1>
-        <div>
-            <ul>
-                @foreach (var chat in Model)
-                {
-                    <li>@chat.Id @chat.OwnerID @chat.Name @chat.Type @chat.MaxNrOfUsers @chat.Time</li>
-                }
-            </ul>
-        </div>
+        <table style="height:50%">
+        <caption>Chatrooms</caption>
+            <tr>
+                <th>Id</th>
+                <th>Owner ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Room size</th>
+                <th>Creation time</th>
+            </tr>
+            @foreach (var chat in Model)
+            {
+                <tr onclick="window.location='http://localhost:53660/Chat/GetChat';">
+                    <td>@chat.Id</td>
+                    <td>@chat.OwnerID</td>
+                    <td>@chat.Name</td>
+                    <td>@chat.Type</td>
+                    <td>@chat.MaxNrOfUsers</td>
+                    <td>@chat.Time</td>
+                </tr>
+            }
+        </table>
     </div>
 </body>
 </html>

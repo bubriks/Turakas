@@ -14,7 +14,7 @@ namespace MVCPresentationTier
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "ChatGetChats",
+                "GetChats",
                 "Chat/GetChats/{input}/{profileId}",
                 new { controller = "Chat", action = "GetChats", input = UrlParameter.Optional , profileId = UrlParameter.Optional }
             );
