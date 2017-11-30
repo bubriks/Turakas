@@ -30,12 +30,19 @@
             background-color: black;
             color: white;
         }
+        caption {
+            text-align: left;
+            margin-bottom: 5px;
+            text-transform: lowercase;
+            font-size: 160%;
+            padding: 5px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div>
-        <h1>Chat</h1>
-        <table style="height:50%">
+        <table>
         <caption>Chatrooms</caption>
             <tr>
                 <th>Id</th>
@@ -44,16 +51,18 @@
                 <th>Type</th>
                 <th>Room size</th>
                 <th>Creation time</th>
+                <th>Join</th>
             </tr>
             @foreach (var chat in Model)
             {
-                <tr onclick="window.location='http://localhost:53660/Chat/GetChat';">
-                    <td>@chat.Id</td>
-                    <td>@chat.OwnerID</td>
-                    <td>@chat.Name</td>
-                    <td>@chat.Type</td>
-                    <td>@chat.MaxNrOfUsers</td>
-                    <td>@chat.Time</td>
+                <tr onmouseover="" style="cursor: pointer;">
+                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.Id</td>
+                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.OwnerID</td>
+                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.Name</td>
+                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.Type</td>
+                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.MaxNrOfUsers</td>
+                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.Time</td>
+                    <td bgcolor="#00FF00" onclick="window.location='http://localhost:53660/Message/ChatRoom/@chat.Id/@chat.OwnerID';">Join</td>
                 </tr>
             }
         </table>

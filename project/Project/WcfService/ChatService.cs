@@ -94,12 +94,5 @@ namespace WcfService
                 }
             }
         }
-
-        public void RefreshConnection(int profileId)
-        {
-            Profile user = profileController.GetUser(profileId);
-            IChatCallBack callback = (IChatCallBack)user.CallBack;
-            callback.Refreshed();
-        }
     }
 }

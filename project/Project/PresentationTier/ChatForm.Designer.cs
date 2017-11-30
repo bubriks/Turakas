@@ -30,10 +30,8 @@ namespace PresentationTier
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Id"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.MenuHighlight, null);
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.chatListView = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Owner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,11 +60,6 @@ namespace PresentationTier
             this.chatGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nrOfUsersTrackBar)).BeginInit();
             this.SuspendLayout();
-            // 
-            // refreshTimer
-            // 
-            this.refreshTimer.Interval = 120000;
-            this.refreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
             // 
             // chatListView
             // 
@@ -353,7 +346,6 @@ namespace PresentationTier
         private Button youtubeButton;
         private Button btnGroups;
         private Button logOut_btn;
-        private Timer refreshTimer;
         private ColumnHeader ID;
         private new ColumnHeader Name;
         private ColumnHeader Type;

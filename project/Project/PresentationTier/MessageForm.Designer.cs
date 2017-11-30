@@ -43,7 +43,6 @@ namespace PresentationTier
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.inviteFriendGroupBox.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -168,11 +167,6 @@ namespace PresentationTier
             this.timer.Interval = 3000;
             this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
-            // refreshTimer
-            // 
-            this.refreshTimer.Interval = 120000;
-            this.refreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
-            // 
             // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,7 +205,6 @@ namespace PresentationTier
         private ToolStripStatusLabel toolStripStatusLabel1;
         private Timer timer;
         private Button rps_btn;
-        private Timer refreshTimer;
     }
 }
 

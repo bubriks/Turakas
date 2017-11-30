@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PresentationTier.MessageServiceReference {
+namespace MVCPresentationTier.MessageServiceReference {
     using System.Runtime.Serialization;
     using System;
     
@@ -126,12 +126,12 @@ namespace PresentationTier.MessageServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<PresentationTier.MessageServiceReference.Profile, object>[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<PresentationTier.MessageServiceReference.Profile, object>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Message))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Profile[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Chat))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.MessageServiceReference.Message[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object>[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.MessageServiceReference.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.MessageServiceReference.Profile[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.MessageServiceReference.Chat))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.MessageServiceReference.Message[]))]
     public partial class Profile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -281,7 +281,7 @@ namespace PresentationTier.MessageServiceReference {
         private bool TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Tuple<PresentationTier.MessageServiceReference.Profile, object>[] UsersField;
+        private System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object>[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -372,7 +372,7 @@ namespace PresentationTier.MessageServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Tuple<PresentationTier.MessageServiceReference.Profile, object>[] Users {
+        public System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object>[] Users {
             get {
                 return this.UsersField;
             }
@@ -395,7 +395,7 @@ namespace PresentationTier.MessageServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MessageServiceReference.IMessageService", CallbackContract=typeof(PresentationTier.MessageServiceReference.IMessageServiceCallback))]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MessageServiceReference.IMessageService", CallbackContract=typeof(MVCPresentationTier.MessageServiceReference.IMessageServiceCallback))]
     public interface IMessageService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/JoinChat")]
@@ -442,7 +442,7 @@ namespace PresentationTier.MessageServiceReference {
         void WritingMessage();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/AddMessage")]
-        void AddMessage(PresentationTier.MessageServiceReference.Message message);
+        void AddMessage(MVCPresentationTier.MessageServiceReference.Message message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/RemoveMessage")]
         void RemoveMessage(int id);
@@ -451,25 +451,25 @@ namespace PresentationTier.MessageServiceReference {
         void Invite(bool result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/GetOnlineProfiles")]
-        void GetOnlineProfiles(PresentationTier.MessageServiceReference.Profile[] profiles);
+        void GetOnlineProfiles(MVCPresentationTier.MessageServiceReference.Profile[] profiles);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/GetChat")]
-        void GetChat(PresentationTier.MessageServiceReference.Chat chat);
+        void GetChat(MVCPresentationTier.MessageServiceReference.Chat chat);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/GetMessages")]
-        void GetMessages(PresentationTier.MessageServiceReference.Message[] messages);
+        void GetMessages(MVCPresentationTier.MessageServiceReference.Message[] messages);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Show")]
         void Show(bool result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IMessageServiceChannel : PresentationTier.MessageServiceReference.IMessageService, System.ServiceModel.IClientChannel {
+    public interface IMessageServiceChannel : MVCPresentationTier.MessageServiceReference.IMessageService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class MessageServiceClient : System.ServiceModel.DuplexClientBase<PresentationTier.MessageServiceReference.IMessageService>, PresentationTier.MessageServiceReference.IMessageService {
+    public partial class MessageServiceClient : System.ServiceModel.DuplexClientBase<MVCPresentationTier.MessageServiceReference.IMessageService>, MVCPresentationTier.MessageServiceReference.IMessageService {
         
         public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {

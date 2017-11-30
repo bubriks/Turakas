@@ -19,7 +19,7 @@ namespace MVCPresentationTier.Controllers
             ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
             return View(client.GetChatsByName(input, profileId.Value));
         }
-
+        
         public ActionResult GetChat(Chat chat)
         {
             return View(chat);
