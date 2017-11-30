@@ -147,27 +147,31 @@ namespace DataAccessTier
         {
             try
             {
-                string stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID()" +
-                    "UPDATE Profile SET username = ISNULL(NULLIF(@0, ''), username), email = ISNULL(NULLIF(@1, ''), email), nickname = ISNULL(NULLIF(@2, ''), nickname) ";
+                string stmt = "UPDATE Profile SET username = ISNULL(NULLIF(@0, ''), username), email = ISNULL(NULLIF(@1, ''), email), nickname = ISNULL(NULLIF(@2, ''), nickname) WHERE profileID = @3;";
+
                 using (SqlCommand cmd = new SqlCommand(stmt, con))
                 {
-                    if (profile.Password != null)
-                    {
-                        if (profile.Password != "")
-                        {
-                            stmt += "HASHBYTES('SHA2_512', @1 +CAST(@salt AS NVARCHAR(36)))";
-                            cmd.Parameters.AddWithValue("@4", profile.Password);
-                        }
-                    }
 
-                    stmt += "WHERE profileID = @3";
                     cmd.Parameters.AddWithValue("@0", profile.Username);
                     cmd.Parameters.AddWithValue("@1", profile.Email);
                     cmd.Parameters.AddWithValue("@2", profile.Nickname);
-                    cmd.Parameters.AddWithValue("@3", id);
+                    cmd.Parameters.AddWithValue("@3", profile.ProfileID);
                     cmd.ExecuteNonQuery();
-                    return true;
                 }
+
+                if (profile.Password != null)
+                    if (profile.Password != "")
+                    {
+                        stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() UPDATE Profile  SET salt = @salt, passwordHash = HASHBYTES('SHA2_512', @0 +CAST(@salt AS NVARCHAR(36))) WHERE profileId = @1";
+
+                        using (SqlCommand cmd = new SqlCommand(stmt, con))
+                        {
+                            cmd.Parameters.AddWithValue("@0", profile.Password);
+                            cmd.Parameters.AddWithValue("@1", profile.ProfileID);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                return true;
             }
             catch (Exception e)
             {
