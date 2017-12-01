@@ -56,23 +56,23 @@
             @foreach (var chat in ViewBag.Chats)
             {
                 <tr style="cursor: pointer;">
-                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.Id</td>
-                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.OwnerID</td>
-                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.Name</td>
-                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.Type</td>
-                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.MaxNrOfUsers</td>
-                    <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.Time</td>
-                    <td bgcolor="#00FF00" onclick="window.location='http://localhost:53660/Message/ChatRoom/@chat.Id/@chat.OwnerID';">Join</td>
+                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.Id</td>
+                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.OwnerID</td>
+                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.Name</td>
+                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.Type</td>
+                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.MaxNrOfUsers</td>
+                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.Time</td>
+                    <td bgcolor="#00FF00" onclick="window.location.href = '@Url.Action("ChatRoom", "Message", new{ chatId = @chat.Id, profileId = @chat.OwnerID})';">Join</td>
                 </tr>
             }
-            <tr onmouseover="" style="cursor: pointer;">
-                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
-                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
-                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
-                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
-                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
-                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
-                <td onclick="window.location='http://localhost:53660/Chat/GetChat/null';"> </td>
+            <tr style="cursor: pointer;">
+                <td onclick="location.href='@Url.Action("GetChat", "Chat")'")"> </td>
+                <td onclick="location.href='@Url.Action("GetChat", "Chat")'" )"> </td>
+                <td onclick="location.href='@Url.Action("GetChat", "Chat")'" )"> </td>
+                <td onclick="location.href='@Url.Action("GetChat", "Chat")'" )"> </td>
+                <td onclick="location.href='@Url.Action("GetChat", "Chat")'" )"> </td>
+                <td onclick="location.href='@Url.Action("GetChat", "Chat")'" )"> </td>
+                <td onclick="location.href='@Url.Action("GetChat", "Chat")'")"> </td>
             </tr>
         </table>
         @using (Html.BeginForm())

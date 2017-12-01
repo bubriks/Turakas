@@ -31,9 +31,51 @@ namespace MVCPresentationTier.Controllers
             return View();
         }
 
-        public ActionResult GetChat()
+        public ActionResult GetChat(int? chatId, int? maxNrOfUsers, String name, int? ownerID, DateTime? time, bool? type)
         {
-            return View(new Chat());
+            Chat chat = new Chat();
+            if (!chatId.HasValue)
+            {
+                chat.Id = 0;
+            }
+            else
+            {
+                chat.Id = chatId.Value;
+            }
+            if (!maxNrOfUsers.HasValue)
+            {
+                chat.MaxNrOfUsers = 0;
+            }
+            else
+            {
+                chat.MaxNrOfUsers = maxNrOfUsers.Value;
+            }
+            chat.Name = name;
+            if (!ownerID.HasValue)
+            {
+                chat.OwnerID = 0;
+            }
+            else
+            {
+                chat.OwnerID = ownerID.Value;
+            }
+            if (!time.HasValue)
+            {
+                chat.Time = new DateTime();
+            }
+            else
+            {
+                chat.Time = time.Value;
+            }
+            if (!type.HasValue)
+            {
+                chat.Type = true;
+            }
+            else
+            {
+                chat.Type = type.Value;
+            }
+            return View(chat);
         }
 
         #region For later
