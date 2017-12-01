@@ -13,7 +13,10 @@ namespace MVCPresentationTier.Controllers
         public ActionResult GetChats()
         {
             ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
-            return View(client.GetChatsByName("", 1));
+            ViewBag.Chats = client.GetChatsByName("", 1);
+            ViewBag.SearchBy = "";
+            ViewBag.ProfileId = 1;
+            return View();
         }
 
         [HttpPost]
@@ -22,7 +25,10 @@ namespace MVCPresentationTier.Controllers
             if (!profileId.HasValue)
                 profileId = 0;
             ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
-            return View(client.GetChatsByName(input, profileId.Value));
+            ViewBag.Chats = client.GetChatsByName(input, profileId.Value);
+            ViewBag.SearchBy = input;
+            ViewBag.ProfileId = profileId.Value;
+            return View();
         }
 
         public ActionResult GetChat()
