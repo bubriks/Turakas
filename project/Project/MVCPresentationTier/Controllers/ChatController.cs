@@ -23,7 +23,7 @@ namespace MVCPresentationTier.Controllers
         public ActionResult GetChats(String input, int? profileId)
         {
             if (!profileId.HasValue)
-                profileId = 0;
+                profileId = 1;
             ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
             ViewBag.Chats = client.GetChatsByName(input, profileId.Value);
             ViewBag.SearchBy = input;

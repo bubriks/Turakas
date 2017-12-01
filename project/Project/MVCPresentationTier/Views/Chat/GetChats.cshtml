@@ -55,7 +55,7 @@
             </tr>
             @foreach (var chat in ViewBag.Chats)
             {
-                <tr onmouseover="" style="cursor: pointer;">
+                <tr style="cursor: pointer;">
                     <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.Id</td>
                     <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.OwnerID</td>
                     <td onclick="window.location='http://localhost:53660/Chat/GetChat';">@chat.Name</td>
@@ -79,7 +79,7 @@
         {
             <input type="text" name="input" placeholder="@ViewBag.SearchBy"/>
             <input type="number" name="profileId" placeholder="@ViewBag.ProfileId"/>
-            <input type="submit" />
+            <input type="submit"/>
         }
     </div>
 </body>

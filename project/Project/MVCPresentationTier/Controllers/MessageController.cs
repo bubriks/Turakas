@@ -12,6 +12,7 @@ namespace MVCPresentationTier.Controllers
     {
         public ActionResult ChatRoom(int? chatId, int? profileId)
         {
+            MessageServiceClient client = new MessageServiceClient(new InstanceContext(this));
             if (!chatId.HasValue)
                 chatId = 1;
             if (!profileId.HasValue)
