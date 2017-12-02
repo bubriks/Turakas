@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login page</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <input type="text" name="Username" placeholder="Username" />
+            <br>
+            <input type="text" name="Password" placeholder="Password" />
+            <br>
+            <input type="submit" ) />
+        }
+        <br>
+        @if (@ViewBag.LoginStatus > 0)
+        {
+            <h5>Your profile id is: @ViewBag.LoginStatus</h5>
+        }
+    </div>
+</body>
+</html>
