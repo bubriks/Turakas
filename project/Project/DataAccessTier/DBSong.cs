@@ -7,15 +7,15 @@ namespace DataAccessTier
 {
     public class DBSong
     {
-        private DbConnection con = null;
+        private SqlConnection con = null;
         public DBSong()
         {
-            con = DbConnection.GetInstance();
+            con = DbConnection.GetInstance().GetConnection();
         }
         public int AddSong(string name, int duration, string url, int activityId)
         {
             string stmt = "INSERT INTO Video(activityID, name, duration, url) values (@0, @1, @2, @3)";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
             {
                 cmd.Parameters.AddWithValue("@0", activityId);
                 cmd.Parameters.AddWithValue("@1", name);
@@ -30,7 +30,7 @@ namespace DataAccessTier
         {
             Song song = null;
             string stmt = "SELECT * FROM Video WHERE url = @0";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
             {
                 cmd.Parameters.AddWithValue("@0", url);
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -73,7 +73,7 @@ namespace DataAccessTier
                 }
             }
 
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
