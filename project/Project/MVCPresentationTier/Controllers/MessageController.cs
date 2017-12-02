@@ -22,6 +22,11 @@ namespace MVCPresentationTier.Controllers
             return View();
         }
 
+        public void GetMessages(Message[] messages)
+        {
+            ViewBag.Messages = messages;
+        }
+
         #region For later
         public void AddMessage(Message message)
         {
@@ -29,11 +34,6 @@ namespace MVCPresentationTier.Controllers
         }
 
         public void GetChat(Chat chat)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetMessages(Message[] messages)
         {
             throw new NotImplementedException();
         }

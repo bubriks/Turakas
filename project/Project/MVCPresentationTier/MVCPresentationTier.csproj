@@ -154,6 +154,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ProfileServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -180,6 +185,16 @@
     <None Include="Connected Services\MessageServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\MessageServiceReference\configuration.svcinfo" />
     <None Include="Connected Services\MessageServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\ProfileServiceReference\MVCPresentationTier.ProfileServiceReference.Profile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ProfileServiceReference\ProfileService.disco" />
+    <None Include="Connected Services\ProfileServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\ProfileServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\ProfileServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -221,6 +236,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\MessageServiceReference\MessageService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ProfileServiceReference\ProfileService.wsdl" />
+    <None Include="Connected Services\ProfileServiceReference\ProfileService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ProfileServiceReference\ProfileService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ProfileServiceReference\ProfileService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -275,6 +300,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ChatServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\MessageServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\ProfileServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
