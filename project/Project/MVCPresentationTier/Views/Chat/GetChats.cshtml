@@ -13,6 +13,7 @@
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
+            width: 100%;
         }
         th, td {
             padding: 15px;
@@ -45,36 +46,18 @@
         <table>
         <caption>Chatrooms</caption>
             <tr>
-                <th>Id</th>
-                <th>Owner ID</th>
                 <th>Name</th>
-                <th>Type</th>
-                <th>Room size</th>
-                <th>Creation time</th>
                 <th>Join</th>
             </tr>
             @foreach (var chat in ViewBag.Chats)
             {
                 <tr style="cursor: pointer;">
-                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.Id</td>
-                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.OwnerID</td>
                     <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.Name</td>
-                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.Type</td>
-                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.MaxNrOfUsers</td>
-                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")">@chat.Time</td>
                     <td bgcolor="#00FF00" onclick="window.location.href = '@Url.Action("ChatRoom", "Message", new{ chatId = @chat.Id, profileId = @chat.OwnerID})';">Join</td>
                 </tr>
             }
-            <tr style="cursor: pointer;">
-                <td onclick="location.href='@Url.Action("GetChat", "Chat")'")"> </td>
-                <td onclick="location.href='@Url.Action("GetChat", "Chat")'" )"> </td>
-                <td onclick="location.href='@Url.Action("GetChat", "Chat")'" )"> </td>
-                <td onclick="location.href='@Url.Action("GetChat", "Chat")'" )"> </td>
-                <td onclick="location.href='@Url.Action("GetChat", "Chat")'" )"> </td>
-                <td onclick="location.href='@Url.Action("GetChat", "Chat")'" )"> </td>
-                <td onclick="location.href='@Url.Action("GetChat", "Chat")'")"> </td>
-            </tr>
         </table>
+        <br>
         @using (Html.BeginForm())
         {
             <input type="text" name="input" placeholder="@ViewBag.SearchBy"/>

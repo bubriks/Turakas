@@ -11,7 +11,7 @@ namespace TestTier
     public class ChatTest
     {
         private ChatController controller = null;
-        private int profileId = 12, profileId1 = 14;
+        private int profileId = 1, profileId1 = 2;
 
         public ChatTest()
         {
