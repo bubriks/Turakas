@@ -7,11 +7,11 @@ namespace DataAccessTier
 {
     public class DbProfile
     {
-        private SqlConnection con = null;
+        private DbConnection con = null;
 
         public DbProfile()
         {
-            con = DbConnection.GetInstance().GetConnection();
+            con = DbConnection.GetInstance();
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "SELECT profileID FROM Profile WHERE username=@0 AND passwordHash=HASHBYTES('SHA2_512', @1+CAST(Salt AS NVARCHAR(36)))";
-                using (SqlCommand cmd = new SqlCommand(stmt, con))
+                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
                 {
                     cmd.Parameters.AddWithValue("@0", profile.Username);
                     cmd.Parameters.AddWithValue("@1", profile.Password);
@@ -58,7 +58,7 @@ namespace DataAccessTier
             {
                 string stmt1 = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() INSERT INTO Profile(username, salt, passwordHash, email, nickname)" +
                     "OUTPUT INSERTED.profileID values (@0, @salt, HASHBYTES('SHA2_512', @1 +CAST(@salt AS NVARCHAR(36))), @2, @3 );";
-                using (SqlCommand cmd = new SqlCommand(stmt1, con))
+                using (SqlCommand cmd = new SqlCommand(stmt1, con.GetConnection(), con.GetTransaction()))
                 {
                     cmd.Parameters.AddWithValue("@0", profile.Username);
                     cmd.Parameters.AddWithValue("@1", profile.Password);
@@ -110,7 +110,7 @@ namespace DataAccessTier
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(stmt, con))
+                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
                 {
                     cmd.Parameters.AddWithValue("@0", what);
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -149,7 +149,7 @@ namespace DataAccessTier
             {
                 string stmt = "UPDATE Profile SET username = ISNULL(NULLIF(@0, ''), username), email = ISNULL(NULLIF(@1, ''), email), nickname = ISNULL(NULLIF(@2, ''), nickname) WHERE profileID = @3;";
 
-                using (SqlCommand cmd = new SqlCommand(stmt, con))
+                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
                 {
 
                     cmd.Parameters.AddWithValue("@0", profile.Username);
@@ -164,7 +164,7 @@ namespace DataAccessTier
                     {
                         stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() UPDATE Profile  SET salt = @salt, passwordHash = HASHBYTES('SHA2_512', @0 +CAST(@salt AS NVARCHAR(36))) WHERE profileId = @1";
 
-                        using (SqlCommand cmd = new SqlCommand(stmt, con))
+                        using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
                         {
                             cmd.Parameters.AddWithValue("@0", profile.Password);
                             cmd.Parameters.AddWithValue("@1", profile.ProfileID);
@@ -193,7 +193,7 @@ namespace DataAccessTier
             try
             {
                 string stmt = "DELETE FROM Profile WHERE profileID = @0";
-                using (SqlCommand cmd = new SqlCommand(stmt, con))
+                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
                 {
                     cmd.Parameters.AddWithValue("@0", id);
                     cmd.ExecuteNonQuery();

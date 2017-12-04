@@ -11,7 +11,7 @@ namespace TestTier
     {
         private MessageController controller = null;
         private ChatController chatController = null;
-        private int profileId = 12;
+        private int profileId = 1;
 
         public MessageTest()
         {

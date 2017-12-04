@@ -11,7 +11,7 @@ namespace TestTier
     {
         private Group group = null;
         private GroupController gc = null;
-        private int profileId = 14;
+        private int profileId = 1;
 
         public GroupTests()
         {
@@ -23,7 +23,7 @@ namespace TestTier
         [TestMethod]
         public void CreateGroupWorking()
         {
-            Assert.AreEqual(true, gc.CreateGroup("Group Name",profileId));
+            Assert.AreEqual(true, gc.CreateGroup("Group Name", profileId));
         }
 
         [TestMethod]
@@ -44,8 +44,7 @@ namespace TestTier
         public void DeleteGroupWorking()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            gc.CreateGroup("Group Name", profileId);
-            Assert.AreEqual(true, gc.DeleteGroup(groups[0].GroupId, profileId));
+            Assert.AreEqual(true, gc.DeleteGroup(profileId, groups[0].GroupId));
         }
 
         [TestMethod]
