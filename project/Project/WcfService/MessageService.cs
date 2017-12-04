@@ -72,10 +72,10 @@ namespace WcfService
             }
         }
 
-        public void InviteToChat(int chatId, String name)
+        public void InviteToChat(int chatId, string name)
         {
             IMessageCallBack callback = OperationContext.Current.GetCallbackChannel<IMessageCallBack>();
-            callback.Invite(new ChatService().invite(chatId, name));
+            callback.Invite(new ChatService().Invite(chatId, name));
         }
 
         public void Writing(int chatId)

@@ -30,11 +30,6 @@ namespace BusinessTier.Interfaces
         /// <returns>-2 player2 needs to make choice, -1 player1 needs to make choice, 0 for tie, 1 for player1, 2 for player2</returns>
         int MakeChoice(int gameId, int profileId, int choice);
 
-        /// <summary>
-        /// FindsGame by Id
-        /// </summary>
-        /// <param name="gameId"></param>
-        /// <returns></returns>
         Game FindGame(int gameId);
     }
 }

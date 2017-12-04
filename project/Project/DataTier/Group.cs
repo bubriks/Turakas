@@ -18,7 +18,5 @@ namespace DataTier
         public int CreatorId { get; set; }
         [DataMember]
         public DateTime Time { get; set; }
-        [DataMember]
-        public List<int> AllUsers { get; set; }
     }
 }

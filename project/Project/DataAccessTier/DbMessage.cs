@@ -14,7 +14,7 @@ namespace DataAccessTier
             con = DbConnection.GetInstance();
         }
 
-        public Message CreateMessage(int id, String text, int chatId)
+        public Message CreateMessage(int id, string text, int chatId)
         {
             string stmt =" INSERT INTO Message(activityID, chatActivityID, message) values(@0, @1, @2); " +
 

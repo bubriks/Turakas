@@ -12,7 +12,7 @@ namespace WcfService
     {
         private IGroupController groupController = new GroupController();
 
-        public bool CreateGroup(String name, int profileId)
+        public bool CreateGroup(string name, int profileId)
         {
             return groupController.CreateGroup(name, profileId);
         }
@@ -32,7 +32,7 @@ namespace WcfService
             return groupController.GetUsersGroups(profileId);
         }
 
-        public bool AddMember(String memberName, int groupId)
+        public bool AddMember(string memberName, int groupId)
         {
             return groupController.AddMember(memberName, groupId);
         }

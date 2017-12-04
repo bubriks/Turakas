@@ -24,7 +24,7 @@ namespace BusinessTier
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        List<Chat> GetChatsByName(String name, int profileId);
+        List<Chat> GetChatsByName(string name, int profileId);
         /// <summary>
         /// returns all online group members that are added to chat
         /// </summary>

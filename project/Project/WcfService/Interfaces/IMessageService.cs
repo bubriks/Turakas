@@ -18,13 +18,13 @@ namespace WcfService
         void LeaveChat(int chatId, int profileId);
 
         [OperationContract(IsOneWay = true)]
-        void InviteToChat(int chatId, String name);
+        void InviteToChat(int chatId, string name);
 
         [OperationContract(IsOneWay = true)]
         void Writing(int chatId);
 
         [OperationContract(IsOneWay = true)]
-        void CreateMessage(int profileId, String text, int chatId);
+        void CreateMessage(int profileId, string text, int chatId);
 
         [OperationContract(IsOneWay = true)]
         void DeleteMessage(int profileId, int id, int chatId);

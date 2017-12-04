@@ -1,696 +1,2188 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>5</zoom_level>
+  <zoom_level>1</zoom_level>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
-      <y>180</y>
-      <w>70</w>
-      <h>35</h>
+      <x>205</x>
+      <y>462</y>
+      <w>13</w>
+      <h>4</h>
     </coordinates>
-    <panel_attributes>PresentationTier
-WcfService
-BusinessTier
-DataTier
+    <panel_attributes>DataAccessTier
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>115</x>
-      <y>380</y>
-      <w>195</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+Login
---
--username: string
--password: string
--email: string
---
-+Login(username: string, password: string, email: string)
-+Username: string
-+Password: string
-+Email: string</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>115</x>
-      <y>230</y>
-      <w>195</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+DbLogin
---
--con: DbConnection
---
-+DbLogin()
-+Login(login: Login): int
-+GetLogin(id: int): Login
-+CreateLogin(login: Login): int
-+UpdateLogin(id: int, login: Login): bool
-+DeleteLogin(id: int): bool</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>350</x>
-      <y>380</y>
-      <w>195</w>
-      <h>115</h>
+      <x>331</x>
+      <y>414</y>
+      <w>39</w>
+      <h>23</h>
     </coordinates>
     <panel_attributes>+Profile
 --
--id: int
--status: Item
--nickname: string
---
-+Profile(id: int, status: Item, nickname: string)
-+GetId(): int
-+Status: Item
-+Nickname: string</panel_attributes>
++&lt;get/set&gt; ProfileID: int
++&lt;get/set&gt; Username: string
++&lt;get/set&gt; Password: string
++&lt;get/set&gt; Email: string
++&lt;get/set&gt; Nickname: string
++&lt;get/set&gt; CallBack: object
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>350</x>
-      <y>230</y>
-      <w>195</w>
-      <h>115</h>
+      <x>331</x>
+      <y>450</y>
+      <w>39</w>
+      <h>23</h>
     </coordinates>
     <panel_attributes>+DbProfile
 --
 -con: DbConnection
 --
 +DbProfile()
-+GetProfile(id: int): Profile
-+GetTypes(): List&lt;Item&gt;
-+CreateProfile(profile: Profile): bool
-+UpdateProfile(profile: Profile): bool
-+GetNotifications(profileId: int): List&lt;String&gt;
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1025</x>
-      <y>625</y>
-      <w>195</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+DbConnection
---
-_-instance: DbConnection_
--con: SqlConnection
--trans: SqlTransaction
---
-_+GetInstance(): DbConnection_
--DbConnection()
-+GetConnection(): SqlConnection
-+CloseConnection(): bool
-+StartTransaction(): bool
-+Commmit(): bool
-+RollBack(): bool</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1030</x>
-      <y>380</y>
-      <w>195</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+Chat
---
--id: int
--name: string
--type: bool
---
-+Chat(id: int, name: string, type: bool)
-+GetId(): int
-+Name: string
-+Type: bool</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1030</x>
-      <y>230</y>
-      <w>195</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+DbChat
---
--con: DbConnection
---
-+DbChat()
-+GetPerosonsChats(profileId: int):List&lt;Chat&gt;
-+CreateChat(chat: Chat): bool
-+UpdateChat(chat: Chat): bool
-+DeleteChat(id: int): bool
-+AddProfile(id: int, profileId: int): bool
-+RemoveProfile(id: int, profileId: int): bool
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1260</x>
-      <y>230</y>
-      <w>205</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+DbMessage
---
--con: DbConnection
---
-+DbMessage()
-+GetChatMessages(id: int): List&lt;Message&gt;
-+CreateTextMessage(profileId: int, text: string, chatId: int): bool
-+CreateFileMessage(profileId: int, file: byte[], chatId: int): bool
-+DeleteMessage(id: int, profileId: int): bool
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1795</x>
-      <y>230</y>
-      <w>195</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+DbSong
---
--con: DbConnection
---
-+DbSong()
-+GetSongsByPlayList(playListId: int): List&lt;Song&gt;
-+GetSongsByArtist(artistId: int): List&lt;Song&gt;
-+GetSongsByGenre(genreId: int): List&lt;Song&gt;
-+GetGenres(): List&lt;Item&gt;
-+CreateSong(song: Song): bool
-+UpdateSong(song: Song): bool
-+DeleteSong(id: int): bool
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1790</x>
-      <y>380</y>
-      <w>330</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>+Song
---
--id: int
--timeStamp: DateTime
--artist: Item
--genre: Item
--name: string
--duration: double
--url: string
---
-+Song(id: int, timeStamp: DateTime, artist: Item, genre: Item, name: string, duration: double, url: string)
-+GetId(): int
-+TimeStamp: DateTime
-+Artist: Item
-+Genre: Item
-+Name: string
-+Duration: double
-+Url: string</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1260</x>
-      <y>380</y>
-      <w>205</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+Message
---
--id: int
--message: byte[]
--timeStamp: DateTime
--person: string
---
-+Message(id: int, message: byte[], timeStamp: DateTime, person: string)
-+GetId(): int
-+Message: byte[]
-+TimeStamp: DateTime
-+GetPerson(): string</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1500</x>
-      <y>380</y>
-      <w>255</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+PlayList
---
--id: int
--creator: string
--mood: Item
--timeStamp: DateTime
--image: byte[]
---
-+PlayList(id: int, creator: string, mood: Item, timeStamp: DateTime, image: byte[])
-+GetId(): int
-+GetCreator(): string
-+Mood: Item
-+TimeStamp: DateTime
-+Image: byte[]</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1500</x>
-      <y>230</y>
-      <w>195</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+DbPlayList
---
--con: DbConnection
---
-+DbPlayList()
-+GetPlayLists(moodId: int): List&lt;PlayList&gt;
-+GetMoods(): List&lt;Item&gt;
-+CreatePlayList(playList: PlayList, profileId: int): bool
-+UpdatePlayList(playList: PlayList, profileId: int): bool
-+DeletePlayList(id: int, profileId: int): bool
-+AddSong(id: int, songId: int, profileId: int): bool
-+RemoveSong(id: int, songId: int, profileId: int): bool
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>815</x>
-      <y>380</y>
-      <w>195</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+Item
---
--id: int
--name: string
---
-+Item(id: int, name: string)
-+GetId(): int
-+Name: string
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>460</x>
-      <y>360</y>
-      <w>455</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0;890.0;10.0;890.0;40.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>585</x>
-      <y>380</y>
-      <w>205</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+Friend
---
--id: int
--friend: string
--timeStamp: DateTime
--type: Item
---
-+Friend(id: int, friend: string, timeStamp: DateTime, type: Item)
-+GetId(): int
-+Friend: string
-+TimeStamp: DateTime
-+Type: Item</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>690</x>
-      <y>365</y>
-      <w>220</w>
-      <h>25</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;30.0;10.0;10.0;420.0;10.0;420.0;30.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>585</x>
-      <y>230</y>
-      <w>195</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+DbFriend
---
--con: DbConnection
---
-+DbFriend()
-+GetRelationshipTypes(): List&lt;Item&gt;
-+AddFriend(profileID: int, friendID: int, type: int): bool
-+GetFriends(profileID: int): List&lt;Friend&gt;
-+UpdateFriend(friend: Friend): bool
-+RemoveFriend(id: int): bool
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>205</x>
-      <y>340</y>
-      <w>15</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>445</x>
-      <y>340</y>
-      <w>15</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>685</x>
-      <y>340</y>
-      <w>15</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>305</x>
-      <y>285</y>
-      <w>855</w>
-      <h>350</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;50.0;490.0;1690.0;680.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>540</x>
-      <y>270</y>
-      <w>620</w>
-      <h>365</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;40.0;10.0;40.0;520.0;1220.0;710.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>775</x>
-      <y>275</y>
-      <w>385</w>
-      <h>360</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0;50.0;510.0;750.0;700.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>810</x>
-      <y>230</y>
-      <w>195</w>
-      <h>115</h>
-    </coordinates>
-    <panel_attributes>+DbLike
---
--con: DbConnection
---
-+DbLike()
-+GetLikes(id: int): int
-+GetLike(id: int, personsID: int): bool
-+AddLike(id: int, personsID: int): bool
-+RemoveLike(id: int, personsID: int): bool</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1125</x>
-      <y>340</y>
-      <w>15</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1000</x>
-      <y>285</y>
-      <w>160</w>
-      <h>350</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;30.0;10.0;30.0;500.0;300.0;680.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1145</x>
-      <y>275</y>
-      <w>100</w>
-      <h>360</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>160.0;10.0;180.0;10.0;180.0;510.0;10.0;700.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1145</x>
-      <y>270</y>
-      <w>125</w>
-      <h>365</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>230.0;10.0;200.0;10.0;200.0;530.0;10.0;710.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1355</x>
-      <y>340</y>
-      <w>15</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>925</x>
-      <y>360</y>
-      <w>975</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>1930.0;40.0;1930.0;10.0;10.0;10.0;10.0;40.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1595</x>
-      <y>340</y>
-      <w>15</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>915</x>
-      <y>340</y>
-      <w>635</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>1250.0;10.0;1250.0;30.0;10.0;30.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1895</x>
-      <y>340</y>
-      <w>15</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1145</x>
-      <y>280</y>
-      <w>1020</w>
-      <h>355</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>2020.0;10.0;1980.0;10.0;1980.0;580.0;10.0;690.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1145</x>
-      <y>285</y>
-      <w>365</w>
-      <h>350</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>710.0;10.0;660.0;10.0;660.0;430.0;10.0;680.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>920</x>
-      <y>340</y>
-      <w>980</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>1940.0;10.0;1940.0;40.0;10.0;40.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>530</x>
-      <y>340</y>
-      <w>390</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0;760.0;40.0;760.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>730</x>
-      <y>340</y>
-      <w>195</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;30.0;370.0;30.0;370.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>930</x>
-      <y>365</y>
-      <w>655</w>
-      <h>25</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>1290.0;30.0;1290.0;10.0;10.0;10.0;10.0;30.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>1810</x>
-      <y>165</y>
-      <w>200</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>dont need artist (every time mking new song will check if 
-artist with this name exists if not create same for deletion)
-
-for checking if song exist check url
++Authenticate(profile: Profile): int
++CreateProfile(profile: Profile): int
++ReadProfile(what: string, by: int): Profile
++UpdateProfile(id: int, profile: Profile): bool
++DeleteProfile(id: int): bool
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2155</x>
-      <y>230</y>
-      <w>205</w>
-      <h>115</h>
+      <x>390</x>
+      <y>508</y>
+      <w>39</w>
+      <h>23</h>
     </coordinates>
-    <panel_attributes>+DbComment
+    <panel_attributes>+DbConnection
+--
+_-instance: DbConnection_
+-con: SqlConnection
+-transaction: SqlTransaction
+--
+_+GetInstance(): DbConnection_
+-DbConnection()
++GetConnection(): SqlConnection
++CloseConnection(): bool
++BeginTransaction(): SqlTransaction
++GetTransaction(): SqlTransaction
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>431</x>
+      <y>414</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+Chat
+--
++&lt;get/set&gt; Id: int
++&lt;get/set&gt; OwnerID: int
++&lt;get/set&gt; Time: DateTime
++&lt;get/set&gt; Name: string
++&lt;get/set&gt; Type: bool
++&lt;get/set&gt; MaxNrOfUsers: int
++&lt;get/set&gt; Users: List&lt;Tuple&lt;Profile, object&gt;&gt;
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>431</x>
+      <y>450</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+DbChat
+--
+-con: DbConnection
+--
++DbChat()
++CreateChat(chat: Chat): int
++GetChat(id: int): Chat
++UpdateChat(chat: Chat): int
++GetChatsByName(name: string, profileId: int): List&lt;Chat&gt;
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>381</x>
+      <y>450</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+DbMessage
 --
 -con: DbConnection
 --
 +DbMessage()
-+GetPlayListComments(id: int): List&lt;Message&gt;
-+CreateTextComment(profileId: int, text: string, chatId: int): bool
-+CreateFileComment(profileId: int, file: byte[], chatId: int): bool
-+DeleteComment(id: int, profileId: int): bool
++CreateMessage(id: int, text: string, chatId: int): Message
++GetMessages(chatId: int): List&lt;Message&gt;
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>381</x>
+      <y>414</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+Message
+--
++&lt;get/set&gt; Id: int
++&lt;get/set&gt; Text: string
++&lt;get/set&gt; Creator: string
++&lt;get/set&gt; CreatorId: int
++&lt;get/set&gt; Time: DateTime
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>281</x>
+      <y>414</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+Song
+--
++&lt;get/set&gt; ActivityId: int
++&lt;get/set&gt; Name: string
++&lt;get/set&gt; Duration: int
++&lt;get/set&gt; Url: string
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>414</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+PlayList
+--
++&lt;get/set&gt; ActivityId: int
++&lt;get/set&gt; Name: string
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>87</x>
+      <y>295</y>
+      <w>35</w>
+      <h>19</h>
+    </coordinates>
+    <panel_attributes>message id- to activity id
+and use activity object in code
+fix delete playlist
+fix song db name
+read activity not used
+what type is interface method
+resize the boxes profile controler is problem
+interface doesnt have reference to model object
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>481</x>
+      <y>414</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+Group
+--
++&lt;get/set&gt; GroupId: int
++&lt;get/set&gt; Name: string
++&lt;get/set&gt; CreatorId: int
++&lt;get/set&gt; Time: DateTime
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>581</x>
+      <y>414</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+Game
+--
++&lt;get/set&gt; GameId: int
++&lt;get/set&gt; Score1: int
++&lt;get/set&gt; Score2: int
++&lt;get/set&gt; Player1: Profile
++&lt;get/set&gt; Player2: Profile
++&lt;get/set&gt; Choice1: int
++&lt;get/set&gt; Choice2: int
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>531</x>
+      <y>414</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+Activity
+--
++&lt;get/set&gt; ActivityId: int
++&lt;get/set&gt; ProfileId: int
++&lt;get/set&gt; TimeStamp: DateTime
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>281</x>
+      <y>450</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+DBSong
+--
+-con: DbConnection
+--
++DBSong()
++AddSong(name: string, duration: int, url: string, activityId: int): int
++FindSongByURL(url: string): Song
++FindSongsByName(name: string): List&lt;Song&gt;
++UpdateProfile(profile: Profile): bool
++GetNotifications(profileId: int): List&lt;String&gt;
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>436</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>472</y>
+      <w>111</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1090.0;360.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>349</x>
+      <y>436</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>472</y>
+      <w>61</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>590.0;360.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>450</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+DbPlayList
+--
+-con: DbConnection
+--
++DbPlayList()
++AddPlayList(name: string, activityId: int): int
++FindPlayListsByName(name: string): List&lt;PlayList&gt;
++AddSongToPlayList(songId: int, playListId: int): int
++GetSongsFromPlayList(playListId: int): List&lt;Song&gt;
++IsSongInPlayList(songId: int, playListId: int): bool
++RemovePlaylist(playlistId): int
++RemoveSongFromPlaylist(songId: int, playlistId: int): int
++IsPlaylistOwner(playlistId: int, profileId: int): bool
+bg=red
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1360</x>
-      <y>340</y>
-      <w>895</w>
-      <h>50</h>
+      <x>248</x>
+      <y>436</y>
+      <w>3</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>1770.0;10.0;1770.0;70.0;10.0;70.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1145</x>
-      <y>285</y>
-      <w>660</w>
-      <h>350</h>
+      <x>251</x>
+      <y>436</y>
+      <w>49</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>1300.0;10.0;1260.0;10.0;1260.0;480.0;10.0;680.0</additional_attributes>
+    <additional_attributes>10.0;140.0;10.0;130.0;470.0;130.0;470.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>248</x>
+      <y>472</y>
+      <w>163</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1610.0;360.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>401</x>
+      <y>436</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>472</y>
+      <w>11</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>90.0;360.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>481</x>
+      <y>450</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+DbGroup
+--
+-con: DbConnection
+--
++DbGroup()
++CreateGroup(activityId: int, name: String): int
++UpdateGroup(groupId: int, name: String): int
++GetUsersGroups(profileId: int): List&lt;Group&gt;
++UserIsMemberOfGroup(profileId: int, groupId: int): bool
++AddMember(id: int, groupId: int): int
++RemoveMember(profileId: int, groupId: int): int
++GetUsers(groupId: int): List&lt;Profile&gt;
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>436</y>
+      <w>151</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1490.0;140.0;1490.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>436</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>472</y>
+      <w>95</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;360.0;930.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>436</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>472</y>
+      <w>44</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;360.0;420.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>531</x>
+      <y>450</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+DbActivity
+--
+-con: DbConnection
+--
++DbActivity()
++CreateActivity(profileId: int): int
++ReadActivity(id: int, by: int): Activity
++DeleteActivity(profileId: int, id: int): int
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>549</x>
+      <y>436</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>409</x>
+      <y>472</y>
+      <w>146</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;360.0;1440.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>205</x>
+      <y>411</y>
+      <w>13</w>
+      <h>4</h>
+    </coordinates>
+    <panel_attributes>DataTier
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>378</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+PlayListController
+--
+-dbPlayList: DbPlayList
+-con: DbConnection
+-dbActivity: DbActivity
+--
++PlayListController()
++AddPlayList(name: string, profileId: int): bool
++FindPlayListsByName(name: string): List&lt;PlayList&gt;
++AddSongToPlayList(url: string, playListIdString: string, profileId: int): bool
++GetSongsFromPlayList(playListIdString: string): List&lt;Song&gt;
++RemovePlaylist(playlistIdString: string, profileId: int): bool
++RemoveSongFromPlaylist(url: string, playListIdString: string, profileId: int): bool
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>205</x>
+      <y>368</y>
+      <w>13</w>
+      <h>4</h>
+    </coordinates>
+    <panel_attributes>BusinessTier
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>342</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IPlayListController
+--
+AddPlayList(name: string, profileId: int): bool
+FindPlayListsByName(name: string): List&lt;PlayList&gt;
+AddSongToPlayList(url: string, playListId: string, profileId: int): bool
+GetSongsFromPlayList(playListId: string): List&lt;Song&gt;
+RemovePlaylist(playlistId: string, profileId: int): bool
+RemoveSongFromPlaylist(url: string, playListId: string, profileId: int): bool
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>249</x>
+      <y>364</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>249</x>
+      <y>400</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>251</x>
+      <y>400</y>
+      <w>160</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1580.0;1080.0;210.0;730.0;210.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>252</x>
+      <y>400</y>
+      <w>296</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>2940.0;500.0;2940.0;460.0;210.0;460.0;210.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>249</x>
+      <y>400</y>
+      <w>24</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;500.0;10.0;480.0;220.0;480.0;220.0;130.0;20.0;130.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>253</x>
+      <y>400</y>
+      <w>45</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>430.0;140.0;430.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>281</x>
+      <y>378</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+SongController
+--
+_-ytService: YouTubeService_
+--
++SongController()
++AddSong(url: string, profileId: int): bool
+-Auth(): YouTubeService
++GetVideoTitle(videoId: string): string
++GetVideoDuration(videoId: string): int
++FindSongsByName(name: string): List&lt;Song&gt;
++GetSongByUrl(url: string): Song
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>281</x>
+      <y>342</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++ISongController
+--
+AddSong(url: string, profileId: int): bool
+GetVideoTitle(videoId: string): string
+GetVideoDuration(videoId: string): int
+FindSongsByName(name: string): List&lt;Song&gt;
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>364</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>299</x>
+      <y>400</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>400</y>
+      <w>23</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>20.0;500.0;20.0;490.0;210.0;490.0;210.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>302</x>
+      <y>400</y>
+      <w>247</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>2450.0;500.0;2450.0;450.0;210.0;450.0;210.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>301</x>
+      <y>400</y>
+      <w>110</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1080.0;1080.0;210.0;720.0;210.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>331</x>
+      <y>378</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+ProfileController
+--
+-dbProfile: DbProfile
+_-users: List&lt;Profile&gt;_
+--
++ProfileController()
++CreateProfile(profile: Profile): int
++Authenticate(profile: Profile): int
++ForgotDetails(email: string): bool
++ReadProfile(what: string, by: int): Profile
++UpdateProfile(id: int, profile: Profile): bool
++DeleteProfile(profileId: int): bool
+-SendEmail(email: string, subject: string, body: string): void
+-RandomPassword(): string
++Online(profileId: int, obj: object): bool
++Offline(profileId: int): bool
++GetUser(name: string): Profile
++GetUser(profileId: int): Profile
++CheckTheValues(profile: Profile, create: bool): bool
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>331</x>
+      <y>342</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IProfileController
+--
+CreateProfile(profile: Profile): int
+Authenticate(profile: Profile): int
+ForgotDetails(email: string): bool
+ReadProfile(what: string, by: int): Profile
+UpdateProfile(id: int, profile: Profile): bool
+DeleteProfile(profileId: int): bool
+Online(profileId: int, obj: object): bool
+Offline(profileId: int): bool
+GetUser(name: string): Profile
+GetUser(profiled: int): Profile
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>364</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>349</x>
+      <y>400</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>400</y>
+      <w>23</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;500.0;10.0;490.0;210.0;490.0;210.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>381</x>
+      <y>378</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+MessageController
+--
+-dbMessage: DbMessage
+-dbActivity: DbActivity
+--
++MessageController()
++CreateMessage(profileId: int, text: string, chatId: int): Message
++GetMessages(chatId: int): List&lt;Message&gt;
++DeleteMessage(profileId: int, id: int): bool
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>401</x>
+      <y>400</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>379</x>
+      <y>400</y>
+      <w>24</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>220.0;500.0;220.0;490.0;10.0;490.0;10.0;130.0;220.0;130.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>403</x>
+      <y>400</y>
+      <w>147</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1450.0;500.0;1450.0;440.0;180.0;440.0;180.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>381</x>
+      <y>342</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IMessageController
+--
+CreateMessage(profileId: int, text: string, chatId: int): Message
+GetMessages(chatId: int): List&lt;Message&gt;
+DeleteMessage(profileId: int, id: int): bool
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>364</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>481</x>
+      <y>378</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+GroupController
+--
+-dbGroup: DbGroup
+-dbActivity: DbActivity
+-profileController: IProfileController
+--
++GroupController()
++CreateGroup(name: string, profileId: int): bool
++DeleteGroup(profileId: int, groupId: int): bool
++UpdateGroup(name: string, groupId: int): bool
++GetUsersGroups(profileId: int): List&lt;Group&gt;
++AddMember(memberName: string, groupId: int): bool
++RemoveMember(profileId: int, groupId: int): bool
++GetUsers(groupId: int): List&lt;Profile&gt;
++GetOnlineMembers(groupId: int): List&lt;Profile&gt;
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>431</x>
+      <y>378</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+ChatController
+--
+-dbChat: DbChat
+-dbActivity: DbActivity
+-profileController: IProfileController
+-groupController: IGroupController
+_-chats: List&lt;Chat&gt;_
+--
++ChatController()
++SaveChat(profileId: int, chat: Chat): bool
++DeleteChat(profileId: int, id: int): bool
++GetChatsByName(name: string, profileId: int): List&lt;Chat&gt;
++JoinChatWithGroup(groupId: int, chatId: int): List&lt;Profile&gt;
++JoinChat(chatId: int, profileId: int, callback: object): bool
++LeaveChat(chatId: int, profileId: int): bool
++FindChat(chatId: int): Chat
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>499</x>
+      <y>400</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>479</x>
+      <y>400</y>
+      <w>23</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>210.0;500.0;210.0;470.0;10.0;470.0;10.0;130.0;200.0;130.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>352</x>
+      <y>364</y>
+      <w>150</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1480.0;140.0;1480.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>351</x>
+      <y>400</y>
+      <w>149</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;120.0;1470.0;120.0;1470.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>400</y>
+      <w>91</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;1080.0;710.0;730.0;710.0;110.0;890.0;110.0;890.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>481</x>
+      <y>341</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IGroupController
+--
+CreateGroup(name: string, profileId: int): bool
+DeleteGroup(profileId: int, groupId: int): bool
+UpdateGroup(name: string, groupId: int): bool
+GetUsersGroups(profileId: int): List&lt;Group&gt;
+AddMember(memberName: string, groupId: int): bool
+RemoveMember(profileId: int, groupId: int): bool
+GetUsers(groupId: int): List&lt;Profile&gt;
+GetOnlineMembers(groupId: int): List&lt;Profile&gt;
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>431</x>
+      <y>342</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IChatController
+--
++SaveChat(profileId: int, chat: Chat): bool
++DeleteChat(profileId: int, id: int): bool
++GetChatsByName(name: string, profileId: int): List&lt;Chat&gt;
++JoinChatWithGroup(groupId: int, chatId: int):  List&lt;Profile&gt;
++JoinChat(chatId: int, profileId: int, callback: object): bool
++LeaveChat(chatId: int, profileId: int): bool
++FindChat(chatId: int): Chat
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>363</y>
+      <w>3</w>
+      <h>17</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>581</x>
+      <y>342</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IGameController
+--
+JoinGame(gameId: int, profileId: int, callback: object): int
+LeaveGame(gameId: int, profileId: int): int
+MakeChoice(gameId: int, profileId: int, choice: int): int
+FindGame(gameId: int): Game
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>581</x>
+      <y>378</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+GameController
+--
+-profileController: IProfileController
+_-games: List&lt;Game&gt;_
+--
++GameController()
++JoinGame(gameId: int, profileId: int, callback: int): int
++LeaveGame(gameId: int, profileId: int): int
++MakeChoice(gameId: int, profileId: int, choice: int): int
++FindGame(gameId: int): Game
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>400</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>353</x>
+      <y>364</y>
+      <w>247</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>2450.0;140.0;2450.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>355</x>
+      <y>400</y>
+      <w>246</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;80.0;2440.0;80.0;2440.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>599</x>
+      <y>364</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>449</x>
+      <y>364</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>400</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>451</x>
+      <y>400</y>
+      <w>22</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;500.0;10.0;380.0;200.0;380.0;200.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>452</x>
+      <y>400</y>
+      <w>99</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>970.0;500.0;970.0;430.0;200.0;430.0;200.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>351</x>
+      <y>364</y>
+      <w>100</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>980.0;140.0;980.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>363</y>
+      <w>52</w>
+      <h>17</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;120.0;500.0;120.0;500.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>400</y>
+      <w>43</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;1080.0;210.0;730.0;210.0;70.0;410.0;70.0;410.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>352</x>
+      <y>400</y>
+      <w>100</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;110.0;980.0;110.0;980.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>205</x>
+      <y>293</y>
+      <w>13</w>
+      <h>4</h>
+    </coordinates>
+    <panel_attributes>WcfService
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>306</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+YoutubeService
+--
+-songController: ISongController
+-playListController: IPlayListController
+--
++AddSong(url: string, profileId: int): bool
++GetVideoTitle(videoId: string): string
++GetVideoDuration(videoId: string): int
++FindSongsByName(name: string): List&lt;Song&gt;
++AddPlayList(name: string, profileId: int): bool
++FindPlayListsByName(name: string): List&lt;PlayList&gt;
++AddSongToPlayList(url: string, playListId: string, profileId: int): bool
++GetSongsFromPlayList(playListId: string): List&lt;Song&gt;
++RemovePlaylist(playlistId: string, profileId: int): bool
++RemoveSongFromPlaylist(url: string, playListId: string, profileId: int): bool
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>270</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IYoutubeService
+--
+AddSong(url: string, profileId: int): bool
+GetVideoTitle(videoId: string): string
+GetVideoDuration(videoId: string): int
+FindSongsByName(name: string): List&lt;Song&gt;
+AddPlayList(name: string, profileId: int): bool
+FindPlayListsByName(name: string): List&lt;PlayList&gt;
+AddSongToPlayList(url: string, playListId: string, profileId: int): bool
+GetSongsFromPlayList(playListId: string): List&lt;Song&gt;
+RemovePlaylist(playlistId: string, profileId: int): bool
+RemoveSongFromPlaylist(url: string, playlistId: string, profileId: int): bool
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>249</x>
+      <y>292</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>328</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>252</x>
+      <y>328</y>
+      <w>48</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>460.0;140.0;460.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>251</x>
+      <y>328</y>
+      <w>48</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>460.0;860.0;460.0;810.0;230.0;810.0;230.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>229</x>
+      <y>328</y>
+      <w>23</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>200.0;860.0;200.0;840.0;10.0;840.0;10.0;130.0;210.0;130.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>331</x>
+      <y>270</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IProfileService
+--
+CreateProfile(profile: Profile): int
+Authenticate(profile: Profile): int
+ForgotDetails(email: string): bool
+ReadProfile(what: string, by: int): Profile
+UpdateProfile(id: int, profile: Profile): bool
+DeleteProfile(profileId: int): bool
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>331</x>
+      <y>306</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+ProfileService
+--
+-profileController: IProfileController
+--
++CreateProfile(profile: Profile): int
++Authenticate(profile: Profile): int
++ForgotDetails(email: string): bool
++ReadProfile(what: string, by: int): Profile
++UpdateProfile(id: int, login: Profile): bool
++DeleteProfile(loginId: int): bool
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>349</x>
+      <y>292</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>328</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>328</x>
+      <y>328</y>
+      <w>24</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>190.0;860.0;190.0;850.0;10.0;850.0;10.0;130.0;220.0;130.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>381</x>
+      <y>306</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+MessageService
+--
+-messageController: IMessageController
+-chatController: IChatController
+--
++JoinChat(chatId: int, profileId: int): void
++LeaveChat(chatId: int, profileId: int): void
++InviteToChat(chatId: int, name: string): void
++Writing(chatId: int): void
++CreateMessage(profileId: int, text: string, chatId: int): void 
++DeleteMessage(profileId: int, id: int, chatId: int): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>399</x>
+      <y>292</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>381</x>
+      <y>270</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IMessageService
+--
+JoinChat(chatId: int, profileId: int): void
+LeaveChat(chatId: int, profileId: int): void
+InviteToChat(chatId: int, name: string): void
+Writing(chatId: int): void
+CreateMessage(profileId: int, text: string, chatId: int): void
+DeleteMessage(profileId: int, id: int, chatId: int): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>328</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>401</x>
+      <y>328</y>
+      <w>51</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>490.0;140.0;490.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>403</x>
+      <y>328</y>
+      <w>46</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>440.0;860.0;440.0;850.0;190.0;850.0;190.0;90.0;10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>357</x>
+      <y>328</y>
+      <w>45</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;860.0;10.0;780.0;210.0;780.0;210.0;130.0;430.0;130.0;430.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>351</x>
+      <y>328</y>
+      <w>50</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>480.0;10.0;480.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>402</x>
+      <y>328</y>
+      <w>21</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;860.0;10.0;740.0;190.0;740.0;190.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>381</x>
+      <y>234</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IMessageCallBack
+--
+WritingMessage(): void
+AddMessage(Message message)): void
+RemoveMessage(int id)): void
+Invite(bool result): void
+GetOnlineProfiles(List&lt;Profile&gt; profiles)): void
+GetChat(Chat chat)): void
+GetMessages(List&lt;Message&gt; messages)): void
+Show(bool result): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>399</x>
+      <y>256</y>
+      <w>24</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>20.0;500.0;20.0;490.0;220.0;490.0;220.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>481</x>
+      <y>306</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+GroupService
+--
+-groupController: IGroupController
+--
++CreateGroup(name: string, profileId: int): bool
++DeleteGroup(profileId: int, groupId: int): bool
++UpdateGroup(name: string, groupId: int): bool
++GetUsersGroups(profileId: int): List&lt;Group&gt;
++AddMember(memberName: string, groupId: int): bool
++RemoveMember(profileId: int, groupId: int): bool
++GetUsers(groupId: int): List&lt;Profile&gt;
++GetOnlineMembers(groupId: int): List&lt;Profile&gt;
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>431</x>
+      <y>306</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+ChatService
+--
+-chatController: IChatController
+-profileController: IProfileController
+--
++Online(profileId: int): void
++Offline(profileId: int): void
++Invite(chatId: int, name: string): bool
++SaveChat(profileId: int, chat: Chat): void
++DeleteChat(profileId: int, id: int): void
++GetChatsByName(name: string, profileId: int): List&lt;Chat&gt;
++GetUsersGroups(profileId: int): List&lt;Group&gt;
++JoinChatWhithGroup(groupId: int, chatId: int): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>499</x>
+      <y>328</y>
+      <w>3</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>328</y>
+      <w>24</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>20.0;860.0;20.0;850.0;220.0;850.0;220.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>354</x>
+      <y>328</y>
+      <w>147</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;860.0;10.0;810.0;1260.0;810.0;1260.0;120.0;1450.0;120.0;1450.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>481</x>
+      <y>270</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IGroupService
+--
+CreateGroup(name: string, profileId: int): bool
+DeleteGroup(profileId: int, groupId: int): bool
+UpdateGroup(name: string, groupId: int): bool
+GetUsersGroups(profileId: int): List&lt;Group&gt;
+AddMember(memberName: string, groupId: int): bool
+RemoveMember(profileId: int, groupId: int): bool
+GetUsers(groupId: int): List&lt;Profile&gt;
+GetOnlineMembers(groupId: int): List&lt;Profile&gt;
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>431</x>
+      <y>270</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IChatService
+--
+Online(profileId: int): void
+Offline(profileId: int): void
+Invite(chatId: int, name: string): bool
+SaveChat(profileId: int, chat: Chat): void
+DeleteChat(profileId: int, id: int): void
+GetChatsByName(name: string, profileId: int): List&lt;Chat&gt;
+GetUsersGroups(profileId: int): List&lt;Group&gt;
+JoinChatWhithGroup(groupId: int, chatId: int): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>292</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>499</x>
+      <y>292</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>581</x>
+      <y>306</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>+GameService
+--
+-gameController: IGameController
+--
++JoinGame(gameId: int, profileId: int): void
++LeaveGame(gameId: int, profileId: int): void
++MakeChoice(gameId: int, profileId: int, choice: int): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>599</x>
+      <y>292</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>581</x>
+      <y>270</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IGameService
+--
+JoinGame(gameId: int, profileId: int): void
+LeaveGame(gameId: int, profileId: int): void
+MakeChoice(gameId: int, profileId: int, choice: int): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>599</x>
+      <y>328</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>579</x>
+      <y>328</y>
+      <w>23</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>210.0;860.0;210.0;840.0;10.0;840.0;10.0;130.0;200.0;130.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>353</x>
+      <y>328</y>
+      <w>247</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;860.0;10.0;820.0;2260.0;820.0;2260.0;120.0;2450.0;120.0;2450.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>581</x>
+      <y>234</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IGameCallBack
+--
+PlayerJoins(id: int, name: string): void
+PlayerLeaves(): void
+Result(result: int): void
+Show(result: bool): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>579</x>
+      <y>256</y>
+      <w>24</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>220.0;10.0;220.0;130.0;10.0;130.0;10.0;480.0;200.0;480.0;200.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>451</x>
+      <y>328</y>
+      <w>3</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>352</x>
+      <y>328</y>
+      <w>101</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;120.0;990.0;120.0;990.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>356</x>
+      <y>328</y>
+      <w>95</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;860.0;10.0;790.0;230.0;790.0;230.0;110.0;930.0;110.0;930.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>452</x>
+      <y>328</y>
+      <w>21</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>20.0;860.0;20.0;790.0;190.0;790.0;190.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>453</x>
+      <y>328</y>
+      <w>45</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>430.0;860.0;430.0;790.0;190.0;790.0;190.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>454</x>
+      <y>328</y>
+      <w>46</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>440.0;130.0;440.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>431</x>
+      <y>234</y>
+      <w>39</w>
+      <h>23</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
++IChatCallBack
+--
+Notification(chat: Chat): void
+JoinChat(chatId: int): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>449</x>
+      <y>256</y>
+      <w>24</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>30.0;500.0;30.0;490.0;220.0;490.0;220.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>192</x>
+      <y>214</y>
+      <w>449</w>
+      <h>331</h>
+    </coordinates>
+    <panel_attributes>Server
+--
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>364</y>
+      <w>23</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>50.0;500.0;50.0;450.0;210.0;450.0;210.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>251</x>
+      <y>364</y>
+      <w>49</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>470.0;500.0;470.0;440.0;210.0;440.0;210.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>279</x>
+      <y>364</y>
+      <w>23</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>200.0;500.0;200.0;430.0;10.0;430.0;10.0;130.0;210.0;130.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>329</x>
+      <y>364</y>
+      <w>23</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>190.0;500.0;190.0;480.0;10.0;480.0;10.0;130.0;210.0;130.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>379</x>
+      <y>364</y>
+      <w>23</w>
+      <h>53</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>210.0;510.0;210.0;430.0;10.0;430.0;10.0;110.0;210.0;110.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>429</x>
+      <y>364</y>
+      <w>22</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>190.0;500.0;190.0;420.0;10.0;420.0;10.0;110.0;200.0;110.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>358</x>
+      <y>364</y>
+      <w>92</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;500.0;10.0;410.0;660.0;410.0;660.0;90.0;900.0;90.0;900.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>363</y>
+      <w>23</w>
+      <h>53</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;510.0;10.0;440.0;210.0;440.0;210.0;140.0;20.0;140.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>359</x>
+      <y>363</y>
+      <w>142</w>
+      <h>53</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;510.0;10.0;410.0;1200.0;410.0;1200.0;100.0;1400.0;100.0;1400.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>364</y>
+      <w>23</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>20.0;500.0;20.0;490.0;210.0;490.0;210.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>292</y>
+      <w>141</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;1220.0;10.0;1110.0;1180.0;1110.0;1180.0;130.0;1390.0;130.0;1390.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>292</y>
+      <w>25</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>40.0;1220.0;40.0;1200.0;230.0;1200.0;230.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>451</x>
+      <y>292</y>
+      <w>24</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>40.0;1220.0;40.0;1140.0;220.0;1140.0;220.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>452</x>
+      <y>292</y>
+      <w>45</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>430.0;1220.0;430.0;1140.0;220.0;1140.0;220.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>256</y>
+      <w>27</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>60.0;1580.0;60.0;1490.0;250.0;1490.0;250.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>256</y>
+      <w>25</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>50.0;1580.0;50.0;1510.0;230.0;1510.0;230.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>401</x>
+      <y>256</y>
+      <w>46</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>440.0;1580.0;440.0;1490.0;240.0;1490.0;240.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>361</x>
+      <y>256</y>
+      <w>40</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;1580.0;10.0;1460.0;160.0;1460.0;160.0;130.0;380.0;130.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>327</x>
+      <y>292</y>
+      <w>24</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>220.0;1220.0;220.0;1190.0;10.0;1190.0;10.0;130.0;220.0;130.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>292</y>
+      <w>47</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>450.0;1220.0;450.0;1210.0;250.0;1210.0;250.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>228</x>
+      <y>292</y>
+      <w>23</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>200.0;1220.0;200.0;1210.0;10.0;1210.0;10.0;130.0;210.0;130.0;210.0;10.0</additional_attributes>
   </element>
 </diagram>

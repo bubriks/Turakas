@@ -13,6 +13,7 @@ namespace WcfService
     {
         [OperationContract]
         bool AddSong(string url, int profileId);
+
         [OperationContract]
         string GetVideoTitle(string videoId);
         
@@ -24,6 +25,7 @@ namespace WcfService
         
         [OperationContract]
         bool AddPlayList(string name, int profileId);
+
         [OperationContract]
         List<PlayList> FindPlayListsByName(string name);
         
