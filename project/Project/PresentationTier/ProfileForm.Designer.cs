@@ -272,7 +272,7 @@
             this.Controls.Add(this.username_lbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ProfileForm";
-            this.Text = "6";
+            this.Text = "Profile Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileForm_Closing);
             this.ResumeLayout(false);
             this.PerformLayout();

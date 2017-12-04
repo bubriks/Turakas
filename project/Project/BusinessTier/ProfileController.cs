@@ -100,10 +100,13 @@ namespace BusinessTier
                 if (dbProfile.UpdateProfile(id, profile))
                 {
                     Profile user = GetUser(id);
-                    user.Email = profile.Email;
-                    user.Nickname = profile.Nickname;
-                    user.Password = profile.Password;
-                    user.Username = profile.Username;
+                    if (user != null)
+                    {
+                        user.Email = profile.Email;
+                        user.Nickname = profile.Nickname;
+                        user.Password = profile.Password;
+                        user.Username = profile.Username;
+                    }
                     return true;
                 }
             return false;
