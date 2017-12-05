@@ -23,9 +23,6 @@ namespace PresentationTier.GroupServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] AllUsersField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CreatorIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -44,19 +41,6 @@ namespace PresentationTier.GroupServiceReference {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] AllUsers {
-            get {
-                return this.AllUsersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AllUsersField, value) != true)) {
-                    this.AllUsersField = value;
-                    this.RaisePropertyChanged("AllUsers");
-                }
             }
         }
         
@@ -129,7 +113,6 @@ namespace PresentationTier.GroupServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.GroupServiceReference.Group[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.GroupServiceReference.Group))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PresentationTier.GroupServiceReference.Profile[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(int[]))]
     public partial class Profile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]

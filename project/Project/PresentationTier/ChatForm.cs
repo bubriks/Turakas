@@ -196,7 +196,7 @@ namespace PresentationTier
 
         private void JoinWithGroup(int groupId)//menu item join with group clicked
         {
-            client.joinChatWhithGroup(groupId, chatId);
+            client.JoinChatWhithGroup(groupId, chatId);
         }
 
         private void NrOfUsersTrackBar_ValueChanged(object sender, EventArgs e)//change max value of users
@@ -255,7 +255,7 @@ namespace PresentationTier
             }
         }
 
-        public void joinChat(int chatId)//joins the chat with the group
+        public void JoinChat(int chatId)//joins the chat with the group
         {
             new MessageForm(chatId, profileId);
         }

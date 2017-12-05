@@ -50,10 +50,10 @@ namespace WcfService
 
         public void LeaveChat(int chatId, int profileId)
         {
-            Chat chat = chatController.FindChat(chatId);
             if (chatController.LeaveChat(chatId, profileId))
             {
-                if(chat != null)
+                Chat chat = chatController.FindChat(chatId);
+                if (chat != null)
                 {
                     List<object> callbacks = new List<object>();
                     List<Profile> profiles = new List<Profile>();
