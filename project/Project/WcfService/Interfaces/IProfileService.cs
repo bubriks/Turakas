@@ -23,5 +23,7 @@ namespace WcfService
         bool UpdateProfile(int id, Profile profile);
         [OperationContract]
         bool DeleteProfile(int profileId);
+        [OperationContract]
+        int CreateProfileWithInputs(String username, String nickname, String email, String password);
     }
 }

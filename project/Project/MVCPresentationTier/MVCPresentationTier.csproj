@@ -300,6 +300,7 @@
     <Content Include="Views\Chat\GetChat.cshtml" />
     <Content Include="Views\Message\ChatRoom.cshtml" />
     <Content Include="Views\Profile\LogIn.cshtml" />
+    <Content Include="Views\Profile\CreateProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

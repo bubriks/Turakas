@@ -18,6 +18,11 @@ namespace MVCPresentationTier
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                 name: "CreateProfile",
+                 url: "{controller}/{action}/{id}",
+                 defaults: new { controller = "Profile", action = "CreateProfile", id = UrlParameter.Optional }
+             );
         }
     }
 }

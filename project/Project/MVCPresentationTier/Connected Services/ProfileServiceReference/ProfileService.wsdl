@@ -324,6 +324,44 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProfileService_CreateProfileWithInputs_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProfileService_CreateProfileWithInputs_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost/ProfileService?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -367,6 +405,12 @@
   <wsdl:message name="IProfileService_DeleteProfile_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteProfileResponse" />
   </wsdl:message>
+  <wsdl:message name="IProfileService_CreateProfileWithInputs_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateProfileWithInputs" />
+  </wsdl:message>
+  <wsdl:message name="IProfileService_CreateProfileWithInputs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateProfileWithInputsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IProfileService">
     <wsdl:operation name="CreateProfile">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileService/CreateProfile" message="tns:IProfileService_CreateProfile_InputMessage" />
@@ -391,6 +435,10 @@
     <wsdl:operation name="DeleteProfile">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileService/DeleteProfile" message="tns:IProfileService_DeleteProfile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileService/DeleteProfileResponse" message="tns:IProfileService_DeleteProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateProfileWithInputs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileService/CreateProfileWithInputs" message="tns:IProfileService_CreateProfileWithInputs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileService/CreateProfileWithInputsResponse" message="tns:IProfileService_CreateProfileWithInputs_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IProfileService" type="tns:IProfileService">
@@ -462,6 +510,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CreateProfileWithInputs">
+      <soap12:operation soapAction="http://tempuri.org/IProfileService/CreateProfileWithInputs" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProfileService_CreateProfileWithInputs_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProfileService_CreateProfileWithInputs_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ProfileService">
     <wsdl:port name="WSHttpBinding_IProfileService" binding="tns:WSHttpBinding_IProfileService">
@@ -469,7 +528,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost/ProfileService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-GOARNTN\bubri</Upn>
+          <Upn>TURAKAS\Turakas</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
