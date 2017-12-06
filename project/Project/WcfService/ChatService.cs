@@ -30,9 +30,17 @@ namespace WcfService
             Profile user = profileController.GetUser(name);
             if (user != null)
             {
-                IChatCallBack chatCallback = (IChatCallBack)user.CallBack;
-                chatCallback.Notification(chatController.FindChat(chatId));
-                return true;
+                try
+                {
+                    IChatCallBack chatCallback = (IChatCallBack)user.CallBack;
+                    chatCallback.Notification(chatController.FindChat(chatId));
+                    return true;
+                }
+                catch (Exception)
+                {
+                    Offline(user.ProfileID);
+                    return false;
+                }
             }
             else
             {
@@ -49,8 +57,15 @@ namespace WcfService
                 {
                     foreach (var tuple in chat.Users)
                     {
-                        IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
-                        callback.GetChat(chat);
+                        try
+                        {
+                            IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
+                            callback.GetChat(chat);
+                        }
+                        catch (Exception)
+                        {
+                            Offline(tuple.Item1.ProfileID);
+                        }
                     }
                 }
             }
@@ -64,9 +79,16 @@ namespace WcfService
                 if (chat != null)
                 {
                     foreach (var tuple in chat.Users)
-                    {
-                        IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
-                        callback.Show(false);
+                    { 
+                        try
+                        {
+                            IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
+                            callback.Show(false);
+                        }
+                        catch (Exception)
+                        {
+                            Offline(tuple.Item1.ProfileID);
+                        }
                     }
                 }
             }
@@ -89,8 +111,15 @@ namespace WcfService
             {
                 foreach (Profile user in profiles)
                 {
-                    IChatCallBack chatCallback = (IChatCallBack)user.CallBack;
-                    chatCallback.JoinChat(chatId);
+                    try
+                    {
+                        IChatCallBack chatCallback = (IChatCallBack)user.CallBack;
+                        chatCallback.JoinChat(chatId);
+                    }
+                    catch (Exception)
+                    {
+                        Offline(user.ProfileID);
+                    }
                 }
             }
         }
