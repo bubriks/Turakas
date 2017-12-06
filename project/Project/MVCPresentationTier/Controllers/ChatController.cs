@@ -79,7 +79,7 @@ namespace MVCPresentationTier.Controllers
         }
 
         #region For later
-        public void joinChat(int chatId)
+        public void JoinChat(int chatId)
         {
             throw new NotImplementedException();
         }

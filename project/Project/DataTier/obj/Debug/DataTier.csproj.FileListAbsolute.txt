@@ -47,3 +47,4 @@ C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\DataTier\bin\Deb
 C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
 C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\DataTier\obj\Debug\DataTier.dll
 C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\DataTier\obj\Debug\DataTier.pdb
+C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache

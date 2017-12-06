@@ -158,7 +158,6 @@ namespace MVCPresentationTier.ChatServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(int[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.ChatServiceReference.Profile, object>[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.ChatServiceReference.Profile, object>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.ChatServiceReference.Chat))]
@@ -296,9 +295,6 @@ namespace MVCPresentationTier.ChatServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] AllUsersField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CreatorIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -317,19 +313,6 @@ namespace MVCPresentationTier.ChatServiceReference {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] AllUsers {
-            get {
-                return this.AllUsersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AllUsersField, value) != true)) {
-                    this.AllUsersField = value;
-                    this.RaisePropertyChanged("AllUsers");
-                }
             }
         }
         
@@ -435,17 +418,11 @@ namespace MVCPresentationTier.ChatServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetUsersGroups", ReplyAction="http://tempuri.org/IChatService/GetUsersGroupsResponse")]
         System.Threading.Tasks.Task<MVCPresentationTier.ChatServiceReference.Group[]> GetUsersGroupsAsync(int profileId);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/joinChatWhithGroup")]
-        void joinChatWhithGroup(int groupId, int chatId);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/JoinChatWhithGroup")]
+        void JoinChatWhithGroup(int groupId, int chatId);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/joinChatWhithGroup")]
-        System.Threading.Tasks.Task joinChatWhithGroupAsync(int groupId, int chatId);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/RefreshConnection")]
-        void RefreshConnection(int profileId);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/RefreshConnection")]
-        System.Threading.Tasks.Task RefreshConnectionAsync(int profileId);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/JoinChatWhithGroup")]
+        System.Threading.Tasks.Task JoinChatWhithGroupAsync(int groupId, int chatId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -454,11 +431,8 @@ namespace MVCPresentationTier.ChatServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Notification")]
         void Notification(MVCPresentationTier.ChatServiceReference.Chat chat);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/joinChat")]
-        void joinChat(int chatId);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/Refreshed")]
-        void Refreshed();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/JoinChat")]
+        void JoinChat(int chatId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -537,20 +511,12 @@ namespace MVCPresentationTier.ChatServiceReference {
             return base.Channel.GetUsersGroupsAsync(profileId);
         }
         
-        public void joinChatWhithGroup(int groupId, int chatId) {
-            base.Channel.joinChatWhithGroup(groupId, chatId);
+        public void JoinChatWhithGroup(int groupId, int chatId) {
+            base.Channel.JoinChatWhithGroup(groupId, chatId);
         }
         
-        public System.Threading.Tasks.Task joinChatWhithGroupAsync(int groupId, int chatId) {
-            return base.Channel.joinChatWhithGroupAsync(groupId, chatId);
-        }
-        
-        public void RefreshConnection(int profileId) {
-            base.Channel.RefreshConnection(profileId);
-        }
-        
-        public System.Threading.Tasks.Task RefreshConnectionAsync(int profileId) {
-            return base.Channel.RefreshConnectionAsync(profileId);
+        public System.Threading.Tasks.Task JoinChatWhithGroupAsync(int groupId, int chatId) {
+            return base.Channel.JoinChatWhithGroupAsync(groupId, chatId);
         }
     }
 }
