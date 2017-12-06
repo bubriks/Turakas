@@ -21,14 +21,14 @@ namespace WcfService
             if (chatController.JoinChat(chatId, profileId, callbackObj))
             {
                 Chat chat = chatController.FindChat(chatId);
-                List<object> callbacks = new List<object>();
+                List<Tuple<object, int>> callbacks = new List<Tuple<object, int>>();
                 List<Profile> profiles = new List<Profile>();
                 foreach (var tuple in chat.Users)
                 {
                     profiles.Add(tuple.Item1);
                     if(tuple.Item2 != null)
                     {
-                        callbacks.Add(tuple.Item2);
+                        callbacks.Add(new Tuple<object, int>(tuple.Item2, tuple.Item1.ProfileID));
                     }
                 }
                 callback.GetChat(chat);
@@ -36,10 +36,17 @@ namespace WcfService
                 callback.GetOnlineProfiles(profiles);
                 callback.Show(true);
                 
-                foreach (object messageCallBack in callbacks)
+                foreach (Tuple<object, int> messageCallBack in callbacks)
                 {
-                    callback = (IMessageCallBack)messageCallBack;
-                    callback.GetOnlineProfiles(profiles);
+                    try
+                    {
+                        callback = (IMessageCallBack)messageCallBack.Item1;
+                        callback.GetOnlineProfiles(profiles);
+                    }
+                    catch (Exception)
+                    {
+                        chatController.LeaveChat(chatId, messageCallBack.Item2);
+                    }
                 }
             }
             else
@@ -55,18 +62,28 @@ namespace WcfService
                 Chat chat = chatController.FindChat(chatId);
                 if (chat != null)
                 {
-                    List<object> callbacks = new List<object>();
+                    List<Tuple<object, int>> callbacks = new List<Tuple<object, int>>();
                     List<Profile> profiles = new List<Profile>();
                     foreach (var tuple in chat.Users)
                     {
                         profiles.Add(tuple.Item1);
-                        callbacks.Add(tuple.Item2);
+                        if(tuple.Item2 != null)
+                        {
+                            callbacks.Add(new Tuple<object, int>(tuple.Item2, tuple.Item1.ProfileID));
+                        }
                     }
 
-                    foreach (object messageCallBack in callbacks)
+                    foreach (Tuple<object, int> messageCallBack in callbacks)
                     {
-                        IMessageCallBack callback = (IMessageCallBack)messageCallBack;
-                        callback.GetOnlineProfiles(profiles);
+                        try
+                        {
+                            IMessageCallBack callback = (IMessageCallBack)messageCallBack.Item1;
+                            callback.GetOnlineProfiles(profiles);
+                        }
+                        catch (Exception)
+                        {
+                            chatController.LeaveChat(chatId, messageCallBack.Item2);
+                        }
                     }
                 }
             }
@@ -82,8 +99,15 @@ namespace WcfService
         {
             foreach (var tuple in chatController.FindChat(chatId).Users)
             {
-                IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
-                callback.WritingMessage();
+                try
+                {
+                    IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
+                    callback.WritingMessage();
+                }
+                catch (Exception)
+                {
+                    chatController.LeaveChat(chatId, tuple.Item1.ProfileID);
+                }
             }
         }
         
@@ -94,8 +118,15 @@ namespace WcfService
             {
                 foreach (var tuple in chatController.FindChat(chatId).Users)
                 {
-                    IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
-                    callback.AddMessage(message);
+                    try
+                    {
+                        IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
+                        callback.AddMessage(message);
+                    }
+                    catch (Exception)
+                    {
+                        chatController.LeaveChat(chatId, tuple.Item1.ProfileID);
+                    }
                 }
             }
         }
@@ -106,8 +137,15 @@ namespace WcfService
             {
                 foreach (var tuple in chatController.FindChat(chatId).Users)
                 {
-                    IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
-                    callback.RemoveMessage(id);
+                    try
+                    {
+                        IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
+                        callback.RemoveMessage(id);
+                    }
+                    catch (Exception)
+                    {
+                        chatController.LeaveChat(chatId, tuple.Item1.ProfileID);
+                    }
                 }
             }
         }

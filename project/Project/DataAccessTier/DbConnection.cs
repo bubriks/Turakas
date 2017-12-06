@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DataAccessTier
@@ -48,7 +49,7 @@ namespace DataAccessTier
         #region Transaction
         public SqlTransaction BeginTransaction()
         {
-            transaction = con.BeginTransaction();
+            transaction = con.BeginTransaction(IsolationLevel.RepeatableRead);
             return transaction;
         }
 
