@@ -151,7 +151,7 @@ namespace PresentationTier
 
         private void addSongToPlaylistToolStripMenu_Click(object sender, EventArgs e)
         {
-            if(youtubeServiceClient.AddSongToPlayList(listBox1.SelectedValue.ToString(),
+            if(listBox1.SelectedIndex>-1&&youtubeServiceClient.AddSongToPlayList(listBox1.SelectedValue.ToString(),
                 listBox2.SelectedValue.ToString(), profileId))
             {
                 MessageBox.Show("Song added to playlist.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -174,7 +174,7 @@ namespace PresentationTier
 
         private void removePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (youtubeServiceClient.RemovePlaylist(listBox2.SelectedValue.ToString(), profileId))
+            if (listBox2.SelectedIndex>-1&&youtubeServiceClient.RemovePlaylist(listBox2.SelectedValue.ToString(), profileId))
             {
                 MessageBox.Show("Playlist removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(textBox3.Text);
@@ -205,7 +205,7 @@ namespace PresentationTier
 
         private void removeSongFromPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (youtubeServiceClient.RemoveSongFromPlaylist(listBox1.SelectedValue.ToString(), listBox2.SelectedValue.ToString(), profileId))
+            if (listBox1.SelectedIndex>-1&&youtubeServiceClient.RemoveSongFromPlaylist(listBox1.SelectedValue.ToString(), listBox2.SelectedValue.ToString(), profileId))
             {
                 MessageBox.Show("Song removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(listBox2.SelectedValue.ToString());

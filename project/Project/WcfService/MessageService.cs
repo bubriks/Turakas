@@ -50,10 +50,10 @@ namespace WcfService
 
         public void LeaveChat(int chatId, int profileId)
         {
-            Chat chat = chatController.FindChat(chatId);
             if (chatController.LeaveChat(chatId, profileId))
             {
-                if(chat != null)
+                Chat chat = chatController.FindChat(chatId);
+                if (chat != null)
                 {
                     List<object> callbacks = new List<object>();
                     List<Profile> profiles = new List<Profile>();
@@ -72,10 +72,10 @@ namespace WcfService
             }
         }
 
-        public void InviteToChat(int chatId, String name)
+        public void InviteToChat(int chatId, string name)
         {
             IMessageCallBack callback = OperationContext.Current.GetCallbackChannel<IMessageCallBack>();
-            callback.Invite(new ChatService().invite(chatId, name));
+            callback.Invite(new ChatService().Invite(chatId, name));
         }
 
         public void Writing(int chatId)

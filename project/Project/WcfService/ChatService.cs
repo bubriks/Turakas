@@ -25,7 +25,7 @@ namespace WcfService
             profileController.Offline(profileId);
         }
 
-        public bool invite(int chatId, String name)
+        public bool Invite(int chatId, string name)
         {
             Profile user = profileController.GetUser(name);
             if (user != null)
@@ -72,7 +72,7 @@ namespace WcfService
             }
         }
 
-        public List<Chat> GetChatsByName(String name, int profileId)
+        public List<Chat> GetChatsByName(string name, int profileId)
         {
             return chatController.GetChatsByName(name, profileId);
         }
@@ -82,7 +82,7 @@ namespace WcfService
             return new GroupController().GetUsersGroups(profileId);
         }
 
-        public void joinChatWhithGroup(int groupId, int chatId)
+        public void JoinChatWhithGroup(int groupId, int chatId)
         {
             List<Profile> profiles = chatController.JoinChatWithGroup(groupId, chatId);
             if (profiles.Count > 0)
@@ -90,7 +90,7 @@ namespace WcfService
                 foreach (Profile user in profiles)
                 {
                     IChatCallBack chatCallback = (IChatCallBack)user.CallBack;
-                    chatCallback.joinChat(chatId);
+                    chatCallback.JoinChat(chatId);
                 }
             }
         }

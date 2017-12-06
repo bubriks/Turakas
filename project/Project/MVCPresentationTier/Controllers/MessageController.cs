@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVCPresentationTier.MessageServiceReference;
+using Microsoft.AspNet.SignalR;
 using System.ServiceModel;
 
 namespace MVCPresentationTier.Controllers

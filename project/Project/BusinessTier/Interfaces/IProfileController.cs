@@ -55,7 +55,7 @@ namespace BusinessTier
 
         bool Offline(int profileId);
 
-        Profile GetUser(String name);
+        Profile GetUser(string name);
 
         Profile GetUser(int profiled);
     }

@@ -77,7 +77,7 @@ namespace DataAccessTier
             }
         }
 
-        public List<Chat> GetChatsByName(String name, int profileId)
+        public List<Chat> GetChatsByName(string name, int profileId)
         {
             string stmt = " SELECT " +
                             " Profile.profileID, " +

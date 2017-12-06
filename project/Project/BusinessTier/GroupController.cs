@@ -22,7 +22,7 @@ namespace BusinessTier
             profileController = new ProfileController();
         }
 
-        public bool CreateGroup(String name, int profileId)
+        public bool CreateGroup(string name, int profileId)
         {
             Profile profile = profileController.ReadProfile(profileId.ToString(), 1);
             if (profile != null && !name.Equals(""))
@@ -76,7 +76,7 @@ namespace BusinessTier
             }
         }
 
-        public bool UpdateGroup(String name, int groupId)
+        public bool UpdateGroup(string name, int groupId)
         {
             try
             {
@@ -107,7 +107,7 @@ namespace BusinessTier
             }
         }
         
-        public bool AddMember(String memberName, int groupId)
+        public bool AddMember(string memberName, int groupId)
         {
             try
             {

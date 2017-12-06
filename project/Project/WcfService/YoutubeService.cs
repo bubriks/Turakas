@@ -12,13 +12,14 @@ namespace WcfService
 {
     public class YoutubeService : IYoutubeService
     {
-        ISongController songController = new SongController();
-        IPlayListController playListController = new PlayListController();
+        private ISongController songController = new SongController();
+        private IPlayListController playListController = new PlayListController();
 
         public bool AddSong(string url, int profileId)
         {
            return songController.AddSong(url, profileId);
         }
+
         public string GetVideoTitle(string videoId)
         {
             return songController.GetVideoTitle(videoId);
@@ -64,6 +65,5 @@ namespace WcfService
         {
             return playListController.RemoveSongFromPlaylist(url, playListId, profileId);
         }
-
     }
 }

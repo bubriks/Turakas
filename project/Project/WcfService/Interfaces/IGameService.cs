@@ -25,7 +25,7 @@ namespace WcfService
     public interface IGameCallBack
     {
         [OperationContract(IsOneWay = true)]
-        void PlayerJoins(int id, String name);
+        void PlayerJoins(int id, string name);
 
         [OperationContract(IsOneWay = true)]
         void PlayerLeaves();

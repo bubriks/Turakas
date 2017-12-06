@@ -118,6 +118,7 @@ namespace DataAccessTier
             }
         }
 
+        //fix this (has to be removed and used stuff from activityDb)
         public int RemovePlaylist(int playlistId)
         {
             string stmt = "DELETE FROM Activity where ActivityId = @0";

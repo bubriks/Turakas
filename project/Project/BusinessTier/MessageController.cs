@@ -21,7 +21,7 @@ namespace BusinessTier
             dbActivity = new DbActivity();
         }
         
-        public Message CreateMessage(int profileId, String text, int chatId)
+        public Message CreateMessage(int profileId, string text, int chatId)
         {
             try
             {

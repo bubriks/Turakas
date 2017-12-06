@@ -2,10 +2,11 @@
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
+using System.ServiceModel;
 
 namespace SignalRChat
 {
-    public class ChatHub : Hub
+    public class MessageHub : Hub
     {
         public void Send(string groupName, string name, string message)
         {

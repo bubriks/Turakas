@@ -100,10 +100,13 @@ namespace BusinessTier
                 if (dbProfile.UpdateProfile(id, profile))
                 {
                     Profile user = GetUser(id);
-                    user.Email = profile.Email;
-                    user.Nickname = profile.Nickname;
-                    user.Password = profile.Password;
-                    user.Username = profile.Username;
+                    if (user != null)
+                    {
+                        user.Email = profile.Email;
+                        user.Nickname = profile.Nickname;
+                        user.Password = profile.Password;
+                        user.Username = profile.Username;
+                    }
                     return true;
                 }
             return false;
@@ -121,7 +124,7 @@ namespace BusinessTier
         /// <param name="subject">subject for the email</param>
         /// <param name ="body">body for the email</param>param>
         /// <returns>true if succeded, false otherwise and prints error in console</returns>
-        private  void SendEmail(string email, string subject, string body)
+        private void SendEmail(string email, string subject, string body)
         {
             try
             {
@@ -205,7 +208,7 @@ namespace BusinessTier
             }
         }
 
-        public Profile GetUser(String name)
+        public Profile GetUser(string name)
         {
             Profile user = users.Find(
             delegate (Profile u)

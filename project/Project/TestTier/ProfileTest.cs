@@ -116,7 +116,8 @@ namespace TestTier
                 Email = "",
                 Nickname = "Changed",
             };
-            Assert.AreEqual(true, profileController.UpdateProfile(3, profile));
+            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4).ProfileID;
+            Assert.AreEqual(true, profileController.UpdateProfile(profileId, profile));
         }
         [TestMethod]
         public void TestUpdateProfileFail()
@@ -128,7 +129,8 @@ namespace TestTier
                 Email = "",
                 Nickname = "as",
             };
-            Assert.AreNotEqual(true, profileController.UpdateProfile(3, profile));
+            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4).ProfileID;
+            Assert.AreNotEqual(true, profileController.UpdateProfile(profileId, profile));
         }
         [TestMethod]
         public void TestAuthenticateSuccess()

@@ -30,7 +30,7 @@ namespace WcfService
         List<Group> GetUsersGroups(int profileId);
 
         [OperationContract(IsOneWay = true)]
-        void joinChatWhithGroup(int groupId, int chatId);
+        void JoinChatWhithGroup(int groupId, int chatId);
     }
 
     public interface IChatCallBack
@@ -39,6 +39,6 @@ namespace WcfService
         void Notification(Chat chat);
 
         [OperationContract(IsOneWay = true)]
-        void joinChat(int chatId);
+        void JoinChat(int chatId);
     }
 }
