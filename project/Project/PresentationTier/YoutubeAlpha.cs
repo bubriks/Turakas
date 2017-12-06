@@ -70,7 +70,7 @@ namespace PresentationTier
             else if (youtubeServiceClient.AddSong(VideoId, profileId))
             {
                 MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                listBox1.DataSource = youtubeServiceClient.FindSongsByName(textBox2.Text);
+                listBox1.DataSource = youtubeServiceClient.FindSongsByName(!textBox2.Text.Equals("Search...") ? textBox2.Text : " ");
                 listBox1.ValueMember = "Url";
                 listBox1.DisplayMember = "Name";
                 playVideo(VideoId);
@@ -177,7 +177,7 @@ namespace PresentationTier
             if (listBox2.SelectedIndex>-1&&youtubeServiceClient.RemovePlaylist(listBox2.SelectedValue.ToString(), profileId))
             {
                 MessageBox.Show("Playlist removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(textBox3.Text);
+                listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(!textBox2.Text.Equals("Search...") ? textBox3.Text : " ");
                 listBox2.ValueMember = "ActivityId";
                 listBox2.DisplayMember = "Name";
             }
@@ -193,7 +193,7 @@ namespace PresentationTier
             if (!String.IsNullOrEmpty(plName)&&youtubeServiceClient.AddPlayList(plName, profileId))
             {
                 MessageBox.Show("Playlist added.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(textBox3.Text);
+                listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(!textBox2.Text.Equals("Search...") ? textBox3.Text : " ");
                 listBox2.ValueMember = "ActivityId";
                 listBox2.DisplayMember = "Name";
             }
