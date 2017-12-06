@@ -11,19 +11,33 @@ namespace MVCPresentationTier.Controllers
     {
         public ActionResult LogIn()
         {
-            ViewBag.LoginStatus = -1;
-            return View();
+            if (Request.Cookies.Get("aCookie") == null)
+            {
+                ViewBag.LoginStatus = -1;
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
         }
-
+        
         [HttpPost]
-        public ActionResult LogIn(String username, String password)
+        public ActionResult LogIn(FormCollection collection)
         {
             ProfileServiceClient client = new ProfileServiceClient();
+            var username = collection["username"];
+            var password = collection["password"];
             Profile profile = new Profile();
             profile.Username = username;
             profile.Password = password;
-            ViewBag.LoginStatus = client.Authenticate(profile);
-            return View();
+            var profileId = client.Authenticate(profile);
+            ViewBag.LoginStatus = profileId;
+            var cookie = new HttpCookie("aCookie");
+            cookie.Value = profileId.ToString();
+            //var cookieValue = Request.Cookies.Get("aCookie").Value;
+            Response.Cookies.Add(cookie);
+            return Redirect("/Chat/GetChats");
         }
         [HttpGet]
         public ActionResult CreateProfile(String username, String nickname, String email, String password)
@@ -42,6 +56,17 @@ namespace MVCPresentationTier.Controllers
             int i = client.CreateProfileWithInputs(username, nickname, email, password);
             ViewBag.i = i;
             return View();
+        }
+        [HttpPost]
+        public ActionResult LogOut()
+        {
+            var cookie = Request.Cookies.Get("aCookie");
+            if (cookie != null)
+            {
+                cookie.Expires = DateTime.Now.AddMilliseconds(-1);
+                Response.Cookies.Add(cookie);
+            }
+            return Redirect("/profile/login");
         }
     }
 }

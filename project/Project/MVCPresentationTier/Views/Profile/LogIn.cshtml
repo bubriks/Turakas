@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width" />
     <title>Login page</title>
     <div>
-        @using (Html.BeginForm())
-        {
+        <form action=@Url.Action("LogIn", "Profile") method="post">
             <input type="text" name="Username" placeholder="Username" />
             <div class="row">&nbsp;</div>
             <input type="password" name="Password" placeholder="Password" />
             <div class="row">&nbsp;</div>
             <input type="submit" ) />
-        }
+            </form>
         <br>
         @if (@ViewBag.LoginStatus > 0)
         {
