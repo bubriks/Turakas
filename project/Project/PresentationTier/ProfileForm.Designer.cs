@@ -105,7 +105,7 @@
             this.save_btn.TabIndex = 5;
             this.save_btn.Text = "Save";
             this.save_btn.UseVisualStyleBackColor = true;
-            this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
+            this.save_btn.Click += new System.EventHandler(this.Save_btn_Click);
             // 
             // nickname_txt
             // 
@@ -128,7 +128,7 @@
             this.confirmPassword_txt.Size = new System.Drawing.Size(100, 20);
             this.confirmPassword_txt.TabIndex = 2;
             this.confirmPassword_txt.Visible = false;
-            this.confirmPassword_txt.TextChanged += new System.EventHandler(this.confirmPassword_txt_TextChanged);
+            this.confirmPassword_txt.TextChanged += new System.EventHandler(this.ConfirmPassword_txt_TextChanged);
             // 
             // password_txt
             // 
@@ -136,7 +136,7 @@
             this.password_txt.Name = "password_txt";
             this.password_txt.Size = new System.Drawing.Size(100, 20);
             this.password_txt.TabIndex = 1;
-            this.password_txt.TextChanged += new System.EventHandler(this.password_txt_TextChanged);
+            this.password_txt.TextChanged += new System.EventHandler(this.Password_txt_TextChanged);
             // 
             // username_txt
             // 
@@ -221,7 +221,7 @@
             this.back_btn.TabIndex = 7;
             this.back_btn.Text = "Back";
             this.back_btn.UseVisualStyleBackColor = true;
-            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
+            this.back_btn.Click += new System.EventHandler(this.Back_btn_Click);
             // 
             // deleteAccount_btn
             // 
@@ -231,7 +231,7 @@
             this.deleteAccount_btn.TabIndex = 6;
             this.deleteAccount_btn.Text = "Delete Account";
             this.deleteAccount_btn.UseVisualStyleBackColor = true;
-            this.deleteAccount_btn.Click += new System.EventHandler(this.deleteAccount_btn_Click);
+            this.deleteAccount_btn.Click += new System.EventHandler(this.DeleteAccount_btn_Click);
             // 
             // deleteError_lbl
             // 

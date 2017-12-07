@@ -11,10 +11,8 @@ namespace PresentationTier
 {
     public partial class RPSForm : Form, IGameServiceCallback
     {
-        private InstanceContext instanceContext;
-        private IGameService gameService;
-        private int playerId;
-        private int gameId, prevChoice, choice;
+        private GameServiceClient gameService;
+        private int gameId, prevChoice, choice, playerId;
         private System.Timers.Timer timer;
         private volatile bool requestStop = false;
 
@@ -22,8 +20,7 @@ namespace PresentationTier
         {
             #region Initialize
             InitializeComponent();
-            instanceContext = new InstanceContext(this);
-            gameService = new GameServiceClient(instanceContext);
+            gameService = new GameServiceClient(new InstanceContext(this));
             //Formating player2 label
             player2_lbl.Text = "PLAYER2 NOT CONNECTED!";
             player2_lbl.ForeColor = Color.Red;
@@ -48,8 +45,6 @@ namespace PresentationTier
             this.playerId = playerId;
 
             gameService.JoinGame(gameId, playerId); //player joins game
-
-            
         }
 
 

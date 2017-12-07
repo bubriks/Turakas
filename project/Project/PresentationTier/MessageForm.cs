@@ -12,7 +12,6 @@ namespace PresentationTier
     {
         #region Variables
         private int profileId, chatId;
-        private InstanceContext instanceContext = null;
         private MessageServiceClient client;
         private ContextMenu cm;
         private ToolTip toolTip = new ToolTip();
@@ -22,8 +21,7 @@ namespace PresentationTier
         {
             #region initialize
             InitializeComponent();
-            instanceContext = new InstanceContext(this);
-            client = new MessageServiceClient(instanceContext);
+            client = new MessageServiceClient(new InstanceContext(this));
 
             cm = new ContextMenu();
             cm.MenuItems.Add(new MenuItem("Remove", MenuItemNew_Click));

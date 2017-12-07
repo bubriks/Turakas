@@ -60,7 +60,7 @@ namespace PresentationTier
             this.button1.TabIndex = 0;
             this.button1.Text = "Add Song";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // textBox1
             // 
@@ -101,7 +101,7 @@ namespace PresentationTier
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(215, 290);
             this.listBox1.TabIndex = 4;
-            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            this.listBox1.DoubleClick += new System.EventHandler(this.ListBox1_DoubleClick);
             // 
             // contextMenuStrip2
             // 
@@ -116,14 +116,14 @@ namespace PresentationTier
             this.removeSongFromPlaylistToolStripMenuItem.Name = "removeSongFromPlaylistToolStripMenuItem";
             this.removeSongFromPlaylistToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.removeSongFromPlaylistToolStripMenuItem.Text = "Remove song from playlist";
-            this.removeSongFromPlaylistToolStripMenuItem.Click += new System.EventHandler(this.removeSongFromPlaylistToolStripMenuItem_Click);
+            this.removeSongFromPlaylistToolStripMenuItem.Click += new System.EventHandler(this.RemoveSongFromPlaylistToolStripMenuItem_Click);
             // 
             // addSongToPlaylistToolStripMenuItem
             // 
             this.addSongToPlaylistToolStripMenuItem.Name = "addSongToPlaylistToolStripMenuItem";
             this.addSongToPlaylistToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.addSongToPlaylistToolStripMenuItem.Text = "Add song to playlist";
-            this.addSongToPlaylistToolStripMenuItem.Click += new System.EventHandler(this.addSongToPlaylistToolStripMenu_Click);
+            this.addSongToPlaylistToolStripMenuItem.Click += new System.EventHandler(this.AddSongToPlaylistToolStripMenu_Click);
             // 
             // textBox2
             // 
@@ -133,9 +133,9 @@ namespace PresentationTier
             this.textBox2.Size = new System.Drawing.Size(215, 20);
             this.textBox2.TabIndex = 5;
             this.textBox2.Text = "Search...";
-            this.textBox2.GotFocus += new System.EventHandler(this.textBox2_GotFocus);
-            this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
-            this.textBox2.LostFocus += new System.EventHandler(this.textBox2_LostFocus);
+            this.textBox2.GotFocus += new System.EventHandler(this.TextBox2_GotFocus);
+            this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox2_KeyUp);
+            this.textBox2.LostFocus += new System.EventHandler(this.TextBox2_LostFocus);
             // 
             // button2
             // 
@@ -146,7 +146,7 @@ namespace PresentationTier
             this.button2.TabIndex = 6;
             this.button2.Text = "Next";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // button3
             // 
@@ -157,7 +157,7 @@ namespace PresentationTier
             this.button3.TabIndex = 7;
             this.button3.Text = "Previous";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // listBox2
             // 
@@ -169,7 +169,7 @@ namespace PresentationTier
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(210, 290);
             this.listBox2.TabIndex = 8;
-            this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
+            this.listBox2.DoubleClick += new System.EventHandler(this.ListBox2_DoubleClick);
             // 
             // contextMenuStrip1
             // 
@@ -184,14 +184,14 @@ namespace PresentationTier
             this.removePlaylistToolStripMenuItem.Name = "removePlaylistToolStripMenuItem";
             this.removePlaylistToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.removePlaylistToolStripMenuItem.Text = "Remove Playlist";
-            this.removePlaylistToolStripMenuItem.Click += new System.EventHandler(this.removePlaylistToolStripMenuItem_Click);
+            this.removePlaylistToolStripMenuItem.Click += new System.EventHandler(this.RemovePlaylistToolStripMenuItem_Click);
             // 
             // addPlaylistToolStripMenuItem
             // 
             this.addPlaylistToolStripMenuItem.Name = "addPlaylistToolStripMenuItem";
             this.addPlaylistToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.addPlaylistToolStripMenuItem.Text = "Add Playlist";
-            this.addPlaylistToolStripMenuItem.Click += new System.EventHandler(this.addPlaylistToolStripMenuItem_Click);
+            this.addPlaylistToolStripMenuItem.Click += new System.EventHandler(this.AddPlaylistToolStripMenuItem_Click);
             // 
             // textBox3
             // 
@@ -202,9 +202,9 @@ namespace PresentationTier
             this.textBox3.Size = new System.Drawing.Size(210, 20);
             this.textBox3.TabIndex = 9;
             this.textBox3.Text = "Search...";
-            this.textBox3.GotFocus += new System.EventHandler(this.textBox3_GotFocus);
-            this.textBox3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyUp);
-            this.textBox3.LostFocus += new System.EventHandler(this.textBox3_LostFocus);
+            this.textBox3.GotFocus += new System.EventHandler(this.TextBox3_GotFocus);
+            this.textBox3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox3_KeyUp);
+            this.textBox3.LostFocus += new System.EventHandler(this.TextBox3_LostFocus);
             // 
             // YoutubeAlpha
             // 

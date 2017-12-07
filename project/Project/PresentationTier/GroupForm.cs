@@ -10,21 +10,20 @@ namespace PresentationTier
         #region Variables
         private static GroupForm instance;
         private int profileId, groupId = 0;
-        private Form chatForm;
         private ContextMenu cmGroups, cmMembers;
         private GroupServiceClient client;
         #endregion
 
-        public static GroupForm GetInstance(int profileId, Form chatForm)
+        public static GroupForm GetInstance(int profileId)
         {
             if (instance == null)
             {
-                instance = new GroupForm(profileId, chatForm);
+                instance = new GroupForm(profileId);
             }
             return instance;
         }
 
-        private GroupForm(int profileId, Form chatForm)
+        private GroupForm(int profileId)
         {
             #region Initialize
             InitializeComponent();
@@ -34,7 +33,6 @@ namespace PresentationTier
             cmMembers = new ContextMenu();
             cmMembers.MenuItems.Add(new MenuItem("Remove", MenuItemNewRemoveMember_Click));
             this.profileId = profileId;
-            this.chatForm = chatForm;
             #endregion
 
             ButtonRefresh_Click(null, null);
@@ -193,14 +191,7 @@ namespace PresentationTier
                 GetAllUsers();
             }
         }
-
-        private void Back_btn_Click(object sender, EventArgs e)
-        {
-            chatForm.Show();
-            Close();
-            instance = null;
-        }
-
+        
         private void MenuItemNewRemoveMember_Click(Object sender, EventArgs e)//Right cick menu button clicked
         {
             if(client.RemoveMember((lbGroupMembers.SelectedItem as Profile).ProfileID, groupId))
@@ -211,6 +202,12 @@ namespace PresentationTier
         #endregion
 
         #region Form control
+        private void Back_btn_Click(object sender, EventArgs e)
+        {
+            Close();
+            instance = null;
+        }
+
         private void GroupForm_Closing(object sender, CancelEventArgs e)//on close event
         {
             instance = null;
