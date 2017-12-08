@@ -26,7 +26,6 @@ namespace DataAccessTier
             {
                 cmd.Parameters.AddWithValue("@0", profileId);
                 cmd.Parameters.AddWithValue("@1", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-                cmd.ExecuteNonQuery();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     reader.Read();
