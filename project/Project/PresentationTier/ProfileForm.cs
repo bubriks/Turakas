@@ -16,11 +16,11 @@ namespace PresentationTier
 
         public static ProfileForm GetInstance(int profileId)
         {
-            if (instance == null)
-            {
-                instance = new ProfileForm(profileId);
-            }
-            return instance;
+                if (instance == null)
+                {
+                    return instance = new ProfileForm(profileId);
+                }
+            return null;
         }
 
         private ProfileForm(int profileId)
@@ -30,12 +30,16 @@ namespace PresentationTier
 
             password_txt.PasswordChar = '*';
             confirmPassword_txt.PasswordChar = '*';
-            
-            profile = profileService.ReadProfile(profileId.ToString(), 1);
 
-            username_txt.Text = profile.Username;
-            email_txt.Text = profile.Email;
-            nickname_txt.Text = profile.Nickname;
+            profile = profileService.ReadProfile(profileId.ToString(), 1);
+            if (profile == null) // if no profile has been found
+                Load += (s, e) => Close(); // imediatly close the form, before displaying it
+            else
+            {
+                username_txt.Text = profile.Username;
+                email_txt.Text = profile.Email;
+                nickname_txt.Text = profile.Nickname;
+            }
         }
 
         private void Password_txt_TextChanged(object sender, EventArgs e)
