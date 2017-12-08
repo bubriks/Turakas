@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c48caa0b-e84d-4e95-aead-d5b88efecdcc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/YoutubeService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="YoutubeService.xsd" MetadataType="Schema" ID="624524fc-9cdd-47c3-a47f-d4bfba0b8b2d" SourceId="1" SourceUrl="http://localhost/YoutubeService?xsd=xsd1" />
+    <MetadataFile FileName="YoutubeService1.xsd" MetadataType="Schema" ID="cbb9203c-032b-4d9c-8323-058497878b25" SourceId="1" SourceUrl="http://localhost/YoutubeService?xsd=xsd0" />
+    <MetadataFile FileName="YoutubeService.disco" MetadataType="Disco" ID="a7c1b169-e633-4132-87f1-f404f6829362" SourceId="1" SourceUrl="http://localhost/YoutubeService?disco" />
+    <MetadataFile FileName="YoutubeService2.xsd" MetadataType="Schema" ID="c2694ab7-2c8d-44dd-baee-0c2b13d4ebca" SourceId="1" SourceUrl="http://localhost/YoutubeService?xsd=xsd2" />
+    <MetadataFile FileName="YoutubeService.wsdl" MetadataType="Wsdl" ID="955b5aa2-6e6e-45ff-a4d2-df58dac1674f" SourceId="1" SourceUrl="http://localhost/YoutubeService?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
