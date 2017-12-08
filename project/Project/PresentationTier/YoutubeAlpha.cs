@@ -22,21 +22,26 @@ namespace PresentationTier
         private int profileId;
         private string ytUrl;
 
-        public static YoutubeAlpha GetInstance(int profileId)
+        public static YoutubeAlpha GetInstance(int profileId, Form chatForm)
         {
             if (instance == null)
             {
-                instance = new YoutubeAlpha(profileId);
+                instance = new YoutubeAlpha(profileId, chatForm);
             }
             return instance;
         }
-        private YoutubeAlpha(int profileId)
+        private YoutubeAlpha(int profileId, Form chatForm)
         {
             this.profileId = profileId;
             SetBrowserFeatureControl();
 
             InitializeComponent();
 
+        }
+
+        private void YTForm_Closing(object sender, CancelEventArgs e)//on close event
+        {
+            instance = null;
         }
 
         private string VideoId

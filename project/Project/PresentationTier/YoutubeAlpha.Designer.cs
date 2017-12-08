@@ -224,6 +224,7 @@ namespace PresentationTier
             this.MinimumSize = new System.Drawing.Size(754, 410);
             this.Name = "YoutubeAlpha";
             this.Text = "YoutubeAlpha";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.YTForm_Closing);
             this.contextMenuStrip2.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

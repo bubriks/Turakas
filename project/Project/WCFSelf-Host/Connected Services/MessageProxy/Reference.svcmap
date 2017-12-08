@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="81dc10ad-5faf-46e2-804a-1ef05d46396a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/MessageService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MessageService.xsd" MetadataType="Schema" ID="0ce52fd0-0ecd-4a3e-8124-bd4bfd2afaf7" SourceId="1" SourceUrl="http://localhost/MessageService?xsd=xsd3" />
+    <MetadataFile FileName="MessageService.wsdl" MetadataType="Wsdl" ID="1e236293-c322-4965-8ce4-38b7b1a900a3" SourceId="1" SourceUrl="http://localhost/MessageService?wsdl" />
+    <MetadataFile FileName="MessageService1.xsd" MetadataType="Schema" ID="155a4829-5888-44a6-affe-818073002da0" SourceId="1" SourceUrl="http://localhost/MessageService?xsd=xsd2" />
+    <MetadataFile FileName="MessageService.disco" MetadataType="Disco" ID="5a5900fa-d006-4b59-9c21-108e131a7334" SourceId="1" SourceUrl="http://localhost/MessageService?disco" />
+    <MetadataFile FileName="MessageService2.xsd" MetadataType="Schema" ID="c7e83d76-c20d-4691-b275-2e2e9bc8399f" SourceId="1" SourceUrl="http://localhost/MessageService?xsd=xsd1" />
+    <MetadataFile FileName="MessageService3.xsd" MetadataType="Schema" ID="495406f1-1f38-4b8d-9785-5d460edcff20" SourceId="1" SourceUrl="http://localhost/MessageService?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

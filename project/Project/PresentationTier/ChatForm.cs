@@ -297,7 +297,7 @@ namespace PresentationTier
 
         private void YoutubeButton_Click(object sender, EventArgs e)//Goes to Youtube View
         {
-            YoutubeAlpha.GetInstance(profileId).Visible = true;
+            YoutubeAlpha.GetInstance(profileId,this).Show();
         }
 
         private void BtnGroups_Click(object sender, EventArgs e)//Goes to Group View
