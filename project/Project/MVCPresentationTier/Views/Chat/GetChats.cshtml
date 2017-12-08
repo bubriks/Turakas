@@ -58,12 +58,11 @@
             }
         </table>
         <br>
-        @using (Html.BeginForm())
-        {
-            <input type="text" name="input" placeholder="@ViewBag.SearchBy"/>
-            <input type="number" name="profileId" placeholder="@ViewBag.ProfileId"/>
-            <input type="submit"/>
-        }
+        <form action=@Url.Action("GetChats", "Chat") method="post">
+            <input type="text" name="searchBy" placeholder="@ViewBag.SearchBy" />
+            <input type="number" name="profileId" placeholder="@ViewBag.ProfileId" />
+            <input type="submit" />
+        </form>
     </div>
 </body>
 </html>

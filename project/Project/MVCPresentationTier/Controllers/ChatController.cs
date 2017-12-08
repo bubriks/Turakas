@@ -20,14 +20,21 @@ namespace MVCPresentationTier.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetChats(String input, int? profileId)
+        public ActionResult GetChats(FormCollection collection)
         {
-            if (!profileId.HasValue)
-                profileId = 1;
             ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
-            ViewBag.Chats = client.GetChatsByName(input, profileId.Value);
-            ViewBag.SearchBy = input;
-            ViewBag.ProfileId = profileId.Value;
+            try
+            {
+                var searchBy = collection["searchBy"];
+                int profileId = Int32.Parse(collection["profileId"].ToString());
+                ViewBag.Chats = client.GetChatsByName(searchBy, profileId);
+                ViewBag.SearchBy = searchBy;
+                ViewBag.ProfileId = profileId;
+            }
+            catch (Exception)
+            {
+                return GetChats();
+            }
             return View();
         }
 

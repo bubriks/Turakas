@@ -13,7 +13,6 @@ namespace PresentationTier
     {
         #region Variables
         private int chatId, profileId;
-        private InstanceContext instanceContext = null;
         private ChatServiceClient client;
         private ContextMenu cm;
         private MenuItem joinWithGroup;
@@ -26,8 +25,7 @@ namespace PresentationTier
             this.profileId = profileId;
 
             InitializeComponent();
-            instanceContext = new InstanceContext(this);
-            client = new ChatServiceClient(instanceContext);
+            client = new ChatServiceClient(new InstanceContext(this));
             cm = new ContextMenu();
 
             nrOfUsersTrackBar.Minimum = 2;
@@ -294,7 +292,7 @@ namespace PresentationTier
         #region Form control
         private void ViewProfileButton_Click(object sender, EventArgs e)//Goes to profile View
         {
-            ProfileForm.GetInstance(profileId, this).Show();
+            ProfileForm.GetInstance(profileId).Show();
         }
 
         private void YoutubeButton_Click(object sender, EventArgs e)//Goes to Youtube View
@@ -304,7 +302,7 @@ namespace PresentationTier
 
         private void BtnGroups_Click(object sender, EventArgs e)//Goes to Group View
         {
-            GroupForm.GetInstance(profileId, this).Show();
+            GroupForm.GetInstance(profileId).Show();
         }
 
         private void LogOut_btn_Click(object sender, EventArgs e)//Goes to Login View

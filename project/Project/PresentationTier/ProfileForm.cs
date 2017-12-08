@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Linq;
 using PresentationTier.ProfileServiceReference;
 using System.ComponentModel;
+using System;
 
 namespace PresentationTier
 {
@@ -12,21 +13,19 @@ namespace PresentationTier
         private int profileId;
         private static ProfileForm instance;
         private Profile profile;
-        private Form chatForm;
 
-        public static ProfileForm GetInstance(int profileId, Form chatForm)
+        public static ProfileForm GetInstance(int profileId)
         {
             if (instance == null)
             {
-                instance = new ProfileForm(profileId, chatForm);
+                instance = new ProfileForm(profileId);
             }
             return instance;
         }
 
-        private ProfileForm(int profileId, Form chatForm)
+        private ProfileForm(int profileId)
         {
             this.profileId = profileId;
-            this.chatForm = chatForm;
             InitializeComponent();
 
             password_txt.PasswordChar = '*';
@@ -39,17 +38,17 @@ namespace PresentationTier
             nickname_txt.Text = profile.Nickname;
         }
 
-        private void password_txt_TextChanged(object sender, System.EventArgs e)
+        private void Password_txt_TextChanged(object sender, EventArgs e)
         {
-            formatPassword(false);
+            FormatPassword(false);
         }
 
-        private void confirmPassword_txt_TextChanged(object sender, System.EventArgs e)
+        private void ConfirmPassword_txt_TextChanged(object sender, EventArgs e)
         {
-            formatPassword(true);
+            FormatPassword(true);
         }
 
-        private void save_btn_Click(object sender, System.EventArgs e)
+        private void Save_btn_Click(object sender, EventArgs e)
         {
             if (CheckTheValues())
             {
@@ -92,7 +91,7 @@ namespace PresentationTier
 
         #region Checking Values
 
-        private void formatPassword(bool confirm)
+        private void FormatPassword(bool confirm)
         {
             confirmPassword_lbl.Visible = true;
             confirmPassword_txt.Visible = true;
@@ -255,14 +254,7 @@ namespace PresentationTier
         }
         #endregion
 
-        private void back_btn_Click(object sender, System.EventArgs e)
-        {
-            chatForm.Show();
-            Close();
-            instance = null;
-        }
-
-        private void deleteAccount_btn_Click(object sender, System.EventArgs e)
+        private void DeleteAccount_btn_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure to delete this Account?\nWARNIGN: DELETING AN ACCOUNT WILL RESULT IN COMPLETE DELETION OF ALL OF ITS ACTIONS, INCLUDING OWNED CHATS AND MESSAGES!!!\n\nNOTE: YOU WILL BE TAKEN TO THE LOGIN SCREEN IF SUCCESFULLY DELETED.",
                                      "Confirm Delete!!",
@@ -288,10 +280,15 @@ namespace PresentationTier
             }
         }
 
+        private void Back_btn_Click(object sender, EventArgs e)
+        {
+            Close();
+            instance = null;
+        }
+
         private void ProfileForm_Closing(object sender, CancelEventArgs e)//on close event
         {
             instance = null;
         }
-
     }
 }
