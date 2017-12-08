@@ -32,53 +32,53 @@ namespace PresentationTier
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.addSongBtn = new System.Windows.Forms.Button();
+            this.addSongTxtBox = new System.Windows.Forms.TextBox();
+            this.videoTitleLabel = new System.Windows.Forms.Label();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.songListBox = new System.Windows.Forms.ListBox();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeSongFromPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSongToPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.songSearchTextBox = new System.Windows.Forms.TextBox();
+            this.nextSongBtn = new System.Windows.Forms.Button();
+            this.previousSongBtn = new System.Windows.Forms.Button();
+            this.playlistListBox = new System.Windows.Forms.ListBox();
+            this.playlistMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.playlistSearchTxtBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.playlistMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // addSongBtn
             // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Add Song";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.addSongBtn.Location = new System.Drawing.Point(12, 12);
+            this.addSongBtn.Name = "addSongBtn";
+            this.addSongBtn.Size = new System.Drawing.Size(75, 23);
+            this.addSongBtn.TabIndex = 0;
+            this.addSongBtn.Text = "Add Song";
+            this.addSongBtn.UseVisualStyleBackColor = true;
+            this.addSongBtn.Click += new System.EventHandler(this.AddSongBtn_Click);
             // 
-            // textBox1
+            // addSongTxtBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.addSongTxtBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(94, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(113, 20);
-            this.textBox1.TabIndex = 1;
+            this.addSongTxtBox.Location = new System.Drawing.Point(94, 12);
+            this.addSongTxtBox.Name = "addSongTxtBox";
+            this.addSongTxtBox.Size = new System.Drawing.Size(113, 20);
+            this.addSongTxtBox.TabIndex = 1;
             // 
-            // label1
+            // videoTitleLabel
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(214, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 2;
+            this.videoTitleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.videoTitleLabel.AutoSize = true;
+            this.videoTitleLabel.Location = new System.Drawing.Point(214, 15);
+            this.videoTitleLabel.Name = "videoTitleLabel";
+            this.videoTitleLabel.Size = new System.Drawing.Size(0, 13);
+            this.videoTitleLabel.TabIndex = 2;
             // 
             // webBrowser1
             // 
@@ -91,17 +91,17 @@ namespace PresentationTier
             this.webBrowser1.Size = new System.Drawing.Size(275, 274);
             this.webBrowser1.TabIndex = 3;
             // 
-            // listBox1
+            // songListBox
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.songListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.ContextMenuStrip = this.contextMenuStrip2;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(511, 41);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(215, 290);
-            this.listBox1.TabIndex = 4;
-            this.listBox1.DoubleClick += new System.EventHandler(this.ListBox1_DoubleClick);
+            this.songListBox.ContextMenuStrip = this.contextMenuStrip2;
+            this.songListBox.FormattingEnabled = true;
+            this.songListBox.Location = new System.Drawing.Point(511, 41);
+            this.songListBox.Name = "songListBox";
+            this.songListBox.Size = new System.Drawing.Size(215, 290);
+            this.songListBox.TabIndex = 4;
+            this.songListBox.DoubleClick += new System.EventHandler(this.ListBox1_DoubleClick);
             // 
             // contextMenuStrip2
             // 
@@ -125,59 +125,59 @@ namespace PresentationTier
             this.addSongToPlaylistToolStripMenuItem.Text = "Add song to playlist";
             this.addSongToPlaylistToolStripMenuItem.Click += new System.EventHandler(this.AddSongToPlaylistToolStripMenu_Click);
             // 
-            // textBox2
+            // songSearchTextBox
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(511, 339);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(215, 20);
-            this.textBox2.TabIndex = 5;
-            this.textBox2.Text = "Search...";
-            this.textBox2.GotFocus += new System.EventHandler(this.TextBox2_GotFocus);
-            this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox2_KeyUp);
-            this.textBox2.LostFocus += new System.EventHandler(this.TextBox2_LostFocus);
+            this.songSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.songSearchTextBox.Location = new System.Drawing.Point(511, 339);
+            this.songSearchTextBox.Name = "songSearchTextBox";
+            this.songSearchTextBox.Size = new System.Drawing.Size(215, 20);
+            this.songSearchTextBox.TabIndex = 5;
+            this.songSearchTextBox.Text = "Search...";
+            this.songSearchTextBox.GotFocus += new System.EventHandler(this.TextBox2_GotFocus);
+            this.songSearchTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox2_KeyUp);
+            this.songSearchTextBox.LostFocus += new System.EventHandler(this.TextBox2_LostFocus);
             // 
-            // button2
+            // nextSongBtn
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(128, 336);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Next";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.nextSongBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nextSongBtn.Location = new System.Drawing.Point(128, 336);
+            this.nextSongBtn.Name = "nextSongBtn";
+            this.nextSongBtn.Size = new System.Drawing.Size(75, 23);
+            this.nextSongBtn.TabIndex = 6;
+            this.nextSongBtn.Text = "Next";
+            this.nextSongBtn.UseVisualStyleBackColor = true;
+            this.nextSongBtn.Click += new System.EventHandler(this.Button2_Click);
             // 
-            // button3
+            // previousSongBtn
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(50, 336);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Previous";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.previousSongBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.previousSongBtn.Location = new System.Drawing.Point(50, 336);
+            this.previousSongBtn.Name = "previousSongBtn";
+            this.previousSongBtn.Size = new System.Drawing.Size(75, 23);
+            this.previousSongBtn.TabIndex = 7;
+            this.previousSongBtn.Text = "Previous";
+            this.previousSongBtn.UseVisualStyleBackColor = true;
+            this.previousSongBtn.Click += new System.EventHandler(this.Button3_Click);
             // 
-            // listBox2
+            // playlistListBox
             // 
-            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playlistListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox2.ContextMenuStrip = this.contextMenuStrip1;
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(293, 41);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(210, 290);
-            this.listBox2.TabIndex = 8;
-            this.listBox2.DoubleClick += new System.EventHandler(this.ListBox2_DoubleClick);
+            this.playlistListBox.ContextMenuStrip = this.playlistMenuStrip;
+            this.playlistListBox.FormattingEnabled = true;
+            this.playlistListBox.Location = new System.Drawing.Point(293, 41);
+            this.playlistListBox.Name = "playlistListBox";
+            this.playlistListBox.Size = new System.Drawing.Size(210, 290);
+            this.playlistListBox.TabIndex = 8;
+            this.playlistListBox.DoubleClick += new System.EventHandler(this.ListBox2_DoubleClick);
             // 
-            // contextMenuStrip1
+            // playlistMenuStrip
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.playlistMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.removePlaylistToolStripMenuItem,
             this.addPlaylistToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 48);
+            this.playlistMenuStrip.Name = "playlistMenuStrip";
+            this.playlistMenuStrip.Size = new System.Drawing.Size(158, 48);
             // 
             // removePlaylistToolStripMenuItem
             // 
@@ -193,40 +193,40 @@ namespace PresentationTier
             this.addPlaylistToolStripMenuItem.Text = "Add Playlist";
             this.addPlaylistToolStripMenuItem.Click += new System.EventHandler(this.AddPlaylistToolStripMenuItem_Click);
             // 
-            // textBox3
+            // playlistSearchTxtBox
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.playlistSearchTxtBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(293, 339);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(210, 20);
-            this.textBox3.TabIndex = 9;
-            this.textBox3.Text = "Search...";
-            this.textBox3.GotFocus += new System.EventHandler(this.TextBox3_GotFocus);
-            this.textBox3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox3_KeyUp);
-            this.textBox3.LostFocus += new System.EventHandler(this.TextBox3_LostFocus);
+            this.playlistSearchTxtBox.Location = new System.Drawing.Point(293, 339);
+            this.playlistSearchTxtBox.Name = "playlistSearchTxtBox";
+            this.playlistSearchTxtBox.Size = new System.Drawing.Size(210, 20);
+            this.playlistSearchTxtBox.TabIndex = 9;
+            this.playlistSearchTxtBox.Text = "Search...";
+            this.playlistSearchTxtBox.GotFocus += new System.EventHandler(this.TextBox3_GotFocus);
+            this.playlistSearchTxtBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox3_KeyUp);
+            this.playlistSearchTxtBox.LostFocus += new System.EventHandler(this.TextBox3_LostFocus);
             // 
-            // YoutubeAlpha
+            // YTForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(738, 371);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.playlistSearchTxtBox);
+            this.Controls.Add(this.playlistListBox);
+            this.Controls.Add(this.previousSongBtn);
+            this.Controls.Add(this.nextSongBtn);
+            this.Controls.Add(this.songSearchTextBox);
+            this.Controls.Add(this.songListBox);
             this.Controls.Add(this.webBrowser1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.videoTitleLabel);
+            this.Controls.Add(this.addSongTxtBox);
+            this.Controls.Add(this.addSongBtn);
             this.MinimumSize = new System.Drawing.Size(754, 410);
-            this.Name = "YoutubeAlpha";
-            this.Text = "YoutubeAlpha";
+            this.Name = "YTForm";
+            this.Text = "Youtube";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.YTForm_Closing);
             this.contextMenuStrip2.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.playlistMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,17 +234,17 @@ namespace PresentationTier
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button addSongBtn;
+        private System.Windows.Forms.TextBox addSongTxtBox;
+        private System.Windows.Forms.Label videoTitleLabel;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private ListBox listBox2;
-        private TextBox textBox3;
-        private ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ListBox songListBox;
+        private System.Windows.Forms.TextBox songSearchTextBox;
+        private System.Windows.Forms.Button nextSongBtn;
+        private System.Windows.Forms.Button previousSongBtn;
+        private ListBox playlistListBox;
+        private TextBox playlistSearchTxtBox;
+        private ContextMenuStrip playlistMenuStrip;
         private ToolStripMenuItem removePlaylistToolStripMenuItem;
         private ToolStripMenuItem addPlaylistToolStripMenuItem;
         private ContextMenuStrip contextMenuStrip2;
