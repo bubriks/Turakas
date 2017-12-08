@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace PresentationTier
 {
-    partial class YoutubeAlpha
+    partial class YTForm
     {
         /// <summary>
         /// Required designer variable.

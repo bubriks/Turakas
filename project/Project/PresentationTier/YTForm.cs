@@ -15,22 +15,22 @@ using Microsoft.VisualBasic;
 
 namespace PresentationTier
 {
-    public partial class YoutubeAlpha : Form
+    public partial class YTForm : Form
     {
         private YoutubeService.YoutubeServiceClient youtubeServiceClient = new YoutubeService.YoutubeServiceClient();
-        private static YoutubeAlpha instance;
+        private static YTForm instance;
         private int profileId;
         private string ytUrl;
 
-        public static YoutubeAlpha GetInstance(int profileId, Form chatForm)
+        public static YTForm GetInstance(int profileId, Form chatForm)
         {
             if (instance == null)
             {
-                instance = new YoutubeAlpha(profileId, chatForm);
+                instance = new YTForm(profileId, chatForm);
             }
             return instance;
         }
-        private YoutubeAlpha(int profileId, Form chatForm)
+        private YTForm(int profileId, Form chatForm)
         {
             this.profileId = profileId;
             SetBrowserFeatureControl();
