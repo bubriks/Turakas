@@ -119,7 +119,7 @@ namespace BusinessTier
                 {
                     videoDuration += Int32.Parse(min.Remove(min.Length - 1)) * 60;
                 }
-                if (!String.IsNullOrEmpty(hour))
+                if (!String.IsNullOrEmpty(sec))
                 {
                     videoDuration += Int32.Parse(sec.Remove(sec.Length - 1));
                 }
