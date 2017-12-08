@@ -23,12 +23,12 @@ namespace MVCPresentationTier.Controllers
             return View();
         }
 
+        #region For later
         public void GetMessages(Message[] messages)
         {
             ViewBag.Messages = messages;
         }
 
-        #region For later
         public void AddMessage(Message message)
         {
             throw new NotImplementedException();

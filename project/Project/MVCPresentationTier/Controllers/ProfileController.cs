@@ -39,8 +39,9 @@ namespace MVCPresentationTier.Controllers
             Response.Cookies.Add(cookie);
             return Redirect("/Chat/GetChats");
         }
+
         [HttpGet]
-        public ActionResult CreateProfile(String username, String nickname, String email, String password)
+        public ActionResult CreateProfile()
         {
             return View();
         }
@@ -57,6 +58,7 @@ namespace MVCPresentationTier.Controllers
             ViewBag.i = i;
             return View();
         }
+
         [HttpPost]
         public ActionResult LogOut()
         {
