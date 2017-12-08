@@ -48,7 +48,6 @@ PRIMARY KEY(activityID, groupID),
 --PlayLists Table
 CREATE TABLE PlayLists(
 activityID int FOREIGN KEY REFERENCES Activity(activityID) PRIMARY KEY NOT NULL,
-image image,
 name varchar(500),
 );
 
