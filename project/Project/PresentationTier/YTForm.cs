@@ -15,22 +15,22 @@ using Microsoft.VisualBasic;
 
 namespace PresentationTier
 {
-    public partial class YoutubeAlpha : Form
+    public partial class YTForm : Form
     {
         private YoutubeService.YoutubeServiceClient youtubeServiceClient = new YoutubeService.YoutubeServiceClient();
-        private static YoutubeAlpha instance;
+        private static YTForm instance;
         private int profileId;
         private string ytUrl;
 
-        public static YoutubeAlpha GetInstance(int profileId, Form chatForm)
+        public static YTForm GetInstance(int profileId, Form chatForm)
         {
             if (instance == null)
             {
-                instance = new YoutubeAlpha(profileId, chatForm);
+                instance = new YTForm(profileId, chatForm);
             }
             return instance;
         }
-        private YoutubeAlpha(int profileId, Form chatForm)
+        private YTForm(int profileId, Form chatForm)
         {
             this.profileId = profileId;
             SetBrowserFeatureControl();
@@ -60,11 +60,11 @@ namespace PresentationTier
 
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void AddSongBtn_Click(object sender, EventArgs e)
         {
-            ytUrl = textBox1.Text;
+            ytUrl = addSongTxtBox.Text;
             string vidTitle = youtubeServiceClient.GetVideoTitle(VideoId);
-            label1.Text = vidTitle;
+            videoTitleLabel.Text = vidTitle;
 
             if (String.IsNullOrEmpty(vidTitle))
             {
@@ -74,9 +74,9 @@ namespace PresentationTier
             else if (youtubeServiceClient.AddSong(VideoId, profileId))
             {
                 MessageBox.Show("Song successfully added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                listBox1.DataSource = youtubeServiceClient.FindSongsByName(!textBox2.Text.Equals("Search...") ? textBox2.Text : " ");
-                listBox1.ValueMember = "Url";
-                listBox1.DisplayMember = "Name";
+                songListBox.DataSource = youtubeServiceClient.FindSongsByName(!songSearchTextBox.Text.Equals("Search...") ? songSearchTextBox.Text : " ");
+                songListBox.ValueMember = "Url";
+                songListBox.DisplayMember = "Name";
                 PlayVideo(VideoId);
                 
             }
@@ -90,77 +90,77 @@ namespace PresentationTier
 
         private void TextBox2_KeyUp(object sender, KeyEventArgs e)
         {
-            listBox1.DataSource = youtubeServiceClient.FindSongsByName(textBox2.Text);
-            listBox1.ValueMember = "Url";
-            listBox1.DisplayMember = "Name";
+            songListBox.DataSource = youtubeServiceClient.FindSongsByName(songSearchTextBox.Text);
+            songListBox.ValueMember = "Url";
+            songListBox.DisplayMember = "Name";
         }
 
         private void TextBox2_GotFocus(object sender, EventArgs e)
         {
-            if (textBox2.Text.Equals("Search..."))
+            if (songSearchTextBox.Text.Equals("Search..."))
             {
-                textBox2.Text = "";
+                songSearchTextBox.Text = "";
             }
         }
 
         private void TextBox2_LostFocus(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBox2.Text))
+            if (String.IsNullOrEmpty(songSearchTextBox.Text))
             {
-                textBox2.Text = "Search...";
+                songSearchTextBox.Text = "Search...";
             }
         }
 
         private void TextBox3_GotFocus(object sender, EventArgs e)
         {
-            if (textBox3.Text.Equals("Search..."))
+            if (playlistSearchTxtBox.Text.Equals("Search..."))
             {
-                textBox3.Text = "";
+                playlistSearchTxtBox.Text = "";
             }
         }
 
         private void TextBox3_LostFocus(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBox3.Text))
+            if (String.IsNullOrEmpty(playlistSearchTxtBox.Text))
             {
-                textBox3.Text = "Search...";
+                playlistSearchTxtBox.Text = "Search...";
             }
         }
 
         private void ListBox1_DoubleClick(object sender, EventArgs e)
         {
-            PlayVideo(listBox1.SelectedValue.ToString());
+            PlayVideo(songListBox.SelectedValue.ToString());
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            int selected = listBox1.SelectedIndex;
-            if (selected != -1 && selected + 1 < listBox1.Items.Count)
+            int selected = songListBox.SelectedIndex;
+            if (selected != -1 && selected + 1 < songListBox.Items.Count)
             {
-                listBox1.SetSelected(selected + 1, true);
-                PlayVideo(listBox1.SelectedValue.ToString());
+                songListBox.SetSelected(selected + 1, true);
+                PlayVideo(songListBox.SelectedValue.ToString());
             }
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            int selected = listBox1.SelectedIndex;
+            int selected = songListBox.SelectedIndex;
             if (selected != -1 && selected != 0)
             {
-                listBox1.SetSelected(selected - 1, true);
-                PlayVideo(listBox1.SelectedValue.ToString());
+                songListBox.SetSelected(selected - 1, true);
+                PlayVideo(songListBox.SelectedValue.ToString());
             }
         }
 
         private void AddSongToPlaylistToolStripMenu_Click(object sender, EventArgs e)
         {
-            if(listBox1.SelectedIndex>-1&&youtubeServiceClient.AddSongToPlayList(listBox1.SelectedValue.ToString(),
-                listBox2.SelectedValue.ToString(), profileId))
+            if(songListBox.SelectedIndex>-1&&youtubeServiceClient.AddSongToPlayList(songListBox.SelectedValue.ToString(),
+                playlistListBox.SelectedValue.ToString(), profileId))
             {
                 MessageBox.Show("Song added to playlist.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(listBox2.SelectedValue.ToString());
-                listBox1.ValueMember = "Url";
-                listBox1.DisplayMember = "Name";
+                songListBox.DataSource = youtubeServiceClient.GetSongsFromPlayList(playlistListBox.SelectedValue.ToString());
+                songListBox.ValueMember = "Url";
+                songListBox.DisplayMember = "Name";
             }
             else
             {
@@ -170,19 +170,19 @@ namespace PresentationTier
 
         private void TextBox3_KeyUp(object sender, KeyEventArgs e)
         {
-            listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(textBox3.Text);
-            listBox2.ValueMember = "ActivityId";
-            listBox2.DisplayMember = "Name";
+            playlistListBox.DataSource = youtubeServiceClient.FindPlayListsByName(playlistSearchTxtBox.Text);
+            playlistListBox.ValueMember = "ActivityId";
+            playlistListBox.DisplayMember = "Name";
         }
 
         private void RemovePlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listBox2.SelectedIndex>-1&&youtubeServiceClient.RemovePlaylist(listBox2.SelectedValue.ToString(), profileId))
+            if (playlistListBox.SelectedIndex>-1&&youtubeServiceClient.RemovePlaylist(playlistListBox.SelectedValue.ToString(), profileId))
             {
                 MessageBox.Show("Playlist removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(!textBox2.Text.Equals("Search...") ? textBox3.Text : " ");
-                listBox2.ValueMember = "ActivityId";
-                listBox2.DisplayMember = "Name";
+                playlistListBox.DataSource = youtubeServiceClient.FindPlayListsByName(!songSearchTextBox.Text.Equals("Search...") ? playlistSearchTxtBox.Text : " ");
+                playlistListBox.ValueMember = "ActivityId";
+                playlistListBox.DisplayMember = "Name";
             }
             else
             {
@@ -196,9 +196,9 @@ namespace PresentationTier
             if (!String.IsNullOrEmpty(plName)&&youtubeServiceClient.AddPlayList(plName, profileId))
             {
                 MessageBox.Show("Playlist added.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                listBox2.DataSource = youtubeServiceClient.FindPlayListsByName(!textBox2.Text.Equals("Search...") ? textBox3.Text : " ");
-                listBox2.ValueMember = "ActivityId";
-                listBox2.DisplayMember = "Name";
+                playlistListBox.DataSource = youtubeServiceClient.FindPlayListsByName(!songSearchTextBox.Text.Equals("Search...") ? playlistSearchTxtBox.Text : " ");
+                playlistListBox.ValueMember = "ActivityId";
+                playlistListBox.DisplayMember = "Name";
             }
             else
             {
@@ -208,12 +208,12 @@ namespace PresentationTier
 
         private void RemoveSongFromPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex>-1&&youtubeServiceClient.RemoveSongFromPlaylist(listBox1.SelectedValue.ToString(), listBox2.SelectedValue.ToString(), profileId))
+            if (songListBox.SelectedIndex>-1&&youtubeServiceClient.RemoveSongFromPlaylist(songListBox.SelectedValue.ToString(), playlistListBox.SelectedValue.ToString(), profileId))
             {
                 MessageBox.Show("Song removed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(listBox2.SelectedValue.ToString());
-                listBox1.ValueMember = "Url";
-                listBox1.DisplayMember = "Name";
+                songListBox.DataSource = youtubeServiceClient.GetSongsFromPlayList(playlistListBox.SelectedValue.ToString());
+                songListBox.ValueMember = "Url";
+                songListBox.DisplayMember = "Name";
 
             }
             else
@@ -225,9 +225,9 @@ namespace PresentationTier
 
         private void ListBox2_DoubleClick(object sender, EventArgs e)
         {
-            listBox1.DataSource = youtubeServiceClient.GetSongsFromPlayList(listBox2.SelectedValue.ToString());
-            listBox1.ValueMember = "Url";
-            listBox1.DisplayMember = "Name";
+            songListBox.DataSource = youtubeServiceClient.GetSongsFromPlayList(playlistListBox.SelectedValue.ToString());
+            songListBox.ValueMember = "Url";
+            songListBox.DisplayMember = "Name";
         }
 
         private void SetBrowserFeatureControlKey(string feature, string appName, uint value)

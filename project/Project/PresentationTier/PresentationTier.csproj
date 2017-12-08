@@ -117,11 +117,11 @@
     <Compile Include="SignIn_SignUp_ForgotDetailsForm.Designer.cs">
       <DependentUpon>SignIn_SignUp_ForgotDetailsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="YoutubeAlpha.cs">
+    <Compile Include="YTForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="YoutubeAlpha.Designer.cs">
-      <DependentUpon>YoutubeAlpha.cs</DependentUpon>
+    <Compile Include="YTForm.Designer.cs">
+      <DependentUpon>YTForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
@@ -151,8 +151,8 @@
     <EmbeddedResource Include="SignIn_SignUp_ForgotDetailsForm.resx">
       <DependentUpon>SignIn_SignUp_ForgotDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="YoutubeAlpha.resx">
-      <DependentUpon>YoutubeAlpha.cs</DependentUpon>
+    <EmbeddedResource Include="YTForm.resx">
+      <DependentUpon>YTForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Connected Services\ChatServiceReference\ChatService.wsdl" />
     <None Include="Connected Services\ChatServiceReference\ChatService.xsd">
