@@ -216,7 +216,7 @@ namespace PresentationTier
                             break;
                         default: //loginId
                             signInError_lbl.Visible = false;
-                            ChatForm chat = new ChatForm(-1);
+                            ChatForm chat = new ChatForm(profileId);
                             Hide();
                             chat.ShowDialog();
                             Close();
