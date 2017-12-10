@@ -29,7 +29,7 @@ namespace PresentationTier
             cm = new ContextMenu();
 
             nrOfUsersTrackBar.Minimum = 2;
-            nrOfUsersTrackBar.Maximum = 10;
+            nrOfUsersTrackBar.Maximum = 25;
             nrOfUsersTrackBar.TickFrequency = 1;
             #endregion
             client.Online(profileId);
@@ -160,14 +160,13 @@ namespace PresentationTier
                         privateCheckBox.Checked = false;
                     }
                     int nrOfUsers = Int32.Parse(lvhti.Item.SubItems[5].Text);
-                    if (nrOfUsers < 10)
+                    if (nrOfUsers > 25)
                     {
-                        nrOfUsersTrackBar.Value = nrOfUsers;
+                        nrOfUsersTrackBar.Value = 25;
                     }
                     else
                     {
-                        nrOfUsersTrackBar.Value = 10;
-                        nrLabel.Text = nrOfUsers.ToString();
+                        nrOfUsersTrackBar.Value = nrOfUsers;
                     }
                     saveButton.Text = "Update chat";
                     if (Int32.Parse(lvhti.Item.SubItems[1].Text) == profileId)

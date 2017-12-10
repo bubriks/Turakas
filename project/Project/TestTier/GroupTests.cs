@@ -154,8 +154,10 @@ namespace TestTier
         [TestMethod]
         public void GetGroupMembersWorking()
         {
+            gc.CreateGroup("Group Name", profileId);
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreNotEqual(0, gc.GetUsers(groups[groups.Count - 1].GroupId).Count);
+            gc.DeleteGroup(profileId, groups[groups.Count - 1].GroupId);
+            Assert.AreNotEqual(0, gc.GetUsers(groups[groups.Count - 2].GroupId).Count);
         }
 
         [TestMethod]
