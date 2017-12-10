@@ -168,10 +168,6 @@ namespace BusinessTier
                             {
                                 membersToJoin.Add(new Tuple<Profile, object>(member, null));//adds the member to list (who will join chat)
                             }
-                            else
-                            {
-                                profiles.Remove(user.Item1);//removes user from profiles if hi is already in chat so we dont have to call him back
-                            }
                         }
 
                         if ((chat.MaxNrOfUsers - chat.Users.Count) >= membersToJoin.Count)//ok nr of people in chat
