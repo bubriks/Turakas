@@ -159,7 +159,16 @@ namespace PresentationTier
                     {
                         privateCheckBox.Checked = false;
                     }
-                    nrOfUsersTrackBar.Value = Int32.Parse(lvhti.Item.SubItems[5].Text);
+                    int nrOfUsers = Int32.Parse(lvhti.Item.SubItems[5].Text);
+                    if (nrOfUsers < 10)
+                    {
+                        nrOfUsersTrackBar.Value = nrOfUsers;
+                    }
+                    else
+                    {
+                        nrOfUsersTrackBar.Value = 10;
+                        nrLabel.Text = nrOfUsers.ToString();
+                    }
                     saveButton.Text = "Update chat";
                     if (Int32.Parse(lvhti.Item.SubItems[1].Text) == profileId)
                     {
