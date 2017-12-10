@@ -4,7 +4,7 @@ using BusinessTier;
 using System.Collections.Generic;
 using DataAccessTier;
 using DataTier;
-
+using System.Diagnostics;
 
 namespace TestTier
 {
@@ -41,7 +41,7 @@ namespace TestTier
         [TestMethod]
         public void GetVideoDurationCorrectMS()
         {
-            int duration = 7 * 60 + 35;
+            int duration = 7 * 60 + 36;
             string s = "-3uvf0cn0jo";
             Assert.AreEqual(duration, songController.GetVideoDuration(s));
         }
@@ -97,8 +97,8 @@ namespace TestTier
         [TestMethod]
         public void GetVideoDurationHMS()
         {
-            int duration = 3600 + 2 * 60 + 41;
-            string s = "Zxd4t0QLm0";
+            int duration = 3600 + 8 * 60 + 34;
+            string s = "f7Zik6F6uCs";
             Assert.AreEqual(duration, songController.GetVideoDuration(s));
         }
         
@@ -120,8 +120,8 @@ namespace TestTier
                 urlsActual.Add(song.Url);
             }
             CollectionAssert.AreEqual(urlsExpected, urlsActual);
-            dbActivity.DeleteActivity(dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId, 1);
-            dbActivity.DeleteActivity(dbSong.FindSongByURL("2a4Uxdy9TQY").ActivityId, 1);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("2a4Uxdy9TQY").ActivityId);
 
         }
         
@@ -129,7 +129,7 @@ namespace TestTier
         public void FindSongByNameNonExisting()
         {
             string name = "a9ouehgtiuashdf98utghya98ey4-980yth90ugahrnsfd9-8agh-9f80dhgz";
-            Assert.Equals(0, songController.FindSongsByName(name).Count);
+            Assert.AreEqual(0, songController.FindSongsByName(name).Count);
         }
         
         [TestMethod]
@@ -137,7 +137,7 @@ namespace TestTier
         {
             songController.AddSong("YWo4qBnSwjM",1);
             Assert.IsFalse(songController.AddSong("YWo4qBnSwjM",1));
-            dbActivity.DeleteActivity(dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId, 1);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId);
 
         }
         
@@ -145,7 +145,7 @@ namespace TestTier
         public void AddNonExisting()
         {
             Assert.IsTrue(songController.AddSong("YWo4qBnSwjM",1));
-            dbActivity.DeleteActivity(dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId, 1);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId);
         }
         
         
