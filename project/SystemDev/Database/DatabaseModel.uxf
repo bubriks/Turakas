@@ -78,8 +78,7 @@ username
 salt
 passwordHash
 email
-nickname
-fg=green</panel_attributes>
+nickname</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -94,8 +93,7 @@ fg=green</panel_attributes>
 --
 activityID PK
 loginID FK
-timeStamp
-fg=green</panel_attributes>
+timeStamp</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -106,8 +104,7 @@ fg=green</panel_attributes>
       <w>121</w>
       <h>33</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-fg=green</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
   </element>
   <element>
@@ -121,9 +118,7 @@ fg=green</panel_attributes>
     <panel_attributes>PlayLists
 --
 activityID P/FK
-image
-name
-fg=red</panel_attributes>
+name</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -134,8 +129,7 @@ fg=red</panel_attributes>
       <w>176</w>
       <h>319</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-fg=red</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;30.0;50.0;30.0;270.0;140.0;270.0</additional_attributes>
   </element>
   <element>
@@ -178,8 +172,7 @@ fg=black</panel_attributes>
 activityID P/FK
 name
 duration
-url
-fg=red</panel_attributes>
+url</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -195,8 +188,7 @@ fg=red</panel_attributes>
 activityID P/FK
 name
 type
-nrOfUsers
-fg=red</panel_attributes>
+nrOfUsers</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -207,8 +199,7 @@ fg=red</panel_attributes>
       <w>176</w>
       <h>220</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-fg=red</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;40.0;50.0;40.0;180.0;140.0;180.0</additional_attributes>
   </element>
   <element>
@@ -223,9 +214,7 @@ fg=red</panel_attributes>
 --
 activityID P/FK
 chatActivityID FK
-message
-fg=red
-bg=none</panel_attributes>
+message</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -239,9 +228,7 @@ bg=none</panel_attributes>
     <panel_attributes>Groups
 --
 activityID P/FK
-name
-
-fg=red</panel_attributes>
+name</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -267,8 +254,7 @@ fg=black</panel_attributes>
       <w>176</w>
       <h>154</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-fg=red</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;50.0;50.0;120.0;140.0;120.0</additional_attributes>
   </element>
   <element>
@@ -279,8 +265,7 @@ fg=red</panel_attributes>
       <w>308</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-fg=red</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;100.0;80.0;260.0;80.0</additional_attributes>
   </element>
   <element>
@@ -315,9 +300,7 @@ fg=black</panel_attributes>
       <w>176</w>
       <h>143</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-fg=red
-bg=none</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;110.0;40.0;100.0;120.0;10.0;140.0;10.0</additional_attributes>
   </element>
   <element>
@@ -328,8 +311,7 @@ bg=none</panel_attributes>
       <w>176</w>
       <h>66</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-fg=red</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;40.0;40.0;90.0;10.0;140.0;10.0</additional_attributes>
   </element>
   <element>
@@ -340,8 +322,7 @@ fg=red</panel_attributes>
       <w>44</w>
       <h>99</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-fg=green</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>20.0;70.0;10.0;60.0;10.0;20.0;20.0;10.0</additional_attributes>
   </element>
 </diagram>
