@@ -39,7 +39,6 @@
             this.confirmPassword_txt = new System.Windows.Forms.TextBox();
             this.password_txt = new System.Windows.Forms.TextBox();
             this.username_txt = new System.Windows.Forms.TextBox();
-            this.friendsList_listvw = new System.Windows.Forms.ListView();
             this.usernameError_lbl = new System.Windows.Forms.Label();
             this.passwordError_lbl = new System.Windows.Forms.Label();
             this.confirmPasswordError_lbl = new System.Windows.Forms.Label();
@@ -144,14 +143,6 @@
             this.username_txt.Name = "username_txt";
             this.username_txt.Size = new System.Drawing.Size(100, 20);
             this.username_txt.TabIndex = 0;
-            // 
-            // friendsList_listvw
-            // 
-            this.friendsList_listvw.Location = new System.Drawing.Point(293, 13);
-            this.friendsList_listvw.Name = "friendsList_listvw";
-            this.friendsList_listvw.Size = new System.Drawing.Size(121, 97);
-            this.friendsList_listvw.TabIndex = 14;
-            this.friendsList_listvw.UseCompatibleStateImageBehavior = false;
             // 
             // usernameError_lbl
             // 
@@ -258,7 +249,6 @@
             this.Controls.Add(this.confirmPasswordError_lbl);
             this.Controls.Add(this.passwordError_lbl);
             this.Controls.Add(this.usernameError_lbl);
-            this.Controls.Add(this.friendsList_listvw);
             this.Controls.Add(this.username_txt);
             this.Controls.Add(this.password_txt);
             this.Controls.Add(this.confirmPassword_txt);
@@ -292,7 +282,6 @@
         private System.Windows.Forms.TextBox confirmPassword_txt;
         private System.Windows.Forms.TextBox password_txt;
         private System.Windows.Forms.TextBox username_txt;
-        private System.Windows.Forms.ListView friendsList_listvw;
         private System.Windows.Forms.Label usernameError_lbl;
         private System.Windows.Forms.Label passwordError_lbl;
         private System.Windows.Forms.Label confirmPasswordError_lbl;

@@ -269,11 +269,8 @@ namespace PresentationTier
                 { 
                     deleteError_lbl.ForeColor = Color.Green;
                     deleteError_lbl.Text = "Succesfull!";
-
-                    SignIn_SignUp_ForgotDetailsForm signIn = new SignIn_SignUp_ForgotDetailsForm();
-                    Hide();
-                    signIn.ShowDialog();
-                    Close();
+                    
+                    Application.Restart();
                 }
                 else
                 {
