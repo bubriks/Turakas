@@ -53,7 +53,7 @@
             {
                 <tr style="cursor: pointer;">
                     <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")>@chat.Name</td>
-                    <td bgcolor="#00FF00" onclick="window.location.href = '@Url.Action("ChatRoom", "Message", new{ chatId = @chat.Id, profileId = @chat.OwnerID})';">Join</td>
+                    <td bgcolor="#00FF00" onclick="window.location.href = '@Url.Action("ChatRoom", "Message", new{ chatId = @chat.Id, profileId = @ViewBag.ProfileId})';">Join</td>
                 </tr>
             }
         </table>

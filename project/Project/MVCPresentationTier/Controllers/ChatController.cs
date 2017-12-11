@@ -27,6 +27,7 @@ namespace MVCPresentationTier.Controllers
             {
                 var searchBy = collection["searchBy"];
                 int profileId = Int32.Parse(collection["profileId"].ToString());
+                client.Online(profileId);
                 ViewBag.Chats = client.GetChatsByName(searchBy, profileId);
                 ViewBag.SearchBy = searchBy;
                 ViewBag.ProfileId = profileId;
