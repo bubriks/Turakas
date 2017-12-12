@@ -10,15 +10,24 @@ namespace SignalRChat
     {
         private int chat;
         private int profile;
+
         public void Send(string chatId, string profileId, string text)
         {
-            Clients.Group(chatId).addChatMessage(profileId, text);
+            MessageServiceClient client = new MessageServiceClient(new InstanceContext(this));
+            chat = Int32.Parse(chatId);
+            profile = Int32.Parse(profileId);
+            client.CreateMessage(profile, text, chat);
+        }
+
+        public void AddMessage(Message message)
+        {//pass -of profile id
+            Clients.Group(chat.ToString()).addChatMessage(message.Creator, message.Text);
         }
 
         public async Task JoinRoom(string chatId, string profileId)
-        {
+        {//$.connection.hub.id       Clients.Client(chatId).addChatMessage(profileId, " joined.");
             await Groups.Add(Context.ConnectionId, chatId);
-            Send(chatId, profileId, " joined.");
+            Clients.Group(chat.ToString()).addChatMessage(profileId, " joined.");
             MessageServiceClient client = new MessageServiceClient(new InstanceContext(this));
             chat = Int32.Parse(chatId);
             profile = Int32.Parse(profileId);
@@ -29,29 +38,23 @@ namespace SignalRChat
         {
             foreach (Message message in messages)
             {
-                Send(chat.ToString(), profile.ToString(), message.Text + "- was sent!!!!!!!!!!!!!!!");
+                Clients.Group(chat.ToString()).addChatMessage(message.Creator, message.Text);
             }
-            Send(chat.ToString(), profile.ToString(), "messages were sent!!!!!!!!!!!!!!!");
         }
 
         public void Show(bool result)
         {
             if (result)
             {
-                Send(chat.ToString(), profile.ToString(), "succes");
+                Clients.Group(chat.ToString()).addChatMessage(profile.ToString(), " Connected");
             }
             else
             {
-                Send(chat.ToString(), profile.ToString(), "fail");
+                Clients.Group(chat.ToString()).addChatMessage(profile.ToString(), " Couldn't connect!");
             }
         }
 
         #region For later  
-        public void AddMessage(Message message)
-        {
-            
-        }
-
         public void GetChat(Chat chat)
         {
 
