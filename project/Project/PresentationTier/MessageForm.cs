@@ -33,7 +33,7 @@ namespace PresentationTier
                 rps_btn.Visible = true;
             #endregion
 
-            client.JoinChat(chatId, profileId);
+            client.JoinChat(chatId, profileId, "");
         }
 
         #region info about chat
