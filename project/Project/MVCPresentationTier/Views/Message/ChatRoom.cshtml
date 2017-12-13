@@ -18,7 +18,8 @@
     <div class="container">
         <input type="text" id="message" />
         <input type="button" id="sendmessage" value="Send" />
-        <input type="hidden" id="displayname" />
+        <input type="hidden" id="chatId" />
+        <input type="hidden" id="profileId" />
         <ul id="discussion"></ul>
     </div>
     @section scripts {
@@ -31,12 +32,12 @@
                 $('#discussion').append('<li><strong>' + htmlEncode(name)
                     + '</strong>: ' + htmlEncode(message) + '</li>');
             };
-            $('#displayname').val(prompt('Enter your name:', ''));
-            $('#message').focus();
+            $('#chatId').val(@ViewBag.ChatId);
+            $('#profileId').val(@ViewBag.ProfileId);
             $.connection.hub.start().done(function () {
-                chat.server.joinRoom("@ViewBag.ChatId", $('#displayname').val());
+                chat.server.joinRoom($('#chatId').val(), $('#profileId').val());
                 $('#sendmessage').click(function () {
-                    chat.server.send("@ViewBag.ChatId", $('#displayname').val(), $('#message').val());
+                    chat.server.send($('#chatId').val(), $('#profileId').val(), $('#message').val());
                     $('#message').val('').focus();
                 });
             });
