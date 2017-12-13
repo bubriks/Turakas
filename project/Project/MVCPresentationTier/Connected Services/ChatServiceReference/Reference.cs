@@ -41,7 +41,7 @@ namespace MVCPresentationTier.ChatServiceReference {
         private bool TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Tuple<MVCPresentationTier.ChatServiceReference.Profile, object>[] UsersField;
+        private System.Tuple<MVCPresentationTier.ChatServiceReference.Profile, object, string>[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -132,7 +132,7 @@ namespace MVCPresentationTier.ChatServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Tuple<MVCPresentationTier.ChatServiceReference.Profile, object>[] Users {
+        public System.Tuple<MVCPresentationTier.ChatServiceReference.Profile, object, string>[] Users {
             get {
                 return this.UsersField;
             }
@@ -158,8 +158,8 @@ namespace MVCPresentationTier.ChatServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.ChatServiceReference.Profile, object>[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.ChatServiceReference.Profile, object>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.ChatServiceReference.Profile, object, string>[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.ChatServiceReference.Profile, object, string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.ChatServiceReference.Chat))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.ChatServiceReference.Chat[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.ChatServiceReference.Group[]))]

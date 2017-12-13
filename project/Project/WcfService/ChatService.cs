@@ -60,7 +60,7 @@ namespace WcfService
                         try
                         {
                             IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
-                            callback.GetChat(chat);
+                            callback.GetChat(chat, tuple.Item3);
                         }
                         catch (Exception)
                         {
@@ -83,7 +83,7 @@ namespace WcfService
                         try
                         {
                             IMessageCallBack callback = (IMessageCallBack)tuple.Item2;
-                            callback.Show(false);
+                            callback.Show(false, tuple.Item3);
                         }
                         catch (Exception)
                         {

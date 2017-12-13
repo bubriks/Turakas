@@ -12,7 +12,7 @@ namespace WcfService
     public interface IMessageService
     {
         [OperationContract(IsOneWay = true)]
-        void JoinChat(int chatId, int profileId);
+        void JoinChat(int chatId, int profileId, string clientId);
 
         [OperationContract(IsOneWay = true)]
         void LeaveChat(int chatId, int profileId);
@@ -33,27 +33,27 @@ namespace WcfService
     public interface IMessageCallBack
     {
         [OperationContract(IsOneWay = true)]
-        void WritingMessage();
+        void WritingMessage(string clientId);
 
         [OperationContract(IsOneWay = true)]
-        void AddMessage(Message message);
+        void AddMessage(Message message, string clientId);
 
         [OperationContract(IsOneWay = true)]
-        void RemoveMessage(int id);
+        void RemoveMessage(int id, string clientId);
 
         [OperationContract(IsOneWay = true)]
         void Invite(bool result);
 
         [OperationContract(IsOneWay = true)]
-        void GetOnlineProfiles(List<Profile> profiles);
+        void GetOnlineProfiles(List<Profile> profiles, string clientId);
 
         [OperationContract(IsOneWay = true)]
-        void GetChat(Chat chat);
+        void GetChat(Chat chat, string clientId);
 
         [OperationContract(IsOneWay = true)]
-        void GetMessages(List<Message> messages);
+        void GetMessages(List<Message> messages, string clientId);
 
         [OperationContract(IsOneWay = true)]
-        void Show(bool result);
+        void Show(bool result, string clientId);
     }
 }

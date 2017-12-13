@@ -38,7 +38,7 @@ namespace BusinessTier
         /// <param name="chatId"></param>
         /// <param name="profileId"></param>
         /// <param name="callback"></param>
-        bool JoinChat(int chatId, int profileId, object callback);
+        bool JoinChat(int chatId, int profileId, object callback, string clientId);
         /// <summary>
         /// Person leaves chat
         /// </summary>

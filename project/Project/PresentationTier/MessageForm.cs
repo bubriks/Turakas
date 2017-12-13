@@ -37,7 +37,7 @@ namespace PresentationTier
         }
 
         #region info about chat
-        public void GetChat(Chat chat)//gets chat
+        public void GetChat(Chat chat, string clientId)//gets chat
         {
             if (chat.Type == true)
             {
@@ -51,7 +51,7 @@ namespace PresentationTier
             peopleInChatLabel.Text = chat.Users.Count() + " out of " + chat.MaxNrOfUsers + " users";
         }
 
-        public void GetMessages(MessageServiceReference.Message[] messages)//gets message in chat
+        public void GetMessages(MessageServiceReference.Message[] messages, string clientId)//gets message in chat
         {
             foreach (MessageServiceReference.Message message in messages)
             {
@@ -60,7 +60,7 @@ namespace PresentationTier
             this.messageListBox.SelectedIndex = this.messageListBox.Items.Count - 1;
         }
 
-        public void GetOnlineProfiles(Profile[] profiles)//gets all users online
+        public void GetOnlineProfiles(Profile[] profiles, string clientId)//gets all users online
         {
             userListBox.Items.Clear();
             foreach (Profile profile in profiles)
@@ -83,7 +83,7 @@ namespace PresentationTier
         #endregion
 
         #region Add message
-        public void WritingMessage()//write message call back
+        public void WritingMessage(string clientId)//write message call back
         {
             toolStripStatusLabel1.Text = "Someone is writing";
             timer.Stop();
@@ -116,7 +116,7 @@ namespace PresentationTier
             }
         }
 
-        public void AddMessage(MessageServiceReference.Message message)//call back item message recieved
+        public void AddMessage(MessageServiceReference.Message message, string clientId)//call back item message recieved
         {
             messageListBox.Items.Add(message);
         }
@@ -144,7 +144,7 @@ namespace PresentationTier
             client.DeleteMessage (profileId, (messageListBox.SelectedItem as MessageServiceReference.Message).Id, chatId);
         }
 
-        public void RemoveMessage(int id)//callBack method message removed
+        public void RemoveMessage(int id, string clientId)//callBack method message removed
         {
             foreach (MessageServiceReference.Message message in messageListBox.Items)
             {
@@ -222,7 +222,7 @@ namespace PresentationTier
             client.LeaveChat(chatId, profileId);
         }
 
-        public void Show(bool result)
+        public void Show(bool result, string clientId)
         {
             if (result)
             {

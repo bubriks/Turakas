@@ -126,8 +126,8 @@ namespace MVCPresentationTier.MessageServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object>[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object, string>[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object, string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.MessageServiceReference.Message))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.MessageServiceReference.Profile[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MVCPresentationTier.MessageServiceReference.Chat))]
@@ -281,7 +281,7 @@ namespace MVCPresentationTier.MessageServiceReference {
         private bool TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object>[] UsersField;
+        private System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object, string>[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -372,7 +372,7 @@ namespace MVCPresentationTier.MessageServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object>[] Users {
+        public System.Tuple<MVCPresentationTier.MessageServiceReference.Profile, object, string>[] Users {
             get {
                 return this.UsersField;
             }
@@ -399,10 +399,10 @@ namespace MVCPresentationTier.MessageServiceReference {
     public interface IMessageService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/JoinChat")]
-        void JoinChat(int chatId, int profileId);
+        void JoinChat(int chatId, int profileId, string clientId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/JoinChat")]
-        System.Threading.Tasks.Task JoinChatAsync(int chatId, int profileId);
+        System.Threading.Tasks.Task JoinChatAsync(int chatId, int profileId, string clientId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/LeaveChat")]
         void LeaveChat(int chatId, int profileId);
@@ -439,28 +439,28 @@ namespace MVCPresentationTier.MessageServiceReference {
     public interface IMessageServiceCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/WritingMessage")]
-        void WritingMessage();
+        void WritingMessage(string clientId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/AddMessage")]
-        void AddMessage(MVCPresentationTier.MessageServiceReference.Message message);
+        void AddMessage(MVCPresentationTier.MessageServiceReference.Message message, string clientId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/RemoveMessage")]
-        void RemoveMessage(int id);
+        void RemoveMessage(int id, string clientId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Invite")]
         void Invite(bool result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/GetOnlineProfiles")]
-        void GetOnlineProfiles(MVCPresentationTier.MessageServiceReference.Profile[] profiles);
+        void GetOnlineProfiles(MVCPresentationTier.MessageServiceReference.Profile[] profiles, string clientId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/GetChat")]
-        void GetChat(MVCPresentationTier.MessageServiceReference.Chat chat);
+        void GetChat(MVCPresentationTier.MessageServiceReference.Chat chat, string clientId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/GetMessages")]
-        void GetMessages(MVCPresentationTier.MessageServiceReference.Message[] messages);
+        void GetMessages(MVCPresentationTier.MessageServiceReference.Message[] messages, string clientId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Show")]
-        void Show(bool result);
+        void Show(bool result, string clientId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -491,12 +491,12 @@ namespace MVCPresentationTier.MessageServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void JoinChat(int chatId, int profileId) {
-            base.Channel.JoinChat(chatId, profileId);
+        public void JoinChat(int chatId, int profileId, string clientId) {
+            base.Channel.JoinChat(chatId, profileId, clientId);
         }
         
-        public System.Threading.Tasks.Task JoinChatAsync(int chatId, int profileId) {
-            return base.Channel.JoinChatAsync(chatId, profileId);
+        public System.Threading.Tasks.Task JoinChatAsync(int chatId, int profileId, string clientId) {
+            return base.Channel.JoinChatAsync(chatId, profileId, clientId);
         }
         
         public void LeaveChat(int chatId, int profileId) {

@@ -13,6 +13,7 @@ namespace MVCPresentationTier.Controllers
         public ActionResult GetChats()
         {
             ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
+            client.Online(1);
             ViewBag.Chats = client.GetChatsByName("", 1);
             ViewBag.SearchBy = "";
             ViewBag.ProfileId = 1;
