@@ -19,7 +19,7 @@ namespace DataAccessTier
             string stmt ="INSERT INTO Chat(activityID, name, type, nrOfUsers) values (@0, @1, @2, @3);";
             using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
             {
-                cmd.Parameters.AddWithValue("@0", chat.Id);
+                cmd.Parameters.AddWithValue("@0", chat.ActivityId);
                 cmd.Parameters.AddWithValue("@1", chat.Name);
                 cmd.Parameters.AddWithValue("@2", Convert.ToInt32(chat.Type));
                 cmd.Parameters.AddWithValue("@3", chat.MaxNrOfUsers);
@@ -51,9 +51,9 @@ namespace DataAccessTier
                     {
                         chat = new Chat
                         {
-                            Id = id,
-                            OwnerID = Int32.Parse(reader["profileID"].ToString()),
-                            Time = Convert.ToDateTime(reader["timeStamp"].ToString()),
+                            ActivityId = id,
+                            ProfileId = Int32.Parse(reader["profileID"].ToString()),
+                            TimeStamp = Convert.ToDateTime(reader["timeStamp"].ToString()),
                             Name = reader["name"].ToString(),
                             Type = (bool)reader["type"],
                             MaxNrOfUsers = Int32.Parse(reader["nrOfUsers"].ToString())
@@ -72,7 +72,7 @@ namespace DataAccessTier
                 cmd.Parameters.AddWithValue("@0", chat.Name);
                 cmd.Parameters.AddWithValue("@1", Convert.ToInt32(chat.Type));
                 cmd.Parameters.AddWithValue("@2", chat.MaxNrOfUsers);
-                cmd.Parameters.AddWithValue("@3", chat.Id);
+                cmd.Parameters.AddWithValue("@3", chat.ActivityId);
             return cmd.ExecuteNonQuery();
             }
         }
@@ -103,9 +103,9 @@ namespace DataAccessTier
                     {
                         Chat chat = new Chat
                         {
-                            Id = Int32.Parse(reader["activityID"].ToString()),
-                            OwnerID = Int32.Parse(reader["profileID"].ToString()),
-                            Time = Convert.ToDateTime(reader["timeStamp"].ToString()),
+                            ActivityId = Int32.Parse(reader["activityID"].ToString()),
+                            ProfileId = Int32.Parse(reader["profileID"].ToString()),
+                            TimeStamp = Convert.ToDateTime(reader["timeStamp"].ToString()),
                             Name = reader["name"].ToString(),
                             Type = (bool)reader["type"],
                             MaxNrOfUsers = Int32.Parse(reader["nrOfUsers"].ToString())

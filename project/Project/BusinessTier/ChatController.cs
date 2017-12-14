@@ -29,13 +29,13 @@ namespace BusinessTier
             {
                 if (chat.MaxNrOfUsers > 1 && !chat.Name.Equals(""))
                 {
-                    if (chat.Id == 0)//new chat if id = 0
+                    if (chat.ActivityId == 0)//new chat if id = 0
                     {
                         using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
                         {
                             try
                             {
-                                chat.Id = dbActivity.CreateActivity(chat.OwnerID);
+                                chat.ActivityId = dbActivity.CreateActivity(chat.ProfileId);
                                 if (dbChat.CreateChat(chat) == 0)
                                 {
                                     tran.Rollback();
@@ -56,14 +56,14 @@ namespace BusinessTier
                     }
                     else//update existing chat
                     {
-                        if (profileId == chat.OwnerID)//if the owner of the chat
+                        if (profileId == chat.ProfileId)//if the owner of the chat
                         {
                             if (dbChat.UpdateChat(chat) == 0)//no changes were made
                             {
                                 return false;
                             }
 
-                            Chat foundChat = FindChat(chat.Id);//finds chat
+                            Chat foundChat = FindChat(chat.ActivityId);//finds chat
                             if (foundChat != null)//if chat was found
                             {
                                 lock (foundChat)//locks the chat so only one person ca edit it
@@ -126,7 +126,7 @@ namespace BusinessTier
                 List<Chat> chatlist = new List<Chat>();//creates list of chats that user will recieve
                 foreach (Chat chat in dbChat.GetChatsByName(name, profileId))
                 {
-                    Chat chatitem = FindChat(chat.Id);//trys finding the active chat 
+                    Chat chatitem = FindChat(chat.ActivityId);//trys finding the active chat 
                     if (chatitem != null)//if active chat was found is is added to list
                     {
                         chatlist.Add(chatitem);
@@ -324,7 +324,7 @@ namespace BusinessTier
             Chat chat = chats.Find(//finds chat with this id
             delegate (Chat c)
             {
-                return c.Id == chatId;
+                return c.ActivityId == chatId;
             }
             );
             return chat;

@@ -42,11 +42,11 @@ namespace DataAccessTier
                     {
                         message = new Message
                         {
-                            Id = id,
+                            ActivityId = id,
                             Text = reader["message"].ToString(),
                             Creator = reader["nickname"].ToString(),
-                            CreatorId = Int32.Parse(reader["profileID"].ToString()),
-                            Time = Convert.ToDateTime(reader["timeStamp"].ToString())
+                            ProfileId = Int32.Parse(reader["profileID"].ToString()),
+                            TimeStamp = Convert.ToDateTime(reader["timeStamp"].ToString())
                         };
                     }
                     return message;
@@ -78,11 +78,11 @@ namespace DataAccessTier
                     {
                         Message message = new Message
                         {
-                            Id = Int32.Parse(reader["activityID"].ToString()),
+                            ActivityId = Int32.Parse(reader["activityID"].ToString()),
                             Text = reader["message"].ToString(),
                             Creator = reader["nickname"].ToString(),
-                            CreatorId = Int32.Parse(reader["profileID"].ToString()),
-                            Time = Convert.ToDateTime(reader["timeStamp"].ToString())
+                            ProfileId = Int32.Parse(reader["profileID"].ToString()),
+                            TimeStamp = Convert.ToDateTime(reader["timeStamp"].ToString())
                         };
                         messages.Add(message);
                     }

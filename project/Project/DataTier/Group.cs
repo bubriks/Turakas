@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 namespace DataTier
 {
     [DataContract]
-    public class Group
+    public class Group: Activity
     {
         [DataMember]
-        public int GroupId { get; set; }
-        [DataMember]
         public String Name { get; set; }
-        [DataMember]
-        public int CreatorId { get; set; }
-        [DataMember]
-        public DateTime Time { get; set; }
     }
 }

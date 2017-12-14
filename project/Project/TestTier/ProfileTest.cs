@@ -48,7 +48,7 @@ namespace TestTier
             {
                 Username = "Uganda",
                 Email = "asdf@.",
-                Nickname = "TestingAccountsPleaseDontDelete",
+                Nickname = "TestingAccountsPleaseDontDelete"
             };
             Assert.AreNotEqual(-1, profileController.CreateProfile(profile));
         }

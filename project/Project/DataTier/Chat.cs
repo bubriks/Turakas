@@ -5,14 +5,8 @@ using System.Runtime.Serialization;
 namespace DataTier
 {
     [DataContract]
-    public class Chat
+    public class Chat: Activity
     {
-        [DataMember]
-        public int Id { get; set; }
-        [DataMember]
-        public int OwnerID { get; set; }
-        [DataMember]
-        public DateTime Time { get; set; }
         [DataMember]
         public string Name { get; set; }
         [DataMember]

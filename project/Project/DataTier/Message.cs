@@ -8,17 +8,11 @@ using System.Threading.Tasks;
 namespace DataTier
 {
     [DataContract]
-    public class Message
+    public class Message: Activity
     {
-        [DataMember]
-        public int Id { get; set; }
         [DataMember]
         public string Text { get; set; }
         [DataMember]
         public string Creator { get; set; }
-        [DataMember]
-        public int CreatorId { get; set; }
-        [DataMember]
-        public DateTime Time { get; set; }
     }
 }
