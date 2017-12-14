@@ -151,7 +151,7 @@ namespace PresentationTier
                 {
                     chatId = Int32.Parse(lvhti.Item.Text);
                     chatNameTextBox.Text = lvhti.Item.SubItems[2].Text;
-                    if (lvhti.Item.SubItems[3].Text.Equals("False"))
+                    if (lvhti.Item.SubItems[3].Text.Equals("private"))
                     {
                         privateCheckBox.Checked = true;
                     }
