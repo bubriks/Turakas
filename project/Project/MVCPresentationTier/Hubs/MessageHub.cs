@@ -8,59 +8,51 @@ namespace SignalRChat
 {
     public class MessageHub : Hub, IMessageServiceCallback
     {
-        private int chat;
-        private int profile;
-
-        public void Send(string chatId, string profileId, string text)
+        public async Task JoinRoom(string chatId, string profileId, string clientId)//joins chat
         {
-            MessageServiceClient client = new MessageServiceClient(new InstanceContext(this));
-            chat = Int32.Parse(chatId);
-            profile = Int32.Parse(profileId);
-            client.CreateMessage(profile, text, chat);
-        }
-
-        public void AddMessage(Message message)
-        {//pass -of profile id
-            Clients.Group(chat.ToString()).addChatMessage(message.Creator, message.Text);
-        }
-
-        public async Task JoinRoom(string chatId, string profileId)
-        {//$.connection.hub.id       Clients.Client(chatId).addChatMessage(profileId, " joined.");
             await Groups.Add(Context.ConnectionId, chatId);
-            Clients.Group(chat.ToString()).addChatMessage(profileId, " joined.");
             MessageServiceClient client = new MessageServiceClient(new InstanceContext(this));
-            chat = Int32.Parse(chatId);
-            profile = Int32.Parse(profileId);
-            client.JoinChat(chat, profile);
+            client.JoinChat(Int32.Parse(chatId), Int32.Parse(profileId), clientId);
         }
 
-        public void GetMessages(Message[] messages)
+        public void GetMessages(Message[] messages, string clientId)//gets all chats messages
         {
             foreach (Message message in messages)
             {
-                Clients.Group(chat.ToString()).addChatMessage(message.Creator, message.Text);
+                Clients.Client(clientId).addChatMessage(message.Creator, message.Text);
             }
         }
 
-        public void Show(bool result)
+        public void Send(string chatId, string profileId, string text)//send message method
+        {
+            MessageServiceClient client = new MessageServiceClient(new InstanceContext(this));
+            client.CreateMessage(Int32.Parse(profileId), text, Int32.Parse(chatId));
+        }
+
+        public void AddMessage(Message message, string clientId)//callback if someone has written something
+        {
+            Clients.Client(clientId).addChatMessage(message.Creator, message.Text);
+        }
+
+        public void Show(bool result, string clientId)//show if succesfully connected
         {
             if (result)
             {
-                Clients.Group(chat.ToString()).addChatMessage(profile.ToString(), " Connected");
+                Clients.Client(clientId).addChatMessage("Server", " You are connected!");
             }
             else
             {
-                Clients.Group(chat.ToString()).addChatMessage(profile.ToString(), " Couldn't connect!");
+                Clients.Client(clientId).addChatMessage("Server", " You couldn't connect!");
             }
         }
 
-        #region For later  
-        public void GetChat(Chat chat)
+        #region For later
+        public void GetChat(Chat chat, string clientId)
         {
 
         }
 
-        public void RemoveMessage(int id)
+        public void RemoveMessage(int id, string clientId)
         {
 
         }
@@ -70,12 +62,12 @@ namespace SignalRChat
 
         }
 
-        public void WritingMessage()
+        public void WritingMessage(string clientId)
         {
 
         }
 
-        public void GetOnlineProfiles(Profile[] profiles)
+        public void GetOnlineProfiles(Profile[] profiles, string clientId)
         {
 
         }
