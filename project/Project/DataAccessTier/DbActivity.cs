@@ -35,38 +35,6 @@ namespace DataAccessTier
         }
 
         /// <summary>
-        /// Returns Activity Object
-        /// </summary>
-        /// <param name="id">choice</param>
-        /// <param name="by">1 = profileId, 2 = activityId</param>
-        /// <returns>returns activity if values inserted are correct and there is this activity in database</returns>
-        public Activity ReadActivity(int id, int by)
-        {
-            string stmt;
-            Activity activity = null;
-            if (by == 1)
-                stmt = "SELECT * FROM Activity WHERE activityId = @0";
-            else
-                stmt = "SELECT * FROM Activity WHERE profileId = @0";
-
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
-            {
-                cmd.Parameters.AddWithValue("@0", id);
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                        activity = new Activity
-                        {
-                            ActivityId = Int32.Parse(reader["activityID"].ToString()),
-                            ProfileId = Int32.Parse(reader["profileID"].ToString()),
-                            TimeStamp = (DateTime)reader["timestamp"],
-                        };
-                }
-                return activity;
-            }
-        }
-
-        /// <summary>
         /// deletes activity if the action is done by creator
         /// </summary>
         /// <param name="profileId">ProfileId inserted here</param>

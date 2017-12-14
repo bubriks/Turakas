@@ -101,7 +101,7 @@ namespace PresentationTier
                 if (item >= 0)
                 {
                     lbAllGroups.SelectedIndex = item;
-                    groupId = (lbAllGroups.SelectedItem as Group).GroupId;
+                    groupId = (lbAllGroups.SelectedItem as Group).ActivityId;
                     GetUsers(onlineCheckBox.Checked == true);
                     BtnCreate.Text = "Update group";
                     txtUserName.Enabled = true;
@@ -121,7 +121,7 @@ namespace PresentationTier
 
         private void MenuItemNewRemoveGroup_Click(Object sender, EventArgs e)//Right cick menu button clicked
         {
-            client.DeleteGroup(profileId, (lbAllGroups.SelectedItem as Group).GroupId);
+            client.DeleteGroup(profileId, (lbAllGroups.SelectedItem as Group).ActivityId);
             groupId = 0;
             BtnCreate.Text = "Create new group";
             txtUserName.Enabled = false;

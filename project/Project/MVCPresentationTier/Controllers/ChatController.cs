@@ -45,11 +45,11 @@ namespace MVCPresentationTier.Controllers
             Chat chat = new Chat();
             if (!chatId.HasValue)
             {
-                chat.Id = 0;
+                chat.ActivityId = 0;
             }
             else
             {
-                chat.Id = chatId.Value;
+                chat.ActivityId = chatId.Value;
             }
             if (!maxNrOfUsers.HasValue)
             {
@@ -62,19 +62,19 @@ namespace MVCPresentationTier.Controllers
             chat.Name = name;
             if (!ownerID.HasValue)
             {
-                chat.OwnerID = 0;
+                chat.ProfileId = 0;
             }
             else
             {
-                chat.OwnerID = ownerID.Value;
+                chat.ProfileId = ownerID.Value;
             }
             if (!time.HasValue)
             {
-                chat.Time = new DateTime();
+                chat.TimeStamp = new DateTime();
             }
             else
             {
-                chat.Time = time.Value;
+                chat.TimeStamp = time.Value;
             }
             if (!type.HasValue)
             {

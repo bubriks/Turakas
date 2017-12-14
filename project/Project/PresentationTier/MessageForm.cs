@@ -131,7 +131,7 @@ namespace PresentationTier
                 if (item >= 0)
                 {
                     messageListBox.SelectedIndex = item;
-                    if ((messageListBox.SelectedItem as MessageServiceReference.Message).CreatorId == profileId)
+                    if ((messageListBox.SelectedItem as MessageServiceReference.Message).ProfileId == profileId)
                     {
                         cm.Show(messageListBox, e.Location);
                     }
@@ -141,14 +141,14 @@ namespace PresentationTier
 
         private void MenuItemNew_Click(Object sender, EventArgs e)//Right cick menu button clicked
         {
-            client.DeleteMessage (profileId, (messageListBox.SelectedItem as MessageServiceReference.Message).Id, chatId);
+            client.DeleteMessage (profileId, (messageListBox.SelectedItem as MessageServiceReference.Message).ActivityId, chatId);
         }
 
         public void RemoveMessage(int id, string clientId)//callBack method message removed
         {
             foreach (MessageServiceReference.Message message in messageListBox.Items)
             {
-                if (message.Id == id)
+                if (message.ActivityId == id)
                 {
                     messageListBox.Items.Remove(message);
                     break;
@@ -170,7 +170,7 @@ namespace PresentationTier
             if (index != -1 && index < messageListBox.Items.Count)
             {
                 MessageServiceReference.Message message = (messageListBox.SelectedItem as MessageServiceReference.Message);
-                String text = message.Creator + " " + message.Time.ToString();
+                String text = message.Creator + " " + message.TimeStamp.ToString();
                 if (toolTip.GetToolTip(messageListBox) != text)
                 {
                     toolTip.SetToolTip(messageListBox, text);

@@ -68,10 +68,10 @@ namespace DataAccessTier
                     {
                         Group group = new Group
                         {
-                            GroupId = Int32.Parse(reader["activityID"].ToString()),
+                            ActivityId = Int32.Parse(reader["activityID"].ToString()),
                             Name = reader["name"].ToString(),
-                            CreatorId = profileId,
-                            Time = Convert.ToDateTime(reader["timeStamp"].ToString())
+                            ProfileId = profileId,
+                            TimeStamp = Convert.ToDateTime(reader["timeStamp"].ToString())
                         };
                         groups.Add(group);
                     }

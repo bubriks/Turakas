@@ -51,8 +51,8 @@ namespace PresentationTier
             chatListView.Items.Clear();
             foreach (Chat chat in client.GetChatsByName(searchBox.Text, profileId))
             {
-                ListViewItem row = new ListViewItem(chat.Id.ToString());
-                row.SubItems.Add(chat.OwnerID.ToString());
+                ListViewItem row = new ListViewItem(chat.ActivityId.ToString());
+                row.SubItems.Add(chat.ProfileId.ToString());
                 row.SubItems.Add(chat.Name);
                 if (chat.Type)
                 {
@@ -71,7 +71,7 @@ namespace PresentationTier
                     row.SubItems.Add(chat.Users.Count().ToString());
                 }
                 row.SubItems.Add(chat.MaxNrOfUsers.ToString());
-                row.SubItems.Add(chat.Time.ToString());
+                row.SubItems.Add(chat.TimeStamp.ToString());
                 chatListView.Items.Add(row);
             }
         }
@@ -109,7 +109,7 @@ namespace PresentationTier
                             {
                                 MenuItem item = new MenuItem();
                                 item.Text = group.Name;
-                                item.Click += delegate { JoinWithGroup(group.GroupId); };
+                                item.Click += delegate { JoinWithGroup(group.ActivityId); };
                                 joinWithGroup.MenuItems.Add(item);
                             }
                             cm.Show(this.chatListView, new Point(e.X, e.Y));
@@ -134,7 +134,7 @@ namespace PresentationTier
                             {
                                 MenuItem item = new MenuItem();
                                 item.Text = group.Name;
-                                item.Click += delegate { JoinWithGroup(group.GroupId); };
+                                item.Click += delegate { JoinWithGroup(group.ActivityId); };
                                 joinWithGroup.MenuItems.Add(item);
                             }
                             cm.MenuItems.Add(joinWithGroup);
@@ -216,8 +216,8 @@ namespace PresentationTier
             {
                 Name = chatNameTextBox.Text,
                 MaxNrOfUsers = nrOfUsersTrackBar.Value,
-                Id = chatId,
-                OwnerID = profileId
+                ActivityId = chatId,
+                ProfileId = profileId
             };
             if (privateCheckBox.Checked == true)
             {
@@ -283,7 +283,7 @@ namespace PresentationTier
                     try
                     {
                         inviteListBox.SelectedIndex = item;
-                        new MessageForm((inviteListBox.SelectedItem as Chat).Id, profileId);
+                        new MessageForm((inviteListBox.SelectedItem as Chat).ActivityId, profileId);
                     }
                     catch (Exception)
                     { }

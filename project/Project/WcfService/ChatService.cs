@@ -50,9 +50,9 @@ namespace WcfService
 
         public void SaveChat(int profileId, Chat chat)
         {
-            if(chatController.SaveChat(profileId, chat) && chat.Id != 0)
+            if(chatController.SaveChat(profileId, chat) && chat.ActivityId != 0)
             {
-                chat = chatController.FindChat(chat.Id);
+                chat = chatController.FindChat(chat.ActivityId);
                 if (chat != null)
                 {
                     foreach (var tuple in chat.Users)
