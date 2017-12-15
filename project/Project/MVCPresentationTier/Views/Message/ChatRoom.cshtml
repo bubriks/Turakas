@@ -14,6 +14,7 @@
     <div>
         <h2>@ViewBag.ChatId</h2>
         <h2>@ViewBag.ProfileId</h2>
+        <input type="button" id="leaveRoom" value="Leave">
     </div>
     <div class="container">
         <input type="text" id="message" />
@@ -38,6 +39,11 @@
                 chat.server.joinRoom($('#chatId').val(), $('#profileId').val(), $.connection.hub.id);
                 $('#sendmessage').click(function () {
                     chat.server.send($('#chatId').val(), $('#profileId').val(), $('#message').val());
+                    $('#message').val('').focus();
+                });
+
+                $('#leaveRoom').click(function () {
+                    chat.server.leaveRoom($('#chatId').val(), $('#profileId').val(), $.connection.hub.id);
                     $('#message').val('').focus();
                 });
             });

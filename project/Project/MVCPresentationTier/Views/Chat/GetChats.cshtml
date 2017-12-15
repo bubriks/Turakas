@@ -52,8 +52,8 @@
             @foreach (var chat in ViewBag.Chats)
             {
                 <tr style="cursor: pointer;">
-                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.Id, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, ownerID = @chat.OwnerID, time = @chat.Time, type = @chat.Type })'")>@chat.Name</td>
-                    <td bgcolor="#00FF00" onclick="window.location.href = '@Url.Action("ChatRoom", "Message", new{ chatId = @chat.Id, profileId = @ViewBag.ProfileId})';">Join</td>
+                    <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.ActivityId, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, profileId = @chat.ProfileId, time = @chat.TimeStamp, type = @chat.Type })'")>@chat.Name</td>
+                    <td bgcolor="#00FF00" onclick="window.location.href = '@Url.Action("ChatRoom", "Message", new{ chatId = @chat.ActivityId, profileId = @ViewBag.ProfileId})';">Join</td>
                 </tr>
             }
         </table>

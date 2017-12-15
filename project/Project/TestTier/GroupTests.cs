@@ -44,14 +44,14 @@ namespace TestTier
         public void DeleteGroupWorking()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreEqual(true, gc.DeleteGroup(profileId, groups[0].GroupId));
+            Assert.AreEqual(true, gc.DeleteGroup(profileId, groups[0].ActivityId));
         }
 
         [TestMethod]
         public void DeleteGroupWrongProfileID()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreEqual(false, gc.DeleteGroup(groups[0].GroupId, 0));
+            Assert.AreEqual(false, gc.DeleteGroup(groups[0].ActivityId, 0));
         }
 
         [TestMethod]
@@ -66,14 +66,14 @@ namespace TestTier
         public void UpdateGroupWorking()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreEqual(true, gc.UpdateGroup("Test group", groups[0].GroupId));
+            Assert.AreEqual(true, gc.UpdateGroup("Test group", groups[0].ActivityId));
         }
 
         [TestMethod]
         public void UpdateGroupEmptyName()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreEqual(false, gc.UpdateGroup("", groups[0].GroupId));
+            Assert.AreEqual(false, gc.UpdateGroup("", groups[0].ActivityId));
         }
 
         [TestMethod]
@@ -102,15 +102,15 @@ namespace TestTier
         public void AddMemberToGroupWorking()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            gc.RemoveMember(profileId, groups[0].GroupId);
-            Assert.AreEqual(true, gc.AddMember("Uganda", groups[0].GroupId));
+            gc.RemoveMember(profileId, groups[0].ActivityId);
+            Assert.AreEqual(true, gc.AddMember("Uganda", groups[0].ActivityId));
         }
 
         [TestMethod]
         public void AddMemberToGroupWrongProfileName()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreEqual(false, gc.AddMember("", groups[0].GroupId));
+            Assert.AreEqual(false, gc.AddMember("", groups[0].ActivityId));
         }
 
         [TestMethod]
@@ -123,8 +123,8 @@ namespace TestTier
         public void AddMemberToGroupWhenHeIsMember()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            gc.AddMember("Uganda", groups[0].GroupId);
-            Assert.AreEqual(false, gc.AddMember("Uganda", groups[0].GroupId));
+            gc.AddMember("Uganda", groups[0].ActivityId);
+            Assert.AreEqual(false, gc.AddMember("Uganda", groups[0].ActivityId));
         }
         #endregion
 
@@ -133,14 +133,14 @@ namespace TestTier
         public void RemoveMemberFromGroupWorking()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreEqual(true, gc.RemoveMember(profileId, groups[0].GroupId));
+            Assert.AreEqual(true, gc.RemoveMember(profileId, groups[0].ActivityId));
         }
 
         [TestMethod]
         public void RemoveMemberFromGroupWrongProfileId()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreEqual(false, gc.RemoveMember(0, groups[0].GroupId));
+            Assert.AreEqual(false, gc.RemoveMember(0, groups[0].ActivityId));
         }
 
         [TestMethod]
@@ -156,8 +156,8 @@ namespace TestTier
         {
             gc.CreateGroup("Group Name", profileId);
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreNotEqual(0, gc.GetUsers(groups[groups.Count - 1].GroupId).Count);
-            gc.DeleteGroup(profileId, groups[groups.Count - 1].GroupId);
+            Assert.AreNotEqual(0, gc.GetUsers(groups[groups.Count - 1].ActivityId).Count);
+            gc.DeleteGroup(profileId, groups[groups.Count - 1].ActivityId);
         }
 
         [TestMethod]
@@ -173,7 +173,7 @@ namespace TestTier
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
             new ProfileController().Online(profileId, new object());
-            Assert.AreNotEqual(0, gc.GetOnlineMembers(groups[groups.Count -1].GroupId).Count);
+            Assert.AreNotEqual(0, gc.GetOnlineMembers(groups[groups.Count -1].ActivityId).Count);
         }
 
         [TestMethod]
@@ -186,7 +186,7 @@ namespace TestTier
         public void GetOnlineGroupMembersNoOneOnline()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreEqual(0, gc.GetOnlineMembers(groups[0].GroupId).Count);
+            Assert.AreEqual(0, gc.GetOnlineMembers(groups[0].ActivityId).Count);
         }
         #endregion
     }

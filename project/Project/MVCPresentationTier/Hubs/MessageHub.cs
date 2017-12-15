@@ -8,11 +8,17 @@ namespace SignalRChat
 {
     public class MessageHub : Hub, IMessageServiceCallback
     {
-        public async Task JoinRoom(string chatId, string profileId, string clientId)//joins chat
+        public void JoinRoom(string chatId, string profileId, string clientId)//joins chat
         {
-            await Groups.Add(Context.ConnectionId, chatId);
             MessageServiceClient client = new MessageServiceClient(new InstanceContext(this));
             client.JoinChat(Int32.Parse(chatId), Int32.Parse(profileId), clientId);
+        }
+
+        public void LeaveRoom(string chatId, string profileId, string clientId)//leaves chat
+        {
+            MessageServiceClient client = new MessageServiceClient(new InstanceContext(this));
+            client.LeaveChat(Int32.Parse(chatId), Int32.Parse(profileId));
+            Clients.Client(clientId).addChatMessage("Server", " You left chat room");
         }
 
         public void GetMessages(Message[] messages, string clientId)//gets all chats messages
