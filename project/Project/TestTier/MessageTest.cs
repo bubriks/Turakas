@@ -25,7 +25,7 @@ namespace TestTier
         {
             List<Chat> chats = chatController.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
-            Assert.AreNotEqual(null, controller.CreateMessage(profileId, "test", chat.Id));
+            Assert.AreNotEqual(null, controller.CreateMessage(profileId, "test", chat.ActivityId));
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace TestTier
         {
             List<Chat> chats = chatController.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
-            Assert.AreEqual(null, controller.CreateMessage(0, "test", chat.Id));
+            Assert.AreEqual(null, controller.CreateMessage(0, "test", chat.ActivityId));
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@ namespace TestTier
         {
             List<Chat> chats = chatController.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
-            Assert.AreEqual(null, controller.CreateMessage(profileId, "", chat.Id));
+            Assert.AreEqual(null, controller.CreateMessage(profileId, "", chat.ActivityId));
         }
         #endregion
 
@@ -57,8 +57,8 @@ namespace TestTier
         {
             List<Chat> chats = chatController.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
-            controller.CreateMessage(profileId, "test", chat.Id);
-            Assert.AreNotEqual(0, controller.GetMessages(chat.Id).Count);
+            controller.CreateMessage(profileId, "test", chat.ActivityId);
+            Assert.AreNotEqual(0, controller.GetMessages(chat.ActivityId).Count);
         }
 
         [TestMethod]
@@ -74,8 +74,8 @@ namespace TestTier
         {
             List<Chat> chats = chatController.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
-            Message message = controller.CreateMessage(profileId, "test", chat.Id);
-            Assert.AreEqual(true, controller.DeleteMessage(profileId, message.Id));
+            Message message = controller.CreateMessage(profileId, "test", chat.ActivityId);
+            Assert.AreEqual(true, controller.DeleteMessage(profileId, message.ActivityId));
         }
 
         [TestMethod]
@@ -89,8 +89,8 @@ namespace TestTier
         {
             List<Chat> chats = chatController.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
-            Message message = controller.CreateMessage(profileId, "test", chat.Id);
-            Assert.AreEqual(false, controller.DeleteMessage(0, message.Id));
+            Message message = controller.CreateMessage(profileId, "test", chat.ActivityId);
+            Assert.AreEqual(false, controller.DeleteMessage(0, message.ActivityId));
         }
         #endregion
     }

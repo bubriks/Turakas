@@ -26,7 +26,7 @@ namespace TestTier
             {
                 MaxNrOfUsers = 2,
                 Name = "testChat",
-                OwnerID = profileId,
+                ProfileId = profileId,
                 Type = true
             };
             Assert.AreEqual(true, controller.SaveChat(profileId, chat));
@@ -39,7 +39,7 @@ namespace TestTier
             {
                 MaxNrOfUsers = 2,
                 Name = "testChat",
-                OwnerID = 0,
+                ProfileId = 0,
                 Type = true
             };
             Assert.AreEqual(false, controller.SaveChat(profileId, chat));
@@ -52,7 +52,7 @@ namespace TestTier
             {
                 MaxNrOfUsers = 2,
                 Name = "",
-                OwnerID = profileId,
+                ProfileId = profileId,
                 Type = true
             };
             Assert.AreEqual(false, controller.SaveChat(profileId, chat));
@@ -65,7 +65,7 @@ namespace TestTier
             {
                 MaxNrOfUsers = 1,
                 Name = "testChat",
-                OwnerID = profileId,
+                ProfileId = profileId,
                 Type = true
             };
             Assert.AreEqual(false, controller.SaveChat(profileId, chat));
@@ -78,7 +78,7 @@ namespace TestTier
         {
             Chat chat = controller.GetChatsByName("", profileId)[0];
             chat.Type = true;
-            Assert.AreEqual(true, controller.SaveChat(chat.OwnerID, chat));
+            Assert.AreEqual(true, controller.SaveChat(chat.ProfileId, chat));
         }
 
         [TestMethod]
@@ -94,7 +94,7 @@ namespace TestTier
         {
             Chat chat = controller.GetChatsByName("", profileId)[0];
             chat.Name = "";
-            Assert.AreEqual(false, controller.SaveChat(chat.Id, chat));
+            Assert.AreEqual(false, controller.SaveChat(chat.ActivityId, chat));
         }
 
         [TestMethod]
@@ -102,7 +102,7 @@ namespace TestTier
         {
             Chat chat = controller.GetChatsByName("", profileId)[0];
             chat.MaxNrOfUsers = 1;
-            Assert.AreEqual(false, controller.SaveChat(chat.OwnerID, chat));
+            Assert.AreEqual(false, controller.SaveChat(chat.ProfileId, chat));
         }
         #endregion
 
@@ -114,19 +114,19 @@ namespace TestTier
             {
                 MaxNrOfUsers = 2,
                 Name = "testChat",
-                OwnerID = profileId,
+                ProfileId = profileId,
                 Type = true
             };
             controller.SaveChat(profileId, chat);
             List<Chat> chats = controller.GetChatsByName("", profileId);
-            Assert.AreEqual(true, controller.DeleteChat(chat.OwnerID, chats[chats.Count -1].Id));
+            Assert.AreEqual(true, controller.DeleteChat(chat.ProfileId, chats[chats.Count -1].ActivityId));
         }
 
         [TestMethod]
         public void DeleteNotYourChatDetails()
         {
             Chat chat = controller.GetChatsByName("", profileId)[0];
-            Assert.AreEqual(false, controller.DeleteChat(0, chat.Id));
+            Assert.AreEqual(false, controller.DeleteChat(0, chat.ActivityId));
         }
 
         [TestMethod]
@@ -148,13 +148,13 @@ namespace TestTier
         [TestMethod]
         public void JoinChatWithWrongChatId()
         {
-            Assert.AreEqual(0, controller.JoinChatWithGroup((new GroupController().GetUsersGroups(profileId))[0].GroupId, 0).Count);
+            Assert.AreEqual(0, controller.JoinChatWithGroup((new GroupController().GetUsersGroups(profileId))[0].ActivityId, 0).Count);
         }
 
         [TestMethod]
         public void JoinChatWithWrongGroupId()
         {
-            Assert.AreEqual(0, controller.JoinChatWithGroup(0, (controller.GetChatsByName("", profileId))[0].Id).Count);
+            Assert.AreEqual(0, controller.JoinChatWithGroup(0, (controller.GetChatsByName("", profileId))[0].ActivityId).Count);
         }
         #endregion
 
@@ -165,7 +165,7 @@ namespace TestTier
             List<Chat> chats = controller.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
             new ProfileController().Online(profileId, new object());
-            Assert.AreEqual(true, controller.JoinChat(chat.Id, profileId, null, ""));
+            Assert.AreEqual(true, controller.JoinChat(chat.ActivityId, profileId, null, ""));
         }
 
         [TestMethod]
@@ -179,8 +179,8 @@ namespace TestTier
         {
             List<Chat> chats = controller.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
-            controller.LeaveChat(chat.Id, profileId);
-            Assert.AreEqual(false, controller.JoinChat(chat.Id, 0, new object(), ""));
+            controller.LeaveChat(chat.ActivityId, profileId);
+            Assert.AreEqual(false, controller.JoinChat(chat.ActivityId, 0, new object(), ""));
         }
 
         [TestMethod]
@@ -190,8 +190,8 @@ namespace TestTier
             Chat chat = chats[chats.Count - 1];
             new ProfileController().Online(profileId, new object());
             new ProfileController().Online(profileId1, new object());
-            controller.JoinChat(chat.Id, profileId1, new object(), "");
-            Assert.AreEqual(true, controller.JoinChat(chat.Id, profileId, new object(), ""));
+            controller.JoinChat(chat.ActivityId, profileId1, new object(), "");
+            Assert.AreEqual(true, controller.JoinChat(chat.ActivityId, profileId, new object(), ""));
         }
 
         [TestMethod]
@@ -200,8 +200,8 @@ namespace TestTier
             List<Chat> chats = controller.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
             new ProfileController().Online(profileId, new object());
-            controller.JoinChat(chat.Id, profileId, new object(), "");
-            Assert.AreEqual(false, controller.JoinChat(chat.Id, profileId, new object(), ""));
+            controller.JoinChat(chat.ActivityId, profileId, new object(), "");
+            Assert.AreEqual(false, controller.JoinChat(chat.ActivityId, profileId, new object(), ""));
         }
 
         [TestMethod]
@@ -210,9 +210,9 @@ namespace TestTier
             List<Chat> chats = controller.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
             new ProfileController().Online(profileId, new object());
-            controller.LeaveChat(chat.Id, profileId);
-            controller.JoinChat(chat.Id, profileId, null, "");
-            Assert.AreEqual(true, controller.JoinChat(chat.Id, profileId, new object(), ""));
+            controller.LeaveChat(chat.ActivityId, profileId);
+            controller.JoinChat(chat.ActivityId, profileId, null, "");
+            Assert.AreEqual(true, controller.JoinChat(chat.ActivityId, profileId, new object(), ""));
         }
 
         [TestMethod]
@@ -221,8 +221,8 @@ namespace TestTier
             List<Chat> chats = controller.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
             new ProfileController().Online(profileId, new object());
-            controller.JoinChat(chat.Id, profileId, new object(), "");
-            Assert.AreEqual(false, controller.JoinChat(chat.Id, profileId, new object(), ""));
+            controller.JoinChat(chat.ActivityId, profileId, new object(), "");
+            Assert.AreEqual(false, controller.JoinChat(chat.ActivityId, profileId, new object(), ""));
         }
         #endregion
 
@@ -233,8 +233,8 @@ namespace TestTier
             List<Chat> chats = controller.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
             new ProfileController().Online(profileId, new object());
-            controller.JoinChat(chat.Id, profileId, new object(), "");
-            Assert.AreEqual(true, controller.LeaveChat(chat.Id, profileId));
+            controller.JoinChat(chat.ActivityId, profileId, new object(), "");
+            Assert.AreEqual(true, controller.LeaveChat(chat.ActivityId, profileId));
         }
 
         [TestMethod]
@@ -243,8 +243,8 @@ namespace TestTier
             List<Chat> chats = controller.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
             new ProfileController().Online(profileId, new object());
-            controller.JoinChat(chat.Id, profileId, new object(), "");
-            Assert.AreEqual(false, controller.LeaveChat(chat.Id, 0));
+            controller.JoinChat(chat.ActivityId, profileId, new object(), "");
+            Assert.AreEqual(false, controller.LeaveChat(chat.ActivityId, 0));
         }
 
         [TestMethod]
@@ -253,7 +253,7 @@ namespace TestTier
             List<Chat> chats = controller.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
             new ProfileController().Online(profileId, new object());
-            controller.JoinChat(chat.Id, profileId, new object(), "");
+            controller.JoinChat(chat.ActivityId, profileId, new object(), "");
             Assert.AreEqual(false, controller.LeaveChat(0, profileId));
         }
 
@@ -262,8 +262,8 @@ namespace TestTier
         {
             List<Chat> chats = controller.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
-            controller.LeaveChat(chat.Id, profileId);
-            Assert.AreEqual(false, controller.LeaveChat(chat.Id, profileId));
+            controller.LeaveChat(chat.ActivityId, profileId);
+            Assert.AreEqual(false, controller.LeaveChat(chat.ActivityId, profileId));
         }
         #endregion
 
@@ -273,8 +273,8 @@ namespace TestTier
         {
             List<Chat> chats = controller.GetChatsByName("", profileId);
             Chat chat = chats[chats.Count - 1];
-            controller.JoinChat(chat.Id, profileId, new object(), "");
-            Assert.AreNotEqual(null, controller.FindChat(chat.Id));
+            controller.JoinChat(chat.ActivityId, profileId, new object(), "");
+            Assert.AreNotEqual(null, controller.FindChat(chat.ActivityId));
         }
 
         [TestMethod]
