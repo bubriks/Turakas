@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login page</title>
+</head>
+<body>
+    <div>
+        <form action=@Url.Action("LogIn", "Profile") method="post">
+            <input type="text" name="Username" placeholder="Username" />
+            <div class="row">&nbsp;</div>
+            <input type="password" name="Password" placeholder="Password" />
+            <div class="row">&nbsp;</div>
+            <input type="submit" ) />
+        </form>
+    </div>
+</body>
+</html>

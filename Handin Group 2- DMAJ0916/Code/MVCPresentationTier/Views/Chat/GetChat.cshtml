@@ -1,0 +1,19 @@
+﻿@model MVCPresentationTier.ChatServiceReference.Chat
+@{
+    ViewBag.Title = "GetChat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Chat page</title>
+</head>
+<body>
+    <div>
+        @Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+</body>
+</html>

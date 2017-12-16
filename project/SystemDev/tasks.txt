@@ -1,5 +1,0 @@
-By the end of friday we need music player with YT API (STOYCHO), sys dev part (agile vs plan driven, choice of method)(HANNES)
-On saturday it can be merged with chat app(RALFS)
-By the end of sunday we need Login and user part finished, so it too could be merged with chat app(ANDREI), QA part of sys dev(HANENS)
-On monday we can overlook the whole program, make sure that everyone understand how stuff has been implemented and call are made.
-On tuesday /end of monday we can distribute tasks for following week. (Pair-programming, tdd, writing report parts)

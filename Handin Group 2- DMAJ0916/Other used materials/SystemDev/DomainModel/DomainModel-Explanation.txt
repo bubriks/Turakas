@@ -1,0 +1,8 @@
+User: private information about a real life person, no other user shall be capable of seeing it
+Profile- all user related information.
+Activity- holds a timestamp and reference to user, to know who and when created something.
+Group- collection of users, created by a specific user.
+Chat- holds messages, created by a specific user;
+Message- text message created by a specific user.
+Video- holds the reference of video to be played, created by a specific user.
+Playlist- users created playlist, is accessible by anyone.
