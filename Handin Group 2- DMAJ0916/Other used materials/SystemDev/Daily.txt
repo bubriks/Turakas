@@ -1,0 +1,124 @@
+Sprint 1
+day 1
+Previous scrum master and product owner was Hannes, next pr. owner is Ralfs, Scrum master is Stoicho.
+We decided to focus more on chat instead of music part of our project.
+We decided to make our main concurrency issue around Who gets final seats in chatrooms.
+First phase of coding is around 80% done, UI is missing, Music player is not attached.
+
+day 2
+Part of UI has been made, music player has been added, but not merged with UI.
+We decided that fighting over spots in hold 'em poker is more modern and present than chatrooms.
+Some issues come with implementing poker to our project, like unknown amount of work and possibility to pivot.
+
+day 3 
+Conducted a daily standup meeting
+We decided to not implement poker, but instead allow people to joing group and then allow groups to joing chatrooms - atomicity
+Modified chat system
+Set up plans and tasks for the end of week. Hopefully we have a working program by the start of next week
+
+day 4
+Stoycho gets first strike.
+Project is good for alpha testing.
+New tasks divided between people
+
+
+Sprint 1.5
+day 1
+Stand-up meeting
+Development of group part
+Development of rock, paper, scissors game
+Development of Youtube part in music player
+
+day 2
+New scrum master - Hannes, New product owner - Andrei
+New sprint backlog
+
+
+Sprint 2
+day 1
+Music part development
+Group part development
+Database modification, error fixing (2.5h)
+SQL scripts modification
+total 7h working day 
+
+day 2
+Group part fixing, development
+chat part fixing
+	Stoicho didn't show up
+Arguing over game part
+burndown chart
+total 6h working day
+
+day 3
+Stoicho was 4h late - Second strike!
+Group DB and tests
+game part development
+tests
+6h
+
+day 4
+Group part is done, needs bugfixing, tests
+game part is done
+meeting with Per and Brian - bug in game (solved), bug in YT player
+Changes in UI looks
+YT player development, playlist part implementation, fixing
+ActivityDb implementation
+Ui fixing
+7h working day
+
+day 5 
+Presentation of project
+from tomorrow new scrum master is Andrei, Product owner is Stoycho
+
+
+Sprint 3 
+day 1
+Stoycho not in session
+Start with mvc
+fixing bindings
+update profile fix
+
+day 2
+standup meeting
+spike on mvc
+internship meeting---
+
+day 3
+Stoycho not in session
+web client development
+sys dev report development
+
+day 4
+daily meeting
+Working on sys dev and techno reports
+discussing world topics
+
+day 5
+daily meeting
+Stoycho not in session
+Working on sys dev and techno reports
+
+day 6
+new sprint backlog 
+Presentation of working product
+New scrum master - Ralfs
+New Product owner - Hannes
+report parts
+
+
+Sprint 4
+day 1
+working on reports
+
+day2
+finishing reports
+
+day3
+finalizing reports
+meeting with Per
+
+day 4
+Code done!
+Sys dev report done!
+Prog, Techno report done!

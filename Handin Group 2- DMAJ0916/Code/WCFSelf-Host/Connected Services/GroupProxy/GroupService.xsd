@@ -7,14 +7,23 @@
   </xs:complexType>
   <xs:element name="ArrayOfGroup" nillable="true" type="tns:ArrayOfGroup" />
   <xs:complexType name="Group">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CreatorId" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupId" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Time" type="xs:dateTime" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Activity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:element name="Group" nillable="true" type="tns:Group" />
+  <xs:complexType name="Activity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityId" type="xs:int" />
+      <xs:element minOccurs="0" name="ProfileId" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Activity" nillable="true" type="tns:Activity" />
   <xs:complexType name="ArrayOfProfile">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Profile" nillable="true" type="tns:Profile" />

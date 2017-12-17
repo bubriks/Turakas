@@ -23,21 +23,34 @@ namespace MVCPresentationTier.Controllers
         [HttpPost]
         public ActionResult GetChats(FormCollection collection)
         {
-            ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
-            try
+            var cookie = Request.Cookies.Get("aCookie");
+            if (cookie != null)
             {
-                var searchBy = collection["searchBy"];
-                int profileId = Int32.Parse(collection["profileId"].ToString());
-                client.Online(profileId);
-                ViewBag.Chats = client.GetChatsByName(searchBy, profileId);
-                ViewBag.SearchBy = searchBy;
-                ViewBag.ProfileId = profileId;
+                ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
+                int aCookie = Int32.Parse(cookie.Value);
+                client.Online(aCookie);
+                ViewBag.Chats = client.GetChatsByName("", aCookie);
+                ViewBag.SearchBy = "";
+                ViewBag.ProfileId = aCookie;
+                return View();
             }
-            catch (Exception)
-            {
-                return GetChats();
-            }
-            return View();
+            else
+                return Redirect("/Profile/Login");
+            //ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
+            //try
+            //{
+            //    var searchBy = collection["searchBy"];
+            //    int profileId = Int32.Parse(collection["profileId"].ToString());
+            //    client.Online(profileId);
+            //    ViewBag.Chats = client.GetChatsByName(searchBy, profileId);
+            //    ViewBag.SearchBy = searchBy;
+            //    ViewBag.ProfileId = profileId;
+            //}
+            //catch (Exception)
+            //{
+            //    return GetChats();
+            //}
+            //return View();
         }
 
         public ActionResult GetChat(int? chatId, int? maxNrOfUsers, String name, int? ownerID, DateTime? time, bool? type)

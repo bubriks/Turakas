@@ -17,58 +17,10 @@ namespace WCFSelf_Host.GroupProxy {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Group", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
-    public partial class Group : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CreatorIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int GroupIdField;
+    public partial class Group : WCFSelf_Host.GroupProxy.Activity {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime TimeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CreatorId {
-            get {
-                return this.CreatorIdField;
-            }
-            set {
-                if ((this.CreatorIdField.Equals(value) != true)) {
-                    this.CreatorIdField = value;
-                    this.RaisePropertyChanged("CreatorId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int GroupId {
-            get {
-                return this.GroupIdField;
-            }
-            set {
-                if ((this.GroupIdField.Equals(value) != true)) {
-                    this.GroupIdField = value;
-                    this.RaisePropertyChanged("GroupId");
-                }
-            }
-        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
@@ -82,16 +34,72 @@ namespace WCFSelf_Host.GroupProxy {
                 }
             }
         }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Activity", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.GroupProxy.Group))]
+    public partial class Activity : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Time {
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ActivityIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProfileIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeStampField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
-                return this.TimeField;
+                return this.extensionDataField;
             }
             set {
-                if ((this.TimeField.Equals(value) != true)) {
-                    this.TimeField = value;
-                    this.RaisePropertyChanged("Time");
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ActivityId {
+            get {
+                return this.ActivityIdField;
+            }
+            set {
+                if ((this.ActivityIdField.Equals(value) != true)) {
+                    this.ActivityIdField = value;
+                    this.RaisePropertyChanged("ActivityId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProfileId {
+            get {
+                return this.ProfileIdField;
+            }
+            set {
+                if ((this.ProfileIdField.Equals(value) != true)) {
+                    this.ProfileIdField = value;
+                    this.RaisePropertyChanged("ProfileId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
                 }
             }
         }
@@ -112,6 +120,7 @@ namespace WCFSelf_Host.GroupProxy {
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.GroupProxy.Group[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.GroupProxy.Group))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.GroupProxy.Activity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.GroupProxy.Profile[]))]
     public partial class Profile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
