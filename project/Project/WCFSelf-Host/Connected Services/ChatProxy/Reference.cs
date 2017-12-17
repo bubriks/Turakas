@@ -15,33 +15,23 @@ namespace WCFSelf_Host.ChatProxy {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Chat", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Activity", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
-    public partial class Chat : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.ChatProxy.Group))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.ChatProxy.Chat))]
+    public partial class Activity : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
+        private int ActivityIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MaxNrOfUsersField;
+        private int ProfileIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int OwnerIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime TimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool TypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Tuple<WCFSelf_Host.ChatProxy.Profile, object>[] UsersField;
+        private System.DateTime TimeStampField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -54,17 +44,94 @@ namespace WCFSelf_Host.ChatProxy {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
+        public int ActivityId {
             get {
-                return this.IdField;
+                return this.ActivityIdField;
             }
             set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
+                if ((this.ActivityIdField.Equals(value) != true)) {
+                    this.ActivityIdField = value;
+                    this.RaisePropertyChanged("ActivityId");
                 }
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProfileId {
+            get {
+                return this.ProfileIdField;
+            }
+            set {
+                if ((this.ProfileIdField.Equals(value) != true)) {
+                    this.ProfileIdField = value;
+                    this.RaisePropertyChanged("ProfileId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Group", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Group : WCFSelf_Host.ChatProxy.Activity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Chat", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
+    [System.SerializableAttribute()]
+    public partial class Chat : WCFSelf_Host.ChatProxy.Activity {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MaxNrOfUsersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Tuple<WCFSelf_Host.ChatProxy.Profile, object, string>[] UsersField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int MaxNrOfUsers {
@@ -93,32 +160,6 @@ namespace WCFSelf_Host.ChatProxy {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int OwnerID {
-            get {
-                return this.OwnerIDField;
-            }
-            set {
-                if ((this.OwnerIDField.Equals(value) != true)) {
-                    this.OwnerIDField = value;
-                    this.RaisePropertyChanged("OwnerID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Time {
-            get {
-                return this.TimeField;
-            }
-            set {
-                if ((this.TimeField.Equals(value) != true)) {
-                    this.TimeField = value;
-                    this.RaisePropertyChanged("Time");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool Type {
             get {
                 return this.TypeField;
@@ -132,7 +173,7 @@ namespace WCFSelf_Host.ChatProxy {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Tuple<WCFSelf_Host.ChatProxy.Profile, object>[] Users {
+        public System.Tuple<WCFSelf_Host.ChatProxy.Profile, object, string>[] Users {
             get {
                 return this.UsersField;
             }
@@ -143,24 +184,16 @@ namespace WCFSelf_Host.ChatProxy {
                 }
             }
         }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Profile", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<WCFSelf_Host.ChatProxy.Profile, object>[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<WCFSelf_Host.ChatProxy.Profile, object>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<WCFSelf_Host.ChatProxy.Profile, object, string>[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Tuple<WCFSelf_Host.ChatProxy.Profile, object, string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.ChatProxy.Chat))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.ChatProxy.Activity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.ChatProxy.Chat[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.ChatProxy.Group[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WCFSelf_Host.ChatProxy.Group))]
@@ -271,99 +304,6 @@ namespace WCFSelf_Host.ChatProxy {
                 if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
                     this.UsernameField = value;
                     this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Group", Namespace="http://schemas.datacontract.org/2004/07/DataTier")]
-    [System.SerializableAttribute()]
-    public partial class Group : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CreatorIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int GroupIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime TimeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CreatorId {
-            get {
-                return this.CreatorIdField;
-            }
-            set {
-                if ((this.CreatorIdField.Equals(value) != true)) {
-                    this.CreatorIdField = value;
-                    this.RaisePropertyChanged("CreatorId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int GroupId {
-            get {
-                return this.GroupIdField;
-            }
-            set {
-                if ((this.GroupIdField.Equals(value) != true)) {
-                    this.GroupIdField = value;
-                    this.RaisePropertyChanged("GroupId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Time {
-            get {
-                return this.TimeField;
-            }
-            set {
-                if ((this.TimeField.Equals(value) != true)) {
-                    this.TimeField = value;
-                    this.RaisePropertyChanged("Time");
                 }
             }
         }
