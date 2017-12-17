@@ -12,12 +12,19 @@ namespace MVCPresentationTier.Controllers
     {
         public ActionResult GetChats()
         {
-            ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
-            client.Online(1);
-            ViewBag.Chats = client.GetChatsByName("", 1);
-            ViewBag.SearchBy = "";
-            ViewBag.ProfileId = 1;
-            return View();
+            var cookie = Request.Cookies.Get("aCookie");
+            if (cookie != null)
+            {
+                ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
+                int aCookie = Int32.Parse(cookie.Value);
+                client.Online(aCookie);
+                ViewBag.Chats = client.GetChatsByName("", aCookie);
+                ViewBag.SearchBy = "";
+                ViewBag.ProfileId = aCookie;
+                return View();
+            }
+            else
+                return Redirect("/Profile/Login");
         }
 
         [HttpPost]
@@ -29,8 +36,8 @@ namespace MVCPresentationTier.Controllers
                 ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
                 int aCookie = Int32.Parse(cookie.Value);
                 client.Online(aCookie);
-                ViewBag.Chats = client.GetChatsByName("", aCookie);
-                ViewBag.SearchBy = "";
+                ViewBag.Chats = client.GetChatsByName(collection["searchBy"], aCookie);
+                ViewBag.SearchBy = collection["searchBy"];
                 ViewBag.ProfileId = aCookie;
                 return View();
             }
