@@ -2,17 +2,26 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DataTier" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataTier" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost/ChatService?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
   <xs:complexType name="Chat">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="MaxNrOfUsers" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="OwnerID" type="xs:int" />
-      <xs:element minOccurs="0" name="Time" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Type" type="xs:boolean" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="Users" nillable="true" type="q1:ArrayOfTupleOfProfileanyTypePhFk5vG2" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Activity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MaxNrOfUsers" type="xs:int" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Type" type="xs:boolean" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="Users" nillable="true" type="q1:ArrayOfTupleOfProfileanyTypestringk73QcbG_P" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:element name="Chat" nillable="true" type="tns:Chat" />
+  <xs:complexType name="Activity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityId" type="xs:int" />
+      <xs:element minOccurs="0" name="ProfileId" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Activity" nillable="true" type="tns:Activity" />
   <xs:complexType name="Profile">
     <xs:sequence>
       <xs:element minOccurs="0" name="CallBack" nillable="true" type="xs:anyType" />
@@ -37,12 +46,13 @@
   </xs:complexType>
   <xs:element name="ArrayOfGroup" nillable="true" type="tns:ArrayOfGroup" />
   <xs:complexType name="Group">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CreatorId" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupId" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Time" type="xs:dateTime" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Activity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:element name="Group" nillable="true" type="tns:Group" />
 </xs:schema>
