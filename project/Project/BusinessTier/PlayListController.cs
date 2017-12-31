@@ -26,14 +26,14 @@ namespace BusinessTier
         
         public bool AddPlayList(string name, int profileId)
         {
-            using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
+            using (IDbTransaction tran = DbConnection.GetInstance().GetConnection().BeginTransaction())
             {
 
                 try
                 {
-                    int activityId = dbActivity.CreateActivity(profileId);
+                    int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran);
 
-                    if (activityId > 0 && dbPlayList.AddPlayList(name, activityId) > 0)
+                    if (activityId > 0 && dbPlayList.AddPlayList(name, activityId, (SqlTransaction)tran) > 0)
                     {
                         tran.Commit();
                         return true;
@@ -54,7 +54,7 @@ namespace BusinessTier
 
         public List<PlayList> FindPlayListsByName(string name)
         {
-            return dbPlayList.FindPlayListsByName(name);
+            return dbPlayList.FindPlayListsByName(name, null);
         }
 
         public bool AddSongToPlayList(string url, string playListIdString, int profileId)
@@ -64,12 +64,12 @@ namespace BusinessTier
             {
                 int songId = new SongController().GetSongByUrl(url).ActivityId;
                 playListId = Int32.Parse(playListIdString);
-                if (dbPlayList.IsSongInPlayList(songId, playListId))
+                if (dbPlayList.IsSongInPlayList(songId, playListId, null))
                 {
                     return false;
                 }
                 
-                if (dbPlayList.IsPlaylistOwner(playListId, profileId)&&dbPlayList.AddSongToPlayList(songId, playListId) > 0)
+                if (dbPlayList.IsPlaylistOwner(playListId, profileId, null) && dbPlayList.AddSongToPlayList(songId, playListId, null) > 0)
                 {
                     return true;
                 }
@@ -94,7 +94,7 @@ namespace BusinessTier
                 Console.WriteLine(e);
                 
             }
-            return dbPlayList.GetSongsFromPlayList(playListId);
+            return dbPlayList.GetSongsFromPlayList(playListId, null);
         }
 
         public bool RemovePlaylist(string playlistIdString, int profileId)
@@ -102,7 +102,7 @@ namespace BusinessTier
             try
             {
                 int playlistId = Int32.Parse(playlistIdString);
-                if (dbPlayList.IsPlaylistOwner(playlistId,profileId)&&dbPlayList.RemovePlaylist(playlistId) > 0)
+                if (dbPlayList.IsPlaylistOwner(playlistId,profileId, null)&&dbPlayList.RemovePlaylist(playlistId, null) > 0)
                 {
                     return true;
                 }
@@ -121,7 +121,7 @@ namespace BusinessTier
             {
                 int playlistId = Int32.Parse(playListIdString);
                 int songId = new SongController().GetSongByUrl(url).ActivityId;
-                if (dbPlayList.IsPlaylistOwner(playlistId,profileId)&&dbPlayList.RemoveSongFromPlaylist(songId, playlistId) > 0)
+                if (dbPlayList.IsPlaylistOwner(playlistId,profileId,null)&&dbPlayList.RemoveSongFromPlaylist(songId, playlistId,null) > 0)
                 {
                     return true;
                 }

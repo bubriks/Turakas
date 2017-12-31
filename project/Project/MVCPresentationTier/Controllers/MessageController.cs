@@ -11,15 +11,26 @@ namespace MVCPresentationTier.Controllers
 {
     public class MessageController : Controller
     {
-        public ActionResult ChatRoom(int? chatId, int? profileId)
+        public ActionResult ChatRoom(int? chatId)
         {
-            if (!chatId.HasValue)
-                chatId = 1;
-            if (!profileId.HasValue)
-                profileId = 1;
-            ViewBag.ChatId = chatId;
-            ViewBag.ProfileId = profileId;
-            return View();
+            if (chatId.HasValue)
+            {
+                var cookie = Request.Cookies.Get("aCookie");
+                if (cookie != null)
+                {
+                    ViewBag.ChatId = chatId;
+                    ViewBag.ProfileId = Int32.Parse(cookie.Value);
+                    return View();
+                }
+                else
+                {
+                    return Redirect("/Profile/Login");
+                }
+            }
+            else
+            {
+                return Redirect("/Chat/GetChats");
+            }
         }
     }
 }

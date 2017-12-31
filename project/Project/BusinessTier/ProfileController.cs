@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.SqlClient;
 
 namespace BusinessTier
 {
@@ -32,7 +33,7 @@ namespace BusinessTier
                 {
                     Thread thread = new Thread(() => SendEmail(profile.Email, subject, body));
                     thread.Start();
-                    int loginId = dbProfile.CreateProfile(profile);
+                    int loginId = dbProfile.CreateProfile(profile, null);
                     return loginId;
                 }
                 catch (Exception e)
@@ -47,7 +48,7 @@ namespace BusinessTier
 
         public int Authenticate(Profile profile)
         {
-            int profileId = dbProfile.Authenticate(profile);
+            int profileId = dbProfile.Authenticate(profile, null);
             return profileId;
         }
 
@@ -60,7 +61,7 @@ namespace BusinessTier
         {
             try
             {
-                Profile profiles = dbProfile.ReadProfile(email, 3);
+                Profile profiles = dbProfile.ReadProfile(email, 3, null);
                 string tempPass = RandomPassword();
                 string subject = ("Your Login Details are:");
                 string body = "Hello, " + profiles.Nickname + "\nYour USERNAME IS: " + profiles.Username + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
@@ -72,7 +73,7 @@ namespace BusinessTier
 
                     Thread thread = new Thread(() => SendEmail(profiles.Email, subject, body));
                     thread.Start();
-                    dbProfile.UpdateProfile(profiles.ProfileID, profiles);
+                    dbProfile.UpdateProfile(profiles.ProfileID, profiles, null);
                     return true;
                 }
                 catch (Exception e)
@@ -89,15 +90,15 @@ namespace BusinessTier
             return false;
         }
 
-        public Profile ReadProfile(string what, int by)
+        public Profile ReadProfile(string what, int by, SqlTransaction transaction)
         {
-            return dbProfile.ReadProfile(what, by);
+            return dbProfile.ReadProfile(what, by, transaction);
         }
         
         public bool UpdateProfile(int id, Profile profile)
         {
             if (CheckTheValues(profile, false))
-                if (dbProfile.UpdateProfile(id, profile))
+                if (dbProfile.UpdateProfile(id, profile, null))
                 {
                     Profile user = GetUser(id);
                     if (user != null)
@@ -114,7 +115,7 @@ namespace BusinessTier
 
         public bool DeleteProfile(int profileId)
         {
-            return dbProfile.DeleteProfile(profileId);
+            return dbProfile.DeleteProfile(profileId, null);
         }
 
         /// <summary>
@@ -178,7 +179,7 @@ namespace BusinessTier
         {
             try
             {
-                Profile user = ReadProfile(profileId.ToString(), 1);
+                Profile user = ReadProfile(profileId.ToString(), 1, null);
                 user.CallBack = obj;
                 users.Add(user);
                 return true;
@@ -253,7 +254,7 @@ namespace BusinessTier
                     ok = false;
                 }
 
-                if (ReadProfile(profile.Email, 3) != null)
+                if (ReadProfile(profile.Email, 3, null) != null)
                     ok = false;
                 if (!(profile.Email.Contains("@") && profile.Email.Contains(".")))
                     ok = false;
@@ -268,7 +269,7 @@ namespace BusinessTier
                 if (profile.Nickname.Length < 3)
                     ok = false;
 
-                if (ReadProfile(profile.Nickname, 4) != null)
+                if (ReadProfile(profile.Nickname, 4, null) != null)
                     ok = false;
 
                 #endregion

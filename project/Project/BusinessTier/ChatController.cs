@@ -31,12 +31,12 @@ namespace BusinessTier
                 {
                     if (chat.ActivityId == 0)//new chat if id = 0
                     {
-                        using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
+                        using (IDbTransaction tran = DbConnection.GetInstance().GetConnection().BeginTransaction())
                         {
                             try
                             {
-                                chat.ActivityId = dbActivity.CreateActivity(chat.ProfileId);
-                                if (dbChat.CreateChat(chat) == 0)
+                                chat.ActivityId = dbActivity.CreateActivity(chat.ProfileId, (SqlTransaction)tran);
+                                if (dbChat.CreateChat(chat, (SqlTransaction)tran) == 0)
                                 {
                                     tran.Rollback();
                                     return false;
@@ -58,7 +58,7 @@ namespace BusinessTier
                     {
                         if (profileId == chat.ProfileId)//if the owner of the chat
                         {
-                            if (dbChat.UpdateChat(chat) == 0)//no changes were made
+                            if (dbChat.UpdateChat(chat, null) == 0)//no changes were made
                             {
                                 return false;
                             }
@@ -96,7 +96,7 @@ namespace BusinessTier
         {
             try
             {
-                if (dbActivity.DeleteActivity(profileId, id) == 1)//if chat wasnt deleted
+                if (dbActivity.DeleteActivity(profileId, id, null) == 1)//if chat wasnt deleted
                 {
                     Chat foundChat = FindChat(id);//checks if chat is active
                     if (foundChat != null)
@@ -124,7 +124,7 @@ namespace BusinessTier
             try
             {
                 List<Chat> chatlist = new List<Chat>();//creates list of chats that user will recieve
-                foreach (Chat chat in dbChat.GetChatsByName(name, profileId))
+                foreach (Chat chat in dbChat.GetChatsByName(name, profileId, null))
                 {
                     Chat chatitem = FindChat(chat.ActivityId);//trys finding the active chat 
                     if (chatitem != null)//if active chat was found is is added to list
@@ -185,7 +185,7 @@ namespace BusinessTier
                 {
                     lock (chats)
                     {
-                        chat = dbChat.GetChat(chatId);//Gets chat from database
+                        chat = dbChat.GetChat(chatId, null);//Gets chat from database
                         if (chat.MaxNrOfUsers >= profiles.Count)
                         {
                             List<Tuple<Profile, object, string>> membersToJoin = new List<Tuple<Profile, object, string>>();
@@ -257,7 +257,7 @@ namespace BusinessTier
                 {
                     lock (chats)
                     {
-                        chat = dbChat.GetChat(chatId);//Gets chat from database
+                        chat = dbChat.GetChat(chatId, null);//Gets chat from database
                         Profile user = profileController.GetUser(profileId);
                         if(user == null)
                         {

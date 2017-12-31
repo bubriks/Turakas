@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using DataAccessTier;
 using DataTier;
-using System.Web;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
-using System.IO;
 using System.Threading;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Reflection;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace BusinessTier
 {
@@ -28,19 +26,19 @@ namespace BusinessTier
         {
             DBSong dbSong = new DBSong();
             DbActivity dbActivity = new DbActivity();
-            using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
+            using (IDbTransaction tran = DbConnection.GetInstance().GetConnection().BeginTransaction())
             {
 
                 try
                 {
-                    Song song = dbSong.FindSongByURL(url);
+                    Song song = dbSong.FindSongByURL(url, (SqlTransaction)tran);
                     if (song != null)
                     {
                         return false;
                     }
 
-                    int activityId = dbActivity.CreateActivity(profileId);
-                    if (activityId > 0 && dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url, activityId) > 0)
+                    int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran);
+                    if (activityId > 0 && dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url, activityId, (SqlTransaction)tran) > 0)
                     {
                         tran.Commit();
                         return true;
@@ -130,12 +128,12 @@ namespace BusinessTier
         public List<Song> FindSongsByName(string name)
         {
             DBSong dbSong = new DBSong();
-            return dbSong.FindSongsByName(name);
+            return dbSong.FindSongsByName(name, null);
         }
 
         public Song GetSongByUrl(string url)
         {
-            return new DBSong().FindSongByURL(url);
+            return new DBSong().FindSongByURL(url, null);
         }
     }
 }

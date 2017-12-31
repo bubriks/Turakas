@@ -53,14 +53,13 @@
             {
                 <tr style="cursor: pointer;">
                     <td onclick="location.href='@Url.Action("GetChat", "Chat", new { chatId = @chat.ActivityId, maxNrOfUsers = @chat.MaxNrOfUsers, name = @chat.Name, profileId = @chat.ProfileId, time = @chat.TimeStamp, type = @chat.Type })'")>@chat.Name</td>
-                    <td bgcolor="#00FF00" onclick="window.location.href = '@Url.Action("ChatRoom", "Message", new{ chatId = @chat.ActivityId, profileId = @ViewBag.ProfileId})';">Join</td>
+                    <td bgcolor="#00FF00" onclick="window.location.href = '@Url.Action("ChatRoom", "Message", new{ chatId = @chat.ActivityId})';">Join</td>
                 </tr>
             }
         </table>
         <br>
         <form action=@Url.Action("GetChats", "Chat") method="post">
             <input type="text" name="searchBy" placeholder="@ViewBag.SearchBy" />
-            <input type="number" name="profileId" placeholder="@ViewBag.ProfileId" />
             <input type="submit" />
         </form>
     </div>

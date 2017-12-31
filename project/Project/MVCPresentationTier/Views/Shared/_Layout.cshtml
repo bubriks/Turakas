@@ -26,13 +26,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (Request.Cookies.Get("aCookie") != null)
                     {
-                        <li><a class="pointer" onclick="jQuery('#log-out').submit()">Log Out</a></li>
+                        <li class="pointer" onclick="jQuery('#log-out').submit()">Log Out</li>
                         <form action=@Url.Action("LogOut", "Profile") method="post" id="log-out"></form>
                     }
                     else
                     {
                         <li>@Html.ActionLink("Register", "CreateProfile", "Profile")</li>
-                        <li>@Html.ActionLink("LogIn", "LogIn", "Profile")</li>}
+                        <li>@Html.ActionLink("LogIn", "LogIn", "Profile")</li>
                     }
                 </ul>
             </div>

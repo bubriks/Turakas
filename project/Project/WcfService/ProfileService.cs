@@ -9,6 +9,7 @@ using BusinessTier;
 
 namespace WcfService
 {
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class ProfileService: IProfileService
     {
         private IProfileController profileController = new ProfileController();
@@ -34,7 +35,7 @@ namespace WcfService
 
         public Profile ReadProfile(string what, int by)
         {
-            return profileController.ReadProfile(what, by);
+            return profileController.ReadProfile(what, by, null);
         }
 
         public bool UpdateProfile(int id, Profile login)

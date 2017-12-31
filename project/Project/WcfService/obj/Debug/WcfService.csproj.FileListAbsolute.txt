@@ -1,205 +1,50 @@
-C:\Users\bubri\Desktop\project\Project\WcfService\bin\Debug\WcfService.dll.config
-C:\Users\bubri\Desktop\project\Project\WcfService\bin\Debug\WcfService.dll
-C:\Users\bubri\Desktop\project\Project\WcfService\bin\Debug\WcfService.pdb
-C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
-C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
-C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.dll
-C:\Users\bubri\Desktop\project\Project\WcfService\obj\Debug\WcfService.pdb
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll.config
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Resources\youtube_client_secret.json
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\WcfService.exe.config
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\WcfService.exe
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\WcfService.pdb
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\BusinessTier.dll
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\DataTier.dll
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\DataAccessTier.dll
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Google.Apis.Auth.dll
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Google.Apis.dll
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Google.Apis.Core.dll
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Newtonsoft.Json.dll
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\BusinessTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\BusinessTier.dll.config
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\DataTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\DataAccessTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Google.Apis.YouTube.v3.xml
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Google.Apis.Auth.xml
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Google.Apis.xml
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Google.Apis.Core.xml
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\bin\Debug\Newtonsoft.Json.xml
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\obj\Debug\WcfService.exe
+C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\WcfService\obj\Debug\WcfService.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Resources\youtube_client_secret.json
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.exe.config
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.exe
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.pdb
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataTier.dll
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.pdb
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll.config
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataTier.pdb
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.pdb
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.dll
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll.config
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\WcfService.pdb
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataTier.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.pdb
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll.config
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataTier.pdb
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.pdb
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll.config
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.pdb
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.xml
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.xml
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.xml
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.xml
 C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.xml
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\WcfService.pdb
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\DataTier.dll
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.dll
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.dll
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.dll
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.dll
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.pdb
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll.config
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\DataTier.pdb
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.pdb
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.xml
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.xml
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.xml
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.xml
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.xml
-D:\Workspace\Turakas\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
-D:\Workspace\Turakas\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
-D:\Workspace\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
-D:\Workspace\Project\WcfService\bin\Debug\youtube_client_secret.json
-D:\Workspace\Project\WcfService\bin\Debug\WcfService.dll.config
-D:\Workspace\Project\WcfService\bin\Debug\WcfService.dll
-D:\Workspace\Project\WcfService\bin\Debug\WcfService.pdb
-D:\Workspace\Project\WcfService\bin\Debug\BusinessTier.dll
-D:\Workspace\Project\WcfService\bin\Debug\DataTier.dll
-D:\Workspace\Project\WcfService\bin\Debug\DataAccessTier.dll
-D:\Workspace\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
-D:\Workspace\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
-D:\Workspace\Project\WcfService\bin\Debug\Google.Apis.dll
-D:\Workspace\Project\WcfService\bin\Debug\Google.Apis.Core.dll
-D:\Workspace\Project\WcfService\bin\Debug\Newtonsoft.Json.dll
-D:\Workspace\Project\WcfService\bin\Debug\BusinessTier.pdb
-D:\Workspace\Project\WcfService\bin\Debug\BusinessTier.dll.config
-D:\Workspace\Project\WcfService\bin\Debug\DataTier.pdb
-D:\Workspace\Project\WcfService\bin\Debug\DataAccessTier.pdb
-D:\Workspace\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.xml
-D:\Workspace\Project\WcfService\bin\Debug\Google.Apis.Auth.xml
-D:\Workspace\Project\WcfService\bin\Debug\Google.Apis.xml
-D:\Workspace\Project\WcfService\bin\Debug\Google.Apis.Core.xml
-D:\Workspace\Project\WcfService\bin\Debug\Newtonsoft.Json.xml
-D:\Workspace\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
-D:\Workspace\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
-D:\Workspace\Project\WcfService\obj\Debug\WcfService.dll
-D:\Workspace\Project\WcfService\obj\Debug\WcfService.pdb
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.xml
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.xml
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.xml
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.xml
-C:\Users\Captain Jack Sparrow\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll.config
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\WcfService.pdb
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\DataTier.dll
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.dll
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.dll
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.dll
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.pdb
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\DataTier.pdb
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.pdb
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.xml
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.xml
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.xml
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.xml
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\obj\Debug\WcfService.dll
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\youtube_client_secret.json
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll.config
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\WcfService.pdb
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\DataTier.dll
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.dll
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.dll
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.dll
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.pdb
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll.config
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\DataTier.pdb
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.pdb
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.xml
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.xml
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.xml
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.xml
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.dll
-C:\Users\Turakas\Desktop\Study2\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
-C:\Users\Captain Jack Sparrow\source\repos\Turakas\project\Project\WcfService\bin\Debug\Resources\youtube_client_secret.json
-C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\bin\Debug\Resources\youtube_client_secret.json
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\Resources\youtube_client_secret.json
-C:\Users\Paracetamax\RiderProjects\Turakas\project\Project\WcfService\bin\Debug\Resources\youtube_client_secret.json
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Resources\youtube_client_secret.json
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll.config
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\WcfService.dll
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\WcfService.pdb
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\DataTier.dll
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.dll
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.dll
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.dll
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.pdb
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\BusinessTier.dll.config
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\DataTier.pdb
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\DataAccessTier.pdb
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.xml
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Auth.xml
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.xml
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Google.Apis.Core.xml
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.dll
-C:\Users\Turakas\Desktop\Turakas-master\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Resources\youtube_client_secret.json
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\WcfService.exe.config
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\WcfService.exe
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\WcfService.pdb
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\BusinessTier.dll
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\DataTier.dll
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\DataAccessTier.dll
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.dll
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Google.Apis.Auth.dll
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Google.Apis.dll
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Google.Apis.Core.dll
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Newtonsoft.Json.dll
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\BusinessTier.pdb
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\BusinessTier.dll.config
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\DataTier.pdb
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\DataAccessTier.pdb
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Google.Apis.YouTube.v3.xml
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Google.Apis.Auth.xml
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Google.Apis.xml
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Google.Apis.Core.xml
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\bin\Debug\Newtonsoft.Json.xml
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\obj\Debug\WcfService.exe
-C:\Users\bubri\Desktop\Turakas-084b4627f4a2c6512607ccd7efaf1d2724fd8815\project\Project\WcfService\obj\Debug\WcfService.pdb
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\WcfService.exe.config
-D:\Workspace\Turakas\project\Project\WcfService\bin\Debug\WcfService.exe
-D:\Workspace\Turakas\project\Project\WcfService\obj\Debug\WcfService.exe
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.exe
+C:\Users\bubri\Source\Repos\Turakas\project\Project\WcfService\obj\Debug\WcfService.pdb

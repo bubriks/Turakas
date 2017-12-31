@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using DataTier;
 using BusinessTier;
+using System.ServiceModel;
 
 namespace WcfService
 {
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class GroupService : IGroupService
     {
         private IGroupController groupController = new GroupController();
@@ -34,7 +36,7 @@ namespace WcfService
 
         public bool AddMember(string memberName, int groupId)
         {
-            return groupController.AddMember(memberName, groupId);
+            return groupController.AddMember(memberName, groupId, null);
         }
 
         public bool RemoveMember(int profileId, int groupId)

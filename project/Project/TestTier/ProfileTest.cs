@@ -67,43 +67,43 @@ namespace TestTier
         [TestMethod]
         public void TestReadProfileIdSuccess()
         {
-            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4).ProfileID;
-            Assert.AreNotEqual(null, profileController.ReadProfile(profileId.ToString(), 1));
+            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null).ProfileID;
+            Assert.AreNotEqual(null, profileController.ReadProfile(profileId.ToString(), 1, null));
         }
         [TestMethod]
         public void TestReadProfileIdFail()
         {
-            Assert.AreEqual(null, profileController.ReadProfile("0", 1));
+            Assert.AreEqual(null, profileController.ReadProfile("0", 1, null));
         }
         [TestMethod]
         public void TestReadProfileUsernameSuccess()
         {
-            Assert.AreNotEqual(null, profileController.ReadProfile("Uganda", 2));
+            Assert.AreNotEqual(null, profileController.ReadProfile("Uganda", 2, null));
         }
         [TestMethod]
         public void TestReadProfileUsernameFail()
         {
-            Assert.AreNotEqual(null, profileController.ReadProfile("Uganda", 2));
+            Assert.AreNotEqual(null, profileController.ReadProfile("Uganda", 2, null));
         }
         [TestMethod]
         public void TestReadProfileEmailSuccess()
         {
-            Assert.AreNotEqual(null, profileController.ReadProfile("asdf@.", 3));
+            Assert.AreNotEqual(null, profileController.ReadProfile("asdf@.", 3, null));
         }
         [TestMethod]
         public void TestReadProfileEmailFail()
         {
-            Assert.AreEqual(null, profileController.ReadProfile("asdf", 3));
+            Assert.AreEqual(null, profileController.ReadProfile("asdf", 3, null));
         }
         [TestMethod]
         public void TestReadProfileNicknameSuccess()
         {
-            Assert.AreNotEqual(null, profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4));
+            Assert.AreNotEqual(null, profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null));
         }
         [TestMethod]
         public void TestReadProfileNicknameFail()
         {
-            Assert.AreEqual(null, profileController.ReadProfile("TestingAccountsPleaseDontsDelete", 4));
+            Assert.AreEqual(null, profileController.ReadProfile("TestingAccountsPleaseDontsDelete", 4, null));
         }
 
         [TestMethod]
@@ -116,7 +116,7 @@ namespace TestTier
                 Email = "",
                 Nickname = "Changed",
             };
-            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4).ProfileID;
+            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null).ProfileID;
             Assert.AreEqual(true, profileController.UpdateProfile(profileId, profile));
         }
         [TestMethod]
@@ -129,7 +129,7 @@ namespace TestTier
                 Email = "",
                 Nickname = "as",
             };
-            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4).ProfileID;
+            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null).ProfileID;
             Assert.AreNotEqual(true, profileController.UpdateProfile(profileId, profile));
         }
         [TestMethod]
@@ -165,7 +165,7 @@ namespace TestTier
         [TestMethod]
         public void TestDeleteProfileSuccess()
         {
-            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4).ProfileID;
+            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null).ProfileID;
             Assert.AreEqual(true, profileController.DeleteProfile(profileId));
         }
         [TestMethod]

@@ -101,30 +101,31 @@ namespace TestTier
         [TestMethod]
         public void AddMemberToGroupWorking()
         {
+            gc.CreateGroup("Group Name", profileId);
             List<Group> groups = gc.GetUsersGroups(profileId);
-            gc.RemoveMember(profileId, groups[0].ActivityId);
-            Assert.AreEqual(true, gc.AddMember("Uganda", groups[0].ActivityId));
+            gc.RemoveMember(profileId, groups[groups.Count-1].ActivityId);
+            Assert.AreEqual(true, gc.AddMember("Uganda", groups[groups.Count - 1].ActivityId, null));
         }
 
         [TestMethod]
         public void AddMemberToGroupWrongProfileName()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreEqual(false, gc.AddMember("", groups[0].ActivityId));
+            Assert.AreEqual(false, gc.AddMember("", groups[0].ActivityId, null));
         }
 
         [TestMethod]
         public void AddMemberToGroupWrongGroupId()
         {
-            Assert.AreEqual(false, gc.AddMember("Uganda", 0));
+            Assert.AreEqual(false, gc.AddMember("Uganda", 0, null));
         }
 
         [TestMethod]
         public void AddMemberToGroupWhenHeIsMember()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            gc.AddMember("Uganda", groups[0].ActivityId);
-            Assert.AreEqual(false, gc.AddMember("Uganda", groups[0].ActivityId));
+            gc.AddMember("Uganda", groups[0].ActivityId, null);
+            Assert.AreEqual(false, gc.AddMember("Uganda", groups[0].ActivityId, null));
         }
         #endregion
 

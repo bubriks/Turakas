@@ -14,7 +14,7 @@ namespace DataAccessTier
             con = DbConnection.GetInstance();
         }
 
-        public Message CreateMessage(int id, string text, int chatId)
+        public Message CreateMessage(int id, string text, int chatId, SqlTransaction transaction)
         {
             string stmt =" INSERT INTO Message(activityID, chatActivityID, message) values(@0, @1, @2); " +
 
@@ -31,7 +31,7 @@ namespace DataAccessTier
             " where Activity.activityID = @0;";
 
             Message message = null;
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
             {
                 cmd.Parameters.AddWithValue("@0", id);
                 cmd.Parameters.AddWithValue("@1", chatId);
@@ -54,7 +54,7 @@ namespace DataAccessTier
             }
         }
 
-        public List<Message> GetMessages(int chatId)
+        public List<Message> GetMessages(int chatId, SqlTransaction transaction)
         {
             string stmt = " SELECT " +
                             " Profile.nickname, " +
@@ -69,7 +69,7 @@ namespace DataAccessTier
                             " on Activity.activityID = Message.activityID " +
                         " where Message.chatActivityID = @0 ";
             List<Message> messages = new List<Message>();
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
             {
                 cmd.Parameters.AddWithValue("@0", chatId);
                 using (SqlDataReader reader = cmd.ExecuteReader())

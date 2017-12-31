@@ -33,7 +33,7 @@ namespace BusinessTier
                 {
                     if (game.Player1 == null) //if there is no player1 in the game
                     {
-                        Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
+                        Profile user = profileController.ReadProfile(profileId.ToString(), 1, null);//gets the user from database
                         user.CallBack = callback;//adds callback object to it
                         game.Player1 = user;//adds user to game
                         return 1;//joined
@@ -41,7 +41,7 @@ namespace BusinessTier
                     else
                     if (game.Player2 == null && game.Player1.ProfileID != profileId) //if there is no player2 and this player did not join as player1
                     {
-                        Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets the user from database
+                        Profile user = profileController.ReadProfile(profileId.ToString(), 1, null);//gets the user from database
                         user.CallBack = callback;//adds callback object to it
                         game.Player2 = user;//adds user to game
                         return 2;//joined
@@ -56,7 +56,7 @@ namespace BusinessTier
                     lock (games)
                     {
                         Game game = new Game { GameId = gameId}; //creates new game
-                        Profile user = profileController.ReadProfile(profileId.ToString(), 1);//gets user from database
+                        Profile user = profileController.ReadProfile(profileId.ToString(), 1, null);//gets user from database
                         user.CallBack = callback;//adds callback object to it
                         game.Player1 = user; //add player to game
                         game.Choice1 = -1;

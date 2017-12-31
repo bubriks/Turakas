@@ -29,12 +29,12 @@ namespace BusinessTier
                 {
                     return null;
                 }
-                using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
+                using (IDbTransaction tran = DbConnection.GetInstance().GetConnection().BeginTransaction())
                 {
                     try
                     {
-                        int activityId = dbActivity.CreateActivity(profileId);
-                        Message message = dbMessage.CreateMessage(activityId, text, chatId);
+                        int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran);
+                        Message message = dbMessage.CreateMessage(activityId, text, chatId, (SqlTransaction)tran);
                         if (message == null)
                         {
                             tran.Rollback();
@@ -63,7 +63,7 @@ namespace BusinessTier
         {
             try
             {
-                return dbMessage.GetMessages(chatId);//returns list of messages
+                return dbMessage.GetMessages(chatId, null);//returns list of messages
             }
             catch (Exception)
             {
@@ -75,7 +75,7 @@ namespace BusinessTier
         {
             try
             {
-                if (dbActivity.DeleteActivity(profileId, id) == 1)//if no changes made
+                if (dbActivity.DeleteActivity(profileId, id, null) == 1)//if no changes made
                 {
                     return true;
                 }

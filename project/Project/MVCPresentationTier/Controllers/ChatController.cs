@@ -20,7 +20,6 @@ namespace MVCPresentationTier.Controllers
                 client.Online(aCookie);
                 ViewBag.Chats = client.GetChatsByName("", aCookie);
                 ViewBag.SearchBy = "";
-                ViewBag.ProfileId = aCookie;
                 return View();
             }
             else
@@ -38,26 +37,12 @@ namespace MVCPresentationTier.Controllers
                 client.Online(aCookie);
                 ViewBag.Chats = client.GetChatsByName(collection["searchBy"], aCookie);
                 ViewBag.SearchBy = collection["searchBy"];
-                ViewBag.ProfileId = aCookie;
                 return View();
             }
             else
+            {
                 return Redirect("/Profile/Login");
-            //ChatServiceClient client = new ChatServiceClient(new InstanceContext(this));
-            //try
-            //{
-            //    var searchBy = collection["searchBy"];
-            //    int profileId = Int32.Parse(collection["profileId"].ToString());
-            //    client.Online(profileId);
-            //    ViewBag.Chats = client.GetChatsByName(searchBy, profileId);
-            //    ViewBag.SearchBy = searchBy;
-            //    ViewBag.ProfileId = profileId;
-            //}
-            //catch (Exception)
-            //{
-            //    return GetChats();
-            //}
-            //return View();
+            }
         }
 
         public ActionResult GetChat(int? chatId, int? maxNrOfUsers, String name, int? ownerID, DateTime? time, bool? type)

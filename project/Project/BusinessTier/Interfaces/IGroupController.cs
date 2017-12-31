@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataTier;
 using DataAccessTier;
+using System.Data.SqlClient;
 
 namespace BusinessTier
 {
@@ -14,7 +15,7 @@ namespace BusinessTier
         bool DeleteGroup(int profileId, int groupId);
         bool UpdateGroup(string name, int groupId);
         List<Group> GetUsersGroups(int profileId);
-        bool AddMember(string memberName, int groupId);
+        bool AddMember(string memberName, int groupId, SqlTransaction transaction);
         bool RemoveMember(int profileId, int groupId);
         List<Profile> GetUsers(int groupId);
         List<Profile> GetOnlineMembers(int groupId);

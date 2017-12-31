@@ -12,10 +12,10 @@ namespace DataAccessTier
         {
             con = DbConnection.GetInstance();
         }
-        public int AddSong(string name, int duration, string url, int activityId)
+        public int AddSong(string name, int duration, string url, int activityId, SqlTransaction transaction)
         {
             string stmt = "INSERT INTO Video(activityID, name, duration, url) values (@0, @1, @2, @3)";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
             {
                 cmd.Parameters.AddWithValue("@0", activityId);
                 cmd.Parameters.AddWithValue("@1", name);
@@ -26,11 +26,11 @@ namespace DataAccessTier
             
         }
 
-        public Song FindSongByURL(string url)
+        public Song FindSongByURL(string url, SqlTransaction transaction)
         {
             Song song = null;
             string stmt = "SELECT * FROM Video WHERE url = @0";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
             {
                 cmd.Parameters.AddWithValue("@0", url);
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -50,7 +50,7 @@ namespace DataAccessTier
             }
         }
 
-        public List<Song> FindSongsByName(string name)
+        public List<Song> FindSongsByName(string name, SqlTransaction transaction)
         {
             List<Song> results = new List<Song>();
             name = name.Trim();
@@ -73,7 +73,7 @@ namespace DataAccessTier
                 }
             }
 
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

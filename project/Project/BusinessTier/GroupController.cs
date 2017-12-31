@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using DataTier;
 using DataAccessTier;
+using System.Data.SqlClient;
 using System.Data;
 
 namespace BusinessTier
@@ -24,16 +24,16 @@ namespace BusinessTier
 
         public bool CreateGroup(string name, int profileId)
         {
-            Profile profile = profileController.ReadProfile(profileId.ToString(), 1);
+            Profile profile = profileController.ReadProfile(profileId.ToString(), 1, null);
             if (profile != null && !name.Equals(""))
             {
-                using (IDbTransaction tran = DbConnection.GetInstance().BeginTransaction())
+                using (IDbTransaction tran = DbConnection.GetInstance().GetConnection().BeginTransaction())
                 {
                     try
                     {
-                        int activityId = dbActivity.CreateActivity(profileId);
-                        int groupId = dbGroup.CreateGroup(activityId, name);
-                        if (AddMember(profile.Nickname, groupId))
+                        int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran);
+                        int groupId = dbGroup.CreateGroup(activityId, name, (SqlTransaction)tran);
+                        if (AddMember(profile.Nickname, groupId, (SqlTransaction)tran))
                         {
                             tran.Commit();
                             return true;
@@ -61,7 +61,7 @@ namespace BusinessTier
         {
             try
             {
-                if (dbActivity.DeleteActivity(profileId, groupId) == 1)
+                if (dbActivity.DeleteActivity(profileId, groupId, null) == 1)
                 {
                     return true;
                 }
@@ -80,7 +80,7 @@ namespace BusinessTier
         {
             try
             {
-                if (!name.Equals("") && dbGroup.UpdateGroup(groupId, name) == 1)
+                if (!name.Equals("") && dbGroup.UpdateGroup(groupId, name, null) == 1)
                 {
                     return true;
                 }
@@ -99,7 +99,7 @@ namespace BusinessTier
         {
             try
             {
-                return dbGroup.GetUsersGroups(profileId);
+                return dbGroup.GetUsersGroups(profileId, null);
             }
             catch (Exception)
             {
@@ -107,20 +107,20 @@ namespace BusinessTier
             }
         }
         
-        public bool AddMember(string memberName, int groupId)
+        public bool AddMember(string memberName, int groupId, SqlTransaction transaction)
         {
             try
             {
-                Profile profile = profileController.ReadProfile(memberName, 4);
+                Profile profile = profileController.ReadProfile(memberName, 4, transaction);
                 if (profile == null)
                 {//user not found
                     return false;
                 }
                 else
                 {//user found
-                    if (dbGroup.UserIsMemberOfGroup(profile.ProfileID, groupId))
+                    if (dbGroup.UserIsMemberOfGroup(profile.ProfileID, groupId, transaction))
                     {//user isnt in group
-                        if (dbGroup.AddMember(dbActivity.CreateActivity(profile.ProfileID), groupId) == 0)
+                        if (dbGroup.AddMember(dbActivity.CreateActivity(profile.ProfileID, transaction), groupId, transaction) == 0)
                         {//not added
                             return false;
                         }
@@ -143,7 +143,7 @@ namespace BusinessTier
         {
             try
             {
-                if (dbGroup.RemoveMember(profileId, groupId) == 0)
+                if (dbGroup.RemoveMember(profileId, groupId, null) == 0)
                 {
                     return false;
                 }
@@ -162,7 +162,7 @@ namespace BusinessTier
         {
             try
             {
-                return dbGroup.GetUsers(groupId);
+                return dbGroup.GetUsers(groupId, null);
             }
             catch
             {

@@ -234,14 +234,11 @@ namespace PresentationTier
             privateCheckBox.Checked = false;
             nrOfUsersTrackBar.Value = 2;
             saveButton.Text = "Create chat";
-
-            SearchButton_Click(null, null);
         }
 
         private void RemoveMenuItem_Click(Object sender, EventArgs e)//Right cick remove menu button clicked
         {
             client.DeleteChat(profileId, chatId);
-            SearchButton_Click(null, null);
         }
 
         private void ChatListView_MouseDoubleClick(object sender, MouseEventArgs e)//join chat room

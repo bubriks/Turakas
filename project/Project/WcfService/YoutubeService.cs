@@ -10,6 +10,7 @@ using BusinessTier.Interfaces;
 
 namespace WcfService
 {
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class YoutubeService : IYoutubeService
     {
         private ISongController songController = new SongController();

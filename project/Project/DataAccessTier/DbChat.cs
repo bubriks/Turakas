@@ -14,10 +14,10 @@ namespace DataAccessTier
             con = DbConnection.GetInstance();
         }
 
-        public int CreateChat(Chat chat)
+        public int CreateChat(Chat chat, SqlTransaction transaction)
         {
             string stmt ="INSERT INTO Chat(activityID, name, type, nrOfUsers) values (@0, @1, @2, @3);";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
             {
                 cmd.Parameters.AddWithValue("@0", chat.ActivityId);
                 cmd.Parameters.AddWithValue("@1", chat.Name);
@@ -27,7 +27,7 @@ namespace DataAccessTier
             }
         }
 
-        public Chat GetChat(int id)
+        public Chat GetChat(int id, SqlTransaction transaction)
         {
             string stmt = "SELECT " +
                             " Profile.profileID, " +
@@ -41,7 +41,7 @@ namespace DataAccessTier
                         " INNER JOIN Chat " +
                             " on Activity.activityID = chat.activityID " +
                         " where Activity.activityID = @0 ;";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
             {
                 cmd.Parameters.AddWithValue("@0", id);
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -64,10 +64,10 @@ namespace DataAccessTier
             }
         }
 
-        public int UpdateChat(Chat chat)
+        public int UpdateChat(Chat chat, SqlTransaction transaction)
         {
             string stmt = "UPDATE Chat SET name = @0, type = @1, nrOfUsers= @2 WHERE activityID= @3;";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
             {
                 cmd.Parameters.AddWithValue("@0", chat.Name);
                 cmd.Parameters.AddWithValue("@1", Convert.ToInt32(chat.Type));
@@ -77,7 +77,7 @@ namespace DataAccessTier
             }
         }
 
-        public List<Chat> GetChatsByName(string name, int profileId)
+        public List<Chat> GetChatsByName(string name, int profileId, SqlTransaction transaction)
         {
             string stmt = " SELECT " +
                             " Profile.profileID, " +
@@ -92,7 +92,7 @@ namespace DataAccessTier
                         " INNER JOIN Profile " +
                             " on Activity.profileID = Profile.profileID " +
                         " where name like '%' +@0+ '%' AND type = 1  OR Profile.profileID = @1; ";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), con.GetTransaction()))
+            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
             {
                 cmd.Parameters.AddWithValue("@0", name);
                 cmd.Parameters.AddWithValue("@1", profileId);

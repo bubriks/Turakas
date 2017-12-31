@@ -120,8 +120,8 @@ namespace TestTier
                 urlsActual.Add(song.Url);
             }
             CollectionAssert.AreEqual(urlsExpected, urlsActual);
-            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId);
-            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("2a4Uxdy9TQY").ActivityId);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM", null).ActivityId, null);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("2a4Uxdy9TQY", null).ActivityId, null);
 
         }
         
@@ -137,7 +137,7 @@ namespace TestTier
         {
             songController.AddSong("YWo4qBnSwjM",1);
             Assert.IsFalse(songController.AddSong("YWo4qBnSwjM",1));
-            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM", null).ActivityId, null);
 
         }
         
@@ -145,7 +145,7 @@ namespace TestTier
         public void AddNonExisting()
         {
             Assert.IsTrue(songController.AddSong("YWo4qBnSwjM",1));
-            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM").ActivityId);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM", null).ActivityId, null);
         }
         
         
