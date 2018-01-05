@@ -9,8 +9,7 @@ using System.ServiceModel;
 
 namespace WcfService
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
-    //, InstanceContextMode = InstanceContextMode.Single
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.PerCall)]
     public class ChatService: IChatService
     {
         IChatController chatController = new ChatController();

@@ -9,7 +9,7 @@ using BusinessTier;
 
 namespace WcfService
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.PerCall)]
     public class MessageService : IMessageService
     {
         private IMessageController messageController = new MessageController();

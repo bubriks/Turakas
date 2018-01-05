@@ -3,3 +3,9 @@ C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\DataTier\bin\D
 C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
 C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\DataTier\obj\Debug\DataTier.dll
 C:\Users\bubri\Source\Repos\Turakas\Handin Group 2- DMAJ0916\Code\DataTier\obj\Debug\DataTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\bin\Debug\DataTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\bin\Debug\DataTier.pdb
+C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
+C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
+C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.dll
+C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.pdb

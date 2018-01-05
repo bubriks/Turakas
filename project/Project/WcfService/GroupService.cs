@@ -9,7 +9,7 @@ using System.ServiceModel;
 
 namespace WcfService
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.PerCall)]
     public class GroupService : IGroupService
     {
         private IGroupController groupController = new GroupController();
