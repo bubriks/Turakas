@@ -33,8 +33,15 @@ namespace BusinessTier
                 {
                     Thread thread = new Thread(() => SendEmail(profile.Email, subject, body));
                     thread.Start();
-                    int loginId = dbProfile.CreateProfile(profile, null);
-                    return loginId;
+                    SqlConnection con = new DbConnection().GetConnection();
+                    try
+                    {
+                        return dbProfile.CreateProfile(profile, null, con);
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
                 }
                 catch (Exception e)
                 {
@@ -48,8 +55,15 @@ namespace BusinessTier
 
         public int Authenticate(Profile profile)
         {
-            int profileId = dbProfile.Authenticate(profile, null);
-            return profileId;
+            SqlConnection con = new DbConnection().GetConnection();
+            try
+            {
+                return dbProfile.Authenticate(profile, null, con);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         /// <summary>
@@ -61,7 +75,16 @@ namespace BusinessTier
         {
             try
             {
-                Profile profiles = dbProfile.ReadProfile(email, 3, null);
+                Profile profiles = null;
+                SqlConnection con = new DbConnection().GetConnection();
+                try
+                {
+                    profiles = dbProfile.ReadProfile(email, 3, null, con);
+                }
+                finally
+                {
+                    con.Close();
+                }
                 string tempPass = RandomPassword();
                 string subject = ("Your Login Details are:");
                 string body = "Hello, " + profiles.Nickname + "\nYour USERNAME IS: " + profiles.Username + "\nYour temporary password is: " + tempPass + "\n\nTHIS PASSWORD WILL BE VALID ONLY FOR 1 WEEK, PLEASE MAKE SURE YOU WILL CHANGE IT.\n\n" + "\nPlease do not reply to this email.\nWith kind regards,\nDigitalDose";
@@ -73,7 +96,15 @@ namespace BusinessTier
 
                     Thread thread = new Thread(() => SendEmail(profiles.Email, subject, body));
                     thread.Start();
-                    dbProfile.UpdateProfile(profiles.ProfileID, profiles, null);
+                    con = new DbConnection().GetConnection();
+                    try
+                    {
+                        dbProfile.UpdateProfile(profiles.ProfileID, profiles, null, con);
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
                     return true;
                 }
                 catch (Exception e)
@@ -90,32 +121,49 @@ namespace BusinessTier
             return false;
         }
 
-        public Profile ReadProfile(string what, int by, SqlTransaction transaction)
+        public Profile ReadProfile(string what, int by, SqlTransaction transaction, SqlConnection con)
         {
-            return dbProfile.ReadProfile(what, by, transaction);
+            return dbProfile.ReadProfile(what, by, transaction, con);
         }
         
         public bool UpdateProfile(int id, Profile profile)
         {
-            if (CheckTheValues(profile, false))
-                if (dbProfile.UpdateProfile(id, profile, null))
+            if (CheckTheValues(profile, false)) {
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    Profile user = GetUser(id);
-                    if (user != null)
+                    if (dbProfile.UpdateProfile(id, profile, null, con))
                     {
-                        user.Email = profile.Email;
-                        user.Nickname = profile.Nickname;
-                        user.Password = profile.Password;
-                        user.Username = profile.Username;
+                        Profile user = GetUser(id);
+                        if (user != null)
+                        {
+                            user.Email = profile.Email;
+                            user.Nickname = profile.Nickname;
+                            user.Password = profile.Password;
+                            user.Username = profile.Username;
+                        }
+                        return true;
                     }
-                    return true;
                 }
+                finally
+                {
+                    con.Close();
+                }
+            }
             return false;
         }
 
         public bool DeleteProfile(int profileId)
         {
-            return dbProfile.DeleteProfile(profileId, null);
+            SqlConnection con = new DbConnection().GetConnection();
+            try
+            {
+                return dbProfile.DeleteProfile(profileId, null, con);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         /// <summary>
@@ -179,9 +227,12 @@ namespace BusinessTier
         {
             try
             {
-                Profile user = ReadProfile(profileId.ToString(), 1, null);
-                user.CallBack = obj;
-                users.Add(user);
+                using (SqlConnection con = new DbConnection().GetConnection())
+                {
+                    Profile user = ReadProfile(profileId.ToString(), 1, null, con);
+                    user.CallBack = obj;
+                    users.Add(user);
+                }
                 return true;
             }
             catch (Exception)
@@ -249,16 +300,17 @@ namespace BusinessTier
 
                 #endregion
                 #region email checking
-                if (profile.Email.Equals(""))
-                {
-                    ok = false;
+                using(SqlConnection con = new DbConnection().GetConnection()){
+                    if (profile.Email.Equals(""))
+                    {
+                        ok = false;
+                    }
+
+                    if (ReadProfile(profile.Email, 3, null, con) != null)
+                        ok = false;
+                    if (!(profile.Email.Contains("@") && profile.Email.Contains(".")))
+                        ok = false;
                 }
-
-                if (ReadProfile(profile.Email, 3, null) != null)
-                    ok = false;
-                if (!(profile.Email.Contains("@") && profile.Email.Contains(".")))
-                    ok = false;
-
                 #endregion
                 #region nickname checking
                 if (profile.Nickname.Equals(""))
@@ -268,9 +320,11 @@ namespace BusinessTier
 
                 if (profile.Nickname.Length < 3)
                     ok = false;
-
-                if (ReadProfile(profile.Nickname, 4, null) != null)
-                    ok = false;
+                using (SqlConnection con = new DbConnection().GetConnection())
+                {
+                    if (ReadProfile(profile.Nickname, 4, null, con) != null)
+                        ok = false;
+                }
 
                 #endregion
             }

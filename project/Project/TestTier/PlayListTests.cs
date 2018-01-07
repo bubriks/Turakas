@@ -60,8 +60,8 @@ namespace TestTier
             playListController.AddSongToPlayList("YWo4qBnSwjM", playList.ActivityId.ToString(), 1);
             
             Assert.AreEqual(song.Url, playListController.GetSongsFromPlayList(playList.ActivityId.ToString())[0].Url);
-            dbActivity.DeleteActivity(1, playList.ActivityId, null);
-            dbActivity.DeleteActivity(1, song.ActivityId, null);
+            dbActivity.DeleteActivity(1, playList.ActivityId, null, new DbConnection().GetConnection());
+            dbActivity.DeleteActivity(1, song.ActivityId, null, new DbConnection().GetConnection());
 
         }
         [TestMethod]
@@ -74,8 +74,8 @@ namespace TestTier
             playListController.AddSongToPlayList("YWo4qBnSwjM", playList.ActivityId.ToString(), 1);
             playListController.AddSongToPlayList("YWo4qBnSwjM", playList.ActivityId.ToString(), 1);
             Assert.AreEqual(1,playListController.GetSongsFromPlayList(playList.ActivityId.ToString()).Count);
-            dbActivity.DeleteActivity(1,playList.ActivityId, null);
-            dbActivity.DeleteActivity(1, song.ActivityId, null);
+            dbActivity.DeleteActivity(1,playList.ActivityId, null, new DbConnection().GetConnection());
+            dbActivity.DeleteActivity(1, song.ActivityId, null, new DbConnection().GetConnection());
         }
         [TestMethod]
         public void AddSongToPlaylistNotOwner()
@@ -86,8 +86,8 @@ namespace TestTier
             Song song = songController.GetSongByUrl("YWo4qBnSwjM");
             playListController.AddSongToPlayList("YWo4qBnSwjM", playList.ActivityId.ToString(), 2);
             Assert.AreEqual(0,playListController.GetSongsFromPlayList(playList.ActivityId.ToString()).Count);
-            dbActivity.DeleteActivity(1,playList.ActivityId, null);
-            dbActivity.DeleteActivity(1,song.ActivityId, null);
+            dbActivity.DeleteActivity(1,playList.ActivityId, null, new DbConnection().GetConnection());
+            dbActivity.DeleteActivity(1,song.ActivityId, null, new DbConnection().GetConnection());
         }
         [TestMethod]
         public void GetSongsFromExistingPlaylist()
@@ -99,7 +99,7 @@ namespace TestTier
             Song song = playListController.GetSongsFromPlayList(playList.ActivityId.ToString())[0];
             Assert.AreEqual("YWo4qBnSwjM", song.Url);
             playListController.RemovePlaylist(playList.ActivityId.ToString(), 1);
-            dbActivity.DeleteActivity(1, song.ActivityId, null);
+            dbActivity.DeleteActivity(1, song.ActivityId, null, new DbConnection().GetConnection());
         }
         [TestMethod]
         public void GetSongsFromEmptyPlaylist()

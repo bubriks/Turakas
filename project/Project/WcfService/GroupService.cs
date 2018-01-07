@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataTier;
 using BusinessTier;
 using System.ServiceModel;
+using DataAccessTier;
 
 namespace WcfService
 {
@@ -36,7 +37,7 @@ namespace WcfService
 
         public bool AddMember(string memberName, int groupId)
         {
-            return groupController.AddMember(memberName, groupId, null);
+            return groupController.AddMember(memberName, groupId, null, new DbConnection().GetConnection());
         }
 
         public bool RemoveMember(int profileId, int groupId)

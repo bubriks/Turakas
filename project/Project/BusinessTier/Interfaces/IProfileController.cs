@@ -34,7 +34,7 @@ namespace BusinessTier
         /// <param name="what">string of what you are looking for</param>
         /// <param name="by">type by which the search should be done (1 = id, 2 = username, 3 = email)</param>
         /// <returns></returns>
-        Profile ReadProfile(string what, int by, SqlTransaction transaction);
+        Profile ReadProfile(string what, int by, SqlTransaction transaction, SqlConnection connection);
 
         /// <summary>
         /// Updates LoginInfo

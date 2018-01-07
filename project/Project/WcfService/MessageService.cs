@@ -21,22 +21,20 @@ namespace WcfService
             IMessageCallBack callback = (IMessageCallBack)callbackObj;
             if (chatController.JoinChat(chatId, profileId, callbackObj, clientId))
             {
-                Chat chat = chatController.FindChat(chatId);
                 List<Tuple<object, int, string>> callbacks = new List<Tuple<object, int, string>>();
                 List<Profile> profiles = new List<Profile>();
+                Chat chat = (Chat)chatController.FindChat(chatId);
                 foreach (var tuple in chat.Users)
                 {
                     profiles.Add(tuple.Item1);
-                    if(tuple.Item2 != null)
+                    if (tuple.Item2 != null)
                     {
                         callbacks.Add(new Tuple<object, int, string>(tuple.Item2, tuple.Item1.ProfileID, tuple.Item3));
                     }
                 }
-                callback.GetChat(chat, clientId);
+                callback.GetChat(chat, clientId);// was modified
                 callback.GetMessages(messageController.GetMessages(chatId), clientId);
-                callback.GetOnlineProfiles(profiles, clientId);
                 callback.Show(true, clientId);
-                
                 foreach (Tuple<object, int, string> messageCallBack in callbacks)
                 {
                     try

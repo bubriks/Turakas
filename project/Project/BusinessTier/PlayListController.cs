@@ -12,13 +12,11 @@ namespace BusinessTier
     public class PlayListController: IPlayListController
     {
         private DbPlayList dbPlayList;
-        private DbConnection con;
         private DbActivity dbActivity;
 
         public PlayListController()
         {
             dbPlayList = new DbPlayList();
-            con = DbConnection.GetInstance();
             dbActivity = new DbActivity();
 
 
@@ -26,35 +24,50 @@ namespace BusinessTier
         
         public bool AddPlayList(string name, int profileId)
         {
-            using (IDbTransaction tran = DbConnection.GetInstance().GetConnection().BeginTransaction())
+            SqlConnection con = new DbConnection().GetConnection();
+            try
             {
-
-                try
+                using (IDbTransaction tran = con.BeginTransaction())
                 {
-                    int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran);
-
-                    if (activityId > 0 && dbPlayList.AddPlayList(name, activityId, (SqlTransaction)tran) > 0)
+                    try
                     {
-                        tran.Commit();
-                        return true;
+                        int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran, con);
+
+                        if (activityId > 0 && dbPlayList.AddPlayList(name, activityId, (SqlTransaction)tran, con) > 0)
+                        {
+                            tran.Commit();
+                            return true;
+                        }
+                        else
+                        {
+                            tran.Rollback();
+                            return false;
+                        }
                     }
-                    else
+                    catch (Exception)
                     {
                         tran.Rollback();
                         return false;
                     }
                 }
-                catch (Exception)
-                {
-                    tran.Rollback();
-                    return false;
-                }
+            }
+            finally
+            {
+                con.Close();
             }
         }
 
         public List<PlayList> FindPlayListsByName(string name)
         {
-            return dbPlayList.FindPlayListsByName(name, null);
+            SqlConnection con = new DbConnection().GetConnection();
+            try
+            {
+                return dbPlayList.FindPlayListsByName(name, null, con);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         public bool AddSongToPlayList(string url, string playListIdString, int profileId)
@@ -64,14 +77,22 @@ namespace BusinessTier
             {
                 int songId = new SongController().GetSongByUrl(url).ActivityId;
                 playListId = Int32.Parse(playListIdString);
-                if (dbPlayList.IsSongInPlayList(songId, playListId, null))
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    return false;
+                    if (dbPlayList.IsSongInPlayList(songId, playListId, null, con))
+                    {
+                        return false;
+                    }
+
+                    if (dbPlayList.IsPlaylistOwner(playListId, profileId, null, con) && dbPlayList.AddSongToPlayList(songId, playListId, null, con) > 0)
+                    {
+                        return true;
+                    }
                 }
-                
-                if (dbPlayList.IsPlaylistOwner(playListId, profileId, null) && dbPlayList.AddSongToPlayList(songId, playListId, null) > 0)
+                finally
                 {
-                    return true;
+                    con.Close();
                 }
                 return false;
             }
@@ -94,7 +115,15 @@ namespace BusinessTier
                 Console.WriteLine(e);
                 
             }
-            return dbPlayList.GetSongsFromPlayList(playListId, null);
+            SqlConnection con = new DbConnection().GetConnection();
+            try
+            {
+                return dbPlayList.GetSongsFromPlayList(playListId, null, con);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         public bool RemovePlaylist(string playlistIdString, int profileId)
@@ -102,9 +131,17 @@ namespace BusinessTier
             try
             {
                 int playlistId = Int32.Parse(playlistIdString);
-                if (dbPlayList.IsPlaylistOwner(playlistId,profileId, null)&&dbPlayList.RemovePlaylist(playlistId, null) > 0)
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    return true;
+                    if (dbPlayList.IsPlaylistOwner(playlistId, profileId, null, con) && dbPlayList.RemovePlaylist(playlistId, null, con) > 0)
+                    {
+                        return true;
+                    }
+                }
+                finally
+                {
+                    con.Close();
                 }
                 return false;
             }
@@ -121,9 +158,17 @@ namespace BusinessTier
             {
                 int playlistId = Int32.Parse(playListIdString);
                 int songId = new SongController().GetSongByUrl(url).ActivityId;
-                if (dbPlayList.IsPlaylistOwner(playlistId,profileId,null)&&dbPlayList.RemoveSongFromPlaylist(songId, playlistId,null) > 0)
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    return true;
+                    if (dbPlayList.IsPlaylistOwner(playlistId, profileId, null, con) && dbPlayList.RemoveSongFromPlaylist(songId, playlistId, null, con) > 0)
+                    {
+                        return true;
+                    }
+                }
+                finally
+                {
+                    con.Close();
                 }
                 return false;
             }

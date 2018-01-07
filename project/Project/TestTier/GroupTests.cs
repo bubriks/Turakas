@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessTier;
 using DataTier;
 using System.Collections.Generic;
+using DataAccessTier;
 
 namespace TestTier
 {
@@ -104,28 +105,28 @@ namespace TestTier
             gc.CreateGroup("Group Name", profileId);
             List<Group> groups = gc.GetUsersGroups(profileId);
             gc.RemoveMember(profileId, groups[groups.Count-1].ActivityId);
-            Assert.AreEqual(true, gc.AddMember("Uganda", groups[groups.Count - 1].ActivityId, null));
+            Assert.AreEqual(true, gc.AddMember("Uganda", groups[groups.Count - 1].ActivityId, null, new DbConnection().GetConnection()));
         }
 
         [TestMethod]
         public void AddMemberToGroupWrongProfileName()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            Assert.AreEqual(false, gc.AddMember("", groups[0].ActivityId, null));
+            Assert.AreEqual(false, gc.AddMember("", groups[0].ActivityId, null, new DbConnection().GetConnection()));
         }
 
         [TestMethod]
         public void AddMemberToGroupWrongGroupId()
         {
-            Assert.AreEqual(false, gc.AddMember("Uganda", 0, null));
+            Assert.AreEqual(false, gc.AddMember("Uganda", 0, null, new DbConnection().GetConnection()));
         }
 
         [TestMethod]
         public void AddMemberToGroupWhenHeIsMember()
         {
             List<Group> groups = gc.GetUsersGroups(profileId);
-            gc.AddMember("Uganda", groups[0].ActivityId, null);
-            Assert.AreEqual(false, gc.AddMember("Uganda", groups[0].ActivityId, null));
+            gc.AddMember("Uganda", groups[0].ActivityId, null, new DbConnection().GetConnection());
+            Assert.AreEqual(false, gc.AddMember("Uganda", groups[0].ActivityId, null, new DbConnection().GetConnection()));
         }
         #endregion
 

@@ -26,34 +26,42 @@ namespace BusinessTier
         {
             DBSong dbSong = new DBSong();
             DbActivity dbActivity = new DbActivity();
-            using (IDbTransaction tran = DbConnection.GetInstance().GetConnection().BeginTransaction())
+            SqlConnection con = new DbConnection().GetConnection();
+            try
             {
-
-                try
+                using (IDbTransaction tran = con.BeginTransaction())
                 {
-                    Song song = dbSong.FindSongByURL(url, (SqlTransaction)tran);
-                    if (song != null)
-                    {
-                        return false;
-                    }
 
-                    int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran);
-                    if (activityId > 0 && dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url, activityId, (SqlTransaction)tran) > 0)
+                    try
                     {
-                        tran.Commit();
-                        return true;
+                        Song song = dbSong.FindSongByURL(url, (SqlTransaction)tran, con);
+                        if (song != null)
+                        {
+                            return false;
+                        }
+
+                        int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran, con);
+                        if (activityId > 0 && dbSong.AddSong(GetVideoTitle(url), GetVideoDuration(url), url, activityId, (SqlTransaction)tran, con) > 0)
+                        {
+                            tran.Commit();
+                            return true;
+                        }
+                        else
+                        {
+                            tran.Rollback();
+                            return false;
+                        }
                     }
-                    else
+                    catch (Exception)
                     {
                         tran.Rollback();
                         return false;
                     }
                 }
-                catch (Exception)
-                {
-                    tran.Rollback();
-                    return false;
-                }
+            }
+            finally
+            {
+                con.Close();
             }
         }
 
@@ -128,12 +136,28 @@ namespace BusinessTier
         public List<Song> FindSongsByName(string name)
         {
             DBSong dbSong = new DBSong();
-            return dbSong.FindSongsByName(name, null);
+            SqlConnection con = new DbConnection().GetConnection();
+            try
+            {
+                return dbSong.FindSongsByName(name, null, con);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         public Song GetSongByUrl(string url)
         {
-            return new DBSong().FindSongByURL(url, null);
+            SqlConnection con = new DbConnection().GetConnection();
+            try
+            {
+                return new DBSong().FindSongByURL(url, null, con);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }

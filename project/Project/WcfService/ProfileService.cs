@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using DataTier;
 using BusinessTier;
+using DataAccessTier;
 
 namespace WcfService
 {
@@ -35,7 +36,7 @@ namespace WcfService
 
         public Profile ReadProfile(string what, int by)
         {
-            return profileController.ReadProfile(what, by, null);
+            return profileController.ReadProfile(what, by, null, new DbConnection().GetConnection());
         }
 
         public bool UpdateProfile(int id, Profile login)
