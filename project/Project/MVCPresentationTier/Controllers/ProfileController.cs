@@ -28,13 +28,17 @@ namespace MVCPresentationTier.Controllers
             ProfileServiceClient client = new ProfileServiceClient();
             var username = collection["username"];
             var password = collection["password"];
-            Profile profile = new Profile();
-            profile.Username = username;
-            profile.Password = password;
+            Profile profile = new Profile
+            {
+                Username = username,
+                Password = password
+            };
             var profileId = client.Authenticate(profile);
             ViewBag.LoginStatus = profileId;
-            var cookie = new HttpCookie("aCookie");
-            cookie.Value = profileId.ToString();
+            var cookie = new HttpCookie("aCookie")
+            {
+                Value = profileId.ToString()
+            };
             //var cookieValue = Request.Cookies.Get("aCookie").Value;
             Response.Cookies.Add(cookie);
             return Redirect("/Chat/GetChats");
@@ -52,9 +56,14 @@ namespace MVCPresentationTier.Controllers
             var nickname = collection["nickname"];
             var username = collection["username"];
             var email = collection["email"];
-            var password = collection["password"];
             ProfileServiceClient client = new ProfileServiceClient();
-            int i = client.CreateProfileWithInputs(username, nickname, email, password);
+            Profile profile = new Profile
+            {
+                Username = username,
+                Nickname = nickname,
+                Email = email,
+            };
+            int i = client.CreateProfile(profile);
             ViewBag.i = i;
             return View();
         }

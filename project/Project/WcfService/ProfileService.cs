@@ -48,25 +48,6 @@ namespace WcfService
         {
             return profileController.DeleteProfile(loginId);
         }
-        public int CreateProfileWithInputs(String username, String nickname, String email, String password)
-        {
-            int i = 0;
-            Profile profile = new Profile
-            {
-                Username = username,
-                Nickname = nickname,
-                Email = email,
-                Password = password
-            };
-            try
-            {
-                i = CreateProfile(profile);
-                return i;
-            }
-            catch
-            {
-                return i;
-            }
-        }
+       
     }
 }
