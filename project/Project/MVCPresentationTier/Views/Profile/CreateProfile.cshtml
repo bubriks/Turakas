@@ -7,12 +7,18 @@
     <title></title>
     <div>
         <form action=@Url.Action("CreateProfile", "Profile") method="post">
-            <p>@ViewBag.i</p>
-            <input type="text" name="username" placeholder="Username" />
-            <input type="text" name="nickname" placeholder="Nickname"/>
-            <input type="text" name="email" placeholder="Email"/>
-            <input type="text" name="password" placeholder="Password"/>
-            <input type="submit" value="Create new profile" />
+            <p><input type="text" name="username" placeholder="Username" /></p>
+            <p> <input type="text" name="nickname" placeholder="Nickname" /></p>
+            <p><input type="text" name="email" placeholder="Email" /></p>
+            <p><input type="submit" onclick="checkingCreation()" value="Create new profile" /></p>
         </form>
+        <script>
+            function checkingCreation() {
+            if(@ViewBag.i != -1)
+                <p><b><font color="green">Succesfully created, please check your email for the password!</font></b></p>
+            else
+                <p><b><font color="red">Something went wrong, please check the introduced info!</font></b></p>
+            }
+        </script>
     </div>
 

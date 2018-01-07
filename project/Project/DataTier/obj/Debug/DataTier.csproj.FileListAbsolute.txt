@@ -9,3 +9,8 @@ C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.
 C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
 C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.dll
 C:\Users\bubri\Source\Repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.pdb
+C:\Users\1062021\source\repos\Turakas\project\Project\DataTier\bin\Debug\DataTier.dll
+C:\Users\1062021\source\repos\Turakas\project\Project\DataTier\bin\Debug\DataTier.pdb
+C:\Users\1062021\source\repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.csproj.CoreCompileInputs.cache
+C:\Users\1062021\source\repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.dll
+C:\Users\1062021\source\repos\Turakas\project\Project\DataTier\obj\Debug\DataTier.pdb

@@ -5,6 +5,7 @@ using PresentationTier.GameServiceReference;
 using System.ServiceModel;
 using System.Timers;
 using System.ComponentModel;
+using System.Threading;
 
 namespace PresentationTier
 
@@ -35,10 +36,12 @@ namespace PresentationTier
             scissorChoice_rb.Checked = false;
 
             //initialise timer
-            timer = new System.Timers.Timer();
-            timer.Interval = 1000; //make timer perform action after 1 second
-            timer.AutoReset = false; //make sure timer wont reset
-            timer.SynchronizingObject = (this); //syncronize timer thread with RPSForm thread, in order to allow timer thread to modify RPSForm elements
+            timer = new System.Timers.Timer
+            {
+                Interval = 1000, //make timer perform action after 1 second
+                AutoReset = false, //make sure timer wont reset
+                SynchronizingObject = (this) //syncronize timer thread with RPSForm thread, in order to allow timer thread to modify RPSForm elements
+            };
             #endregion
 
             gameId = chatId; //since chatId is unique, gameId will be unique
@@ -66,6 +69,7 @@ namespace PresentationTier
                 prevChoice = choice;
             }
             choice = -1; //reset choice
+            selectChoice_btn.Enabled = false; //disable the button, so no other choices can be made
         }
 
         /// <summary>
@@ -102,7 +106,8 @@ namespace PresentationTier
         /// <param name="e"></param>
         private void NewGame_btn_Click(object sender, EventArgs e)
         {
-            RPSForm rPSForm = new RPSForm(gameId, playerId);
+            Thread t = new Thread(()=>new RPSForm(gameId,playerId));
+            t.Start();
             Close();
         }
 
@@ -191,8 +196,6 @@ namespace PresentationTier
                     player1_lbl.ForeColor = Color.Blue;
                     player2_lbl.ForeColor = Color.Blue;
 
-                    //since its a tie, we know player2 chose the same thing as player1
-                    player2_pic.BackgroundImage = player1_pic.BackgroundImage; //format player2 choice image
 
                     anouncer_lbl.Visible = true;
                     anouncer_lbl.ForeColor = Color.Blue;
@@ -201,12 +204,22 @@ namespace PresentationTier
                     {
                         case 0:
                             historyChoice = "ROCK";
+
+                            //since its a tie, we know player2 chose the same thing as player1
+                            player1_pic.BackgroundImage = Properties.Resources.rock;
+                            player2_pic.BackgroundImage = player1_pic.BackgroundImage; //format player2 choice image
                             break;
                         case 1:
                             historyChoice = "PAPER";
+                            //since its a tie, we know player2 chose the same thing as player1
+                            player1_pic.BackgroundImage = Properties.Resources.paper;
+                            player2_pic.BackgroundImage = player1_pic.BackgroundImage; //format player2 choice image
                             break;
                         default:
                             historyChoice = "SCISSORS";
+                            //since its a tie, we know player2 chose the same thing as player1
+                            player1_pic.BackgroundImage = Properties.Resources.scissor;
+                            player2_pic.BackgroundImage = player1_pic.BackgroundImage; //format player2 choice image
                             break;
                     }
                     history_listBox.Items.Add("TIE!!! - on " + historyChoice); //add string to list box
@@ -215,17 +228,20 @@ namespace PresentationTier
                     //format player2 choice depeding on player1's choice
                     if (prevChoice == 0)
                     {
+                        player1_pic.BackgroundImage = Properties.Resources.rock;
                         player2_pic.BackgroundImage = Properties.Resources.scissor;
                         historyChoice = " YOU WIN WITH: ROCK on SCISSORS";
                     }
                     else
                         if (prevChoice == 1)
                     {
+                        player1_pic.BackgroundImage = Properties.Resources.paper;
                         player2_pic.BackgroundImage = Properties.Resources.rock;
                         historyChoice = " YOU WIN WITH: PAPER on ROCK";
                     }
                     else
                     {
+                        player1_pic.BackgroundImage = Properties.Resources.scissor;
                         player2_pic.BackgroundImage = Properties.Resources.paper;
                         historyChoice = " YOU WIN WITH: SCISSORS on PAPER";
                     }
@@ -245,17 +261,20 @@ namespace PresentationTier
                 default: //payer2 wins
                     if (prevChoice == 0)
                     {
+                        player1_pic.BackgroundImage = Properties.Resources.rock;
                         player2_pic.BackgroundImage = Properties.Resources.paper;
                         historyChoice = " YOU LOSE WITH: ROCK on PAPER";
                     }
                     else
                         if (prevChoice == 1)
                     {
+                        player1_pic.BackgroundImage = Properties.Resources.paper;
                         player2_pic.BackgroundImage = Properties.Resources.scissor;
                         historyChoice = " YOU LOSE WITH: PAPER on SCISSORS";
                     }
                     else
                     {
+                        player1_pic.BackgroundImage = Properties.Resources.scissor;
                         player2_pic.BackgroundImage = Properties.Resources.rock;
                         historyChoice = " YOU LOSE WITH: SCISSORS on ROCK";
                     }
@@ -273,6 +292,7 @@ namespace PresentationTier
                     history_listBox.Items.Add(historyChoice);
                     break;
             }
+            selectChoice_btn.Enabled = true;
         }
         
         /// <summary>
@@ -287,7 +307,8 @@ namespace PresentationTier
             {
                 Stop();
                 player1_bar.Value = 0; //reset timer to 0
-                gameService.MakeChoice(gameId, playerId, new Random().Next(0, 2)); //randomly choose for player
+                prevChoice = new Random().Next(0, 2);
+                gameService.MakeChoice(gameId, playerId, prevChoice); //randomly choose for player
             }
             else
             {

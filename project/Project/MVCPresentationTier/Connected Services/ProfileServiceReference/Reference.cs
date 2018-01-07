@@ -177,12 +177,6 @@ namespace MVCPresentationTier.ProfileServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/DeleteProfile", ReplyAction="http://tempuri.org/IProfileService/DeleteProfileResponse")]
         System.Threading.Tasks.Task<bool> DeleteProfileAsync(int profileId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/CreateProfileWithInputs", ReplyAction="http://tempuri.org/IProfileService/CreateProfileWithInputsResponse")]
-        int CreateProfileWithInputs(string username, string nickname, string email, string password);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProfileService/CreateProfileWithInputs", ReplyAction="http://tempuri.org/IProfileService/CreateProfileWithInputsResponse")]
-        System.Threading.Tasks.Task<int> CreateProfileWithInputsAsync(string username, string nickname, string email, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -258,14 +252,6 @@ namespace MVCPresentationTier.ProfileServiceReference {
         
         public System.Threading.Tasks.Task<bool> DeleteProfileAsync(int profileId) {
             return base.Channel.DeleteProfileAsync(profileId);
-        }
-        
-        public int CreateProfileWithInputs(string username, string nickname, string email, string password) {
-            return base.Channel.CreateProfileWithInputs(username, nickname, email, password);
-        }
-        
-        public System.Threading.Tasks.Task<int> CreateProfileWithInputsAsync(string username, string nickname, string email, string password) {
-            return base.Channel.CreateProfileWithInputsAsync(username, nickname, email, password);
         }
     }
 }
