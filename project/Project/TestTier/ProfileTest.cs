@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataTier;
 using BusinessTier;
+using DataAccessTier;
 
 namespace TestTier
 {
@@ -67,43 +68,43 @@ namespace TestTier
         [TestMethod]
         public void TestReadProfileIdSuccess()
         {
-            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null).ProfileID;
-            Assert.AreNotEqual(null, profileController.ReadProfile(profileId.ToString(), 1, null));
+            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null, new DbConnection().GetConnection()).ProfileID;
+            Assert.AreNotEqual(null, profileController.ReadProfile(profileId.ToString(), 1, null, new DbConnection().GetConnection()));
         }
         [TestMethod]
         public void TestReadProfileIdFail()
         {
-            Assert.AreEqual(null, profileController.ReadProfile("0", 1, null));
+            Assert.AreEqual(null, profileController.ReadProfile("0", 1, null, new DbConnection().GetConnection()));
         }
         [TestMethod]
         public void TestReadProfileUsernameSuccess()
         {
-            Assert.AreNotEqual(null, profileController.ReadProfile("Uganda", 2, null));
+            Assert.AreNotEqual(null, profileController.ReadProfile("Uganda", 2, null, new DbConnection().GetConnection()));
         }
         [TestMethod]
         public void TestReadProfileUsernameFail()
         {
-            Assert.AreNotEqual(null, profileController.ReadProfile("Uganda", 2, null));
+            Assert.AreNotEqual(null, profileController.ReadProfile("Uganda", 2, null, new DbConnection().GetConnection()));
         }
         [TestMethod]
         public void TestReadProfileEmailSuccess()
         {
-            Assert.AreNotEqual(null, profileController.ReadProfile("asdf@.", 3, null));
+            Assert.AreNotEqual(null, profileController.ReadProfile("asdf@.", 3, null, new DbConnection().GetConnection()));
         }
         [TestMethod]
         public void TestReadProfileEmailFail()
         {
-            Assert.AreEqual(null, profileController.ReadProfile("asdf", 3, null));
+            Assert.AreEqual(null, profileController.ReadProfile("asdf", 3, null, new DbConnection().GetConnection()));
         }
         [TestMethod]
         public void TestReadProfileNicknameSuccess()
         {
-            Assert.AreNotEqual(null, profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null));
+            Assert.AreNotEqual(null, profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null, new DbConnection().GetConnection()));
         }
         [TestMethod]
         public void TestReadProfileNicknameFail()
         {
-            Assert.AreEqual(null, profileController.ReadProfile("TestingAccountsPleaseDontsDelete", 4, null));
+            Assert.AreEqual(null, profileController.ReadProfile("TestingAccountsPleaseDontsDelete", 4, null, new DbConnection().GetConnection()));
         }
 
         [TestMethod]
@@ -116,7 +117,7 @@ namespace TestTier
                 Email = "",
                 Nickname = "Changed",
             };
-            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null).ProfileID;
+            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null, new DbConnection().GetConnection()).ProfileID;
             Assert.AreEqual(true, profileController.UpdateProfile(profileId, profile));
         }
         [TestMethod]
@@ -129,7 +130,7 @@ namespace TestTier
                 Email = "",
                 Nickname = "as",
             };
-            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null).ProfileID;
+            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null, new DbConnection().GetConnection()).ProfileID;
             Assert.AreNotEqual(true, profileController.UpdateProfile(profileId, profile));
         }
         [TestMethod]
@@ -165,7 +166,7 @@ namespace TestTier
         [TestMethod]
         public void TestDeleteProfileSuccess()
         {
-            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null).ProfileID;
+            int profileId = profileController.ReadProfile("TestingAccountsPleaseDontDelete", 4, null, new DbConnection().GetConnection()).ProfileID;
             Assert.AreEqual(true, profileController.DeleteProfile(profileId));
         }
         [TestMethod]

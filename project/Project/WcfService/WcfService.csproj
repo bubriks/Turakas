@@ -76,6 +76,10 @@
       <Project>{d9be8be0-02ae-4680-b196-5483eb0456e0}</Project>
       <Name>BusinessTier</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataAccessTier\DataAccessTier.csproj">
+      <Project>{b08610d0-5770-4bd0-897b-ac3c1aadfbad}</Project>
+      <Name>DataAccessTier</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataTier\DataTier.csproj">
       <Project>{3a9d5007-caca-49a5-a714-cbad88a118e7}</Project>
       <Name>DataTier</Name>

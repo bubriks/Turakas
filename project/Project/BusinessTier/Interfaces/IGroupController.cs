@@ -15,7 +15,7 @@ namespace BusinessTier
         bool DeleteGroup(int profileId, int groupId);
         bool UpdateGroup(string name, int groupId);
         List<Group> GetUsersGroups(int profileId);
-        bool AddMember(string memberName, int groupId, SqlTransaction transaction);
+        bool AddMember(string memberName, int groupId, SqlTransaction transaction, SqlConnection con);
         bool RemoveMember(int profileId, int groupId);
         List<Profile> GetUsers(int groupId);
         List<Profile> GetOnlineMembers(int groupId);

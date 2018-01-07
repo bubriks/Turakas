@@ -24,36 +24,45 @@ namespace BusinessTier
 
         public bool CreateGroup(string name, int profileId)
         {
-            Profile profile = profileController.ReadProfile(profileId.ToString(), 1, null);
-            if (profile != null && !name.Equals(""))
+            SqlConnection con = new DbConnection().GetConnection();
+            try
             {
-                using (IDbTransaction tran = DbConnection.GetInstance().GetConnection().BeginTransaction())
+                Profile profile = profileController.ReadProfile(profileId.ToString(), 1, null, con);
+                if (profile != null && !name.Equals(""))
                 {
-                    try
-                    {
-                        int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran);
-                        int groupId = dbGroup.CreateGroup(activityId, name, (SqlTransaction)tran);
-                        if (AddMember(profile.Nickname, groupId, (SqlTransaction)tran))
+                        using (IDbTransaction tran = con.BeginTransaction())
                         {
-                            tran.Commit();
-                            return true;
+                        try
+                        {
+                            int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran, con);
+                            int groupId = dbGroup.CreateGroup(activityId, name, (SqlTransaction)tran, con);
+                            if (AddMember(profile.Nickname, groupId, (SqlTransaction)tran, con))
+                            {
+                                tran.Commit();
+                                return true;
+                            }
+                            else
+                            {
+                                tran.Rollback();
+                                return false;
+                            }
                         }
-                        else
+                        catch (Exception)
                         {
                             tran.Rollback();
                             return false;
                         }
-                    }
-                    catch (Exception)
-                    {
-                        tran.Rollback();
-                        return false;
+                        
                     }
                 }
+                else
+                {
+                    return false;//profile doesnt exist
+                }
             }
-            else
+            finally
             {
-                return false;//profile doesnt exist
+                con.Close();
             }
         }
 
@@ -61,13 +70,21 @@ namespace BusinessTier
         {
             try
             {
-                if (dbActivity.DeleteActivity(profileId, groupId, null) == 1)
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    return true;
+                    if (dbActivity.DeleteActivity(profileId, groupId, null, con) == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else
+                finally
                 {
-                    return false;
+                    con.Close();
                 }
             }
             catch
@@ -80,13 +97,21 @@ namespace BusinessTier
         {
             try
             {
-                if (!name.Equals("") && dbGroup.UpdateGroup(groupId, name, null) == 1)
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    return true;
+                    if (!name.Equals("") && dbGroup.UpdateGroup(groupId, name, null, con) == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else
+                finally
                 {
-                    return false;
+                    con.Close();
                 }
             }
             catch
@@ -99,7 +124,15 @@ namespace BusinessTier
         {
             try
             {
-                return dbGroup.GetUsersGroups(profileId, null);
+                SqlConnection con = new DbConnection().GetConnection();
+                try
+                {
+                    return dbGroup.GetUsersGroups(profileId, null, con);
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
             catch (Exception)
             {
@@ -107,20 +140,20 @@ namespace BusinessTier
             }
         }
         
-        public bool AddMember(string memberName, int groupId, SqlTransaction transaction)
+        public bool AddMember(string memberName, int groupId, SqlTransaction transaction, SqlConnection con)
         {
             try
             {
-                Profile profile = profileController.ReadProfile(memberName, 4, transaction);
+                Profile profile = profileController.ReadProfile(memberName, 4, transaction, con);
                 if (profile == null)
                 {//user not found
                     return false;
                 }
                 else
                 {//user found
-                    if (dbGroup.UserIsMemberOfGroup(profile.ProfileID, groupId, transaction))
+                    if (dbGroup.UserIsMemberOfGroup(profile.ProfileID, groupId, transaction, con))
                     {//user isnt in group
-                        if (dbGroup.AddMember(dbActivity.CreateActivity(profile.ProfileID, transaction), groupId, transaction) == 0)
+                        if (dbGroup.AddMember(dbActivity.CreateActivity(profile.ProfileID, transaction, con), groupId, transaction, con) == 0)
                         {//not added
                             return false;
                         }
@@ -143,13 +176,21 @@ namespace BusinessTier
         {
             try
             {
-                if (dbGroup.RemoveMember(profileId, groupId, null) == 0)
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    return false;
+                    if (dbGroup.RemoveMember(profileId, groupId, null, con) == 0)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
-                else
+                finally
                 {
-                    return true;
+                    con.Close();
                 }
             }
             catch
@@ -162,7 +203,15 @@ namespace BusinessTier
         {
             try
             {
-                return dbGroup.GetUsers(groupId, null);
+                SqlConnection con = new DbConnection().GetConnection();
+                try
+                {
+                    return dbGroup.GetUsers(groupId, null, con);
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
             catch
             {

@@ -29,28 +29,36 @@ namespace BusinessTier
                 {
                     return null;
                 }
-                using (IDbTransaction tran = DbConnection.GetInstance().GetConnection().BeginTransaction())
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    try
+                    using (IDbTransaction tran = con.BeginTransaction())
                     {
-                        int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran);
-                        Message message = dbMessage.CreateMessage(activityId, text, chatId, (SqlTransaction)tran);
-                        if (message == null)
+                        try
+                        {
+                            int activityId = dbActivity.CreateActivity(profileId, (SqlTransaction)tran, con);
+                            Message message = dbMessage.CreateMessage(activityId, text, chatId, (SqlTransaction)tran, con);
+                            if (message == null)
+                            {
+                                tran.Rollback();
+                                return null;
+                            }
+                            else
+                            {
+                                tran.Commit();
+                                return message;
+                            }
+                        }
+                        catch
                         {
                             tran.Rollback();
                             return null;
                         }
-                        else
-                        {
-                            tran.Commit();
-                            return message;
-                        }
                     }
-                    catch
-                    {
-                        tran.Rollback();
-                        return null;
-                    }
+                }
+                finally
+                {
+                    con.Close();
                 }
             }
             catch (Exception)
@@ -63,7 +71,15 @@ namespace BusinessTier
         {
             try
             {
-                return dbMessage.GetMessages(chatId, null);//returns list of messages
+                SqlConnection con = new DbConnection().GetConnection();
+                try
+                {
+                    return dbMessage.GetMessages(chatId, null, con);//returns list of messages
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
             catch (Exception)
             {
@@ -75,13 +91,21 @@ namespace BusinessTier
         {
             try
             {
-                if (dbActivity.DeleteActivity(profileId, id, null) == 1)//if no changes made
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    return true;
+                    if (dbActivity.DeleteActivity(profileId, id, null, con) == 1)//if no changes made
+                    {
+                        return true;
+                    }
+                    else//changes were done
+                    {
+                        return false;
+                    }
                 }
-                else//changes were done
+                finally
                 {
-                    return false;
+                    con.Close();
                 }
             }
             catch (Exception)

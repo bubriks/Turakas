@@ -1,7 +1,9 @@
 ﻿using BusinessTier.Interfaces;
+using DataAccessTier;
 using DataTier;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace BusinessTier
@@ -33,18 +35,34 @@ namespace BusinessTier
                 {
                     if (game.Player1 == null) //if there is no player1 in the game
                     {
-                        Profile user = profileController.ReadProfile(profileId.ToString(), 1, null);//gets the user from database
-                        user.CallBack = callback;//adds callback object to it
-                        game.Player1 = user;//adds user to game
-                        return 1;//joined
+                        SqlConnection con = new DbConnection().GetConnection();
+                        try
+                        {
+                            Profile user = profileController.ReadProfile(profileId.ToString(), 1, null, con);//gets the user from database
+                            user.CallBack = callback;//adds callback object to it
+                            game.Player1 = user;//adds user to game
+                            return 1;//joined
+                        }
+                        finally
+                        {
+                            con.Close();
+                        }
                     }
                     else
                     if (game.Player2 == null && game.Player1.ProfileID != profileId) //if there is no player2 and this player did not join as player1
                     {
-                        Profile user = profileController.ReadProfile(profileId.ToString(), 1, null);//gets the user from database
-                        user.CallBack = callback;//adds callback object to it
-                        game.Player2 = user;//adds user to game
-                        return 2;//joined
+                        SqlConnection con = new DbConnection().GetConnection();
+                        try
+                        {
+                            Profile user = profileController.ReadProfile(profileId.ToString(), 1, null, con);//gets the user from database
+                            user.CallBack = callback;//adds callback object to it
+                            game.Player2 = user;//adds user to game
+                            return 2;//joined
+                        }
+                        finally
+                        {
+                            con.Close();
+                        }
                     }
                     return -1;//person is in game already
                 }
@@ -56,13 +74,21 @@ namespace BusinessTier
                     lock (games)
                     {
                         Game game = new Game { GameId = gameId}; //creates new game
-                        Profile user = profileController.ReadProfile(profileId.ToString(), 1, null);//gets user from database
-                        user.CallBack = callback;//adds callback object to it
-                        game.Player1 = user; //add player to game
-                        game.Choice1 = -1;
-                        game.Choice2 = -1;
-                        games.Add(game);//adds game to games list
-                        return 1;//joined
+                        SqlConnection con = new DbConnection().GetConnection();
+                        try
+                        {
+                            Profile user = profileController.ReadProfile(profileId.ToString(), 1, null, con);//gets user from database
+                            user.CallBack = callback;//adds callback object to it
+                            game.Player1 = user; //add player to game
+                            game.Choice1 = -1;
+                            game.Choice2 = -1;
+                            games.Add(game);//adds game to games list
+                            return 1;//joined
+                        }
+                        finally
+                        {
+                            con.Close();
+                        }
                     }
                 }
                 catch (Exception)//catches exeption if something went wrong

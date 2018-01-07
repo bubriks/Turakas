@@ -7,15 +7,10 @@ namespace DataAccessTier
 {
     public class DBSong
     {
-        private DbConnection con = null;
-        public DBSong()
-        {
-            con = DbConnection.GetInstance();
-        }
-        public int AddSong(string name, int duration, string url, int activityId, SqlTransaction transaction)
+        public int AddSong(string name, int duration, string url, int activityId, SqlTransaction transaction, SqlConnection connection)
         {
             string stmt = "INSERT INTO Video(activityID, name, duration, url) values (@0, @1, @2, @3)";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
+            using (SqlCommand cmd = new SqlCommand(stmt, connection, transaction))
             {
                 cmd.Parameters.AddWithValue("@0", activityId);
                 cmd.Parameters.AddWithValue("@1", name);
@@ -26,11 +21,11 @@ namespace DataAccessTier
             
         }
 
-        public Song FindSongByURL(string url, SqlTransaction transaction)
+        public Song FindSongByURL(string url, SqlTransaction transaction, SqlConnection connection)
         {
             Song song = null;
             string stmt = "SELECT * FROM Video WHERE url = @0";
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
+            using (SqlCommand cmd = new SqlCommand(stmt, connection, transaction))
             {
                 cmd.Parameters.AddWithValue("@0", url);
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -50,7 +45,7 @@ namespace DataAccessTier
             }
         }
 
-        public List<Song> FindSongsByName(string name, SqlTransaction transaction)
+        public List<Song> FindSongsByName(string name, SqlTransaction transaction, SqlConnection connection)
         {
             List<Song> results = new List<Song>();
             name = name.Trim();
@@ -73,7 +68,7 @@ namespace DataAccessTier
                 }
             }
 
-            using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
+            using (SqlCommand cmd = new SqlCommand(stmt, connection, transaction))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

@@ -7,24 +7,17 @@ namespace DataAccessTier
 {
     public class DbProfile
     {
-        private DbConnection con = null;
-
-        public DbProfile()
-        {
-            con = DbConnection.GetInstance();
-        }
-
         /// <summary>
         /// Checks if username and password exist in the database
         /// </summary>
         /// <param name="profile"></param>
         /// <returns>Returns profileID if succeded, -1 if there is no such ProfileInfo, -2 if sql exception and prints it in the console</returns>
-        public int Authenticate(Profile profile, SqlTransaction transaction)
+        public int Authenticate(Profile profile, SqlTransaction transaction, SqlConnection connection)
         {
             try
             {
                 string stmt = "SELECT profileID FROM Profile WHERE username=@0 AND passwordHash=HASHBYTES('SHA2_512', @1+CAST(Salt AS NVARCHAR(36)))";
-                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
+                using (SqlCommand cmd = new SqlCommand(stmt, connection, transaction))
                 {
                     cmd.Parameters.AddWithValue("@0", profile.Username);
                     cmd.Parameters.AddWithValue("@1", profile.Password);
@@ -52,13 +45,13 @@ namespace DataAccessTier
         /// </summary>
         /// <param name="profile">New ProfileInfo</param>
         /// <returns>Returns the ID assigned to the profile by the database or -1 if it fails and prints error in console</returns>
-        public int CreateProfile(Profile profile, SqlTransaction transaction)
+        public int CreateProfile(Profile profile, SqlTransaction transaction, SqlConnection connection)
         {
             try
             {
                 string stmt1 = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() INSERT INTO Profile(username, salt, passwordHash, email, nickname)" +
                     "OUTPUT INSERTED.profileID values (@0, @salt, HASHBYTES('SHA2_512', @1 +CAST(@salt AS NVARCHAR(36))), @2, @3 );";
-                using (SqlCommand cmd = new SqlCommand(stmt1, con.GetConnection(), transaction))
+                using (SqlCommand cmd = new SqlCommand(stmt1, connection, transaction))
                 {
                     cmd.Parameters.AddWithValue("@0", profile.Username);
                     cmd.Parameters.AddWithValue("@1", profile.Password);
@@ -86,7 +79,7 @@ namespace DataAccessTier
         /// <param name="what">string of what you are looking for</param>
         /// <param name="by">type by which the search should be done (1 = id, 2 = username, 3 = email, nickname = 4)</param>
         /// <returns>Returns list of Profile object and it's id</returns>
-        public Profile ReadProfile(string what, int by, SqlTransaction transaction)
+        public Profile ReadProfile(string what, int by, SqlTransaction transaction, SqlConnection connection)
         {
             string stmt;
 
@@ -110,7 +103,7 @@ namespace DataAccessTier
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
+                using (SqlCommand cmd = new SqlCommand(stmt, connection, transaction))
                 {
                     cmd.Parameters.AddWithValue("@0", what);
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -143,13 +136,13 @@ namespace DataAccessTier
         /// <param name="id">The ID of the info you want to change</param>
         /// <param name="profile">New ProfileInfo</param>
         /// <returns>Returns true if succeded, false otherwise and prints error in console</returns>
-        public bool UpdateProfile(int id, Profile profile, SqlTransaction transaction)
+        public bool UpdateProfile(int id, Profile profile, SqlTransaction transaction, SqlConnection connection)
         {
             try
             {
                 string stmt = "UPDATE Profile SET username = ISNULL(NULLIF(@0, ''), username), email = ISNULL(NULLIF(@1, ''), email), nickname = ISNULL(NULLIF(@2, ''), nickname) WHERE profileID = @3;";
 
-                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
+                using (SqlCommand cmd = new SqlCommand(stmt, connection, transaction))
                 {
 
                     cmd.Parameters.AddWithValue("@0", profile.Username);
@@ -164,7 +157,7 @@ namespace DataAccessTier
                     {
                         stmt = "DECLARE @salt UNIQUEIDENTIFIER=NEWID() UPDATE Profile  SET salt = @salt, passwordHash = HASHBYTES('SHA2_512', @0 +CAST(@salt AS NVARCHAR(36))) WHERE profileId = @1";
 
-                        using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
+                        using (SqlCommand cmd = new SqlCommand(stmt, connection, transaction))
                         {
                             cmd.Parameters.AddWithValue("@0", profile.Password);
                             cmd.Parameters.AddWithValue("@1", profile.ProfileID);
@@ -186,14 +179,14 @@ namespace DataAccessTier
         /// </summary>
         /// <param name="id">ID of info you want to delete</param>
         /// <returns>Returns true if succedes, false otherwise and prints error in console</returns>
-        public bool DeleteProfile(int id, SqlTransaction transaction)
+        public bool DeleteProfile(int id, SqlTransaction transaction, SqlConnection connection)
         {
             if (id < 1)
                 return false;
             try
             {
                 string stmt = "DELETE FROM Profile WHERE profileID = @0";
-                using (SqlCommand cmd = new SqlCommand(stmt, con.GetConnection(), transaction))
+                using (SqlCommand cmd = new SqlCommand(stmt, connection, transaction))
                 {
                     cmd.Parameters.AddWithValue("@0", id);
                     cmd.ExecuteNonQuery();

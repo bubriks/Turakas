@@ -31,36 +31,53 @@ namespace BusinessTier
                 {
                     if (chat.ActivityId == 0)//new chat if id = 0
                     {
-                        using (IDbTransaction tran = DbConnection.GetInstance().GetConnection().BeginTransaction())
+                        SqlConnection con = new DbConnection().GetConnection();
+                        try
                         {
-                            try
+                            using (IDbTransaction tran = con.BeginTransaction())
                             {
-                                chat.ActivityId = dbActivity.CreateActivity(chat.ProfileId, (SqlTransaction)tran);
-                                if (dbChat.CreateChat(chat, (SqlTransaction)tran) == 0)
+                                try
+                                {
+                                    chat.ActivityId = dbActivity.CreateActivity(chat.ProfileId, (SqlTransaction)tran, con);
+                                    if (dbChat.CreateChat(chat, (SqlTransaction)tran, con) == 0)
+                                    {
+                                        tran.Rollback();
+                                        return false;
+                                    }
+                                    else
+                                    {
+                                        tran.Commit();
+                                        return true;
+                                    }
+                                }
+                                catch (Exception)
                                 {
                                     tran.Rollback();
                                     return false;
                                 }
-                                else
-                                {
-                                    tran.Commit();
-                                    return true;
-                                }
                             }
-                            catch (Exception)
-                            {
-                                tran.Rollback();
-                                return false;
-                            }
+
+                        }
+                        finally
+                        {
+                            con.Close();
                         }
                     }
                     else//update existing chat
                     {
                         if (profileId == chat.ProfileId)//if the owner of the chat
                         {
-                            if (dbChat.UpdateChat(chat, null) == 0)//no changes were made
+                            SqlConnection con = new DbConnection().GetConnection();
+                            try
                             {
-                                return false;
+                                if (dbChat.UpdateChat(chat, null, con) == 0)//no changes were made
+                                {
+                                    return false;
+                                }
+                            }
+                            finally
+                            {
+                                con.Close();
                             }
 
                             Chat foundChat = FindChat(chat.ActivityId);//finds chat
@@ -96,21 +113,29 @@ namespace BusinessTier
         {
             try
             {
-                if (dbActivity.DeleteActivity(profileId, id, null) == 1)//if chat wasnt deleted
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    Chat foundChat = FindChat(id);//checks if chat is active
-                    if (foundChat != null)
+                    if (dbActivity.DeleteActivity(profileId, id, null, con) == 1)//if chat wasnt deleted
                     {
-                        lock (chats)//locks chats 
+                        Chat foundChat = FindChat(id);//checks if chat is active
+                        if (foundChat != null)
                         {
-                            chats.Remove(foundChat);//removes chat from active chats
+                            lock (chats)//locks chats 
+                            {
+                                chats.Remove(foundChat);//removes chat from active chats
+                            }
                         }
+                        return true;
                     }
-                    return true;
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else
+                finally
                 {
-                    return false;
+                    con.Close();
                 }
             }
             catch (Exception)
@@ -123,20 +148,28 @@ namespace BusinessTier
         {
             try
             {
-                List<Chat> chatlist = new List<Chat>();//creates list of chats that user will recieve
-                foreach (Chat chat in dbChat.GetChatsByName(name, profileId, null))
+                SqlConnection con = new DbConnection().GetConnection();
+                try
                 {
-                    Chat chatitem = FindChat(chat.ActivityId);//trys finding the active chat 
-                    if (chatitem != null)//if active chat was found is is added to list
+                    List<Chat> chatlist = new List<Chat>();//creates list of chats that user will recieve
+                    foreach (Chat chat in dbChat.GetChatsByName(name, profileId, null, con))
                     {
-                        chatlist.Add(chatitem);
+                        Chat chatitem = FindChat(chat.ActivityId);//trys finding the active chat 
+                        if (chatitem != null)//if active chat was found is is added to list
+                        {
+                            chatlist.Add(chatitem);
+                        }
+                        else//chat wasnt found chat from db is added
+                        {
+                            chatlist.Add(chat);
+                        }
                     }
-                    else//chat wasnt found chat from db is added
-                    {
-                        chatlist.Add(chat);
-                    }
+                    return chatlist;//returns list of chats if everything went correctly
                 }
-                return chatlist;//returns list of chats if everything went correctly
+                finally
+                {
+                    con.Close();
+                }
             }
             catch (Exception)
             {
@@ -185,7 +218,15 @@ namespace BusinessTier
                 {
                     lock (chats)
                     {
-                        chat = dbChat.GetChat(chatId, null);//Gets chat from database
+                        SqlConnection con = new DbConnection().GetConnection();
+                        try
+                        {
+                            chat = dbChat.GetChat(chatId, null, con);//Gets chat from database
+                        }
+                        finally
+                        {
+                            con.Close();
+                        }
                         if (chat.MaxNrOfUsers >= profiles.Count)
                         {
                             List<Tuple<Profile, object, string>> membersToJoin = new List<Tuple<Profile, object, string>>();
@@ -257,7 +298,15 @@ namespace BusinessTier
                 {
                     lock (chats)
                     {
-                        chat = dbChat.GetChat(chatId, null);//Gets chat from database
+                        SqlConnection con = new DbConnection().GetConnection();
+                        try
+                        {
+                            chat = dbChat.GetChat(chatId, null, con);//Gets chat from database
+                        }
+                        finally
+                        {
+                            con.Close();
+                        }
                         Profile user = profileController.GetUser(profileId);
                         if(user == null)
                         {

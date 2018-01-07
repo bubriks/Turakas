@@ -12,7 +12,6 @@ namespace TestTier
     public class SongTests
     {
         private SongController songController;
-        private DbConnection dbConnection;
         private DbActivity dbActivity;
         private DBSong dbSong;
 
@@ -20,7 +19,6 @@ namespace TestTier
         {
             dbActivity = new DbActivity();
             songController = new SongController();
-            dbConnection = DbConnection.GetInstance();
             dbSong = new DBSong();
         }
         
@@ -120,8 +118,8 @@ namespace TestTier
                 urlsActual.Add(song.Url);
             }
             CollectionAssert.AreEqual(urlsExpected, urlsActual);
-            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM", null).ActivityId, null);
-            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("2a4Uxdy9TQY", null).ActivityId, null);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM", null, new DbConnection().GetConnection()).ActivityId, null, new DbConnection().GetConnection());
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("2a4Uxdy9TQY", null, new DbConnection().GetConnection()).ActivityId, null, new DbConnection().GetConnection());
 
         }
         
@@ -137,7 +135,7 @@ namespace TestTier
         {
             songController.AddSong("YWo4qBnSwjM",1);
             Assert.IsFalse(songController.AddSong("YWo4qBnSwjM",1));
-            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM", null).ActivityId, null);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM", null, new DbConnection().GetConnection()).ActivityId, null, new DbConnection().GetConnection());
 
         }
         
@@ -145,7 +143,7 @@ namespace TestTier
         public void AddNonExisting()
         {
             Assert.IsTrue(songController.AddSong("YWo4qBnSwjM",1));
-            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM", null).ActivityId, null);
+            dbActivity.DeleteActivity(1, dbSong.FindSongByURL("YWo4qBnSwjM", null, new DbConnection().GetConnection()).ActivityId, null, new DbConnection().GetConnection());
         }
         
         
