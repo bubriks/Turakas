@@ -23,8 +23,7 @@ namespace WcfService
             {
                 List<Tuple<object, int, string>> callbacks = new List<Tuple<object, int, string>>();
                 List<Profile> profiles = new List<Profile>();
-                Chat chat = (Chat)chatController.FindChat(chatId);
-                foreach (var tuple in chat.Users)
+                foreach (var tuple in chatController.FindChat(chatId).Users)
                 {
                     profiles.Add(tuple.Item1);
                     if (tuple.Item2 != null)
@@ -32,7 +31,7 @@ namespace WcfService
                         callbacks.Add(new Tuple<object, int, string>(tuple.Item2, tuple.Item1.ProfileID, tuple.Item3));
                     }
                 }
-                callback.GetChat(chat, clientId);// was modified
+                callback.GetChat(chatController.FindChat(chatId), clientId);
                 callback.GetMessages(messageController.GetMessages(chatId), clientId);
                 callback.Show(true, clientId);
                 foreach (Tuple<object, int, string> messageCallBack in callbacks)
